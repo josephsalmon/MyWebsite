@@ -1,0 +1,35 @@
+---
+title: Courses
+comments: false
+toc: false
+---
+
+
+
+
+## HAX603X - Stochastic Modeling (2023-2024)
+
+<img style="float: right;" src="images/methode_inverse.png" width=12%>
+
+This is an undergraduate course on stochastic modeling and Monte Carlo methods, with exercises in Python.
+<br>
+Details can be found here: [HAX603X - Stochastic Modeling](HAX603X).
+<br>
+Course language: &#127467;&#127479;
+
+
+
+
+## CR12 - Machine Learning (2013-2015)
+
+<img style="float: right;" src="images/vgg16.svg" width=30%>
+
+This is a Master 2 course on Machine learning (with [Z. Harchaoui](http://faculty.washington.edu/zaid/), [J. Mairal](http://lear.inrialpes.fr/people/mairal/) and [L. Jacob](http://lbbe.univ-lyon1.fr/-Jacob-Laurent-.html?lang=fr)).
+
+
+Details can be found here:
+
+- [CR12 - Machine Learning (2014-2015)](http://lear.inrialpes.fr/people/mairal/teaching/2014-2015/M2ENS/)
+- [CR12 - Machine Learning (2013-2014)](http://lear.inrialpes.fr/people/harchaoui/teaching/2013-2014/ensl/m2/).
+
+Course language: &#127468;&#127463;
