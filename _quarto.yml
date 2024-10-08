@@ -43,8 +43,8 @@ website:
       #   href: speaking/index.qmd
       # - text: CV
       #   href: cv/index.qmd
-      # - text: Blog
-      #   href: blog/index.qmd
+      - text: Blog
+        href: blog/index.qmd
     right:
     - icon: github
       # text: Github
@@ -92,6 +92,7 @@ filters:
 format:
   html:
     include-in-header: html/seo.html
+    html-math-method: katex
     fontsize: 1.1em
     theme:
       - html/styles.scss

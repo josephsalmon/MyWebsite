@@ -88,7 +88,7 @@ pre.text, pre.sourceCode, .cell-output pre {
 }
 
 .fixed-top {
- z-index:1000; 
+ z-index:1000;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -137,7 +137,7 @@ pre.text, pre.sourceCode, .cell-output pre {
             flex: 0 0 25%;
 
             img {
-                max-height:120px;
+                max-height:150px;
                 object-fit: cover;
                 width: 100%;
             }
@@ -187,7 +187,7 @@ pre.text, pre.sourceCode, .cell-output pre {
   color:$white;
 }
 
-#title-block-header.quarto-title-block.default .title, 
+#title-block-header.quarto-title-block.default .title,
 #title-block-header.quarto-title-block.default .code-tools-button p::before,
 #title-block-header.quarto-title-block.default .code-tools-button i::before
 {
@@ -269,7 +269,7 @@ pre.text, pre.sourceCode, .cell-output pre {
         padding-bottom: 0.4em;
     }
 
-    // In the default Quarto template, .nav-footer-center has position: absolute 
+    // In the default Quarto template, .nav-footer-center has position: absolute
     // turned on, which makes the div not be a flex item
     // This changes that so that it *is* a flex item
     .nav-footer-center {
@@ -283,7 +283,7 @@ pre.text, pre.sourceCode, .cell-output pre {
         }
     }
 
-    // When the screen is medium or smaller, make each footer chunk be 100% width 
+    // When the screen is medium or smaller, make each footer chunk be 100% width
     // and centered; otherwise make them be 33% width and left/right/centerd
     .nav-footer-left,
     .nav-footer-right,
@@ -319,3 +319,6 @@ pre.text, pre.sourceCode, .cell-output pre {
 #news p a{
   color: $orange;
 }
+
+
+
