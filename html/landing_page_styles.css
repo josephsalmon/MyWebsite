@@ -101,7 +101,7 @@ a {
     .section_padding {
         padding: 1rem 2rem 0rem 2rem;
     }
-    
+
     .hero {
       padding-top: 2rem;
     }
@@ -115,7 +115,7 @@ a {
     .section_padding {
         padding: 1rem 2rem 0rem 2rem;
     }
-    
+
     .hero {
       padding-top: 2rem;
     }
@@ -123,7 +123,7 @@ a {
     .section_margin {
         margin: 4rem 2rem;
     }
-    
+
 }
 
 .hero {
@@ -176,10 +176,10 @@ a {
     min-height: 53px;
     max-height: 53px;
     padding: 0 0rem;
-    margin: 0 !important; 
-    padding:0 !important; 
-    border-radius: 0px !important; 
-    background-color: transparent; 
+    margin: 0 !important;
+    padding:0 !important;
+    border-radius: 0px !important;
+    background-color: transparent;
     width: 100%;
 }
 
@@ -210,11 +210,11 @@ a {
     max-width: 350px;
     min-width: 250px;
     border-radius: 50%;
-    box-shadow: 
-    rgba(0, 0, 0, 0.25) 0px 54px 55px, 
-    rgba(0, 0, 0, 0.12) 0px -12px 30px, 
-    rgba(0, 0, 0, 0.12) 0px 4px 6px, 
-    rgba(0, 0, 0, 0.17) 0px 12px 13px, 
+    box-shadow:
+    rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px,
     rgba(0, 0, 0, 0.09) 0px -3px 5px
     ;
     border: 0px solid black;
@@ -241,7 +241,7 @@ a {
         font-size: 16px;
         line-height: 24px;
     }
-    
+
     .hero_content_below_button span{
       font-size: 11px;
     }
@@ -271,7 +271,7 @@ a {
         font-size: 12px;
         line-height: 16px;
     }
-    
+
     .hero_content_below_button span{
       font-size: 10px;
     }

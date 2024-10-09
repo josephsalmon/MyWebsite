@@ -6,6 +6,7 @@ project:
 
   resources:
     - "img/**"
+    -  "*.ipynb"
     - "assets/**"
     - "sitemap.xml"
     - "_redirects"
@@ -40,9 +41,9 @@ website:
       - text: Courses
         href: Courses/index.qmd
       - text: Talks
-        href: Talks/index.qmd
-      # - text: CV
-      #   href: cv/index.qmd
+        href: talks/index.qmd
+      - text: Team
+        href: team/index.qmd
       - text: Blog
         href: blog/index.qmd
     right:

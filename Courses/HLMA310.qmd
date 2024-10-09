@@ -71,7 +71,7 @@ We will address some of the element in the Python scientific ecosystem:
 
 
 ## More resources
-- [Jake VanderPlas book on datascience](https://jakevdp.github.io/PythonDataScienceHandbook/) and associated [videos](http://jakevdp.github.io/blog/2017/03/03/reproducible-data-analysis-in-jupyter/)
+- [Jake VanderPlas book on Datascience](https://jakevdp.github.io/PythonDataScienceHandbook/) and associated [videos](http://jakevdp.github.io/blog/2017/03/03/reproducible-data-analysis-in-jupyter/)
 
 - [Scipy lecture notes](https://www.scipy-lectures.org/)
 
