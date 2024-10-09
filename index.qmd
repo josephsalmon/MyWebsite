@@ -8,10 +8,15 @@ format:
     minimal: true
     smooth-scroll: true
     fig-responsive: true
+    # css: styles.css
+    from: markdown+emoji
+    html-math-method: katex
 listing:
   id: blog-listing
   contents:
-    - "blog/youtube-channel/index.qmd"
+    - "blog/softmax/index.qmd"
+    - "blog/latex/index.qmd"
+
 
   sort: "date desc"
   type: grid
@@ -28,7 +33,8 @@ listing:
 
 ::: {.column-screen}
 ```{=html}
-<link rel="stylesheet" href="html/landing_page_styles.css">
+<link rel="stylesheet" href="html/
+landing_page_styles.css">
 
 <div class="gradient_bg">
     <div class="hero section_padding">
@@ -74,13 +80,19 @@ listing:
 
 - **Sept. 2024**: I've joined Inria as a senior researcher (Team: Iroko, Montpellier)
 - **Sept. 2023**: ANR VITE  (PI: B. Thirion, theme: variable importance / explainability) accepted.
+- **April 2023**: [STATLEARN 2023](https://statlearn.sciencesconf.org/) in Montpellier
+- **Nov. 2022**: [https://ml4lifesciences.sciencesconf.org/](Machine Learning for life sciences)
 - **March 2022**: visitor at the Simons Institute for the Theory of Computing
 - **July 2021**: **IUF** Nomination (junior member): [https://www.iufrance.fr/detail-de-lactualite/247.html](https://www.iufrance.fr/detail-de-lactualite/247.html)
+- **Nov. 2020**: Launching [ML-MTP Machine Learning in Montpellier, Theory & Practice](https://groupes.renater.fr/wiki/ml-mtp/index).
 - **Dec. 2019**: The ANR AI chair proposal CaMeLOt (CooperAtive MachinE Learning and OpTimization) has been selected.
+- **May 2019** : Workshop in Montpellier [Graph signals : learning and optimization perspectives](https://graph-sig-2019.sciencesconf.org/)
+
+
 
 
 :::{#contact}
-## Contact
+## Contact / positions
 
 If you want to connect please reach out via email
 <a href="mailto:joseph.salmon@inria.fr"><span style='text-decoration: underline; text-decoration-color: #f08f04ff;'>joseph.salmon@inria.fr</span></a>
@@ -93,6 +105,19 @@ Université de Montpellier</br>
 Place Eugène Bataillon</br>
 34095 Montpellier Cedex 5</br>
 (office 415, building 9)</br>
+
+I am always looking for outstanding and highly motivated people to work (as intern, Ph.D. student, post-doctorate or research engineer) on machine learning, and more precisely on:
+
+- citizen science and crowdsourcing
+- high dimensional / robust statistics, variable selection, sparsity
+- optimization for machine learning (including federated learning, privacy, etc.)
+
+The application process is light:
+
+- Email a CV, a transcript of recent grades, and explain in a short paragraph why you are interested to join.
+- Upon interest, I will ask two reference letters (one only for interns or Ph.D. students) to be sent directly to me.
+- At this stage an interview (possibly online) will be arranged to double-check your skills and profile compatibility.
+
 
 
 :::

@@ -1,0 +1,711 @@
+{VERSION 6 0 "Linux" "6.0" }
+{USTYLETAB {PSTYLE "Maple Output12" -1 200 1 {CSTYLE "" -1 -1 "Times" 
+1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }
+{PSTYLE "Heading 4" -1 20 1 {CSTYLE "" -1 -1 "Times" 1 10 0 0 0 1 1 1 
+2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Ordered List 5
+" -1 201 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }
+1 1 0 0 3 3 2 144 2 0 2 2 -1 1 }{PSTYLE "Ordered List 1" -1 202 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3
+ 2 0 2 0 2 2 -1 1 }{PSTYLE "Text Output" -1 2 1 {CSTYLE "" -1 -1 "Cour
+ier" 1 10 0 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 
+}{PSTYLE "_pstyle3" -1 203 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2
+ 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Bullet Item" 
+-1 15 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1
+ 0 0 3 3 2 0 2 0 2 2 -1 1 }{PSTYLE "Left Justified Maple Output" -1 12
+ 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 
+0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Help" -1 10 1 {CSTYLE "" -1 -1 "Courier
+" 1 9 0 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }
+{PSTYLE "Author" -1 19 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2
+ 2 2 1 0 0 1 }3 1 0 0 8 8 2 0 2 0 2 2 -1 1 }{PSTYLE "Diagnostic" -1 9 
+1 {CSTYLE "" -1 -1 "Courier" 1 10 64 128 64 1 2 2 2 2 2 1 1 0 0 1 }1 1
+ 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Heading 2" -1 4 1 {CSTYLE "" -1 -1
+ "Times" 1 14 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 8 2 2 0 2 0 2 2 -1 
+1 }{PSTYLE "_pstyle1" -1 204 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2
+ 1 2 2 2 2 1 0 0 1 }3 1 0 0 8 4 2 0 2 0 2 2 -1 1 }{PSTYLE "Ordered Lis
+t 3" -1 205 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 
+1 }1 1 0 0 3 3 2 72 2 0 2 2 -1 1 }{PSTYLE "Maple Plot" -1 13 1 {CSTYLE
+ "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 
+0 2 2 -1 1 }{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 
+0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Annota
+tion Title" -1 206 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2
+ 1 0 0 1 }3 1 0 0 12 12 2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle1256" -1 207
+ 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 
+8 4 2 0 2 0 2 2 -1 1 }{PSTYLE "Dash Item" -1 16 1 {CSTYLE "" -1 -1 "Ti
+mes" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 0 2 0 2 2 -1 1 }
+{PSTYLE "Heading 3" -1 5 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 1 1 2
+ 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Ordered List 4"
+ -1 208 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1
+ 1 0 0 3 3 2 108 2 0 2 2 -1 1 }{PSTYLE "_pstyle2" -1 209 1 {CSTYLE "" 
+-1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 
+2 -1 1 }{PSTYLE "Maple Output" -1 11 1 {CSTYLE "" -1 -1 "Times" 1 12 0
+ 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Lin
+e Printed Output" -1 6 1 {CSTYLE "" -1 -1 "Courier" 1 10 0 0 255 1 2 2
+ 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "List Item" -1
+ 14 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0
+ 0 3 3 2 0 2 0 2 2 -1 1 }{PSTYLE "Warning" -1 7 1 {CSTYLE "" -1 -1 "Co
+urier" 1 10 0 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 
+1 }{PSTYLE "Error" -1 8 1 {CSTYLE "" -1 -1 "Courier" 1 10 255 0 255 1 
+2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Fixed Widt
+h" -1 17 1 {CSTYLE "" -1 -1 "Courier" 1 10 0 0 0 1 2 2 2 2 2 2 1 0 0 1
+ }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Heading 1" -1 3 1 {CSTYLE "" 
+-1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 8 4 2 0 2 0 2 
+2 -1 1 }{PSTYLE "Title" -1 18 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 
+2 1 1 2 2 2 1 0 0 1 }3 1 0 0 12 12 2 0 2 0 2 2 -1 1 }{PSTYLE "Ordered \+
+List 2" -1 210 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0
+ 0 1 }1 1 0 0 3 3 2 36 2 0 2 2 -1 1 }{CSTYLE "Help Variable" -1 25 "Co
+urier" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle2" -1 200 "Ti
+mes" 1 24 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Help Bold" -1 39 "Time
+s" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Page Number" -1 33 "Time
+s" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Nonterminal" -1 24 
+"Courier" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Default" -1 38 "T
+imes" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Maple Comment" -1 21 
+"Courier" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math Small" -1
+ 7 "Times" 1 1 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Inert Output" 
+-1 201 "Times" 1 12 144 144 144 1 2 2 2 2 1 2 0 0 0 1 }{CSTYLE "Popup"
+ -1 31 "Times" 1 12 0 128 128 1 1 2 1 2 2 2 0 0 0 1 }{CSTYLE "Copyrigh
+t" -1 34 "Times" 1 10 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Input" 
+-1 19 "Times" 1 12 255 0 0 1 2 2 2 2 1 2 0 0 0 1 }{CSTYLE "Maple Input
+ Placeholder" -1 202 "Courier" 1 12 200 0 200 1 2 1 2 2 1 2 0 0 0 1 }
+{CSTYLE "Annotation Text" -1 203 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 
+0 1 }{CSTYLE "Help Underlined Bold" -1 41 "Times" 1 12 0 0 0 1 1 1 2 2
+ 2 2 0 0 0 1 }{CSTYLE "2D Math Italic Small206" -1 204 "Times" 1 1 0 0
+ 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "Plot Text" -1 28 "Times" 1 8 0 0 0 
+1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Italic" -1 42 "Times" 1 12 0 0 0 
+1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Heading" -1 26 "Times" 1 14 0 0 0
+ 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle6" -1 205 "Times" 1 14 0 0 0 1
+ 1 1 2 2 2 2 0 0 0 1 }{CSTYLE "Help Normal" -1 30 "Times" 1 12 0 0 0 1
+ 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Dictionary Hyperlink" -1 45 "Times" 1 
+12 147 0 15 1 2 2 1 2 2 2 0 0 0 1 }{CSTYLE "Help Emphasized" -1 22 "Ti
+mes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Italic Bold" -1 
+40 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "LaTeX" -1 32 "Ti
+mes" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Underlined" -1 44
+ "Times" 1 12 0 0 0 1 2 2 1 2 2 2 0 0 0 1 }{CSTYLE "Help Underlined It
+alic" -1 43 "Times" 1 12 0 0 0 1 1 2 1 2 2 2 0 0 0 1 }{CSTYLE "2D Math
+ Bold" -1 5 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math
+ Italic" -1 3 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "Text"
+ -1 206 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math Ita
+lic Small" -1 207 "Times" 1 1 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "_c
+style7" -1 208 "Times" 1 14 0 0 0 1 2 1 1 2 2 2 0 0 0 1 }{CSTYLE "Mapl
+e Input" -1 0 "Courier" 1 12 255 0 0 1 2 1 2 2 1 2 0 0 0 1 }{CSTYLE "H
+elp Fixed" -1 23 "Courier" 1 10 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "
+2D Math Italic Small207" -1 209 "Times" 1 1 0 0 0 1 1 2 2 2 2 2 0 0 0 
+1 }{CSTYLE "Plot Title" -1 27 "Times" 1 10 0 0 0 1 2 1 2 2 2 2 0 0 0 1
+ }{CSTYLE "2D Math Bold Small" -1 10 "Times" 1 1 0 0 0 1 2 1 2 2 2 2 0
+ 0 0 1 }{CSTYLE "2D Math" -1 2 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 
+1 }{CSTYLE "Help Notes" -1 37 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1
+ }{CSTYLE "Hyperlink" -1 17 "Times" 1 12 0 128 128 1 2 2 1 2 2 2 0 0 0
+ 1 }{CSTYLE "2D Math Italic Small207209" -1 210 "Times" 1 1 0 0 0 1 1 
+2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math Symbol 2" -1 16 "Times" 1 12 0 0 0
+ 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Equation Label" -1 211 "Times" 1 12 0
+ 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle1" -1 212 "Times" 1 18 0 0
+ 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Output Labels" -1 29 "Times" 1 8 0 
+0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Comment" -1 18 "Times" 1 12 0 0
+ 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Output" -1 20 "Times" 1 12 0 0 
+255 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Maple Name" -1 35 "Times" 1 
+12 104 64 92 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Help Menus" -1 36 "Times"
+ 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Prompt" -1 1 "Courier" 1 
+12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 213 "Times" 1 12 0 0 0 1
+ 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 214 "Times" 1 12 0 0 0 1 1 2 2 2 2
+ 2 0 0 0 1 }{CSTYLE "" -1 215 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1
+ }{CSTYLE "" -1 216 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE 
+"" -1 217 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 218 
+"Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 219 "Times" 1 
+12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 211 1 {CSTYLE "" -1 -1 "
+Times" 1 12 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 
+}{CSTYLE "" -1 220 "Times" 1 14 0 0 0 1 2 1 1 2 2 2 0 0 0 1 }{CSTYLE "
+" -1 221 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 222 "
+Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 223 "Times" 1 
+12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 224 "Times" 1 12 0 0 0 1
+ 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 225 "Times" 1 12 0 0 0 1 1 2 2 2 2
+ 2 0 0 0 1 }{CSTYLE "" -1 226 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1
+ }{CSTYLE "" -1 227 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE 
+"" -1 228 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 229 
+"Times" 1 12 0 0 0 1 2 1 1 2 2 2 0 0 0 1 }{CSTYLE "" -1 230 "Times" 1 
+12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 231 "Times" 1 12 0 0 0 1
+ 2 2 1 2 2 2 0 0 0 1 }{CSTYLE "" -1 232 "Times" 1 12 0 0 0 1 2 2 1 2 2
+ 2 0 0 0 1 }{CSTYLE "" -1 233 "Times" 1 12 0 0 0 1 2 2 1 2 2 2 0 0 0 1
+ }{CSTYLE "" -1 234 "Times" 1 12 0 0 0 1 2 2 1 2 2 2 0 0 0 1 }{CSTYLE 
+"" -1 235 "Times" 1 12 0 0 0 1 2 2 1 2 2 2 0 0 0 1 }{CSTYLE "" -1 236 
+"Times" 1 12 0 0 0 1 2 2 1 2 2 2 0 0 0 1 }{CSTYLE "" -1 237 "Times" 1 
+12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 238 "Times" 1 12 0 0 0 1
+ 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 239 "Times" 1 12 0 0 0 1 2 1 2 2 2
+ 2 0 0 0 1 }{CSTYLE "" -1 240 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1
+ }{CSTYLE "" -1 241 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE 
+"" -1 242 "Times" 1 12 0 0 0 1 2 2 1 2 2 2 0 0 0 1 }{CSTYLE "" -1 243 
+"Times" 1 12 0 0 0 1 2 2 1 2 2 2 0 0 0 1 }{CSTYLE "" -1 244 "Times" 1 
+12 0 0 0 1 2 2 1 2 2 2 0 0 0 1 }{CSTYLE "" -1 245 "Times" 1 12 0 0 0 1
+ 2 2 1 2 2 2 0 0 0 1 }{PSTYLE "" -1 212 1 {CSTYLE "" -1 -1 "Times" 1 
+12 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE 
+"" -1 246 "Times" 1 14 0 0 0 1 2 1 1 2 2 2 0 0 0 1 }{PSTYLE "" -1 213 
+1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1 1 0 0 0
+ 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 214 1 {CSTYLE "" -1 -1 "Times" 1 12
+ 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE ""
+ -1 247 "Times" 1 14 0 0 0 1 2 1 1 2 2 2 0 0 0 1 }{CSTYLE "" -1 248 "T
+imes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 249 "Times" 1 12
+ 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 250 "Times" 1 12 0 0 0 1 1
+ 2 2 2 2 2 0 0 0 1 }}
+{SECT 0 {EXCHG {PARA 207 "" 0 "" {TEXT 206 11 "J. Salmon\n" }{TEXT 
+206 6 "salmon" }{TEXT 206 16 "@math.jussieu.fr" }}{PARA 204 "" 0 "" 
+{TEXT 212 27 "MK1 \"Calcul formel\" Maple" }}{PARA 209 "" 0 "" {TEXT 
+251 0 "" }}{PARA 203 "" 0 "" {TEXT 200 36 "TP4 : Alg\303\250bre lin\30
+3\251aire" }}{PARA 209 "" 0 "" {TEXT 251 0 "" }}{PARA 209 "" 0 "" 
+{TEXT 251 0 "" }}{PARA 209 "" 0 "" {TEXT 251 0 "" }}{PARA 0 "" 0 "" 
+{TEXT 206 12 "But du TP4 :" }}{PARA 0 "" 0 "" {TEXT 252 79 "Nous allon
+s utiliser Maple pour faire de l'alg\303\250bre lin\303\251aire dans "
+ }{XPPEDIT 18 0 "Typesetting:-mrow(Typesetting:-mi(\"\"), Typesetting:
+-msup(Typesetting:-mi(\"R\"), Typesetting:-mi(\"n\"), superscriptshift
+ = \"0\"), Typesetting:-mi(\"\"));" "-I%mrowG6#/I+modulenameG6\"I,Type
+settingGI(_syslibGF'6%-I#miGF$6#Q!F'-I%msupGF$6%-F,6#Q\"RF'-F,6#Q\"nF'
+/%1superscriptshiftGQ\"0F'F+" }{TEXT 252 66 " : vecteurs, bases, matri
+ces, syst\303\251mes lin\303\251aires,..." }}{PARA 0 "" 0 "" {TEXT 
+252 0 "" }}{PARA 0 "" 0 "" {TEXT 252 0 "" }}{PARA 0 "" 0 "" {TEXT 252 
+124 "La plupart des commandes de Maple qui permettent de faire de l'al
+g\303\250bre lin\303\251aire se trouvent dans la librairie " }
+{XPPEDIT 18 0 "Typesetting:-mrow(Typesetting:-mi(\"linalg\"), Typesett
+ing:-mo(\".\", form = \"infix\", fence = \"false\", separator = \"fals
+e\", lspace = \"0.0em\", rspace = \"0.0em\", stretchy = \"false\", sym
+metric = \"false\", maxsize = \"infinity\", minsize = \"1\", largeop =
+ \"false\", movablelimits = \"false\", accent = \"false\"), Typesettin
+g:-mi(\"Pour\"), Typesetting:-mo(\" \", form = \"\", fence = \"false\"
+, separator = \"false\", lspace = \"0.0em\", rspace = \"0.0em\", stret
+chy = \"false\", symmetric = \"false\", maxsize = \"infinity\", minsiz
+e = \"1\", largeop = \"false\", movablelimits = \"false\", accent = \"
+false\"), Typesetting:-mi(\"ouvrir\"), Typesetting:-mo(\" \", form = \+
+\"\", fence = \"false\", separator = \"false\", lspace = \"0.0em\", rs
+pace = \"0.0em\", stretchy = \"false\", symmetric = \"false\", maxsize
+ = \"infinity\", minsize = \"1\", largeop = \"false\", movablelimits =
+ \"false\", accent = \"false\"), Typesetting:-mi(\"la\"), Typesetting:
+-mo(\" \", form = \"\", fence = \"false\", separator = \"false\", lspa
+ce = \"0.0em\", rspace = \"0.0em\", stretchy = \"false\", symmetric = \+
+\"false\", maxsize = \"infinity\", minsize = \"1\", largeop = \"false
+\", movablelimits = \"false\", accent = \"false\"), Typesetting:-mi(\"
+librairie\"), Typesetting:-mo(\" \", form = \"\", fence = \"false\", s
+eparator = \"false\", lspace = \"0.0em\", rspace = \"0.0em\", stretchy
+ = \"false\", symmetric = \"false\", maxsize = \"infinity\", minsize =
+ \"1\", largeop = \"false\", movablelimits = \"false\", accent = \"fal
+se\"), Typesetting:-mi(\"on\"), Typesetting:-mo(\" \", form = \"\", fe
+nce = \"false\", separator = \"false\", lspace = \"0.0em\", rspace = \+
+\"0.0em\", stretchy = \"false\", symmetric = \"false\", maxsize = \"in
+finity\", minsize = \"1\", largeop = \"false\", movablelimits = \"fals
+e\", accent = \"false\"), Typesetting:-mi(\"utilise\"), Typesetting:-m
+o(\" \", form = \"\", fence = \"false\", separator = \"false\", lspace
+ = \"0.0em\", rspace = \"0.0em\", stretchy = \"false\", symmetric = \"
+false\", maxsize = \"infinity\", minsize = \"1\", largeop = \"false\",
+ movablelimits = \"false\", accent = \"false\"), Typesetting:-mi(\"la
+\"), Typesetting:-mo(\" \", form = \"\", fence = \"false\", separator \+
+= \"false\", lspace = \"0.0em\", rspace = \"0.0em\", stretchy = \"fals
+e\", symmetric = \"false\", maxsize = \"infinity\", minsize = \"1\", l
+argeop = \"false\", movablelimits = \"false\", accent = \"false\"), Ty
+pesetting:-mi(\"commande\"), Typesetting:-mo(\" \", form = \"\", fence
+ = \"false\", separator = \"false\", lspace = \"0.0em\", rspace = \"0.
+0em\", stretchy = \"false\", symmetric = \"false\", maxsize = \"infini
+ty\", minsize = \"1\", largeop = \"false\", movablelimits = \"false\",
+ accent = \"false\"), Typesetting:-mo(\"'\", form = \"postfix\", fence
+ = \"false\", separator = \"false\", lspace = \"0.1111111em\", rspace \+
+= \"0.0em\", stretchy = \"false\", symmetric = \"false\", maxsize = \"
+infinity\", minsize = \"1\", largeop = \"false\", movablelimits = \"fa
+lse\", accent = \"false\"), Typesetting:-mi(\"with\"), Typesetting:-mo
+(\"'\", form = \"postfix\", fence = \"false\", separator = \"false\", \+
+lspace = \"0.1111111em\", rspace = \"0.0em\", stretchy = \"false\", sy
+mmetric = \"false\", maxsize = \"infinity\", minsize = \"1\", largeop \+
+= \"false\", movablelimits = \"false\", accent = \"false\"), Typesetti
+ng:-mo(\":\", form = \"infix\", fence = \"false\", separator = \"false
+\", lspace = \"0.2777778em\", rspace = \"0.2777778em\", stretchy = \"f
+alse\", symmetric = \"false\", maxsize = \"infinity\", minsize = \"1\"
+, largeop = \"false\", movablelimits = \"false\", accent = \"false\"))
+;" "-I%mrowG6#/I+modulenameG6\"I,TypesettingGI(_syslibGF'68-I#miGF$6#Q
+'linalgF'-I#moGF$6/Q\".F'/%%formGQ&infixF'/%&fenceGQ&falseF'/%*separat
+orGF8/%'lspaceGQ&0.0emF'/%'rspaceGF=/%)stretchyGF8/%*symmetricGF8/%(ma
+xsizeGQ)infinityF'/%(minsizeGQ\"1F'/%(largeopGF8/%.movablelimitsGF8/%'
+accentGF8-F,6#Q%PourF'-F06/Q\"~F'/F4Q!F'F6F9F;F>F@FBFDFGFJFLFN-F,6#Q'o
+uvrirF'FS-F,6#Q#laF'FS-F,6#Q*librairieF'FS-F,6#Q#onF'FS-F,6#Q(utiliseF
+'FSFenFS-F,6#Q)commandeF'FS-F06/Q\"'F'/F4Q(postfixF'F6F9/F<Q,0.1111111
+emF'F>F@FBFDFGFJFLFN-F,6#Q%withF'Fdo-F06/Q\":F'F3F6F9/F<Q,0.2777778emF
+'/F?FbpF@FBFDFGFJFLFN" }}{PARA 0 "" 0 "" {TEXT 252 0 "" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "restart: with(linalg);" }}{PARA 7 "
+" 1 "" {TEXT 253 79 "Warning, the protected names norm and trace have \+
+been redefined and unprotected" }}{PARA 11 "" 1 "" {XPPMATH 20 "7^rI.B
+lockDiagonalG6\"I,GramSchmidtGF$I,JordanBlockGF$I)LUdecompGF$I)QRdecom
+pGF$I*WronskianGF$I'addcolGF$I'addrowGF$I$adjGF$I(adjointGF$I&angleGF$
+I(augmentGF$I(backsubGF$I%bandGF$I&basisGF$I'bezoutGF$I,blockmatrixGF$
+I(charmatGF$I)charpolyGF$I)choleskyGF$I$colGF$I'coldimGF$I)colspaceGF$
+I(colspanGF$I*companionGF$I'concatGF$I%condGF$I)copyintoGF$I*crossprod
+GF$I%curlGF$I)definiteGF$I(delcolsGF$I(delrowsGF$I$detGF$I%diagGF$I(di
+vergeGF$I(dotprodGF$I*eigenvalsGF$I,eigenvaluesGF$I-eigenvectorsGF$I+e
+igenvectsGF$I,entermatrixGF$I&equalGF$I,exponentialGF$I'extendGF$I,ffg
+ausselimGF$I*fibonacciGF$I+forwardsubGF$I*frobeniusGF$I*gausselimGF$I*
+gaussjordGF$I(geneqnsGF$I*genmatrixGF$I%gradGF$I)hadamardGF$I(hermiteG
+F$I(hessianGF$I(hilbertGF$I+htransposeGF$I)ihermiteGF$I*indexfuncGF$I*
+innerprodGF$I)intbasisGF$I(inverseGF$I'ismithGF$I*issimilarGF$I'iszero
+GF$I)jacobianGF$I'jordanGF$I'kernelGF$I*laplacianGF$I*leastsqrsGF$I)li
+nsolveGF$I'mataddGF$I'matrixG6$%*protectedGI(_syslibGF$I&minorGF$I(min
+polyGF$I'mulcolGF$I'mulrowGF$I)multiplyGF$I%normGFioI*normalizeGF$I*nu
+llspaceGF$I'orthogGF$I*permanentGF$I&pivotGF$I*potentialGF$I+randmatri
+xGF$I+randvectorGF$I%rankGF$I(ratformGF$I$rowGF$I'rowdimGF$I)rowspaceG
+F$I(rowspanGF$I%rrefGF$I*scalarmulGF$I-singularvalsGF$I&smithGF$I,stac
+kmatrixGF$I*submatrixGF$I*subvectorGF$I)sumbasisGF$I(swapcolGF$I(swapr
+owGF$I*sylvesterGF$I)toeplitzGF$I&traceGFioI*transposeGF$I,vandermonde
+GF$I*vecpotentGF$I(vectdimGF$I'vectorGFioI*wronskianGF$" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 213 9 "Attention" }{TEXT 252 118 ": comme on l'a
+ vu avec le cas de la fonction pointplot, il faut absolument recharger
+ la librairie apr\303\250s chaque " }{XPPEDIT 18 0 "Typesetting:-mrow(
+Typesetting:-mi(\"restart\"));" "-I%mrowG6#/I+modulenameG6\"I,Typesett
+ingGI(_syslibGF'6#-I#miGF$6#Q(restartF'" }{TEXT 252 2 " !" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 206 15 "1. Les vecteurs" }}{PARA 0 "" 0 "" {TEXT
+ 206 29 "1.1 Construction d'un vecteur" }}{PARA 0 "" 0 "" {TEXT 252 
+12 "La commande " }{XPPEDIT 18 0 "Typesetting:-mrow(Typesetting:-mi(\"
+vector\"));" "-I%mrowG6#/I+modulenameG6\"I,TypesettingGI(_syslibGF'6#-
+I#miGF$6#Q'vectorF'" }{TEXT 252 61 " permet de cr\303\251er un vecteur
+. Voici quelques exemples :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+18 "vector([1,4,6]);\n" }{MPLTEXT 1 0 12 "whattype(%);" }}{PARA 11 "" 
+1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"$E\\[l$F&F&\"\"#\"\"%F'\"\"'" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "I&arrayG%*protectedG" }}}{EXCHG {PARA 0 
+"" 0 "" {TEXT 206 104 "Remarquer bien que l'on a affaire \303\240 un n
+ouveau type de donn\303\251,  diff\303\251rent des types " }{TEXT 214 
+4 "list" }{TEXT 206 2 ", " }{TEXT 215 3 "seq" }{TEXT 206 4 " et " }
+{TEXT 216 3 "set" }{TEXT 206 1 "." }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 17 "vector(5,i->i^2);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6
+\"6#;\"\"\"\"\"&E\\[l&F&F&\"\"#\"\"%\"\"$\"\"*F'\"#DF*\"#;" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 14 "randvector(4);" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "=6\"6#;\"\"\"\"\"%E\\[l%F&!\"(\"\"#\"#A\"\"$!#bF'!#%*" }}
+}{EXCHG {PARA 0 "" 0 "" {TEXT 206 34 "Afficher le contenu d'un vecteur
+ :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "v:=vector([7,8,9,10])
+;" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"%E\\[l%F&\"\"(\"\"
+#\"\")\"\"$\"\"*F'\"#5" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 2 "v;
+" }}{PARA 11 "" 1 "" {XPPMATH 20 "I\"vG6\"" }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT 252 67 "Pour afficher \303\240 nouveau le vecteur contenu dans l
+a variable " }{XPPEDIT 18 0 "Typesetting:-mrow(Typesetting:-mi(\"v\"))
+;" "-I%mrowG6#/I+modulenameG6\"I,TypesettingGI(_syslibGF'6#-I#miGF$6#Q
+\"vF'" }{TEXT 252 25 ", on utilise la commande " }{XPPEDIT 18 0 "Types
+etting:-mrow(Typesetting:-mi(\"evalm\"));" "-I%mrowG6#/I+modulenameG6
+\"I,TypesettingGI(_syslibGF'6#-I#miGF$6#Q&evalmF'" }{TEXT 252 2 " :" }
+}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 9 "evalm(v);" }}{PARA 11 "" 1 
+"" {XPPMATH 20 "=6\"6#;\"\"\"\"\"%E\\[l%F&\"\"(\"\"#\"\")\"\"$\"\"*F'
+\"#5" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 206 38 "Extraire un coefficient \+
+d'un vecteur :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 35 "v[2]; # d
+euxi\303\250me coefficient" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"\")" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 206 32 "Modifier le contenu d'un vecteur"
+ }}{PARA 0 "" 0 "" {TEXT 252 34 "Par affectation des coefficients :" }
+}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 10 "v[1]:=0;\n" }{MPLTEXT 1 0 
+9 "evalm(v);" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"\"!" }}{PARA 11 "" 1 "
+" {XPPMATH 20 "=6\"6#;\"\"\"\"\"%E\\[l%F&\"\"!\"\"#\"\")\"\"$\"\"*F'\"
+#5" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 206 17 "Copier un vecteur" }}
+{PARA 0 "" 0 "" {TEXT 252 161 "De subtiles r\303\250gles d'\303\251val
+uation dans Maple am\303\250nent le probl\303\250me suivant lorsqu'on \+
+souhaite copier un vecteur dans une autre variable :" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 7 "w:=v;\n" }{MPLTEXT 1 0 10 "v[1]:=2;\n" }
+{MPLTEXT 1 0 18 "evalm(v);evalm(w);" }}{PARA 11 "" 1 "" {XPPMATH 20 "I
+\"vG6\"" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"\"#" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "=6\"6#;\"\"\"\"\"%E\\[l%F&\"\"#F)\"\")\"\"$\"\"*F'\"#5" }
+}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"%E\\[l%F&\"\"#F)\"\")
+\"\"$\"\"*F'\"#5" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 22 "Toute modifi
+cation de " }{TEXT 217 1 "v" }{TEXT 252 39 " entraine une modification
+ de sa copie " }{TEXT 218 1 "w" }{TEXT 252 50 " ! Pour y rem\303\250di
+er, on utilise la commande " }{TEXT 219 4 "copy" }{TEXT 252 2 " :" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 13 "w:=copy(v);\n" }{MPLTEXT 1 
+0 10 "v[1]:=3;\n" }{MPLTEXT 1 0 18 "evalm(v);evalm(w);" }}{PARA 11 "" 
+1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"%E\\[l%F&\"\"#F)\"\")\"\"$\"\"*F'\"
+#5" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"\"$" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "=6\"6#;\"\"\"\"\"%E\\[l%F&\"\"$\"\"#\"\")F)\"\"*F'\"#5" }
+}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"%E\\[l%F&\"\"#F)\"\")
+\"\"$\"\"*F'\"#5" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 206 60 "Restez vigil
+ants quand vous utiliser une copie d'un vecteur!" }}}{EXCHG {PARA 0 ""
+ 0 "" {TEXT 206 47 "1.2 Quelques op\303\251rations sur les vecteurs" }
+}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 25 "Somme de deux vecteurs : " }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "u:=vector([-7,4,7,3]);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"%E\\[l%F&!\"(\"\"#F'\"
+\"$\"\"(F'F+" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 12 "matadd(u,v)
+;" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"%E\\[l%F&!\"%\"\"#
+\"#7\"\"$\"#;F'\"#8" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 11 "  ou bien
+ :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 11 "evalm(u+v);" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"%E\\[l%F&!\"%\"\"#\"#7\"\"$\"
+#;F'\"#8" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 59 "Multiplication d'un \+
+vecteur par un scalaire (r\303\251el) :" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 16 "scalarmul(v,Pi);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6
+\"6#;\"\"\"\"\"%E\\[l%F&,$*&\"\"$F&I#PiG%*protectedGF&F&\"\"#,$*&\"\")
+F&F,F&F&F+,$*&\"\"*F&F,F&F&F',$*&\"#5F&F,F&F&" }}}{EXCHG {PARA 0 "" 0 
+"" {TEXT 252 11 "  ou bien :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 12 "evalm(Pi*v);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"%
+E\\[l%F&,$*&\"\"$F&I#PiG%*protectedGF&F&\"\"#,$*&\"\")F&F,F&F&F+,$*&\"
+\"*F&F,F&F&F',$*&\"#5F&F,F&F&" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 45 
+"Taille d'un vecteur (nombre de composantes) :" }}}{EXCHG {PARA 0 "> "
+ 0 "" {MPLTEXT 1 0 11 "vectdim(u);" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"
+\"%" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 51 "Tester une \303\251galit
+\303\251 de deux vecteurs :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+11 "equal(u,v);" }}{PARA 11 "" 1 "" {XPPMATH 20 "I&falseG%*protectedG"
+ }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 35 "Produit scalaire de deux vect
+eurs :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 37 "dotprod(vector([1
+,0]),vector([0,1]));" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"\"!" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 252 36 "Produit vectoriel de deux vecteur
+s :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 43 "crossprod(vector([1,
+1,0]),vector([1,0,1]));" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"
+\"\"$E\\[l$F&F&\"\"#!\"\"F'F*" }}}{EXCHG {PARA 211 "" 0 "" {TEXT 206 
+37 "1.3 Op\303\251rations avanc\303\251es" }{TEXT 220 0 "" }}{PARA 0 "
+" 0 "" {TEXT 252 73 "On peut trouver une base du sous-espace vectoriel
+ engendr\303\251 par un " }{TEXT 221 8 "ensemble" }{TEXT 252 38 " de v
+ecteurs en utilisant la commande " }{TEXT 222 5 "basis" }{TEXT 252 1 "
+:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 21 "u:=vector([1,0,0]);\n"
+ }{MPLTEXT 1 0 21 "v:=vector([1,1,0]);\n" }{MPLTEXT 1 0 21 "w:=vector(
+[1,0,1]);\n" }{MPLTEXT 1 0 19 "t:=vector([0,0,2]);" }}{PARA 11 "" 1 ""
+ {XPPMATH 20 "=6\"6#;\"\"\"\"\"$E\\[l$F&F&\"\"#\"\"!F'F*" }}{PARA 11 "
+" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"$E\\[l$F&F&\"\"#F&F'\"\"!" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"$E\\[l$F&F&\"\"#\"\"!F'
+F&" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"$E\\[l$F&\"\"!\"
+\"#F)F'F*" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 23 "basis( \{ u,v,
+w,t \} );" }}{PARA 11 "" 1 "" {XPPMATH 20 "<%I\"uG6\"I\"tGF$I\"vGF$" }
+}}{EXCHG {PARA 0 "" 0 "" {TEXT 206 15 "2. Les matrices" }}{PARA 0 "" 0
+ "" {TEXT 252 278 "C'est un des points les plus importants du programm
+e, car le calcul matriciel est un outils math\303\251matiques incontou
+rnable dans le travail de tout scientifique. Si besoin, parcourez votr
+e cours sur ce sujet, ou posez moi des questions si vous n'avez des di
+fficult\303\251s." }}{PARA 0 "" 0 "" {TEXT 252 0 "" }}{PARA 0 "" 0 "" 
+{TEXT 206 30 "2.1 Construction d'une matrice" }}{PARA 0 "" 0 "" {TEXT 
+252 12 "La commande " }{XPPEDIT 18 0 "Typesetting:-mrow(Typesetting:-m
+i(\"matrix\"));" "-I%mrowG6#/I+modulenameG6\"I,TypesettingGI(_syslibGF
+'6#-I#miGF$6#Q'matrixF'" }{TEXT 252 62 " permet de cr\303\251er une ma
+trice. Voici quelques exemples :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT
+ 1 0 36 "matrix([[1,2,3],[4,5,6],[7,8,9]]);\n" }{MPLTEXT 1 0 12 "whatt
+ype(%);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"$F%E\\[l*6$
+\"\"#F*\"\"&6$F&F&F&6$F&F*F*6$F'F*\"\")6$F&F'F'6$F'F'\"\"*6$F*F&\"\"%6
+$F'F&\"\"(6$F*F'\"\"'" }}{PARA 11 "" 1 "" {XPPMATH 20 "I&arrayG%*prote
+ctedG" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 206 139 "REM: Maple ne distingu
+e donc pas dans son type une matrice d'un vecteur. Il traite les deux \+
+quantit\303\251s comme des tableaux de nombres." }}}{EXCHG {PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 32 "matrix(3,3,[1,2,3,4,5,6,7,8,9]);" }}{PARA 11 "
+" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"$F%E\\[l*6$\"\"#F*\"\"&6$F&F&F&6$
+F&F*F*6$F'F*\"\")6$F&F'F'6$F'F'\"\"*6$F*F&\"\"%6$F'F&\"\"(6$F*F'\"\"'"
+ }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 23 "matrix(5,3,(i,j)->i+j);"
+ }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"&;F&\"\"$E\\[l06$\"
+\"%F&F'6$\"\"#F.F,6$F&F&F.6$F&F.F)6$F)F.F'6$F,F)\"\"(6$F&F)F,6$F)F)\"
+\"'6$F.F&F)6$F'F&F66$F)F&F,6$F,F.F66$F'F)\"\")6$F.F)F'6$F'F.F3" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 19 "A:=randmatrix(2,3);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"#;F&\"\"$E\\[l'6$F'F'\"
+#(*6$F&F&\"#()6$F&F'!#c6$F&F)\"\"!6$F'F&!#i6$F'F)!#t" }}}{EXCHG {PARA 
+0 "" 0 "" {TEXT 252 117 "Il existe beaucoup d'autres fonctions permett
+ant de cr\303\251er des matrices. Consultez les commandes fournies dan
+s " }{TEXT 223 6 "linalg" }{TEXT 252 35 " pour en savoir plus : par ex
+emple " }{TEXT 224 31 "diag, band, blockmatrix augment" }{TEXT 252 4 "
+,..." }}{PARA 0 "" 0 "" {TEXT 252 210 "Ces fonctions permettent de cr
+\303\251es des matrices qui ont des formes remarquables, caract\303\25
+1ris\303\251es en g\303\251n\303\251ral par des redondances ou la pr\3
+03\251sence de beaucoup de z\303\251ros." }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT 206 33 "Afficher le contenu d'une matrice" }}}{EXCHG {PARA 0 "> \+
+" 0 "" {MPLTEXT 1 0 2 "A;" }}{PARA 11 "" 1 "" {XPPMATH 20 "I\"AG6\"" }
+}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 68 "Pour afficher \303\240 nouveau \+
+la matrice contenue dans la variable " }{XPPEDIT 18 0 "Typesetting:-mr
+ow(Typesetting:-mi(\"A\"));" "-I%mrowG6#/I+modulenameG6\"I,Typesetting
+GI(_syslibGF'6#-I#miGF$6#Q\"AF'" }{TEXT 252 25 ", on utilise la comman
+de " }{XPPEDIT 18 0 "Typesetting:-mrow(Typesetting:-mi(\"evalm\"));" "
+-I%mrowG6#/I+modulenameG6\"I,TypesettingGI(_syslibGF'6#-I#miGF$6#Q&eva
+lmF'" }{TEXT 252 2 " :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 9 "ev
+alm(A);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"#;F&\"\"$E
+\\[l'6$F'F'\"#(*6$F&F&\"#()6$F&F'!#c6$F&F)\"\"!6$F'F&!#i6$F'F)!#t" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 206 38 "Extraire un coefficient d'une mat
+rice:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 57 "A[2,3]; # deuxi\30
+3\250me ligne, troisi\303\250me colonne" }}{PARA 11 "" 1 "" {XPPMATH 
+20 "!#t" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 0 "" }}}{EXCHG {PARA 0 ""
+ 0 "" {TEXT 206 23 "Modifier d'une matrice:" }}{PARA 0 "" 0 "" {TEXT 
+252 34 "Par affectation des coefficients :" }}}{EXCHG {PARA 0 "> " 0 "
+" {MPLTEXT 1 0 13 "A[1,1]:=Pi;\n" }{MPLTEXT 1 0 9 "evalm(A);" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "I#PiG%*protectedG" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "=6\"6$;\"\"\"\"\"#;F&\"\"$E\\[l'6$F'F'\"#(*6$F&F&I#PiG%*p
+rotectedG6$F&F'!#c6$F&F)\"\"!6$F'F&!#i6$F'F)!#t" }}}{EXCHG {PARA 0 "" 
+0 "" {TEXT 206 19 "Copier une matrice:" }}{PARA 0 "" 0 "" {TEXT 252 
+162 "De subtiles r\303\250gles d'\303\251valuation dans Maple am\303\2
+50nent le probl\303\250me suivant lorsqu'on souhaite copier une matric
+e dans une autre variable :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+7 "B:=A;\n" }{MPLTEXT 1 0 12 "A[1,1]:=1;\n" }{MPLTEXT 1 0 18 "evalm(A)
+;evalm(B);" }}{PARA 11 "" 1 "" {XPPMATH 20 "I\"AG6\"" }}{PARA 11 "" 1 
+"" {XPPMATH 20 "\"\"\"" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"
+\"\"#;F&\"\"$E\\[l'6$F'F'\"#(*6$F&F&F&6$F&F'!#c6$F&F)\"\"!6$F'F&!#i6$F
+'F)!#t" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"#;F&\"\"$E\\[
+l'6$F'F'\"#(*6$F&F&F&6$F&F'!#c6$F&F)\"\"!6$F'F&!#i6$F'F)!#t" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 252 22 "Toute modification de " }{TEXT 
+225 1 "A" }{TEXT 252 39 " entraine une modification de sa copie " }
+{TEXT 226 1 "B" }{TEXT 252 50 " ! Pour y rem\303\250dier, on utilise l
+a commande " }{TEXT 227 4 "copy" }{TEXT 252 2 " :" }}}{EXCHG {PARA 0 "
+> " 0 "" {MPLTEXT 1 0 13 "B:=copy(A);\n" }{MPLTEXT 1 0 14 "A[1,1]:=999
+;\n" }{MPLTEXT 1 0 18 "evalm(A);evalm(B);" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "=6\"6$;\"\"\"\"\"#;F&\"\"$E\\[l'6$F'F'\"#(*6$F&F&F&6$F&F'
+!#c6$F&F)\"\"!6$F'F&!#i6$F'F)!#t" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"$*
+**" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"#;F&\"\"$E\\[l'6$
+F'F'\"#(*6$F&F&\"$***6$F&F'!#c6$F&F)\"\"!6$F'F&!#i6$F'F)!#t" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"#;F&\"\"$E\\[l'6$F'F'\"#(*6$F
+&F&F&6$F&F'!#c6$F&F)\"\"!6$F'F&!#i6$F'F)!#t" }}}{EXCHG {PARA 0 "" 0 ""
+ {TEXT 206 186 "REM: comme Maple ne distingue pas les types vecteurs e
+t matrices, le probl\303\250me qu'on avait rencontr\303\251 avec la co
+pie d'un vecteur se retrouve donc avec la copie d'une matrice." }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 206 48 "2.2 Quelques op\303\251rations su
+r les matrices:" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 24 "Somme de deux
+ matrices :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 21 "B:=matrix(2,
+3,[1$6]);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"#;F&\"\"$E
+\\[l'6$F'F'F&6$F&F&F&6$F&F'F&6$F&F)F&6$F'F&F&6$F'F)F&" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 206 140 "On d\303\251couvre ici un nouvel op\303
+\251rateur : $ . Celui-ci permet de d\303\251finir des s\303\251quence
+s assez facilement. Par exemple" }}{PARA 0 "" 0 "" {TEXT 206 0 "" }}}
+{EXCHG {PARA 0 "> " 0 "" {XPPEDIT 19 1 "`$`(1 .. 5); 1; 1;" "C%-I\"$G%
+*protectedG6#;\"\"\"\"\"&F(F(" }}{PARA 11 "" 1 "" {XPPMATH 20 "6'\"\"
+\"\"\"#\"\"$\"\"%\"\"&" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"\"\"" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 206 77 "Regardez l'aide pour d\303\251cou
+vrir d'autres utilisation de cette commande." }}}{EXCHG {PARA 0 "> " 0
+ "" {MPLTEXT 1 0 12 "matadd(A,B);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6
+\"6$;\"\"\"\"\"#;F&\"\"$E\\[l'6$F'F'\"#)*6$F&F&\"%+56$F&F'!#b6$F&F)F&6
+$F'F&!#h6$F'F)!#s" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 11 "  ou bien :
+" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 11 "evalm(A+B);" }}{PARA 11
+ "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"#;F&\"\"$E\\[l'6$F'F'\"#)*6$F&F
+&\"%+56$F&F'!#b6$F&F)F&6$F'F&!#h6$F'F)!#s" }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT 252 60 "Multiplication d'une matrice par un scalaire (r\303\251e
+l) :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 15 "scalarmul(A,x);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"#;F&\"\"$E\\[l'6$F'F',$
+*&\"#(*F&I\"xGF#F&F&6$F&F&,$*&\"$***F&F/F&F&6$F&F',$*&\"#cF&F/F&!\"\"6
+$F&F)\"\"!6$F'F&,$*&\"#iF&F/F&F86$F'F),$*&\"#tF&F/F&F8" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 252 11 "  ou bien :" }}}{EXCHG {PARA 0 "> " 0 ""
+ {MPLTEXT 1 0 11 "evalm(x*A);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;
+\"\"\"\"\"#;F&\"\"$E\\[l'6$F'F',$*&\"#(*F&I\"xGF#F&F&6$F&F&,$*&\"$***F
+&F/F&F&6$F&F',$*&\"#cF&F/F&!\"\"6$F&F)\"\"!6$F'F&,$*&\"#iF&F/F&F86$F'F
+),$*&\"#tF&F/F&F8" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 53 "Multiplicat
+ion de deux matrices (produit matriciel) :" }}}{EXCHG {PARA 0 "> " 0 "
+" {MPLTEXT 1 0 31 "M:=matrix(2,2,[a1,b1,c1,d1]);\n" }{MPLTEXT 1 0 29 "
+N:=matrix(2,2,[a2,b2,c2,d2]);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;
+\"\"\"\"\"#F%E\\[l%6$F'F'I#d1GF#6$F&F&I#a1GF#6$F&F'I#b1GF#6$F'F&I#c1GF
+#" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"#F%E\\[l%6$F'F'I#d
+2GF#6$F&F&I#a2GF#6$F&F'I#b2GF#6$F'F&I#c2GF#" }}}{EXCHG {PARA 0 "> " 0 
+"" {MPLTEXT 1 0 14 "multiply(M,N);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6
+\"6$;\"\"\"\"\"#F%E\\[l%6$F'F',&*&I#c1GF#F&I#b2GF#F&F&*&I#d1GF#F&I#d2G
+F#F&F&6$F&F&,&*&I#a1GF#F&I#a2GF#F&F&*&I#b1GF#F&I#c2GF#F&F&6$F&F',&*&F4
+F&F-F&F&*&F7F&F0F&F&6$F'F&,&*&F,F&F5F&F&*&F/F&F8F&F&" }}}{EXCHG {PARA 
+0 "" 0 "" {TEXT 252 11 "  ou bien :" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 12 "evalm(M&*N);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;
+\"\"\"\"\"#F%E\\[l%6$F'F',&*&I#c1GF#F&I#b2GF#F&F&*&I#d1GF#F&I#d2GF#F&F
+&6$F&F&,&*&I#a1GF#F&I#a2GF#F&F&*&I#b1GF#F&I#c2GF#F&F&6$F&F',&*&F4F&F-F
+&F&*&F7F&F0F&F&6$F'F&,&*&F,F&F5F&F&*&F/F&F8F&F&" }}}{EXCHG {PARA 0 "" 
+0 "" {TEXT 252 2 "  " }{TEXT 228 1 " " }{TEXT 229 10 "Notez bien" }
+{TEXT 252 4 " le " }{TEXT 230 2 "&*" }{TEXT 252 147 ", qui d\303\251no
+te la multiplication des matrices! \303\240 diff\303\251rencier de *, \+
+qui ne fonctionne pas ici comme on peut s'en rendre compte :" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 11 "evalm(M*N);" }}{PARA 8 "" 1 
+"" {TEXT 254 79 "Error, (in evalm/evaluate) use the &* operator for ma
+trix/vector multiplication" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 231 43 "Mu
+ltiplication d'une matrice par un vecteur" }{TEXT 252 2 " :" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 28 "multiply(A,vector([1,0,0]));
+" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"#E\\[l#F&\"$***F'!#
+i" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 20 "  ou bien  avec &* :" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 26 "evalm(A&*vector([1,0,0]));" 
+}}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"#E\\[l#F&\"$***F'!#i"
+ }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 60 "Taille d'une matrice : nombre
+ de lignes, nombres de colonnes" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 0 22 "rowdim(A) ; coldim(A);" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"\"#"
+ }}{PARA 11 "" 1 "" {XPPMATH 20 "\"\"$" }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT 252 51 "Tester une \303\251galit\303\251 de deux matrices :" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 11 "equal(A,B);" }}{PARA 11 "" 1
+ "" {XPPMATH 20 "I&falseG%*protectedG" }}}{EXCHG {PARA 0 "" 0 "" {TEXT
+ 206 37 "2.3 Op\303\251rations avanc\303\251es" }}}{EXCHG {PARA 0 "" 0
+ "" {TEXT 232 19 "Trace d'une matrice" }{TEXT 252 59 " (somme des coef
+ficients de la premi\303\250re diagonale) :" }}}{EXCHG {PARA 0 "> " 0 
+"" {MPLTEXT 1 0 9 "trace(M);" }}{PARA 11 "" 1 "" {XPPMATH 20 ",&I#a1G6
+\"\"\"\"I#d1GF$F%" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 233 31 "Transpos\30
+3\251e d'une matrice" }{TEXT 252 2 " :" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 13 "transpose(A);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$
+;\"\"\"\"\"$;F&\"\"#E\\[l'6$F)F)\"#(*6$F&F&\"$***6$F&F)!#i6$F'F)!#t6$F
+)F&!#c6$F'F&\"\"!" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 234 33 "Calcul de l
+'inverse d'une matrice" }{TEXT 252 29 " (carr\303\251e inversible) :" 
+}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 63 "A:=matrix(3,3,[7/10,3/5,1
+/10,-3/5,11/5,1/5,-3/10,3/5,11/10]):\n" }{MPLTEXT 1 0 11 "inverse(A);"
+ }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"$F%E\\[l*6$\"\"#F*#F
+*\"\"&6$F&F&#\"#B\"#?6$F&F*#!\"$\"#56$F'F*F26$F&F'#!\"\"F06$F'F'#\"#>F
+06$F*F&#F'F46$F'F&#F'F06$F*F'#F8F4" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 
+235 55 "Calcul des valeurs propres d'une matrice carr\303\251e " }
+{TEXT 252 2 ": " }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 13 "eigenval
+s(A);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6%\"\"#\"\"\"F$" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 236 54 "Calcul des vecteurs propres d'une matric
+e carr\303\251" }{TEXT 252 2 " :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT
+ 1 0 14 "eigenvects(A);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6$7%\"\"#\"\"
+\"<#=6\"6#;F%\"\"$E\\[l$F%F%F$F$F+F%7%F%F$<$=F(F)E\\[l$F%F%F$\"\"!F+F+
+=F(F)E\\[l$F%F1F$F%F+!\"'" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 85 "  Q
+ue signifie la r\303\251ponse de Maple ? Au besoin, consultez l'aide d
+e Maple sur " }{TEXT 237 19 "linalg[eigenvects]." }}{PARA 0 "" 0 "" 
+{TEXT 206 2 "  " }}}{EXCHG {PARA 0 "> " 0 "" {XPPEDIT 19 1 "multiply(A
+, Vector[row](%id = 160364620)); 1; 1;" "C%-I)multiplyG6\"6$I\"AGF%-&I
+'VectorG6$%*protectedGI(_syslibGF%6#I$rowGF%6#/I$%idGF%\"*?YOg\"\"\"\"
+F4" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"$E\\[l$F&\"\"#F)
+\"\"%F'F)" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"\"\"" }}}{EXCHG {PARA 0 "
+> " 0 "" {XPPEDIT 19 1 "multiply(A, Vector[row](%id = 161578244)); 1; \+
+1;" "C%-I)multiplyG6\"6$I\"AGF%-&I'VectorG6$%*protectedGI(_syslibGF%6#
+I$rowGF%6#/I$%idGF%\"*W#y:;\"\"\"F4" }}{PARA 11 "" 1 "" {XPPMATH 20 "=
+6\"6#;\"\"\"\"\"$E\\[l$F&F&\"\"#\"\"!F'F'" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "\"\"\"" }}}{EXCHG {PARA 0 "> " 0 "" {XPPEDIT 19 1 "multip
+ly(A, Vector[row](%id = 162074448)); 1; 1;" "C%-I)multiplyG6\"6$I\"AGF
+%-&I'VectorG6$%*protectedGI(_syslibGF%6#I$rowGF%6#/I$%idGF%\"*[W2i\"\"
+\"\"F4" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"$E\\[l$F&\"\"
+!\"\"#F&F'!\"'" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"\"\"" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 206 56 "Voyez vous un lien entre les valeurs don
+n\303\251es par " }{TEXT 238 10 "eigenvals " }{TEXT 206 17 "(appel\303
+\251es " }{TEXT 239 15 "valeurs propres" }{TEXT 206 36 ") et les vecte
+urs donn\303\251s par " }{TEXT 240 11 "eigenvects " }{TEXT 206 16 "(ap
+pel\303\251s " }{TEXT 241 16 "vecteurs propres" }{TEXT 206 1 ")" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 242 25 "Trouver une base du noyau" }{TEXT
+ 252 72 " de l'application lin\303\251aire associ\303\251e \303\240 un
+e matrice :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 10 "kernel(A);" 
+}}{PARA 11 "" 1 "" {XPPMATH 20 "<\"" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 27 "B:=matrix(2,2,[1,2,1/2,1]);" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "=6\"6$;\"\"\"\"\"#F%E\\[l%6$F'F'F&6$F&F&F&6$F&F'F'6$F'F&#
+F&F'" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 10 "kernel(B);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "<#=6\"6#;\"\"\"\"\"#E\\[l#F'!\"#F(F'" }}
+}{EXCHG {PARA 0 "" 0 "" {TEXT 252 47 "  Que signifient les r\303\251po
+nses de Maple ?" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 243 27 "Trouver une b
+ase de l'image" }{TEXT 252 72 " de l'application lin\303\251aire assoc
+i\303\251e \303\240 une matrice :" }}{PARA 0 "" 0 "" {TEXT 252 94 "( =
+ une base du sous-espace vectoriel engendr\303\251 par les vecteurs co
+lonnes de la matrice)" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 12 "co
+lspace(B);" }}{PARA 11 "" 1 "" {XPPMATH 20 "<#=6\"6#;\"\"\"\"\"#E\\[l#
+F'F'F(#F'F(" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 244 18 "Rang de la matric
+e" }{TEXT 252 25 " (= dimension de l'image)" }}}{EXCHG {PARA 0 "> " 0 
+"" {MPLTEXT 1 0 8 "rank(B);" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"\"\"" }
+}}{EXCHG {PARA 0 "" 0 "" {TEXT 245 45 "D\303\251terminant d'une matric
+e carr\303\251" }{TEXT 252 114 " (on rappelle qu'une matrice carr\303
+\251e est inversible si et seulement si son d\303\251terminant est non
+ nul) :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 7 "det(A);" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "\"\"#" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 0 "
+" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 206 39 "3. Les syst\303\250mes lin\3
+03\251aires" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 0 "" }}{PARA 212 "" 0
+ "" {TEXT 206 75 "3.1 Syst\303\250mes lin\303\251aires donn\303\251s p
+ar des \303\251quations" }{TEXT 246 0 "" }}{PARA 0 "" 0 "" {TEXT 252 
+11 "On utilise " }{XPPEDIT 18 0 "Typesetting:-mrow(Typesetting:-mi(\"s
+olve\"));" "-I%mrowG6#/I+modulenameG6\"I,TypesettingGI(_syslibGF'6#-I#
+miGF$6#Q&solveF'" }{TEXT 252 40 ". Par exemple, pour le syst\303\250me
+ : " }}{PARA 0 "" 0 "" {TEXT 252 7 "   |   " }{XPPEDIT 18 0 "Typesetti
+ng:-mrow(Typesetting:-mi(\"\"), Typesetting:-mrow(Typesetting:-mi(\"\"
+), Typesetting:-mrow(Typesetting:-mi(\"x\"), Typesetting:-mo(\"+\", fo
+rm = \"infix\", fence = \"false\", separator = \"false\", lspace = \"0
+.2222222em\", rspace = \"0.2222222em\", stretchy = \"false\", symmetri
+c = \"false\", maxsize = \"infinity\", minsize = \"1\", largeop = \"fa
+lse\", movablelimits = \"false\", accent = \"false\"), Typesetting:-mi
+(\"y\"), Typesetting:-mo(\"+\", form = \"infix\", fence = \"false\", s
+eparator = \"false\", lspace = \"0.2222222em\", rspace = \"0.2222222em
+\", stretchy = \"false\", symmetric = \"false\", maxsize = \"infinity
+\", minsize = \"1\", largeop = \"false\", movablelimits = \"false\", a
+ccent = \"false\"), Typesetting:-mi(\"z\")), Typesetting:-mo(\"=\", fo
+rm = \"infix\", fence = \"false\", separator = \"false\", lspace = \"0
+.2777778em\", rspace = \"0.2777778em\", stretchy = \"false\", symmetri
+c = \"false\", maxsize = \"infinity\", minsize = \"1\", largeop = \"fa
+lse\", movablelimits = \"false\", accent = \"false\"), Typesetting:-mn
+(\"3\")), Typesetting:-mi(\"\"));" "-I%mrowG6#/I+modulenameG6\"I,Types
+ettingGI(_syslibGF'6%-I#miGF$6#Q!F'-F#6&F+-F#6'-F,6#Q\"xF'-I#moGF$6/Q
+\"+F'/%%formGQ&infixF'/%&fenceGQ&falseF'/%*separatorGF?/%'lspaceGQ,0.2
+222222emF'/%'rspaceGFD/%)stretchyGF?/%*symmetricGF?/%(maxsizeGQ)infini
+tyF'/%(minsizeGQ\"1F'/%(largeopGF?/%.movablelimitsGF?/%'accentGF?-F,6#
+Q\"yF'F6-F,6#Q\"zF'-F76/Q\"=F'F:F=F@/FCQ,0.2777778emF'/FFF[oFGFIFKFNFQ
+FSFU-I#mnGF$6#Q\"3F'F+" }{TEXT 252 0 "" }}{PARA 0 "" 0 "" {TEXT 252 7 
+"   |   " }{XPPEDIT 18 0 "Typesetting:-mrow(Typesetting:-mi(\"\"), Typ
+esetting:-mrow(Typesetting:-mi(\"\"), Typesetting:-mrow(Typesetting:-m
+i(\"z\"), Typesetting:-mo(\"+\", form = \"infix\", fence = \"false\", \+
+separator = \"false\", lspace = \"0.2222222em\", rspace = \"0.2222222e
+m\", stretchy = \"false\", symmetric = \"false\", maxsize = \"infinity
+\", minsize = \"1\", largeop = \"false\", movablelimits = \"false\", a
+ccent = \"false\"), Typesetting:-mrow(Typesetting:-mn(\"2\"), Typesett
+ing:-mo(\"&InvisibleTimes;\", form = \"infix\", fence = \"false\", sep
+arator = \"false\", lspace = \"0.0em\", rspace = \"0.0em\", stretchy =
+ \"false\", symmetric = \"false\", maxsize = \"infinity\", minsize = \+
+\"1\", largeop = \"false\", movablelimits = \"false\", accent = \"fals
+e\"), Typesetting:-mi(\"y\")), Typesetting:-mo(\"&minus;\", form = \"i
+nfix\", fence = \"false\", separator = \"false\", lspace = \"0.2222222
+em\", rspace = \"0.2222222em\", stretchy = \"false\", symmetric = \"fa
+lse\", maxsize = \"infinity\", minsize = \"1\", largeop = \"false\", m
+ovablelimits = \"false\", accent = \"false\"), Typesetting:-mi(\"z\"))
+, Typesetting:-mo(\"=\", form = \"infix\", fence = \"false\", separato
+r = \"false\", lspace = \"0.2777778em\", rspace = \"0.2777778em\", str
+etchy = \"false\", symmetric = \"false\", maxsize = \"infinity\", mins
+ize = \"1\", largeop = \"false\", movablelimits = \"false\", accent = \+
+\"false\"), Typesetting:-mrow(Typesetting:-mo(\"&uminus0;\", form = \"
+prefix\", fence = \"false\", separator = \"false\", lspace = \"0.22222
+22em\", rspace = \"0.2222222em\", stretchy = \"false\", symmetric = \"
+false\", maxsize = \"infinity\", minsize = \"1\", largeop = \"false\",
+ movablelimits = \"false\", accent = \"false\"), Typesetting:-mn(\"1\"
+)), Typesetting:-mi(\"\")), Typesetting:-mi(\"\"));" "-I%mrowG6#/I+mod
+ulenameG6\"I,TypesettingGI(_syslibGF'6%-I#miGF$6#Q!F'-F#6'F+-F#6'-F,6#
+Q\"zF'-I#moGF$6/Q\"+F'/%%formGQ&infixF'/%&fenceGQ&falseF'/%*separatorG
+F?/%'lspaceGQ,0.2222222emF'/%'rspaceGFD/%)stretchyGF?/%*symmetricGF?/%
+(maxsizeGQ)infinityF'/%(minsizeGQ\"1F'/%(largeopGF?/%.movablelimitsGF?
+/%'accentGF?-F#6%-I#mnGF$6#Q\"2F'-F76/Q1&InvisibleTimes;F'F:F=F@/FCQ&0
+.0emF'/FFF[oFGFIFKFNFQFSFU-F,6#Q\"yF'-F76/Q(&minus;F'F:F=F@FBFEFGFIFKF
+NFQFSFUF3-F76/Q\"=F'F:F=F@/FCQ,0.2777778emF'/FFFgoFGFIFKFNFQFSFU-F#6$-
+F76/Q*&uminus0;F'/F;Q'prefixF'F=F@FBFEFGFIFKFNFQFSFU-FZ6#FPF+F+" }
+{TEXT 252 0 "" }}{PARA 0 "" 0 "" {TEXT 252 5 "   | " }{XPPEDIT 18 0 "T
+ypesetting:-mrow(Typesetting:-mi(\"\"), Typesetting:-mrow(Typesetting:
+-mi(\"\"), Typesetting:-mrow(Typesetting:-mo(\"&uminus0;\", form = \"p
+refix\", fence = \"false\", separator = \"false\", lspace = \"0.222222
+2em\", rspace = \"0.2222222em\", stretchy = \"false\", symmetric = \"f
+alse\", maxsize = \"infinity\", minsize = \"1\", largeop = \"false\", \+
+movablelimits = \"false\", accent = \"false\"), Typesetting:-mi(\"x\")
+, Typesetting:-mo(\"+\", form = \"infix\", fence = \"false\", separato
+r = \"false\", lspace = \"0.2222222em\", rspace = \"0.2222222em\", str
+etchy = \"false\", symmetric = \"false\", maxsize = \"infinity\", mins
+ize = \"1\", largeop = \"false\", movablelimits = \"false\", accent = \+
+\"false\"), Typesetting:-mi(\"y\"), Typesetting:-mo(\"+\", form = \"in
+fix\", fence = \"false\", separator = \"false\", lspace = \"0.2222222e
+m\", rspace = \"0.2222222em\", stretchy = \"false\", symmetric = \"fal
+se\", maxsize = \"infinity\", minsize = \"1\", largeop = \"false\", mo
+vablelimits = \"false\", accent = \"false\"), Typesetting:-mrow(Typese
+tting:-mn(\"2\"), Typesetting:-mo(\"&InvisibleTimes;\", form = \"infix
+\", fence = \"false\", separator = \"false\", lspace = \"0.0em\", rspa
+ce = \"0.0em\", stretchy = \"false\", symmetric = \"false\", maxsize =
+ \"infinity\", minsize = \"1\", largeop = \"false\", movablelimits = \+
+\"false\", accent = \"false\"), Typesetting:-mi(\"z\")), Typesetting:-
+mi(\"\")), Typesetting:-mo(\"=\", form = \"infix\", fence = \"false\",
+ separator = \"false\", lspace = \"0.2777778em\", rspace = \"0.2777778
+em\", stretchy = \"false\", symmetric = \"false\", maxsize = \"infinit
+y\", minsize = \"1\", largeop = \"false\", movablelimits = \"false\", \+
+accent = \"false\"), Typesetting:-mn(\"0\")), Typesetting:-mi(\"\"));"
+ "-I%mrowG6#/I+modulenameG6\"I,TypesettingGI(_syslibGF'6%-I#miGF$6#Q!F
+'-F#6&F+-F#6)-I#moGF$6/Q*&uminus0;F'/%%formGQ'prefixF'/%&fenceGQ&false
+F'/%*separatorGF</%'lspaceGQ,0.2222222emF'/%'rspaceGFA/%)stretchyGF</%
+*symmetricGF</%(maxsizeGQ)infinityF'/%(minsizeGQ\"1F'/%(largeopGF</%.m
+ovablelimitsGF</%'accentGF<-F,6#Q\"xF'-F46/Q\"+F'/F8Q&infixF'F:F=F?FBF
+DFFFHFKFNFPFR-F,6#Q\"yF'FW-F#6%-I#mnGF$6#Q\"2F'-F46/Q1&InvisibleTimes;
+F'FZF:F=/F@Q&0.0emF'/FCFcoFDFFFHFKFNFPFR-F,6#Q\"zF'F+-F46/Q\"=F'FZF:F=
+/F@Q,0.2777778emF'/FCF\\pFDFFFHFKFNFPFR-F\\o6#Q\"0F'F+" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 59 "solve( \{x+y+z=3 , x+2*y-z=-1 , -x+
+y+2*z=0\} , \{x,y,z\} );" }}{PARA 11 "" 1 "" {XPPMATH 20 "<%/I\"yG6\"#
+!\"'\"\"(/I\"zGF%#\"#6F(/I\"xGF%#\"#;F(" }}}{EXCHG {PARA 213 "" 0 "" 
+{TEXT 206 66 "3.2 Syst\303\250mes lin\303\251aires donn\303\251s par u
+ne matrice" }{TEXT 206 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 11 "On
+ utilise " }{XPPEDIT 18 0 "Typesetting:-mrow(Typesetting:-mi(\"linsolv
+e\"));" "-I%mrowG6#/I+modulenameG6\"I,TypesettingGI(_syslibGF'6#-I#miG
+F$6#Q)linsolveF'" }{TEXT 252 112 ". Par exemple, le syst\303\250me pr
+\303\250c\303\250dent correspond \303\240 A.X=B, o\303\271 A est la ma
+trice :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 45 "A:=matrix( [ [1,
+1,1], [1,2,-1], [-1,1,2] ] );" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;
+\"\"\"\"\"$F%E\\[l*6$\"\"#F*F*6$F&F&F&6$F&F*F&6$F'F*F&6$F&F'F&6$F'F'F*
+6$F*F&F&6$F'F&!\"\"6$F*F'F2" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 25 "e
+t B le vecteur colonne :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 20 
+"B:=vector([3,-1,0]);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"
+\"$E\\[l$F&F'\"\"#!\"\"F'\"\"!" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 252 
+40 "On r\303\251sout le syst\303\250me par :" }}}{EXCHG {PARA 0 "> " 0
+ "" {MPLTEXT 1 0 14 "linsolve(A,B);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=
+6\"6#;\"\"\"\"\"$E\\[l$F&#\"#;\"\"(\"\"##!\"'F+F'#\"#6F+" }}}{EXCHG 
+{PARA 214 "" 0 "" {TEXT 206 21 "3.3 Le pivot de Gauss" }{TEXT 247 0 ""
+ }}{PARA 0 "" 0 "" {TEXT 252 72 "Maple peut effectuer le pivot de Gaus
+s sur une matrice avec la commande " }{TEXT 248 9 "gausselim" }{TEXT 
+252 120 ". Le r\303\251sultat est une matrice \303\251chelonn\303\251e
+ mais non r\303\251duite. En utilisant cette commande avec " }{TEXT 
+249 7 "augment" }{TEXT 252 63 ", on peut r\303\251soudre des syst\303
+\250mes lin\303\251aires." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+16 "C:=augment(A,B);" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"
+\"$;F&\"\"%E\\[l-6$F&F)F'6$\"\"#F-F-6$F&F&F&6$F&F-F&6$F'F-F&6$F&F'F&6$
+F'F'F-6$F-F&F&6$F'F)\"\"!6$F'F&!\"\"6$F-F'F76$F-F)F7" }}}{EXCHG {PARA 
+0 "" 0 "" {TEXT 250 8 "augment " }{TEXT 252 98 "cr\303\251e une nouvel
+le matrice en mettant le vecteur colonne B \303\240 droite de A   ( A \+
+| B) ." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 13 "gausselim(C);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6$;\"\"\"\"\"$;F&\"\"%E\\[l-6$F&F)F'
+6$\"\"#F-F&6$F&F&F&6$F&F-F&6$F'F-\"\"!6$F&F'F&6$F'F'\"\"(6$F-F&F16$F'F
+)\"#66$F'F&F16$F-F'!\"#6$F-F)!\"%" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 
+252 19 "Enfin, la commande " }{XPPEDIT 18 0 "Typesetting:-mrow(Typeset
+ting:-mi(\"backsub\"));" "-I%mrowG6#/I+modulenameG6\"I,TypesettingGI(_
+syslibGF'6#-I#miGF$6#Q(backsubF'" }{TEXT 252 102 ", appliqu\303\251e \+
+\303\240 la matrice \303\251chelonn\303\251e, permet de trouver le(s) \+
+solution(s) :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 11 "backsub(%)
+;" }}{PARA 11 "" 1 "" {XPPMATH 20 "=6\"6#;\"\"\"\"\"$E\\[l$F&#\"#;\"\"
+(\"\"##!\"'F+F'#\"#6F+" }}}{EXCHG {PARA 0 "> " 0 "" {XPPEDIT 19 1 "" "
+%#%?G" }}}}
+{MARK "0 0 0" 0 }{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 1 2 
+33 1 1 }

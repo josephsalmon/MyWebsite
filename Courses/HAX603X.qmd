@@ -1,17 +1,31 @@
 ---
 title: HAX603X - Stochastic modeling (2023 - 2024)
+description: "Randomize and simulate!"
+categories: [statistics, optimization, machine learning]
+image: "images/output.gif"
+reference-location: document
 fig-cap-location: bottom
+draft: false
+
+# title-block-banner: hello-world-bg.jpg
+
+format:
+  html:
+    include-before-body: ../html/margin_image.html
+    include-after-body: ../html/blog_footer.html
+    code-fold: true
 ---
+
 
 
 This is an undergraduate course (in French!) introducing standard techniques from stochastic modeling.
 Numerical elements are provided in Python.
 
-<br>
+<!-- <br>
 <center>
 ![Inverse transform sampling](images/output.gif "Méthode de l'inverse"){ width=35% }
 </center>
-<br>
+<br> -->
 
 
 ## Course content

@@ -1,0 +1,358 @@
+---
+title: HAX606X - Convex optimization (2020 - 2023)
+description: "Go down, deep down."
+categories: [statistics, optimization, machine learning]
+image: "images/descente_gradient.svg"
+reference-location: document
+fig-cap-location: bottom
+draft: false
+
+# title-block-banner: hello-world-bg.jpg
+
+format:
+  html:
+    include-before-body: ../html/margin_image.html
+    include-after-body: ../html/blog_footer.html
+    code-fold: true
+---
+
+
+This is an undergraduate course (in French!) introducing standard techniques from convex optimization. Numerical elements are provided in Python and are written with [Tanguy Lefort](https://tanglef.github.io/).
+
+
+
+## References
+
+- *Mathematics for Machine Learning*; Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong; [mml-book.pdf](https://mml-book.github.io/book/mml-book.pdf)
+
+- *Introduction à l'analyse numérique matricielle et à l'optimisation*; G. Ciarlet
+
+- *Fragments d’Optimisation Différentiable - Théories et Algorithmes*; Jean Charles Gilbert
+[.pdf](https://hal.inria.fr/hal-03347060/document)
+
+## TP
+
+<ol start="0">
+    <li>Premiers pas en Python et introduction à VSCodium
+    <a href="enseignement/Montpellier/HAX606X/TP/TP0.html">TP0.html</a>
+    </li>
+    <li> Prise en main de Python pour l'optimisation
+    <a href="enseignement/Montpellier/HAX606X/TP/TP1.html">TP1.html</a>
+    </li>
+    <li>
+  Méthode de la sécante / méthode du nombre d'or:    <a href="enseignement/Montpellier/HAX606X/TP/TP2.html">TP2.html</a>
+    </li>
+    <li>
+
+Méthode de descente de gradient et variantes
+<a href="enseignement/Montpellier/HAX606X/TP/TP3.html">TP3.html</a>, fichiers annexes:
+<a href="enseignement/Montpellier/HAX606X/TP/dico_math_functions.py">dico_math_functions.py</a>
+<a href="enseignement/Montpellier/HAX606X/TP/widget_convergence.py">widget_convergence.py</a>
+<a href="enseignement/Montpellier/HAX606X/TP/widget_level_set.py">widget_level_set.py</a>
+  </li>
+
+ <li>
+Méthode de descente de gradient projeté et moindres carrés
+<a href="enseignement/Montpellier/HAX606X/TP/TP4.html">TP4.html</a>
+  </li>
+
+
+
+
+<!-- 2. Méthode de la sécante / méthode du nombre d'or: [tp2_sujet.pdf](enseignement/Montpellier/HAX606X/TP/tp2_sujet.pdf)
+
+1. Méthode de descente de gradient et variantes: [tp3_sujet.pdf](enseignement/Montpellier/HAX606X/TP/tp3_sujet.pdf), [dico_math_functions.py](enseignement/Montpellier/HAX606X/TP/dico_math_functions.py), [widget_convergence.py](enseignement/Montpellier/HAX606X/TP/widget_convergence.py), [widget_level_set.py](enseignement/Montpellier/HAX606X/TP/widget_level_set.py)
+
+2. Méthode de descente de gradient projeté : [tp4_sujet.pdf](enseignement/Montpellier/HAX606X/TP/tp4_sujet.pdf), [script_season.py](enseignement/Montpellier/HAX606X/TP/script_season.py) -->
+
+</ol>
+
+## Notes pour aller plus loin
+
+- Retour sur des erreurs fréquentes en Python: [TP_cc_mi_parcours_feedback.html](enseignement/Montpellier/HAX606X/TP/TP_cc_mi_parcours_feedback.html)
+- Notion d'aléatoire avec Python / Numpy: [Note_randomness.html](enseignement/Montpellier/HAX606X/TP/Note_randomness.html)
+
+
+
+## Cheat Sheet
+This work is deeply inspired and adapted from the great work by Nicolas Rougier: [https://github.com/rougier/numpy-tutorial](https://github.com/rougier/numpy-tutorial)
+
+
+<!--
+| Code                                                  | Result                                                                                              |
+| ----------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| <pre> x = np.zeros(9) </pre>                          | <image src = "enseignement/Montpellier/HAX606X/figures/create-zeros-1.svg" width="200px"></image>   |
+| <pre> x = np.ones(9)</pre>                            | <image src = "enseignement/Montpellier/HAX606X/figures/create-ones-1.svg" width="200px"></image>    |
+| <pre> x = np.full(9, 0.5)</pre>                       | <image src = "enseignement/Montpellier/HAX606X/figures/create-full-1.svg" width="200px"></image>    |
+| <pre> x = np.array([0, 0, 1, 0, 0, 0, 0, 0, 0])</pre> | <image src = "enseignement/Montpellier/HAX606X/figures/create-list-1.svg" width="200px"></image>    |
+| <pre> x = np.arange(9)</pre>                          | <image src = "enseignement/Montpellier/HAX606X/figures/create-arange-1.svg" width="200px"></image>  |
+| <pre> x = rng.random(9)</pre>                         | <image src = "enseignement/Montpellier/HAX606X/figures/create-uniform-1.svg" width="200px"></image> |
+
+
+### Creation: matrix cases
+
+
+| Code                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Result                                                                                              |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| <pre>M = np.ones((5, 9)) </pre>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | <image src = "enseignement/Montpellier/HAX606X/figures/create-ones-2.svg" width="200px"></image>    |
+| <pre>M = np.zeros((5, 9))</pre>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | <image src = "enseignement/Montpellier/HAX606X/figures/create-zeros-2.svg" width="200px"></image>   |
+| <pre> M = np.array(<br>&nbsp;&nbsp;&nbsp;&nbsp;[<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]<br>&nbsp;&nbsp;&nbsp;&nbsp;]<br>)</pre> | <image src = "enseignement/Montpellier/HAX606X/figures/create-list-2.svg" width="200px"></image>    |
+| <pre> M = arange(5 * 9).reshape(5, 9)</pre>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | <image src = "enseignement/Montpellier/HAX606X/figures/create-arange-2.svg" width="200px"></image>  |
+| <pre> M = rng.random(9)</pre>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | <image src = "enseignement/Montpellier/HAX606X/figures/create-uniform-2.svg" width="200px"></image> |
+| <pre> M = np.eye(5, 9)</pre>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | <image src = "enseignement/Montpellier/HAX606X/figures/create-eye-2.svg" width="200px"></image>     |
+| <pre> M = np.diag(np.arange(5)) </pre>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | <image src = "enseignement/Montpellier/HAX606X/figures/create-diag-2.svg" width="200px"></image>    |
+| <pre> M = np.diag(np.arange(3), k=2) </pre>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | <image src = "enseignement/Montpellier/HAX606X/figures/create-diagk-2.svg" width="200px"></image>   |
+
+
+
+### Creation: tensor cases
+
+| Code                                                 | Result                                                                                              |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| <pre>T = np.zeros((3, 5, 9))</pre>                   | <image src = "enseignement/Montpellier/HAX606X/figures/create-zeros-3.svg" width="200px"></image>   |
+| <pre>T = np.ones((3, 5, 9))</pre>                    | <image src = "enseignement/Montpellier/HAX606X/figures/create-ones-3.svg" width="200px"></image>    |
+| <pre>T = np.arange(3 * 5 * 9).reshape(3, 5, 9)</pre> | <image src = "enseignement/Montpellier/HAX606X/figures/create-arange-3.svg" width="200px"></image>  |
+| <pre>T = rng.random((3, rows, cols))</pre>           | <image src = "enseignement/Montpellier/HAX606X/figures/create-uniform-3.svg" width="200px"></image> |
+
+
+
+## Matrix reshaping
+
+
+| Code                                         | Result                                                                                                     |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| <pre>M = np.zeros((3, 4)); M[2, 2] = 1</pre> | <image src = "enseignement/Montpellier/HAX606X/figures/reshape-M.svg" width="200px"></image>               |
+| <pre>M = M.reshape(4, 3)</pre>               | <image src = "enseignement/Montpellier/HAX606X/figures/reshape-M-reshape(4,3).svg" width="200px"></image>  |
+| <pre>M = M.reshape(12, 1)</pre>              | <image src = "enseignement/Montpellier/HAX606X/figures/reshape-M-reshape(12,1).svg" width="200px"></image> |
+| <pre>M = M.reshape(1, 12)</pre>              | <image src = "enseignement/Montpellier/HAX606X/figures/reshape-M-reshape(1,12).svg" width="200px"></image> |
+| <pre>M = M.reshape(6, 2)</pre>               | <image src = "enseignement/Montpellier/HAX606X/figures/reshape-M-reshape(6,2).svg" width="200px"></image>  |
+| <pre>M = M.reshape(2, 6)</pre>               | <image src = "enseignement/Montpellier/HAX606X/figures/reshape-M-reshape(2,6).svg" width="200px"></image>  |
+
+
+
+## Slicing
+
+Start from a zero matrix and get the following simple slicing operations:
+
+</br>
+</br>
+
+
+| Code                             | Result                                                                                                |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| <pre>M = np.zeros((5, 9)) </pre> | <image src = "enseignement/Montpellier/HAX606X/figures/slice-M.svg" width="200px"></image>            |
+| <pre>M[...] = 1 </pre>           | <image src = "enseignement/Montpellier/HAX606X/figures/slice-M[...].svg" width="200px"></image>       |
+| <pre>M[:, ::2] = 1</pre>         | <image src = "enseignement/Montpellier/HAX606X/figures/slice-M[:,::2].svg" width="200px"></image>     |
+| <pre>M[::2, :] = 1</pre>         | <image src = "enseignement/Montpellier/HAX606X/figures/slice-M[::2,:].svg" width="200px"></image>     |
+| <pre>M[1, 1] = 1</pre>           | <image src = "enseignement/Montpellier/HAX606X/figures/slice-M[1,1].svg" width="200px"></image>       |
+| <pre>M[:, 0] = 1</pre>           | <image src = "enseignement/Montpellier/HAX606X/figures/slice-M[:,0].svg" width="200px"></image>       |
+| <pre>M[0, :] = 1</pre>           | <image src = "enseignement/Montpellier/HAX606X/figures/slice-M[0,:].svg" width="200px"></image>       |
+| <pre>M[2:, 2:] = 1</pre>         | <image src = "enseignement/Montpellier/HAX606X/figures/slice-M[2:,2:].svg" width="200px"></image>     |
+| <pre>M[:-2, :-2] = 1</pre>       | <image src = "enseignement/Montpellier/HAX606X/figures/slice-M[:-2,:-2].svg" width="200px"></image>   |
+| <pre>M[2:4, 2:4] = 1</pre>       | <image src = "enseignement/Montpellier/HAX606X/figures/slice-M[2:4,2:4].svg" width="200px"></image>   |
+| <pre>M[::2, ::2] = 1</pre>       | <image src = "enseignement/Montpellier/HAX606X/figures/slice-M[::2,::2].svg" width="200px"></image>   |
+| <pre>M[3::2, 3::2] = 1</pre>     | <image src = "enseignement/Montpellier/HAX606X/figures/slice-M[3::2,3::2].svg" width="200px"></image> |
+
+ -->
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre> x = np.zeros(9) </pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-zeros-1.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre> x = np.ones(9)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-ones-1.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre> x = np.full(9, 0.5)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-full-1.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre> x = np.array([0, 0, 1, 0, 0, 0, 0, 0, 0])</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-list-1.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre> x = np.arange(9)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-arange-1.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre> x = rng.random(9)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-uniform-1.svg" width="200px"></image></td>
+</tr>
+</tbody>
+</table>
+<h3>Creation: matrix cases</h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre>M = np.ones((5, 9)) </pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-ones-2.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M = np.zeros((5, 9))</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-zeros-2.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre> M = np.array(<br>&nbsp;&nbsp;&nbsp;&nbsp;[<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]<br>&nbsp;&nbsp;&nbsp;&nbsp;]<br>)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-list-2.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre> M = arange(5 * 9).reshape(5, 9)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-arange-2.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre> M = rng.random(9)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-uniform-2.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre> M = np.eye(5, 9)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-eye-2.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre> M = np.diag(np.arange(5)) </pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-diag-2.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre> M = np.diag(np.arange(3), k=2) </pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-diagk-2.svg" width="200px"></image></td>
+</tr>
+</tbody>
+</table>
+<h3>Creation: tensor cases</h3>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre>T = np.zeros((3, 5, 9))</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-zeros-3.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>T = np.ones((3, 5, 9))</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-ones-3.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>T = np.arange(3 * 5 * 9).reshape(3, 5, 9)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-arange-3.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>T = rng.random((3, rows, cols))</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/create-uniform-3.svg" width="200px"></image></td>
+</tr>
+</tbody>
+</table>
+<h2>Matrix reshaping</h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre>M = np.zeros((3, 4)); M[2, 2] = 1</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/reshape-M.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M = M.reshape(4, 3)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/reshape-M-reshape(4,3).svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M = M.reshape(12, 1)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/reshape-M-reshape(12,1).svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M = M.reshape(1, 12)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/reshape-M-reshape(1,12).svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M = M.reshape(6, 2)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/reshape-M-reshape(6,2).svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M = M.reshape(2, 6)</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/reshape-M-reshape(2,6).svg" width="200px"></image></td>
+</tr>
+</tbody>
+</table>
+<h2>Slicing</h2>
+<p>Start from a zero matrix and get the following simple slicing operations:</p>
+<p></br>
+</br></p>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><pre>M = np.zeros((5, 9)) </pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/slice-M.svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M[...] = 1 </pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/slice-M[...].svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M[:, ::2] = 1</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/slice-M[:,::2].svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M[::2, :] = 1</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/slice-M[::2,:].svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M[1, 1] = 1</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/slice-M[1,1].svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M[:, 0] = 1</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/slice-M[:,0].svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M[0, :] = 1</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/slice-M[0,:].svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M[2:, 2:] = 1</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/slice-M[2:,2:].svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M[:-2, :-2] = 1</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/slice-M[:-2,:-2].svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M[2:4, 2:4] = 1</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/slice-M[2:4,2:4].svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M[::2, ::2] = 1</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/slice-M[::2,::2].svg" width="200px"></image></td>
+</tr>
+<tr>
+<td><pre>M[3::2, 3::2] = 1</pre></td>
+<td><image src = "enseignement/Montpellier/HAX606X/figures/slice-M[3::2,3::2].svg" width="200px"></image></td>
+</tr>
+</tbody>
+</table>
+

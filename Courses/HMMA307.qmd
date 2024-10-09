@@ -1,0 +1,77 @@
+---
+title: HMMA307 - Modèles Linéaires Avancés (2019-2020)
+description: "Linear models and beyond."
+categories: [stats, ANOVA, mixed models]
+image: "images/pollution_occitanie.svg"
+reference-location: document
+fig-cap-location: bottom
+draft: false
+
+# title-block-banner: hello-world-bg.jpg
+
+format:
+  html:
+    include-before-body: ../html/margin_image.html
+    include-after-body: ../html/blog_footer.html
+    code-fold: true
+---
+
+This course is in French, and deals with advanced linear models (Anova, Mixed-effects models, etc.).
+
+
+## Syllabus
+[syllabus_hmma307.pdf](enseignement/Montpellier/HMMA307/syllabus_hmma307.pdf)
+
+
+## Polycopié: "Algèbre linéaire pour les statistiques"
+[LinAlg4Stat.pdf](enseignement/Montpellier/HMMA307/LinAlg4Stat.pdf) (en cours de rédaction)
+
+## Notes de cours
+1. [Introduction.pdf](enseignement/Montpellier/HMMA307/Introduction.pdf), [CM1.pdf](enseignement/Montpellier/HMMA307/CM1.pdf)
+
+1. [Optimisation.pdf](enseignement/Montpellier/HMMA307/Optimisation.pdf), [CM2.pdf](enseignement/Montpellier/HMMA307/CM2.pdf)
+
+1. [Anova.pdf](enseignement/Montpellier/HMMA307/Anova.pdf), [CM3.pdf](enseignement/Montpellier/HMMA307/CM3.pdf)
+
+1. [Anova2F.pdf](enseignement/Montpellier/HMMA307/Anova2F.pdf), [CM4.pdf](enseignement/Montpellier/HMMA307/CM4.pdf)
+
+1. [Anova_aleatoire.pdf](enseignement/Montpellier/HMMA307/Anova_aleatoire.pdf), [CM5.pdf](enseignement/Montpellier/HMMA307/CM5.pdf)
+
+1. [ModelesLineairesMixtes.pdf](enseignement/Montpellier/HMMA307/ModelesLineairesMixtes.pdf), [CM6.pdf](enseignement/Montpellier/HMMA307/CM6.pdf)
+
+1. [RegressionQuantile.pdf](enseignement/Montpellier/HMMA307/RegressionQuantile.pdf), [CM7.pdf](enseignement/Montpellier/HMMA307/CM7.pdf)
+
+
+## Travaux dirigés
+
+1. [TD1-SVD.pdf](enseignement/Montpellier/HMMA307/TD1-SVD.pdf)
+
+1. [TD2-KKT.pdf](enseignement/Montpellier/HMMA307/TD2-KKT.pdf)
+
+1. [TD3-EffetAleatoire.pdf](enseignement/Montpellier/HMMA307/TD3-EffetAleatoire.pdf)
+1. [TD4-ModelesLinMixtes.pdf](enseignement/Montpellier/HMMA307/TD4-ModelesLinMixtes.pdf)
+
+
+## More resources
+-  Challenge visualisation, Totem Albert 1er : <https://twitter.com/TotemsMtp/status/1310516278256435200>
+
+- Simpson's paradox: <https://en.wikipedia.org/wiki/Simpson%27s_paradox>
+
+
+
+Codes du cours pour les eleves:
+
+- [Optimisation.ipynb](enseignement/Montpellier/HMMA307/Optimisation.ipynb),
+[Optimisation.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HMMA307/Optimisation.ipynb?flush_cache=true)
+
+- [ANOVA.ipynb](enseignement/Montpellier/HMMA307/ANOVA.ipynb),
+[ANOVA.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HMMA307/ANOVA.ipynb?flush_cache=true)
+
+- [Anova2F.ipynb](enseignement/Montpellier/HMMA307/Anova2F.ipynb),
+[Anova2F.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HMMA307/Anova2F.ipynb?flush_cache=true)
+- [Anova_aleatoire.ipynb](enseignement/Montpellier/HMMA307/Anova_aleatoire.ipynb),
+[Anova_aleatoire.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HMMA307/Anova_aleatoire.ipynb?flush_cache=true)
+
+- [RegressionQuantile.ipynb](enseignement/Montpellier/HMMA307/RegressionQuantile.ipynb), [RegressionQuantile.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HMMA307/RegressionQuantile.ipynb?flush_cache=true), [data.csv](enseignement/Montpellier/HMMA307/data.csv)
+- [ModelesLineairesMixtes.ipynb](enseignement/Montpellier/HMMA307/ModelesLineairesMixtes.ipynb),
+[ModelesLineairesMixtes.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HMMA307/ModelesLineairesMixtes.ipynb?flush_cache=true), [data.csv](enseignement/Montpellier/HMMA307/data.csv),

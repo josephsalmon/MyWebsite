@@ -1,0 +1,83 @@
+---
+title: HMMA308 - Statistical Learning (2018-2020)
+description: "ML intro and basics, mostly supervised and no deep learning."
+categories: [Random forest, linear regression, PCA, clustering]
+image: "images/level_sets.svg"
+reference-location: document
+fig-cap-location: bottom
+draft: false
+
+# title-block-banner: hello-world-bg.jpg
+
+format:
+  html:
+    include-before-body: ../html/margin_image.html
+    include-after-body: ../html/blog_footer.html
+    code-fold: true
+---
+
+This course is in French, and deals with Machine Learning, mostly supervised learning.
+
+## Syllabus
+[syllabus_hmma308.pdf](enseignement/Montpellier/HMMA308/syllabus_hmma308.pdf)
+
+## Projets
+[Projets_ML.pdf](enseignement/Montpellier/HMMA308/Projets_ML.pdf)
+
+## Cours
+
+1. Intro Machine Learning: [IntroML_slides.pdf](enseignement/Montpellier/HMMA308/IntroML_slides.pdf)
+
+1. Régression logistique/LDA: [RegressionLogistique_slides.pdf](enseignement/Montpellier/HMMA308/RegressionLogistique_slides.pdf)
+
+
+1. Validation Croisée: [CrossValidation_slides.pdf](enseignement/Montpellier/HMMA308/CrossValidation_slides.pdf)
+
+1. SVD: [SVD_slides.pdf](enseignement/Montpellier/HMMA308/SVD_slides.pdf), [SVD.ipynb](enseignement/Montpellier/HMMA308/SVD.ipynb){target="_blank"}
+
+1. PCA: [PCA_slides.pdf](enseignement/Montpellier/HMMA308/PCA_slides.pdf), [PCA.ipynb](enseignement/Montpellier/HMMA308/PCA.ipynb)
+
+1. Ridge: [Ridge_slides.pdf](enseignement/Montpellier/HMMA308/Ridge_slides.pdf), [Ridge.ipynb](enseignement/Montpellier/HMMA308/Ridge.ipynb)
+
+1. Arbres : [arbres_slides.pdf](enseignement/Montpellier/HMMA308/arbres_slides.pdf)
+
+1. Bagging et forêts aléatoires : [ForetsAleatoires_slides.pdf](enseignement/Montpellier/HMMA308/ForetsAleatoires_slides.pdf)
+
+1. Lasso: [Lasso_slides.pdf](enseignement/Montpellier/HMMA308/Lasso_slides.pdf), [Lasso_fr.ipynb](enseignement/Montpellier/HMMA308/Lasso_fr.ipynb), [functions_Lasso.py](enseignement/Montpellier/HMMA308/functions_Lasso.py), [prox_collection.py](enseignement/Montpellier/HMMA308/prox_collection.py)
+
+1. SVM : [svm_slides.pdf](enseignement/Montpellier/HMMA308/svm_slides.pdf)
+
+1. Clustering : [clustering_slides.pdf](enseignement/Montpellier/HMMA308/clustering_slides.pdf)
+
+2. Splines et GAM : [Splines_GAM_slides.pdf](enseignement/Montpellier/HMMA308/Splines_GAM_slides.pdf)
+
+
+## TPs
+
+1. [knn_tp.pdf](enseignement/Montpellier/HMMA308/knn_tp.pdf),
+[tp_knn_source.py](enseignement/Montpellier/HMMA308/tp_knn_source.py), [tp_knn_script.py](enseignement/Montpellier/HMMA308/tp_knn_script.py),
+
+<!--- [tp_knn_script_corr.py](enseignement/Montpellier/HMMA308/tp_knn_script_corr.py),
+[knn_tp_corr.pdf](enseignement/Montpellier/HMMA308/knn_tp_corr.pdf)
+--->
+
+1. [perceptron_tp.pdf](enseignement/Montpellier/HMMA308/perceptron_tp.pdf),
+[tp_perceptron_source.py](enseignement/Montpellier/HMMA308/tp_perceptron_source.py), [tp_perceptron_script.py](enseignement/Montpellier/HMMA308/tp_perceptron_script.py), <!---[TP_perceptron.ipynb](enseignement/Montpellier/HMMA308/TP_perceptron.ipynb)--->
+
+1. [arbres_tp.pdf](enseignement/Montpellier/HMMA308/arbres_tp.pdf), [tp_arbres_source.py](enseignement/Montpellier/HMMA308/tp_arbres_source.py)
+
+1. [svm_tp.pdf](enseignement/Montpellier/HMMA308/svm_tp.pdf), [svm_tp_sources.zip](enseignement/Montpellier/HMMA308/svm_tp_sources.zip),
+
+1. [clustering_tp.pdf](enseignement/Montpellier/HMMA308/clustering_tp.pdf), [kmeans.py](enseignement/Montpellier/HMMA308/kmeans.py), [gap.py](enseignement/Montpellier/HMMA308/gap.py), [china.jpg](enseignement/Montpellier/HMMA308/china.jpg)
+
+
+## More resources
+- [The end of the average](https://www.thestar.com/news/insight/2016/01/16/when-us-air-force-discovered-the-flaw-of-averages.html)
+
+- [Le fléau de la dimension (Python)](https://github.com/Arvinds-ds/Stan-Code/blob/master/python%20notebooks/curse_dims/curs-dims.ipynb) inspiré par [Le fléau de la dimension (R)](https://mc-stan.org/users/documentation/case-studies/curse-dims.html)
+
+- Leakage (fr: *fuite*) example : <https://twitter.com/acidflask/status/1259531004500488192>
+
+- The Literary Digest poll : <https://amsi.org.au/ESA_Senior_Years/SeniorTopic4/4b/4b_2content_4.html>
+
+- [Survivorship bias](https://en.wikipedia.org/wiki/Survivorship_bias) ![Survivorship bias](images/Survivorship-bias.png "Survivorship-bias, Wikipedia source)"){ width=10% }

@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage[T1]{fontenc}
+\usepackage{ifpdf}
+\ifpdf
+  \usepackage{lmodern}
+\fi
+\usepackage[latin1]{inputenc}
+\usepackage[english]{babel}
+\usepackage{moreverb}
+\usepackage{url}
+\usepackage[margin=3cm,bottom=2.5cm,top=3cm]{geometry}
+\usepackage{multind}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{marvosym}
+\usepackage{color}
+\usepackage{ttb_style}
+\usepackage{xcolor}
+\usepackage[colorlinks,breaklinks]{hyperref}
+\usepackage{bibentry}
+\nobibliography*
+ 
+\begin{document}
+ 
+\section{Introduction}
+ 
+Look ma, inline bibtex entries:
+ 
+\begin{itemize}
+\item \bibentry{Mallat09}
+\end{itemize}
+ 
+\section{Ondelettes}
+
+\cite{Mallat09} avec des jolies illustrations est plus axé théorie du signal. \cite{Hardle_Kerkyacharian_Picard_Tsybakov98} est plus en lien avec les statistiques. 
+
+ 
+\bibliographystyle{alpha}
+\bibliography{refs}
+ 
+\end{document}

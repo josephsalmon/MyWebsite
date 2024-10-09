@@ -7,7 +7,7 @@ categories:
 image: Bezier_good.gif
 reference-location: margin
 draft: false
-# title-block-banner: hello-world-bg.jpg
+title-block-banner: hello-world-bg.jpg
 
 format:
   html:

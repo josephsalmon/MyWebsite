@@ -1,0 +1,159 @@
+---
+title: HLMA408 - Traitement de données pour l'écologie (2018--2021)
+description: "Stats for ecology... sort of! just for ecologists!"
+categories: [statistics, confidence intervals, tests, linear models]
+image: "images/jitter_male_mouse_by_gene_only_ICs.svg"
+reference-location: document
+fig-cap-location: bottom
+draft: false
+
+# title-block-banner: hello-world-bg.jpg
+
+format:
+  html:
+    include-before-body: ../html/margin_image.html
+    include-after-body: ../html/blog_footer.html
+    code-fold: true
+---
+
+
+This is an undergraduate course (in French!) introducing statistics and data visualisation.
+
+<!---
+
+<center>
+![Pollution en Occitanie](images/pollution_occitanie.svg "Pollution en Occitanie"){ width=25%}
+</center>
+--->
+
+## Syllabus
+[Syllabus 2020-2021](enseignement/Montpellier/HLMA408/syllabus_HLMA408.pdf)
+
+## Polycopié
+[Introduction à Python (HLMA310)](enseignement/Montpellier/HLMA310/IntroPython.pdf) (en cours de rédaction)
+
+
+## Widgets introductifs
+
+Distributions continues (1D) |Distributions Gaussiennes (2D) | Distributions discrètes | 
+:-------------------------:|:-------------------------:|:-------------------------:|
+<a href="https://mybinder.org/v2/gh/josephsalmon/Random-Widgets/HEAD?urlpath=voila%2Frender%2Fnotebooks%2FDensite_echantillons.ipynb"> <img src="images/screenshot_continuous.png" width="78%" > </a> |<a href="https://mybinder.org/v2/gh/josephsalmon/Random-Widgets/HEAD?urlpath=voila%2Frender%2Fnotebooks%2FDensite_Gaussian2D.ipynb"> <img src="images/screenshot_2dGaussian.png" width="78%" > </a> | <a href="https://mybinder.org/v2/gh/josephsalmon/Random-Widgets/HEAD?urlpath=voila%2Frender%2Fnotebooks%2FFonction_masse_echantillon.ipynb"> <img src="images/screenshot_discrete.png" width="78%" > </a> | 
+
+Quantiles |Courbes ROC et Tests|Moindres Carrés Ordinaires |
+:-------------------------:|:-------------------------:|:-------------------------:|
+<a href="https://mybinder.org/v2/gh/josephsalmon/Random-Widgets/HEAD?urlpath=voila%2Frender%2Fnotebooks%2FDensite_echantillons.ipynb"> <img src="images/screenshot_quantile.png" width="78%" > </a> |<a href="https://mybinder.org/v2/gh/josephsalmon/Random-Widgets/HEAD?urlpath=voila%2Frender%2Fnotebooks%2FROC_curve_PCR_tests.ipynb"> <img src="images/screenshot_roc_curves.png" width="78%" > </a>| <a href="https://mybinder.org/v2/gh/josephsalmon/Random-Widgets/HEAD?urlpath=voila%2Frender%2Fnotebooks%2FMCO.ipynb"> <img src="images/screenshot_MCO.png" width="78%" > </a>|
+
+
+
+Sources: [https://github.com/josephsalmon/Random-Widgets](https://github.com/josephsalmon/Random-Widgets)
+
+ Autres widgets (en anglais): [https://seeing-theory.brown.edu/](https://seeing-theory.brown.edu/)
+
+## Cours: slides et notebooks
+
+1. [Preambule.pdf](enseignement/Montpellier/HLMA408/Preambule.pdf)
+
+1. [StatDescriptives.pdf](enseignement/Montpellier/HLMA408/StatDescriptives.pdf),
+[StatDescriptives.ipynb](enseignement/Montpellier/HLMA408/StatDescriptives.ipynb),
+[StatDescriptives.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HLMA408/StatDescriptives.ipynb?flush_cache=true)
+
+2. [GaussianDistribution.pdf](enseignement/Montpellier/HLMA408/GaussianDistribution.pdf),
+[GaussianDistribution.ipynb](enseignement/Montpellier/HLMA408/GaussianDistribution.ipynb),
+[GaussianDistribution.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HLMA408/GaussianDistribution.ipynb?flush_cache=true)
+
+3. [Echantillonnage.pdf](enseignement/Montpellier/HLMA408/Echantillonnage.pdf),
+[Echantillonnage.ipynb](enseignement/Montpellier/HLMA408/Echantillonnage.ipynb),
+[Echantillonnage.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HLMA408/Echantillonnage.ipynb)
+
+4. [EstimationTests.pdf](enseignement/Montpellier/HLMA408/EstimationTests.pdf),
+[EstimationTests.ipynb](enseignement/Montpellier/HLMA408/EstimationTests.ipynb),
+[EstimationTests.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HLMA408/EstimationTests.ipynb?flush_cache=true)
+
+5. [ICGaussiens.pdf](enseignement/Montpellier/HLMA408/ICGaussiens.pdf),
+[ICGaussiens.ipynb](enseignement/Montpellier/HLMA408/ICGaussiens.ipynb),
+[ICGaussiens.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HLMA408/ICGaussiens.ipynb?flush_cache=true)
+
+
+6. [ModeleLineaire.pdf](enseignement/Montpellier/HLMA408/ModeleLineaire.pdf),
+[ModeleLineaire.ipynb](enseignement/Montpellier/HLMA408/ModeleLineaire.ipynb),
+[Widgets_MCO.ipynb](enseignement/Montpellier/HLMA408/Widgets_MCO.ipynb),
+[ModeleLineaire.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HLMA408/ModeleLineaire.ipynb?flush_cache=true)
+
+7. [Anova.pdf](enseignement/Montpellier/HLMA408/Anova.pdf),
+[Anova.ipynb](enseignement/Montpellier/HLMA408/Anova.ipynb),
+[Anova.html](https://nbviewer.jupyter.org/url/josephsalmon.eu/enseignement/Montpellier/HLMA408/Anova.ipynb?flush_cache=true)
+
+
+## Travaux dirigés:
+
+1. [TD1.pdf](enseignement/Montpellier/HLMA408/TD1.pdf), [TD1_corr.pdf](enseignement/Montpellier/HLMA408/TD1_corr.pdf)
+
+2. [TD2.pdf](enseignement/Montpellier/HLMA408/TD2.pdf), [TD2_corr.pdf](enseignement/Montpellier/HLMA408/TD2_corr.pdf), [TD2.ipynb](enseignement/Montpellier/HLMA408/TD2.ipynb)
+
+3. [TD3.pdf](enseignement/Montpellier/HLMA408/TD3.pdf), [TD3_corr.pdf](enseignement/Montpellier/HLMA408/TD3_corr.pdf)
+
+4. [TD4.pdf](enseignement/Montpellier/HLMA408/TD4.pdf), [TD4_corr.pdf](enseignement/Montpellier/HLMA408/TD4_corr.pdf)
+
+5. [TD5.pdf](enseignement/Montpellier/HLMA408/TD5.pdf), [TD5_corr.pdf](enseignement/Montpellier/HLMA408/TD5_corr.pdf)
+
+
+## Travaux pratiques:
+
+1. Introduction : [TP-Introduction.pdf](enseignement/Montpellier/HLMA408/TP-Introduction.pdf), [TP-Introduction_squelette.ipynb](enseignement/Montpellier/HLMA408/TP-Introduction_squelette.ipynb), [TP-Introduction.ipynb](enseignement/Montpellier/HLMA408/TP-Introduction.ipynb),
+
+2. Chi2: [TP-chi2.pdf](enseignement/Montpellier/HLMA408/TP-chi2.pdf), [TP-chi2_squelette.ipynb](enseignement/Montpellier/HLMA408/TP-chi2_squelette.ipynb), [TP-chi2.ipynb](enseignement/Montpellier/HLMA408/TP-chi2.ipynb)
+
+3. TP-Noté: [TP-MCO.pdf](enseignement/Montpellier/HLMA408/TP-MCO.pdf), [TP-MCO.ipynb](enseignement/Montpellier/HLMA408/TP-MCO.ipynb)
+
+
+## Plus d'information et quelques sources de données
+
+
+### Général
+- [ScienceEtonnante: Les politiques d'austérité : à cause d'une erreur Excel ?](https://www.youtube.com/watch?v=yeX_Zs7zztY&feature=youtu.be)
+
+- [Python for Dynamics and Evolution of Earth and Planets](https://nordicesmhub.github.io/deep_python/index.html)
+
+- [Numpy Tutorial](https://github.com/rougier/numpy-tutorial) et [from-python-to-numpy](https://www.labri.fr/perso/nrougier/from-python-to-numpy/) par [Nicolas P. Rougier](https://www.labri.fr/perso/nrougier/resume.html)
+
+- [Compstat: "Tutorial on Computational Statistics", by Allen Downey](https://www.youtube.com/watch?v=He9MCbs1wgE)
+
+- [Comment choisir les couleurs pour les daltoniens?](https://usabilla.com/blog/how-to-design-for-color-blindness/)
+
+- [Zététique, autodéfense intellectuelle par R. Monvoisin](https://www.youtube.com/watch?v=CGEmZaIeB2Q)
+
+- [Jake VanderPlas book on datascience](https://jakevdp.github.io/PythonDataScienceHandbook/)
+and associated
+[videos](http://jakevdp.github.io/blog/2017/03/03/reproducible-data-analysis-in-jupyter/)
+
+- [Scipy lecture notes](https://www.scipy-lectures.org/)
+
+
+### Biais
+- [The Literary Digest poll : Franklin D. Roosevelt vs. Alf Landon](https://amsi.org.au/ESA_Senior_Years/SeniorTopic4/4b/4b_2content_4.html)
+
+- [Survivorship bias](https://en.wikipedia.org/wiki/Survivorship_bias)
+<a href="https://en.wikipedia.org/wiki/Survivorship_bias"> <img src="images/Survivorship-bias.png" width="10%" alt="Survivorship bias" title="Survivorship bias (Wikipedia)"> </a>
+
+
+### Biodiversité et science ouverte
+
+- [OREM: Bases de données des Services d'Observation](https://data.oreme.org/observation)
+
+- [Open sciences participatives](https://www.open-sciences-participatives.org/home/)
+
+- [Futuram planète: sciences citoyennes](https://www.futura-sciences.com/planete/actualites/environnement-sciences-citoyennes-biodiversite-france-besoin-vous-cet-ete-76759/)
+
+### Covid-19
+
+- [The medical test paradox: Can redesigning Bayes rule help?](https://www.youtube.com/watch?v=lG4VkPoG3ko)
+- [The mathematics of the corona outbreak](https://www.youtube.com/watch?v=gSqIwXl6IjQ)
+
+- [The Safe Sneeze by Mythbusters](https://www.youtube.com/watch?v=3vw0hIs2LEg)
+
+
+### Bases de données ouvertes
+
+- [Open Climate Data](http://openclimatedata.net)
+
+- [Pollution on data.gouv.fr](https://www.data.gouv.fr/fr/datasets/donnees-temps-reel-de-mesure-des-concentrations-de-polluants-atmospheriques-reglementes-1/)
