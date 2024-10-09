@@ -3,11 +3,14 @@ draft: false
 
 project:
   type: website
+  output-dir: _site
 
   resources:
     - "img/**"
-    -  "*.ipynb"
+    # - "*.ipynb"
+    - "Courses/enseignement/**"
     - "assets/**"
+    - "html/**"
     - "sitemap.xml"
     - "_redirects"
     - "speaking/pdf/**"
