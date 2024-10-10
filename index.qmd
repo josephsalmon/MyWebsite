@@ -29,8 +29,6 @@ listing:
 
 
 
-
-
 ::: {.column-screen}
 ```{=html}
 <link rel="stylesheet" href="html/
@@ -43,7 +41,7 @@ landing_page_styles.css">
                 <i class="fas fa-house"></i>
                 Joseph Salmon</span>
             <br> Machine learning & data science.</h1>
-            <p>I am a statistician and an applied mathematician at Inria, with a strong interest in machine learning, optimization and data science. In terms of applications, I focus on <strong>citizen science</strong>, <strong>crowdsourcing</strong> and <strong>high dimensional statistics</strong>.</p>
+            <p>I am a statistician and an applied mathematician at Inria (Iroko), with a strong interest in machine learning, optimization and data science. In terms of applications, I focus on <strong>citizen science</strong>, <strong>crowdsourcing</strong> and <strong>high dimensional statistics</strong>.</p>
             <h2>Short bio </h2>
             <p>From 2018 to 2024 I was a full professor at <a href="https://www.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Université de Montpellier</span></a> and a Junior member of the <a href="http://www.iufrance.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Institut Universitaire de France</span></a> (IUF), from 2021 to 2024.
             For the spring and summer quarters 2018, I was a visiting assistant professor at <a href="https://www.stat.washington.edu/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>UW, Statistics department</span></a>.
@@ -60,11 +58,7 @@ landing_page_styles.css">
     </div>
 
 
-
-
-
 <div w3-include-html="img/waves.html"></div>
-
 </div>
 
 
@@ -88,6 +82,7 @@ landing_page_styles.css">
 - **Dec. 2019**: The ANR AI chair proposal CaMeLOt (CooperAtive MachinE Learning and OpTimization) has been selected.
 - **May 2019** : Workshop in Montpellier [Graph signals : learning and optimization perspectives](https://graph-sig-2019.sciencesconf.org/)
 
+:::
 
 
 

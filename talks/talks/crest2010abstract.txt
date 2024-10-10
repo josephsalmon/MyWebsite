@@ -1,0 +1,30 @@
+Les procédures d'agrégation telles que Boosting ou encore Random
+Forest sont de nos jours extrêmement utilisées en pratique en raison de leur
+efficacité numérique,
+mise en évidence par de nombreuses études expérimentales. Cependant,
+il y a peu de résultats théoriques expliquant la supériorité des
+procédures agrégées
+sur les procédures ''pures''. En particulier, dans le cadre de la
+régression à design fixe,
+des inégalités oracles exactes et avec un terme résiduel optimal sont
+connues seulement dans deux cas:
+pour l'agrégation d'estimateurs par projection (moindres carrés) et
+quand les pré-estimateurs
+sont calculés sur un échantillon indépendant.
+
+  L'objectif du travail présenté est d'étendre ces résultats à
+l'agrégation des estimateurs affines,
+qui sont connus pour être préférables aux estimateurs par projection
+dans les problèmes non-paramétriques.
+Nous nous plaçons dans le modèle de régression avec un bruit
+hétéroscédastique gaussien et
+démontrons pour l'agrégation à poids exponentiels (exponentially
+weighted aggregate, EWA)
+une majoration du risque de type PAC-bayésienne. On en tire des
+inégalités d'oracle exactes dans un cadre suffisamment général pour
+couvrir les combinaisons de diverses procédures telles que les
+moindres carrés, la régression ridge, les estimateurs de Pinsker, etc.
+ Comme conséquence directe de nos résultats, nous montrons que l'on
+peut proposer à partir de
+l'agrégation à poids exponentiels, un nouvel estimateur adaptatif au
+sens minimax exact.
