@@ -1,0 +1,3221 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="<strong>?meta:description</strong>">
+
+<title>Joseph Salmon - Analyse de la pollution en Occitanie</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../..//img/Flag_of_Occitania.svg" rel="icon" type="image/svg+xml">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(../../../../img/bg_pine_trees.jpg);
+background-size: cover;
+      }
+</style>
+<meta name="author" content="Joseph Salmon">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../img/Flag_of_Occitania.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Joseph Salmon</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../Courses/index.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../talks/index.html"> 
+<span class="menu-text">Talks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../team/index.html"> 
+<span class="menu-text">Team</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/josephsalmon"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://sigmoid.social/@josephsalmon"> <i class="bi bi-mastodon" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/joseph-salmon-6134262a6/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:joseph.salmon@inria.fr"> <i class="bi bi-envelope" role="img" aria-label="email">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default blog-post page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Analyse de la pollution en Occitanie</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#analyse-de-la-pollution-en-occitanie" id="toc-analyse-de-la-pollution-en-occitanie" class="nav-link active" data-scroll-target="#analyse-de-la-pollution-en-occitanie">Analyse de la pollution en Occitanie</a>
+  <ul class="collapse">
+  <li><a href="#sommaire-todo-harmonize-in-the-end" id="toc-sommaire-todo-harmonize-in-the-end" class="nav-link" data-scroll-target="#sommaire-todo-harmonize-in-the-end">Sommaire (</a><a id="sommaire" class="nav-link" data-scroll-target="undefined"> </a> <span style="color:red">TODO Harmonize in the end</span>)</li>
+  </ul></li>
+  <li><a href="#visualisation-de-données-seaborn-et-pandas" id="toc-visualisation-de-données-seaborn-et-pandas" class="nav-link" data-scroll-target="#visualisation-de-données-seaborn-et-pandas">Visualisation de données, seaborn et pandas</a></li>
+  <li><a href="#question" id="toc-question" class="nav-link" data-scroll-target="#question">Question:</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="analyse-de-la-pollution-en-occitanie" class="level1">
+<h1>Analyse de la pollution en Occitanie</h1>
+<p>http://data-atmo-occitanie.opendata.arcgis.com/datasets/4a648b54876f485e92f22e2ad5a5da32_0</p>
+<hr>
+<blockquote class="blockquote">
+<p><strong>Auteur</strong>: Joseph Salmon <a href="mailto:joseph.salmon@umontpellier.fr" class="email" target="_blank">joseph.salmon@umontpellier.fr</a></p>
+</blockquote>
+<section id="sommaire-todo-harmonize-in-the-end" class="level2">
+<h2 class="anchored" data-anchor-id="sommaire-todo-harmonize-in-the-end">Sommaire (<a id="sommaire"> </a> <span style="color:red">TODO Harmonize in the end</span>)</h2>
+<ul>
+<li><strong><a href="#import" target="_blank">Import</a></strong> <br></li>
+<li><strong><a href="#style" target="_blank">Améliorations visuelles</a></strong> <br></li>
+<li><strong><a href="#visu" target="_blank">Visualisations classiques</a></strong> <br></li>
+</ul>
+<p><a id="import"> </a> ## Imports</p>
+<div id="cell-3" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># utile pour avoir un affichage identique dans divers notebook</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sys.path.append(<span class="st">"./codes"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update({<span class="st">'figure.max_open_warning'</span>: <span class="dv">25</span>})  <span class="co"># </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># commande "magique" pour améliorer la visualiation</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib notebook</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># %matplotlib inline</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a id="style"> </a></p>
+</section>
+</section>
+<section id="visualisation-de-données-seaborn-et-pandas" class="level1">
+<h1>Visualisation de données, seaborn et pandas</h1>
+<div id="cell-5" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>directory <span class="op">=</span> Path.cwd()  <span class="co"># .parent</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>directory <span class="op">=</span> directory.joinpath(<span class="st">'prebuiltimages'</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_saving_display(fig, directory, image_name, imageformat<span class="op">=</span><span class="st">"pdf"</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                      saving<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="co">""""Saving with personal function."""</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> saving <span class="kw">is</span> <span class="va">True</span>:</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        fig.savefig(directory.joinpath(image_name <span class="op">+</span> <span class="st">'.'</span> <span class="op">+</span> imageformat),</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>                    <span class="bu">format</span><span class="op">=</span>imageformat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-6" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> download <span class="im">import</span> download</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"http://josephsalmon.eu/enseignement/datasets/Mesure_journaliere_Region_Occitanie_Polluants_Principaux.csv"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>path_target <span class="op">=</span> <span class="st">"datasets/Mesure_journaliere_Region_Occitanie_Polluants_Principaux.csv"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>download(url, path_target, replace<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Replace is False and data exists, so doing nothing. Use replace==True to re-download the data.</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>'datasets/Mesure_journaliere_Region_Occitanie_Polluants_Principaux.csv'</code></pre>
+</div>
+</div>
+<div id="cell-7" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df_pol_occ <span class="op">=</span> pd.read_csv(path_target)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>df_pol_occ.head(<span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">X</th>
+<th data-quarto-table-cell-role="th">Y</th>
+<th data-quarto-table-cell-role="th">id</th>
+<th data-quarto-table-cell-role="th">nom_dep</th>
+<th data-quarto-table-cell-role="th">nom_com</th>
+<th data-quarto-table-cell-role="th">code_insee</th>
+<th data-quarto-table-cell-role="th">nom_station</th>
+<th data-quarto-table-cell-role="th">code_station</th>
+<th data-quarto-table-cell-role="th">typologie</th>
+<th data-quarto-table-cell-role="th">influence</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">metrique</th>
+<th data-quarto-table-cell-role="th">date_debut</th>
+<th data-quarto-table-cell-role="th">date_fin</th>
+<th data-quarto-table-cell-role="th">statut_valid</th>
+<th data-quarto-table-cell-role="th">x_l93</th>
+<th data-quarto-table-cell-role="th">y_l93</th>
+<th data-quarto-table-cell-role="th">x_wgs84</th>
+<th data-quarto-table-cell-role="th">y_wgs84</th>
+<th data-quarto-table-cell-role="th">geom</th>
+<th data-quarto-table-cell-role="th">FID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12001</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-15T01:00:00.000Z</td>
+<td>2017-12-16T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12001</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12002</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-16T01:00:00.000Z</td>
+<td>2017-12-17T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12002</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12003</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-17T01:00:00.000Z</td>
+<td>2017-12-18T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12003</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12004</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-18T01:00:00.000Z</td>
+<td>2017-12-19T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12004</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12005</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-19T01:00:00.000Z</td>
+<td>2017-12-20T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12005</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12006</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-20T01:00:00.000Z</td>
+<td>2017-12-21T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12006</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12007</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-21T01:00:00.000Z</td>
+<td>2017-12-22T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12007</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">7</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12008</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-22T01:00:00.000Z</td>
+<td>2017-12-23T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12008</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">8</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12009</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-23T01:00:00.000Z</td>
+<td>2017-12-24T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12009</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">9</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12010</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-24T01:00:00.000Z</td>
+<td>2017-12-25T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12010</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">10</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12011</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-25T01:00:00.000Z</td>
+<td>2017-12-26T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12011</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">11</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12012</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-26T01:00:00.000Z</td>
+<td>2017-12-27T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12012</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">12</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12013</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-27T01:00:00.000Z</td>
+<td>2017-12-28T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12013</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">13</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12014</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-28T01:00:00.000Z</td>
+<td>2017-12-29T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12014</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">14</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12015</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-29T01:00:00.000Z</td>
+<td>2017-12-30T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12015</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">15</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12016</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-30T01:00:00.000Z</td>
+<td>2017-12-31T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12016</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">16</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12017</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2017-12-31T01:00:00.000Z</td>
+<td>2018-01-01T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12017</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">17</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12018</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-01T01:00:00.000Z</td>
+<td>2018-01-02T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12018</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">18</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12019</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-02T01:00:00.000Z</td>
+<td>2018-01-03T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12019</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">19</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12020</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-03T01:00:00.000Z</td>
+<td>2018-01-04T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12020</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">20</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12021</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-04T01:00:00.000Z</td>
+<td>2018-01-05T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12021</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">21</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12022</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-05T01:00:00.000Z</td>
+<td>2018-01-06T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12022</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">22</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12023</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-06T01:00:00.000Z</td>
+<td>2018-01-07T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12023</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">23</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12024</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-07T01:00:00.000Z</td>
+<td>2018-01-08T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12024</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">24</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12025</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-08T01:00:00.000Z</td>
+<td>2018-01-09T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12025</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">25</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12026</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-09T01:00:00.000Z</td>
+<td>2018-01-10T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12026</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">26</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12027</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-10T01:00:00.000Z</td>
+<td>2018-01-11T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12027</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">27</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12028</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-11T01:00:00.000Z</td>
+<td>2018-01-12T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12028</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">28</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12029</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-12T01:00:00.000Z</td>
+<td>2018-01-13T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12029</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">29</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12030</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-01-13T01:00:00.000Z</td>
+<td>2018-01-14T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12030</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">70</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12071</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-02-23T01:00:00.000Z</td>
+<td>2018-02-24T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12071</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">71</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12072</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-02-24T01:00:00.000Z</td>
+<td>2018-02-25T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12072</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">72</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12073</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-02-25T01:00:00.000Z</td>
+<td>2018-02-26T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12073</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">73</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12074</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-02-26T01:00:00.000Z</td>
+<td>2018-02-27T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12074</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">74</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12075</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-02-27T01:00:00.000Z</td>
+<td>2018-02-28T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12075</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12076</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-02-28T01:00:00.000Z</td>
+<td>2018-03-01T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12076</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">76</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12077</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-01T01:00:00.000Z</td>
+<td>2018-03-02T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12077</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">77</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12078</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-02T01:00:00.000Z</td>
+<td>2018-03-03T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12078</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">78</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12079</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-03T01:00:00.000Z</td>
+<td>2018-03-04T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12079</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">79</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12080</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-04T01:00:00.000Z</td>
+<td>2018-03-05T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12080</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">80</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12081</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-05T01:00:00.000Z</td>
+<td>2018-03-06T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12081</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">81</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12082</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-06T01:00:00.000Z</td>
+<td>2018-03-07T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12082</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">82</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12083</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-07T01:00:00.000Z</td>
+<td>2018-03-08T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12083</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">83</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12084</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-08T01:00:00.000Z</td>
+<td>2018-03-09T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12084</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">84</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12085</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-09T01:00:00.000Z</td>
+<td>2018-03-10T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12085</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">85</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12086</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-10T01:00:00.000Z</td>
+<td>2018-03-11T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12086</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">86</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12087</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-11T01:00:00.000Z</td>
+<td>2018-03-12T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12087</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">87</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12088</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-12T01:00:00.000Z</td>
+<td>2018-03-13T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12088</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">88</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12089</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-13T01:00:00.000Z</td>
+<td>2018-03-14T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12089</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">89</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12090</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-14T01:00:00.000Z</td>
+<td>2018-03-15T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12090</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">90</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12091</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-15T01:00:00.000Z</td>
+<td>2018-03-16T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12091</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">91</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12092</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-16T01:00:00.000Z</td>
+<td>2018-03-17T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12092</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">92</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12093</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-17T01:00:00.000Z</td>
+<td>2018-03-18T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12093</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">93</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12094</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-18T01:00:00.000Z</td>
+<td>2018-03-19T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12094</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">94</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12095</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-19T01:00:00.000Z</td>
+<td>2018-03-20T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12095</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">95</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12096</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-20T01:00:00.000Z</td>
+<td>2018-03-21T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12096</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">96</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12097</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-21T01:00:00.000Z</td>
+<td>2018-03-22T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12097</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">97</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12098</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-22T01:00:00.000Z</td>
+<td>2018-03-23T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12098</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">98</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12099</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-23T01:00:00.000Z</td>
+<td>2018-03-24T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12099</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">99</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>12100</td>
+<td>HAUTE-GARONNE</td>
+<td>TOULOUSE</td>
+<td>31555</td>
+<td>Toulouse-Jacquier Urbain\n</td>
+<td>FR12004</td>
+<td>urban</td>
+<td>Fond</td>
+<td>...</td>
+<td>journaliere</td>
+<td>2018-03-24T01:00:00.000Z</td>
+<td>2018-03-25T00:00:00.000Z</td>
+<td>t</td>
+<td>572227</td>
+<td>6276450</td>
+<td>1.41861</td>
+<td>43.5756</td>
+<td>0101000020E610000000000080A1B2F63F000000E0ABC9...</td>
+<td>12100</td>
+</tr>
+</tbody>
+</table>
+
+<p>100 rows × 24 columns</p>
+</div>
+</div>
+</div>
+</div>
+<div id="cell-8" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_pol_occ[<span class="st">'polluant'</span>].unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>array(['O3', 'PM10', 'NO', 'NO2', 'SO2', 'PM2.5', 'NOX as NO2', 'H2S',
+       'C6H6'], dtype=object)</code></pre>
+</div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>villes_all <span class="op">=</span> df_pol_occ[<span class="st">'nom_com'</span>].unique()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>villes_all</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>array(['TOULOUSE', 'GAUDONVILLE', 'BESSIERES', 'TARBES',
+       'SAINT-LAURENT-DES-ARBRES', 'NIMES', 'LA CALMETTE', 'PERPIGNAN',
+       'MONTPELLIER', 'MILLAU', 'CASTRES', 'SAINT-GELY-DU-FESC',
+       'LUNEL-VIEL', 'LOURDES', 'BLAGNAC', 'LATTES', 'AGDE',
+       'SAINT-ESTEVE', 'ALBI', 'MIRAMONT-DE-COMMINGES', 'PAMIERS',
+       'PEYRUSSE-VIEILLE', 'MONTGISCARD', 'BELESTA-EN-LAURAGAIS',
+       'SAINT-GAUDENS', 'CORNEILHAN', 'FRAISSE-SUR-AGOUT', 'SAZE',
+       'RODEZ', 'CAHORS', 'SAINT-PRIVAT-DES-VIEUX'], dtype=object)</code></pre>
+</div>
+</div>
+<div id="cell-10" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>nb_samples <span class="op">=</span> df_pol_occ.count()[<span class="dv">0</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(nb_samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>20808</code></pre>
+</div>
+</div>
+<div id="cell-11" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>df_pol_occ[<span class="st">'day'</span>] <span class="op">=</span> pd.to_datetime(df_pol_occ[<span class="st">'date_debut'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-12" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ville = 'TOULOUSE'</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ville <span class="op">=</span> <span class="st">'MONTPELLIER'</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>df_pol_ville <span class="op">=</span>df_pol_occ[df_pol_occ[<span class="st">'nom_com'</span>]<span class="op">==</span>ville]</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>df_pol_ville[<span class="st">'polluant'</span>].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>1948    O3
+1949    O3
+1950    O3
+1951    O3
+1952    O3
+Name: polluant, dtype: object</code></pre>
+</div>
+</div>
+<div id="cell-13" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df_pol_ville[<span class="st">'jour'</span>] <span class="op">=</span> pd.to_datetime(df_pol_ville[<span class="st">'date_debut'</span>])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>df_pol_ville <span class="op">=</span> df_pol_ville.set_index(<span class="st">'jour'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/home/jo/anaconda3/lib/python3.6/site-packages/ipykernel_launcher.py:1: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame.
+Try using .loc[row_indexer,col_indexer] = value instead
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
+  """Entry point for launching an IPython kernel.</code></pre>
+</div>
+</div>
+<p>[‘X’, ‘Y’, ‘id’, ‘nom_dep’, ‘nom_com’, ‘code_insee’, ‘nom_station’, ‘code_station’, ‘typologie’, ‘influence’, ‘polluant’, ‘id_poll_ue’, ‘valeur_originale’, ‘code_unite_concentration’, ‘metrique’, ‘date_debut’, ‘date_fin’, ‘statut_valid’, ‘x_l93’, ‘y_l93’, ‘x_wgs84’, ‘y_wgs84’, ‘geom’, ‘FID’]</p>
+<div id="cell-16" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_pol_ville <span class="op">=</span> df_pol_ville[[<span class="st">'polluant'</span>,<span class="st">'valeur_originale'</span>]]</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df_pol_ville.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">polluant</th>
+<th data-quarto-table-cell-role="th">valeur_originale</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">jour</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-10-18 01:00:00</td>
+<td>O3</td>
+<td>70.880554</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-10-19 01:00:00</td>
+<td>O3</td>
+<td>69.161110</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-10-20 01:00:00</td>
+<td>O3</td>
+<td>61.621876</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-10-21 01:00:00</td>
+<td>O3</td>
+<td>58.338543</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-10-22 01:00:00</td>
+<td>O3</td>
+<td>70.778130</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="cell-17" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_pol_ville.tail()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">polluant</th>
+<th data-quarto-table-cell-role="th">valeur_originale</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">jour</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-07 01:00:00</td>
+<td>NO2</td>
+<td>7.650000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-07 01:00:00</td>
+<td>PM10</td>
+<td>6.978125</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-07 01:00:00</td>
+<td>O3</td>
+<td>53.004166</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-07 01:00:00</td>
+<td>NO</td>
+<td>4.426812</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-07 01:00:00</td>
+<td>NO</td>
+<td>0.524306</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="cell-18" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>pol_names <span class="op">=</span> df_pol_occ[<span class="st">'polluant'</span>].unique().tolist()</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>nb_poluant <span class="op">=</span> <span class="bu">len</span>(pol_names)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>df_pol_ville_p_polluant <span class="op">=</span> []</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">6</span>))</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, pol_name <span class="kw">in</span> <span class="bu">enumerate</span>(pol_names[<span class="dv">0</span>:<span class="dv">3</span>]):</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">=</span> df_pol_ville[df_pol_ville[<span class="st">'polluant'</span>] <span class="op">==</span> pol_name]</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">=</span> temp.drop(columns<span class="op">=</span><span class="st">'polluant'</span>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    df_pol_ville_p_polluant.append(temp)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    nb_observed <span class="op">=</span> temp.count()[<span class="dv">0</span>]</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> nb_observed <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>        sns.lineplot(data<span class="op">=</span>temp,ax<span class="op">=</span>axes[i],ci<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>        axes[i].legend([])</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        axes[i].set_title(pol_name)</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TP7-pandas_pollution_occitanie_files/figure-html/cell-15-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-19" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df_pol_ville_p_polluant[i]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">valeur_originale</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">jour</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-14 01:00:00</td>
+<td>5.328125</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-14 01:00:00</td>
+<td>0.948958</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-15 01:00:00</td>
+<td>6.200000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-15 01:00:00</td>
+<td>0.743750</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-16 01:00:00</td>
+<td>3.857609</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-16 01:00:00</td>
+<td>0.761458</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-17 01:00:00</td>
+<td>6.460417</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-18 01:00:00</td>
+<td>5.840351</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-17 01:00:00</td>
+<td>1.548958</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-18 01:00:00</td>
+<td>1.188542</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-19 01:00:00</td>
+<td>8.289855</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-19 01:00:00</td>
+<td>4.112847</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-20 01:00:00</td>
+<td>11.552083</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-20 01:00:00</td>
+<td>4.716667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-21 01:00:00</td>
+<td>4.243750</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-21 01:00:00</td>
+<td>0.854167</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-22 01:00:00</td>
+<td>5.750000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-22 01:00:00</td>
+<td>0.671875</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-23 01:00:00</td>
+<td>4.078125</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-23 01:00:00</td>
+<td>0.306250</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-24 01:00:00</td>
+<td>3.810417</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-24 01:00:00</td>
+<td>0.776042</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-08 01:00:00</td>
+<td>4.779167</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-08 01:00:00</td>
+<td>1.103125</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-09 01:00:00</td>
+<td>6.017708</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-09 01:00:00</td>
+<td>1.347569</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-10 01:00:00</td>
+<td>5.906522</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-10 01:00:00</td>
+<td>0.552778</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-11 01:00:00</td>
+<td>7.854167</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-11 01:00:00</td>
+<td>1.877083</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-01 01:00:00</td>
+<td>2.902899</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-01 01:00:00</td>
+<td>0.532292</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-02 01:00:00</td>
+<td>6.310417</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-02 01:00:00</td>
+<td>1.120486</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-03 01:00:00</td>
+<td>10.647917</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-03 01:00:00</td>
+<td>5.604167</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-04 01:00:00</td>
+<td>11.400000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-04 01:00:00</td>
+<td>4.846180</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-03 01:00:00</td>
+<td>1.721212</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-04 01:00:00</td>
+<td>2.001042</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-05 01:00:00</td>
+<td>1.555208</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-06 01:00:00</td>
+<td>1.827083</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-07 01:00:00</td>
+<td>5.595833</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-08 01:00:00</td>
+<td>1.491667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-09 01:00:00</td>
+<td>1.072917</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-10 01:00:00</td>
+<td>2.869792</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-11 01:00:00</td>
+<td>1.437500</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-12 01:00:00</td>
+<td>0.666667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-09 01:00:00</td>
+<td>3.230208</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-10 01:00:00</td>
+<td>8.293116</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-11 01:00:00</td>
+<td>5.629167</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-12 01:00:00</td>
+<td>4.566667</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-13 01:00:00</td>
+<td>6.422101</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-13 01:00:00</td>
+<td>5.153820</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-05 01:00:00</td>
+<td>5.983333</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-05 01:00:00</td>
+<td>1.448958</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-06 01:00:00</td>
+<td>4.069792</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-06 01:00:00</td>
+<td>5.265625</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-07 01:00:00</td>
+<td>4.426812</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-07 01:00:00</td>
+<td>0.524306</td>
+</tr>
+</tbody>
+</table>
+
+<p>82 rows × 1 columns</p>
+</div>
+</div>
+</div>
+</div>
+<div id="cell-20" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>df_pol_ville[df_pol_ville[<span class="st">'polluant'</span>]<span class="op">==</span><span class="st">'O3'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<div>
+<div>
+
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">polluant</th>
+<th data-quarto-table-cell-role="th">valeur_originale</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">jour</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-10-18 01:00:00</td>
+<td>O3</td>
+<td>70.880554</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-10-19 01:00:00</td>
+<td>O3</td>
+<td>69.161110</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-10-20 01:00:00</td>
+<td>O3</td>
+<td>61.621876</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-10-21 01:00:00</td>
+<td>O3</td>
+<td>58.338543</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-10-22 01:00:00</td>
+<td>O3</td>
+<td>70.778130</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-10-23 01:00:00</td>
+<td>O3</td>
+<td>62.146427</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-10-24 01:00:00</td>
+<td>O3</td>
+<td>37.774639</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-10-25 01:00:00</td>
+<td>O3</td>
+<td>28.533333</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-10-26 01:00:00</td>
+<td>O3</td>
+<td>38.495651</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-10-27 01:00:00</td>
+<td>O3</td>
+<td>56.257248</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-10-28 01:00:00</td>
+<td>O3</td>
+<td>60.288544</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-10-29 01:00:00</td>
+<td>O3</td>
+<td>64.334373</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-10-30 01:00:00</td>
+<td>O3</td>
+<td>59.505436</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-10-31 01:00:00</td>
+<td>O3</td>
+<td>45.834026</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-11-01 01:00:00</td>
+<td>O3</td>
+<td>48.236458</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-11-02 01:00:00</td>
+<td>O3</td>
+<td>46.814930</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-11-03 01:00:00</td>
+<td>O3</td>
+<td>37.019791</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-11-04 01:00:00</td>
+<td>O3</td>
+<td>72.662498</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-11-05 01:00:00</td>
+<td>O3</td>
+<td>63.040627</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-11-06 01:00:00</td>
+<td>O3</td>
+<td>64.341667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-11-07 01:00:00</td>
+<td>O3</td>
+<td>44.271740</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-11-08 01:00:00</td>
+<td>O3</td>
+<td>46.880901</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-11-09 01:00:00</td>
+<td>O3</td>
+<td>32.845833</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-11-10 01:00:00</td>
+<td>O3</td>
+<td>43.918480</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-11-11 01:00:00</td>
+<td>O3</td>
+<td>56.571529</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-11-12 01:00:00</td>
+<td>O3</td>
+<td>69.139587</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-11-13 01:00:00</td>
+<td>O3</td>
+<td>64.571877</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-11-14 01:00:00</td>
+<td>O3</td>
+<td>48.826042</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2017-11-15 01:00:00</td>
+<td>O3</td>
+<td>30.468750</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2017-11-16 01:00:00</td>
+<td>O3</td>
+<td>26.115625</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-11 01:00:00</td>
+<td>O3</td>
+<td>54.529167</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-12 01:00:00</td>
+<td>O3</td>
+<td>49.268749</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-13 01:00:00</td>
+<td>O3</td>
+<td>63.790279</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-14 01:00:00</td>
+<td>O3</td>
+<td>95.196877</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-15 01:00:00</td>
+<td>O3</td>
+<td>85.669319</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-16 01:00:00</td>
+<td>O3</td>
+<td>47.036110</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-25 01:00:00</td>
+<td>O3</td>
+<td>67.066666</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-26 01:00:00</td>
+<td>O3</td>
+<td>69.423958</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-27 01:00:00</td>
+<td>O3</td>
+<td>72.136459</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-28 01:00:00</td>
+<td>O3</td>
+<td>58.054863</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-29 01:00:00</td>
+<td>O3</td>
+<td>94.394791</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-30 01:00:00</td>
+<td>O3</td>
+<td>96.283333</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-01 01:00:00</td>
+<td>O3</td>
+<td>79.117706</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-02 01:00:00</td>
+<td>O3</td>
+<td>57.236904</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-03 01:00:00</td>
+<td>O3</td>
+<td>45.713543</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-04 01:00:00</td>
+<td>O3</td>
+<td>58.585766</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-05 01:00:00</td>
+<td>O3</td>
+<td>81.091667</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-06 01:00:00</td>
+<td>O3</td>
+<td>67.695831</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-07 01:00:00</td>
+<td>O3</td>
+<td>66.537849</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-08 01:00:00</td>
+<td>O3</td>
+<td>71.915627</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-09 01:00:00</td>
+<td>O3</td>
+<td>72.887497</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-10 01:00:00</td>
+<td>O3</td>
+<td>58.029167</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-11 01:00:00</td>
+<td>O3</td>
+<td>81.371872</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-12 01:00:00</td>
+<td>O3</td>
+<td>68.143753</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-13 01:00:00</td>
+<td>O3</td>
+<td>71.706253</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-09-14 01:00:00</td>
+<td>O3</td>
+<td>78.214584</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-09-04 01:00:00</td>
+<td>O3</td>
+<td>84.052780</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-05 01:00:00</td>
+<td>O3</td>
+<td>70.991669</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2018-10-06 01:00:00</td>
+<td>O3</td>
+<td>60.882294</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2018-10-07 01:00:00</td>
+<td>O3</td>
+<td>53.004166</td>
+</tr>
+</tbody>
+</table>
+
+<p>357 rows × 2 columns</p>
+</div>
+</div>
+</div>
+</div>
+<div id="cell-21" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>pol_names, nb_poluant</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>(['O3', 'PM10', 'NO', 'NO2', 'SO2', 'PM2.5', 'NOX as NO2', 'H2S', 'C6H6'], 9)</code></pre>
+</div>
+</div>
+<div id="cell-22" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_pol_occ.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
+<pre><code>Index(['X', 'Y', 'id', 'nom_dep', 'nom_com', 'code_insee', 'nom_station',
+       'code_station', 'typologie', 'influence', 'polluant', 'id_poll_ue',
+       'valeur_originale', 'code_unite_concentration', 'metrique',
+       'date_debut', 'date_fin', 'statut_valid', 'x_l93', 'y_l93', 'x_wgs84',
+       'y_wgs84', 'geom', 'FID', 'day'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div id="cell-23" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Keep only what is needed:</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>df_pol_occ <span class="op">=</span> df_pol_occ[[<span class="st">'valeur_originale'</span>, <span class="st">'day'</span>, <span class="st">'polluant'</span>,<span class="st">'nom_com'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-24" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># villes = ['TOULOUSE', 'MONTPELLIER']</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>villes <span class="op">=</span> [<span class="st">'TOULOUSE'</span>, <span class="st">'TARBES'</span>,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>          <span class="st">'LA CALMETTE'</span>, <span class="st">'PERPIGNAN'</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>          <span class="st">'MONTPELLIER'</span>, <span class="st">'CASTRES'</span>, <span class="st">'LOURDES'</span>, <span class="st">'ALBI'</span>]</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>polluants <span class="op">=</span> [<span class="st">'O3'</span>, <span class="st">'PM10'</span>, <span class="st">'NO'</span>, <span class="st">'NO2'</span>]</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j, polluant <span class="kw">in</span> <span class="bu">enumerate</span>(polluants):</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    polluant_villes_lst <span class="op">=</span> []</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, ville <span class="kw">in</span> <span class="bu">enumerate</span>(villes):</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>        polluant_ville_df <span class="op">=</span> df_pol_occ.groupby(</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>            [<span class="st">'polluant'</span>, <span class="st">'nom_com'</span>]).get_group((polluant, ville))</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>        polluant_villes_lst.append(</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>            polluant_ville_df)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>    fig1 <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, polluant_ville <span class="kw">in</span> <span class="bu">enumerate</span>(polluant_villes_lst):</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(polluant_ville.count()[<span class="dv">0</span>])</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> polluant_ville.count()[<span class="dv">0</span>] <span class="op">&gt;</span> <span class="dv">0</span>:</span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>            ax <span class="op">=</span> sns.lineplot(x<span class="op">=</span><span class="st">'day'</span>, y<span class="op">=</span><span class="st">'valeur_originale'</span>, ci<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>                              data<span class="op">=</span>polluant_ville, label<span class="op">=</span>villes[i])</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(</span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>            villes[i] <span class="op">+</span> <span class="st">": </span><span class="sc">{0:.2f}</span><span class="st">"</span>.<span class="bu">format</span>(polluant_ville[<span class="st">'valeur_originale'</span>].mean()))</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>        plt.title(polluants[j])</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>        plt.legend(loc<span class="op">=</span><span class="st">'lower left'</span>, bbox_to_anchor<span class="op">=</span>(<span class="dv">1</span>, <span class="fl">0.2</span>))</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">"Concentration (µg/m³)"</span>)</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a>        fig1.subplots_adjust(right<span class="op">=</span><span class="fl">0.7</span>, bottom<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>        plt.setp(ax.xaxis.get_majorticklabels(), rotation<span class="op">=</span><span class="dv">70</span>)</span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>        my_saving_display(fig1, directory, <span class="st">'pollution'</span> <span class="op">+</span> polluants[j],</span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>                          imageformat<span class="op">=</span><span class="st">"pdf"</span>, saving<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a><span class="co">#         plt.tight_layout()</span></span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>    plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1081
+TOULOUSE: 58.74
+362
+TARBES: 55.45
+342
+LA CALMETTE: 56.98
+63
+PERPIGNAN: 51.61
+357
+MONTPELLIER: 61.56
+364
+CASTRES: 60.01
+364
+LOURDES: 56.20
+356
+ALBI: 54.77
+2487
+TOULOUSE: 17.79
+343
+TARBES: 14.25
+353
+LA CALMETTE: 15.95
+414
+PERPIGNAN: 13.78
+340
+MONTPELLIER: 14.10
+353
+CASTRES: 14.89
+353
+LOURDES: 12.70
+353
+ALBI: 15.05
+223
+TOULOUSE: 24.89
+45
+TARBES: 3.62
+41
+LA CALMETTE: 2.69
+44
+PERPIGNAN: 2.64
+82
+MONTPELLIER: 3.85
+45
+CASTRES: 1.67
+86
+LOURDES: 8.91
+45
+ALBI: 2.75
+223
+TOULOUSE: 31.45
+45
+TARBES: 11.45
+41
+LA CALMETTE: 7.63
+45
+PERPIGNAN: 11.84
+83
+MONTPELLIER: 21.56
+45
+CASTRES: 4.38
+86
+LOURDES: 13.31
+45
+ALBI: 12.24</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TP7-pandas_pollution_occitanie_files/figure-html/cell-21-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TP7-pandas_pollution_occitanie_files/figure-html/cell-21-output-3.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TP7-pandas_pollution_occitanie_files/figure-html/cell-21-output-4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TP7-pandas_pollution_occitanie_files/figure-html/cell-21-output-5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="question" class="level1">
+<h1>Question:</h1>
+<p>Ajouter sur un même graphique et sur la période la plus longue possible, les pollutions de Toulouse, Montpellier, et Paris pour le NO2 et le NO3. On pourra se servir pour cela du cours pandas.ipynb et des données disponible à l’adresse: url = “http://josephsalmon.eu/enseignement/datasets/20080421_20160927-PA13_auto.csv”</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<hr>
+
+<span style="margin-top:20px; margin-bottom: 20px"></span>
+
+<!-- <img style="width:100%;" src="/img/marvins_log_thumbnail.png"> -->
+
+<!-- <p style="margin: 20px"> Do you enjoy my blog? Subscribe here to get notifications and updates (it's free!):</p> -->
+
+<!-- <div class="grid">
+  <div class=".d-none .d-md-block g-col-md-1"></div>
+  <div class="g-col-12 g-col-md-10">
+    <iframe src="https://embeds.beehiiv.com/c7111066-479b-43db-ad92-8d703fe96bf0?slim=true" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="margin: 0; border-radius: 0px !important; background-color: transparent; width:100%; padding: 20px"></iframe>
+  </div>
+  <div class=".d-none .d-md-block g-col-md-1"></div>
+</div> -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 Joseph Salmon</span> <span class="faux-block"><a href="https://github.com/josephsalmon/MyWebsite"><i class="fa-brands fa-github" aria-label="github"></i> Source Code</a></span></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><span class="faux-block"> Designed with <i class="fa-solid fa-heart" aria-label="heart"></i></span> <span class="faux-block"> Built with <a href="https://quarto.org/">Quarto</a></span></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

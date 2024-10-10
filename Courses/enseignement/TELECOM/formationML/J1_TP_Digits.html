@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="<strong>?meta:description</strong>">
+
+<title>Joseph Salmon - Formation Data-Science:</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../..//img/Flag_of_Occitania.svg" rel="icon" type="image/svg+xml">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(../../../../img/bg_pine_trees.jpg);
+background-size: cover;
+      }
+</style>
+<meta name="author" content="Joseph Salmon">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../img/Flag_of_Occitania.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Joseph Salmon</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../Courses/index.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../talks/index.html"> 
+<span class="menu-text">Talks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../team/index.html"> 
+<span class="menu-text">Team</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/josephsalmon"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://sigmoid.social/@josephsalmon"> <i class="bi bi-mastodon" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/joseph-salmon-6134262a6/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:joseph.salmon@inria.fr"> <i class="bi bi-envelope" role="img" aria-label="email">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default blog-post page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Formation Data-Science:</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#formation-data-science" id="toc-formation-data-science" class="nav-link active" data-scroll-target="#formation-data-science">Formation Data-Science:</a>
+  <ul class="collapse">
+  <li><a href="#introduction-au-machine-learning-jour-1" id="toc-introduction-au-machine-learning-jour-1" class="nav-link" data-scroll-target="#introduction-au-machine-learning-jour-1">Introduction au Machine learning (Jour 1)</a></li>
+  </ul></li>
+  <li><a href="#i---prétraitement-et-visualiation-sur-digits" id="toc-i---prétraitement-et-visualiation-sur-digits" class="nav-link" data-scroll-target="#i---prétraitement-et-visualiation-sur-digits">I - Prétraitement et visualiation sur <em>digits</em></a>
+  <ul class="collapse">
+  <li><a href="#imports-et-intialisation" id="toc-imports-et-intialisation" class="nav-link" data-scroll-target="#imports-et-intialisation">Imports et intialisation</a></li>
+  <li><a href="#description-du-jeu-de-données" id="toc-description-du-jeu-de-données" class="nav-link" data-scroll-target="#description-du-jeu-de-données">Description du jeu de données:</a></li>
+  <li><a href="#exercice" id="toc-exercice" class="nav-link" data-scroll-target="#exercice">EXERCICE:</a></li>
+  <li><a href="#visualisation-des-observations" id="toc-visualisation-des-observations" class="nav-link" data-scroll-target="#visualisation-des-observations">Visualisation des observations:</a></li>
+  <li><a href="#statistiques-élementaires" id="toc-statistiques-élementaires" class="nav-link" data-scroll-target="#statistiques-élementaires">Statistiques élementaires :</a></li>
+  <li><a href="#exercice-1" id="toc-exercice-1" class="nav-link" data-scroll-target="#exercice-1">EXERCICE:</a></li>
+  <li><a href="#solution" id="toc-solution" class="nav-link" data-scroll-target="#solution">Solution</a></li>
+  </ul></li>
+  <li><a href="#ii---premiers-classifieurs" id="toc-ii---premiers-classifieurs" class="nav-link" data-scroll-target="#ii---premiers-classifieurs">II - Premiers classifieurs</a>
+  <ul class="collapse">
+  <li><a href="#validation-découpage-apprentissage-validation" id="toc-validation-découpage-apprentissage-validation" class="nav-link" data-scroll-target="#validation-découpage-apprentissage-validation">Validation : découpage Apprentissage / Validation</a></li>
+  <li><a href="#mesures-de-performance" id="toc-mesures-de-performance" class="nav-link" data-scroll-target="#mesures-de-performance">Mesures de performance</a></li>
+  <li><a href="#exercice-2" id="toc-exercice-2" class="nav-link" data-scroll-target="#exercice-2">EXERCICE:</a></li>
+  <li><a href="#correction" id="toc-correction" class="nav-link" data-scroll-target="#correction">Correction:</a>
+  <ul class="collapse">
+  <li><a href="#précision-et-rappel" id="toc-précision-et-rappel" class="nav-link" data-scroll-target="#précision-et-rappel">Précision et rappel</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#exercice-3" id="toc-exercice-3" class="nav-link" data-scroll-target="#exercice-3">EXERCICE:</a>
+  <ul class="collapse">
+  <li><a href="#résumé-de-ces-éléments-avec-scikit-learn" id="toc-résumé-de-ces-éléments-avec-scikit-learn" class="nav-link" data-scroll-target="#résumé-de-ces-éléments-avec-scikit-learn">Résumé de ces éléments avec scikit-learn:</a></li>
+  </ul></li>
+  <li><a href="#exercice-4" id="toc-exercice-4" class="nav-link" data-scroll-target="#exercice-4">EXERCICE:</a></li>
+  <li><a href="#iii---courbe-dapprentissage" id="toc-iii---courbe-dapprentissage" class="nav-link" data-scroll-target="#iii---courbe-dapprentissage">III - Courbe d’apprentissage</a></li>
+  <li><a href="#iv---comparaison-de-performances-de-classifieurs" id="toc-iv---comparaison-de-performances-de-classifieurs" class="nav-link" data-scroll-target="#iv---comparaison-de-performances-de-classifieurs">IV - Comparaison de performances de classifieurs</a>
+  <ul class="collapse">
+  <li><a href="#calcul-des-métriques-de-performance" id="toc-calcul-des-métriques-de-performance" class="nav-link" data-scroll-target="#calcul-des-métriques-de-performance">Calcul des métriques de performance</a></li>
+  </ul></li>
+  <li><a href="#exercice-5" id="toc-exercice-5" class="nav-link" data-scroll-target="#exercice-5">EXERCICE</a></li>
+  <li><a href="#exercice-6" id="toc-exercice-6" class="nav-link" data-scroll-target="#exercice-6">EXERCICE</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="formation-data-science" class="level1">
+<h1>Formation Data-Science:</h1>
+<section id="introduction-au-machine-learning-jour-1" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-au-machine-learning-jour-1">Introduction au Machine learning (Jour 1)</h2>
+<p>Auteurs : Joseph Salmon, Alexandre Gramfort</p>
+<p>Ce notebook contient les éléments d’introduction au machine learning</p>
+</section>
+</section>
+<section id="i---prétraitement-et-visualiation-sur-digits" class="level1">
+<h1>I - Prétraitement et visualiation sur <em>digits</em></h1>
+<section id="imports-et-intialisation" class="level2">
+<h2 class="anchored" data-anchor-id="imports-et-intialisation">Imports et intialisation</h2>
+<div id="cell-4" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib inline                      </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np                      <span class="co"># charge un package pour le numérique</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt         <span class="co"># charge un package pour les graphiques</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="description-du-jeu-de-données" class="level2">
+<h2 class="anchored" data-anchor-id="description-du-jeu-de-données">Description du jeu de données:</h2>
+<p>On charge le jeu de données <em>digits</em> disponoible dans le package scikit-learn (nom d’import sklearn). Ce jeu de données contient des images de chiffres numérisés. On va s’en servir au cours de cette séance pour étudier les principaux enjeu en classification (supervisée).</p>
+<div id="cell-6" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chargement des données disponible dans le package sklearn</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_digits</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>digits <span class="op">=</span> load_digits()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> digits.data, digits.target</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Nombre de pixels :      </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(X.shape[<span class="dv">1</span>]))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Nombre d'observations : </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(X.shape[<span class="dv">0</span>]))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Nombre de classes :     </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(<span class="bu">len</span>(np.unique(y))))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Choix d'une observation quelconques de la base</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>idx_to_test <span class="op">=</span> <span class="dv">15</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Affichage d'une ligne de la matrice / image:"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X[idx_to_test, :])</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Affichage de la classe / chiffre associé:"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y[idx_to_test])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nombre de pixels :      64
+Nombre d'observations : 1797
+Nombre de classes :     10
+Affichage d'une ligne de la matrice / image:
+[  0.   5.  12.  13.  16.  16.   2.   0.   0.  11.  16.  15.   8.   4.   0.
+   0.   0.   8.  14.  11.   1.   0.   0.   0.   0.   8.  16.  16.  14.   0.
+   0.   0.   0.   1.   6.   6.  16.   0.   0.   0.   0.   0.   0.   5.  16.
+   3.   0.   0.   0.   1.   5.  15.  13.   0.   0.   0.   0.   4.  15.  16.
+   2.   0.   0.   0.]
+Affichage de la classe / chiffre associé:
+5</code></pre>
+</div>
+</div>
+</section>
+<section id="exercice" class="level2">
+<h2 class="anchored" data-anchor-id="exercice">EXERCICE:</h2>
+<p>Faites varier le choix de l’indice. Sans afficher la classe arrivez-vous à reconnaitre le chiffre représenté?</p>
+<div id="cell-8" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">sum</span>(y <span class="op">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>182</code></pre>
+</div>
+</div>
+</section>
+<section id="visualisation-des-observations" class="level2">
+<h2 class="anchored" data-anchor-id="visualisation-des-observations">Visualisation des observations:</h2>
+<p>Les images scannées sont de taille 8 x 8 et comportent donc 64 pixels chacune. Elles sont stockées sous la forme de vecteurs ligne, qu’il faut remettre dans un ordre lisible pour les identifiés. L’affichage graphique est proposé avec les commandes qui suivent.</p>
+<div id="cell-10" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilisation de la fonction imshow pour l'affichage de l'image numéro idx_to_test:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>imgplot <span class="op">=</span> plt.imshow(np.reshape(X[idx_to_test, :], (<span class="dv">8</span>, <span class="dv">8</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-11" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Amélioration de la visualisation (niveau de gris) et de la légende:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>imgplot <span class="op">=</span> plt.imshow(np.reshape(X[idx_to_test, :], (<span class="dv">8</span>, <span class="dv">8</span>)),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                     cmap<span class="op">=</span><span class="st">'gray'</span>, aspect<span class="op">=</span><span class="st">'equal'</span>, interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Attention aux accents: ne pas oublier le u (Unicode) ci-dessous</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">u'Le chiffre numéro </span><span class="sc">%s</span><span class="st"> est un </span><span class="sc">%s</span><span class="st">'</span> <span class="op">%</span> (idx_to_test, y[idx_to_test]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-12" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt.imshow?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="statistiques-élementaires" class="level2">
+<h2 class="anchored" data-anchor-id="statistiques-élementaires">Statistiques élementaires :</h2>
+<p>Pour mieux comprendre la base de données on va s’intéresser à quelques statistiques. On commence par calculer les moyennes et variances par classes pour chacun des chiffres. La moyenne par classe se visualise comme une image qui est une représentantion moyenne pour chaque chiffre de zéro à neuf. Idem pour la variance, ce qui permet alors de voir les parties avec les plus grandes variations entre les membres d’une même classe.</p>
+<div id="cell-14" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Récupérer les modalités possible prises (Il y en a bien 10!) </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>classes_list <span class="op">=</span> np.unique(y).astype(<span class="bu">int</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="st">"Liste des classes en présence: "</span>, classes_list</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Liste des classes en présence:  [0 1 2 3 4 5 6 7 8 9]</code></pre>
+</div>
+</div>
+</section>
+<section id="exercice-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-1">EXERCICE:</h2>
+<ul>
+<li>Calculer un représentant moyen du chiffre 0?</li>
+<li>Avec une boucle <code>for</code> calculer le représentant moyen pour chaque chiffre</li>
+</ul>
+</section>
+<section id="solution" class="level2">
+<h2 class="anchored" data-anchor-id="solution">Solution</h2>
+<div id="cell-17" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>np.mean(X[y <span class="op">==</span> <span class="dv">0</span>, :], axis<span class="op">=</span><span class="dv">0</span>).shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>(64,)</code></pre>
+</div>
+</div>
+<div id="cell-18" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>imgplot <span class="op">=</span> plt.imshow(np.reshape(np.mean(X[y <span class="op">==</span> <span class="dv">0</span>, :], axis<span class="op">=</span><span class="dv">0</span>), (<span class="dv">8</span>, <span class="dv">8</span>)),</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>                     cmap<span class="op">=</span><span class="st">'gray'</span>, aspect<span class="op">=</span><span class="st">'equal'</span>, interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-10-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-19" class="cell" data-scrolled="true" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculer un représentant moyen pour chaque chiffre </span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>Xi_mean <span class="op">=</span> [np.mean(X[y <span class="op">==</span> cls], axis<span class="op">=</span><span class="dv">0</span>) <span class="cf">for</span> cls <span class="kw">in</span> classes_list]</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fonction d'affichage d'une liste d'image</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> disp_pics(pic_list, title<span class="op">=</span><span class="st">''</span>):</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""" Fonction qui affiche une liste d'image codée en vecteur """</span><span class="st">""</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    fig, axs <span class="op">=</span> plt.subplots(nrows<span class="op">=</span><span class="dv">2</span>, ncols<span class="op">=</span><span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    plt.suptitle(title, fontsize<span class="op">=</span><span class="dv">16</span>)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        opt <span class="op">=</span> <span class="bu">dict</span>(cmap<span class="op">=</span><span class="st">'gray'</span>, aspect<span class="op">=</span><span class="st">'equal'</span>, interpolation<span class="op">=</span><span class="st">'nearest'</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        axs.flat[i].imshow(pic_list[i].reshape(<span class="dv">8</span>, <span class="dv">8</span>), <span class="op">**</span>opt)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>        axs.flat[i].set_title(<span class="st">"Chiffre: </span><span class="sc">%s</span><span class="st">"</span> <span class="op">%</span> i)</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Contre-balancer l'affichage pas terrible de matplotlib</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>    plt.subplots_adjust(top<span class="op">=</span><span class="fl">0.85</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des images moyennes par classe pour les données  </span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>disp_pics(Xi_mean, title<span class="op">=</span>(<span class="st">u"Moyennes sur l'ensemble des données"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-11-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-20" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>plt.matshow(np.cov(X[y <span class="op">==</span> <span class="dv">0</span>].T))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-12-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-21" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculer de la variance par chiffre </span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>Xi_var <span class="op">=</span> [np.var(X[y <span class="op">==</span> cls], axis<span class="op">=</span><span class="dv">0</span>) <span class="cf">for</span> cls <span class="kw">in</span> classes_list]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage des images de variance par classe pour les données </span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>disp_pics(Xi_var, title<span class="op">=</span>(<span class="st">u"Variances sur l'ensemble des donneés"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-13-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ii---premiers-classifieurs" class="level1">
+<h1>II - Premiers classifieurs</h1>
+<section id="validation-découpage-apprentissage-validation" class="level2">
+<h2 class="anchored" data-anchor-id="validation-découpage-apprentissage-validation">Validation : découpage Apprentissage / Validation</h2>
+<p>On procède de manière classique en réservant 80% des données pour la partie apprentissage, et 20% pour l’évaluation des classifieurs que l’on a construit sur la première partie. En effet il n’est pas raisonnable de tester la perfromance sur 100% des données. Cela donnera lieux à du sur-apprentissage (en: overfitting). La généralisation des méthodes apprises serait alors très mauvaise</p>
+<div id="cell-24" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cross_validation <span class="im">import</span> train_test_split</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, train_size<span class="op">=</span><span class="fl">0.8</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                                                    random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Nb d'échantillons d'apprentissage :  </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(X_train.shape[<span class="dv">0</span>]))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Nb d'échantillons de validation :    </span><span class="sc">{}</span><span class="st">"</span>.<span class="bu">format</span>(X_test.shape[<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nb d'échantillons d'apprentissage :  1437
+Nb d'échantillons de validation :    360</code></pre>
+</div>
+</div>
+<div id="cell-25" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.hist(y_train, bins<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.hist(y_test, bins<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>(array([ 33.,  28.,  33.,  34.,  46.,  47.,  35.,  34.,  30.,  40.]),
+ array([ 0. ,  0.9,  1.8,  2.7,  3.6,  4.5,  5.4,  6.3,  7.2,  8.1,  9. ]),
+ &lt;a list of 10 Patch objects&gt;)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-15-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mesures-de-performance" class="level2">
+<h2 class="anchored" data-anchor-id="mesures-de-performance">Mesures de performance</h2>
+<div id="cell-27" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.lda <span class="im">import</span> LDA</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> LDA()                  <span class="co"># choix de la méthode LDA comme premier classifieur</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>clf.fit(X_train, y_train)      <span class="co"># calibration de la méthode sur nos données</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> clf.predict(X_test)   <span class="co"># prédiction de la méthode sur la partie à tester</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Chargement d'une mesure standard de performance</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># accuracy : pourcentage de bonnes predictions</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="st">"Accuracy       : "</span>, accuracy_score(y_test, y_pred)</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="st">"Accuracy bis:  : "</span>, np.mean(y_test <span class="op">==</span> y_pred) <span class="co"># mesure d'erreur 0/1</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Le classifieur propose une bonne prédiction dans </span><span class="sc">%s</span><span class="st"> </span><span class="sc">%%</span><span class="st"> des cas."</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>      <span class="op">%</span> (<span class="dv">100</span> <span class="op">*</span> accuracy_score(y_test, y_pred))) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy       :  0.944444444444
+Accuracy bis:  :  0.944444444444
+Le classifieur propose une bonne prédiction dans 94.4444444444 % des cas.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/Users/alex/work/src/scikit-learn/sklearn/lda.py:374: UserWarning: Variables are collinear.
+  warnings.warn("Variables are collinear.")</code></pre>
+</div>
+</div>
+</section>
+<section id="exercice-2" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-2">EXERCICE:</h2>
+<ul>
+<li>Construire un classifieur “naif” qui prédirait chaque chiffre entre 0 et 9 avec probabilité 0.1 (on pourra utiliser la commande np.random.randint). Mesurer sa performance sur l’échantillon test.</li>
+</ul>
+</section>
+<section id="correction" class="level2">
+<h2 class="anchored" data-anchor-id="correction">Correction:</h2>
+<div id="cell-30" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>y_rand <span class="op">=</span> np.random.randint(<span class="dv">10</span>, size<span class="op">=</span>y_test.shape)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>accuracy_score(y_rand, y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<pre><code>0.083333333333333329</code></pre>
+</div>
+</div>
+<section id="précision-et-rappel" class="level3">
+<h3 class="anchored" data-anchor-id="précision-et-rappel">Précision et rappel</h3>
+<div id="cell-32" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Choix d'un chiffre:</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>chf <span class="op">=</span> <span class="dv">8</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="st">"Chiffre choisi: </span><span class="sc">%s</span><span class="st"> "</span> <span class="op">%</span> chf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> Chiffre choisi: 8 </code></pre>
+</div>
+</div>
+<div id="cell-33" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chargement de deux autres mesure de performance</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_score, recall_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-34" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la précision:</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>precision_value <span class="op">=</span> precision_score(y_test, y_pred,average<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="st">"Precision     : "</span>, precision_value[chf]</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="st">"Precision bis : "</span>, np.<span class="bu">sum</span>(np.logical_and(y_pred <span class="op">==</span> chf, y_test <span class="op">==</span> chf)) <span class="op">/</span> <span class="bu">float</span>(np.<span class="bu">sum</span>(y_test <span class="op">==</span> chf))</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Le classifieur prédit le chiffre </span><span class="sc">%s</span><span class="st"> "</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">" avec raison dans </span><span class="sc">%s</span><span class="st"> </span><span class="sc">%%</span><span class="st"> de ses prédictions.</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Autrement dit, dans </span><span class="sc">%s</span><span class="st"> </span><span class="sc">%%</span><span class="st"> de ses prédictions le classifieur prédit </span><span class="sc">%s</span><span class="st">"</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">" alors que le vrai chiffre est différent.</span><span class="ch">\n</span><span class="st">"</span> <span class="op">%</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>      (chf, <span class="dv">100</span> <span class="op">*</span> precision_value[chf], <span class="dv">100</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> precision_value[chf]), chf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Precision     :  0.928571428571
+Precision bis :  0.866666666667
+Le classifieur prédit le chiffre 8  avec raison dans 92.8571428571 % de ses prédictions.
+Autrement dit, dans 7.14285714286 % de ses prédictions le classifieur prédit 8 alors que le vrai chiffre est différent.
+</code></pre>
+</div>
+</div>
+<div id="cell-35" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>recall_score??</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-36" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul du rappel:</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>recall_value <span class="op">=</span> recall_score(y_test, y_pred, average<span class="op">=</span><span class="va">None</span>) <span class="co"># en Anglais rappel = recall</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="st">"Rappel     : "</span>, recall_value[chf]</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> <span class="st">"Rappel bis : "</span>, np.mean(np.logical_and(y_pred <span class="op">==</span> chf, y_test <span class="op">==</span> chf))</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Le classifieur prédit le chiffre </span><span class="sc">%s</span><span class="st"> avec raison dans </span><span class="sc">%s</span><span class="st">"</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"</span><span class="sc">%%</span><span class="st"> des cas où le vrai chiffre est un </span><span class="sc">%s</span><span class="st">.</span><span class="ch">\n</span><span class="st">"</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"En revanche </span><span class="sc">%s</span><span class="st"> </span><span class="sc">%%</span><span class="st"> des chiffres qui sont vraiment des </span><span class="sc">%s</span><span class="st">"</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">" sont prédit à tord par un autre chiffre."</span> <span class="op">%</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>      (chf, <span class="dv">100</span> <span class="op">*</span> recall_value[chf], chf, <span class="dv">100</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> recall_value[chf]), chf))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rappel     :  0.974358974359
+Rappel bis :  0.105555555556
+Le classifieur prédit le chiffre 8 avec raison dans 97.4358974359% des cas où le vrai chiffre est un 8.
+En revanche 2.5641025641 % des chiffres qui sont vraiment des 8 sont prédit à tord par un autre chiffre.</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="exercice-3" class="level1">
+<h1>EXERCICE:</h1>
+<p>Afficher la précision et le rappel pour tous les valeurs de chiffre de 0 à 9 en utilisant une boucle “for” pour le classifieur que l’on vient de considérer.</p>
+<section id="résumé-de-ces-éléments-avec-scikit-learn" class="level2">
+<h2 class="anchored" data-anchor-id="résumé-de-ces-éléments-avec-scikit-learn">Résumé de ces éléments avec scikit-learn:</h2>
+<div id="cell-39" class="cell" data-scrolled="true" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, f1_score</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> classification_report(y_test, y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             precision    recall  f1-score   support
+
+          0       0.96      1.00      0.98        27
+          1       0.94      0.91      0.93        35
+          2       1.00      0.92      0.96        36
+          3       0.90      0.97      0.93        29
+          4       0.97      0.97      0.97        30
+          5       1.00      0.93      0.96        40
+          6       1.00      0.98      0.99        44
+          7       0.93      1.00      0.96        39
+          8       0.90      0.97      0.94        39
+          9       0.90      0.88      0.89        41
+
+avg / total       0.95      0.95      0.95       360
+</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="exercice-4" class="level1">
+<h1>EXERCICE:</h1>
+<p>Vérifier que la précision et le rappel moyen donnés dans le dernier tableau sont la moyenne de la précision et du rappel obtenus pour chaque chiffre.</p>
+</section>
+<section id="iii---courbe-dapprentissage" class="level1">
+<h1>III - Courbe d’apprentissage</h1>
+<p>Les courbes d’apprentissage permettent de quantifier le gain de performance obtenu en augmentant la taille des données. Cela permet de répondre à des questions comme:</p>
+<ul>
+<li>Ai-je assez de données?</li>
+<li>Mon modèle est-il assez complexe pour mon problème?</li>
+</ul>
+<div id="cell-43" class="cell" data-scrolled="true" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>N_range <span class="op">=</span> np.linspace(<span class="dv">15</span>, X_train.shape[<span class="dv">0</span>], <span class="dv">20</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> LDA()   </span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>clf_name <span class="op">=</span> <span class="st">'LDA'</span><span class="co"># choix de la méthode LDA comme premier classifieur</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_learning_curve(clf, clf_name):</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    training_error <span class="op">=</span> []</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    test_error <span class="op">=</span> []</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> N <span class="kw">in</span> N_range:</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>        XN <span class="op">=</span> X_train[:N]</span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>        yN <span class="op">=</span> y_train[:N]</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>        clf.fit(XN, yN)        </span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>        training_error.append(accuracy_score(clf.predict(XN), yN))</span>
+<span id="cb36-15"><a href="#cb36-15" aria-hidden="true" tabindex="-1"></a>        test_error.append(accuracy_score(clf.predict(X_test), y_test))</span>
+<span id="cb36-16"><a href="#cb36-16" aria-hidden="true" tabindex="-1"></a>    plt.figure()</span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a>    plt.plot(N_range, training_error, label<span class="op">=</span><span class="st">'training'</span>)</span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a>    plt.plot(N_range, test_error, label<span class="op">=</span><span class="st">'test'</span>)</span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a>    plt.legend(loc<span class="op">=</span><span class="st">'center left'</span>, bbox_to_anchor<span class="op">=</span>(<span class="dv">1</span>, <span class="fl">0.5</span>))</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="st">u'Courbe d</span><span class="ch">\'</span><span class="st">apprentissage pour la méthode '</span> <span class="op">+</span> clf_name)</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Nombre de points d</span><span class="ch">\'</span><span class="st">entrainement'</span>)</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Pourcentage d</span><span class="ch">\'</span><span class="st">erreurs'</span>)</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a><span class="co">#plot_learning_curve(clf, clf_name) </span></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a>clf <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a>plot_learning_curve(clf, <span class="st">'knn'</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-24-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-44" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> []</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>neighbors_range <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">30</span>, <span class="dv">1</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n_neighbors <span class="kw">in</span> neighbors_range:</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    clf.n_neighbors <span class="op">=</span> n_neighbors</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    clf.fit(X_train, y_train)</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    scores.append(accuracy_score(clf.predict(X_test), y_test))</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>plt.plot(neighbors_range, scores)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-25-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-45" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>y_test.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="62">
+<pre><code>(360,)</code></pre>
+</div>
+</div>
+</section>
+<section id="iv---comparaison-de-performances-de-classifieurs" class="level1">
+<h1>IV - Comparaison de performances de classifieurs</h1>
+<div id="cell-47" class="cell" data-execution_count="67">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Chargement d'une autre méthode de classification (KNN)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Liste des classifieurs évalués</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>classifiers <span class="op">=</span> [(<span class="st">'LDA'</span>, LDA()),</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>               (<span class="st">'KNN_k=1'</span>, KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">1</span>))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="calcul-des-métriques-de-performance" class="level2">
+<h2 class="anchored" data-anchor-id="calcul-des-métriques-de-performance">Calcul des métriques de performance</h2>
+<p>Pour chaque classifieur on évalue la performance par le score sur les données de test et le temps d’éxecution</p>
+<div id="cell-49" class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.grid_search <span class="im">import</span> GridSearchCV</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-50" class="cell" data-execution_count="69">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd        <span class="co"># charge un package pour le traitement des données</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> timeit <span class="im">import</span> timeit  <span class="co"># charge un package pour des mesures de temps</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Definition des métriques de performance</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> perf_compute(clf, name, loops<span class="op">=</span><span class="dv">10</span>):</span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcule le temps d'apprentissage, de prediction, le score</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co">    et la matrice de confusion d'un classifieur</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># On initialise le conteneur</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a>    perf <span class="op">=</span> pd.Series(name<span class="op">=</span>name)</span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># On crée les callables qu'on passera à la fonction de profiling</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>    fit <span class="op">=</span> <span class="kw">lambda</span>: clf.fit(X_train, y_train)</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>    score <span class="op">=</span> <span class="kw">lambda</span>: clf.score(X_test, y_test)</span>
+<span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># On profile le temps des phases d'entrainement et de prédiction en ms</span></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>    perf[<span class="st">'train_tps'</span>] <span class="op">=</span> timeit(fit, number<span class="op">=</span>loops) <span class="op">/</span> loops <span class="op">*</span> <span class="dv">1000</span></span>
+<span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a>    perf[<span class="st">'test_tps'</span>] <span class="op">=</span> timeit(score, number<span class="op">=</span>loops) <span class="op">/</span> loops <span class="op">*</span> <span class="dv">1000</span></span>
+<span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a>    perf[<span class="st">'total_tps'</span>] <span class="op">=</span> perf.train_tps <span class="op">+</span> perf.test_tps</span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># On calcule le score en pourcentage</span></span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a>    perf[<span class="st">'score'</span>] <span class="op">=</span> fit().score(X_test, y_test) <span class="op">*</span> <span class="dv">100</span></span>
+<span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># On calcule la matrice de confusion</span></span>
+<span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>    perf[<span class="st">'conf_mat'</span>] <span class="op">=</span> [confusion_matrix(fit().predict(X_test), y_test)]</span>
+<span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Normalisation par ligne de la matrice de confusion  pour avoir des pourcentages d'erreurs.</span></span>
+<span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># cm_normalized = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]</span></span>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> perf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-51" class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># On lance le calcule de performance. On profile en bouclant 100 fois</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>perfs <span class="op">=</span> pd.DataFrame([perf_compute(clf, name) <span class="cf">for</span> name, clf <span class="kw">in</span> classifiers])</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>perfs <span class="op">=</span> perfs.sort(<span class="st">'score'</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>perfs[<span class="st">'train_tps test_tps total_tps score'</span>.split()].T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="70">
+<div>
+<div>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">LDA</th>
+<th data-quarto-table-cell-role="th">KNN_k=1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">train_tps</td>
+<td>8.186007</td>
+<td>2.347398</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">test_tps</td>
+<td>0.289893</td>
+<td>51.403213</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">total_tps</td>
+<td>8.475900</td>
+<td>53.750610</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">score</td>
+<td>94.444444</td>
+<td>97.777778</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="cell-52" class="cell" data-execution_count="71">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Barplot des performances</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plt.style.use(<span class="st">'ggplot'</span>)    <span class="co"># sortie graphique améliorées (tester sans!)</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>perfs[<span class="st">'score'</span>].plot(kind<span class="op">=</span><span class="st">'barh'</span>,</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>                    title<span class="op">=</span><span class="st">'Pourcentage d</span><span class="ch">\'</span><span class="st">erreurs commises (en %)'</span>,</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>                    ax<span class="op">=</span>axs[<span class="dv">0</span>])</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>perfs[[<span class="st">'train_tps'</span>, <span class="st">'test_tps'</span>, <span class="st">'total_tps'</span>]].plot(kind<span class="op">=</span><span class="st">'barh'</span>,</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>                                                   title<span class="op">=</span><span class="st">'Temps (en ms)'</span>,</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>                                                   ax<span class="op">=</span>axs[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-31-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-53" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_conf_mat(perf, ax, title<span class="op">=</span><span class="st">'Model'</span>):</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Affichage de la matrice de confusion</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(perf.conf_mat[<span class="dv">0</span>], ax<span class="op">=</span>ax, square<span class="op">=</span><span class="va">True</span>, annot<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>    ax.set_title(<span class="st">'</span><span class="sc">{}</span><span class="st">: </span><span class="sc">{}</span><span class="ch">\n</span><span class="st">Score: </span><span class="sc">{:.2f}</span><span class="st">'</span>.<span class="bu">format</span>(title, perf.name, perf.score))</span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(<span class="st">'True label'</span>)</span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a>    ax.set_ylabel(<span class="st">'Predicted label'</span>)</span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage du plus mauvais et du meilleur classifieur</span></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Les classifieurs sont classés par scores croissant</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(ncols<span class="op">=</span><span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">4</span>))</span>
+<span id="cb45-15"><a href="#cb45-15" aria-hidden="true" tabindex="-1"></a>plot_conf_mat(perfs.iloc[<span class="dv">0</span>], ax<span class="op">=</span>axs[<span class="dv">0</span>], title<span class="op">=</span><span class="st">'Pire model'</span>)</span>
+<span id="cb45-16"><a href="#cb45-16" aria-hidden="true" tabindex="-1"></a>plot_conf_mat(perfs.iloc[<span class="op">-</span><span class="dv">1</span>], ax<span class="op">=</span>axs[<span class="dv">1</span>], title<span class="op">=</span><span class="st">'Meilleur model'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-32-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-54" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># courbe d'apprentissage pour KNN</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>plot_learning_curve(classifiers[<span class="dv">1</span>][<span class="dv">1</span>], classifiers[<span class="dv">1</span>][<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-33-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exercice-5" class="level1">
+<h1>EXERCICE</h1>
+<ul>
+<li>Tester d’autres modèles:</li>
+</ul>
+<p><code>from sklearn.naive_bayes import GaussianNB</code></p>
+<p><code>from sklearn.svm import SVC</code></p>
+<p><code>estimator = GaussianNB()</code></p>
+<p><code>estimator = SVC(gamma=0.001)</code></p>
+<ul>
+<li><p>Les résultats varient en fonction du découpage apprentissage/validation initial. Obtenez-vous des les même résultat :</p>
+<ul>
+<li><p>en changeant la graine de l’aléa (‘random_state=10’)?</p></li>
+<li><p>en changeant le ratio apprentissage/validation?</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="exercice-6" class="level1">
+<h1>EXERCICE</h1>
+<ul>
+<li><p>Quelle valeur de k dans le k-NN donne la meilleure performance? Faire varier k entre 1 et 10 et afficher un graphique de performance en fonction de k.</p></li>
+<li><p>Il y a-t-il un compromis entre la performance de prédiction et le temps de calcul?</p></li>
+</ul>
+<div id="cell-57" class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_boston</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>boston <span class="op">=</span> load_boston()</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>X, y <span class="op">=</span> boston.data, boston.target</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-58" class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(boston.DESCR)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Boston House Prices dataset
+
+Notes
+------
+Data Set Characteristics:  
+
+    :Number of Instances: 506 
+
+    :Number of Attributes: 13 numeric/categorical predictive
+    
+    :Median Value (attribute 14) is usually the target
+
+    :Attribute Information (in order):
+        - CRIM     per capita crime rate by town
+        - ZN       proportion of residential land zoned for lots over 25,000 sq.ft.
+        - INDUS    proportion of non-retail business acres per town
+        - CHAS     Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)
+        - NOX      nitric oxides concentration (parts per 10 million)
+        - RM       average number of rooms per dwelling
+        - AGE      proportion of owner-occupied units built prior to 1940
+        - DIS      weighted distances to five Boston employment centres
+        - RAD      index of accessibility to radial highways
+        - TAX      full-value property-tax rate per $10,000
+        - PTRATIO  pupil-teacher ratio by town
+        - B        1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
+        - LSTAT    % lower status of the population
+        - MEDV     Median value of owner-occupied homes in $1000's
+
+    :Missing Attribute Values: None
+
+    :Creator: Harrison, D. and Rubinfeld, D.L.
+
+This is a copy of UCI ML housing dataset.
+http://archive.ics.uci.edu/ml/datasets/Housing
+
+
+This dataset was taken from the StatLib library which is maintained at Carnegie Mellon University.
+
+The Boston house-price data of Harrison, D. and Rubinfeld, D.L. 'Hedonic
+prices and the demand for clean air', J. Environ. Economics &amp; Management,
+vol.5, 81-102, 1978.   Used in Belsley, Kuh &amp; Welsch, 'Regression diagnostics
+...', Wiley, 1980.   N.B. Various transformations are used in the table on
+pages 244-261 of the latter.
+
+The Boston house-price data has been used in many machine learning papers that address regression
+problems.   
+     
+**References**
+
+   - Belsley, Kuh &amp; Welsch, 'Regression diagnostics: Identifying Influential Data and Sources of Collinearity', Wiley, 1980. 244-261.
+   - Quinlan,R. (1993). Combining Instance-Based and Model-Based Learning. In Proceedings on the Tenth International Conference of Machine Learning, 236-243, University of Massachusetts, Amherst. Morgan Kaufmann.
+   - many more! (see http://archive.ics.uci.edu/ml/datasets/Housing)
+</code></pre>
+</div>
+</div>
+<div id="cell-59" class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>plt.hist(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="76">
+<pre><code>(array([  21.,   55.,   82.,  154.,   84.,   41.,   30.,    8.,   10.,   21.]),
+ array([  5. ,   9.5,  14. ,  18.5,  23. ,  27.5,  32. ,  36.5,  41. ,
+         45.5,  50. ]),
+ &lt;a list of 10 Patch objects&gt;)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="J1_TP_Digits_files/figure-html/cell-36-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="cell-60" class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>AdaBoostRegressor?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-61" class="cell" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cross_validation <span class="im">import</span> cross_val_score</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsRegressor</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> scale</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> GradientBoostingRegressor</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> AdaBoostRegressor</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a><span class="co"># XX = scale(X)</span></span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a><span class="co"># estimator = KNeighborsRegressor(n_neighbors=1)</span></span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>estimator <span class="op">=</span> RandomForestRegressor(n_estimators<span class="op">=</span><span class="dv">100</span>, max_depth<span class="op">=</span><span class="dv">7</span>, n_jobs<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a><span class="co"># estimator = GradientBoostingRegressor()</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a><span class="co"># estimator = AdaBoostRegressor(base_estimator=estimator)</span></span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(estimator, X, y, cv<span class="op">=</span><span class="dv">5</span>, scoring<span class="op">=</span><span class="st">'mean_squared_error'</span>)</span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span> np.sqrt(<span class="op">-</span>np.mean(scores))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4.70427200106</code></pre>
+</div>
+</div>
+<div id="cell-62" class="cell" data-execution_count="90">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>np.std(X, axis<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="90">
+<pre><code>array([  8.58828355e+00,   2.32993957e+01,   6.85357058e+00,
+         2.53742935e-01,   1.15763115e-01,   7.01922514e-01,
+         2.81210326e+01,   2.10362836e+00,   8.69865112e+00,
+         1.68370495e+02,   2.16280519e+00,   9.12046075e+01,
+         7.13400164e+00])</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<hr>
+
+<span style="margin-top:20px; margin-bottom: 20px"></span>
+
+<!-- <img style="width:100%;" src="/img/marvins_log_thumbnail.png"> -->
+
+<!-- <p style="margin: 20px"> Do you enjoy my blog? Subscribe here to get notifications and updates (it's free!):</p> -->
+
+<!-- <div class="grid">
+  <div class=".d-none .d-md-block g-col-md-1"></div>
+  <div class="g-col-12 g-col-md-10">
+    <iframe src="https://embeds.beehiiv.com/c7111066-479b-43db-ad92-8d703fe96bf0?slim=true" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="margin: 0; border-radius: 0px !important; background-color: transparent; width:100%; padding: 20px"></iframe>
+  </div>
+  <div class=".d-none .d-md-block g-col-md-1"></div>
+</div> -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 Joseph Salmon</span> <span class="faux-block"><a href="https://github.com/josephsalmon/MyWebsite"><i class="fa-brands fa-github" aria-label="github"></i> Source Code</a></span></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><span class="faux-block"> Designed with <i class="fa-solid fa-heart" aria-label="heart"></i></span> <span class="faux-block"> Built with <a href="https://quarto.org/">Quarto</a></span></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

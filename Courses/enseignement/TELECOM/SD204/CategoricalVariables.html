@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.550">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="<strong>?meta:description</strong>">
+
+<title>Joseph Salmon - MDI 720 : Statistiques</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../..//img/Flag_of_Occitania.svg" rel="icon" type="image/svg+xml">
+<script src="../../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(../../../../img/bg_pine_trees.jpg);
+background-size: cover;
+      }
+</style>
+<meta name="author" content="Joseph Salmon">
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../../../img/Flag_of_Occitania.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../../../index.html">
+    <span class="navbar-title">Joseph Salmon</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../Courses/index.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../talks/index.html"> 
+<span class="menu-text">Talks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../team/index.html"> 
+<span class="menu-text">Team</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/josephsalmon"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://sigmoid.social/@josephsalmon"> <i class="bi bi-mastodon" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/joseph-salmon-6134262a6/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:joseph.salmon@inria.fr"> <i class="bi bi-envelope" role="img" aria-label="email">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default blog-post page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">MDI 720 : Statistiques</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#mdi-720-statistiques" id="toc-mdi-720-statistiques" class="nav-link active" data-scroll-target="#mdi-720-statistiques">MDI 720 : Statistiques</a>
+  <ul class="collapse">
+  <li><a href="#categoricalvariables" id="toc-categoricalvariables" class="nav-link" data-scroll-target="#categoricalvariables">CategoricalVariables</a>
+  <ul class="collapse">
+  <li><a href="#joseph-salmon" id="toc-joseph-salmon" class="nav-link" data-scroll-target="#joseph-salmon"><em>Joseph Salmon</em></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#plot-initialization" id="toc-plot-initialization" class="nav-link" data-scroll-target="#plot-initialization">Plot initialization</a></li>
+  <li><a href="#data-description-cps09mar" id="toc-data-description-cps09mar" class="nav-link" data-scroll-target="#data-description-cps09mar">Data description: cps09mar</a></li>
+  <li><a href="#loading-data" id="toc-loading-data" class="nav-link" data-scroll-target="#loading-data">Loading data:</a></li>
+  <li><a href="#descriptive-statistics" id="toc-descriptive-statistics" class="nav-link" data-scroll-target="#descriptive-statistics">Descriptive statistics</a></li>
+  <li><a href="#d-regression-logwage-vs.-education" id="toc-d-regression-logwage-vs.-education" class="nav-link" data-scroll-target="#d-regression-logwage-vs.-education">1D regression: log(wage) vs.&nbsp;education</a></li>
+  <li><a href="#a-simplified-visualisation-for-the-same-numerical-variable" id="toc-a-simplified-visualisation-for-the-same-numerical-variable" class="nav-link" data-scroll-target="#a-simplified-visualisation-for-the-same-numerical-variable">A simplified visualisation for the same numerical variable:</a></li>
+  <li><a href="#ols-logwage-vs.-genre-1-categorical-variable-only" id="toc-ols-logwage-vs.-genre-1-categorical-variable-only" class="nav-link" data-scroll-target="#ols-logwage-vs.-genre-1-categorical-variable-only">OLS: log(wage) vs.&nbsp;genre, 1 categorical variable only</a></li>
+  <li><a href="#ols-logwage-vs.-educationgenre-1-categorical-1-numerical" id="toc-ols-logwage-vs.-educationgenre-1-categorical-1-numerical" class="nav-link" data-scroll-target="#ols-logwage-vs.-educationgenre-1-categorical-1-numerical">OLS: log(wage) vs.&nbsp;(education+genre), 1 categorical + 1 numerical</a></li>
+  <li><a href="#ols-logwage-vs.-educationgenre-2-categorical-1-numerical" id="toc-ols-logwage-vs.-educationgenre-2-categorical-1-numerical" class="nav-link" data-scroll-target="#ols-logwage-vs.-educationgenre-2-categorical-1-numerical">OLS: log(wage) vs.&nbsp;(education+genre), 2 categorical + 1 numerical</a></li>
+  <li><a href="#adding-one-feature-create-a-categorical-variable-the-education-level-is-smaller-than-9-years-low_edu-and-see-its-influence-on-eduction." id="toc-adding-one-feature-create-a-categorical-variable-the-education-level-is-smaller-than-9-years-low_edu-and-see-its-influence-on-eduction." class="nav-link" data-scroll-target="#adding-one-feature-create-a-categorical-variable-the-education-level-is-smaller-than-9-years-low_edu-and-see-its-influence-on-eduction.">Adding one feature: create a categorical variable “the education level is smaller than 9 years” (low_edu) and see its influence on eduction.</a></li>
+  <li><a href="#adding-one-feature-use-eduction-lowedu-and-female." id="toc-adding-one-feature-use-eduction-lowedu-and-female." class="nav-link" data-scroll-target="#adding-one-feature-use-eduction-lowedu-and-female.">Adding one feature: use eduction, lowedu and female.</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block" id="quarto-document-content">
+
+
+
+
+
+<section id="mdi-720-statistiques" class="level1">
+<h1>MDI 720 : Statistiques</h1>
+<section id="categoricalvariables" class="level2">
+<h2 class="anchored" data-anchor-id="categoricalvariables">CategoricalVariables</h2>
+<section id="joseph-salmon" class="level3">
+<h3 class="anchored" data-anchor-id="joseph-salmon"><em>Joseph Salmon</em></h3>
+<p>This notebook reproduces the pictures for the course “CategoricalVariables_fr”</p>
+<div id="cell-1" class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> os <span class="im">import</span> mkdir, path, getcwd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> shuffle, seed</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> urllib.request <span class="im">import</span> urlretrieve</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> requests <span class="im">import</span> get</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.nonparametric.kde <span class="im">import</span> KDEUnivariate</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.animation <span class="im">as</span> animation</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> rc</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> preprocessing</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> linear_model</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>matplotlib notebook</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> HTML</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="plot-initialization" class="level1">
+<h1>Plot initialization</h1>
+<div id="cell-3" class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dirname <span class="op">=</span> <span class="st">"../srcimages/"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">not</span> path.exists(dirname):</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    mkdir(dirname)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>imageformat <span class="op">=</span> <span class="st">'.pdf'</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>rc(<span class="st">'font'</span>, <span class="op">**</span>{<span class="st">'family'</span>: <span class="st">'sans-serif'</span>, <span class="st">'sans-serif'</span>: [<span class="st">'Computer Modern Roman'</span>]})</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>params <span class="op">=</span> {<span class="st">'axes.labelsize'</span>: <span class="dv">12</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>          <span class="st">'font.size'</span>: <span class="dv">12</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>          <span class="st">'legend.fontsize'</span>: <span class="dv">12</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>          <span class="st">'xtick.labelsize'</span>: <span class="dv">10</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>          <span class="st">'ytick.labelsize'</span>: <span class="dv">10</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>          <span class="st">'text.usetex'</span>: <span class="va">True</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>          <span class="st">'figure.figsize'</span>: (<span class="dv">8</span>, <span class="dv">6</span>)}</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.rcParams.update(params)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>sns.set_context(<span class="st">"poster"</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>sns.set_palette(<span class="st">"colorblind"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>sns.axes_style()</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>sns.set_style({<span class="st">'legend.frameon'</span>: <span class="va">True</span>})</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>color_blind_list <span class="op">=</span> sns.color_palette(<span class="st">"colorblind"</span>, <span class="dv">8</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>my_orange <span class="op">=</span> color_blind_list[<span class="dv">2</span>]</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>my_green <span class="op">=</span> color_blind_list[<span class="dv">1</span>]</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>my_blue <span class="op">=</span> color_blind_list[<span class="dv">0</span>]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.close(<span class="st">"all"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-description-cps09mar" class="level1">
+<h1>Data description: cps09mar</h1>
+<p>The Current Population Survey (CPS) is a monthly survey of about 57,000 U.S. households conducted by the Bureau of the Census of the Bureau of Labor Statistics. The CPS is the primary source of information on the labor force characteristics of the U.S. population. The survey covers employment, earnings, educational attainment, income, poverty, health insurance coverage, job experience, voting and registration, computer usage, veteran status, and other variables.</p>
+<p>Details can be found at https://www.census.gov/programs-surveys/cps.html and https://dataferrett.census.gov/</p>
+<p>From the March 2009 survey we extracted the individuals with non-allocated variables who were full-time employed (defined as those who had worked at least 36 hours per week for at least 48 weeks the past year), and excluded those in the military. This sample has 50,742 individuals. We extracted 12 variables from the CPS on these individuals.</p>
+<ol type="1">
+<li>age: years, capped at 85</li>
+<li>female: 1 Female, 0 otherwise</li>
+<li>hisp: 1 if Spanish, Hispanic, or Latino, 0 otherwise</li>
+<li>education:
+<ul>
+<li>0 : Less than 1st grade</li>
+<li>4 : 1st, 2nd, 3rd, or 4th grade</li>
+<li>6 : 5th or 6 th grade</li>
+<li>8 : 7th or 8 th grade</li>
+<li>9 : 9th grade</li>
+<li>10: 10th grade</li>
+<li>11: 11th grade or 12th grade with no high school diploma</li>
+<li>12: High school graduate, high school diploma or equivalent</li>
+<li>13: Some college but no degree</li>
+<li>14: Associate degree in college, including occupation/vocation programs</li>
+<li>16: Bachelor’s degree or equivalent (BA, AB, BS)</li>
+<li>18: Master’s degree (MA, MS, MENG, MED, MSW, MBA)</li>
+<li>20: Professional degree or Doctorate degree (MD, DDS, DVM, LLB, JD, PHD, EDD)</li>
+</ul></li>
+<li>earnings: total annual wage and salary earnings</li>
+<li>hours: number of hours worked per week</li>
+<li>week: number of weeks worked per year</li>
+<li>union: 1 for member of a labor union, 0 otherwise</li>
+<li>uncov: 1 if covered by a union or employee association contract, 0 otherwise</li>
+<li>region:
+<ul>
+<li>1 : Northeast</li>
+<li>2 : Midwest</li>
+<li>3 : South</li>
+<li>4 : West</li>
+</ul></li>
+<li>Race:
+<ul>
+<li>1 : White only</li>
+<li>2 : Black only</li>
+<li>3 : American Indian, Alaskan Native (AI) only</li>
+<li>4 : Asian only</li>
+<li>5 : Hawaiian/Pacific Islander (HP) only</li>
+<li>6 : White-Black</li>
+<li>7 : White-AI<br>
+</li>
+<li>8 : White-Asian</li>
+<li>9 : White-HP</li>
+<li>10: Black-AI<br>
+</li>
+<li>11: Black-Asian</li>
+<li>12: Black-HP</li>
+<li>13: AI-Asian</li>
+<li>14: Asian-HP</li>
+<li>15: White-Black-AI<br>
+</li>
+<li>16: White-Black-Asian</li>
+<li>17: White-AI-Asian</li>
+<li>18: White-Asian-HP</li>
+<li>19: White-Black-AI-Asian</li>
+<li>20: 2 or 3 races</li>
+<li>21: 4 or 5 races</li>
+</ul></li>
+<li>marital:
+<ul>
+<li>1 : Married - civilian spouse present</li>
+<li>2 : Married - Armed Forces spouse present</li>
+<li>3 : Married - spouse absent (except separated)</li>
+<li>4 : Widowed</li>
+<li>5 : Divorced</li>
+<li>6 : Separated</li>
+<li>7 : Never married</li>
+</ul></li>
+</ol>
+</section>
+<section id="loading-data" class="level1">
+<h1>Loading data:</h1>
+<div id="cell-6" class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># information on dataset:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www.ssc.wisc.edu/~bhansen/econometrics/cps09marReadMe.pdf</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>URL <span class="op">=</span> <span class="st">'https://www.ssc.wisc.edu/~bhansen/econometrics/'</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_cps09mar_data(url<span class="op">=</span>URL, filename<span class="op">=</span><span class="st">'cps09mar.txt'</span>):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    URL_full <span class="op">=</span> URL <span class="op">+</span> filename</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    target_path <span class="op">=</span> getcwd() <span class="op">+</span><span class="st">'/'</span> <span class="op">+</span> filename  <span class="co"># your local directory</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> path.exists(filename):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> get(URL_full, stream<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        handle <span class="op">=</span> <span class="bu">open</span>(target_path, <span class="st">"wb"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> chunk <span class="kw">in</span> response.iter_content(chunk_size<span class="op">=</span><span class="dv">512</span>):</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> chunk:  <span class="co"># filter out keep-alive new chunks</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                handle.write(chunk)      </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    u_cols <span class="op">=</span> [<span class="st">'age'</span>, <span class="st">'female'</span>, <span class="st">'hisp'</span>, <span class="st">'education'</span>, <span class="st">'earnings'</span>, <span class="st">'hours'</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">'week'</span>, <span class="st">'union'</span>, <span class="st">'uncov'</span>, <span class="st">'region'</span>, <span class="st">'race'</span>, <span class="st">'marital'</span>]</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pd.read_csv(<span class="st">'cps09mar.txt'</span>, sep<span class="op">=</span><span class="vs">r"\s+"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>                       names<span class="op">=</span>u_cols, na_values<span class="op">=</span><span class="st">'NA'</span>, dtype<span class="op">=</span>np.float64)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> get_cps09mar_data(url<span class="op">=</span>URL, filename<span class="op">=</span><span class="st">'cps09mar.txt'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="descriptive-statistics" class="level1">
+<h1>Descriptive statistics</h1>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># To get correct display format</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pd.options.display.float_format <span class="op">=</span> <span class="st">'</span><span class="sc">{:,.3f}</span><span class="st">'</span>.<span class="bu">format</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># for this dataset na_values are marked as NA.</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>n_samples_ini <span class="op">=</span> data.shape[<span class="dv">0</span>]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The original dataset has </span><span class="sc">{}</span><span class="st"> samples and </span><span class="sc">{}</span><span class="st"> features"</span>.<span class="bu">format</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    data.shape[<span class="dv">0</span>], data.shape[<span class="dv">1</span>]))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove NA:</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.dropna(axis<span class="op">=</span><span class="dv">0</span>, how<span class="op">=</span><span class="st">'any'</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-9" class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">TODO</span><span class="co"> : XXX Figure 2.1: Wage Distribution and Density. All full-time U.S. workers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-10" class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Adding log-hourwage</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.log(data[<span class="st">'earnings'</span>] <span class="op">/</span> (data[<span class="st">'hours'</span>] <span class="op">*</span> data[<span class="st">'week'</span>]))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y.shape)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'log-hourwage'</span>] <span class="op">=</span> y</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># If high education needed:</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># data['high-education'] = (data['education']&gt; 9).astype(float)</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-11" class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>male <span class="op">=</span> data[<span class="st">'female'</span>] <span class="op">==</span> <span class="fl">0.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>female <span class="op">=</span> data[<span class="st">'female'</span>] <span class="op">==</span> <span class="fl">1.</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>n_male <span class="op">=</span> np.<span class="bu">sum</span>(male)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>n_female <span class="op">=</span> np.<span class="bu">sum</span>(female)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"In the dataset, there are: </span><span class="ch">\n</span><span class="st"> n_male   = </span><span class="sc">{}</span><span class="st"> male </span><span class="ch">\n</span><span class="st"> n_female = </span><span class="sc">{}</span><span class="st"> female."</span>.<span class="bu">format</span>(</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    n_male, n_female))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Or use groupby:</p>
+<div id="cell-13" class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>data.groupby(<span class="st">'female'</span>).size()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-14" class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">'education'</span>].<span class="bu">min</span>())</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data[<span class="st">'education'</span>].<span class="bu">max</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Or use describe method:</p>
+<div id="cell-16" class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'education'</span>].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-17" class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>xgrid <span class="op">=</span> np.linspace(data[<span class="st">'education'</span>].<span class="bu">min</span>() <span class="op">*</span> <span class="fl">0.9</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                    data[<span class="st">'education'</span>].<span class="bu">max</span>() <span class="op">*</span> <span class="fl">1.1</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>fig1 <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>kde_male <span class="op">=</span> KDEUnivariate(data[<span class="st">'education'</span>][male])</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>kde_male.fit(bw<span class="op">=</span><span class="dv">2</span>, kernel<span class="op">=</span><span class="st">'gau'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>pdf_est_male <span class="op">=</span> kde_male.evaluate(xgrid)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.plot(xgrid, pdf_est_male, color<span class="op">=</span>my_blue, label<span class="op">=</span><span class="st">'Male'</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>plt.fill_between(xgrid, <span class="dv">0</span>, pdf_est_male, facecolor<span class="op">=</span>my_blue, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>kde_female <span class="op">=</span> KDEUnivariate(data[<span class="st">'education'</span>][female])</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>kde_female.fit(bw<span class="op">=</span><span class="dv">2</span>, kernel<span class="op">=</span><span class="st">'gau'</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>pdf_est_female <span class="op">=</span> kde_female.evaluate(xgrid)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>plt.plot(xgrid, pdf_est_female, color<span class="op">=</span>my_orange, label<span class="op">=</span><span class="st">'Female'</span>,)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>plt.fill_between(xgrid, <span class="dv">0</span>, pdf_est_female, facecolor<span class="op">=</span>my_orange, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="d-regression-logwage-vs.-education" class="level1">
+<h1>1D regression: log(wage) vs.&nbsp;education</h1>
+<p>Here we apply a simpel 1D OLS method with intercept to the explain the log(wage) w.r.t. eduction (the number of education year.</p>
+<div id="cell-19" class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>skl_lm <span class="op">=</span> linear_model.LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>X_uni <span class="op">=</span> data[<span class="st">'education'</span>].values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>skl_lm.fit(X_uni, y)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.plot(xgrid.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), skl_lm.predict(xgrid.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>plt.plot(X_uni, y, <span class="st">'.'</span>)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Eduction (years)'</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'log(wage)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-20" class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Improved visualisation using jittering:</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>jitter <span class="op">=</span> <span class="fl">0.05</span>  <span class="co"># to avoid overlap</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>plt.plot(xgrid.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), skl_lm.predict(xgrid.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)))</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>plt.plot(X_uni.squeeze() <span class="op">+</span> jitter <span class="op">*</span> np.random.randn(X_uni.shape[<span class="dv">0</span>]), y, <span class="st">'.'</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Eduction (years)'</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'log(wage)'</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Raw data: log(wage) prediction according to eduction level'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="a-simplified-visualisation-for-the-same-numerical-variable" class="level1">
+<h1>A simplified visualisation for the same numerical variable:</h1>
+<p>the observation are average (groupby) according to the number of education years.</p>
+<div id="cell-22" class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>y_reduced <span class="op">=</span> data[<span class="st">'log-hourwage'</span>].groupby(data[<span class="st">'education'</span>]).mean().values</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>x_reduced <span class="op">=</span> np.sort(data[<span class="st">'education'</span>].unique()).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>n_education <span class="op">=</span> x_reduced.shape[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-23" class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>y_pred_reduced <span class="op">=</span> skl_lm.fit(x_reduced, y_reduced).predict(x_reduced)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, y_pred_reduced)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, y_reduced, <span class="st">'.'</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Eduction (years)'</span>)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'log(wage)'</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Averaged data: log(wage) prediction according to eduction level'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ols-logwage-vs.-genre-1-categorical-variable-only" class="level1">
+<h1>OLS: log(wage) vs.&nbsp;genre, 1 categorical variable only</h1>
+<div id="cell-25" class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>skl_lm <span class="op">=</span> linear_model.LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>X_uni <span class="op">=</span> data.copy()[<span class="st">'female'</span>].values.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(X_uni.shape)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>skl_lm.fit(X_uni, y)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>jitter <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>xgrid_bin <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.plot(xgrid_bin.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>), skl_lm.predict(xgrid_bin.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)), label<span class="op">=</span><span class="st">"OLS"</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>plt.plot(X_uni <span class="op">+</span> jitter <span class="op">*</span> np.random.randn(X_uni.shape[<span class="dv">0</span>]).reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>) , y, <span class="st">'.'</span>, label<span class="op">=</span><span class="st">"data"</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>plt.xticks([<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Gender (M=0, F=1)'</span>)</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"log(wage) prediction according to gender"</span>)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-26" class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Average log(wage):</span><span class="ch">\</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="st">      </span><span class="ch">\n</span><span class="st"> for a male  it is   </span><span class="sc">{:0.4}</span><span class="ch">\</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">      </span><span class="ch">\n</span><span class="st"> for a female it is </span><span class="sc">{:0.4}</span><span class="st">"</span>.<span class="bu">format</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    skl_lm.predict(xgrid_bin[<span class="dv">0</span>])[<span class="dv">0</span>], skl_lm.predict(xgrid_bin[<span class="dv">1</span>])[<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="ols-logwage-vs.-educationgenre-1-categorical-1-numerical" class="level1">
+<h1>OLS: log(wage) vs.&nbsp;(education+genre), 1 categorical + 1 numerical</h1>
+<p><span class="math display"> log(wage) \approx \theta_0 + \theta_1 education + \theta_2 female</span></p>
+<div id="cell-28" class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>skl_lm <span class="op">=</span> linear_model.LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>X_uni <span class="op">=</span> data[[<span class="st">'education'</span>, <span class="st">'female'</span>]].values</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>skl_lm.fit(X_uni, y)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>X_to_predic_male <span class="op">=</span> np.concatenate(</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    [x_reduced, np.zeros([n_education, <span class="dv">1</span>])], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>X_to_predic_female <span class="op">=</span> np.concatenate(</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    [x_reduced, np.ones([n_education, <span class="dv">1</span>])], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>ylims <span class="op">=</span> [<span class="op">-</span><span class="fl">2.</span>, <span class="fl">6.</span>]</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, skl_lm.predict(X_to_predic_male), label<span class="op">=</span><span class="st">'male'</span>, c<span class="op">=</span>my_blue)</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, skl_lm.predict(</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    X_to_predic_female), label<span class="op">=</span><span class="st">'female'</span>, c<span class="op">=</span>my_orange)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>jitter <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># to avoid overlap</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>plt.plot(data[<span class="st">'education'</span>][male] <span class="op">+</span> jitter <span class="op">*</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>         np.random.randn(n_male), y[male], <span class="st">'.'</span>, c<span class="op">=</span>my_blue, ms<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>plt.plot(data[<span class="st">'education'</span>][female] <span class="op">+</span> jitter <span class="op">*</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>         np.random.randn(n_female), y[female], <span class="st">'.'</span>, c<span class="op">=</span>my_orange, ms<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>x1, x2, y1, y2 <span class="op">=</span> plt.axis()</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>plt.axis((x1, x2, ylims[<span class="dv">0</span>], ylims[<span class="dv">1</span>]))</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="co"># checking the lines equations are correct:</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, skl_lm.intercept_ <span class="op">+</span> x_reduced <span class="op">*</span> skl_lm.coef_[<span class="dv">0</span>], c<span class="op">=</span>my_blue)</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, skl_lm.intercept_ <span class="op">+</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>         skl_lm.coef_[<span class="dv">1</span>] <span class="op">+</span> x_reduced <span class="op">*</span> skl_lm.coef_[<span class="dv">0</span>], c<span class="op">=</span>my_orange)</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year of education'</span>)</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'log(hourly wage)'</span>)</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong><em>Conclusion</em></strong>: adding a categorical variable “female” allows to have a different intercept for the two population (Male and Female). Note that we made the choice to use only “female” for that. This is checked as the lines displayed:</p>
+<ul>
+<li>Male line : $ log(wage) _0 + _1 education $</li>
+<li>Female line: $ log(wage) _0 + _2 + _1 education $</li>
+</ul>
+<p>are identical to the prediction given by the model. We can check that in the US population male are expected to have a higher wage.</p>
+</section>
+<section id="ols-logwage-vs.-educationgenre-2-categorical-1-numerical" class="level1">
+<h1>OLS: log(wage) vs.&nbsp;(education+genre), 2 categorical + 1 numerical</h1>
+<p><span class="math display"> log(wage) \approx \theta_0 + \theta_1 education + \theta_2 female + \theta_3 married</span></p>
+<div id="cell-31" class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>skl_lm <span class="op">=</span> linear_model.LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>X_uni <span class="op">=</span> data.copy()[[<span class="st">'education'</span>, <span class="st">'female'</span>, <span class="st">'marital'</span>]]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>married <span class="op">=</span> X_uni[<span class="st">'marital'</span>] <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>n_married <span class="op">=</span> np.<span class="bu">sum</span>(married)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>skl_lm.fit(X_uni, y)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>X_to_predic_male_married <span class="op">=</span> np.concatenate(</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    [x_reduced, np.zeros([n_education, <span class="dv">1</span>]), np.ones([n_education, <span class="dv">1</span>])], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>X_to_predic_male_nonmarried <span class="op">=</span> np.concatenate(</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    [x_reduced, np.zeros([n_education, <span class="dv">1</span>]), np.zeros([n_education, <span class="dv">1</span>])], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>X_to_predic_female_married <span class="op">=</span> np.concatenate(</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    [x_reduced, np.ones([n_education, <span class="dv">1</span>]), np.ones([n_education, <span class="dv">1</span>])], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>X_to_predic_female_nonmarried <span class="op">=</span> np.concatenate(</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    [x_reduced, np.ones([n_education, <span class="dv">1</span>]), np.zeros([n_education, <span class="dv">1</span>])], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>, <span class="dv">6</span>))</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, skl_lm.predict(X_to_predic_male_married),</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>         <span class="st">'-'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'male-married'</span>, c<span class="op">=</span>my_blue)</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, skl_lm.predict(X_to_predic_male_nonmarried),</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>         <span class="st">'--'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'male-nonmarried'</span>, c<span class="op">=</span>my_blue)</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, skl_lm.predict(X_to_predic_female_married),</span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>         <span class="st">'-'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'female-married'</span>, c<span class="op">=</span>my_orange)</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, skl_lm.predict(X_to_predic_female_nonmarried),</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>         <span class="st">'--'</span>, lw<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'female-nonmarried'</span>, c<span class="op">=</span>my_orange)</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>x1, x2, y1, y2 <span class="op">=</span> plt.axis()</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>plt.axis((x1, x2, ylims[<span class="dv">0</span>], ylims[<span class="dv">1</span>]))</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>jitter <span class="op">=</span> <span class="fl">0.1</span>  <span class="co"># to avoid overlap</span></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>plt.plot(data[<span class="st">'education'</span>][male] <span class="op">+</span> jitter <span class="op">*</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>         np.random.randn(n_male), y[male], <span class="st">'.'</span>, c<span class="op">=</span>my_blue, ms<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>plt.plot(data[<span class="st">'education'</span>][female] <span class="op">+</span> jitter <span class="op">*</span></span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>         np.random.randn(n_female), y[female], <span class="st">'.'</span>, c<span class="op">=</span>my_orange, ms<span class="op">=</span><span class="dv">2</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Year of education'</span>)</span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'log(hourly wage)'</span>)</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(skl_lm.coef_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This is equivalent to:</p>
+<p><span class="math display"> log(wage) \approx \mu_{0,0} + \theta_1 education + \mu_{1,0} married \cdot male + \mu_{1,1} married \cdot female</span></p>
+<p>with:</p>
+<ul>
+<li><span class="math inline">\mu_{0,0}</span> represents non-married male</li>
+<li><span class="math inline">\mu_{0,1}</span> represents married male</li>
+<li><span class="math inline">\mu_{1,0}</span> represents non-married female</li>
+<li><span class="math inline">\mu_{1,1}</span> represents married female</li>
+</ul>
+<p>and the linkes:</p>
+<ul>
+<li>$_{0,0} = _0 $</li>
+<li>$_{0,1} = _0 + _3 $</li>
+<li>$_{1,0} = _0 + _2 $</li>
+<li>$_{1,1} = _0 + _2 + _3 $</li>
+</ul>
+<div id="cell-33" class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>theta0 <span class="op">=</span> skl_lm.intercept_</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>theta1 <span class="op">=</span> skl_lm.coef_[<span class="dv">0</span>]</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>theta2 <span class="op">=</span> skl_lm.coef_[<span class="dv">1</span>]</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>theta3 <span class="op">=</span> skl_lm.coef_[<span class="dv">2</span>]</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' theta0 = </span><span class="sc">{:.4}</span><span class="ch">\n</span><span class="st"> theta1 = </span><span class="sc">{:.4}</span><span class="ch">\n</span><span class="st"> theta2 = </span><span class="sc">{:.4}</span><span class="ch">\n</span><span class="st"> theta3 = </span><span class="sc">{:.4}</span><span class="st">'</span>.<span class="bu">format</span>(</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    theta0, theta1, theta2, theta3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-34" class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mu00 <span class="op">=</span> theta0</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>mu01 <span class="op">=</span> theta0 <span class="op">+</span> theta3</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>mu10 <span class="op">=</span> theta0 <span class="op">+</span> theta2</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>mu11 <span class="op">=</span> theta0 <span class="op">+</span> theta2 <span class="op">+</span> theta3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-35" class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">' mu00 = </span><span class="sc">{:.4}</span><span class="st"> (non-married male)</span><span class="ch">\</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="st">     </span><span class="ch">\n</span><span class="st"> mu01 = </span><span class="sc">{:.4}</span><span class="st"> (married male)</span><span class="ch">\</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">     </span><span class="ch">\n</span><span class="st"> mu10 = </span><span class="sc">{:.4}</span><span class="st"> (non-married female)</span><span class="ch">\</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">     </span><span class="ch">\n</span><span class="st"> mu11 = </span><span class="sc">{:.4}</span><span class="st"> (married female)'</span>.<span class="bu">format</span>(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    mu00, mu01, mu10, mu11))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong><em>Conclusion</em></strong>: we can check that the influence of being married is correlated with a lower salary (XXX: more is needed to understand this point here…)</p>
+</section>
+<section id="adding-one-feature-create-a-categorical-variable-the-education-level-is-smaller-than-9-years-low_edu-and-see-its-influence-on-eduction." class="level1">
+<h1>Adding one feature: create a categorical variable “the education level is smaller than 9 years” (low_edu) and see its influence on eduction.</h1>
+<p><span class="math display"> log(wage) \approx \theta_0 + \theta_1 education + \theta_2 eduction * \cdot lowedu</span></p>
+<div id="cell-38" class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>x_low_edu <span class="op">=</span> (x_reduced <span class="op">&lt;</span> <span class="dv">9</span>).astype(<span class="bu">float</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.concatenate([x_reduced, (x_reduced <span class="op">-</span> <span class="dv">9</span>) <span class="op">*</span> (x_low_edu)], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>skl_lm <span class="op">=</span> linear_model.LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>skl_lm.fit(X, y_reduced)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-39" class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, skl_lm.predict(X), label<span class="op">=</span><span class="st">"global OLS"</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, y_reduced, <span class="st">'.'</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, y_pred_reduced, <span class="st">'--'</span>, label<span class="op">=</span><span class="st">"OLS with threshold level"</span>)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Eduction (years)'</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'log(wage)'</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Averaged data: log(wage) prediction according to eduction level'</span>)</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-40" class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>skl_lm <span class="op">=</span> linear_model.LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> np.zeros(n_education)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, val <span class="kw">in</span> <span class="bu">enumerate</span>(x_reduced.squeeze()):</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    x_low_edu_loop <span class="op">=</span> (x_reduced <span class="op">&lt;</span> val).astype(<span class="bu">float</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.concatenate([x_reduced, (x_reduced <span class="op">-</span> val)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>                        <span class="op">*</span> (x_low_edu_loop)], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    skl_lm.fit(X, y_reduced)</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    scores[i] <span class="op">=</span> skl_lm.score(X, y_reduced)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Best choice (for R^2 score) on training part was to choose a kink at </span><span class="sc">{}</span><span class="st">.'</span>.<span class="bu">format</span>(</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    x_reduced[scores.argmax()][<span class="dv">0</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="adding-one-feature-use-eduction-lowedu-and-female." class="level1">
+<h1>Adding one feature: use eduction, lowedu and female.</h1>
+<p><span class="math display"> log(wage) \approx \theta_0 + \theta_1 education + \theta_2 eduction * \cdot lowedu + \theta_3 female</span></p>
+<div id="cell-42" class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># some help for groupby: http://wesmckinney.com/blog/groupby-fu-improvements-in-grouping-and-aggregating-data-in-pandas/</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>tab <span class="op">=</span> data[<span class="st">'log-hourwage'</span>].groupby([data[<span class="st">'education'</span>], data[<span class="st">'female'</span>]]).mean()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>y_reduced_female <span class="op">=</span> tab.values[<span class="dv">1</span>::<span class="dv">2</span>]</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>y_reduced_male <span class="op">=</span> tab.values[::<span class="dv">2</span>]</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.concatenate([x_reduced, (x_reduced <span class="op">-</span> <span class="dv">9</span>) <span class="op">*</span> (x_low_edu)], axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>skl_lm_female <span class="op">=</span> linear_model.LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>skl_lm_female.fit(X, y_reduced_female)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>skl_lm_male <span class="op">=</span> linear_model.LinearRegression(fit_intercept<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>skl_lm_male.fit(X, y_reduced_male)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-43" class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, skl_lm_female.predict(X), label<span class="op">=</span><span class="st">"female OLS w/o lowedu"</span>, c<span class="op">=</span>my_orange)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, skl_lm_male.predict(X), label<span class="op">=</span><span class="st">"male OLS w/o lowedu"</span>, c<span class="op">=</span>my_blue)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, y_reduced_female, <span class="st">'.'</span>, c<span class="op">=</span>my_orange, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>plt.plot(x_reduced, y_reduced_male, <span class="st">'.'</span>, c<span class="op">=</span>my_blue, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plt.plot(x_reduced, y_pred_reduced,'--',label="OLS with threshold level")</span></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Eduction (years)'</span>)</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'log(wage)'</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Averaged data: log(wage) prediction according to eduction level'</span>)</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<hr>
+
+<span style="margin-top:20px; margin-bottom: 20px"></span>
+
+<!-- <img style="width:100%;" src="/img/marvins_log_thumbnail.png"> -->
+
+<!-- <p style="margin: 20px"> Do you enjoy my blog? Subscribe here to get notifications and updates (it's free!):</p> -->
+
+<!-- <div class="grid">
+  <div class=".d-none .d-md-block g-col-md-1"></div>
+  <div class="g-col-12 g-col-md-10">
+    <iframe src="https://embeds.beehiiv.com/c7111066-479b-43db-ad92-8d703fe96bf0?slim=true" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="margin: 0; border-radius: 0px !important; background-color: transparent; width:100%; padding: 20px"></iframe>
+  </div>
+  <div class=".d-none .d-md-block g-col-md-1"></div>
+</div> -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 Joseph Salmon</span> <span class="faux-block"><a href="https://github.com/josephsalmon/MyWebsite"><i class="fa-brands fa-github" aria-label="github"></i> Source Code</a></span></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><span class="faux-block"> Designed with <i class="fa-solid fa-heart" aria-label="heart"></i></span> <span class="faux-block"> Built with <a href="https://quarto.org/">Quarto</a></span></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
