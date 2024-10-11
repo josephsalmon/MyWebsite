@@ -1,0 +1,44 @@
+---
+title: M2MO - Statistical Learning (2013-2018)
+description: "Mostly theory on ML."
+categories: [VC dimension, Concentration]
+image: "images/CV_10_two.svg"
+reference-location: document
+fig-cap-location: bottom
+draft: false
+
+# title-block-banner: hello-world-bg.jpg
+
+format:
+  html:
+    include-before-body: ../html/margin_image.html
+    include-after-body: ../html/blog_footer.html
+    code-fold: true
+---
+
+This part contains Master 2 exercises on statistical learning.
+
+
+## Slides and courses
+Documents for this course might be found on
+[Stéphan Clémençon's webpage](http://perso.telecom-paristech.fr/~clemenco/).
+
+<br>
+
+## Tutorial classes:
+
+1. [learning_td1.pdf](enseignement/M2/Learning/learning_td1.pdf)
+
+1. [learning_td2.pdf](enseignement/M2/Learning/learning_td2.pdf)
+
+1. [learning_td3.pdf](enseignement/M2/Learning/learning_td3.pdf)
+
+<br>
+
+## Ressources en ligne:
+
+[Maxim Raginsky's course](http://maxim.ece.illinois.edu/teaching/fall15b/index.html)
+
+[Arnak Dalalyan's course](https://adalalyan.github.io/cours.html)
+
+[Shai Shalev-Shwartz's book](http://www.cs.huji.ac.il/~shais/UnderstandingMachineLearning/index.html)

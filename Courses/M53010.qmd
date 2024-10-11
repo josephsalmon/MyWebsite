@@ -1,0 +1,57 @@
+---
+title: M53010 - Économétrie (2009-2010)
+description: "Simple linear models (aka econometrics 101)"
+categories: [Econometrics, linear models]
+image: "images/moindre_carre_projection_new.svg"
+reference-location: document
+fig-cap-location: bottom
+draft: false
+
+# title-block-banner: hello-world-bg.jpg
+
+format:
+  html:
+    include-before-body: ../html/margin_image.html
+    include-after-body: ../html/blog_footer.html
+    code-fold: true
+---
+
+
+This is an undergraduate course (in French!) introducing linear models and variants.
+
+
+## TD:
+
+1. [TD1](enseignement/L3/td1.pdf): Rappels et modèles économétriques
+
+1. [TD2](enseignement/L3/td2.pdf) : Modèle linéaire simple
+
+1. [TD3](enseignement/L3/td3.pdf) : Modèle linéaire multiple - exemples
+
+1. [TD4](enseignement/L3/td4.pdf) : Analyse de la variance et Variables qualitatives
+
+1. [TD5](enseignement/L3/td5.pdf) : Tests
+
+1. [TD6](enseignement/L3/td6.pdf) : Le Modèle ANOVA
+
+1. [TD7](enseignement/L3/td7.pdf) : Hétéroscédasticité
+
+1. [TD8](enseignement/L3/td8.pdf) : Séries Temporelles : Modèles Statiques et Modèles à Retards Finis
+
+1. [TD9](enseignement/L3/td9.pdf) : Introduction à l'utilisation des variables instrumentales
+
+1. [TD10](enseignement/L3/td10.pdf) : Différents exemples de séries avec tendance
+
+1. [TD11](enseignement/L3/td11.pdf) : Autorégression
+
+
+
+## Ressources:
+
+- [Cour de Bernard Delyon](https://perso.univ-rennes1.fr/bernard.delyon/regression.pdf)
+
+- [Jake VanderPlas book on datascience](https://jakevdp.github.io/PythonDataScienceHandbook/)
+and associated
+[videos](http://jakevdp.github.io/blog/2017/03/03/reproducible-data-analysis-in-jupyter/)
+
+- [A. Tsybakov's introduction to statistics](/enseignement/ENSAE/biblio_stat.pdf)

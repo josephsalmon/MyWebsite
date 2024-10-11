@@ -1,0 +1,487 @@
+{VERSION 7 1 "Linux" "7.1" }
+{USTYLETAB {PSTYLE "Heading 4" -1 20 1 {CSTYLE "" -1 -1 "MS Serif" 1 
+12 0 0 0 1 1 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE 
+"Ordered List 1" -1 200 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 
+2 2 2 1 0 0 1 }1 1 0 0 3 3 2 0 2 0 2 2 -1 1 }{PSTYLE "Left Justified M
+aple Output" -1 12 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2
+ 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle3" -1 201 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0
+ 2 0 2 0 2 2 -1 1 }{PSTYLE "Help" -1 10 1 {CSTYLE "" -1 -1 "Times" 1 
+12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE 
+"Diagnostic" -1 9 1 {CSTYLE "" -1 -1 "Courier" 1 12 40 120 40 1 2 2 2 
+2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle1" -1 202
+ 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 
+8 4 2 0 2 0 2 2 -1 1 }{PSTYLE "Ordered List 3" -1 203 1 {CSTYLE "" -1 
+-1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 72 2 0 2 2 
+-1 1 }{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 
+2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle1256"
+ -1 204 1 {CSTYLE "" -1 -1 "" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }1 1 0 
+0 8 4 2 0 2 0 2 2 -1 1 }{PSTYLE "Heading 3" -1 5 1 {CSTYLE "" -1 -1 "M
+S Serif" 1 14 0 0 0 1 1 1 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 
+1 }{PSTYLE "_pstyle2" -1 205 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2
+ 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Fixed Width
+" -1 17 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3
+ 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Error" -1 8 1 {CSTYLE "" -1 -1 "
+Courier" 1 12 255 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2
+ -1 1 }{PSTYLE "Heading 1" -1 3 1 {CSTYLE "" -1 -1 "MS Serif" 1 18 0 0
+ 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 8 4 2 0 2 0 2 2 -1 1 }{PSTYLE "Title
+" -1 18 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }3
+ 1 0 0 12 12 2 0 2 0 2 2 -1 1 }{PSTYLE "Ordered List 5" -1 206 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3
+ 2 144 2 0 2 2 -1 1 }{PSTYLE "Text Output" -1 2 1 {CSTYLE "" -1 -1 "Co
+urier" 1 12 0 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 
+1 }{PSTYLE "Bullet Item" -1 15 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1
+ 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 0 2 0 2 2 -1 1 }{PSTYLE "Author" 
+-1 19 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1
+ 0 0 8 8 2 0 2 0 2 2 -1 1 }{PSTYLE "Heading 2" -1 4 1 {CSTYLE "" -1 -1
+ "MS Serif" 1 16 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 8 2 2 0 2 0 2 2 
+-1 1 }{PSTYLE "Maple Plot" -1 13 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0
+ 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Dash It
+em" -1 16 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 
+}1 1 0 0 3 3 2 0 2 0 2 2 -1 1 }{PSTYLE "Ordered List 4" -1 207 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3
+ 2 108 2 0 2 2 -1 1 }{PSTYLE "Maple Output" -1 11 1 {CSTYLE "" -1 -1 "
+Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 
+}{PSTYLE "List Item" -1 14 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2
+ 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 0 2 0 2 2 -1 1 }{PSTYLE "Line Printed \+
+Output" -1 6 1 {CSTYLE "" -1 -1 "Courier" 1 12 0 0 255 1 2 2 2 2 2 1 1
+ 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Warning" -1 7 1 {CSTYLE
+ "" -1 -1 "Courier" 1 12 0 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 
+0 2 0 2 2 -1 1 }{PSTYLE "Ordered List 2" -1 208 1 {CSTYLE "" -1 -1 "Ti
+mes" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 36 2 0 2 2 -1 1 }
+{CSTYLE "Help Variable" -1 25 "Courier" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0
+ 1 }{CSTYLE "Help Bold" -1 39 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1
+ }{CSTYLE "Page Number" -1 33 "Times" 1 10 0 0 0 1 2 2 2 2 2 2 0 0 0 1
+ }{CSTYLE "Help Nonterminal" -1 24 "Courier" 1 12 0 0 0 1 2 1 2 2 2 2 
+0 0 0 1 }{CSTYLE "Default" -1 38 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 
+0 1 }{CSTYLE "Maple Comment" -1 21 "Courier" 1 12 0 0 0 1 2 1 2 2 2 2 
+0 0 0 1 }{CSTYLE "2D Math Small" -1 7 "Times" 1 1 0 0 0 1 2 2 2 2 2 2 
+0 0 0 1 }{CSTYLE "Popup" -1 31 "Times" 1 12 0 128 128 1 1 2 1 2 2 2 0 
+0 0 1 }{CSTYLE "Copyright" -1 34 "Times" 1 10 0 0 0 1 2 2 2 2 2 2 0 0 
+0 1 }{CSTYLE "2D Input" -1 19 "Times" 1 12 0 0 0 1 2 2 2 2 1 2 0 0 0 1
+ }{CSTYLE "Maple Input Placeholder" -1 200 "Courier" 1 12 200 0 200 1 
+2 1 2 2 1 2 0 0 0 1 }{CSTYLE "Help Underlined Bold" -1 41 "Times" 1 12
+ 0 0 0 1 1 1 2 2 2 2 0 0 0 1 }{CSTYLE "Plot Text" -1 28 "Times" 1 8 0 
+0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Italic" -1 42 "Times" 1 12 0 
+0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Heading" -1 26 "Times" 1 14 0
+ 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Help Normal" -1 30 "Times" 1 12 0
+ 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Dictionary Hyperlink" -1 45 "MS S
+erif" 1 12 147 0 15 1 2 2 1 2 2 2 0 0 0 1 }{CSTYLE "Help Emphasized" 
+-1 22 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Italic B
+old" -1 40 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "LaTeX" 
+-1 32 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Underlin
+ed" -1 44 "Times" 1 12 0 0 0 1 2 2 1 2 2 2 0 0 0 1 }{CSTYLE "Help Unde
+rlined Italic" -1 43 "Times" 1 12 0 0 0 1 1 2 1 2 2 2 0 0 0 1 }{CSTYLE
+ "2D Math Bold" -1 5 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE
+ "2D Math Italic" -1 3 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "Text" -1 201 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "2D Math Italic Small" -1 202 "Times" 1 1 0 0 0 1 1 2 2 2 2 2 
+0 0 0 1 }{CSTYLE "Maple Input" -1 0 "Courier" 1 12 255 0 0 1 2 1 2 2 1
+ 2 0 0 0 1 }{CSTYLE "Help Fixed" -1 23 "Courier" 1 10 0 0 0 1 2 2 2 2 
+2 2 0 0 0 1 }{CSTYLE "Plot Title" -1 27 "Times" 1 10 0 0 0 1 2 1 2 2 2
+ 2 0 0 0 1 }{CSTYLE "2D Math Bold Small" -1 10 "Times" 1 1 0 0 0 1 2 1
+ 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math" -1 2 "Times" 1 12 0 0 0 1 2 2 2 2 
+2 2 0 0 0 1 }{CSTYLE "Help Notes" -1 37 "Times" 1 12 0 0 0 1 2 1 2 2 2
+ 2 0 0 0 1 }{CSTYLE "Hyperlink" -1 17 "MS Serif" 1 12 0 128 128 1 2 2 
+1 2 2 2 0 0 0 1 }{CSTYLE "2D Math Symbol 2" -1 16 "Times" 1 12 0 0 0 1
+ 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Equation Label" -1 203 "Courier" 1 12 0
+ 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Output Labels" -1 29 "Times" 1 8 
+0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Comment" -1 18 "Times" 1 12 0
+ 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Output" -1 20 "Times" 1 12 0 0
+ 255 1 2 2 2 2 2 1 0 0 0 1 }{CSTYLE "Help Maple Name" -1 35 "Times" 1 
+12 104 64 92 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Help Menus" -1 36 "Times"
+ 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Prompt" -1 1 "Courier" 1 
+12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 209 1 {CSTYLE "" -1 -1 "
+Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 8 4 2 0 2 0 2 2 -1 1 
+}{CSTYLE "" -1 204 "Times" 1 16 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{PSTYLE "
+" -1 210 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }
+3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 205 "Times" 1 20 0 0 0 1 2
+ 1 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 211 1 {CSTYLE "" -1 -1 "Times" 1 12 
+0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" 
+-1 212 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 
+1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 206 "Times" 1 12 0 0 0 1 1 2
+ 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 207 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0
+ 0 0 1 }{PSTYLE "" -1 213 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 
+2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 208 "Time
+s" 1 18 0 0 0 1 2 1 1 2 2 2 0 0 0 1 }{PSTYLE "" -1 214 1 {CSTYLE "" -1
+ -1 "Times" 1 18 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 
+-1 1 }{CSTYLE "" -1 209 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 210 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 211 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 212 "T
+imes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 215 1 {CSTYLE ""
+ -1 -1 "Times" 1 14 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2
+ 2 -1 1 }{CSTYLE "" -1 213 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 214 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{PSTYLE ""
+ -1 216 1 {CSTYLE "" -1 -1 "Times" 1 14 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1
+ 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 215 "Times" 1 12 0 0 0 1 1 
+2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 216 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 
+0 0 0 1 }{CSTYLE "" -1 217 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 218 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{PSTYLE ""
+ -1 217 1 {CSTYLE "" -1 -1 "Times" 1 14 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1
+ 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 219 "Times" 1 12 0 0 0 1 1 
+2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 220 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 
+0 0 0 1 }{CSTYLE "" -1 221 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 222 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 223 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 224 "T
+imes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 218 1 {CSTYLE ""
+ -1 -1 "Times" 1 18 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2
+ 2 -1 1 }{CSTYLE "" -1 225 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 226 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 227 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 228 "T
+imes" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 229 "Times" 1 12
+ 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 230 "Times" 1 12 0 0 0 1 1
+ 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 231 "Times" 1 12 0 0 0 1 1 2 2 2 2 2
+ 0 0 0 1 }{CSTYLE "" -1 232 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 233 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 234 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 235 "T
+imes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 236 "Times" 1 12
+ 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 219 1 {CSTYLE "" -1 -1 "Ti
+mes" 1 12 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }
+{PSTYLE "" -1 220 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 1 2 2 2 
+1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 237 "Times" 1 12 
+0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 238 "Times" 1 12 0 0 0 1 1 
+2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 239 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 
+0 0 0 1 }{PSTYLE "" -1 221 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2
+ 1 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 240 "Tim
+es" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 241 "Times" 1 12 0
+ 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 242 "Times" 1 12 0 0 0 1 1 2
+ 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 243 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0
+ 0 0 1 }{CSTYLE "" -1 244 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{PSTYLE "" -1 222 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 1 2 2 2 
+1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 245 "Times" 1 12 
+0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 246 "Times" 1 12 0 0 0 1 1 
+2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 247 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 
+0 0 0 1 }{CSTYLE "" -1 248 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 249 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{PSTYLE ""
+ -1 223 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 1 2 2 2 1 0 0 1 }1
+ 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 250 "Times" 1 12 0 0 0 1 1 
+2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 251 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 
+0 0 0 1 }{CSTYLE "" -1 252 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 253 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 254 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 255 "T
+imes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 256 "Times" 1 12
+ 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 257 "Times" 1 12 0 0 0 1 1
+ 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 258 "Times" 1 12 0 0 0 1 1 2 2 2 2 2
+ 0 0 0 1 }{CSTYLE "" -1 259 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 260 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 261 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 224 1 
+{CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1 1 0 0 0 0
+ 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 225 1 {CSTYLE "" -1 -1 "Times" 1 14 0
+ 0 0 1 2 1 1 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" 
+-1 262 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 263 "Ti
+mes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 264 "Times" 1 12 
+0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 265 "Times" 1 12 0 0 0 1 1 
+2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 266 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 
+0 0 0 1 }{CSTYLE "" -1 267 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 268 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 269 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 226 1 
+{CSTYLE "" -1 -1 "Times" 1 14 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1 1 0 0 0 0
+ 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 270 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 
+0 0 0 1 }{CSTYLE "" -1 271 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 272 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 273 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 274 "T
+imes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 275 "Times" 1 12
+ 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 276 "Times" 1 12 0 0 0 1 1
+ 2 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 227 1 {CSTYLE "" -1 -1 "Times" 1 18 
+0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" 
+-1 277 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }}
+{SECT 0 {EXCHG {PARA 0 "> " 0 "" {XPPEDIT 19 1 "" "%#%?G" }}}{EXCHG 
+{PARA 204 "" 0 "" {TEXT 201 21 "Joseph Salmon\nsalmon" }{TEXT 201 16 "
+@math.jussieu.fr" }}{PARA 209 "" 0 "" {TEXT 204 27 "MK1 \"Calcul forme
+l\" Maple" }}{PARA 205 "" 0 "" {TEXT 278 0 "" }}{PARA 210 "" 0 "" 
+{TEXT 205 19 "TP3 : Programmation" }}{PARA 205 "" 0 "" {TEXT 278 0 "" 
+}}{PARA 205 "" 0 "" {TEXT 278 0 "" }}{PARA 205 "" 0 "" {TEXT 278 0 "" 
+}}{PARA 211 "" 0 "" {TEXT 201 0 "" }}{PARA 0 "" 0 "" {TEXT 279 0 "" }}
+{PARA 212 "" 0 "" {TEXT 201 10 "But du TP3" }}{PARA 0 "" 0 "" {TEXT 
+279 283 "Maple est un langage de calcul formel, mais c'est aussi un la
+ngage de programmation. Nous allons voir comment cr\303\251er des prog
+rammes avec Maple. Pour cela, nous allons utiliser des structures comm
+unes \303\240 la plupart des langages de programmation : proc\303\251d
+ures, tests " }{TEXT 206 3 "(if" }{TEXT 279 12 "), boucles (" }{TEXT 
+207 10 "for, while" }{TEXT 279 31 "), fonctions r\303\251cursives." }}
+{PARA 0 "" 0 "" {TEXT 279 0 "" }}{PARA 213 "" 0 "" {TEXT 209 69 "Comme
+ toujours,n'oubliez pas de vous (et de me) poser des questions !" }}
+{PARA 0 "" 0 "" {TEXT 279 0 "" }}{PARA 0 "" 0 "" {TEXT 279 0 "" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 208 18 "0.R\303\251visions" }}{PARA 0 "" 
+0 "" {TEXT 201 37 "1) L'affectation: c'est le symbole :=" }}}{EXCHG 
+{PARA 0 "> " 0 "" {XPPEDIT 19 1 "a := factorial(3); 1;" "C$>I\"aG6\"-I
+*factorialG%*protectedG6#\"\"$\"\"\"" }}{PARA 11 "" 1 "" {XPPMATH 20 "
+\"\"'" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 201 10 "2) Restart" }}{PARA 0 "
+" 0 "" {TEXT 201 124 "Commencer toujours votre feuille par cette comma
+nde...on ne sait jamais, en programmation il veut mieux \303\252tre pr
+udent." }}}{EXCHG {PARA 0 "> " 0 "" {XPPEDIT 19 1 "restart; 1;" "C$I(r
+estartG%*protectedG\"\"\"" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 201 27 "3)F
+onctions <> expressions " }}{PARA 0 "" 0 "" {TEXT 201 99 "Il y a deux \+
+mani\303\250res de d\303\251finir une fonction: la fl\303\252che ou la
+ commande unapply" }}}{EXCHG {PARA 0 "> " 0 "" {XPPEDIT 19 1 "f := pro
+c (x) options operator, arrow; x^2 end proc; 1; f(2); 1;" "C&>I\"fG6\"
+f*6#I\"xGF%F%6$I)operatorGF%I&arrowGF%F%*$9$\"\"#F%F%F%\"\"\"-F$6#F.F/
+" }}{PARA 11 "" 1 "" {XPPMATH 20 "f*6#I\"xG6\"F%6$I)operatorGF%I&arrow
+GF%F%*$)F$\"\"#\"\"\"F%F%F%" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"\"%" }}
+}{EXCHG {PARA 0 "> " 0 "" {XPPEDIT 19 1 "g := unapply(x^3, x); 1; g(9)
+; 1;" "C&>I\"gG6\"-I(unapplyGF%6$*$I\"xGF%\"\"$F*\"\"\"-F$6#\"\"*F," }
+}{PARA 11 "" 1 "" {XPPMATH 20 "f*6#I\"xG6\"F%6$I)operatorGF%I&arrowGF%
+F%*$)F$\"\"$\"\"\"F%F%F%" }}{PARA 11 "" 1 "" {XPPMATH 20 "\"$H(" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 201 120 "Une expression est d\303\251fini
+e seulement \303\240 partir de l'affectation. On l'\303\251value avec \+
+la commande 'subs'" }}}{EXCHG {PARA 0 "> " 0 "" {XPPEDIT 19 1 "f1 := s
+qrt(x); 1; subs(x = 2, f1); 1;" "C&>I#f1G6\"-I%sqrtG6$%*protectedGI(_s
+yslibGF%6#I\"xGF%\"\"\"-I%subsGF)6$/F,\"\"#F$F-" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "*$)I\"xG6\"#\"\"\"\"\"#F'" }}{PARA 11 "" 1 "" {XPPMATH 20
+ "*$)\"\"##\"\"\"F$F&" }}}{EXCHG {PARA 214 "" 0 "" {TEXT 201 22 "1. Le
+s bool\303\251ens" }}{PARA 0 "" 0 "" {TEXT 279 11 "On appelle " }{TEXT
+ 209 27 "expression bool\303\251enne" }{TEXT 279 77 " une expression d
+ont l'\303\251valuation conduit ou bien \303\240 la valeur  " }{TEXT 
+210 4 "true" }{TEXT 279 37 " (vrai) ou bien \303\240 la valeur   " }
+{TEXT 211 5 "false" }{TEXT 279 87 " (faux). L'\303\251valuation des ex
+pressions bool\303\251ennes se fait par la commande " }{TEXT 212 5 "ev
+alb" }{TEXT 279 1 "." }}{PARA 0 "" 0 "" {TEXT 279 280 "Les expressions
+ bool\303\251ennes sont tr\303\250s utiles en programmation car elles \+
+permettent d'effectuer des tests qui d\303\251termineront la suite des
+ instructions \303\240 effectuer. Voici diff\303\251rentes m\303\251th
+odes pour fabriquer des expressions bool\303\251ennes.." }}{PARA 215 "
+" 0 "" {TEXT 201 40 "1.1 Les op\303\251rateurs de comparaison" }}
+{PARA 0 "" 0 "" {TEXT 279 151 "On peut former une expression bool\303
+\251enne en comparant deux expressions de m\303\252me type \303\240 l'
+aide d'un des op\303\251rateurs suivants  :" }}{PARA 0 "" 0 "" {TEXT 
+279 26 "=         (\303\251gale)\n" }{TEXT 279 38 "<>         (est dif
+f\303\251rent de)\n" }{TEXT 279 55 "<         (est strictement inf\303
+\251rieur \303\240)\n" }{TEXT 279 55 ">         (est strictement sup\3
+03\251rieur \303\240)\n" }{TEXT 279 59 "<=         (est inf\303\251rie
+ur ou \303\251gal \303\240)\n" }{TEXT 279 56 ">=         (est sup\303
+\251rieur ou \303\251gal \303\240" }}{PARA 0 "" 0 "" {TEXT 279 100 "Da
+ns l'exemple suivant, on d\303\251finit une expression bool\303\251enn
+e avant de l'\303\251valuer." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+0 10 "restart;\n" }{MPLTEXT 1 0 10 "bool:=1<2;" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#>%%boolG2\"\"\"\"\"#" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 12 "evalb(bool);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#%%tru
+eG" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 15 "evalb(Pi=3.14);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#%&falseG" }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT 279 139 "Parfois, quand Maple ne dispose pas d'informations suff
+isantes, il ne peut pas \303\251valuer l'expression bool\303\251enne ;
+ par exemple :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 12 "evalb(x>=
+y);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#1,&%\"yG\"\"\"%\"xG!\"\"\"\"!" 
+}}}{EXCHG {PARA 0 "" 0 "" {TEXT 279 23 "Attention, la fonction " }
+{TEXT 213 5 "evalb" }{TEXT 279 75 " ne sait pas faire des calculs alg
+\303\251briques (contrairement \303\240  " }{TEXT 214 8 "simplify" }
+{TEXT 279 38 "), comme le montre l'exemple suivant :" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 33 "evalb( x^2-y^2 = (x-y) * (x+y) );" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#%&falseG" }}}{EXCHG {PARA 216 "" 0 "" 
+{TEXT 201 34 "1.2 Les op\303\251rateurs logiques" }}{PARA 0 "" 0 "" 
+{TEXT 279 62 "Ils permettent de modifier des expressions bool\303\251e
+nnes :" }}{PARA 0 "" 0 "" {TEXT 215 3 "not" }{TEXT 279 15 "        (no
+n)\n" }{TEXT 216 3 "and" }{TEXT 279 14 "        (et)\n" }{TEXT 217 2 "
+or" }{TEXT 279 23 "        (ou inclusif)\n" }{TEXT 279 53 "(remarque :
+ ils ne n\303\251cessitent pas d'utiliser " }{TEXT 218 5 "evalb" }
+{TEXT 279 1 ")" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 9 "not(1<2);"
+ }}{PARA 11 "" 1 "" {XPPMATH 20 "6#%&falseG" }}}{EXCHG {PARA 0 "> " 0 
+"" {MPLTEXT 1 0 12 "1<2 and 4<3;" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#%&
+falseG" }}}{EXCHG {PARA 217 "" 0 "" {TEXT 201 35 "1.3 Les fonctions bo
+ol\303\251ennes" }}{PARA 0 "" 0 "" {TEXT 279 74 "Les fonctions bool\30
+3\251ennes sont des commandes de Maple qui renvoient " }{TEXT 219 4 "t
+rue" }{TEXT 279 4 " ou " }{TEXT 220 5 "false" }{TEXT 279 41 ". Par exe
+mple, nous avons vu la fonction " }{TEXT 221 6 "iscont" }{TEXT 279 78 
+", qui permet de tester la continuit\303\251 d'une fonction sur un int
+ervalle :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "iscont(tan(x),
+x=0..1);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#%%trueG" }}}{EXCHG {PARA 0
+ "" 0 "" {TEXT 279 25 "Il y a aussi la fonction " }{TEXT 222 4 "type" 
+}{TEXT 279 141 ", qui permet de tester si une expression est d'un type
+ donn\303\251. Par exemple, la commande suivante permet de tester si P
+i est un entier (" }{TEXT 223 7 "integer" }{TEXT 279 3 ") :" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 17 "type(Pi,integer);" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "6#%&falseG" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 
+279 37 "(pour en savoir plus sur la commande " }{TEXT 224 4 "type" }
+{TEXT 279 60 " et les diff\303\251rents types possibles, consultez l'a
+ide)" }}{PARA 0 "" 0 "" {TEXT 279 0 "" }}}{EXCHG {PARA 218 "" 0 "" 
+{TEXT 201 24 "2. Les proc\303\251dures" }}{PARA 0 "" 0 "" {TEXT 279 5 
+"Une  " }{TEXT 225 17 "proc\303\251dure " }{TEXT 279 343 "est un petit
+ programme qui a un nom, des entr\303\251es et une sortie. Au coeur du
+ programme, il y a une suite d'instructions \303\240 accomplir. Une pr
+oc\303\251dure utilise des variables qui lui sont propres (variables l
+ocales). Par exemple, la proc\303\251dure suivante, qui se nomme diff
+\303\251rence, prend en entr\303\251es deux nombres " }{TEXT 226 1 "x"
+ }{TEXT 279 4 " et " }{TEXT 227 1 "y" }{TEXT 279 35 " et renvoie leur \+
+diff\303\251rence." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 30 "diff
+\303\251rence:=proc(x,y)\n" }{MPLTEXT 1 0 14 "RETURN(x-y);\n" }
+{MPLTEXT 1 0 4 "end;" }}{PARA 11 "" 1 "" {XPPMATH 20 "f*6$I\"xG6\"I\"y
+GF%F%F%F%-I'RETURNG%*protectedG6#,&F$\"\"\"F&!\"\"F%F%F%" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 23 "diff\303\251rence(4,5);" }}{PARA 11
+ "" 1 "" {XPPMATH 20 "6#!\"\"" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 279 92 
+"(pour aller \303\240 la ligne lorsque vous tapez une proc\303\251dure
+, utilisez les touches " }{TEXT 228 18 "Maj+Entr\303\251e " }{TEXT 
+279 1 ")" }}{PARA 0 "" 0 "" {TEXT 229 6 "* proc" }{TEXT 279 136 " sign
+ifie que l'on est en train de d\303\251finir une proc\303\251dure (att
+ention, il ne faut pas mettre de point-virgule apr\303\251s  " }{TEXT 
+230 4 "proc" }{TEXT 279 2 ")." }}{PARA 0 "" 0 "" {TEXT 231 8 "* RETURN
+" }{TEXT 279 69 " (en majuscules !) affiche le r\303\251sultat de la p
+roc\303\251dure." }}{PARA 0 "" 0 "" {TEXT 232 5 "* end" }{TEXT 279 78 
+" signifie que la d\303\251finition de la proc\303\251dure est termin
+\303\251e." }}{PARA 0 "" 0 "" {TEXT 279 0 "" }}}{EXCHG {PARA 0 "" 0 ""
+ {TEXT 279 96 "Voici une proc\303\251dure qui se nomme sommeproduit, q
+ui prend en entr\303\251es trois nombres " }{TEXT 233 1 "a" }{TEXT 
+279 1 "," }{TEXT 234 1 "b" }{TEXT 279 4 " et " }{TEXT 235 1 "c" }{TEXT
+ 279 233 ", et qui renvoie la liste form\303\251e de leur somme et leu
+r produit. Au cours de la proc\303\251dure, on stocke les calculs inte
+rm\303\251diaires dans des variables locales, qui sont auparavant d\30
+3\251clar\303\251es par la ligne " }{TEXT 236 6 "local." }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 27 "sommeproduit:=proc(a,b,c)\n" }
+{MPLTEXT 1 0 12 "local s,p;\n" }{MPLTEXT 1 0 11 "s:=a+b+c;\n" }
+{MPLTEXT 1 0 11 "p:=a*b*c;\n" }{MPLTEXT 1 0 16 "RETURN([s,p]);\n" }
+{MPLTEXT 1 0 4 "end:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 20 "som
+meproduit(2,3,4);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#7$\"\"*\"#C" }}}
+{EXCHG {PARA 219 "" 0 "" {TEXT 201 14 "Recommandation" }}{PARA 0 "" 0 
+"" {TEXT 279 449 "En programmation, il est important de bien r\303\251
+fl\303\251chir \303\240 ce que l'on veut faire avant de passer sur la \+
+machine. Avec un papier et un crayon, r\303\251fl\303\251chissez d'abo
+rd au programme : ses entr\303\251es, ses instructions, ses sorties. E
+nsuite, impl\303\251mentez-le sous Maple. Cela permet de mieux disting
+uer les erreurs qui viennent de la conception du programme de celles d
+ues \303\240 une mauvais syntaxe des commandes." }}{PARA 0 "" 0 "" 
+{TEXT 279 0 "" }}}{EXCHG {PARA 220 "" 0 "" {TEXT 201 15 "3. Le test (i
+f)" }}{PARA 0 "" 0 "" {TEXT 279 13 "La structure " }{TEXT 237 2 "if" }
+{TEXT 279 149 " permet de tester si une condition est v\303\251rifi\30
+3\251e. Elle peut \303\251tre employ\303\251e dans une proc\303\251dur
+e. Elle commence par un " }{TEXT 238 2 "if" }{TEXT 279 22 " et se term
+ine par un " }{TEXT 239 2 "fi" }{TEXT 279 84 ".Voici un exemple avec u
+ne proc\303\251dure qui calcule le minimum de deux nombres :" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 20 "minimum:=proc(x,y)\n" }
+{MPLTEXT 1 0 43 "if x<y then RETURN(x) else RETURN(y) fi ;\n" }
+{MPLTEXT 1 0 4 "end:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 14 "min
+imum(7,-2);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#!\"#" }}}{EXCHG {PARA 0
+ "" 0 "" {TEXT 279 157 "Les syntaxes possibles sont les suivantes. A c
+haque fois, les conditions sont des expressions bool\303\251ennes et l
+es instructions sont des commandes Maple." }}{PARA 221 "" 0 "" {TEXT 
+201 44 "* Pour une ex\303\251cution conditionnelle :" }}{PARA 0 "" 0 "
+" {TEXT 240 11 "         if" }{TEXT 279 11 " condition " }{TEXT 241 4 
+"then" }{TEXT 279 14 " instructions " }{TEXT 242 2 "fi" }{TEXT 279 2 "
+ ;" }}{PARA 0 "" 0 "" {TEXT 279 95 "Maple \303\251value d'abord l'expr
+ession bool\303\251enne condition. Si le r\303\251sultat est " }{TEXT 
+243 4 "true" }{TEXT 279 103 ", alors les instructions sont effectu\303
+\251es. Sinon, Maple passe \303\251 la suite (apr\303\251s le " }{TEXT
+ 244 2 "fi" }{TEXT 279 2 ")." }}{PARA 222 "" 0 "" {TEXT 201 25 "* Pour
+ un choix binaire :" }}{PARA 0 "" 0 "" {TEXT 245 11 "         if" }
+{TEXT 279 11 " condition " }{TEXT 246 4 "then" }{TEXT 279 16 " instruc
+tions_1 " }{TEXT 247 4 "else" }{TEXT 279 16 " instructions_2 " }{TEXT 
+248 2 "fi" }{TEXT 279 3 ";\n" }{TEXT 279 97 "Maple \303\251value d'abo
+rd l'expression bool\303\251enne condition_1. Si le r\303\251sultat es
+t " }{TEXT 249 4 "true" }{TEXT 279 92 ", alors les instructions_1 sont
+ effectu\303\251es. Sinon, Maple effectue les instructions_2." }}}
+{EXCHG {PARA 223 "" 0 "" {TEXT 201 26 "* Pour un choix multiple :" }}
+{PARA 0 "" 0 "" {TEXT 250 11 "         if" }{TEXT 279 13 " condition_1
+ " }{TEXT 251 4 "then" }{TEXT 279 17 " instructions_1\n" }{TEXT 252 
+13 "         elif" }{TEXT 279 13 " condition_2 " }{TEXT 253 4 "then" }
+{TEXT 279 17 " instructions_2\n" }{TEXT 254 9 "         " }{TEXT 279 
+5 "...\n" }{TEXT 255 13 "         elif" }{TEXT 279 13 " condition_n " 
+}{TEXT 256 4 "then" }{TEXT 279 17 " instructions_n\n" }{TEXT 257 13 " \+
+        else" }{TEXT 279 21 " instructions_(n+1)\n" }{TEXT 258 11 "   \+
+      fi" }}{PARA 0 "" 0 "" {TEXT 279 89 "Maple \303\251value l'expres
+sion bool\303\251enne condition_1. Si le r\303\251sultat est " }{TEXT 
+259 4 "true" }{TEXT 279 100 ", alors les instructions_1 sont effectu\3
+03\251es et Maple passe \303\240 la suite (apr\303\251s le " }{TEXT 
+260 2 "fi" }{TEXT 279 12 "). Si c'est " }{TEXT 261 5 "false" }{TEXT 
+279 220 ", Maple \303\251value l'expression bool\303\251enne condition
+_2 et proc\303\251de de m\303\251me. Si aucune des expressions bool\30
+3\251ennes condition_1,..,condition_n n'est vraie, Maple effectue les \+
+instructions_(n+1)." }}{PARA 0 "" 0 "" {TEXT 279 0 "" }}{PARA 0 "" 0 "
+" {TEXT 279 103 "(rappels pour les non-anglophones : if=si, then=alors
+, else=sinon, elif est une contraction de else if)" }}}{EXCHG {PARA 0 
+"" 0 "" {TEXT 279 0 "" }}{PARA 224 "" 0 "" {TEXT 201 27 "4. Les boucle
+s (for, while)" }}{PARA 0 "" 0 "" {TEXT 279 200 "Ce sont des structure
+s it\303\251ratives qui permettent de r\303\251p\303\251ter un groupe \+
+de commandes un certai nombre de fois. Elles peuvent \303\251tre emplo
+y\303\251es dans des proc\303\251dures." }}{PARA 225 "" 0 "" {TEXT 
+201 7 "4.1 For" }}{PARA 0 "" 0 "" {TEXT 279 84 "Lorsqu'on sait \303\24
+0 l'avance le nombre de r\303\251p\303\251titions, on utilise " }{TEXT
+ 262 3 "for" }{TEXT 279 23 ", dont la syntaxe est :" }}{PARA 0 "" 0 ""
+ {TEXT 263 12 "         for" }{TEXT 279 3 " i " }{TEXT 264 4 "from" }
+{TEXT 279 14 " d\303\251but " }{TEXT 265 2 "to" }{TEXT 279 5 " fin " }
+{TEXT 266 2 "do" }{TEXT 279 14 " instructions " }{TEXT 267 3 "od " }
+{TEXT 279 1 ";" }}{PARA 0 "" 0 "" {TEXT 279 242 "Cela signifie: pour i
+ allant de d\303\251but \303\240 fin, ex\303\251cuter les instructions
+ (i est une variable choisie par l'utilisateur). En g\303\251n\303\251
+ral, d\303\251but et fin sont des nombres entiers. Par exemple, voici \+
+une boucle " }{TEXT 268 3 "for" }{TEXT 279 53 " qui, pour i variant de
+ 1 \303\240 10, affiche i!   ." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 0 23 "for i from 1 to 10 do\n" }{MPLTEXT 1 0 6 "  i!\n" }{MPLTEXT 1 
+0 3 "od;" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"\"\"" }}{PARA 11 "" 1 ""
+ {XPPMATH 20 "6#\"\"#" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"\"'" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#\"#C" }}{PARA 11 "" 1 "" {XPPMATH 20 "
+6#\"$?\"" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"$?(" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#\"%S]" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"&?.%" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#\"'!)GO" }}{PARA 11 "" 1 "" {XPPMATH 
+20 "6#\"(+)GO" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 279 114 "Par d\303\251f
+aut, le pas est 1. On peut sp\303\251cifier un autre pas d'incr\303\25
+1mentation \303\240 l'aide de " }{TEXT 269 3 "by." }{TEXT 279 53 " Par
+ exemple, si on d\303\251cide d'aller de 2 en 2 :" }}}{EXCHG {PARA 0 "
+> " 0 "" {MPLTEXT 1 0 28 "for i from 1 to 10 by 2 do\n" }{MPLTEXT 1 0 
+4 "i!\n" }{MPLTEXT 1 0 3 "od;" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"\"
+\"" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"\"'" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "6#\"$?\"" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"%S]" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#\"'!)GO" }}}{EXCHG {PARA 226 "" 0 "" 
+{TEXT 201 9 "4.2 While" }}{PARA 0 "" 0 "" {TEXT 279 21 "On utilise la \+
+boucle " }{TEXT 270 6 "while " }{TEXT 279 110 "quand on doit d\303\251
+terminer \"en cours de route\" le nombre de r\303\251p\303\251titions.
+ Sa syntaxe est :" }}{PARA 0 "" 0 "" {TEXT 271 14 "         while" }
+{TEXT 279 11 " condition " }{TEXT 272 2 "do" }{TEXT 279 14 " instructi
+ons " }{TEXT 273 4 "od ;" }}{PARA 0 "" 0 "" {TEXT 279 284 "La conditio
+n est une expression bool\303\251enne et les instructions sont des com
+mandes Maple. Maple \303\251value l'expression bool\303\251enne condit
+ion. Tant qu'elle est vraie, il ex\303\251cute les instructions. Quand
+ elle est fausse, il passe \303\251 la suite (apr\303\251s le  " }
+{TEXT 274 2 "od" }{TEXT 279 2 ")." }}{PARA 0 "" 0 "" {TEXT 279 52 "(ra
+ppel pour les non-anglophones : while = tant que)" }}{PARA 0 "" 0 "" 
+{TEXT 279 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 279 55 "Par exemple, on
+ souhaite calculer le plus petit entier " }{TEXT 275 1 "n" }{TEXT 279 
+46 " tel que la somme des entiers de 1 \303\251   " }{TEXT 276 2 "n " 
+}{TEXT 279 53 "soit sup\303\251rieure ou \303\251gale \303\240 1000." 
+}}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 17 "somme:=0: a:=0:\n" }
+{MPLTEXT 1 0 21 "while somme<1000 do\n" }{MPLTEXT 1 0 13 "    a:=a+1;
+\n" }{MPLTEXT 1 0 21 "    somme:=somme+a;\n" }{MPLTEXT 1 0 5 "od:\n" }
+{MPLTEXT 1 0 2 "a;" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"#X" }}}{EXCHG 
+{PARA 227 "" 0 "" {TEXT 201 31 "5. La r\303\251cursivit\303\251" }}
+{PARA 0 "" 0 "" {TEXT 279 52 "Maple accepte des fonctions et des proc
+\303\251dure " }{TEXT 277 17 "r\303\251cursives" }{TEXT 279 390 ", c'e
+st-\303\240-dire qui s'appellent elles-memes. Soyez particuli\303\251r
+ement soigneux lorsque vous utilisez la r\303\251cursivit\303\251, c'e
+st une source d'erreurs importante. Il faut notamment pr\303\251voir u
+n \"cas d'arret\" (un cas particulier sans appel r\303\251cursif) et \+
+\303\252tre s\303\273r qu'il se r\303\251alisera ; faute de quoi la r
+\303\251currence ne s'arrete jamais !" }}{PARA 0 "" 0 "" {TEXT 279 
+206 "Par exemple, la factorielle est d\303\251finie sur les entiers na
+turels par la r\303\251currence : n! = n * (n-1) !  avec 0!=1. On peut
+ programmer la factorielle dans une proc\303\251dure r\303\251cursive \+
+:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "factorielle:=proc(n)\n
+" }{MPLTEXT 1 0 39 "if n=0 then RETURN(1)   # cas d'arret\n" }{MPLTEXT
+ 1 0 92 "else RETURN(n*factorielle(n-1))  # on appelle la proc\303\251
+dure avec l'entr\303\251e n-1\n" }{MPLTEXT 1 0 5 "fi;\n" }{MPLTEXT 1 
+0 4 "end:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 32 "factorielle(0)
+; factorielle(10);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"\"\"" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "6#\"(+)GO" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 16 "factorielle(-1);" }}{PARA 8 "" 1 "" {TEXT 280 54 "Err
+or, (in factorielle) too many levels of recursion\n" }}}{EXCHG {PARA 0
+ "" 0 "" {TEXT 279 107 "Voil\303\251 le message d'erreur qu'on obtient
+ quand aucun cas d'arret n'a \303\251t\303\251 pr\303\251vu !" }}
+{PARA 0 "" 0 "" {TEXT 279 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 279 79 
+"On aurait \303\251galement pu d\303\251finir la factorielle dans une \+
+fonction :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 50 "f:=n->n*f(n-1
+);    # relation de r\303\251currence" }}{PARA 11 "" 1 "" {XPPMATH 20 
+"6#>%\"fGf*6#%\"nG6\"6$%)operatorG%&arrowGF(*&F'\"\"\"-F$6#,&F'F-F-!\"
+\"F-F(F(F(" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 29 "f(0):=1;     \+
+# initialisation" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#>-%\"fG6#\"\"!\"\"
+\"" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 6 "f(10);" }}{PARA 11 "" 
+1 "" {XPPMATH 20 "6#\"(+)GO" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 279 66 "U
+n autre exemple : la suite r\303\251currente d\303\251finie par :" }}
+{PARA 0 "" 0 "" {TEXT 279 3 "si " }{XPPEDIT 18 0 "n <= 0;" "6#1%\"nG\"
+\"!" }{TEXT 279 3 ",  " }{XPPEDIT 18 0 "u[n] = 3;" "6#/&%\"uG6#%\"nG\"
+\"$" }}{PARA 0 "" 0 "" {TEXT 279 3 "si " }{XPPEDIT 18 0 "0 < n;" "6#2
+\"\"!%\"nG" }{TEXT 279 3 ",  " }{XPPEDIT 18 0 "u[n] = (4*u[n-1]+1)/5;"
+ "6#/&%\"uG6#%\"nG*&,&*&\"\"%\"\"\"&F%6#,&F'F,F,!\"\"F,F,F,F,F,\"\"&F0
+" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 12 "u:=proc(n)\n" }{MPLTEXT
+ 1 0 56 "if n<=0 then RETURN(3) else RETURN((4*u(n-1)+1)/5) fi;\n" }
+{MPLTEXT 1 0 4 "end:" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 25 "u(-
+3); u(0); u(5); u(15);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6#\"\"$" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "6#\"\"$" }}{PARA 11 "" 1 "" {XPPMATH 20 
+"6##\"%t^\"%DJ" }}{PARA 11 "" 1 "" {XPPMATH 20 "6##\",t<1lE$\",D\"yv^I
+" }}}}
+{MARK "0 0 0" 0 }{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 1 2 
+33 1 1 }

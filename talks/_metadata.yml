@@ -1,0 +1,39 @@
+# options specified here will apply to all posts in this folder
+
+# freeze computational output
+# (see https://quarto.org/docs/projects/code-execution.html#freeze)
+# freeze: true
+# description-meta: "{{< meta description >}}"
+
+# Enable banner style title blocks
+title-block-banner: "../img/bg_pine_trees.jpg"
+# "../img/bg_trees_dark_banner.png"
+
+# Default for table of contents
+toc: true
+toc-title: Contents
+toc-location: left
+
+# Default knitr options
+execute:
+  echo: true
+  message: true
+  warning: true
+
+format:
+  html:
+    from: markdown+emoji
+    html-math-method: katex
+    code-tools: true
+    quarto-template-params:
+      banner-header-class: "blog-post"
+    include-after-body: ../html/blog_footer.html
+
+# Default author
+author:
+  - name: Joseph Salmon
+    url: https://josephsalmon.eu/
+    orcid: 0000-0002-3181-0634
+
+# bibliography: /home/jsalmon/Documents/OrganizationFiles/tex/biblio/references_all.bib
+# bibliography: https://github.com/josephsalmon/OrganizationFiles/blob/master/tex/biblio/references_all.bib

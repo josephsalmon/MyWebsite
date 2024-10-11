@@ -1,0 +1,108 @@
+authorname: "Joseph Salmon"
+draft: false
+
+project:
+  type: website
+  output-dir: _site
+
+  resources:
+    - "img/**"
+    # - "*.ipynb"
+    - "Courses/enseignement/**"
+    - "assets/**"
+    - "html/**"
+    - "sitemap.xml"
+    - "_redirects"
+    - "speaking/pdf/**"
+
+  preview:
+    port: 22222
+    browser: true
+    watch-inputs: true
+    navigate: true
+
+title-meta: "Joseph Salmon"
+description-meta: "Machine Learning, Data Science Optimization & Image Processing | Research"
+
+website:
+  title: "Joseph Salmon"
+  description: "Machine Learning, Data Science Optimization & Image Processing | Research"
+  site-url: https://josephsalmon.eu/
+  image: img/joseph_2018.png
+
+  repo-url: "https://github.com/josephsalmon/MyWebsite"
+  repo-branch: main
+
+  search:
+    location: navbar
+    type: textbox
+
+  navbar:
+    pinned: true
+    logo: /img/Flag_of_Occitania.svg
+    left:
+      - text: Courses
+        href: Courses/index.qmd
+      - text: Talks
+        href: talks/index.qmd
+      - text: Team
+        href: team/index.qmd
+      - text: Blog
+        href: blog/index.qmd
+    right:
+    - icon: github
+      # text: Github
+      href: https://github.com/josephsalmon
+    - icon: mastodon
+      # text: Mastodon
+      href: https://sigmoid.social/@josephsalmon
+    - icon: linkedin
+      # text: LinkedIn
+      href: https://www.linkedin.com/in/joseph-salmon-6134262a6/
+    - icon: envelope
+      aria-label: email
+      href: "mailto:joseph.salmon@inria.fr"
+
+  favicon: /img/Flag_of_Occitania.svg
+
+  # twitter-card:
+  #   creator: "@MarvinSchmittML"
+  #   image: "/img/website_thumbnail.png"
+
+  # open-graph:
+  #   image: "/img/website_thumbnail.png"
+  #   locale: en_US
+
+  # google-analytics:
+  #   tracking-id: G-N36VLTEM79
+  #   storage: none
+
+  page-footer:
+    left: |
+      <span class="faux-block">{{< fa brands creative-commons >}} 2024 Joseph Salmon</span>
+      <span class="faux-block"><a href="https://github.com/josephsalmon/MyWebsite">{{< fa brands github >}} Source Code</a></span>
+    # center: |
+    #   <span class="faux-block"><a href="/impressum/index.html">Impressum</a></span>
+    right: |
+      <span class="faux-block"> Designed with {{< fa heart >}}</span>
+      <span class="faux-block"> Built with <a href="https://quarto.org/">Quarto</a></span>
+
+execute:
+  freeze: true
+
+filters:
+  - html/newpagelink.lua
+
+format:
+  html:
+    include-in-header: html/seo.html
+    html-math-method: katex
+    fontsize: 1.1em
+    theme:
+      - html/styles.scss
+    toc: false
+    anchor-sections: true
+    fig-cap-location: margin
+    reference-location: margin
+    footnotes-hover: true
+    highlight-style: monokai

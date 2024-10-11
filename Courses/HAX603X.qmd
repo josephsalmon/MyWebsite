@@ -1,0 +1,63 @@
+---
+title: HAX603X - Stochastic modeling (2023 - 2024)
+description: "Randomize and simulate!"
+categories: [statistics, optimization, machine learning]
+image: "images/output.gif"
+reference-location: document
+fig-cap-location: bottom
+draft: false
+
+# title-block-banner: hello-world-bg.jpg
+
+format:
+  html:
+    include-before-body: ../html/margin_image.html
+    include-after-body: ../html/blog_footer.html
+    code-fold: true
+---
+
+
+
+This is an undergraduate course (in French!) introducing standard techniques from stochastic modeling.
+Numerical elements are provided in Python.
+
+<!-- <br>
+<center>
+![Inverse transform sampling](images/output.gif "Méthode de l'inverse"){ width=35% }
+</center>
+<br> -->
+
+
+## Course content
+See GitHub website: [HAX603X - Modélisation Stochastique](https://josephsalmon.github.io/HAX603X/) for the course content.
+
+
+1. Generating randomness
+      - Pseudo-random number generators
+      - Digital illustrations and visualization in Python (law of large numbers, central limit theorem)
+      - Simulations of random variables (inverse method, rejection method, specific cases, etc.)
+2. Monte Carlo Method
+      - Monte Carlo method for the approximate calculation of an integral
+      - Variance reduction: antithetic variables, control variables, preferential sampling.
+3. Supplementary topics
+      - Gaussian vectors and their connection with common laws in inferential statistics (Student's t, chi-square)
+      - Construction of confidence intervals.
+      - Simple random walk, etc.
+
+## Additional Resources
+
+### Beginner Level
+
+- Introduction to Python [Python Course](https://python.sdv.univ-paris-diderot.fr/) &#127467;&#127479;
+- [HLMA310 - Scientific Software](https://josephsalmon.eu/HLMA310.html) &#127467;&#127479;
+- Algorithmic Manual in Pythonf &#127467;&#127479;
+- Data Science: [Python Data Science Handbook, With Application to Understanding Data](https://jakevdp.github.io/PythonDataScienceHandbook/) by J. Van DerPlas, 2016; &#127468;&#127463; <br>
+ **videos**: [Reproducible Data Analysis in Jupyter](http://jakevdp.github.io/blog/2017/03/03/reproducible-data-analysis-in-jupyter/)
+- [Math for Journalists](https://observablehq.com/@nshiab/math-for-journalists) by Naël Shiab &#127468;&#127463;
+
+### Advanced Level
+- [Software Dev. for Data Science](https://josephsalmon.github.io/HAX712X/) by J. Salmon and B. Charlier, &#127468;&#127463;
+- Markov Chains: [Markov Chains](https://www.ethanepperly.com/index.php/2023/06/29/markov-musings-1-the-fundamental-theorem/) by Ethan N. Epperly &#127468;&#127463;
+- [Advanced Data Analysis from an Elementary Point of View](https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf) by Cosma Shalizi;  &#127468;&#127463;
+- [Maximum Likelihood by Numerical Optimization](https://statisticssu.github.io/STM/tutorial/numericalML/numericalML.html)  &#127468;&#127463;
+- Conditioning, Martingales, and Other Proofs of the Law of Large Numbers:  &#127468;&#127463;

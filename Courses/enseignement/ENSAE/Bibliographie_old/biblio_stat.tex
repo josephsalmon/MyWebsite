@@ -1,0 +1,239 @@
+\documentclass[a4paper,12pt]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% 	pour le français et les accents 	      %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[french]{babel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{geometry}
+\usepackage{amsthm}       % for theorem definitions
+\usepackage{dsfont}       % for  \mathds and nice 0/1 functions
+\usepackage{graphicx}     % for images and graphics
+\usepackage{stmaryrd}     % for \llbrackets
+\usepackage{color}
+\usepackage{subeqnarray}
+\usepackage{subfigure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% 	package pour les algorithmes		       %%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{algpascal}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%% 	pour des liens hypertextes  et du jpg  	      %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\usepackage[pdftex,a4paper,linkcolor=test,citecolor=vertsombre,colorlinks=true,bookmarks=true, plainpages=true,urlcolor=freeblue]{hyperref}
+\usepackage{natbib}
+\usepackage{bibtopic}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  		Couleurs			%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\definecolor{test}{rgb}{0.64,0.16,0.16}
+\definecolor{vertsombre}{rgb}{0.00,0.57,0.1}
+\definecolor{freeblue}{rgb}{0.25,0.41,0.88}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%   	 SHORT CUTS:	  		 %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\nc}{\newcommand}
+\nc{\argmin}{\mathop{\mathrm{arg\,min}}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%  		  SETS:			%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\R{\mathbb{R}}
+\def\A{\mathbb{A}}
+\def\B{\mathbb{B}}
+\def\N{\mathbb{N}}
+\def\L{\mathbb{L}}
+\def\T{\mathbb{T}}
+\def\G{\mathbb{G}}
+\def\D{\mathbb{D}}
+\def\H{\mathbb{H}}
+\def\I{\mathbb{I}}
+\def\F{\mathbb{F}}
+\def\C{\mathbb{C}}
+\def\Z{\mathbb{Z}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%  		  PROBA			%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\nc{\ind}{\mathds{1}}
+\def\P{\mathbb{P}}
+\def\E{\mathbb{E}}
+\def\V{\mathbb{V}\mbox{ar}\,}
+\def\vt{\mbox{Var}_\theta\,}
+\def\cov{\mbox{Cov}\,}
+\def\ct{\mbox{Cov}_\theta\,}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%		classe de fonctions		%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\def\f{{\cal F}} 
+\def\g{{\cal G}} 
+\def\Lip{\mbox{Lip}\,}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  theorem and others stuffs in English	 %%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{theorem}{Théorème}[section]
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{ex}{Exemple}[section]
+\newtheorem{corollary}[theorem]{Corollaire}
+\newtheorem{prop}[theorem]{Proposition}
+\theoremstyle{remark}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Définition}
+\newtheorem{rem}{Remarque}[section]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%		Début du document 	    %%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{document}
+\begin{center}
+{\Huge\bfseries Quelques références utiles pour avancer en Statistique} 
+
+\par\bigskip
+Joseph \textsc{Salmon} 
+\par
+\url{http://people.math.jussieu.fr/~salmon/}
+\end{center}
+
+%\tableofcontents
+%\section{Introduction}
+
+
+
+
+
+Voici une brève bibliographie de livres et d'autres supports (niveau M1/M2) en lien avec les statistiques. Attention, la plupart des références sont en  anglais.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\section{Prérequis: Probabilité et Intégration}
+\begin{btUnit}
+\begin{btSect}[alpha]{refs}
+Pour l'intégration  \cite{Rudin87} existe en traduction francaise chez Dunod.
+Pour les probabilités \cite{Cottrell_GenonCatalot_Duhamel_Meyre05}, \cite{Ouvrard08}, \cite{Ouvrard07} sont  en français,  \cite{Grimmett_Stirzaker01}.
+
+\btPrintCited
+\end{btSect}
+\end{btUnit}
+
+\section{Estimation et Test}
+\begin{btUnit}
+\begin{btSect}[alpha]{refs}
+
+\nocite{Shao05}
+\nocite{Casella_Berger90}
+\nocite{Lehmann_Casella98} 
+\nocite{Bickel_Docksum76}
+
+
+\btPrintCited
+\end{btSect}
+\end{btUnit}
+
+
+
+
+\section{Statistique non-paramétrique}
+\begin{btUnit}
+\begin{btSect}[alpha]{refs}
+
+Il est bon de commencer par \cite{Silverman86}, très bien illustré et facile à lire. Dans un second temps la théorie est impeccable dans \cite{Tsybakov04}.
+\btPrintCited
+\end{btSect}
+\end{btUnit}
+% 
+% 
+% 
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \section{Statistiques Bayesiennes}
+% \begin{btUnit}
+% \begin{btSect}[alpha]{refs}
+% \nocite{Robert_Casella04}
+% 
+% \btPrintCited
+% \end{btSect}
+% \end{btUnit}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Ondelettes}
+\begin{btUnit}
+\begin{btSect}[alpha]{refs}
+\cite{Mallat09} avec de jolies illustrations, est plutôt axé théorie du signal. \cite{Hardle_Kerkyacharian_Picard_Tsybakov98} aborde plutôt le versant statistiques. 
+\btPrintCited
+\end{btSect}
+\end{btUnit}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section{Logiciels}
+
+
+\begin{itemize}
+\item[$\bullet$] Matlab  (payant): \url{http://www.mathworks.fr/} et de l'aide en traitement du signal \url{http://www.ceremade.dauphine.fr/~peyre/numerical-tour/}
+
+\item[$\bullet$] Octave  (gratuit): (presque) Matlab compatible \url{http://www.gnu.org/software/octave/}
+
+\item[$\bullet$] Scilab  (gratuit):  \url{http://www.scilab.org/}
+
+\item[$\bullet$]
+R (gratuit): \url{http://www.r-project.org/} et un bon tutorial d'Emmanuel Paradis pour débuter \url{cran.r-project.org/doc/contrib/Paradis-rdebuts_fr.pdf}.
+\end{itemize}
+
+
+\end{document}

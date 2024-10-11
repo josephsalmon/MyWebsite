@@ -1,0 +1,56 @@
+---
+title: SD3 - Statistiques Descriptives (2010-2011)
+description: "aka viz"
+categories: [descriptive statistics, box plots,violin plots]
+image: "images/boxplots.svg"
+reference-location: document
+fig-cap-location: bottom
+draft: false
+
+# title-block-banner: hello-world-bg.jpg
+
+format:
+  html:
+    include-before-body: ../html/margin_image.html
+    include-after-body: ../html/blog_footer.html
+    code-fold: true
+---
+
+This is an undergraduate course (in French) on descriptive statistics.
+
+
+## Courses
+Les documents utilisés pour ces TDs sont aussi disponibles sur le site de [Stéphane Boucheron](http://stephane-v-boucheron.fr/). Il est aussi possible de consulter le [site du cours HMLA310](HLMA310.html) pour avoir plus d'informations. En particulier le [polycopié](/enseignement/Montpellier/HLMA310/IntroPython.pdf) de ce cours pourra servir également (avec l'avantage d'être en Python).
+
+<br>
+<br>
+
+## TPs
+1. [TP1](enseignement/SD3/td1.pdf): Reprise en main de R
+
+1. [TP2](enseignement/SD3/td2.pdf): Data Frame, Matrices et tableaux
+
+1. [TP3](enseignement/SD3/td3.pdf): Quotients de mortalité et espérance de vie ; Données:
+ [tables-mortalite-france.csv](enseignement/SD3/tables-mortalite-france.csv),  [departements.csv](enseignement/SD1/departements.csv),
+  [regions.csv](enseignement/SD1/regions.csv), [semmelweis.csv](enseignement/SD3/semmelweis.csv),  [table-mortalite-france-riche.csv](enseignement/SD3/semmelweis.csv).
+  Lien concernant le tp sur la lycanthropie: [http://www.pseudo-sciences.org/spip.php?article60](http://www.pseudo-sciences.org/spip.php?article60)
+
+1. [TP4](enseignement/SD3/td4.pdf): Corrélations
+1. [TP5](enseignement/SD3/td5.pdf): Algèbre linéaire
+
+<br>
+
+
+## Resources:
+
+- [Jake VanderPlas book on datascience](https://jakevdp.github.io/PythonDataScienceHandbook/)
+and associated
+[videos](http://jakevdp.github.io/blog/2017/03/03/reproducible-data-analysis-in-jupyter/)
+
+- [Bonnes pratiques](enseignement/SD3/Genolini-RBonnesPratiques.pdf) par Christophe Genolini.
+
+- [R pour les sociologues et assimilés](enseignement/SD3/Barnier-intro_R.pdf) par Julien Barnier.
+
+- [R pour les débutants](enseignement/SD3/Paradis-rdebuts_fr.pdf) par Emmanuel Paradis.
+
+- [Visualisation: dataviz](https://serialmentor.com/dataviz/)

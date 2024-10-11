@@ -1,0 +1,556 @@
+{VERSION 6 0 "Linux" "6.0" }
+{USTYLETAB {PSTYLE "Ordered List 1" -1 200 1 {CSTYLE "" -1 -1 "Times" 
+1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 0 2 0 2 2 -1 1 }
+{PSTYLE "Help" -1 10 1 {CSTYLE "" -1 -1 "Courier" 1 9 0 0 255 1 2 2 2 
+2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Diagnostic" -1 9
+ 1 {CSTYLE "" -1 -1 "Courier" 1 10 64 128 64 1 2 2 2 2 2 1 1 0 0 1 }1 
+1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Ordered List 3" -1 201 1 {CSTYLE 
+"" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 72 2 
+0 2 2 -1 1 }{PSTYLE "_pstyle8" -1 202 1 {CSTYLE "" -1 -1 "Times" 1 14 
+0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "_p
+style7" -1 203 1 {CSTYLE "" -1 -1 "Times" 1 14 0 0 0 1 2 1 1 2 2 2 1 0
+ 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Annotation Title" -1 204 
+1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }3 1 0 0 
+12 12 2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle5" -1 205 1 {CSTYLE "" -1 -1 "
+Courier" 1 10 0 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 
+-1 1 }{PSTYLE "Error" -1 8 1 {CSTYLE "" -1 -1 "Courier" 1 10 255 0 255
+ 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Bullet \+
+Item" -1 15 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 
+1 }1 1 0 0 3 3 2 0 2 0 2 2 -1 1 }{PSTYLE "Author" -1 19 1 {CSTYLE "" 
+-1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 8 8 2 0 2 0 2 
+2 -1 1 }{PSTYLE "Warning" -1 7 1 {CSTYLE "" -1 -1 "Courier" 1 10 0 0 
+255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Orde
+red List 2" -1 206 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2
+ 1 0 0 1 }1 1 0 0 3 3 2 36 2 0 2 2 -1 1 }{PSTYLE "Heading 4" -1 20 1 
+{CSTYLE "" -1 -1 "Times" 1 10 0 0 0 1 1 1 2 2 2 2 1 0 0 1 }1 1 0 0 0 0
+ 2 0 2 0 2 2 -1 1 }{PSTYLE "_pstyle3" -1 207 1 {CSTYLE "" -1 -1 "Times
+" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }
+{PSTYLE "Left Justified Maple Output" -1 12 1 {CSTYLE "" -1 -1 "Times"
+ 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }
+{PSTYLE "_pstyle1" -1 208 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 
+2 2 2 2 1 0 0 1 }3 1 0 0 8 4 2 0 2 0 2 2 -1 1 }{PSTYLE "Normal" -1 0 1
+ {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 
+0 2 0 2 0 2 2 -1 1 }{PSTYLE "Heading 3" -1 5 1 {CSTYLE "" -1 -1 "Times
+" 1 12 0 0 0 1 1 1 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }
+{PSTYLE "_pstyle2" -1 209 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 
+2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Fixed Width" 
+-1 17 1 {CSTYLE "" -1 -1 "Courier" 1 10 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3
+ 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Heading 1" -1 3 1 {CSTYLE "" -1 
+-1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 8 4 2 0 2 0 2 2 
+-1 1 }{PSTYLE "_pstyle9" -1 210 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 
+1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Title" 
+-1 18 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }3 1
+ 0 0 12 12 2 0 2 0 2 2 -1 1 }{PSTYLE "Ordered List 5" -1 211 1 {CSTYLE
+ "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 144 
+2 0 2 2 -1 1 }{PSTYLE "Text Output" -1 2 1 {CSTYLE "" -1 -1 "Courier" 
+1 10 0 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }
+{PSTYLE "Heading 2" -1 4 1 {CSTYLE "" -1 -1 "Times" 1 14 0 0 0 1 2 1 2
+ 2 2 2 1 0 0 1 }1 1 0 0 8 2 2 0 2 0 2 2 -1 1 }{PSTYLE "Maple Plot" -1 
+13 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 
+0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Dash Item" -1 16 1 {CSTYLE "" -1 -1 "
+Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 0 2 0 2 2 -1 1 
+}{PSTYLE "Ordered List 4" -1 212 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0
+ 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 108 2 0 2 2 -1 1 }{PSTYLE "Maple
+ Output" -1 11 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0
+ 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Line Printed Output" -1 6
+ 1 {CSTYLE "" -1 -1 "Courier" 1 10 0 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 
+0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "List Item" -1 14 1 {CSTYLE "" -1 -1
+ "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 0 2 0 2 2 -1 
+1 }{CSTYLE "Help Variable" -1 25 "Courier" 1 12 0 0 0 1 2 2 2 2 2 2 0 
+0 0 1 }{CSTYLE "_cstyle2" -1 200 "Times" 1 24 0 0 0 1 2 1 2 2 2 2 0 0 
+0 1 }{CSTYLE "Help Bold" -1 39 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 
+1 }{CSTYLE "Page Number" -1 33 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 
+1 }{CSTYLE "Help Nonterminal" -1 24 "Courier" 1 12 0 0 0 1 2 1 2 2 2 2
+ 0 0 0 1 }{CSTYLE "Default" -1 38 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0
+ 0 1 }{CSTYLE "2D Math Italic Small212" -1 201 "Times" 1 1 0 0 0 1 1 2
+ 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle4" -1 202 "Times" 1 12 0 0 0 1 2 2 2
+ 2 2 2 0 0 0 1 }{CSTYLE "Maple Comment" -1 21 "Courier" 1 12 0 0 0 1 2
+ 1 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math Small" -1 7 "Times" 1 1 0 0 0 1 2
+ 2 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle5" -1 203 "Times" 1 12 0 0 0 1 1 2
+ 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math Italic Small211" -1 204 "Times" 1 1
+ 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Inert Output" -1 205 "Times"
+ 1 12 144 144 144 1 2 2 2 2 1 2 0 0 0 1 }{CSTYLE "Popup" -1 31 "Times"
+ 1 12 0 128 128 1 1 2 1 2 2 2 0 0 0 1 }{CSTYLE "Copyright" -1 34 "Time
+s" 1 10 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Input" -1 19 "Times" 
+1 12 255 0 0 1 2 2 2 2 1 2 0 0 0 1 }{CSTYLE "Maple Input Placeholder" 
+-1 206 "Courier" 1 12 200 0 200 1 2 1 2 2 1 2 0 0 0 1 }{CSTYLE "Annota
+tion Text" -1 207 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "H
+elp Underlined Bold" -1 41 "Times" 1 12 0 0 0 1 1 1 2 2 2 2 0 0 0 1 }
+{CSTYLE "Plot Text" -1 28 "Times" 1 8 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "Help Italic" -1 42 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "Help Heading" -1 26 "Times" 1 14 0 0 0 1 2 1 2 2 2 2 0 0 0 1 
+}{CSTYLE "_cstyle6" -1 208 "Times" 1 14 0 0 0 1 1 1 2 2 2 2 0 0 0 1 }
+{CSTYLE "Help Normal" -1 30 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "Dictionary Hyperlink" -1 45 "Times" 1 12 147 0 15 1 2 2 1 2 2
+ 2 0 0 0 1 }{CSTYLE "Help Emphasized" -1 22 "Times" 1 12 0 0 0 1 1 2 2
+ 2 2 2 0 0 0 1 }{CSTYLE "Help Italic Bold" -1 40 "Times" 1 12 0 0 0 1 
+1 2 2 2 2 2 0 0 0 1 }{CSTYLE "LaTeX" -1 32 "Times" 1 12 0 0 0 1 2 2 2 
+2 2 2 0 0 0 1 }{CSTYLE "Help Underlined" -1 44 "Times" 1 12 0 0 0 1 2 
+2 1 2 2 2 0 0 0 1 }{CSTYLE "2D Math Italic Small210" -1 209 "Times" 1 
+1 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Underlined Italic" -1 43 
+"Times" 1 12 0 0 0 1 1 2 1 2 2 2 0 0 0 1 }{CSTYLE "2D Math Italic Smal
+l217" -1 210 "Times" 1 1 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle
+3" -1 211 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math B
+old" -1 5 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math I
+talic" -1 3 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "Text" 
+-1 212 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle9" -1
+ 213 "Courier" 1 10 0 0 255 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math It
+alic Small" -1 214 "Times" 1 1 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "_
+cstyle7" -1 215 "Times" 1 14 0 0 0 1 2 1 1 2 2 2 0 0 0 1 }{CSTYLE "Map
+le Input" -1 0 "Courier" 1 12 255 0 0 1 2 1 2 2 1 2 0 0 0 1 }{CSTYLE "
+Help Fixed" -1 23 "Courier" 1 10 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE 
+"Plot Title" -1 27 "Times" 1 10 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "
+_cstyle8" -1 216 "Courier" 1 12 255 0 0 1 2 1 2 2 1 2 0 0 0 1 }{CSTYLE
+ "2D Math Bold Small" -1 10 "Times" 1 1 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }
+{CSTYLE "2D Math" -1 2 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "Help Notes" -1 37 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }
+{CSTYLE "Hyperlink" -1 17 "Times" 1 12 0 128 128 1 2 2 1 2 2 2 0 0 0 1
+ }{CSTYLE "2D Math Symbol 2" -1 16 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 
+0 0 1 }{CSTYLE "_cstyle11" -1 217 "Times" 1 14 0 0 0 1 2 1 1 2 2 2 0 0
+ 0 1 }{CSTYLE "Equation Label" -1 218 "Times" 1 12 0 0 0 1 2 1 2 2 2 2
+ 0 0 0 1 }{CSTYLE "_cstyle1" -1 219 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 0
+ 0 0 1 }{CSTYLE "Output Labels" -1 29 "Times" 1 8 0 0 0 1 2 2 2 2 2 2 
+0 0 0 1 }{CSTYLE "2D Comment" -1 18 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0
+ 0 0 1 }{CSTYLE "2D Output" -1 20 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 0
+ 0 0 1 }{CSTYLE "Help Maple Name" -1 35 "Times" 1 12 104 64 92 1 2 1 2
+ 2 2 2 0 0 0 1 }{CSTYLE "Help Menus" -1 36 "Times" 1 12 0 0 0 1 2 1 2 
+2 2 2 0 0 0 1 }{CSTYLE "Prompt" -1 1 "Courier" 1 12 0 0 0 1 2 1 2 2 2 
+2 0 0 0 1 }{CSTYLE "_cstyle12" -1 220 "Times" 1 14 0 0 0 1 2 1 1 2 2 2
+ 0 0 0 1 }{PSTYLE "" -1 213 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 
+2 2 2 2 2 1 0 0 1 }1 1 0 0 8 4 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 214 1 
+{CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }3 1 0 0 8 4
+ 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 215 1 {CSTYLE "" -1 -1 "Times" 1 18 0
+ 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" 
+-1 216 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }3 
+1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 217 1 {CSTYLE "" -1 -1 "Time
+s" 1 12 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }
+{CSTYLE "" -1 221 "Times" 1 10 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{PSTYLE ""
+ -1 218 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 1 1 1 2 2 2 1 0 0 1 }1
+ 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 222 "Times" 1 12 0 0 0 1 2 
+1 1 2 2 2 0 0 0 1 }{PSTYLE "" -1 219 1 {CSTYLE "" -1 -1 "Times" 1 10 0
+ 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" 
+-1 223 "Times" 1 10 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 220 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0
+ 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 221 1 {CSTYLE "" -1 -1 "Times" 1 12
+ 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE 
+"" -1 222 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 
+1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 223 1 {CSTYLE "" -1 -1 
+"Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1
+ 1 }{PSTYLE "" -1 224 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 
+2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 224 "Times"
+ 1 12 0 0 0 1 2 1 1 2 2 2 0 0 0 1 }{PSTYLE "" -1 225 1 {CSTYLE "" -1 
+-1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2
+ -1 1 }{PSTYLE "" -1 226 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2
+ 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 227 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0
+ 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 228 1 {CSTYLE "" -1 -1 "Times" 1 10
+ 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE ""
+ -1 225 "Times" 1 12 0 0 0 1 1 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 226 "T
+imes" 1 10 0 0 0 1 1 1 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 229 1 {CSTYLE ""
+ -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0
+ 2 2 -1 1 }{PSTYLE "" -1 230 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1
+ 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 227 
+"Times" 1 10 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 228 "Times" 1 
+12 0 0 0 1 2 1 1 2 2 2 0 0 0 1 }{PSTYLE "" -1 231 1 {CSTYLE "" -1 -1 "
+Times" 1 10 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 
+}{CSTYLE "" -1 229 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{PSTYLE "
+" -1 232 1 {CSTYLE "" -1 -1 "Times" 1 10 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }
+1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 230 "Times" 1 10 0 0 0 1 2
+ 2 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 233 1 {CSTYLE "" -1 -1 "Times" 1 12 
+0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" 
+-1 234 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }
+3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 235 1 {CSTYLE "" -1 -1 "Ti
+mes" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 
+}{CSTYLE "" -1 231 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "
+" -1 232 "Times" 1 12 0 0 0 1 2 1 1 2 2 2 0 0 0 1 }{PSTYLE "" -1 236 1
+ {CSTYLE "" -1 -1 "Times" 1 10 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 
+0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 233 "Times" 1 12 0 0 0 1 2 1 2 2 2 2
+ 0 0 0 1 }{CSTYLE "" -1 234 "Times" 1 10 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 235 "Times" 1 10 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 236 "Times" 1 12 0 0 0 1 2 1 1 2 2 2 0 0 0 1 }{CSTYLE "" -1 237 "T
+imes" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 237 1 {CSTYLE ""
+ -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0
+ 2 2 -1 1 }{CSTYLE "" -1 238 "Times" 1 12 0 0 0 1 2 1 1 2 2 2 0 0 0 1 
+}{PSTYLE "" -1 238 1 {CSTYLE "" -1 -1 "Times" 1 10 0 0 0 1 2 2 2 2 2 2
+ 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 239 "Times" 1 12
+ 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 240 "Times" 1 10 0 0 0 1 1
+ 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 241 "Times" 1 10 0 0 0 1 1 2 2 2 2 2
+ 0 0 0 1 }{CSTYLE "" -1 242 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 243 "Times" 1 10 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{PSTYLE ""
+ -1 239 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 
+}3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 240 1 {CSTYLE "" -1 -1 "T
+imes" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1
+ }{PSTYLE "" -1 241 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 
+2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 242 1 {CSTYLE
+ "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 
+2 0 2 2 -1 1 }{PSTYLE "" -1 243 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 
+255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1
+ 244 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 
+1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 245 1 {CSTYLE "" -1 -1 "Time
+s" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }
+{PSTYLE "" -1 246 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 
+2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 247 1 {CSTYLE "
+" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 
+0 2 2 -1 1 }{PSTYLE "" -1 248 1 {CSTYLE "" -1 -1 "Times" 1 10 0 0 0 1 
+2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 244 "
+Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 245 "Times" 1 
+12 0 0 0 1 2 1 1 2 2 2 0 0 0 1 }{PSTYLE "" -1 249 1 {CSTYLE "" -1 -1 "
+Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 
+1 }{PSTYLE "" -1 250 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2
+ 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 251 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0
+ 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 252 1 {CSTYLE "" -1 -1 "Times" 1 12
+ 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE 
+"" -1 253 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 
+1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 254 1 {CSTYLE "" -1 -1 
+"Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1
+ 1 }{PSTYLE "" -1 255 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 
+2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 256 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0
+ 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 257 1 {CSTYLE "" -1 -1 "Times" 1 12
+ 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE 
+"" -1 258 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 
+1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 259 1 {CSTYLE "" -1 -1 
+"Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1
+ 1 }{PSTYLE "" -1 260 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 1 1 2 
+2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 261 1 {CSTYLE
+ "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 
+2 0 2 2 -1 1 }{PSTYLE "" -1 262 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 
+255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1
+ 263 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 
+1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 264 1 {CSTYLE "" -1 -1 "Time
+s" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }
+{PSTYLE "" -1 265 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 
+2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 266 1 {CSTYLE "
+" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 
+0 2 2 -1 1 }{PSTYLE "" -1 267 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 
+1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "" -1 268
+ 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 
+0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 246 "Times" 1 12 0 0 0 1 2 1 2 2
+ 2 2 0 0 0 1 }}
+{SECT 0 {EXCHG {PARA 213 "" 0 "" {TEXT 212 10 "J.Salmon\n" }{TEXT 212 
+6 "salmon" }{TEXT 212 16 "@math.jussieu.fr" }}{PARA 214 "" 0 "" {TEXT 
+212 38 "MK1 \"Calcul formel\" Maple  2007/2008" }}{PARA 215 "" 0 "" 
+{TEXT 247 0 "" }}{PARA 216 "" 0 "" {TEXT 212 28 "TP1 : D\303\251buts e
+n Maple" }}{PARA 209 "" 0 "" {TEXT 247 0 "" }}{PARA 209 "" 0 "" {TEXT 
+247 0 "" }}{PARA 0 "" 0 "" {TEXT 202 93 "N.B. : ces TPs sont tr\303\25
+0s largement inspir\303\251s des TPs \303\251crits par C.Armana." }}
+{PARA 0 "" 0 "" {TEXT 212 0 "" }}{PARA 0 "" 0 "" {TEXT 211 36 "Qu'est-
+ce que le \"calcul formel\" ?" }}{PARA 0 "" 0 "" {TEXT 202 550 "Maple \+
+est un logiciel de calcul formel :  il est capable de manipuler des no
+mbres, mais aussi des symboles repr\303\251sentant des nombres ou des \+
+objets mat\303\251matiques plus compliqu\303\251s (fonctions, \303\251
+quations,matrices...). Il est beaucoup plus puissant qu'une calculatri
+ce ordinaire, puisqu'il peut par exemple d\303\251river une fonction, \+
+r\303\251soudre une \303\251quation,... de fa\303\247on \"abstraite\",
+ c'est-\303\240-dire en manipulant des expressions symboliques ne cont
+enant pas que des param\303\250tres num\303\251riques." }}{PARA 0 "" 0
+ "" {TEXT 202 178 "Ce genre d'outil est tr\303\250s utilis\303\251 dan
+s l'enseignement, les centres de recherche et l'industrie (on peut cit
+er d'autres logiciels de calcul formel : Mathematica...)." }}{PARA 0 "
+" 0 "" {TEXT 211 0 "" }}{PARA 0 "" 0 "" {TEXT 211 17 "Le but des TP MK
+1" }}{PARA 0 "" 0 "" {TEXT 202 224 "Il s'agit d'apprendre \303\240 uti
+liser Maple en illustrant votre programme de math\303\251matiques par \+
+des exemples et des exercices \"\303\240 faire avec Maple\". N'h\303\2
+51sitez pas \303\240 tester vos propres exemples. " }}{PARA 0 "" 0 "" 
+{TEXT 202 14 "Bien entendu, " }{TEXT 211 80 "cela suppose que vous con
+naissiez votre cours de maths ! Apportez le au besoin! " }}{PARA 0 "" 
+0 "" {TEXT 212 0 "" }}{PARA 217 "" 0 "" {TEXT 212 26 "D\303\251rouleme
+nt des TP:" }}{PARA 0 "" 0 "" {TEXT 212 1 "L" }{TEXT 202 128 "e TP, d'
+une dur\303\251e de deux heures, a lieu en salle K du SCRIPT (Halle au
+x farines, secteur C, 4i\303\250me \303\251tage). " }{TEXT 202 0 "" }}
+{PARA 0 "" 0 "" {TEXT 212 0 "" }}{PARA 0 "" 0 "" {TEXT 221 0 "" }{TEXT
+ 202 33 "Contr\303\264le des connaissances" }}{PARA 0 "" 0 "" {TEXT 
+202 270 "Les s\303\251ances de TP seront sur 13 semaines, de la semain
+e du 17 septembre \303\240 celle du  du 17 d\303\251cembre (interrupti
+on la semaine du 29 octobre pour les vacances de la tousssaint). Le de
+rnier TP sera vraisemblablement une s\303\251ance de r\303\251vision."
+ }}{PARA 0 "" 0 "" {TEXT 202 0 "" }}{PARA 0 "" 0 "" {TEXT 202 65 "Pend
+ant la session d'examens de janvier 2008, il y aura un examen" }{TEXT 
+202 142 " sur machine d'une dur\303\251e de deux heures. La note final
+e tiendra compte de la note \303\240 cet examen (pour 8 points), mais \+
+aussi de l'" }{TEXT 202 30 "assiduit\303\251/participation" }{TEXT 
+202 10 " en cours " }{TEXT 202 11 "(2 points)," }{TEXT 202 83 " ainsi \+
+que d'un devoir maison (4 points) et d'un partiel  fin novembre (4 poi
+nts). " }}{PARA 0 "" 0 "" {TEXT 212 0 "" }}{PARA 218 "" 0 "" {TEXT 
+212 113 "Rappel : l'ann\303\251e n'est pas valid\303\251e lorsqu'il y \+
+a une absence injustifi\303\251e \303\240 un examen." }}{PARA 0 "" 0 "
+" {TEXT 212 0 "" }}{PARA 0 "" 0 "" {TEXT 211 13 "Bibliographie" }}
+{PARA 0 "" 0 "" {TEXT 202 76 "Parmi les livres de tous niveaux qui exi
+stent sur Maple, je vous recommande " }{TEXT 203 15 "\"Maple sugar\"" 
+}{TEXT 202 102 ", de Guy Le Bris (\303\251d. Cassini) dont l'esprit co
+rrespond bien \303\240 ce que nous ferons en TP." }}{PARA 0 "" 0 "" 
+{TEXT 202 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 222 37 "1. Pr\303\251se
+ntation de l'interface" }}{PARA 0 "" 0 "" {TEXT 202 40 "* La feuille b
+lanche est appel\303\251e " }{TEXT 203 17 "feuille de calcul" }{TEXT 
+202 234 ". C'est l\303\240 que vous donnez \303\240 Maple des commande
+s, qui les ex\303\251cute et vous affiche le r\303\251sultat. C'est l'
+analogue de l'\303\251cran d'une calculatrice ordinaire (mais on peut \+
+y afficher bien plus de choses !)" }}{PARA 219 "" 0 "" {TEXT 202 40 "*
+ La feuille de calcul commence par une " }{TEXT 203 7 "invite " }{TEXT
+ 202 4 "(ou " }{TEXT 223 6 "prompt" }{TEXT 202 11 " : symbole " }{TEXT
+ 211 1 ">" }{TEXT 202 93 ") : cela signifie que Maple est pr\303\252t \+
+\303\240 recevoir des commandes de l'utilisateur." }}{PARA 0 "" 0 "" 
+{TEXT 212 101 "* on peut afficher des commentaires en cliquant sur l'i
+c\303\264ne T ou sur insert/text dans le menu." }{TEXT 202 0 "" }}
+{PARA 0 "" 0 "" {TEXT 202 103 "* Si on tape alors une commande comme 1
++2 et qu'on valide en appuyant sur la touche \"Entr\303\251e\" :" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 216 3 "1+2" }}{PARA 0 "" 0 "" 
+{TEXT 212 0 "" }}{PARA 7 "" 1 "" {TEXT 248 55 "Warning, inserted missi
+ng semicolon at end of statement" }}{PARA 220 "" 1 "" {XPPMATH 20 "\"
+\"$" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 202 40 "...on re\303\247oit un me
+ssage d'erreur." }}{PARA 0 "" 0 "" {TEXT 211 25 "R\303\250gle  n\302\2
+601:" }{TEXT 202 1 " " }{TEXT 211 130 "toute commande doit etre suivie
+ d'un caract\303\250re terminateur, la plupart du temps ; (point-virgu
+le), parfois : (deux-points)." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+216 4 "1+2;" }}{PARA 221 "" 1 "" {XPPMATH 20 "6#\"\"$" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 202 299 "Si on utilise deux-points \303\240 la p
+lace du point-virgule, Maple effectue la commande mais n'affiche pas l
+e r\303\251sultat. Cela peut \303\252tre pratique quand le r\303\251su
+ltat donn\303\251 par Maple prend trop de place \303\240 afficher, ou \+
+si la valeur exacte ne nous int\303\251resse pas. " }}{PARA 0 "" 0 "" 
+{TEXT 202 133 "Remarque: la ligne de commande peut \303\252tre compl\3
+03\251t\303\251e par un commentaire pr\303\251c\303\250d\303\251 du sy
+mbole #." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 216 37 "80!; #je veux
+ voir le r\303\251sultat" }}{PARA 222 "" 1 "" {XPPMATH 20 "\"br+++++++
+++!393Gn[%*oE%)[,[b#RqAe]W4rd_dOUtl%el@`'=BP`6[H-QEYqXp:(" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 216 45 "80!: #je ne veux pas voir le r\30
+3\251sultat " }}}{EXCHG {PARA 0 "" 0 "" {TEXT 202 71 "* On peut donner
+ plusieurs commandes \303\251 Maple sur la meme ligne :" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 216 9 "2^5;11*7;" }}{PARA 223 "" 1 "" 
+{XPPMATH 20 "\"#K" }}{PARA 224 "" 1 "" {XPPMATH 20 "\"#x" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 202 130 "* Pour enregistrer sa feuille de calcul
+, on utilise le menu \"File\", \"Save\" ou \"Save as\". Le fichier a u
+ne extension en .mws." }}{PARA 0 "" 0 "" {TEXT 202 328 "* Pour ouvrir \+
+une feuille enregistr\303\251e, on utilise le menu \"File\", \"Open\".
+ Si on souhaite travailler \303\240 nouveau dessus, il faut alors re-e
+x\303\251cuter toutes les commandes de la feuille, soit en les validan
+t une \303\240 une avec la touche \"Entr\303\251e\", soit en utilisant
+ le menu Edit, Execute, Worksheet." }}{PARA 0 "" 0 "" {TEXT 202 147 "*
+ Pour imprimer une feuille de calcul, on utilise le menu \"File\", \"P
+rint\". Je vous demanderai de n'imprimer si besoin qu'\303\240 la fin \+
+du TP." }}{PARA 0 "" 0 "" {TEXT 202 89 "* Ces actions sont \303\251gal
+ement faisables en utilisant les ic\303\264nes de racourci." }}{PARA 0
+ "" 0 "" {TEXT 212 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 224 29 "2. L'a
+ffectation de variables" }}{PARA 0 "" 0 "" {TEXT 202 159 "R\303\250gle
+ n\302\2602 : donner des noms \303\240 des r\303\251sultats ant\303\25
+1rieurs, notamment pour pouvoir les r\303\251utiliser par la suite : c
+'est l'" }{TEXT 203 11 "affectation" }{TEXT 202 2 ". " }{TEXT 202 21 "
+En voici un exemple :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 216 12 "
+produit:=6!;" }}{PARA 225 "" 1 "" {XPPMATH 20 "6#>%(produitG\"$?(" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 202 142 "A gauche du signe :=, on entre l
+e nom de la variable et \303\240 droite la valeur affect\303\251e. On \+
+peut v\303\251rifier l'affectation par :" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 216 8 "produit;" }}{PARA 226 "" 1 "" {XPPMATH 20 "6#\"$?(" 
+}}}{EXCHG {PARA 0 "" 0 "" {TEXT 202 46 "et l'utiliser pour faire de no
+uveaux calculs :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 216 11 "produ
+it/5!;" }}{PARA 227 "" 1 "" {XPPMATH 20 "6#\"\"'" }}}{EXCHG {PARA 228 
+"" 0 "" {TEXT 202 187 "Le nom de variable ne doit pas comporter de sig
+nes de ponctuation, d'espace ni de caract\303\250res sp\303\251ciaux (
+par ex. +,*,#,%,@). On peut utiliser des majuscules et des minuscules \+
+" }{TEXT 225 13 "(attention ! " }{TEXT 226 36 "Maple diff\303\251renci
+e les deux !)" }{TEXT 202 269 ". La proc\303\251dure d'affectation est
+ tr\303\250s g\303\251n\303\251rale. Ici, on a donn\303\251 un nom de \+
+variable \303\240 un nombre entier (6!) mais on peut nommer \303\251ga
+lement des nombres rationnels, d\303\251cimaux, complexes, des fonctio
+ns, des matrices,..." }}{PARA 0 "" 0 "" {TEXT 202 59 "Pour r\303\251in
+itialiser (d\303\251saffecter) la variable " }{TEXT 203 7 "produit" }
+{TEXT 202 112 " et faire en sorte qu'elle ne contienne plus la valeur \+
+6!, on effectue l'une ou l'autre des commandes suivantes:" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 216 19 "produit:='produit';" }}{PARA 229 
+"" 1 "" {XPPMATH 20 "6#>%(produitGF$" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 216 20 "unassign('produit');" }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT 212 82 "On v\303\251rifie que la variable \"produit\" est bien d
+\303\251saffect\303\251e :" }}{PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "produi
+t;" }}{PARA 230 "" 1 "" {XPPMATH 20 "I(produitG6\"" }}}{EXCHG {PARA 0 
+"" 0 "" {TEXT 202 77 "Si on veut r\303\251initialiser toutes les varia
+bles, on utilise la commande " }{TEXT 203 7 "restart" }{TEXT 202 2 ". \+
+" }{TEXT 227 0 "" }}{PARA 0 "" 0 "" {TEXT 212 0 "" }}{PARA 0 "" 0 "" 
+{TEXT 202 140 "Le signe % permet de rappeler (et utiliser) le dernier \+
+r\303\251sultat calcul\303\251 ; il existe aussi %% et %%% : tester su
+r des exemples." }}{PARA 0 "" 0 "" {TEXT 212 0 "" }}}{EXCHG {PARA 0 ""
+ 0 "" {TEXT 212 1 "3" }{TEXT 228 23 ". L'ordre des commandes" }}{PARA 
+231 "" 0 "" {TEXT 212 47 "Il est tr\303\250s important de comprendre q
+ue " }{TEXT 229 149 "le comportement de Maple d\303\251pend de l'ordre
+ chronologique de validation des commandes, et non de l'ordre d'appari
+tion sur la feuille de calcul." }}{PARA 232 "" 0 "" {TEXT 212 0 "" }}
+{PARA 0 "" 0 "" {TEXT 230 0 "" }{TEXT 202 279 "Dans une feuille de cal
+cul, rien ne vous emp\303\252che de modifier une commande entr\303\251
+e pr\303\251c\303\251demment : il suffit pour cela de remonter \303\24
+0 la ligne qui vous int\303\251resse (au clavier ou \303\240 la souris
+), de modifier la commande et de valider avec " }{TEXT 203 17 "\"Entr
+\303\251e\"" }{TEXT 202 214 ".  Cependant, attention \303\240 cette ma
+nipulation : il vaut mieux valider les commandes dans l'ordre dans leq
+uel elles apparaissent dans la feuille de calcul, sous peine d'arriver
+ \303\240 des choses bizarres... " }}{PARA 233 "" 0 "" {TEXT 212 181 "
+R\303\250gle n\302\2602: Se rappeler que lorsque l'on rouvre un fichie
+r, il faut re-valider les lignes de commande que l'on veut r\303\251ut
+iliser avec la touche \"Entr\303\251e\". " }}{PARA 0 "" 0 "" {TEXT 
+202 83 "Si l'on veut r\303\251utiliser toute la feuille cliquer sur l'
+ic\303\264ne \"!!!\"." }}{PARA 0 "" 0 "" {TEXT 202 0 "" }}{PARA 0 "" 0
+ "" {TEXT 202 13 "Par exemple :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 216 5 "a:=3;" }}{PARA 234 "" 1 "" {XPPMATH 20 "6#>%\"aG\"\"$" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 216 7 "b:=a/2;" }}{PARA 235 "" 1 "
+" {XPPMATH 20 "6#>%\"bG#\"\"$\"\"#" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 
+202 195 "Si en remontant, je d\303\251cide de modifier a:=3 en a:=2, m
+ais que j'oublie de valider avec \"Entr\303\251e\" la ligne suivante, \+
+b vaudra toujours 3/2 et ne sera plus \303\251gal \303\240 a/2 !" }}
+{PARA 0 "" 0 "" {TEXT 211 90 "R\303\250gle  n\302\2603 : il vaut mieux
+ commencer une feuille de calcul par la commande :" }}}{EXCHG {PARA 0 
+"> " 0 "" {MPLTEXT 1 216 8 "restart;" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 
+231 84 "afin d'\303\252tre certain que toutes les variables sont d\303
+\251saffect\303\251es." }}{PARA 0 "" 0 "" {TEXT 212 0 "" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 232 18 "4. L'aide de Maple" }}{PARA 236 "" 0 "" 
+{TEXT 202 43 "Maple est un logiciel tr\303\250s riche et " }{TEXT 233 
+82 "il n'est pas question d'en conna\303\256tre toutes les commandes e
+t leurs syntaxes" }{TEXT 202 83 ". L'aide de Maple est tr\303\250s uti
+le pour retrouver ce genre d'informations, et " }{TEXT 234 38 "il est \+
+essentiel de savoir l'utiliser." }}{PARA 0 "" 0 "" {TEXT 235 0 "" }
+{TEXT 202 155 "* Si on veut des informations sur une commande dont on \+
+connait le nom, il suffit de taper un ? suivi du nom de la commande (i
+nutile de faire suivre d'un ;)" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 216 8 "?isprime" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 202 121 "* Si on ne
+ connait pas le nom de la commande, on utilise le menu Help, Topic sea
+rch pour une recherche th\303\251matique." }}{PARA 0 "" 0 "" {TEXT 
+212 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 236 32 "5. Calculs sur les no
+mbres entie" }{TEXT 212 2 "rs" }}{PARA 0 "" 0 "" {TEXT 202 123 "Maple \+
+fait automatiquement des calculs exacts sur de tr\303\250s grands enti
+ers. Les op\303\251rations usuelles sont +,-,*." }}{PARA 0 "" 0 "" 
+{TEXT 202 48 "Dans Maple, les diff\303\251rents objets ont un " }{TEXT
+ 202 4 "type" }{TEXT 202 54 ". On peut demander le type d'un objet par
+ la commande " }{TEXT 237 8 "whattype" }{TEXT 202 39 ". Par exemple, l
+e type d'un entier est " }{TEXT 202 7 "integer" }{TEXT 202 1 "." }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 14 "whattype(15!);" }}{PARA 237 
+"" 1 "" {XPPMATH 20 "I(integerG%*protectedG" }}}{EXCHG {PARA 0 "" 0 ""
+ {TEXT 238 39 "6. Calculs sur les nombres r\303\251els" }}{PARA 238 ""
+ 0 "" {TEXT 202 34 "La premi\303\250re fa\303\247on d'" }{TEXT 239 9 "
+approcher" }{TEXT 240 1 " " }{TEXT 202 201 "un nombre r\303\251el gr\3
+03\242ce \303\240 Maple est d'utiliser le point d\303\251cimal (.) . (
+c'est l'\303\251quivalent anglo-saxon de notre virgule d\303\251cimale
+). Maple calcule alors des valeurs " }{TEXT 241 1 "a" }{TEXT 242 16 "p
+proch\303\251es" }{TEXT 243 1 "," }{TEXT 202 78 " avec un nombre de ch
+iffres significatifs fix\303\251 (par d\303\251faut, 10)." }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 216 7 "300/45;" }}{PARA 239 "" 1 "" 
+{XPPMATH 20 "#\"#?\"\"$" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 202 314 "Pour
+ Maple, le nombre pr\303\251c\303\251dent n'est pas un nombre r\303\25
+1el, c'est un nombre rationnel (une fraction de deux nombres entiers) \+
+: d'ailleurs, il nous a propos\303\251 spontan\303\251ment une simplif
+ication. Pour le lui faire comprendre comme un nombre r\303\251el (app
+roch\303\251), on peut faire :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 216 8 "300./45;" }}{PARA 240 "" 1 "" {XPPMATH 20 "$\"+nmmmm!\"*" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 202 9 "ou bien :" }}}{EXCHG {PARA 0 "> " 
+0 "" {MPLTEXT 1 216 14 "evalf(300/45);" }}{PARA 241 "" 1 "" {XPPMATH 
+20 "$\"+nmmmm!\"*" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 202 29 "Le type d'u
+n r\303\251el est " }{TEXT 202 5 "float" }{TEXT 202 19 " (nombre flott
+ant)." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 18 "whattype(300./45);
+" }}{PARA 242 "" 1 "" {XPPMATH 20 "I&floatG%*protectedG" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 202 42 "Maple connait certains r\303\251els comm
+e " }{TEXT 211 1 "e" }{TEXT 202 2 " :" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 216 22 "exp(1); evalf(exp(1));" }}{PARA 243 "" 1 "" 
+{XPPMATH 20 "-I$expG6$%*protectedGI(_syslibG6\"6#\"\"\"" }}{PARA 244 "
+" 1 "" {XPPMATH 20 "$\"+G=G=F!\"*" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 
+202 4 "et P" }{TEXT 211 3 "i :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 
+1 216 5 "Pi;\n" }{MPLTEXT 1 216 10 "evalf(Pi);" }}{PARA 245 "" 1 "" 
+{XPPMATH 20 "I#PiG%*protectedG" }}{PARA 246 "" 1 "" {XPPMATH 20 "$\"+a
+EfTJ!\"*" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 211 26 "(attention, P majusc
+ule !)" }}{PARA 0 "" 0 "" {TEXT 202 58 " On peut choisir le nombre de \+
+chiffres significatifs par :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 
+216 13 "evalf(Pi,20);" }}{PARA 0 "" 0 "" {TEXT 212 0 "" }}{PARA 247 ""
+ 1 "" {XPPMATH 20 "$\"5&QKz*e`EfTJ!#>" }}}{EXCHG {PARA 248 "" 0 "" 
+{TEXT 212 35 "On peut aussi utiliser la variable " }{TEXT 244 6 "Digit
+s" }{TEXT 212 1 " " }{TEXT 212 14 "(voir l'aide)." }}{PARA 0 "" 0 "" 
+{TEXT 212 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 202 98 "Voici quelques \+
+fonctions pr\303\251d\303\251finies de Maple. Utilisez l'aide pour en \+
+savoir plus :" }}{PARA 0 "" 0 "" {TEXT 202 3 "exp" }}{PARA 0 "" 0 "" 
+{TEXT 202 9 "ln ou log" }}{PARA 0 "" 0 "" {TEXT 202 4 "sqrt" }}{PARA 0
+ "" 0 "" {TEXT 202 13 "sin, cos, tan" }}{PARA 0 "" 0 "" {TEXT 202 3 "a
+bs" }}{PARA 0 "" 0 "" {TEXT 202 18 "trunc, floor, ceil" }}{PARA 0 "" 0
+ "" {TEXT 202 33 "max(x1,x2,...,xn), min(x1,...,xn)" }}{PARA 0 "" 0 ""
+ {TEXT 212 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 245 36 "7. Calculs sur
+ les nombres complexes" }}{PARA 0 "" 0 "" {TEXT 202 107 "Pour d\303\25
+1finir un nombre complexe, on utilise le nombre imaginaire i, que Mapl
+e repr\303\251sente par " }{TEXT 211 2 "I " }{TEXT 202 1 "(" }{TEXT 
+211 26 "attention, i majuscule !)." }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 216 9 "z:=3+4*I;" }}{PARA 249 "" 1 "" {XPPMATH 20 ",&\"\"$
+\"\"\"*&\"\"%F$^#F$F$F$" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 202 56 "Pour \+
+obtenir ses parties r\303\251elles et imaginaires :" }}}{EXCHG {PARA 0
+ "> " 0 "" {MPLTEXT 1 216 12 "Re(z);Im(z);" }}{PARA 250 "" 1 "" 
+{XPPMATH 20 "\"\"$" }}{PARA 251 "" 1 "" {XPPMATH 20 "\"\"%" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 216 16 "z*(1+sqrt(2)*I);" }}{PARA 252 "" 
+1 "" {XPPMATH 20 "*&,&\"\"$\"\"\"*&\"\"%F%^#F%F%F%F%,&F%F%*&F(F%)\"\"#
+#F%F,F%F%F%" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 202 140 "Pour forcer Mapl
+e \303\240 \303\251crire le nombre sous forme cart\303\251sienne (part
+ie r\303\251elle + i * partie imaginaire), on utilise " }{TEXT 203 5 "
+evalc" }{TEXT 202 2 " :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 216 9 
+"evalc(%);" }}{PARA 253 "" 1 "" {XPPMATH 20 ",(\"\"$\"\"\"*&\"\"%F$)\"
+\"##F$F(F$!\"\"*&^#F$F$,&F&F$*&F#F$F'F$F$F$F$" }}}{EXCHG {PARA 0 "" 0 
+"" {TEXT 202 94 "Les commandes pour obtenir le nombre complexe conjugu
+\303\251, le module et l'argument sont : " }{TEXT 203 24 "conjugate, a
+bs, argument" }{TEXT 202 85 ". Le module est un r\303\251el positif. L
+'argument (donn\303\251 par Maple) est dans " }}{PARA 0 "" 0 "" {TEXT 
+202 11 "]-pi ; pi]." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 216 32 "co
+njugate(z);abs(z);argument(z);" }}{PARA 254 "" 1 "" {XPPMATH 20 ",&\"
+\"$\"\"\"*&\"\"%F$^#F$F$!\"\"" }}{PARA 255 "" 1 "" {XPPMATH 20 "\"\"&"
+ }}{PARA 256 "" 1 "" {XPPMATH 20 "-I'arctanG6$%*protectedGI(_syslibG6
+\"6##\"\"%\"\"$" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 202 160 "Pour d\303\2
+51finir un nombre complexe sous forme trigonom\303\251trique r. exp(i \+
+theta), o\303\271 r est le module et theta l'argument, on utilise la c
+ommande " }{TEXT 203 5 "polar" }{TEXT 202 56 " (le premier argument es
+t r, le deuxi\303\250me theta) :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT
+ 1 216 15 "polar(3, Pi/6);" }}{PARA 257 "" 1 "" {XPPMATH 20 "-I&polarG
+I(_syslibG6\"6$\"\"$,$*&#\"\"\"\"\"'F+I#PiG%*protectedGF+F+" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 216 9 "evalc(%);" }}{PARA 258 "" 1
+ "" {XPPMATH 20 ",&*&#\"\"$\"\"#\"\"\")F%#F'F&F'F'*&F$F'^#F'F'F'" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 202 114 "Pour passer de l'\303\251criture
+ cart\303\251sienne (a+b*I) \303\240 l'\303\251criture polaire, on uti
+lise encore " }{TEXT 203 5 "polar" }{TEXT 202 41 "  mais la syntaxe es
+t diff\303\251rente :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 216 11 "
+polar(1+I);" }}{PARA 259 "" 1 "" {XPPMATH 20 "-I&polarGI(_syslibG6\"6$
+*$)\"\"##\"\"\"F)F+,$*&#F+\"\"%F+I#PiG%*protectedGF+F+" }}}{EXCHG 
+{PARA 260 "" 0 "" {TEXT 212 35 "8. Les fonctions simplify et assume" }
+}{PARA 0 "" 0 "" {TEXT 202 160 "Lorsqu'un r\303\251sultat obtenu par c
+alcul alg\303\251brique n'a pas la forme voulue, certaines fonctions d
+e Maple permettent d'y rem\303\250dier. La fonction " }{TEXT 202 8 "si
+mplify" }{TEXT 202 102 " est l'une d'entre elles. Elle est tr\303\250s
+ riche, aussi nous ne regarderons que quelques exemples." }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 10 "4^(1/2)+4;" }}{PARA 261 "" 1 "" 
+{XPPMATH 20 ",&*$)\"\"%#\"\"\"\"\"#F'F'F%F'" }}}{EXCHG {PARA 0 "> " 0 
+"" {MPLTEXT 1 0 12 "simplify(%);" }}{PARA 262 "" 1 "" {XPPMATH 20 "\"
+\"'" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "(sin(x))^4-(cos(x))^
+4;" }}{PARA 263 "" 1 "" {XPPMATH 20 ",&*$)-I$sinG6$%*protectedGI(_sysl
+ibG6\"6#I\"xGF*\"\"%\"\"\"F.*$)-I$cosGF'F+F-F.!\"\"" }}}{EXCHG {PARA 0
+ "> " 0 "" {MPLTEXT 1 0 12 "simplify(%);" }}{PARA 264 "" 1 "" 
+{XPPMATH 20 ",&\"\"\"F#*&\"\"#F#)-I$cosG6$%*protectedGI(_syslibG6\"6#I
+\"xGF,F%F#!\"\"" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 202 22 "Un exemple im
+portant :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 13 "y:=sqrt(x^2);"
+ }}{PARA 265 "" 1 "" {XPPMATH 20 "*$)*$)I\"xG6\"\"\"#\"\"\"#F)F(F)" }}
+}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 12 "simplify(y);" }}{PARA 266 "
+" 1 "" {XPPMATH 20 "*&-I%csgnG6$%*protectedGI(_syslibG6\"6#I\"xGF(\"\"
+\"F*F+" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 202 23 "Quelle est la fonction
+ " }{TEXT 202 4 "csgn" }{TEXT 202 38 " ? Le r\303\251sultat est-il cor
+rect ?" }}{PARA 0 "" 0 "" {TEXT 202 73 "Par d\303\251faut, Maple ne sa
+it rien de la variable non affect\303\251e " }{TEXT 202 2 "x " }{TEXT 
+202 64 "et la consid\303\250re comme un nombre complexe. Si on suppose
+ (" }{TEXT 202 6 "assume" }{TEXT 202 17 " en anglais) que " }{TEXT 
+202 1 "x" }{TEXT 202 54 " est positif, on peut encore simplifier l'exp
+ression :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 28 "simplify(y,ass
+ume=positive);" }}{PARA 267 "" 1 "" {XPPMATH 20 "I\"xG6\"" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 202 258 "La supposition est temporaire (le temps
+ que la commande soit effectu\303\251e). Si on souhaite qu'elle soit p
+ermanente, c'est-\303\240-dire jusqu'\303\240 la fin de la session ou \+
+jusqu'\303\240 ce que la variable soit r\303\251initialis\303\251e, on
+ utilise " }{TEXT 202 6 "assume" }{TEXT 202 37 " avec une syntaxe diff
+\303\251rente :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 19 "assume(x
+,positive);" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 12 "simplify(y);
+" }}{PARA 268 "" 1 "" {XPPMATH 20 "I#x|irG6\"" }}}{EXCHG {PARA 0 "" 0 
+"" {TEXT 202 88 "Le ~ (tilde) rappelle qu'une hypoth\303\250se a \303
+\251t\303\251 faite sur la variable " }{TEXT 202 1 "x" }{TEXT 202 1 ".
+" }}{PARA 0 "" 0 "" {TEXT 202 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 
+246 111 "R\303\250gle n\302\2604: Quand Maple renvoit le nom d'une fon
+ction en italique, c'est qu'il ne l'a pas reconnu!" }}{PARA 0 "" 0 "" 
+{TEXT 202 204 "La raison peut \303\252tre que l'on a pas ouvert la lib
+rairie correspondantes (cf tp2 et la commande with) , que l' on a fait
+ une erreur de syntaxe, ou encore l'oubli de deux points dans l'affect
+ation...." }}{PARA 0 "" 0 "" {TEXT 212 0 "" }}}}
+{MARK "0 0 0" 0 }{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 1 2 
+33 1 1 }

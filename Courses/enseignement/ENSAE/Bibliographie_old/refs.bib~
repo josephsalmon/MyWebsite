@@ -1,0 +1,181 @@
+@book{Casella_Berger90,
+    author = {Casella, George and Berger, Roger L.},
+    edition = {2},
+    howpublished = {Hardcover},
+    isbn = {0534243126},
+    month = {June},
+    posted-at = {2009-01-21 05:26:54},
+    priority = {2},
+    publisher = {Duxbury Press},
+    title = {Statistical Inference},
+    year = {2001}
+}
+
+@book{Cottrell_GenonCatalot_Duhamel_Meyre05,
+    author = { Cottrell, Marie and GenonCatalot, Valentine and Duhamel, Christian and Meyre, Thierry},
+    edition = {3},
+    isbn = {2-84225-068-0},
+    publisher = {Cassini},
+    title = {Exercices de probabilités, Licence - Master - Ecoles d'ingénieur},
+    year = {2001} 
+}
+
+
+@book {Grimmett_Stirzaker01,
+    AUTHOR = {Grimmett, Geoffrey R. and Stirzaker, David R.},
+     TITLE = {Probability and random processes},
+   EDITION = {Third},
+ PUBLISHER = {Oxford University Press},
+   ADDRESS = {New York},
+      YEAR = {2001},
+     PAGES = {xii+596},
+      ISBN = {0-19-857223-9},
+   MRCLASS = {60-01},
+  MRNUMBER = {MR2059709 (2004m:60002)},
+}
+
+
+@book {Hardle_Kerkyacharian_Picard_Tsybakov98,
+    AUTHOR = {H{\"a}rdle, Wolfgang and Kerkyacharian, Gerard and Picard,
+              Dominique and Tsybakov, Alexander},
+     TITLE = {Wavelets, approximation, and statistical applications},
+    SERIES = {Lecture Notes in Statistics},
+    VOLUME = {129},
+ PUBLISHER = {Springer-Verlag},
+   ADDRESS = {New York},
+      YEAR = {1998},
+     PAGES = {xviii+265},
+      ISBN = {0-387-98453-4},
+   MRCLASS = {42C15 (41A30 42-02 62G07)},
+  MRNUMBER = {MR1618204 (99f:42065)},
+MRREVIEWER = {Jos{\'e} Rafael Le{\'o}n},
+}
+
+
+@book {Lehmann_Casella98,
+    AUTHOR = {Lehmann, Erich L. and Casella, George},
+     TITLE = {Theory of point estimation},
+    SERIES = {Springer Texts in Statistics},
+   EDITION = {2},
+ PUBLISHER = {Springer-Verlag},
+   ADDRESS = {New York},
+      YEAR = {1998},
+     PAGES = {xxvi+589},
+      ISBN = {0-387-98502-6},
+   MRCLASS = {62F10 (62-01)},
+  MRNUMBER = {MR1639875 (99g:62025)},
+MRREVIEWER = {Xuming He},
+}
+
+@book {Mallat09,
+    AUTHOR = {Mallat, St{\'e}phane},
+     TITLE = {A wavelet tour of signal processing},
+   EDITION = {Third},
+      NOTE = {The sparse way,
+              With contributions from Gabriel Peyr{\'e}},
+ PUBLISHER = {Elsevier/Academic Press, Amsterdam},
+      YEAR = {2009},
+     PAGES = {xxii+805},
+      ISBN = {978-0-12-374370-1},
+   MRCLASS = {94A12 (94-01 94-02)},
+  MRNUMBER = {MR2479996},
+}
+
+
+@book {Ouvrard08,
+    AUTHOR = {Ouvrard, Jean-Yves},
+     TITLE = {Probabilités : Tome 1, Licence - CAPES},
+    SERIES = {Enseignement des mathématiques},
+   EDITION = {2},
+ PUBLISHER = {Cassini},
+      YEAR = {2008},
+      ISBN = {284225130},
+}
+
+@book {Ouvrard07,
+    AUTHOR = {Ouvrard, Jean-Yves},
+     TITLE = {Probabilités : Tome 2, Licence - CAPES},
+    SERIES = {Enseignement des mathématiques},
+   EDITION = {2},
+ PUBLISHER = {Cassini},
+      YEAR = {2007},
+      ISBN = {2842250869},
+}
+
+
+
+@book {Robert_Casella04,
+    AUTHOR = {Robert, Christian P. and Casella, George},
+     TITLE = {Monte {C}arlo statistical methods},
+    SERIES = {Springer Texts in Statistics},
+   EDITION = {2},
+ PUBLISHER = {Springer-Verlag},
+   ADDRESS = {New York},
+      YEAR = {2004},
+     PAGES = {xxx+645},
+      ISBN = {0-387-21239-6},
+   MRCLASS = {62-01 (60J10 62F15 65Cxx)},
+  MRNUMBER = {MR2080278 (2005d:62006)},
+MRREVIEWER = {Petru P. Blaga},
+}
+
+
+@book {Rudin87,
+    AUTHOR = {Rudin, Walter},
+     TITLE = {Real and complex analysis},
+   EDITION = {Third},
+ PUBLISHER = {McGraw-Hill Book Co.},
+   ADDRESS = {New York},
+      YEAR = {1987},
+     PAGES = {xiv+416},
+      ISBN = {0-07-054234-1},
+   MRCLASS = {00A05 (26-01 30-01 46-01)},
+  MRNUMBER = {MR924157 (88k:00002)},
+}
+
+
+@book {Shao05,
+    AUTHOR = {Shao, Jun},
+     TITLE = {Mathematical statistics: exercises and solutions},
+ PUBLISHER = {Springer},
+   ADDRESS = {New York},
+      YEAR = {2005},
+     PAGES = {xxviii+359},
+      ISBN = {978-0387-24970-4; 0-387-24970-2},
+   MRCLASS = {62-01 (62F03 62F10 62F25 62G05)},
+  MRNUMBER = {MR2141827 (2006b:62002)},
+MRREVIEWER = {Jon Stene},
+}
+
+
+@book {Silverman86,
+    AUTHOR = {Silverman, B. W.},
+     TITLE = {Density estimation for statistics and data analysis},
+    SERIES = {Monographs on Statistics and Applied Probability},
+ PUBLISHER = {Chapman \& Hall},
+   ADDRESS = {London},
+      YEAR = {1986},
+     PAGES = {x+175},
+      ISBN = {0-412-24620-1},
+   MRCLASS = {62G05},
+  MRNUMBER = {MR848134 (87k:62074)},
+MRREVIEWER = {David W. Scott},
+}
+
+	
+
+@book {Tsybakov04,
+    AUTHOR = {Tsybakov, Alexandre B.},
+     TITLE = {Introduction \`a l'estimation non-param\'etrique},
+    SERIES = {Math\'ematiques \& Applications (Berlin) [Mathematics \&
+              Applications]},
+    VOLUME = {41},
+ PUBLISHER = {Springer-Verlag},
+   ADDRESS = {Berlin},
+      YEAR = {2004},
+     PAGES = {x+175},
+      ISBN = {3-540-40592-5},
+   MRCLASS = {62-01 (62G05 62G07 62G08 62G20)},
+  MRNUMBER = {MR2013911 (2005a:62007)},
+MRREVIEWER = {Walter Schlee},
+}

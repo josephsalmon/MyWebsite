@@ -1,0 +1,35 @@
+---
+title: "Welcome to Donadas Brutas!"
+description: "Let's start blogging here, we'll see how it goes..."
+date: "2024-09-01"
+categories:
+  - news
+image: Bezier_good.gif
+reference-location: margin
+draft: false
+title-block-banner: hello-world-bg.jpg
+
+format:
+  html:
+    include-before-body: ../../html/margin_image.html
+    include-after-body: ../../html/blog_footer.html
+---
+
+In this blog, I intend to talk about things I like, powered by Quarto, Python, and a bit of Observable for some visualizations.
+You can expect math, stats, machine learning, biking and whatever I feel like sharing.
+And sometimes, I will also share things  just because I find them nice...
+
+
+I shall also mention
+
+- [Emil Hvitfeldt's blog](https://emilhvitfeldt.com/blog)
+- [Freakonometrics](freakonometrics.hypotheses.org)
+- [ploum.net](ploum.net)
+
+who are all great sources of inspiration.
+<!-- 
+<div style="text-align: center">
+<a href="https://github.com/josephsalmon/Tweets/tree/master/Spline-ish">
+  <img src="Bezier_good.gif" width=95% loop=infinite>
+</a>
+</div> -->

@@ -1,0 +1,59 @@
+---
+title: HMMA237 - Advanced time series (2018-2019)
+description: "Time series and around, a bit of splines and other things "
+categories: [statistics, filtering, dynamic programming, splines]
+image: "images/splines.svg"
+reference-location: document
+fig-cap-location: bottom
+draft: false
+
+# title-block-banner: hello-world-bg.jpg
+
+format:
+  html:
+    include-before-body: ../html/margin_image.html
+    include-after-body: ../html/blog_footer.html
+    code-fold: true
+---
+
+
+
+This is an undergraduate course (in French!) introducing advanced
+
+
+## Syllabus:
+[version 2018-2019](enseignement/Montpellier/HMMA237/syllabus_HMMA237_18_19.pdf)
+
+
+## Notes de cours:
+
+1. [Introduction.pdf](enseignement/Montpellier/HMMA237/Introduction.pdf)
+
+1. [Ridge.pdf](enseignement/Montpellier/HMMA237/Ridge.pdf)
+
+1. [Filtrage.pdf](enseignement/Montpellier/HMMA237/Filtrage.pdf)
+
+1. [Kalman.pdf](enseignement/Montpellier/HMMA237/Kalman.pdf)
+
+1. [ProgrammationDynamique.pdf](enseignement/Montpellier/HMMA237/ProgrammationDynamique.pdf)
+
+1. [DetectionRuptures.pdf](enseignement/Montpellier/HMMA237/DetectionRuptures.pdf)
+
+1. [Splines.pdf](enseignement/Montpellier/HMMA237/Splines.pdf)
+
+## Travaux dirigés:
+
+1. [TD1-Woodbury.pdf](enseignement/Montpellier/HMMA237/TD1-Woodbury.pdf)
+
+1. [TD2-Kalman.pdf](enseignement/Montpellier/HMMA237/TD2-Kalman.pdf)
+
+1. [TD3-ProgrammationDynamique.pdf](enseignement/Montpellier/HMMA237/TD3-ProgrammationDynamique.pdf)
+
+## Exemple de projet LaTeX:
+
+Fichier pour la partie LaTeX du cours: [latex-homework.zip](enseignement/Montpellier/HMMA237/latex-homework.zip)
+
+
+## Plus d'information et quelques sources de données:
+
+- [Forecasting: Principles and Practice, by Rob J Hyndman and George Athanasopoulos](https://otexts.com/fpp2/)

@@ -1,0 +1,55 @@
+---
+title: "Donadas Brutas"
+author: ""
+title-block-banner: false
+page-layout: full
+format:
+  html:
+    html-math-method: katex
+description-meta: "Welcome to my blog, I’m thrilled to welcome you! Here, you will find a collection of articles on a wide variety of topics. Take a look around and let me know what you think!"
+
+listing:
+  - id: posts_2024
+    contents:
+      # - "laptop-mic-obs/index.qmd"
+      - "softmax/index.qmd"
+      - "latex/index.qmd"
+      - "inflation/index.qmd"
+      - "hello-world/index.qmd"
+    sort: "date desc"
+    template: ../html/blog/listing.ejs
+    categories: true
+  # - id: posts_2022
+  #   contents:
+  #     - "hello-world/index.qmd"
+  #   sort: "date desc"
+  #   template: ../html/blog/listing.ejs
+
+toc-title: Year
+toc-location: right
+date-format: "MMMM D, YYYY"
+image: ""
+code-tools: false
+comments: false
+---
+
+Welcome to my blog, `Donatas Brutas`. Any kind of feedback is welcome, thanks for your interest and time.
+
+## 2024
+
+:::{#posts_2024}
+:::
+
+<!-- ## 2023
+
+:::{#posts_2023}
+:::
+
+## 2022
+
+:::{#posts_2022}
+::: -->
+
+---
+
+The blog post listing is based on the website source of [Marvin Schmitt](https://www.marvinschmitt.com), itself inspired by [Andrew Heiss](https://www.andrewheiss.com/), who has put together an incredible listing template under CC-BY-SA 4.0 license. Thanks to both!
