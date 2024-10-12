@@ -1,263 +1,32 @@
 ---
 title: "Talks"
-author: ""
-title-block-banner: false
-page-layout: full
-format:
-  html:
-    html-math-method: katex
-description-meta: "You will find in this section a list of my talks and presentations, most of them with slides, possibly more."
+title-block-banner: "../img/bg_pine_trees.jpg"
 
 listing:
-  - id: posts_2024
+  - id: post_2024
     contents:
       - "metadata.yml"
+    feed: true
+    # contents: posts
     sort: "date desc"
     template: ../html/blog/listing.ejs
+    type: grid
+    grid-columns: 4
+    # image-height: 130px
     categories: true
+    image-height: 95%
 
+page-layout: full
 toc-title: Year
 toc-location: right
-date-format: "MMMM D, YYYY"
-image: ""
+data-format: "MMMM D, YYYY"
 code-tools: false
 comments: false
+
+# image: profile_hex.jpg
+# header-includes: >
+#   <link rel="stylesheet" href="listing-default.css">
+# resources:
+#   - listing-default.css
 ---
 
-Highlighted talks and presentations I gave in the past years. You can find the full list of my talks at the bottom of the page.
-
-
-
-:::{#posts_2024}
-:::
-
-
-
-- [Lund University](https://www.lusem.lu.se/) (15/04/2024) "Citizen science for plant identification: insights from Pl@ntnet" [slides](talks/beamer_js_lund.pdf)
-
-- [TSE Seminar](https://indico.math.cnrs.fr/category/474/) (30/11/2023) "Supervised learning by crowdsourcing" [slides-part 1](talks/intro-crowdsourcing1.pdf), [slides-part 2](talks/intro-crowdsourcing2.pdf)
-
-- [IMT Seminar](https://indico.math.cnrs.fr/category/474/) (29/11/2022) "Improve learning combining crowdsourced labels by weighting Areas Under the Margin" [slides](talks/slides_IMT2022.pdf)
-
-- [Learning and Optimization in Luminy](https://www.cirm-math.fr/Schedule/display.php?id_renc=2551) (5/10/2022) "Stochastic smoothing of the top-K calibrated hinge loss for deep imbalanced classification" [slides](talks/pres_cirm2022.pdf)
-
-- [Workshop New Trends in Statistical Learning II at Porquerolles](https://irmar.univ-rennes1.fr/seminars?f%5B0%5D=seminar_type%3A240) (16/06/2022) "Stochastic smoothing of the top-K calibrated hinge loss for deep imbalanced classification" [slides](talks/pres_porquerolles.pdf)
-
-
-- [Séminaire de l'équipe de Statistique de l'IRMAR](https://irmar.univ-rennes1.fr/seminars?f%5B0%5D=seminar_type%3A240) (20/05/2022) "Stochastic smoothing of the top-K calibrated hinge loss for deep imbalanced classification" [slides](talks/pres.pdf)
-
-- [LSE Data Science Seminar (London, UK)](https://www.lse.ac.uk/Statistics/Seminars/Data-Science-Seminar-Series) (07/02/2022), "Hyperparameter selection
-for high dimensional sparse learning" [slides](talks/LSE2022.pdf)
-
-- [Colloque de lancement MIPS / 10èmes Journées Scientifiques du LabEx NUMEV (Montpellier, France)](https://muse.edu.umontpellier.fr/2021/10/18/colloque-de-lancement-mips-10emes-journees-scientifiques-du-labex-numev/) (08/11/2021), "Implicit differentiation for fast hyperparameter selection in non-smooth convex learning" [slides](talks/MIPS_JS.pdf)
-
-- [Machine Learning seminar at Telecom Paris (Paris, France)](https://www.telecom-paris.fr/fr/recherche/laboratoires/laboratoire-traitement-et-communication-de-linformation-ltci/les-equipes-de-recherche/signal-statistique-et-apprentissage-s2a/orientations/apprentissage-statistique) (08/04/2021), "Implicit differentiation for fast hyperparameter selection in non-smooth convex learning" [slides](talks/sparse_ho_long_js.pdf)
-
-- [Journée Scientifique IA et Biodiversité (CEMEB, Montpellier, France)](https://www.labex-cemeb.org/fr/actualites/journee-scientifique-ia-et-biodiversite-30-mars-2021) (30/03/2021), "Structured linear models: contributions from statistics and optimization" [slides](talks/cemeb_js.pdf)
-
-- [GdR MIA Thematic day on Non-Convex Sparse Optimization (Toulouse, France)](https://www.irit.fr/~Emmanuel.Soubies/Docs/Thematic_Day_MIA_09-10-2020.pdf) (09/10/2020), "Screening Rules for Lasso with Non-Convex Sparse Regularizers" [slides](talks/screening_nncvx.pdf)
-
-- [Mathematical Methods of Modern Statistics 2 (Luminy, France)](https://conferences.cirm-math.fr/virtualconference-2146.html) (15/06/2020), "The smoothed multivariate square-root Lasso: an optimization lens on concomitant estimation" [slides](talks/bounds_slides_CIRM2020.pdf), [video](https://www.youtube.com/watch?time_continue=4&v=w21qIzGb0eM&feature=emb_logo)
-
-- [Fast-big Workshop (Paris, Inria)](https://project.inria.fr/fastbig/fast-big-worshop-january-10th-2020-paris/) (10/01/2020), "Correlated and repeated measurements with the smoothed Multivariate square-root Lasso"
-[slides](talks/seminar_JS_IMT.pdf)
-
-- [Séminaire de Statistique (Toulouse, IMT)](https://www.math.univ-toulouse.fr/spip.php?rubrique54&lang=fr) (26/11/2019), "Correlated and repeated measurements with the smoothed Multivariate square-root Lasso"
-[slides](talks/seminar_JS_IMT.pdf)
-
-- [Journée calcul et automatisation avancée (Univ. Montpellier)](https://www.msoc.fr/journee-automatisation-avancee/) (14/11/2019), "Fast solver for Sparse Generalized Linear Models"
-[slides](talks/MIPS-MathEntreprise2019.pdf)
-
-- [Guanajuato, CIMAT (Mexico)](https://pcc.cimat.mx/) (04/11/2019), "Correlated and repeated measurements with the smoothed Multivariate square-root Lasso"
-[slides](talks/seminar_JS_CIMAT.pdf)
-
-- [I Taller Interinstitucional de Ciencia de Datos e Inteligencia Artificial, UDLAP (Puebla)](https://tallerdatos.udlap.mx/) (28/10/2019), "Coordinate descent (and beyond) for sparse learning optimization" [slides](talks/sparse_learning.pdf)
-
-- [Seminar, UNAM (Mexico)](http://www.dpye.iimas.unam.mx/) (28/10/2019), "Concomitant Lasso with Repetitions (CLaR): beyond averaging multiple realizations of heteroscedastic noise"
-[slides](talks/seminar_UNAM.pdf)
-
-- [Colloque: "Montpellier : Berceau de la data science"](https://mtp-datascience.sciencesconf.org/) (19/05/2019), "Safe Grid Search with Optimal Complexity"
-[slides](talks/slides.pdf)
-
-- [Inria Lille](seminaire.univ-lille1.fr/node/371) (24/05/2019), "Safe screening rules to speed-up sparse regression solvers"
-[slides](talks/GAP_Safe_lille.pdf)
-
-- [Université de Montpellier: formation Meso@LR](https://meso-lr.umontpellier.fr/formations/) (21/05/2019), "Optimization: (Block) coordinate descent for neuro-imaging"
-[slides](talks/sparsemodels_motivation.pdf)
-
-- [Prediction and Analysis of Structured AnD Heterogeneous DAta workshop](http://www.lpsm.paris/pageperso/sangnier/pasadena.html)
-"Concomitant Lasso with Repetitions (CLaR): beyond averaging multiple realizations of heteroscedastic noise" (15/02/2019)
-
-- [Université de Montpellier: Séminaires EPS](https://imag.edu.umontpellier.fr/seminaires/seminaires-eps/) (14/01/2019), "Celer: a Fast Solver for the Lasso with Dual Extrapolation"
-[slides](talks/horizonmath.pdf)
-
-- [Université Paris-Sud](http://www.u-psud.fr/fr/index.html) (04/12/2018), "Generalized Concomitant Multi-Task Lasso for sparse multimodal regression"
-[slides](talks/seminar_JS_orsay.pdf)
-
-- [Horizon Maths 2018 : Intelligence Artificielle](https://www.sciencesmaths-paris.fr/fr/horizon-maths-2018-intelligence-artificielle-957.htm)   (23/11/2018), Celer: a fast Lasso solver with dual
-extrapolation" [slides](talks/horizonmath.pdf)
-
-- [University of British Columbia (Vancouver)](https://www.cs.ubc.ca/)   (07/17/2018), "Celer: a fast Lasso solver with dual extrapolation"
-[slides](talks/UBC.pdf)
-
-- [USC Probability and Statistics Seminars](https://dornsife.usc.edu/probability-and-statistics-seminars/spring-2018/) (03/23/2018) "Generalized Concomitant Multi-Task Lasso for sparse multimodal regression" [slides](talks/seminar_JS.pdf)
-
-
-- [ML+TOPS Seminar - University of Washington](https://www.cs.washington.edu/research/ml/seminars) (02/27/2018) "Generalized Concomitant Multi-Task
-Lasso for sparse multimodal regression" [slides](talks/seminar_JS.pdf)
-
-- Séminaire de probabilités de l'ENS Lyon (29/11/2017) "Generalized Concomitant Multi-Task Lasso for sparse multimodal regression" [slides](talks/seminar_ens_proba.pdf)
-
-- Séminaire d'informatique de l'ENS Lyon (29/11/2017) "(Gap) Safe screening rules to speed-up sparse regression solvers" [slides](talks/GAP_Safe_Lyon.pdf)
-
-- Habilitation à dirigée des recherches, HDR, (29/06/2017)
-[slides](talks/hdr.pdf)
-
-- [France / Japan Machine Learning Workshop](http://fjml.marcocuturi.net/)
-Paris, France, September, 2017
-"From safe screening rules to working sets for faster Lasso-type solvers"
- ([slides](talks/France-Japan-JS.pdf))
-
-- [University of Washington, Statistics Seminar](http://map5.mi.parisdescartes.fr/en/seminaires/semin-stats/)  (19/05/2017) "Fast solvers for sparse multi-task problems", [slides](talks/seminaire-p5_js.pdf)
-
-- [Séminaire de statistiques du MAP5](http://map5.mi.parisdescartes.fr/en/seminaires/semin-stats/) (21/04/2017), "Fast solvers for sparse multi-task problems", [slides](talks/seminaire-p5_js.pdf)
-
-- [Séminaire de calcul scientifique du CERMICS](http://cermics.enpc.fr/cermics-seminaires/seminaires/cs/seminaire.html), (6/01/2017), "GAP safe screening rule for sparsity enforcing penalties", [slides](talks/GAP_Safe.pdf)
-
-- [ICCOPT 2016](http://www.iccopt2016.tokyo/)  Tokyo, Japan, August, 2016,
-"GAP safe screening rule for sparsity enforcing penalties"
-
-- Machine Learning Seminar du Nagoya Institute of Technology (4/08/2016) "Efficient Smoothed Concomitant Lasso estimation for high dimensional regression"
-
-- [66th Workshop "Advances in Convex Analysis and Optimization"](http://www.dma.unina.it/CAO2016/listofparticipants.html)
-Erice, Italy, July, 2016
-"GAP safe screening rule for sparsity enforcing penalties"
-
-- [SIAM Conference on Imaging Science 2016](http://meetings.siam.org/sess/dsp_programsess.cfm?SESSIONCODE=60147)
-Albuquerque, New Mexico,  May, 2016
-"GAP safe screening rule for sparsity enforcing penalties"
-
-- [Séminaire Probabilités et Statistiques (IMB)](https://www.math.u-bordeaux.fr/imb/seminaire-probabilites-et-statistiques)  (14/04/2016), "GAP safe screening rule for sparsity enforcing penalties" [slides](talks/GAP_Safe.pdf)
-
-- [Séminaire de Statistique de l'IRMAR](https://perso.univ-rennes1.fr/bernard.delyon/seminaire/seminaires.html), (25/03/2016), "GAP safe screening rule for sparsity enforcing penalties", [slides](talks/GAP_Safe.pdf)
-
-- [Séminaire de Machine Learning (CMLA)](https://www.math.u-bordeaux.fr/imb/seminaire-probabilites-et-statistiques), (29/02/2016), "GAP safe screening rule for sparsity enforcing penalties" [slides](talks/GAP_Safe.pdf)
-
-- Journée Statistique/Apprentissage à Paris-Saclay
-Bures-sur-Yvette, IHÉS, January, 2016
-"GAP safe screening rule for sparsity enforcing penalties"
-
-
-- [Séminaire de Statistique du Crest](http://http://certis.enpc.fr/~dalalyan/seminar.html) (11/05/2015)
-"Mind the duality gap: safer rules for the Lasso"
-
-- [PRISM Seminar](http://www.prism.uvsq.fr/~ystr/index.html)  (03/06/2015), "Mind the duality gap: safer rules for the Lasso"
-
-- [Taller-Escuela de Procesamiento de Imagenes (PI'15) y de Reconocimiento Estadistico de Patrones (SPR'15)](http://pi2015.eventos.cimat.mx/)
-Guanajuato, November, 2015,
-"Convex optimization, sparsity and regression in high dimension", [slides](talks/CIMAT_tutorial_15.pdf), [video](https://www.youtube.com/watch?v=uA-9x2dqQyE)
-"Mind the duality gap: safer screening rules for the Lasso and its variants", [slides](talks/GAP_Safe.pdf), [video](https://www.youtube.com/watch?v=PjvNnnjs-HA)
-
-- [NIPS 2014](http://nips.cc/Conferences/2014/)
-Montréal, December, 2014
-"Probabilistic Low-rank Matrix Completion on Finite Alphabet"
-
-- [Bioimage Informatics conference](http://www.vibconferences.be/event/bioimage-informatics)
- Louvain, 8 Octobre - 10 Octobre 2014
-"Adaptive Validation, a possible alternative to Cross-Validation"
-talks/Bioimage_salmon.pdf  [slides]
-
-- [Journées MAS 2014](http://www.math.univ-toulouse.fr/MAS2014/?q=node/7)
- Toulouse,  August, 2014
-"Adaptive one-bit matrix completion"
-
-- [46èmes Journées de Statistique](http://jds2014.sfds.asso.fr/?lang=en)
- Rennes, June 2014, "Adaptive one-bit matrix completion"
-
-- [Apprentissage de représentations et traitement du signal (GdR ISIS)](http://gdr-isis.fr/index.php?page=reunion&idreunion=234)
- Paris, february, 2014,
- "Poisson noise reduction with non-local PCA" [slides](talks/SIP.pdf)
-
-- [UIUC CSL Communications seminar](http://csl.illinois.edu/), Urbana (03/09/2013), "Learning Heteroscedastic Models by Convex Programming under
-Group Sparsity" [slides](talks/ScHeDs.pdf)
-
-- [International Conference on Machine Learning (ICML 2013)](http://icml.cc/2013) Atlanta, June, 2013
-"Learning Heteroscedastic Models by Convex Programming under Group Sparsity"
-
-- [École d'été de Peyresq 2013](http://www.gretsi.fr/peyresq13/index.php)
-Peyresq, June, 2013, "Learning Heteroscedastic Models by Convex Programming under Group Sparsity", [slides](http://perso.telecom-paristech.fr/~hachem/peyresq2013/salmon.pdf)
-
-- [RT9; Informatique Fondamentale et Mathématiques Appliquées](http://rth9.wp.mines-telecom.fr/journees/1er-juillet-2013/), (01/07/2013),
-"Learning Heteroscedastic Models by Convex Programming under
-Group Sparsity", [slides](http://rth9.wp.mines-telecom.fr/files/2013/04/LassoSOCP.pdf)
-
-- [Duke ECE seminar](http://stat.ethz.ch/events/research_seminar), Durham (13/06/2013), "Heteroscedastic regression in high dimension with group sparsity", [slides](talks/ScHeDs.pdf)
-
-- [SMAI 2013](http://icml.cc/2013)
-Seignosse,  May,  2013, "Learning Heteroscedastic Models by Convex Programming under Group Sparsity"  [slides](talks/ScHeDs.pdf)
-
-- [Séminaire parisien de Statistiques](http://stat.ethz.ch/events/research_seminar) (IHP), Paris (11/02/2013), "Regression hétéroscedastique en grande dimension" [slides](talks/ScHeDs.pdf)
-
-- [NGA Academic Research Symposium & Workshops](https://www.signup4.net/public/ap.aspx?EID=NGAA13E&OID=50)
-Washington DC, August, 2012, "Poisson noise reduction with non-local PCA" [poster](talks/ICASSP12.pdf)
-
-- [Solar Information Processing (SIPWork VI)](http://www.sipwork.org/sipworkvi/)
-Bozeman, MT, August, 2012, "Poisson noise reduction with non-local PCA"  [slides](talks/SIP.pdf)
-
-- [Seminar for Statistics, ETH](http://stat.ethz.ch/events/research_seminar), Zurich (06/29/2012), "Poisson noise reduction with non-local PCA"
-
-- [Statistical Signal Processing Workshop (SSP 2012)](http://www.icassp2012.org/)
-Ann Harbour,  August, 2012, "A two-stage denoising filter: the preprocessed Yaroslavsky filter" [poster](talks/SSP12.pdf)
-
-- [SIAM Conference on Imaging Science 2012](http://www.siam.org/meetings/is12/)
-Philadelphia, May, 2012, "Poisson noise reduction with non-local PCA", [slides](talks/SIAM12.pdf)
-
--  [International Conference on Acoustics, Speech and Signal Processing (ICASSP 2012)](http://www.icassp2012.org/)
-Kyoto,  March, 2012, "Poisson noise reduction with non-local PCA" [poster](talks/ICASSP12.pdf)
-
-- [Rencontres de Statistique Mathématique](http://www.cirm.univ-mrs.fr/index.html/spip.php?rubrique2&EX=info_rencontre&annee=2012&id_renc=809&lang=fr), Luminy, December, 2012, "Oracle inequalities and minimax rates for non-local means and related adaptive kernel-based methods"
-
-- [Conference on Learning Theory (2011)](http://colt2011.sztaki.hu/index.html)
-Budapest, July, 2011, "Optimal aggregation of affine estimators" [slides](talks/salmon_colt11.pdf)
-
-- [Stochastic seminar, Georgia Tech](http://www.math.gatech.edu/seminars-colloquia/series?tid=142), Atlanta (09/01/2011)
-"Optimal Aggregation for Affine Estimators" [slides](talks/georgia_tech_2011.pdf)
-
-- [Séminaire de Probabilités et Statistiques, Laboratoire Paul Painlevé](http://math.univ-lille1.fr/seminaire/), Lille (16/02/2011), "Agrégation d'estimateurs affines pour la régression" [slides](talks/toulouse_2011.pdf)
-
-- Groupe de travail Modélisation numérique et Images, MAP5, (28/01/2011)
- "NL-Means, reprojections et patchs adaptatifs" [slides](talks/map5.pdf)
-
-- [Séminaire de Probabilités et Statistiques d'Angers](http://math.univ-angers.fr/seminaires/seminaires.php?groupe=probastat&periode=annee&lang=fr), (17/01/2011), "Agrégation d'estimateurs affines pour la régression" [slides](talks/toulouse_2011.pdf)
-
-- [Séminaire de Statistique de Toulouse](http://www.math.univ-toulouse.fr/1-17720-Detail-d-un-seminaire.php?id=7) (11/01/2011), "Agrégation d'estimateurs affines pour la régression" [slides](talks/toulouse_2011.pdf)
-
-- [Séminaire de Statistique du Crest](http://alquier.ensae.net/semstatcrest/)  (08/11/2010), "Inégalités d'oracle exactes pour des estimateurs affines"
-
-- [International Conference on Image Processing (ICIP 2010)](http://www.icip2010.org/) Hong Kong,  26 September, 2009
-, "From Patches to Pixels in Non-Local methods: Weighted-Average Reprojection", [poster](talks/ICIP2010.pdf)
-
-- [Journées MAS 2010](http://www.math.u-bordeaux1.fr/MAS10/)
-Bordeaux, August 2010, "Agrégation d'estimateurs pour la régression hétéroscédastique", [slides](talks/salmon_mas10.pdf)
-
-- [Statistical Models for Images](http://www.mi.parisdescartes.fr/~moisan/luminy10/index.php) Luminy, May, 2010, "Reprojections for Non-Local Means" [slides](talks/CIRM_mai10.pdf)
-
-- [Neuvième Colloque "Jeunes Probabilistes et Statisticiens"](http://math.univ-bpclermont.fr/~bahadora/JPS/WEB/index.htm)
-Le Mont-Dore, May, 2010, "Méthodes à Patchs pour le débruitage d'images numériques" [slides](http://math.univ-bpclermont.fr/~bahadora/JPS/WEB/EXPOSES/Salmon.pdf)
-
-- [GREYC-Séminaire Image, Université de Caen](http://www.greyc.unicaen.fr/dejafait/image), (10/12/2009), "NL-Means et procédures d'agrégation" (talks/greyc09.pdf)[slides]
-
-- [International Conference on Image Processing (ICIP 2009)](http://www.icip09.org/)
-Le Caire, November, 2009 "NL-Means and  Aggregation Procedures", [slides](talks/ICIP2009.pdf)
-
--  [3èmes Rencontres de Jeunes Statisticiens](http://jeunesstatisticiens.univ-tlse1.fr/)
-Aussois, August, 2009 "Agrégation d'estimateurs pour le débruitage d'images" [slides](talks/aussois09.pdf)
-
-- [41èmes Journées de Statistique](http://www.sm.u-bordeaux2.fr/JDS2009/index.html)
-Bordeaux, May, 2009, "Agrégation d'estimateurs pour le débruitage d'images"
-
-- [Groupe de travail des thésards du LPMA](http://www.proba.jussieu.fr/~gtt/), (26/02/2009), "Agrégation d'estimateur pour le débruitage d'image"
-
-- Groupe de travail des thésards et jeunes docteurs, Université Paris 5 (17/02/2009), "Agrégation d'estimateurs pour le débruitage d'image"
-
-- [Groupe de travail des thésards du LPMA](http://www.proba.jussieu.fr/~gtt/)  (17/04/2008), "Survol sur l'agrégation d'estimateurs en lien avec les NL-Means"

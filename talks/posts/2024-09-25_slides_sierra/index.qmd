@@ -1,6 +1,6 @@
 ---
-description: |
-  Talk on Pl@ntnet and questions on citizen science
+# description: |
+#   Talk on Pl@ntnet and questions on citizen science
 date: "2024-09-25"
 image: "Celting_knot_color.svg"
 image-alt: "Celting knot with partial coloring"
@@ -453,7 +453,7 @@ $\implies$ Pl@ntNet-300K [@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean
 
 
 <!-------------------------------------------------------------------------- -->
-### {{<iconify fluent:food-20-filled>}} Food bias 
+### {{<iconify fluent:food-20-filled>}} Food bias
 <hr>
 
 <br>
@@ -576,7 +576,7 @@ Sample at genus level to preserve intra-genus ambiguity: use **hierarchical stru
 </center>
 
 <!-------------------------------------------------------------------------- -->
-### {{<iconify icon-park-solid:chart-histogram-two>}} Species distribution & long tail 
+### {{<iconify icon-park-solid:chart-histogram-two>}} Species distribution & long tail
 <hr>
 
 :::: {.columns style='display: flex !important'}
@@ -817,7 +817,7 @@ $$
 
 <span style="color:#047C90;">✓</span> adapted for any number of users
 
-<span style="color:#047C90;">✓</span> efficient, few labelers sufficient [say < 
+<span style="color:#047C90;">✓</span> efficient, few labelers sufficient [say <
 5, @Snow_OConnor_Jurafsky_Ng08]
 
 <span style="color:red;">✗</span>  ineffective for borderline cases
@@ -926,7 +926,7 @@ $$
 
 ::: {.column width="60%"}
 
--  only the proportion of the weights matters   
+-  only the proportion of the weights matters
 
 :::
 
@@ -978,7 +978,7 @@ Two pillars for validating a label $\hat{y}_i$ for an image $x_i$ in Pl@ntNet :
 
 - **Expertise**: <span style="text-decoration: underline;">labels quality check</span>
 
-    keep images with label confidence above a threshold $\theta_{\text{conf}}$, 
+    keep images with label confidence above a threshold $\theta_{\text{conf}}$,
     validate $\hat{y}_i$ when
     $$
     \boxed{\mathrm{conf}_{i}(\hat{y}_i) > \theta_{\text{conf}}}
@@ -991,7 +991,7 @@ Two pillars for validating a label $\hat{y}_i$ for an image $x_i$ in Pl@ntNet :
 
 - **Consensus**: <span style="text-decoration: underline;">labels agreement check</span>
 
-    keep images with label accuracy above a threshold $\theta_{\text{acc}}$, validate $\hat{y}_i$ when 
+    keep images with label accuracy above a threshold $\theta_{\text{acc}}$, validate $\hat{y}_i$ when
     $$
     \boxed{\mathrm{acc}_{i}(\hat{y}_i) > \theta_{\text{acc}}}
     $$
@@ -1071,7 +1071,7 @@ Two pillars for validating a label $\hat{y}_i$ for an image $x_i$ in Pl@ntNet :
 
 ![](images/histplot_acc_switch.svg){.fragment width=84% fragment-index=5}
 
-::: 
+:::
 
 :::
 
@@ -1179,7 +1179,7 @@ $$
 
 ![](images/sankey_v2.svg){width=75%}
 
-**Pl@ntNet South Western European flora** 
+**Pl@ntNet South Western European flora**
 
 [https://zenodo.org/records/10782465](https://zenodo.org/records/10782465)
 <!-------------------------------------------------------------------------- -->

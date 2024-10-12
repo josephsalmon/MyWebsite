@@ -18,15 +18,29 @@ comments: false
 ---
 
 
+You want to join?
+I am always looking for outstanding and highly motivated people to work (as intern, Ph.D. student, post-doctorate or research engineer) on machine learning, optimization and statistics. More precisely, my team is are working on:
+
+- citizen science and crowdsourcing
+- high dimensional / robust statistics, variable selection, sparsity
+- optimization for machine learning (including federated learning, privacy, etc.)
+
+The application process is light:
+
+- Email a CV, a transcript of recent grades, and explain in a short paragraph why you are interested to join.
+- Upon interest, I will ask two reference letters (one only for interns or Ph.D. students) to be sent directly to me.
+- At this stage an interview (possibly online) will be arranged to double-check your skills and profile compatibility.
+
+
 ## Post-docs
 - Jean-Baptiste Fermanian 2023-2024
 
 ## Ph.D. Students
+- [Theo Larcher](https://fr.linkedin.com/in/th%C3%A9o-larcher-3405a5147/en):
+co-supervised by [Alexis Jolly](http://www-sop.inria.fr/members/Alexis.Joly/wiki/pmwiki.php) 2024-2027?
 - [Antoine Simoes](https://fr.linkedin.com/in/antoine-simoes-4a2b67197): co-supervised by [Yohann de Castro](https://ydecastro.github.io/) 2022-2025?
 
 <!-- ## Engineers -->
-
-
 
 ## Alumni
 - [Tanguy Lefort](https://tanglef.github.io/) [Ph.D. 2021-2024] co-supervised with [Benjamin Charlier](https://imag.umontpellier.fr/~charlier/index.php?page=index) and [Alexis Joly](http://www-sop.inria.fr/members/Alexis.Joly/wiki/pmwiki.php) (now post-doctorate at Inria Lille)

@@ -27,7 +27,7 @@ format:
       # chalkboard: true
       # self-contained: true
       # scrollable: true
-      theme: 
+      theme:
         - ../meds-slides-styles.scss
       html-math-method: mathjax
       include-in-header:
@@ -53,7 +53,7 @@ format:
       # footer: <span style="color:grey;float:left;margin-left:7%;"><em>{{< meta title >}}</em></span>
       # <span style="color:grey;float:right;margin-right:12%;">Séminaire de Culture Générale</span>
       transition: none
-      # fig-align: "center" 
+      # fig-align: "center"
       center: false
       #  16x9
       # width: 1120
@@ -64,7 +64,7 @@ format:
       controls: false
       code-annotations: select
       css: ../slides.css
-      incremental: false 
+      incremental: false
 
 editor:
   render-on-save: true

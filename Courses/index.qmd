@@ -12,6 +12,7 @@ format:
 toc-title: Year
 toc-location: right
 date-format: "MMMM D, YYYY"
+
 image: ""
 code-tools: false
 comments: false

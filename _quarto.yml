@@ -7,13 +7,12 @@ project:
 
   resources:
     - "img/**"
-    # - "*.ipynb"
-    - "Courses/enseignement/**"
+    - "Courses/enseignement/"
     - "assets/**"
     - "html/**"
-    - "sitemap.xml"
-    - "_redirects"
-    - "speaking/pdf/**"
+  render:
+    - "*.qmd"
+    - "!Courses/*.ipynb"
 
   preview:
     port: 22222

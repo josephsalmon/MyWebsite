@@ -87,7 +87,7 @@ landing_page_styles.css">
 
 
 :::{#contact}
-## Contact / positions
+## Contact
 
 If you want to connect please reach out via email
 <a href="mailto:joseph.salmon@inria.fr"><span style='text-decoration: underline; text-decoration-color: #f08f04ff;'>joseph.salmon@inria.fr</span></a>
@@ -100,19 +100,6 @@ Université de Montpellier</br>
 Place Eugène Bataillon</br>
 34095 Montpellier Cedex 5</br>
 (office 415, building 9)</br>
-
-I am always looking for outstanding and highly motivated people to work (as intern, Ph.D. student, post-doctorate or research engineer) on machine learning, and more precisely on:
-
-- citizen science and crowdsourcing
-- high dimensional / robust statistics, variable selection, sparsity
-- optimization for machine learning (including federated learning, privacy, etc.)
-
-The application process is light:
-
-- Email a CV, a transcript of recent grades, and explain in a short paragraph why you are interested to join.
-- Upon interest, I will ask two reference letters (one only for interns or Ph.D. students) to be sent directly to me.
-- At this stage an interview (possibly online) will be arranged to double-check your skills and profile compatibility.
-
 
 
 :::
