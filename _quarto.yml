@@ -10,6 +10,8 @@ project:
     - "Courses/enseignement/"
     - "assets/**"
     - "html/**"
+    - "code/**"
+
   render:
     - "*.qmd"
     - "!Courses/*.ipynb"
@@ -48,6 +50,8 @@ website:
         href: team/index.qmd
       - text: Blog
         href: blog/index.qmd
+      - text: Code
+        href: code_new/index.qmd
     right:
     - icon: github
       # text: Github

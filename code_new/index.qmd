@@ -1,0 +1,31 @@
+---
+title: Code
+toc: false
+author: ""
+title-block-banner: false
+page-layout: article
+format:
+  html:
+    html-math-method: katex
+
+
+toc-title: Year
+toc-location: right
+date-format: "MMMM D, YYYY"
+image: ""
+code-tools: false
+comments: false
+---
+
+Code is important in applied research. Here are some of the code I have written over the years.
+
+- [peerannot](https://peerannot.github.io/): a package to make transparent and reproducible comparisons between annotation algorithms, especially in the context of citizen science.
+- [OrganizationFiles](https://github.com/josephsalmon/OrganizationFiles): This repository provides some tools, advice and guidelines for researchers working in applied mathematics, statistics or machine learning.
+- [BenchOpt](https://benchopt.github.io/): a package to make transparent and reproducible comparisons between optimization algorithms
+- [PlantNet-300K](https://github.com/plantnet/PlantNet-300K): a subset of the [Pl@ntNet](https://plantnet.org/) database, with about 300k labeled images (plant species) and 1k classes. The dataset is available on [Zenodo](https://zenodo.org/records/5645731#.Yuehg3ZBxPY).
+- [Celer](https://mathurinm.github.io/celer/): a fast Lasso solver (associated ICML2018 paper "Dual Extrapolation for Faster Lasso Solvers"), [pdf](https://arxiv.org/abs/1802.07481), [slides](http://localhost/talks/UBC.pdf)
+- [sparse-ho](https://github.com/QB3/sparse-ho): a fast hyper-parameter package to select the best Lasso parameter efficiently (associated to ICML2020 paper "Implicit differentiation of Lasso-type models for hyperparameter optimization", [pdf](https://arxiv.org/pdf/2002.08943.pdf))
+- [matlab toolboxes](../code/index_codes.php) for statistics and image processing (this is legacy), I don't use Matlab anymore.
+
+
+More on my [Github Page](http://github.com/josephsalmon)

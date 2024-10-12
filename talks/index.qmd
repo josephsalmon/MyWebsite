@@ -13,7 +13,7 @@ listing:
     type: grid
     grid-columns: 4
     # image-height: 130px
-    categories: true
+    categories: true  
     image-height: 95%
 
 page-layout: full
