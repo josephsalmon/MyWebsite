@@ -58,6 +58,9 @@ website:
         href: blog/index.qmd
       - text: Code
         href: code_new/index.qmd
+      - text: Misc
+        href: misc/index.qmd
+
     right:
     - icon: github
       # text: Github

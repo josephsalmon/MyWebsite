@@ -1,0 +1,124 @@
+---
+title: Miscellaneous
+toc: false
+author: ""
+title-block-banner: "../img/bg_pine_trees.jpg"
+page-layout: article
+format:
+  html:
+    html-math-method: katex
+
+
+toc-title: Year
+toc-location: right
+date-format: "MMMM D, YYYY"
+image: ""
+code-tools: false
+comments: false
+---
+
+
+
+## Tips for young researchers on work organization
+- [Advice and guidelines for young researchers](https://github.com/josephsalmon/OrganizationFiles)
+
+
+
+## Personal visualization and math art
+
+- [Tweets: math art etc.](https://github.com/josephsalmon/Tweets/): this includes LaTeX templates/tips, Inkscape first steps, bibliographic help, etc.
+
+![Splines](https://raw.github.com/josephsalmon/Tweets/master/Spline-ish/my_art/a_la_harris_007.svg?sanitize=true "Splines"){ width=15% } ![Python scientific ecosystem](https://raw.github.com/josephsalmon/Tweets/master/Weird-Triangle/svg/Weird-Triangle_simple.svg?sanitize=true "Penrose Triangle"){ width=10% }
+![Penrose Triangle](https://raw.github.com/josephsalmon/Tweets/master/Weird-Triangle/svg/Weird-Triangle.svg?sanitize=true "Penrose Triangle"){ width=15% } ![Penrose Triangle](https://raw.github.com/josephsalmon/Tweets/master/Weird-Triangle/svg/Weird-Triangle_simple_nb.svg?sanitize=true "Penrose Triangle"){ width=10% }
+![Penrose Triangle](https://raw.github.com/josephsalmon/Tweets/master/Weird-Triangle/svg/Weird-Triangles_nb.svg?sanitize=true "Penrose Triangle"){ width=15% }
+
+![Islamic Art](https://raw.github.com/josephsalmon/Tweets/master/IslamicArt/svg/zellige.svg?sanitize=true "Islamic Art"){ width=15% }
+![Islamic Art](https://raw.github.com/josephsalmon/Tweets/master/IslamicArt/svg/zellige_color.svg?sanitize=true "Islamic Art"){ width=15% }
+![Islamic Art: Lotfallah Mosk](https://raw.github.com/josephsalmon/Tweets/master/IslamicArt/svg/Lotfallah_colored.svg?sanitize=true "Islamic Art: Lotfallah Mosk"){ width=15% }
+![Islamic Art: Lotfallah Mosk](https://raw.github.com/josephsalmon/Tweets/master/IslamicArt/svg/Lotfallah_nb.svg?sanitize=true "Islamic Art: Lotfallah Mosk"){ width=15% }
+![Ten Star](https://raw.github.com/josephsalmon/Tweets/master/IslamicArt/svg/ten_star_color_e.svg?sanitize=true "Ten Star"){ width=15% }
+
+
+- [Studio Ibbini](https://www.ibbini.com/gallery): traversing analog and digital to create works of extreme intricacy and precision, pushing the boundaries of materials in unusual ways. They reference historical pattern and ornament with a contemporary interpretation.
+
+## Conferences / Workshop organized
+
+- [Optimization for Machine Learning](https://conferences.cirm-math.fr/2133.html), March 2020
+
+- [Graph signals : learning and optimization perspectives](https://graph-sig-2019.sciencesconf.org/), May 2019
+
+- [ Workshop on Decentralized Machine Learning, Optimization and Privacy](https://team.inria.fr/magnet/workshop-on-decentralized-machine-learning-optimization-and-privacy/), September 2017
+
+## Latex
+
+- [Moosetex](http://www.math.u-bordeaux1.fr/~cdeledal/moosetex):
+Bored with the log system of Latex? Feed up with converting eps to pdf (and backward)? Need to clean project before commit in a control version system (like SVN or GIT).
+Then, I highly recommend using [Moosetex](http://www.math.u-bordeaux1.fr/~cdeledal/moosetex).
+Any Linux/Mac user might benefit from it.
+
+- [TeXtip](https://twitter.com/TeXtip)
+
+- Bibtex: [Tame the BeaST](http://www.lsv.ens-cachan.fr/~markey/BibTeX/doc/ttb_en.pdf) by Nicolas Markey
+
+- I used to enjoy [Sublime](https://www.sublimetext.com/) and [Latexing](https://packagecontrol.io/packages/LaTeXing) though I have now switched to [Visual Studio Code](https://code.visualstudio.com/) for Python and TeX.
+
+
+## Translation
+
+- Various languages (dictionnaries, conjugation, etc.): [Linguee](http://www.linguee.fr/), [Lexilogos](http://www.lexilogos.com/), and [urbandictionary](http://www.urbandictionary.com/)
+
+- A French/English translator: [Le grand dictionnaire terminologique](http://www.granddictionnaire.com/)
+
+- [Statitics glossary](http://isi.cbs.nl/glossary/)
+
+
+## Time zones
+
+- [Classic converter](https://www.timeanddate.com/worldclock/converter-classic.html)
+
+
+## Videos, courses, and lectures about mathematics
+
+- Mathematical Lectures at ENS (Paris): [Diffusions des savoirs](http://www.diffusion.ens.fr/index.php?res=themes&idtheme=30)
+
+- [A Convex Optimization course](http://www.stanford.edu/class/ee364a/videos.html) by Stephen P. Boyd
+
+- [Lectures on Machine Learning](http://videolectures.net/Top/Computer_Science/Machine_Learning/)
+
+- Feeling the fourth dimension with a movie: [www.dimensions-math.org](www.dimensions-math.org)
+
+## Art and mathematics
+- [Geometric Sculptures](http://bathsheba.com/) by Bathsheba Grossman
+
+- [Geometric Sculptures](http://www.georgehart.com/) by George Hart and explanation on [Rapid Prototyping](http://www.georgehart.com/rp/rp.html)
+
+- Mathematics through history: [Electronic Journal for History of Probability and Statistics](http://www.jehps.net/indexang.html)
+
+- Graphs for drawing: [graphpaper](https://incompetech.com/graphpaper/)
+
+## Statistics
+
+- [Freakonometrics](https://freakonometrics.hypotheses.org/)
+
+- Visualisation and Statistics: [Gapminder](http://www.gapminder.org/) and [Worldmapper](http://www.worldmapper.org/)
+
+
+## Cinema
+
+- [Sita Sings the Blues](http://www.sitasingstheblues.com/) (Creative Commons Attribution-Share Alike License)
+
+- [Archive.org](http://www.archive.org/details/feature_films): public domain movies
+
+- [openculture](http://www.openculture.com/) : discover Tarkovski's movies or good ol' Hitchcock's
+
+
+## Radio
+
+- [Sur les épaules de darwin](https://www.franceinter.fr/emissions/sur-les-epaules-de-darwin)
+
+
+
+## Ecology
+- [Pl@ntnet](https://plantnet.org/): Pl@ntnet is a citizen science project available as an app that helps you identify plants thanks to your pictures.
+.
+- [open-sciences-participatives](https://www.open-sciences-participatives.org/home/): "OPEN", le portail qui permet à tous de participer à l'observation de la biodiversité

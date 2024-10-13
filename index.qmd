@@ -12,21 +12,20 @@ format:
     from: markdown+emoji
     html-math-method: katex
 listing:
-  id: blog-listing
-  contents:
-    - "blog/softmax/index.qmd"
-    - "blog/latex/index.qmd"
-
-
-  sort: "date desc"
-  type: grid
-  max-items: 3
-  grid-columns: 3
-  fields: [image, date, title]
-
+  - id: blog-listing
+    contents:
+      - "blog/softmax/index.qmd"
+      - "blog/latex/index.qmd"
+    type: grid
+  - id : recent-publications
+    contents:
+      - publications/publications.yml
+    template: publications/publications.ejs
+    sort: 'date desc'
+    max-items: 6
+    grid-columns: 3
+    fields: [image, date, title]
 ---
-
-
 
 
 ::: {.column-screen}
@@ -68,6 +67,14 @@ landing_page_styles.css">
 
 :::
 
+::: {style="font-size: 75%;" }
+## Recent Publications
+
+:::{#recent-publications}
+:::
+
+:::
+A full list of publications can be found [here](publications/index.html).
 
 :::{#news}
 ## News
@@ -86,8 +93,8 @@ landing_page_styles.css">
 
 
 
-:::{#contact}
 ## Contact
+:::{#contact}
 
 If you want to connect please reach out via email
 <a href="mailto:joseph.salmon@inria.fr"><span style='text-decoration: underline; text-decoration-color: #f08f04ff;'>joseph.salmon@inria.fr</span></a>

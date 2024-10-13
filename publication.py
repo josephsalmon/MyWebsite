@@ -99,10 +99,7 @@ def get_bib_entries(bib_fname):
 entries = get_bib_entries("data/Salmon.bib")
 entries.sort(key=lambda record: record["year"], reverse=True)
 PUBLICATION_LIST = entries[:]
-PUBLICATION_LIST_SHORT = PUBLICATION_LIST[:10]
 
-for i, pub in enumerate(PUBLICATION_LIST_SHORT):
-    print(PUBLICATION_LIST_SHORT[i])
 
 # Transform list into yaml file
 

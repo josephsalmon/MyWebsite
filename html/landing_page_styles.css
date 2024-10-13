@@ -296,3 +296,10 @@ a {
   border-radius: 50%;
   opacity: 50%;
 }
+
+
+/* change the attribute for <a class="listing-author"  with     text-decoration: underline; and text-decoration-color: #f08f04ff;*/
+.listing-author a {
+    text-decoration: underline;
+    text-decoration-color: #f08f04ff;
+}
