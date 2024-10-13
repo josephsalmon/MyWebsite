@@ -8,3 +8,5 @@ Need Quarto and some extensions:
 
 
 All the content is inspired by the work by [Marvin Schmitt](https://www.marvinschmitt.com/).
+
+Some other interesting resources includes: [Gang He](https://drganghe.github.io/quarto-academic-site-examples.html) feedback on quarto.

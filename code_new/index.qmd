@@ -2,7 +2,7 @@
 title: Code
 toc: false
 author: ""
-title-block-banner: false
+title-block-banner: "../img/bg_pine_trees.jpg"
 page-layout: article
 format:
   html:

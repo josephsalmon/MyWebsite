@@ -1,0 +1,1805 @@
+- abstract: ''
+  accessed: ''
+  author: <a href="https://www.linkedin.com/in/axel-dubar-1b462a182/">A. Dubar</a>,
+    <a href="https://tanglef.github.io/">T. Lefort</a> and <strong>J. Salmon</strong>
+  container-title: JDS 2024 - 55es Journées de Statistique
+  doi: ''
+  id: Dubar_Lefort_Salmon24
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: 'peerannot: A framework for label aggregation in crowdsourced datasets'
+  type: inproceedings
+  url: https://hal.science/hal-04562830
+  volume: ''
+  journaltitle: JDS 2024 - 55es Journées de Statistique
+  date: '2024'
+  path: https://hal.science/hal-04562830/file/Gabarit_JdS.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://klopfe.github.io/">Q. Klopfenstein</a>, <a href="https://qb3.github.io/">Q.
+    Bertrand</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a>, <strong>J.
+    Salmon</strong> and <a href="http://samuelvaiter.com/">S. Vaiter</a>
+  container-title: Optimization Letter
+  doi: ''
+  id: Klopfenstein_Bertrand_Gramfort_Salmon_Vaiter23
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 135-154
+  title: 'Local linear convergence of proximal coordinate descent
+
+    algorithm'
+  type: article
+  url: ''
+  volume: '18'
+  journaltitle: Optimization Letter
+  date: '2024'
+  path: https://arxiv.org/pdf/2010.11825.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
+    Charlier</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
+    and <strong>J. Salmon</strong>
+  container-title: TMLR
+  doi: ''
+  id: Lefort_Charlier_Joly_Salmon22
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Identify ambiguous tasks combining crowdsourced labels by weighting Areas
+    Under the Margin
+  type: article
+  url: ''
+  volume: ''
+  journaltitle: TMLR
+  date: '2024'
+  path: https://arxiv.org/abs/2209.15380
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
+    Charlier</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
+    and <strong>J. Salmon</strong>
+  container-title: Computo
+  doi: ''
+  id: Lefort_Charlier_Joly_Salmon23
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: 'Peerannot: classification for crowd-sourced image datasets with Python'
+  type: article
+  url: https://tanglef.github.io/computo_2023/
+  volume: ''
+  journaltitle: Computo
+  date: '2024'
+  path: https://hal.science/hal-04202889
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://www.lirmm.fr/lirmm_eng/users/utilisateurs-lirmm/antoine-affouard">A.
+    Affouard</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
+    Charlier</a>, <a href="https://sites.google.com/site/jclombardocv/">J.-C. Lombardo</a>,
+    <a href="https://www.lirmm.fr/users/utilisateurs-lirmm/mathias-chouet">M. Chouet</a>,
+    <a href=" "https://amap-dev.cirad.fr/users/119"">H. Goëau</a>, <strong>J. Salmon</strong>,
+    <a href="http://agents.cirad.fr/index.php/Pierre+BONNET">P. Bonnet</a> and <a
+    href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
+  container-title: ''
+  doi: ''
+  id: Lefort_etal24
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: 'Cooperative learning of Pl@ntNet''s Artificial Intelligence algorithm: how
+    does it work and how can we improve it?'
+  type: techreport
+  url: https://arxiv.org/abs/2406.03356
+  volume: ''
+  journaltitle: ''
+  date: '2024'
+  path: https://arxiv.org/pdf/2406.03356.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
+    Charlier</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
+    and <strong>J. Salmon</strong>
+  container-title: CAp 2024 - Conférence sur l'Apprentissage Automatique
+  doi: ''
+  id: Lefort_Charlier_Joly_Salmon24
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Weighted majority vote using Shapley values in crowdsourcing
+  type: inproceedings
+  url: https://hal.science/hal-04573727
+  volume: ''
+  journaltitle: CAp 2024 - Conférence sur l'Apprentissage Automatique
+  date: '2024'
+  path: https://hal.science/hal-04573727/file/cap2024.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong>
+  container-title: Harvard Data Science Review
+  doi: ''
+  id: Salmon24
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Collective Intelligence and Collaborative Data Science
+  type: article
+  url: https://hdsr.mitpress.mit.edu/pub/1sphh9gu
+  volume: '6'
+  journaltitle: Harvard Data Science Review
+  date: '2024'
+  path: https://s3.amazonaws.com/assets.pubpub.org/76kzbqtth9sijli28do0cni43xejcfjw.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://garcinc.github.io/Camille-Garcin/">C. Garcin</a>, <a href="https://maximiliense.github.io/">M.
+    Servajean</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
+    and <strong>J. Salmon</strong>
+  container-title: ArXiv e-prints
+  doi: ''
+  id: Garcin_Servajean_Joly_Salmon23
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: A two-head loss function for deep Average-K classification
+  type: techreport
+  url: https://arxiv.org/abs/2303.18118
+  volume: ''
+  journaltitle: ArXiv e-prints
+  date: '2023'
+  path: https://arxiv.org/pdf/2303.18118.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://hashemghanem.github.io/">H. Ghanem</a>, <strong>J. Salmon</strong>,
+    <a href="https://nkeriven.github.io/">N. Keriven</a> and <a href="http://samuelvaiter.com/">S.
+    Vaiter</a>
+  container-title: IEEE Signal Process. Lett.
+  doi: ''
+  id: Ghanem_Salmon_Keriven_Vaiter21
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Supervised learning of analysis-sparsity priors with automatic differentiation
+  type: article
+  url: ''
+  volume: ''
+  journaltitle: IEEE Signal Process. Lett.
+  date: '2023'
+  path: https://arxiv.org/pdf/2112.07990.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://pmangold.fr/">P. Mangold</a>, <a href="http://researchers.lille.inria.fr/abellet/">A.
+    Bellet</a>, <strong>J. Salmon</strong> and <a href="http://researchers.lille.inria.fr/tommasi/">M.
+    Tommasi</a>
+  container-title: AISTATS
+  doi: ''
+  id: Mangold_Bellet_Salmon_Tommasi23
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: High-Dimensional Private Empirical Risk Minimization by Greedy Coordinate
+    Descent
+  type: inproceedings
+  url: https://arxiv.org/abs/2207.01560
+  volume: ''
+  journaltitle: AISTATS
+  date: '2023'
+  path: https://arxiv.org/pdf/2207.01560.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://qb3.github.io/">Q. Bertrand</a>, <a href="https://klopfe.github.io/">Q.
+    Klopfenstein</a>, <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://mblondel.org/">M.
+    Blondel</a>, <a href="http://samuelvaiter.com/">S. Vaiter</a>, <a href="http://alexandre.gramfort.net/">A.
+    Gramfort</a> and <strong>J. Salmon</strong>
+  container-title: J. Mach. Learn. Res.
+  doi: ''
+  id: Bertrand_Klopfenstein_Massias_Blondel_Vaiter_Gramfort_Salmon21
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 1--43
+  title: Implicit differentiation for fast hyperparameter selection in non-smooth
+    convex learning
+  type: article
+  url: ''
+  volume: '23'
+  journaltitle: J. Mach. Learn. Res.
+  date: '2022'
+  path: https://arxiv.org/pdf/2105.01637
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://ja-che.github.io/">J.-A. Chevalier</a>, <a href="https://www.imo.universite-paris-saclay.fr/%7Etbnguyen/">T.
+    B. Nguyen</a>, <a href="https://team.inria.fr/parietal/team-members/bertrand-thirions-page/">B.
+    Thirion</a> and <strong>J. Salmon</strong>
+  container-title: Statistics and Computing
+  doi: ''
+  id: Chevalier_Nguyen_Thirion_Salmon22
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 1--15
+  title: Spatially relaxed inference on high-dimensional linear models
+  type: article
+  url: ''
+  volume: '32'
+  journaltitle: Statistics and Computing
+  date: '2022'
+  path: https://arxiv.org/pdf/2106.02590.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://garcinc.github.io/Camille-Garcin/">C. Garcin</a>, <a href="https://maximiliense.github.io/">M.
+    Servajean</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
+    and <strong>J. Salmon</strong>
+  container-title: ICML
+  doi: ''
+  id: Garcin_Servajean_Joly_Salmon22
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 7208--7222
+  title: Stochastic smoothing of the top-K calibrated hinge loss for deep imbalanced
+    classification
+  type: inproceedings
+  url: ''
+  volume: '162'
+  journaltitle: ICML
+  date: '2022'
+  path: https://proceedings.mlr.press/v162/garcin22a/garcin22a.pdf
+  code: '<a href="https://github.com/garcinc/noised-topk"> [Code]</a> '
+- abstract: ''
+  accessed: ''
+  author: <a href="http://pmangold.fr/">P. Mangold</a>, <a href="http://researchers.lille.inria.fr/abellet/">A.
+    Bellet</a>, <strong>J. Salmon</strong> and <a href="http://researchers.lille.inria.fr/tommasi/">M.
+    Tommasi</a>
+  container-title: ICML
+  doi: ''
+  id: Mangold_Bellet_Salmon_Tommasi21
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Differentially Private Coordinate Descent for Composite Empirical Risk Minimization
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: ICML
+  date: '2022'
+  path: https://arxiv.org/pdf/2110.11688
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://tommoral.github.io/about.html">T. Moreau</a>, <a href="https://mathurinm.github.io/">M.
+    Massias</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a>, <a href="https://pierreablin.com/">P.
+    Ablin</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
+    Charlier</a>, <a href="https://twitter.com/el_pa_b">P.-A. Bannier</a>, <a href="https://deepai.org/profile/mathieu-dagreou">M.
+    Dagréou</a>, <a href="https://tomdlt.github.io/">T. Dupré la Tour</a>, <a href="https://gdurif.perso.math.cnrs.fr/">G.
+    Durif</a>, <a href=" "https://cassiofragadantas.github.io/"">C. F. Dantas</a>,
+    <a href="https://klopfe.github.io/">Q. Klopfenstein</a>, <a href="https://larssonjohan.com/">J.
+    Larsson</a>, <a href="https://www.inria.fr/en/mind">E. Lai</a>, <a href="https://tanglef.github.io/">T.
+    Lefort</a>, <a href="https://fr.linkedin.com/in/benoit-malezieux-203283148">B.
+    Malézieux</a>, <a href=" "https://ma.linkedin.com/in/badr-moufad"">B. Moufad</a>,
+    <a href="https://www.imo.universite-paris-saclay.fr/%7Etbnguyen/">T. B. Nguyen</a>,
+    <a href="https://sites.google.com/site/alainrakotomamonjy/">A. Rakotomamonjy</a>,
+    <a href="https://zaccharieramzi.fr/">Z. Ramzi</a>, <strong>J. Salmon</strong>
+    and <a href="http://samuelvaiter.com/">S. Vaiter</a>
+  container-title: NeurIPS
+  doi: ''
+  id: Moreau_etal2022
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: 'Benchopt: Reproducible, efficient and collaborative optimization benchmarks'
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: NeurIPS
+  date: '2022'
+  path: https://arxiv.org/abs/2206.13424
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://sites.google.com/site/alainrakotomamonjy/">A. Rakotomamonjy</a>,
+    <a href="http://remi.flamary.com/">R. Flamary</a>, <a href="http://asi.insa-rouen.fr/enseignants/~gasso/">G.
+    Gasso</a> and <strong>J. Salmon</strong>
+  container-title: AISTATS
+  doi: ''
+  id: Rakotomamonjy_Flamary_Gasso_Salmon20
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Provably Convergent Working Set Algorithm for Non-Convex Regularized Regression
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: AISTATS
+  date: '2022'
+  path: https://hal.archives-ouvertes.fr/hal-02875560
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://ksehic.github.io/">K. Šehić</a>, <a href="http://alexandre.gramfort.net/">A.
+    Gramfort</a>, <strong>J. Salmon</strong> and <a href="https://cs.lth.se/luigi-nardi/">L.
+    Nardi</a>
+  container-title: 'International Conference on
+
+    Automated Machine Learning'
+  doi: ''
+  id: Sehic_Gramfort_Salmom_Nardi21
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: 'LassoBench: A High-Dimensional Hyperparameter Optimization Benchmark Suite
+    for Lasso'
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: 'International Conference on
+
+    Automated Machine Learning'
+  date: '2022'
+  path: https://arxiv.org/pdf/2010.11825.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://twitter.com/el_pa_b">P.-A. Bannier</a>, <a href="https://qb3.github.io/">Q.
+    Bertrand</a>, <strong>J. Salmon</strong> and <a href="http://alexandre.gramfort.net/">A.
+    Gramfort</a>
+  container-title: Medical imaging meets NeurIPS (Workshop)
+  doi: ''
+  id: Bannier_Bertrand_Salmon_Gramfort2021
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Electromagnetic neural source imaging under sparsity constraints with SURE-based
+    hyperparameter tuning
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: Medical imaging meets NeurIPS (Workshop)
+  date: '2021'
+  path: http://josephsalmon.eu/papers/Bannier_etal2021.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://bascouflorent.github.io">F. Bascou</a>, <a href="http://www.univ-montp3.fr/miap/%7Elebre/">S.
+    Lèbre</a> and <strong>J. Salmon</strong>
+  container-title: EGC
+  doi: ''
+  id: Bascou_Lebre_Salmon21
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: ElasticNet avec gestion des interactions et débiaisage
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: EGC
+  date: '2021'
+  path: https://editions-rnti.fr/render_pdf.php?p=1002656
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://ja-che.github.io/">J.-A. Chevalier</a>, <a href="https://www.imo.universite-paris-saclay.fr/%7Etbnguyen/">T.
+    B. Nguyen</a>, <a href="http://gael-varoquaux.info/">G. Varoquaux</a>, <strong>J.
+    Salmon</strong> and <a href="https://team.inria.fr/parietal/team-members/bertrand-thirions-page/">B.
+    Thirion</a>
+  container-title: Neuroimage
+  doi: ''
+  id: Chevalier_Nguyen_Varoquaux_Salmon_Thirion20
+  issn: ''
+  issue: ''
+  issued: ''
+  page: '117921'
+  title: 'Decoding with Confidence: Statistical Control on Decoder Maps'
+  type: article
+  url: ''
+  volume: '234'
+  journaltitle: Neuroimage
+  date: '2021'
+  path: https://www.sciencedirect.com/science/article/pii/S1053811921001981
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
+    <a href="http://www.math.u-bordeaux1.fr/%7Enpapadak/">N. Papadakis</a>, <strong>J.
+    Salmon</strong> and <a href="http://samuelvaiter.com/">S. Vaiter</a>
+  container-title: J. Math. Imaging Vis.
+  doi: ''
+  id: Deledalle_Papadakis_Salmon_Vaiter21
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 216-236
+  title: Block based refitting in $\ell_12$ sparse regularisation
+  type: article
+  url: ''
+  volume: '63'
+  journaltitle: J. Math. Imaging Vis.
+  date: '2021'
+  path: https://arxiv.org/pdf/1910.11186.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://garcinc.github.io/Camille-Garcin/">C. Garcin</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A.
+    Joly</a>, <a href="http://agents.cirad.fr/index.php/Pierre+BONNET">P. Bonnet</a>,
+    <a href="https://www.lirmm.fr/lirmm_eng/users/utilisateurs-lirmm/antoine-affouard">A.
+    Affouard</a>, <a href="https://sites.google.com/site/jclombardocv/">J.-C. Lombardo</a>,
+    <a href="https://www.lirmm.fr/users/utilisateurs-lirmm/mathias-chouet">M. Chouet</a>,
+    <a href="https://maximiliense.github.io/">M. Servajean</a>, <a href="https://scholar.google.fr/citations?user=NjbJVB4AAAAJ&hl=en">T.
+    Lorieul</a> and <strong>J. Salmon</strong>
+  container-title: Proceedings of the Neural Information Processing Systems Track
+    on Datasets and Benchmarks
+  doi: ''
+  id: Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean_Lorieul_Salmon2021
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: 'Pl@ntNet-300K: a plant image dataset with high label ambiguity and a long-tailed
+    distribution'
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: Proceedings of the Neural Information Processing Systems Track on
+    Datasets and Benchmarks
+  date: '2021'
+  path: https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/7e7757b1e12abcb736ab9a754ffb617a-Paper-round2.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://www.stat.washington.edu/person/lang-liu">L. Liu</a>, <strong>J.
+    Salmon</strong> and <a href="http://faculty.washington.edu/zaid/group.html">Z.
+    Harchaoui</a>
+  container-title: ICASSP
+  doi: ''
+  id: Liu_Salmon_Harchaoui21
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Score-based change detection for gradient-based learning machines
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: ICASSP
+  date: '2021'
+  path: https://stat.uw.edu/sites/default/files/2019-07/tr652.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://eugenendiaye.github.io/">E. Ndiaye</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O.
+    Fercoq</a> and <strong>J. Salmon</strong>
+  container-title: J. Convex Anal.
+  doi: ''
+  id: Ndiaye_Fercoq_Salmon20
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 1053--1072
+  title: Screening Rules and its Complexity for Active Set Identification
+  type: article
+  url: ''
+  volume: '28'
+  journaltitle: J. Convex Anal.
+  date: '2021'
+  path: https://arxiv.org/pdf/2009.02709.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://bascouflorent.github.io">F. Bascou</a>, <a href="http://www.univ-montp3.fr/miap/%7Elebre/">S.
+    Lèbre</a> and <strong>J. Salmon</strong>
+  container-title: Journées de Statistique
+  doi: ''
+  id: Bascou_Lebre_Salmon20
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Debiasing the Elastic Net for models with interactions
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: Journées de Statistique
+  date: '2020'
+  path: http://josephsalmon.eu/papers/JDS2020.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://qb3.github.io/">Q. Bertrand</a>, <a href="https://klopfe.github.io/">Q.
+    Klopfenstein</a>, <a href="http://mblondel.org/">M. Blondel</a>, <a href="http://samuelvaiter.com/">S.
+    Vaiter</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a> and <strong>J.
+    Salmon</strong>
+  container-title: ICML
+  doi: ''
+  id: Bertrand_Klopfenstein_Blondel_Vaiter_Gramfort_Salmon20
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Implicit differentiation of Lasso-type models for hyperparameter optimization
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: ICML
+  date: '2020'
+  path: https://arxiv.org/pdf/2002.08943.pdf
+  code: '<a href="https://github.com/QB3/sparse-ho"> [Code]</a> '
+- abstract: ''
+  accessed: ''
+  author: <a href="https://qb3.github.io/">Q. Bertrand</a>, <a href="https://klopfe.github.io/">Q.
+    Klopfenstein</a>, <a href="http://mblondel.org/">M. Blondel</a>, <a href="http://samuelvaiter.com/">S.
+    Vaiter</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a> and <strong>J.
+    Salmon</strong>
+  container-title: CAP
+  doi: ''
+  id: Bertrand_Klopfenstein_Blondel_Vaiter_Gramfort_Salmon20b
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Implicit differentiation of Lasso-type models for hyperparameter optimization
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: CAP
+  date: '2020'
+  path: https://arxiv.org/pdf/2002.08943.pdf
+  code: '<a href="https://github.com/QB3/sparse-ho"> [Code]</a> '
+- abstract: ''
+  accessed: ''
+  author: <a href="https://ja-che.github.io/">J.-A. Chevalier</a>, <a href="http://alexandre.gramfort.net/">A.
+    Gramfort</a>, <strong>J. Salmon</strong> and <a href="https://team.inria.fr/parietal/team-members/bertrand-thirions-page/">B.
+    Thirion</a>
+  container-title: NeurIPS
+  doi: ''
+  id: Chevalier_Gramfort_Salmon_Thirion20
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Statistical control for spatio-temporal MEG/EEG source imaging with desparsified
+    multi-task Lasso
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: NeurIPS
+  date: '2020'
+  path: https://arxiv.org/pdf/2009.14310.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://qb3.github.io/">Q. Bertrand</a>, <a href="https://mathurinm.github.io/">M.
+    Massias</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a> and <strong>J.
+    Salmon</strong>
+  container-title: AISTATS
+  doi: ''
+  id: Massias_Bertrand_Gramfort_Salmon20
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 2655--2665
+  title: Support recovery and sup-norm convergence rates for sparse pivotal estimation
+  type: inproceedings
+  url: https://arxiv.org/abs/2001.05401
+  volume: ''
+  journaltitle: AISTATS
+  date: '2020'
+  path: https://arxiv.org/pdf/2001.05401.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://samuelvaiter.com/">S.
+    Vaiter</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a> and <strong>J.
+    Salmon</strong>
+  container-title: J. Mach. Learn. Res.
+  doi: ''
+  id: Massias_Vaiter_Gramfort_Salmon20
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 1--33
+  title: Dual extrapolation for Sparse Generalized Linear Models
+  type: article
+  url: ''
+  volume: '21'
+  journaltitle: J. Mach. Learn. Res.
+  date: '2020'
+  path: https://arxiv.org/pdf/1907.05830
+  code: <a href="https://mathurinm.github.io/celer/"> [Python Code]</a> |
+- abstract: ''
+  accessed: ''
+  author: <a href="https://cermics.enpc.fr/%7Eparmenta/">A. Parmentier</a>, <a href="https://cermics.enpc.fr/%7Ecohenv/">V.
+    Cohen</a>, <a href="http://cermics.enpc.fr/%7Eleclerev/">V. Leclère</a>, <a href="http://imagine.enpc.fr/%7Eobozinsg/">G.
+    Obozinski</a> and <strong>J. Salmon</strong>
+  container-title: INFORMS J. Optim.
+  doi: ''
+  id: Parmentier_Cohen_Leclerer_Obosinski_Salmon20
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 209--228
+  title: Integer programming on the junction tree polytope for influence diagrams
+  type: article
+  url: ''
+  volume: '2'
+  journaltitle: INFORMS J. Optim.
+  date: '2020'
+  path: https://arxiv.org/pdf/1902.07039.pdf
+  code: <a href="https://github.com/Victor2175/mathprog_influence_diagrams" >[Code]</a>
+    |
+- abstract: ''
+  accessed: ''
+  author: <a href="https://qb3.github.io/">Q. Bertrand</a>, <a href="https://mathurinm.github.io/">M.
+    Massias</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a> and <strong>J.
+    Salmon</strong>
+  container-title: NeurIPS
+  doi: ''
+  id: Bertrand_Massias_Gramfort_Salmon19
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Handling correlated and repeated measurements with the smoothed multivariate
+    square-root Lasso
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: NeurIPS
+  date: '2019'
+  path: https://hal.archives-ouvertes.fr/hal-02010014/document
+  code: '<a href="https://github.com/QB3/CLaR"> [Code]</a> '
+- abstract: ''
+  accessed: ''
+  author: <a href="https://echzhen.com/">E. Chzhen</a>, <a href="http://perso-math.univ-mlv.fr/users/hebiri.mohamed/">M.
+    Hebiri</a> and <strong>J. Salmon</strong>
+  container-title: Bernoulli
+  doi: ''
+  id: Chzhen_Hebiri_Salmon19
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 3175--3200
+  title: On Lasso refitting strategies
+  type: article
+  url: ''
+  volume: '25'
+  journaltitle: Bernoulli
+  date: '2019'
+  path: https://arxiv.org/abs/1707.05232
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
+    <a href="http://www.math.u-bordeaux1.fr/%7Enpapadak/">N. Papadakis</a>, <strong>J.
+    Salmon</strong> and <a href="http://samuelvaiter.com/">S. Vaiter</a>
+  container-title: SSVM
+  doi: ''
+  id: Deledalle_Papadakis_Salmon_Vaiter19
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Refitting solutions promoted by $\ell_12$ sparse analysis regularization
+    with block penalties
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: SSVM
+  date: '2019'
+  path: https://arxiv.org/pdf/1903.00741.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://ngazagna.github.io/">N. Gazagnadou</a>, <a href="https://perso.telecom-paristech.fr/rgower/index.html">R.
+    Gower</a> and <strong>J. Salmon</strong>
+  container-title: ICML
+  doi: ''
+  id: Gazagnadou_Gower_Salmon19
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Optimal mini-batch and step sizes for SAGA
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: ICML
+  date: '2019'
+  path: https://arxiv.org/pdf/1902.00071.pdf
+  code: '<a href="https://github.com/gowerrobert/StochOpt.jl"> [Code]</a> '
+- abstract: ''
+  accessed: ''
+  author: <a href="https://www.stat.washington.edu/person/lang-liu">L. Liu</a>, <strong>J.
+    Salmon</strong> and <a href="http://faculty.washington.edu/zaid/group.html">Z.
+    Harchaoui</a>
+  container-title: ''
+  doi: ''
+  id: Liu_Salmon_Harchaoui19
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Score-based Change Detection for Gradient-based Learning Machines
+  type: techreport
+  url: ''
+  volume: ''
+  journaltitle: ''
+  date: '2019'
+  path: https://stat.uw.edu/sites/default/files/2019-07/tr652.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://samuelvaiter.com/">S.
+    Vaiter</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a> and <strong>J.
+    Salmon</strong>
+  container-title: SPARS
+  doi: ''
+  id: Massias_Vaiter_Gramfort_Salmon19b
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Exploiting regularity in sparse Generalized Linear Models
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: SPARS
+  date: '2019'
+  path: http://josephsalmon.eu/papers/spars2019.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://eugenendiaye.github.io/">E. Ndiaye</a>, <a href="https://sites.google.com/site/lttamvn/">T.
+    Le</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O. Fercoq</a>,
+    <strong>J. Salmon</strong> and <a href="http://www-als.ics.nitech.ac.jp/~takeuchi/">I.
+    Takeuchi</a>
+  container-title: ICML
+  doi: ''
+  id: Ndiaye_Le_Fercoq_Salmon_Takeuchi19
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 4771--4780
+  title: Safe Grid Search with Optimal Complexity
+  type: inproceedings
+  url: ''
+  volume: '97'
+  journaltitle: ICML
+  date: '2019'
+  path: https://arxiv.org/pdf/1810.05471.pdf
+  code: <a href="https://github.com/EugeneNdiaye/safe_grid_search" >[Code]</a>
+- abstract: ''
+  accessed: ''
+  author: <a href="https://sites.google.com/site/alainrakotomamonjy/">A. Rakotomamonjy</a>,
+    <a href="http://asi.insa-rouen.fr/enseignants/~gasso/">G. Gasso</a> and <strong>J.
+    Salmon</strong>
+  container-title: ICML
+  doi: ''
+  id: Rakotomamonjy_Gasso_Salmon19
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 5341--5350
+  title: Screening Rules for Lasso with Non-Convex Sparse Regularizers
+  type: inproceedings
+  url: ''
+  volume: '97'
+  journaltitle: ICML
+  date: '2019'
+  path: https://hal.archives-ouvertes.fr/hal-02017967v1
+  code: '<a href="https://github.com/arakotom/screening_ncvx_penalty">
+
+    [Code]</a> '
+- abstract: ''
+  accessed: ''
+  author: <a href="https://sites.google.com/site/yousrabekhti/">Y. Bekhti</a>, <a
+    href="http://felixlucka.github.io/">F. Lucka</a>, <strong>J. Salmon</strong> and
+    <a href="http://alexandre.gramfort.net/">A. Gramfort</a>
+  container-title: Inverse Problems
+  doi: ''
+  id: Bekhti_Lucka_Salmon_Gramfort18
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 085010
+  title: 'A hierarchical Bayesian perspective on majorization-minimization for non-convex
+    sparse regression: application to M/EEG source imaging'
+  type: article
+  url: ''
+  volume: '34'
+  journaltitle: Inverse Problems
+  date: '2018'
+  path: https://arxiv.org/abs/1710.08747
+  code: '<a href="https://github.com/agramfort/bayes_mxne"> [Code]</a> '
+- abstract: ''
+  accessed: ''
+  author: <a href="https://ja-che.github.io/">J.-A. Chevalier</a>, <strong>J. Salmon</strong>
+    and <a href="https://team.inria.fr/parietal/team-members/bertrand-thirions-page/">B.
+    Thirion</a>
+  container-title: MICCAI
+  doi: ''
+  id: Chevalier_Salmon_Thirion18
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 638--646
+  title: Statistical Inference with Ensemble of Clustered Desparsified Lasso
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: MICCAI
+  date: '2018'
+  path: https://arxiv.org/pdf/1806.05829.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://echzhen.com/">E. Chzhen</a>, <a href="http://perso-math.univ-mlv.fr/users/denis.christophe/">C.
+    Denis</a>, <a href="http://perso-math.univ-mlv.fr/users/hebiri.mohamed/">M. Hebiri</a>
+    and <strong>J. Salmon</strong>
+  container-title: ArXiv e-prints
+  doi: ''
+  id: Chzhen_Denis_Hebiri_Salmon18
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: On the benefits of output sparsity for multi-label classification
+  type: techreport
+  url: ''
+  volume: ''
+  journaltitle: ArXiv e-prints
+  date: '2018'
+  path: https://arxiv.org/pdf/1703.04697.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O.
+    Fercoq</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a> and <strong>J.
+    Salmon</strong>
+  container-title: AISTATS
+  doi: ''
+  id: Massias_Fercoq_Gramfort_Salmon17
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Generalized Concomitant Multi-Task Lasso for sparse multimodal regression
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: AISTATS
+  date: '2018'
+  path: https://arxiv.org/pdf/1705.09778.pdf
+  code: <a href="https://github.com/mathurinm/SHCL"> [Python Code]</a> |
+- abstract: ''
+  accessed: ''
+  author: <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://alexandre.gramfort.net/">A.
+    Gramfort</a> and <strong>J. Salmon</strong>
+  container-title: ICML
+  doi: ''
+  id: Massias_Gramfort_Salmon18
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 3315--3324
+  title: 'Celer: a Fast Solver for the Lasso with Dual Extrapolation'
+  type: inproceedings
+  url: ''
+  volume: '80'
+  journaltitle: ICML
+  date: '2018'
+  path: https://arxiv.org/abs/1802.07481
+  code: <a href="https://mathurinm.github.io/celer/"> [Python Code]</a> |
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.stat.rutgers.edu/home/PCB71/">P. C. Bellec</a>, <strong>J.
+    Salmon</strong> and <a href="http://samuelvaiter.com/">S. Vaiter</a>
+  container-title: Electron. J. Statist.
+  doi: ''
+  id: Bellec_Salmon_Vaiter17
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 4851--4870
+  title: A sharp oracle inequality for Graph-Slope
+  type: article
+  url: ''
+  volume: '11'
+  journaltitle: Electron. J. Statist.
+  date: '2017'
+  path: https://arxiv.org/pdf/1706.06977.pdf
+  code: '<a href="https://github.com/svaiter/gslope_oracle_inequality"> [Code]</a> '
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.math.univ-toulouse.fr/%7ecboyer/">C. Boyer</a>, <a href="http://www.normalesup.org/%7edecastro/">Y.
+    De Castro</a> and <strong>J. Salmon</strong>
+  container-title: Inf. Inference
+  doi: ''
+  id: Boyer_deCastro_Salmon17
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 310-348
+  title: Adapting to unknown noise level in sparse deconvolution
+  type: article
+  url: ''
+  volume: '6'
+  journaltitle: Inf. Inference
+  date: '2017'
+  path: http://arxiv.org/pdf/1606.04760v1
+  code: '<a href="http://www.math.univ-toulouse.fr/~cboyer/codes/html_CBlasso_vs_Blasso/script_example1_CBlasso_vs_Blasso.html">
+
+    [Demo Code]</a> | <a href="http://www.math.univ-toulouse.fr/~cboyer/codes/code_source_CBLasso.zip"
+    >[ZIP]</a> | '
+- abstract: ''
+  accessed: ''
+  author: <a href="https://courses.cit.cornell.edu/dc623/">D. Chételat</a>, <a href="http://johanneslederer.de/">J.
+    Lederer</a> and <strong>J. Salmon</strong>
+  container-title: Electron. J. Statist.
+  doi: ''
+  id: Chetelat_Lederer_Salmon14
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 2519--2546
+  title: Optimal two-step prediction in regression
+  type: article
+  url: ''
+  volume: '11'
+  journaltitle: Electron. J. Statist.
+  date: '2017'
+  path: http://arxiv.org/pdf/1410.5014.pdf
+  code: '<a href="https://github.com/josephsalmon/AVp">
+
+    [Python Code]</a> |'
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
+    <a href="http://www.math.u-bordeaux1.fr/%7Enpapadak/">N. Papadakis</a>, <strong>J.
+    Salmon</strong> and <a href="http://samuelvaiter.com/">S. Vaiter</a>
+  container-title: SIAM J. Imaging Sci.
+  doi: ''
+  id: Deledalle_Papadakis_Salmon_Vaiter16
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 243-284
+  title: 'CLEAR: Covariant LEAst-square Re-fitting with applications to image restoration'
+  type: article
+  url: ''
+  volume: '10'
+  journaltitle: SIAM J. Imaging Sci.
+  date: '2017'
+  path: http://josephsalmon.eu/papers/CLEAR.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
+    <a href="http://www.math.u-bordeaux1.fr/%7Enpapadak/">N. Papadakis</a>, <strong>J.
+    Salmon</strong> and <a href="http://samuelvaiter.com/">S. Vaiter</a>
+  container-title: SPARS
+  doi: ''
+  id: Deledalle_Papadakis_Salmon_Vaiter17b
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Characterizing the maximum parameter of the total-variation denoising through
+    the pseudo-inverse of the divergence
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: SPARS
+  date: '2017'
+  path: https://arxiv.org/pdf/1612.03080.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://alexandre.gramfort.net/">A.
+    Gramfort</a> and <strong>J. Salmon</strong>
+  container-title: SPARS
+  doi: ''
+  id: Massias_Gramfort_Salmon17
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Gap safe screening rules for faster complex-valued multi-task group Lasso
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: SPARS
+  date: '2017'
+  path: http://josephsalmon.eu/papers/SPARS2017_Paper_mathurin.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://alexandre.gramfort.net/">A.
+    Gramfort</a> and <strong>J. Salmon</strong>
+  container-title: NIPS-OPT
+  doi: ''
+  id: Massias_Gramfort_Salmon17b
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: From safe screening rules to working sets for faster Lasso-type solvers
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: NIPS-OPT
+  date: '2017'
+  path: https://arxiv.org/pdf/1703.07285.pdf
+  code: <a href="https://github.com/mathurinm/A5G">[Python Code]</a> |
+- abstract: ''
+  accessed: ''
+  author: <a href="https://eugenendiaye.github.io/">E. Ndiaye</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O.
+    Fercoq</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a>, <a href="http://cermics.enpc.fr/%7Eleclerev/">V.
+    Leclère</a> and <strong>J. Salmon</strong>
+  container-title: 'Journal of Physics: Conference Series'
+  doi: ''
+  id: Ndiaye_Fercoq_Gramfort_Leclere_Salmon16
+  issn: ''
+  issue: ''
+  issued: ''
+  page: '012006'
+  title: Efficient Smoothed Concomitant Lasso Estimation for High Dimensional Regression
+  type: article
+  url: ''
+  volume: '904'
+  journaltitle: 'Journal of Physics: Conference Series'
+  date: '2017'
+  path: https://arxiv.org/pdf/1606.02702.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://eugenendiaye.github.io/">E. Ndiaye</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O.
+    Fercoq</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a> and <strong>J.
+    Salmon</strong>
+  container-title: J. Mach. Learn. Res.
+  doi: ''
+  id: Ndiaye_Fercoq_Gramfort_Salmon16b
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 1-33
+  title: Gap Safe screening rules for sparsity enforcing penalties
+  type: article
+  url: ''
+  volume: '18'
+  journaltitle: J. Mach. Learn. Res.
+  date: '2017'
+  path: http://jmlr.org/papers/v18/16-577.html
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong>
+  container-title: ''
+  doi: ''
+  id: Salmon17
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Perspectives computationnelles et statistiques pour la régression en grande
+    dimension
+  type: phdthesis
+  url: ''
+  volume: ''
+  journaltitle: ''
+  date: '2017'
+  path: http://josephsalmon.eu/papers/HDR.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://perso.telecom-paristech.fr/%7Ecolin">I. Colin</a>, <a href="http://researchers.lille.inria.fr/abellet/">A.
+    Bellet</a>, <strong>J. Salmon</strong> and <a href="http://perso.telecom-paristech.fr/%7Eclemenco">S.
+    Clémençon</a>
+  container-title: ICML
+  doi: ''
+  id: Colin_Bellet_Salmon_Clemencon16
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 1388-1396
+  title: Gossip Dual Averaging for Decentralized Optimization of Pairwise Functions
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: ICML
+  date: '2016'
+  path: http://arxiv.org/pdf/1606.02421v1.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://perso.telecom-paristech.fr/%7Ecolin">I. Colin</a>, <a href="http://researchers.lille.inria.fr/abellet/">A.
+    Bellet</a>, <strong>J. Salmon</strong> and <a href="http://perso.telecom-paristech.fr/%7Eclemenco">S.
+    Clémençon</a>
+  container-title: CAP
+  doi: ''
+  id: Colin_Bellet_Salmon_Clemencon16b
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Un algorithme de Gossip pour l'optimisation décentralisée de fonctions sur
+    les paires
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: CAP
+  date: '2016'
+  path: https://cap16.lif.univ-mrs.fr/programme.php
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://eugenendiaye.github.io/">E. Ndiaye</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O.
+    Fercoq</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a> and <strong>J.
+    Salmon</strong>
+  container-title: NeurIPS
+  doi: ''
+  id: Ndiaye_Fercoq_Gramfort_Salmon16
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Gap Safe Screening Rules for Sparse-Group Lasso
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: NeurIPS
+  date: '2016'
+  path: http://arxiv.org/pdf/1602.06225v1.pdf
+  code: <a href="https://github.com/EugeneNdiaye/GAPSAFE_SGL" >[Code]</a> |
+- abstract: ''
+  accessed: ''
+  author: <a href="http://perso.telecom-paristech.fr/%7Ecolin">I. Colin</a>, <a href="http://researchers.lille.inria.fr/abellet/">A.
+    Bellet</a>, <strong>J. Salmon</strong> and <a href="http://perso.telecom-paristech.fr/%7Eclemenco">S.
+    Clémençon</a>
+  container-title: NeurIPS
+  doi: ''
+  id: Colin_Bellet_Salmon_Clemencon15
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 271-279
+  title: Extending Gossip Algorithms to Distributed Estimation of U-Statistics
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: NeurIPS
+  date: '2015'
+  path: http://arxiv.org/pdf/1511.05464v1.pdf
+  code: <a href="https://github.com/igorcolin/gosta" >[Code]</a> |
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
+    <a href="http://www.math.u-bordeaux1.fr/%7Enpapadak/">N. Papadakis</a> and <strong>J.
+    Salmon</strong>
+  container-title: SSVM
+  doi: ''
+  id: Deledalle_Papadakis_Salmon15
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 129-141
+  title: 'On debiasing restoration algorithms: applications to total-variation and
+    nonlocal-means'
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: SSVM
+  date: '2015'
+  path: https://hal.archives-ouvertes.fr/hal-01123542/document
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
+    <a href="http://www.math.u-bordeaux1.fr/%7Enpapadak/">N. Papadakis</a> and <strong>J.
+    Salmon</strong>
+  container-title: SPARS
+  doi: ''
+  id: Deledalle_Papadakis_Salmon15b
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: 'Contrast re-enhancement of Total-Variation regularization
+
+    jointly with the Douglas-Rachford iterations'
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: SPARS
+  date: '2015'
+  path: https://hal.archives-ouvertes.fr/hal-01187061/document
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O. Fercoq</a>, <a
+    href="http://alexandre.gramfort.net/">A. Gramfort</a> and <strong>J. Salmon</strong>
+  container-title: ICML
+  doi: ''
+  id: Fercoq_Gramfort_Salmon15
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 333-342
+  title: 'Mind the duality gap: safer rules for the Lasso'
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: ICML
+  date: '2015'
+  path: http://arxiv.org/pdf/1505.03410v1
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O. Fercoq</a>, <a
+    href="http://alexandre.gramfort.net/">A. Gramfort</a> and <strong>J. Salmon</strong>
+  container-title: GRETSI
+  doi: ''
+  id: Fercoq_Gramfort_Salmon15b
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Règles de sélection de variables pour accélérer la localisation de sources
+    en MEG et EEG sous contrainte de parcimonie
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: GRETSI
+  date: '2015'
+  path: http://josephsalmon.eu/papers/gretsi2015.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://kloppolga.perso.math.cnrs.fr/">O. Klopp</a>, <a href="https://scholar.google.com/citations?user=X_tkpWYAAAAJ&hl=en">J.
+    Lafond</a>, <a href="http://perso.telecom-paristech.fr/%7Emoulines/">E. Moulines</a>
+    and <strong>J. Salmon</strong>
+  container-title: Electron. J. Statist.
+  doi: ''
+  id: Klopp_Lafond_Moulines_Salmon15
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 2950-2975
+  title: Adaptive Multinomial Matrix Completion
+  type: article
+  url: ''
+  volume: '9'
+  journaltitle: Electron. J. Statist.
+  date: '2015'
+  path: http://arxiv.org/pdf/1408.6218v1.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="https://eugenendiaye.github.io/">E. Ndiaye</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O.
+    Fercoq</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a> and <strong>J.
+    Salmon</strong>
+  container-title: NeurIPS
+  doi: ''
+  id: Ndiaye_Fercoq_Gramfort_Salmon15
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 811-819
+  title: GAP Safe screening rules for sparse multi-task and multi-class models
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: NeurIPS
+  date: '2015'
+  path: http://josephsalmon.eu/papers/GAP_Safe_multi.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://perso.telecom-paristech.fr/%7egunther/">D. Günther</a>,
+    <strong>J. Salmon</strong> and <a href="http://perso.telecom-paristech.fr/%7Etierny/">J.
+    Tierny</a>
+  container-title: Comput. Graph. Forum
+  doi: ''
+  id: Gunther_Salmon_Tierny14
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 31-40
+  title: Mandatory Critical Points of 2D Uncertain Scalar Fields
+  type: article
+  url: ''
+  volume: '33'
+  journaltitle: Comput. Graph. Forum
+  date: '2014'
+  path: http://josephsalmon.eu/papers/eurovis14.pdf
+  code: '<a href="http://perso.telecom-paristech.fr/~tierny/stuff/videos/eurovis14_video.mov"
+    > [video] </a> | '
+- abstract: ''
+  accessed: ''
+  author: <a href="https://scholar.google.com/citations?user=X_tkpWYAAAAJ&hl=en">J.
+    Lafond</a>, <a href="http://kloppolga.perso.math.cnrs.fr/">O. Klopp</a>, <a href="http://perso.telecom-paristech.fr/%7Emoulines/">E.
+    Moulines</a> and <strong>J. Salmon</strong>
+  container-title: NeurIPS
+  doi: ''
+  id: Lafond_Klopp_Moulines_Salmon14
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 1727-1735
+  title: Probabilistic Low-rank Matrix Completion on Finite Alphabet
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: NeurIPS
+  date: '2014'
+  path: http://josephsalmon.eu/papers/nips_full14.pdf
+  code: <a href="http://perso.telecom-paristech.fr/~lafond/downloads/code.tar.gz"
+    >[ZIP]</a> |
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong>, <a href="http://drz.ac/">Z. T. Harmany</a>,
+    <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a> and
+    <a href="http://willett.ece.wisc.edu/">R. Willett</a>
+  container-title: J. Math. Imaging Vis.
+  doi: ''
+  id: Salmon_Harmany_Deledalle_Willett14
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 279-294
+  title: Poisson noise reduction with non-local PCA
+  type: article
+  url: ''
+  volume: '48'
+  journaltitle: J. Math. Imaging Vis.
+  date: '2014'
+  path: http://josephsalmon.eu/papers/JMIV_SHDW12.pdf
+  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=NLPCA"> [Demo Matlab]
+
+    </a> | <a href="http://josephsalmon.eu/code/demos/NLPCA_code.zip"> [ZIP] </a>
+    | '
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.arnak-dalalyan.fr/">A. S. Dalalyan</a>, <a href="http://perso-math.univ-mlv.fr/users/hebiri.mohamed/">M.
+    Hebiri</a>, <a href="http://www.dauphine.fr/fr/cv-enseignants/enseignants/cv/katia-meziani.html">K.
+    Meziani</a> and <strong>J. Salmon</strong>
+  container-title: ICML
+  doi: ''
+  id: Dalalyan_Hebiri_Meziani_Salmon13
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 379-387
+  title: Learning Heteroscedastic Models by Convex Programming under Group Sparsity
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: ICML
+  date: '2013'
+  path: http://josephsalmon.eu/papers/ICML13_DHMS.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.greyc.ensicaen.fr/%7ejfadili/">J. Fadili</a>, <a href="http://www.ceremade.dauphine.fr/%7Epeyre/">G.
+    Peyré</a>, <a href="http://samuelvaiter.com/">S. Vaiter</a>, <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A.
+    Deledalle</a> and <strong>J. Salmon</strong>
+  container-title: SPARS
+  doi: ''
+  id: Fadili_Peyre_Vaiter_Deledalle_Salmon13
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Stable Recovery with Analysis Decomposable Priors
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: SPARS
+  date: '2013'
+  path: http://josephsalmon.eu/papers/SPARS13_FPVDS.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.greyc.ensicaen.fr/%7ejfadili/">J. Fadili</a>, <a href="http://www.ceremade.dauphine.fr/%7Epeyre/">G.
+    Peyré</a>, <a href="http://samuelvaiter.com/">S. Vaiter</a>, <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A.
+    Deledalle</a> and <strong>J. Salmon</strong>
+  container-title: SampTA
+  doi: ''
+  id: Fadili_Peyre_Vaiter_Deledalle_Salmon13b
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Stable Recovery with Analysis Decomposable Priors
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: SampTA
+  date: '2013'
+  path: http://josephsalmon.eu/papers/SampTA13_FPVDS.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.greyc.ensicaen.fr/%7ejfadili/">J. Fadili</a>, <a href="http://www.ceremade.dauphine.fr/%7Epeyre/">G.
+    Peyré</a>, <a href="http://samuelvaiter.com/">S. Vaiter</a>, <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A.
+    Deledalle</a> and <strong>J. Salmon</strong>
+  container-title: GRETSI
+  doi: ''
+  id: Fadili_Peyre_Vaiter_Deledalle_Salmon13c
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Reconstruction Stable par Régularisation Décomposable Analyse
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: GRETSI
+  date: '2013'
+  path: https://hal.archives-ouvertes.fr/hal-00927561/document
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://math.ucsd.edu/%7Eeariasca/">E. Arias-Castro</a>, <strong>J.
+    Salmon</strong> and <a href="http://willett.ece.wisc.edu/">R. Willett</a>
+  container-title: SIAM J. Imaging Sci.
+  doi: ''
+  id: AriasCastro_Salmon_Willett12
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 944-992
+  title: Oracle inequalities and minimax rates for non-local means and related adaptive
+    kernel-based methods
+  type: article
+  url: ''
+  volume: '5'
+  journaltitle: SIAM J. Imaging Sci.
+  date: '2012'
+  path: http://josephsalmon.eu/papers/MinimaxNLM_ACSW.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.arnak-dalalyan.fr/">A. S. Dalalyan</a> and <strong>J.
+    Salmon</strong>
+  container-title: Ann. Statist.
+  doi: ''
+  id: Dalalyan_Salmon12
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 2327-2355
+  title: Sharp Oracle Inequalities for Aggregation of Affine Estimators
+  type: article
+  url: ''
+  volume: '40'
+  journaltitle: Ann. Statist.
+  date: '2012'
+  path: http://josephsalmon.eu/papers/Dalalyan_Salmon_AOS.pdf
+  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=EWA" >[Demo Matlab]
+    </a> | <a href="http://josephsalmon.eu/code/demos/EWA_code.zip" >[ZIP]</a> | '
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
+    <a href="https://who.rocq.inria.fr/Vincent.Duval">V. Duval</a> and <strong>J.
+    Salmon</strong>
+  container-title: J. Math. Imaging Vis.
+  doi: ''
+  id: Deledalle_Duval_Salmon12
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 103-120
+  title: Non-local Methods with Shape-Adaptive Patches (NLM-SAP)
+  type: article
+  url: ''
+  volume: '43'
+  journaltitle: J. Math. Imaging Vis.
+  date: '2012'
+  path: http://josephsalmon.eu/papers/JMIV11_NLMSAP.pdf
+  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=NLMSAP" > [Demo
+    Matlab]
+
+    </a>| <a href="http://josephsalmon.eu/code/demos/NLMSAP_code.zip" >[ZIP]</a> |'
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong>, <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A.
+    Deledalle</a>, <a href="http://willett.ece.wisc.edu/">R. Willett</a> and <a href="http://drz.ac/">Z.
+    T. Harmany</a>
+  container-title: ICASSP
+  doi: ''
+  id: Salmon_Deledalle_Willett_Harmany12
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 1109-1112
+  title: Poisson Noise Reduction with Non-Local PCA
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: ICASSP
+  date: '2012'
+  path: http://josephsalmon.eu/papers/ICASSP12_SDWH.pdf
+  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=NLPCA"> [Demo Matlab]
+
+    </a> | <a href="http://josephsalmon.eu/code/demos/NLPCA_code.zip"> [ZIP] </a>
+    | '
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong> and <a href="http://www.prism.uvsq.fr/%7Eystr/">Y.
+    Strozecki</a>
+  container-title: Signal Processing
+  doi: ''
+  id: Salmon_Strozecki12
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 477 - 489
+  title: Patch Reprojections for Non Local Methods
+  type: article
+  url: ''
+  volume: '92'
+  journaltitle: Signal Processing
+  date: '2012'
+  path: http://josephsalmon.eu/papers/NLM_Reprojections_Salmon_Strozecki.pdf
+  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=NLM_reprojection"
+    >
+
+    [Demo Matlab] </a> |
+
+    <a href="http://josephsalmon.eu/code/demos/Reprojections_code.zip" >[ZIP]</a>
+    | '
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong>, <a href="http://willett.ece.wisc.edu/">R. Willett</a>
+    and <a href="http://math.ucsd.edu/%7Eeariasca/">E. Arias-Castro</a>
+  container-title: SSP
+  doi: ''
+  id: Salmon_Willett_AriasCastro12
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 464-467
+  title: 'A two-stage denoising filter: the preprocessed Yaroslavsky filter'
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: SSP
+  date: '2012'
+  path: http://josephsalmon.eu/papers/SSP12.pdf
+  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=PYF" >
+
+    [Demo Matlab] </a> |
+
+    <a href="http://josephsalmon.eu/code/demos/Preprocessed_YF_code.zip" >ZIP</a>
+    | '
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.arnak-dalalyan.fr/">A. S. Dalalyan</a> and <strong>J.
+    Salmon</strong>
+  container-title: ALT
+  doi: ''
+  id: Dalalyan_Salmon11
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 129-143
+  title: Competing against the best nearest neighbor filter in regression
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: ALT
+  date: '2011'
+  path: http://josephsalmon.eu/papers/ALT11_Dalalyan_Salmon.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
+    <a href="https://who.rocq.inria.fr/Vincent.Duval">V. Duval</a> and <strong>J.
+    Salmon</strong>
+  container-title: SSVM
+  doi: ''
+  id: Deledalle_Duval_Salmon11
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 129-141
+  title: Anisotropic Non-Local Means with Spatially Adaptive Shapes
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: SSVM
+  date: '2011'
+  path: http://josephsalmon.eu/papers/SSVM11_NLMSAP.pdf
+  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=NLMSAP" >[Demo
+    Matlab]
+
+    </a> | <a href="http://josephsalmon.eu/code/demos/NLMSAP_code.zip" >[ZIP]</a>
+    | '
+- abstract: ''
+  accessed: ''
+  author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
+    <strong>J. Salmon</strong> and <a href="http://www.arnak-dalalyan.fr/">A. S. Dalalyan</a>
+  container-title: BMVC
+  doi: ''
+  id: Deledalle_Salmon_Dalalyan11
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 1-10
+  title: 'Image denoising with patch based PCA: local versus global'
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: BMVC
+  date: '2011'
+  path: http://josephsalmon.eu/papers/BMVC11_DSD.pdf
+  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=GPPCA"> [Demo Matlab]
+
+    </a> | <a href="http://josephsalmon.eu/code/demos/GP-PCA_code.zip"> [ZIP] </a>
+    | '
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong> and <a href="http://www.arnak-dalalyan.fr/">A.
+    S. Dalalyan</a>
+  container-title: COLT
+  doi: ''
+  id: Salmon_Dalalyan11
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 635-660
+  title: Optimal aggregation of affine estimators
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: COLT
+  date: '2011'
+  path: http://josephsalmon.eu/papers/COLT11_Dalalyan_Salmon.pdf
+  code: <a href="http://josephsalmon.eu/code/index_codes.php?page=aggregation" >[Demo
+    Matlab] </a> | <a href="http://josephsalmon.eu/code/demos/EWA_code.zip" >[ZIP]</a>
+    |
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong>
+  container-title: IEEE Signal Process. Lett.
+  doi: ''
+  id: Salmon_SPL10
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 269-272
+  title: On two parameters for denoising with Non-Local Means
+  type: article
+  url: ''
+  volume: '17'
+  journaltitle: IEEE Signal Process. Lett.
+  date: '2010'
+  path: http://josephsalmon.eu/papers/SPL10.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong> and <a href="http://www.prism.uvsq.fr/%7Eystr/">Y.
+    Strozecki</a>
+  container-title: ICIP
+  doi: ''
+  id: Salmon_Strozecki10
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 1929-1932
+  title: 'From Patches to Pixels in Non-Local methods: Weighted-Average Reprojection'
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: ICIP
+  date: '2010'
+  path: http://josephsalmon.eu/papers/ICIP10.pdf
+  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=NLM_reprojection"
+    >
+
+    [Demo Matlab] </a> |
+
+    <a href="http://josephsalmon.eu/code/demos/Reprojections_code.zip" >[ZIP]</a>
+    | '
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong>
+  container-title: ''
+  doi: ''
+  id: SSalmon
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Agrégation d'estimateurs et méthodes à patchs pour le débruitage d'images
+    numériques
+  type: phdthesis
+  url: ''
+  volume: ''
+  journaltitle: ''
+  date: '2010'
+  path: http://josephsalmon.eu/papers/these_salmon.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong> and <a href="http://www.cmap.polytechnique.fr/%7Elepennec/">E.
+    Le Pennec</a>
+  container-title: ICIP
+  doi: ''
+  id: Salmon_ICIP09
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 2977-2980
+  title: NL-Means and aggregation procedures
+  type: inproceedings
+  url: ''
+  volume: ''
+  journaltitle: ICIP
+  date: '2009'
+  path: http://josephsalmon.eu/papers/ICIP09.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong> and <a href="http://www.cmap.polytechnique.fr/%7Elepennec/">E.
+    Le Pennec</a>
+  container-title: Wavelets XIII
+  doi: ''
+  id: Salmon_LePennecSPIE09
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 74461E
+  title: An aggregator point of view on NL-Means
+  type: inproceedings
+  url: ''
+  volume: '7446'
+  journaltitle: Wavelets XIII
+  date: '2009'
+  path: http://josephsalmon.eu/papers/SPIE09.pdf
+  code: ''
+- abstract: ''
+  accessed: ''
+  author: <strong>J. Salmon</strong>
+  container-title: ''
+  doi: ''
+  id: Salmon07
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Ondelettes et modèle Bayesien
+  type: mastersthesis
+  url: ''
+  volume: ''
+  journaltitle: ''
+  date: '2007'
+  path: ''
+  code: ''

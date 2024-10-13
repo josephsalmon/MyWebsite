@@ -4,13 +4,17 @@ draft: false
 project:
   type: website
   output-dir: _site
-
+  pre-render:
+    - publication.py
   resources:
     - "img/**"
     - "Courses/enseignement/"
     - "assets/**"
     - "html/**"
     - "code/**"
+    - "data/**"
+
+
 
   render:
     - "*.qmd"
@@ -44,6 +48,8 @@ website:
     left:
       - text: Courses
         href: Courses/index.qmd
+      - text: Publications
+        href: publications/index.qmd
       - text: Talks
         href: talks/index.qmd
       - text: Team

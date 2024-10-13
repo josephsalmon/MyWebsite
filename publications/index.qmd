@@ -1,0 +1,20 @@
+---
+title: 'Publications'
+page-layout: full
+title-block-banner: "../img/bg_pine_trees.jpg"
+date-format: 'YYYY'
+listing:
+  contents:
+    - publications.yml
+  template: publications.ejs
+  page-size: 100
+  sort: 'date desc'
+  # type: table
+  categories: false
+  sort-ui: [year]
+#   filter-ui: [year]
+  fields: [date, title, journal-title]
+  field-display-names:
+    publication: "Publication"
+    year: "Year"
+---
