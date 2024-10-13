@@ -40,19 +40,22 @@ landing_page_styles.css">
                 <i class="fas fa-house"></i>
                 Joseph Salmon</span>
             <br> Machine learning & data science.</h1>
-            <p>I am a statistician and an applied mathematician at Inria (Iroko), with a strong interest in machine learning, optimization and data science. In terms of applications, I focus on <strong>citizen science</strong>, <strong>crowdsourcing</strong> and <strong>high dimensional statistics</strong>.</p>
+            <p>I am a statistician and an applied mathematician at <a href="https://www.inria.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Inria</span></a> (team Iroko), with a strong interest in machine learning, optimization and data science. In terms of applications, I focus on <strong>citizen science</strong>, <strong>crowdsourcing</strong> and <strong>high dimensional statistics</strong>.</p>
             <h2>Short bio </h2>
-            <p>From 2018 to 2024 I was a full professor at <a href="https://www.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Université de Montpellier</span></a> and a Junior member of the <a href="http://www.iufrance.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Institut Universitaire de France</span></a> (IUF), from 2021 to 2024.
+            <p>From 2018 to 2024, I was a full professor at <a href="https://www.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Université de Montpellier</span></a> and a Junior member of the <a href="http://www.iufrance.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Institut Universitaire de France</span></a> (IUF), from 2021 to 2024.
             For the spring and summer quarters 2018, I was a visiting assistant professor at <a href="https://www.stat.washington.edu/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>UW, Statistics department</span></a>.
             From 2012 to 2018 I was an assistant professor at <a href="http://telecom-paris.fr">Telecom Paris</span></a> and an associate member at INRIA <a href="http://parietal.saclay.inria.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Parietal Team </span></a> (now Mind Team).
             Back in 2011-2012, I was a post-doctoral Associate at <a href="https://www.duke.edu/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Duke university</span></a> working with <a href="https://voices.uchicago.edu/willett/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Rebecca Willett</span></a>.
 
-            In 2010, I finished my Ph.D. in statistics and image processing under the supervision of Dominique Picard and <a href="http://www.cmap.polytechnique.fr/~lepennec/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Erwan Le Pennec</span></a> at the Laboratoire de Probabilités et de Modélisation Aléatoire, now <a href="http://isidore.lpma.math.upmc.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>LPSM</span></a>, in <a href="https://www.univ-paris-diderot.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Université Paris Diderot</span></a>.</p>
+            In 2010, I finished my Ph.D. in statistics and image processing under the supervision of Dominique Picard and <a href="http://www.cmap.polytechnique.fr/~lepennec/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Erwan Le Pennec</span></a> at the Laboratoire de Probabilités et de Modélisation Aléatoire, now <a href="http://isidore.lpma.math.upmc.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>LPSM</span></a>, in <a href="https://www.univ-paris-diderot.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Université Paris Diderot</span></a>.
+            </p>
+
         </div>
         <div class="hero_image">
             <img src="/img/joseph_2018.png"/>
         </div>
-        <div id="dot_container">
+
+         <div id="dot_container">
         </div>
     </div>
 
@@ -74,7 +77,8 @@ landing_page_styles.css">
 :::
 
 :::
-A full list of publications can be found [here](publications/index.html).
+A full list of publications can be found
+<a href="publications/index.html"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>here</span></a>.
 
 :::{#news}
 ## News
