@@ -1,0 +1,18 @@
+@conference{Salmon_Lepennec09,
+author = {J. Salmon and E. Le Pennec},
+editor = {Vivek K. Goyal and Manos Papadakis and Dimitri Van De Ville},
+collaboration = {},
+title = {An aggregator point of view of NL-Means},
+publisher = {SPIE},
+year = {2009},
+journal = {Wavelets XIII},
+volume = {7446},
+number = {1},
+eid = {74461E},
+numpages = {8},
+pages = {74461E},
+location = {San Diego, CA, USA},
+url = {http://link.aip.org/link/?PSI/7446/74461E/1},
+doi = {10.1117/12.826881}
+}
+

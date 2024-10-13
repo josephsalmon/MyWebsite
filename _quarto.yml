@@ -13,6 +13,8 @@ project:
     - "html/**"
     - "code/**"
     - "data/**"
+    - "papers/**"
+
 
 
 

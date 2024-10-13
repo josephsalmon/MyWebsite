@@ -1,0 +1,7 @@
+@inproceedings{Salmon_Lepennec09b,
+        AUTHOR = "J. Salmon and E. {Le Pennec}",
+        TITLE = "NL-Means and aggregation procedures",
+        BOOKTITLE = ICIP09,
+        YEAR = "2009",
+        PAGES = "2977-2980",
+	}

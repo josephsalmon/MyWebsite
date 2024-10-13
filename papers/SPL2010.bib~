@@ -1,0 +1,8 @@
+@Article{ Salmon10,
+	author = "J. Salmon",
+	title = "On two parameters for denoising with {Non-Local Means}",
+	journal = "{IEEE} Signal Process. Lett.",
+	volume="17",
+	pages="269-272",
+	year = "2010"
+}
