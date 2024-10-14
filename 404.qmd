@@ -1,24 +1,5 @@
 ---
 title: "404: Page Not Found"
-toc: false
-author: ""
-# title-block-banner: "https://josephsalmon.eu/img/bg_pine_trees.jpg"
-page-layout: article
-format:
-  html:
-    html-math-method: katex
-    include-in-header: html/seo.html
-    fontsize: 1.1em
-    theme:
-      - html/styles.scss
-
-toc-title: Year
-toc-location: right
-date-format: "MMMM D, YYYY"
-image: ""
-code-tools: false
-comments: false
-
 ---
 
 <style>
