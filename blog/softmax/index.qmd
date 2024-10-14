@@ -113,7 +113,11 @@ $$
 p_k = \frac{q_k\exp(z_k/\beta)}{\sum_{k'=1}^{K} q_{k'}\exp(z_{k'}/\beta)}, \quad k = 1, \dots, K.
 $$
 Note that
-$$p_k = \frac{q_k\exp(z_k/\beta)}{\sum_{k'=1}^{K} q_{k'}\exp(z_{k'}/\beta)} \iff \log( p_k) = \log(q_k) + \frac{z_k}{\beta} - \frac{1}{\beta} \cdot  \text{logsumexp}_{q,\beta}(z).
+$$
+\begin{align*}
+& p_k = \frac{q_k\exp(z_k/\beta)}{\sum_{k'=1}^{K} q_{k'}\exp(z_{k'}/\beta)}\\
+\iff & \log( p_k) = \log(q_k) + \frac{z_k}{\beta} - \frac{1}{\beta} \cdot  \text{logsumexp}_{q,\beta}(z).
+\end{align*}
 $$
 Finally, we have that
 $$
