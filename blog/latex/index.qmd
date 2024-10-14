@@ -2,7 +2,7 @@
 title: "$\\LaTeX$ for scientific writing?"
 author: "Joseph Salmon"
 date: "2024-09-05"
-description: "Some guidances and why when and when not using it."
+description: "Some guidance,on why, when, and when not using it."
 categories: [Latex, writing]
 image: Tsybakov2009.svg
 reference-location: document

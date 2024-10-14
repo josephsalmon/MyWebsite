@@ -8,7 +8,7 @@ author:
       given: François-David
       family: Collin
 date: "2024-09-03"
-description: "Some guidances and why when and when not using it."
+description: "Back to exponential weights and log-sum-exp functions"
 categories: [statistics, optimization, machine learning]
 image: "softmax.png"
 reference-location: document
