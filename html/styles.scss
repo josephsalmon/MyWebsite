@@ -1,5 +1,19 @@
 /*-- scss:defaults --*/
 
+// Import fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@300;800&family=Roboto+Mono:wght@300;400&family=Sanchez&display=swap');
+
+// fonts
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-serif: 'Sanchez', serif;
+$font-family-monospace: 'Roboto Mono', monospace;
+
+
+// header font & color
+h1, h2, h3, h4, h5 {
+    font-family: $font-family-serif;
+  }
+
 /* From https://github.com/andrewheiss/ath-quarto/blob/main/html/ath.scss */
 
 $white:    #ffffff !default;
@@ -110,9 +124,17 @@ pre.text, pre.sourceCode, .cell-output pre {
 }
 
 .navbar-title {
-  color: #fff;
+  color: #f08f04;
   z-index: 10;
+  font-weight: 900;
+  font-size: smaller;
 }
+
+.menu-text {
+ // change fontweight for menu-text
+ font-weight: 700;
+}
+
 
 .quarto-grid-item img.thumbnail-image {
                 height: 100%;

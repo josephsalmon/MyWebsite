@@ -3,7 +3,6 @@ title: Courses
 toc: false
 author: ""
 title-block-banner: "../img/bg_pine_trees.jpg"
-page-layout: article
 format:
   html:
     html-math-method: katex

@@ -16,7 +16,8 @@
   journaltitle: JDS 2024 - 55es Journées de Statistique
   date: '2024'
   path: https://hal.science/hal-04562830/file/Gabarit_JdS.pdf
-  code: ''
+  code: '<a href="https://peerannot.github.io/"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://klopfe.github.io/">Q. Klopfenstein</a>, <a href="https://qb3.github.io/">Q.
@@ -39,6 +40,7 @@
   date: '2024'
   path: https://arxiv.org/pdf/2010.11825.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
@@ -59,7 +61,8 @@
   journaltitle: TMLR
   date: '2024'
   path: https://arxiv.org/abs/2209.15380
-  code: ''
+  code: '<a href="https://peerannot.github.io/"> [Code]</a> '
+  data: https://zenodo.org/records/10782465
 - abstract: ''
   accessed: ''
   author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
@@ -79,7 +82,8 @@
   journaltitle: Computo
   date: '2024'
   path: https://hal.science/hal-04202889
-  code: ''
+  code: '<a href="https://peerannot.github.io/"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://www.lirmm.fr/lirmm_eng/users/utilisateurs-lirmm/antoine-affouard">A.
@@ -104,7 +108,8 @@
   journaltitle: ''
   date: '2024'
   path: https://arxiv.org/pdf/2406.03356.pdf
-  code: ''
+  code: '<a href="https://peerannot.github.io/"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
@@ -124,7 +129,8 @@
   journaltitle: CAp 2024 - Conférence sur l'Apprentissage Automatique
   date: '2024'
   path: https://hal.science/hal-04573727/file/cap2024.pdf
-  code: ''
+  code: '<a href="https://peerannot.github.io/"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong>
@@ -143,6 +149,7 @@
   date: '2024'
   path: https://s3.amazonaws.com/assets.pubpub.org/76kzbqtth9sijli28do0cni43xejcfjw.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://garcinc.github.io/Camille-Garcin/">C. Garcin</a>, <a href="https://maximiliense.github.io/">M.
@@ -163,6 +170,7 @@
   date: '2023'
   path: https://arxiv.org/pdf/2303.18118.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://hashemghanem.github.io/">H. Ghanem</a>, <strong>J. Salmon</strong>,
@@ -183,6 +191,7 @@
   date: '2023'
   path: https://arxiv.org/pdf/2112.07990.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://pmangold.fr/">P. Mangold</a>, <a href="http://researchers.lille.inria.fr/abellet/">A.
@@ -204,6 +213,7 @@
   date: '2023'
   path: https://arxiv.org/pdf/2207.01560.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://qb3.github.io/">Q. Bertrand</a>, <a href="https://klopfe.github.io/">Q.
@@ -225,12 +235,13 @@
   journaltitle: J. Mach. Learn. Res.
   date: '2022'
   path: https://arxiv.org/pdf/2105.01637
-  code: ''
+  code: '<a href="https://github.com/QB3/sparse-ho"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
-  author: <a href="https://ja-che.github.io/">J.-A. Chevalier</a>, <a href="https://www.imo.universite-paris-saclay.fr/%7Etbnguyen/">T.
-    B. Nguyen</a>, <a href="https://team.inria.fr/parietal/team-members/bertrand-thirions-page/">B.
-    Thirion</a> and <strong>J. Salmon</strong>
+  author: <a href="https://ja-che.github.io/">J.-A. Chevalier</a>, <a href="https://tbng.github.io/">T.
+    B. Nguyen</a>, <a href="https://pages.saclay.inria.fr/bertrand.thirion/">B. Thirion</a>
+    and <strong>J. Salmon</strong>
   container-title: Statistics and Computing
   doi: ''
   id: Chevalier_Nguyen_Thirion_Salmon22
@@ -245,7 +256,8 @@
   journaltitle: Statistics and Computing
   date: '2022'
   path: https://arxiv.org/pdf/2106.02590.pdf
-  code: ''
+  code: '<a href="https://github.com/Parietal-INRIA/hidimstat"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://garcinc.github.io/Camille-Garcin/">C. Garcin</a>, <a href="https://maximiliense.github.io/">M.
@@ -266,7 +278,8 @@
   journaltitle: ICML
   date: '2022'
   path: https://proceedings.mlr.press/v162/garcin22a/garcin22a.pdf
-  code: '<a href="https://github.com/garcinc/noised-topk"> [Code]</a> '
+  code: '<a href="https://github.com/plantnet/PlantNet-300K"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://pmangold.fr/">P. Mangold</a>, <a href="http://researchers.lille.inria.fr/abellet/">A.
@@ -287,6 +300,7 @@
   date: '2022'
   path: https://arxiv.org/pdf/2110.11688
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://tommoral.github.io/about.html">T. Moreau</a>, <a href="https://mathurinm.github.io/">M.
@@ -299,10 +313,9 @@
     Larsson</a>, <a href="https://www.inria.fr/en/mind">E. Lai</a>, <a href="https://tanglef.github.io/">T.
     Lefort</a>, <a href="https://fr.linkedin.com/in/benoit-malezieux-203283148">B.
     Malézieux</a>, <a href=" "https://ma.linkedin.com/in/badr-moufad"">B. Moufad</a>,
-    <a href="https://www.imo.universite-paris-saclay.fr/%7Etbnguyen/">T. B. Nguyen</a>,
-    <a href="https://sites.google.com/site/alainrakotomamonjy/">A. Rakotomamonjy</a>,
-    <a href="https://zaccharieramzi.fr/">Z. Ramzi</a>, <strong>J. Salmon</strong>
-    and <a href="http://samuelvaiter.com/">S. Vaiter</a>
+    <a href="https://tbng.github.io/">T. B. Nguyen</a>, <a href="https://sites.google.com/site/alainrakotomamonjy/">A.
+    Rakotomamonjy</a>, <a href="https://zaccharieramzi.fr/">Z. Ramzi</a>, <strong>J.
+    Salmon</strong> and <a href="http://samuelvaiter.com/">S. Vaiter</a>
   container-title: NeurIPS
   doi: ''
   id: Moreau_etal2022
@@ -317,7 +330,8 @@
   journaltitle: NeurIPS
   date: '2022'
   path: https://arxiv.org/abs/2206.13424
-  code: ''
+  code: <a href="https://benchopt.github.io/" >[Code]</a> |
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://sites.google.com/site/alainrakotomamonjy/">A. Rakotomamonjy</a>,
@@ -338,6 +352,7 @@
   date: '2022'
   path: https://hal.archives-ouvertes.fr/hal-02875560
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://ksehic.github.io/">K. Šehić</a>, <a href="http://alexandre.gramfort.net/">A.
@@ -363,6 +378,7 @@
   date: '2022'
   path: https://arxiv.org/pdf/2010.11825.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://twitter.com/el_pa_b">P.-A. Bannier</a>, <a href="https://qb3.github.io/">Q.
@@ -384,6 +400,7 @@
   date: '2021'
   path: http://josephsalmon.eu/papers/Bannier_etal2021.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://bascouflorent.github.io">F. Bascou</a>, <a href="http://www.univ-montp3.fr/miap/%7Elebre/">S.
@@ -403,11 +420,12 @@
   date: '2021'
   path: https://editions-rnti.fr/render_pdf.php?p=1002656
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
-  author: <a href="https://ja-che.github.io/">J.-A. Chevalier</a>, <a href="https://www.imo.universite-paris-saclay.fr/%7Etbnguyen/">T.
+  author: <a href="https://ja-che.github.io/">J.-A. Chevalier</a>, <a href="https://tbng.github.io/">T.
     B. Nguyen</a>, <a href="http://gael-varoquaux.info/">G. Varoquaux</a>, <strong>J.
-    Salmon</strong> and <a href="https://team.inria.fr/parietal/team-members/bertrand-thirions-page/">B.
+    Salmon</strong> and <a href="https://pages.saclay.inria.fr/bertrand.thirion/">B.
     Thirion</a>
   container-title: Neuroimage
   doi: ''
@@ -423,7 +441,8 @@
   journaltitle: Neuroimage
   date: '2021'
   path: https://www.sciencedirect.com/science/article/pii/S1053811921001981
-  code: ''
+  code: '<a href="https://github.com/Parietal-INRIA/hidimstat"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
@@ -444,6 +463,7 @@
   date: '2021'
   path: https://arxiv.org/pdf/1910.11186.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://garcinc.github.io/Camille-Garcin/">C. Garcin</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A.
@@ -470,7 +490,8 @@
     Datasets and Benchmarks
   date: '2021'
   path: https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/7e7757b1e12abcb736ab9a754ffb617a-Paper-round2.pdf
-  code: ''
+  code: '<a href="https://github.com/plantnet/PlantNet-300K"> [Code]</a> '
+  data: https://zenodo.org/records/5645731
 - abstract: ''
   accessed: ''
   author: <a href="https://www.stat.washington.edu/person/lang-liu">L. Liu</a>, <strong>J.
@@ -491,6 +512,7 @@
   date: '2021'
   path: https://stat.uw.edu/sites/default/files/2019-07/tr652.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://eugenendiaye.github.io/">E. Ndiaye</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O.
@@ -510,6 +532,7 @@
   date: '2021'
   path: https://arxiv.org/pdf/2009.02709.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://bascouflorent.github.io">F. Bascou</a>, <a href="http://www.univ-montp3.fr/miap/%7Elebre/">S.
@@ -529,6 +552,7 @@
   date: '2020'
   path: http://josephsalmon.eu/papers/JDS2020.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://qb3.github.io/">Q. Bertrand</a>, <a href="https://klopfe.github.io/">Q.
@@ -550,6 +574,7 @@
   date: '2020'
   path: https://arxiv.org/pdf/2002.08943.pdf
   code: '<a href="https://github.com/QB3/sparse-ho"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://qb3.github.io/">Q. Bertrand</a>, <a href="https://klopfe.github.io/">Q.
@@ -571,10 +596,11 @@
   date: '2020'
   path: https://arxiv.org/pdf/2002.08943.pdf
   code: '<a href="https://github.com/QB3/sparse-ho"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://ja-che.github.io/">J.-A. Chevalier</a>, <a href="http://alexandre.gramfort.net/">A.
-    Gramfort</a>, <strong>J. Salmon</strong> and <a href="https://team.inria.fr/parietal/team-members/bertrand-thirions-page/">B.
+    Gramfort</a>, <strong>J. Salmon</strong> and <a href="https://pages.saclay.inria.fr/bertrand.thirion/">B.
     Thirion</a>
   container-title: NeurIPS
   doi: ''
@@ -591,7 +617,8 @@
   journaltitle: NeurIPS
   date: '2020'
   path: https://arxiv.org/pdf/2009.14310.pdf
-  code: ''
+  code: '<a href="https://github.com/Parietal-INRIA/hidimstat"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://qb3.github.io/">Q. Bertrand</a>, <a href="https://mathurinm.github.io/">M.
@@ -612,6 +639,7 @@
   date: '2020'
   path: https://arxiv.org/pdf/2001.05401.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://samuelvaiter.com/">S.
@@ -632,6 +660,7 @@
   date: '2020'
   path: https://arxiv.org/pdf/1907.05830
   code: <a href="https://mathurinm.github.io/celer/"> [Python Code]</a> |
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://cermics.enpc.fr/%7Eparmenta/">A. Parmentier</a>, <a href="https://cermics.enpc.fr/%7Ecohenv/">V.
@@ -653,6 +682,7 @@
   path: https://arxiv.org/pdf/1902.07039.pdf
   code: <a href="https://github.com/Victor2175/mathprog_influence_diagrams" >[Code]</a>
     |
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://qb3.github.io/">Q. Bertrand</a>, <a href="https://mathurinm.github.io/">M.
@@ -674,6 +704,7 @@
   date: '2019'
   path: https://hal.archives-ouvertes.fr/hal-02010014/document
   code: '<a href="https://github.com/QB3/CLaR"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://echzhen.com/">E. Chzhen</a>, <a href="http://perso-math.univ-mlv.fr/users/hebiri.mohamed/">M.
@@ -693,6 +724,7 @@
   date: '2019'
   path: https://arxiv.org/abs/1707.05232
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
@@ -714,6 +746,7 @@
   date: '2019'
   path: https://arxiv.org/pdf/1903.00741.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://ngazagna.github.io/">N. Gazagnadou</a>, <a href="https://perso.telecom-paristech.fr/rgower/index.html">R.
@@ -733,6 +766,7 @@
   date: '2019'
   path: https://arxiv.org/pdf/1902.00071.pdf
   code: '<a href="https://github.com/gowerrobert/StochOpt.jl"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://www.stat.washington.edu/person/lang-liu">L. Liu</a>, <strong>J.
@@ -753,6 +787,7 @@
   date: '2019'
   path: https://stat.uw.edu/sites/default/files/2019-07/tr652.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://samuelvaiter.com/">S.
@@ -773,6 +808,7 @@
   date: '2019'
   path: http://josephsalmon.eu/papers/spars2019.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://eugenendiaye.github.io/">E. Ndiaye</a>, <a href="https://sites.google.com/site/lttamvn/">T.
@@ -794,6 +830,7 @@
   date: '2019'
   path: https://arxiv.org/pdf/1810.05471.pdf
   code: <a href="https://github.com/EugeneNdiaye/safe_grid_search" >[Code]</a>
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://sites.google.com/site/alainrakotomamonjy/">A. Rakotomamonjy</a>,
@@ -816,6 +853,7 @@
   code: '<a href="https://github.com/arakotom/screening_ncvx_penalty">
 
     [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://sites.google.com/site/yousrabekhti/">Y. Bekhti</a>, <a
@@ -837,11 +875,11 @@
   date: '2018'
   path: https://arxiv.org/abs/1710.08747
   code: '<a href="https://github.com/agramfort/bayes_mxne"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://ja-che.github.io/">J.-A. Chevalier</a>, <strong>J. Salmon</strong>
-    and <a href="https://team.inria.fr/parietal/team-members/bertrand-thirions-page/">B.
-    Thirion</a>
+    and <a href="https://pages.saclay.inria.fr/bertrand.thirion/">B. Thirion</a>
   container-title: MICCAI
   doi: ''
   id: Chevalier_Salmon_Thirion18
@@ -856,7 +894,8 @@
   journaltitle: MICCAI
   date: '2018'
   path: https://arxiv.org/pdf/1806.05829.pdf
-  code: ''
+  code: '<a href="https://github.com/Parietal-INRIA/hidimstat"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://echzhen.com/">E. Chzhen</a>, <a href="http://perso-math.univ-mlv.fr/users/denis.christophe/">C.
@@ -877,6 +916,7 @@
   date: '2018'
   path: https://arxiv.org/pdf/1703.04697.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O.
@@ -897,6 +937,7 @@
   date: '2018'
   path: https://arxiv.org/pdf/1705.09778.pdf
   code: <a href="https://github.com/mathurinm/SHCL"> [Python Code]</a> |
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://alexandre.gramfort.net/">A.
@@ -916,6 +957,7 @@
   date: '2018'
   path: https://arxiv.org/abs/1802.07481
   code: <a href="https://mathurinm.github.io/celer/"> [Python Code]</a> |
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.stat.rutgers.edu/home/PCB71/">P. C. Bellec</a>, <strong>J.
@@ -935,6 +977,7 @@
   date: '2017'
   path: https://arxiv.org/pdf/1706.06977.pdf
   code: '<a href="https://github.com/svaiter/gslope_oracle_inequality"> [Code]</a> '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.math.univ-toulouse.fr/%7ecboyer/">C. Boyer</a>, <a href="http://www.normalesup.org/%7edecastro/">Y.
@@ -957,6 +1000,7 @@
 
     [Demo Code]</a> | <a href="http://www.math.univ-toulouse.fr/~cboyer/codes/code_source_CBLasso.zip"
     >[ZIP]</a> | '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://courses.cit.cornell.edu/dc623/">D. Chételat</a>, <a href="http://johanneslederer.de/">J.
@@ -978,6 +1022,7 @@
   code: '<a href="https://github.com/josephsalmon/AVp">
 
     [Python Code]</a> |'
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
@@ -998,6 +1043,7 @@
   date: '2017'
   path: http://josephsalmon.eu/papers/CLEAR.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
@@ -1019,6 +1065,7 @@
   date: '2017'
   path: https://arxiv.org/pdf/1612.03080.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://alexandre.gramfort.net/">A.
@@ -1038,6 +1085,7 @@
   date: '2017'
   path: http://josephsalmon.eu/papers/SPARS2017_Paper_mathurin.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://mathurinm.github.io/">M. Massias</a>, <a href="http://alexandre.gramfort.net/">A.
@@ -1057,6 +1105,7 @@
   date: '2017'
   path: https://arxiv.org/pdf/1703.07285.pdf
   code: <a href="https://github.com/mathurinm/A5G">[Python Code]</a> |
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://eugenendiaye.github.io/">E. Ndiaye</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O.
@@ -1077,6 +1126,7 @@
   date: '2017'
   path: https://arxiv.org/pdf/1606.02702.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://eugenendiaye.github.io/">E. Ndiaye</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O.
@@ -1097,6 +1147,7 @@
   date: '2017'
   path: http://jmlr.org/papers/v18/16-577.html
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong>
@@ -1116,6 +1167,7 @@
   date: '2017'
   path: http://josephsalmon.eu/papers/HDR.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://perso.telecom-paristech.fr/%7Ecolin">I. Colin</a>, <a href="http://researchers.lille.inria.fr/abellet/">A.
@@ -1136,6 +1188,7 @@
   date: '2016'
   path: http://arxiv.org/pdf/1606.02421v1.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://perso.telecom-paristech.fr/%7Ecolin">I. Colin</a>, <a href="http://researchers.lille.inria.fr/abellet/">A.
@@ -1157,6 +1210,7 @@
   date: '2016'
   path: https://cap16.lif.univ-mrs.fr/programme.php
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://eugenendiaye.github.io/">E. Ndiaye</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O.
@@ -1177,6 +1231,7 @@
   date: '2016'
   path: http://arxiv.org/pdf/1602.06225v1.pdf
   code: <a href="https://github.com/EugeneNdiaye/GAPSAFE_SGL" >[Code]</a> |
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://perso.telecom-paristech.fr/%7Ecolin">I. Colin</a>, <a href="http://researchers.lille.inria.fr/abellet/">A.
@@ -1197,6 +1252,7 @@
   date: '2015'
   path: http://arxiv.org/pdf/1511.05464v1.pdf
   code: <a href="https://github.com/igorcolin/gosta" >[Code]</a> |
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
@@ -1218,6 +1274,7 @@
   date: '2015'
   path: https://hal.archives-ouvertes.fr/hal-01123542/document
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
@@ -1240,6 +1297,7 @@
   date: '2015'
   path: https://hal.archives-ouvertes.fr/hal-01187061/document
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O. Fercoq</a>, <a
@@ -1259,6 +1317,7 @@
   date: '2015'
   path: http://arxiv.org/pdf/1505.03410v1
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O. Fercoq</a>, <a
@@ -1279,6 +1338,7 @@
   date: '2015'
   path: http://josephsalmon.eu/papers/gretsi2015.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://kloppolga.perso.math.cnrs.fr/">O. Klopp</a>, <a href="https://scholar.google.com/citations?user=X_tkpWYAAAAJ&hl=en">J.
@@ -1299,6 +1359,7 @@
   date: '2015'
   path: http://arxiv.org/pdf/1408.6218v1.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://eugenendiaye.github.io/">E. Ndiaye</a>, <a href="http://perso.telecom-paristech.fr/%7Eofercoq/">O.
@@ -1319,6 +1380,7 @@
   date: '2015'
   path: http://josephsalmon.eu/papers/GAP_Safe_multi.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://perso.telecom-paristech.fr/%7egunther/">D. Günther</a>,
@@ -1340,6 +1402,7 @@
   path: http://josephsalmon.eu/papers/eurovis14.pdf
   code: '<a href="http://perso.telecom-paristech.fr/~tierny/stuff/videos/eurovis14_video.mov"
     > [video] </a> | '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="https://scholar.google.com/citations?user=X_tkpWYAAAAJ&hl=en">J.
@@ -1361,6 +1424,7 @@
   path: http://josephsalmon.eu/papers/nips_full14.pdf
   code: <a href="http://perso.telecom-paristech.fr/~lafond/downloads/code.tar.gz"
     >[ZIP]</a> |
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong>, <a href="http://drz.ac/">Z. T. Harmany</a>,
@@ -1384,6 +1448,7 @@
 
     </a> | <a href="http://josephsalmon.eu/code/demos/NLPCA_code.zip"> [ZIP] </a>
     | '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.arnak-dalalyan.fr/">A. S. Dalalyan</a>, <a href="http://perso-math.univ-mlv.fr/users/hebiri.mohamed/">M.
@@ -1404,6 +1469,7 @@
   date: '2013'
   path: http://josephsalmon.eu/papers/ICML13_DHMS.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.greyc.ensicaen.fr/%7ejfadili/">J. Fadili</a>, <a href="http://www.ceremade.dauphine.fr/%7Epeyre/">G.
@@ -1424,6 +1490,7 @@
   date: '2013'
   path: http://josephsalmon.eu/papers/SPARS13_FPVDS.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.greyc.ensicaen.fr/%7ejfadili/">J. Fadili</a>, <a href="http://www.ceremade.dauphine.fr/%7Epeyre/">G.
@@ -1444,6 +1511,7 @@
   date: '2013'
   path: http://josephsalmon.eu/papers/SampTA13_FPVDS.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.greyc.ensicaen.fr/%7ejfadili/">J. Fadili</a>, <a href="http://www.ceremade.dauphine.fr/%7Epeyre/">G.
@@ -1464,6 +1532,7 @@
   date: '2013'
   path: https://hal.archives-ouvertes.fr/hal-00927561/document
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://math.ucsd.edu/%7Eeariasca/">E. Arias-Castro</a>, <strong>J.
@@ -1484,6 +1553,7 @@
   date: '2012'
   path: http://josephsalmon.eu/papers/MinimaxNLM_ACSW.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.arnak-dalalyan.fr/">A. S. Dalalyan</a> and <strong>J.
@@ -1504,6 +1574,7 @@
   path: http://josephsalmon.eu/papers/Dalalyan_Salmon_AOS.pdf
   code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=EWA" >[Demo Matlab]
     </a> | <a href="http://josephsalmon.eu/code/demos/EWA_code.zip" >[ZIP]</a> | '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
@@ -1527,6 +1598,7 @@
     Matlab]
 
     </a>| <a href="http://josephsalmon.eu/code/demos/NLMSAP_code.zip" >[ZIP]</a> |'
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong>, <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A.
@@ -1550,6 +1622,7 @@
 
     </a> | <a href="http://josephsalmon.eu/code/demos/NLPCA_code.zip"> [ZIP] </a>
     | '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong> and <a href="http://www.prism.uvsq.fr/%7Eystr/">Y.
@@ -1575,6 +1648,7 @@
 
     <a href="http://josephsalmon.eu/code/demos/Reprojections_code.zip" >[ZIP]</a>
     | '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong>, <a href="http://willett.ece.wisc.edu/">R. Willett</a>
@@ -1599,6 +1673,7 @@
 
     <a href="http://josephsalmon.eu/code/demos/Preprocessed_YF_code.zip" >ZIP</a>
     | '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.arnak-dalalyan.fr/">A. S. Dalalyan</a> and <strong>J.
@@ -1618,6 +1693,7 @@
   date: '2011'
   path: http://josephsalmon.eu/papers/ALT11_Dalalyan_Salmon.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
@@ -1642,6 +1718,7 @@
 
     </a> | <a href="http://josephsalmon.eu/code/demos/NLMSAP_code.zip" >[ZIP]</a>
     | '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <a href="http://www.math.u-bordeaux1.fr/%7Ecdeledal/">C.-A. Deledalle</a>,
@@ -1664,6 +1741,7 @@
 
     </a> | <a href="http://josephsalmon.eu/code/demos/GP-PCA_code.zip"> [ZIP] </a>
     | '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong> and <a href="http://www.arnak-dalalyan.fr/">A.
@@ -1685,6 +1763,7 @@
   code: <a href="http://josephsalmon.eu/code/index_codes.php?page=aggregation" >[Demo
     Matlab] </a> | <a href="http://josephsalmon.eu/code/demos/EWA_code.zip" >[ZIP]</a>
     |
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong>
@@ -1703,6 +1782,7 @@
   date: '2010'
   path: http://josephsalmon.eu/papers/SPL10.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong> and <a href="http://www.prism.uvsq.fr/%7Eystr/">Y.
@@ -1728,6 +1808,7 @@
 
     <a href="http://josephsalmon.eu/code/demos/Reprojections_code.zip" >[ZIP]</a>
     | '
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong>
@@ -1747,6 +1828,7 @@
   date: '2010'
   path: http://josephsalmon.eu/papers/these_salmon.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong> and <a href="http://www.cmap.polytechnique.fr/%7Elepennec/">E.
@@ -1766,6 +1848,7 @@
   date: '2009'
   path: http://josephsalmon.eu/papers/ICIP09.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong> and <a href="http://www.cmap.polytechnique.fr/%7Elepennec/">E.
@@ -1785,6 +1868,7 @@
   date: '2009'
   path: http://josephsalmon.eu/papers/SPIE09.pdf
   code: ''
+  data: ''
 - abstract: ''
   accessed: ''
   author: <strong>J. Salmon</strong>
@@ -1803,3 +1887,4 @@
   date: '2007'
   path: ''
   code: ''
+  data: ''

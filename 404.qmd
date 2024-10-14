@@ -1,0 +1,82 @@
+---
+title: "404: Page Not Found"
+toc: false
+author: ""
+# title-block-banner: "https://josephsalmon.eu/img/bg_pine_trees.jpg"
+page-layout: article
+format:
+  html:
+    html-math-method: katex
+    include-in-header: html/seo.html
+    fontsize: 1.1em
+    theme:
+      - html/styles.scss
+
+toc-title: Year
+toc-location: right
+date-format: "MMMM D, YYYY"
+image: ""
+code-tools: false
+comments: false
+
+---
+
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .navbar {
+    z-index: 1;
+    position: relative;
+  }
+
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .text-overlay {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3em; /* Adjust the font size as needed */
+    font-weight: bold; /* Adjust the font weight as needed */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: add text shadow for better readability */
+    color: white;
+    z-index: 1;
+  }
+
+    .text-overlay-orange {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10em; /* Adjust the font size as needed */
+    font-weight: bold; /* Adjust the font weight as needed */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: add text shadow for better readability */
+    color: #f08f04ff;
+    z-index: 1;
+  }
+</style>
+
+
+<div class="background-image">
+  <img src="https://josephsalmon.eu/img/bg_pine_trees.jpg" alt="Background Image">
+  <div class="text-overlay-orange">404 </div>
+  <div class="text-overlay">Oups that page is gone...Sorry :( </div>
+</div>

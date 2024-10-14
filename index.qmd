@@ -22,6 +22,7 @@ listing:
       - publications/publications.yml
     template: publications/publications.ejs
     sort: 'date desc'
+    date-format: 'YYYY'
     max-items: 6
     grid-columns: 3
     fields: [image, date, title]

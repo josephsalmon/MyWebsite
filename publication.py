@@ -132,8 +132,8 @@ def transform_to_yaml(entry):
         'journaltitle': f"{entry.get('journal', entry.get('booktitle', ''))}",
         'date': entry.get('year', ''),
         'path': entry.get('pdf', ''),
-        'code': entry.get('comment', '')
-
+        'code': entry.get('comment', ''),
+        'data': entry.get('data', '')
     }
 
     return yaml_entry

@@ -50,7 +50,7 @@ website:
     left:
       - text: Courses
         href: Courses/index.qmd
-      - text: Publications
+      - text: Articles
         href: publications/index.qmd
       - text: Talks
         href: talks/index.qmd

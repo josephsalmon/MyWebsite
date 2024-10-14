@@ -1,6 +1,5 @@
 ---
 title: 'Publications'
-page-layout: full
 title-block-banner: "../img/bg_pine_trees.jpg"
 date-format: 'YYYY'
 listing:
@@ -9,7 +8,6 @@ listing:
   template: publications.ejs
   page-size: 100
   sort: 'date desc'
-  # type: table
   categories: false
   sort-ui: [year]
 #   filter-ui: [year]

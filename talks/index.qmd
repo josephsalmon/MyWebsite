@@ -7,26 +7,17 @@ listing:
     contents:
       - "metadata.yml"
     feed: true
-    # contents: posts
     sort: "date desc"
     template: ../html/blog/listing.ejs
     type: grid
     grid-columns: 4
-    # image-height: 130px
-    categories: true  
+    categories: true
     image-height: 95%
 
-page-layout: full
 toc-title: Year
 toc-location: right
 data-format: "MMMM D, YYYY"
 code-tools: false
 comments: false
-
-# image: profile_hex.jpg
-# header-includes: >
-#   <link rel="stylesheet" href="listing-default.css">
-# resources:
-#   - listing-default.css
 ---
 

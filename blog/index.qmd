@@ -2,7 +2,6 @@
 title: "Donadas Brutas"
 author: ""
 title-block-banner: "../img/bg_pine_trees.jpg"
-page-layout: full
 format:
   html:
     html-math-method: katex

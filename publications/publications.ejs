@@ -6,19 +6,24 @@
     <span class="listing-title lead"><b><%= item.title %></b></span><br />
     <span class="listing-author"><%= item.author %></span><br />
     <span class="listing-publication fst-italic "><%= item.publication %></span>
-    <span class="listing-journaltitle"><html><%= item.journaltitle %></html></span><br />
-    <span class="listing-year">(<%= item.date %>)</span><br />
+    <span class="listing-journaltitle"><html><%= item.journaltitle %></html></span>,
+    <span class="listing-year"><u><%= item.date %></u></span><br />
     <!-- <a href="<%- item.path %>" class="btn btn-primary">
       Details
     </a> -->
     <% if (item.path) { %>
       <a href="<%- item.path %>" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer" >
-        <i class="bi bi-file-earmark-pdf"></i>PDF
+        <i class="bi bi-file-earmark-pdf"></i> PDF
       </a>
       <% } %>
       <% if (item.code) { %>
         <a href="<%- item.code %>" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
-          <i class="bi bi-code"></i>Code
+          <i class="bi bi-code"></i> Code
+        </a>
+        <% } %>
+        <% if (item.data) { %>
+        <a href="<%- item.data %>" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer" >
+          <i class="bi bi-database"></i> Dataset
         </a>
         <% } %>
   </li>
