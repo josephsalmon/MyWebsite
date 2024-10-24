@@ -1,0 +1,221 @@
+---
+title: "Isotonic regression"
+author:
+  - name:
+      given: Joseph
+      family: Salmon
+
+date: "2024-10-22"
+description: "Iso Iso Iso ... Tonic"
+categories: [statistics, optimization, machine learning]
+image: "softmax.png"
+reference-location: document
+fig-cap-location: bottom
+draft: false
+
+# title-block-banner: hello-world-bg.jpg
+
+format:
+  html:
+    include-before-body: ../../html/margin_image.html
+    include-after-body: ../../html/blog_footer.html
+    code-fold: true
+---
+
+::: {.content-hidden}
+$$
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+$$
+:::
+
+**[Note]{.underline}**: This blog is mainly inspired by the post by Fabian Pedregosa on [Isotonic regression](https://fabianp.net/blog/isotonic-regression/), and the code use is an adaptation of the PAVA algorithm coded in the `sklearn` library (in particular the `_isotonic.pyx` file, as available in October 2024, see [source](https://github.com/scikit-learn/scikit-learn/blob/04fbe04fedda0e86e67867854900a49fb53c4c01/sklearn/_isotonic.pyx)).
+
+# Introduction
+
+Isotonic regression is a technique used to fit a non-decreasing function to a set of data points.
+We can think of isotonic regression as a generalization of linear regression where the function is constrained to be non-decreasing.
+
+More formally suppose that one collects $n$ sample points $y_1,\dots, y_n$ and has weights $w_1, \dots, w_n$ associated with each data point.
+**[Note]{.underline}**: when no priori weights are given, we can set $w_i = 1$ for all $i$.
+
+Then, the isotonic regression problem can be formulated as follows:
+$$
+\begin{align*}
+\min_{x \in \mathbb{R}^n} & \sum_{i=1}^{n} w_i (x_i - y_i)^2 \\
+\text{s.t.} & \quad x_1 \leq x_2 \leq \ldots \leq x_n
+\end{align*}
+$$
+
+
+
+
+```{python}
+# |echo: false
+import numpy as np
+import plotly.graph_objects as go
+
+
+def isotonic_regression(z, w):
+    y = z.copy()
+    n=len(y)
+    i = 0
+    target = np.arange(len(y))
+    targets = [target.copy()]
+    idx = [0]
+    while i < n:
+        k = target[i] + 1
+        if k == n:
+            break
+        if y[i] < y[k]:
+            # We are in an increasing subsequence.
+            i = k
+            targets.append(target.copy())
+            idx.append(k)
+            continue
+        sum_wy = w[i] * y[i]
+        sum_w = w[i]
+        while True:
+            # We are within a decreasing subsequence.
+            prev_y = y[k]
+            sum_wy += w[k] * y[k]
+            sum_w += w[k]
+            k = target[k] + 1
+            if k == n or prev_y < y[k]:
+                targets.append(target.copy())
+                idx.append(k)
+
+                # Non-singleton decreasing subsequence is finished,
+                # update first entry.
+                y[i] = sum_wy / sum_w
+                w[i] = sum_w
+
+                target[i] = k - 1
+                target[k - 1] = i
+
+                if i > 0:
+                    # Backtrack if we can.  This makes the algorithm
+                    # single-pass and ensures O(n) complexity.
+                    i = target[i - 1]
+                # Otherwise, restart from the same point.
+                break
+
+    # Reconstruct the solution.
+    i = 0
+    while i < n:
+        k = target[i] + 1
+        y[i + 1 : k] = y[i]
+        i = k
+    return y, targets, idx
+
+n_sample = 25
+
+rng = np.random.default_rng(2)
+
+x = np.arange(n_sample)
+w = np.ones(n_sample)
+z = rng.integers(-50, 50, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
+
+
+
+sol, targets, idx = isotonic_regression(z, w)
+
+
+def plot_targets(y, targets, x):
+    n = len(y)
+    fig = go.Figure()
+    fig.update_layout()
+    fig.add_trace(go.Scatter(x=x, y=y, mode='markers', name='Raw data', marker=dict(color='black', opacity=1, size=10), legendrank=1, showlegend=True))
+    fig.add_trace(go.Scatter(x=[x[0]], y=[y[0]], mode='lines+markers', name='PAVA iterations', marker=dict(color='red'), legendrank=2, showlegend=True))
+    # Create frames for each iteration
+    frames = []
+    for iteration, target in enumerate(targets):
+        # Reconstruct the solution.
+        yy = y.copy()
+        i = 0
+        while i < n:
+            k = target[i] + 1
+            yy[i : k] = np.mean(y[i : k])
+            i = k
+        # print(target, iteration)
+        current_idx = idx[iteration]
+        print(current_idx)
+        if current_idx ==0:
+            frames.append(go.Frame(data=[
+                go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), showlegend=True),  # Keep the black plot
+                go.Scatter(x=[x[current_idx]], y=[yy[current_idx]], mode='lines+markers', marker=dict(color='red'), showlegend=True)
+            ], name=str(iteration)))
+        else:
+            frames.append(go.Frame(data=[
+                go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), showlegend=True),  # Keep the black plot
+                go.Scatter(x=x[:current_idx], y=yy[:current_idx], mode='lines+markers', marker=dict(color='red'), showlegend=True)
+            ], name=str(iteration)))
+
+    frames.append(go.Frame(data=[
+            go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), showlegend=True),  # Keep the black plot
+            go.Scatter(x=x[:current_idx+1], y=yy[:current_idx+1], mode='lines+markers', marker=dict(color='red'), showlegend=True)
+        ], name=str(iteration)))
+    fig.frames = frames
+    # Create slider steps
+    steps = []
+    for i in range(len(frames)):
+        step = dict(
+            method="animate",
+            args=[[str(i)], dict(mode="immediate", frame=dict(duration=300, redraw=True), transition=dict(duration=0))],
+            label=str(i)
+        )
+        steps.append(step)
+
+    sliders = [dict(
+        active=1,
+        steps=steps,
+        currentvalue={"prefix": "Iteration: #"},
+    )]
+
+    # Add play and pause buttons
+    fig.update_layout(
+        sliders=sliders,
+        updatemenus=[
+            {
+                "buttons": [
+                    {
+                        "args": [None, {"frame": {"duration": 500, "redraw": False},
+                                        "fromcurrent": True, "transition": {"duration": 50,
+                                                                            "easing": "linear"}}],
+                        "label": "Play",
+                        "method": "animate"
+                    },
+                    {
+                        "args": [[None], {"frame": {"duration": 0, "redraw": False},
+                                          "mode": "immediate",
+                                          "transition": {"duration": 0}}],
+                        "label": "Pause",
+                        "method": "animate"
+                    }
+                ],
+                "direction": "left",
+                "pad": {"r": 10, "t": 87},
+                "showactive": False,
+                "type": "buttons",
+                "x": 0.5,
+                "xanchor": "center",
+                "y": -0.3,
+                "yanchor": "top",
+            }
+        ],
+        xaxis_title="X",
+        yaxis_title="Y",
+        template='simple_white',
+        xaxis=dict(range=[-0.5, n+0.5]),
+        yaxis=dict(range=[0, 200])
+    )
+
+    fig.show()
+
+
+plot_targets(z, targets, x)
+
+```
+
+<!-- view isotonic gif 
+![Isotonic](isotonic.gif) -->

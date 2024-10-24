@@ -18,7 +18,59 @@ comments: false
 ---
 
 
-## <a href="STAT5934.html" style="color:black">STAT593 - Robust statistics (2018-2019)
+## <a href="https://josephsalmon.github.io/HAX712X/" style="color:black">HAX712X - Software development for data science (2020-2024)</a>
+
+<img style="float: right;" src="images/python_ecosystem.svg" width=20%>
+
+This is a master level course on Software development for data science, using Python.
+<br>
+Details can be found here: [HAX712X](https://josephsalmon.github.io/HAX712X/).
+<br>
+Course language: &#127468;&#127463;
+
+
+
+## <a href="HAX603X.html" style="color:black">HAX603X - Stochastic Modeling (2023-2024)</a>
+
+<img style="float: right;" src="images/output.gif" width=12%>
+
+This is an undergraduate course on stochastic modeling and Monte Carlo methods, with exercises in Python.
+<br>
+Details can be found here: [HAX603X - Stochastic Modeling](HAX603X.qmd).
+<br>
+Course language: &#127467;&#127479;
+
+
+
+
+
+## <a href="HAX606X.html" style="color:black">HAX606X - Convex optimization (2020-2023)</a>
+
+<img style="float: right;" src="images/descente_gradient.svg" width=20%>
+
+This is an undergraduate course on convex optimization
+Exercises are proposed in Python.
+<br>
+Details can be found here: [HAX606X - Convex optimization](HAX606X.qmd).
+<br>
+Course language: &#127467;&#127479;
+
+
+
+## <a href="HLMA310.html" style="color:black">HLMA310 - Scientific Python (2018-2020)</a>
+
+
+<img style="float: right;" src="images/python_ecosystem.svg" width=20%>
+This is an undergraduate course introducing Python for scientific computing.
+<br>
+Details can be found here: [HLMA310 - Scientific Python](HLMA310.qmd).
+<br>
+Course language: &#127467;&#127479;
+
+
+
+
+## <a href="STAT593.html" style="color:black">STAT593 - Robust statistics (2018-2019)
 </a>
 
 <img style="float: right;" src="images/depth_level_sets_full.svg" width=20%>
@@ -73,7 +125,6 @@ This course is mostly about linear models in econometrics.
 Details can be found here: [M53010 - Econometrics](M53010.html).
 <br>
 Course language: &#127467;&#127479;
-
 
 
 ## <a href="M2MO.html" style="color:black">M2MO - Statistical Learning (2013-2018)
@@ -139,48 +190,9 @@ Details can be found here: [HLMA408 - Data science for ecology](HLMA408.qmd).
 <br>
 Course language: &#127467;&#127479;
 
-## <a href="https://josephsalmon.github.io/HAX712X/" style="color:black">HAX712X - Software development for data science (2020-2024)</a>
-
-<img style="float: right;" src="images/python_ecosystem.svg" width=20%>
-
-This is a master level course on Software development for data science, using Python.
-<br>
-Details can be found here: [HAX712X](https://josephsalmon.github.io/HAX712X/).
-<br>
-Course language: &#127468;&#127463;
-
-## <a href="HAX606X.html" style="color:black">HAX606X - Convex optimization (2020-2023)</a>
-
-<img style="float: right;" src="images/descente_gradient.svg" width=20%>
-
-This is an undergraduate course on convex optimization
-Exercises are proposed in Python.
-<br>
-Details can be found here: [HAX606X - Convex optimization](HAX606X.qmd).
-<br>
-Course language: &#127467;&#127479;
 
 
-## <a href="HAX603X.html" style="color:black">HAX603X - Stochastic Modeling (2023-2024)</a>
 
-<img style="float: right;" src="images/output.gif" width=12%>
-
-This is an undergraduate course on stochastic modeling and Monte Carlo methods, with exercises in Python.
-<br>
-Details can be found here: [HAX603X - Stochastic Modeling](HAX603X.qmd).
-<br>
-Course language: &#127467;&#127479;
-
-
-## <a href="HLMA310.html" style="color:black">HLMA310 - Scientific Python (2018-2020)</a>
-
-
-<img style="float: right;" src="images/python_ecosystem.svg" width=20%>
-This is an undergraduate course introducing Python for scientific computing.
-<br>
-Details can be found here: [HLMA310 - Scientific Python](HLMA310.qmd).
-<br>
-Course language: &#127467;&#127479;
 
 
 

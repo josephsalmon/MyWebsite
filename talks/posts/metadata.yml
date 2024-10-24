@@ -36,12 +36,10 @@ by weighting Areas Under the Margin"
    - inf-convolution
    - concomitant estimation
 
-
 - title: "Supervised learning by crowdsourcing (I)"
   date: 2023-11-30
   image: images/confusion_matrix.png
   path: https://josephsalmon.eu/talks/intro-crowdsourcing1.pdf
-    - https://josephsalmon/talks/intro-crowdsourcing1.pdf
   categories:
    - crowdsourcing
    - supervised learning
@@ -50,7 +48,6 @@ by weighting Areas Under the Margin"
   date: 2023-11-30
   image: images/AUMS.png
   path: https://josephsalmon.eu/talks/intro-crowdsourcing2.pdf
-    - https://josephsalmon/talks/intro-crowdsourcing2.pdf
   categories:
    - crowdsourcing
    - supervised learning
@@ -71,7 +68,7 @@ by weighting Areas Under the Margin"
   path: https://josephsalmon.eu/talks/LSE2022.pdf
   categories:
    - optimization
-   - grid-search
+   - grid search
    - hyperparameter selection
    - bilevel optimization
    - implicit differentiation
@@ -81,7 +78,6 @@ by weighting Areas Under the Margin"
   image: images/nncvx.png
   path: https://josephsalmon.eu/talks/screening_nncvx.pdf
   categories:
-   - lasso
    - non-convex optimization
    - sparse regression
 
@@ -136,7 +132,6 @@ by weighting Areas Under the Margin"
   image: images/Extrapolated.png
   path: https://josephsalmon.eu/talks/horizonmath.pdf
   categories:
-   - lasso
    - optimization
    - dual extrapolation
 
