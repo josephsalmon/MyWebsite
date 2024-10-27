@@ -16,7 +16,7 @@
   journaltitle: JDS 2024 - 55es Journées de Statistique
   date: '2024'
   path: https://hal.science/hal-04562830/file/Gabarit_JdS.pdf
-  code: '<a href="https://peerannot.github.io/"> [Code]</a> '
+  code: https://peerannot.github.io/
   data: ''
 - abstract: ''
   accessed: ''
@@ -61,7 +61,7 @@
   journaltitle: TMLR
   date: '2024'
   path: https://arxiv.org/abs/2209.15380
-  code: '<a href="https://peerannot.github.io/"> [Code]</a> '
+  code: https://peerannot.github.io/
   data: https://zenodo.org/records/10782465
 - abstract: ''
   accessed: ''
@@ -82,7 +82,7 @@
   journaltitle: Computo
   date: '2024'
   path: https://hal.science/hal-04202889
-  code: '<a href="https://peerannot.github.io/"> [Code]</a> '
+  code: https://peerannot.github.io/
   data: ''
 - abstract: ''
   accessed: ''
@@ -108,7 +108,7 @@
   journaltitle: ''
   date: '2024'
   path: https://arxiv.org/pdf/2406.03356.pdf
-  code: '<a href="https://peerannot.github.io/"> [Code]</a> '
+  code: https://peerannot.github.io/
   data: ''
 - abstract: ''
   accessed: ''
@@ -129,7 +129,7 @@
   journaltitle: CAp 2024 - Conférence sur l'Apprentissage Automatique
   date: '2024'
   path: https://hal.science/hal-04573727/file/cap2024.pdf
-  code: '<a href="https://peerannot.github.io/"> [Code]</a> '
+  code: https://peerannot.github.io/
   data: ''
 - abstract: ''
   accessed: ''
@@ -235,7 +235,7 @@
   journaltitle: J. Mach. Learn. Res.
   date: '2022'
   path: https://arxiv.org/pdf/2105.01637
-  code: '<a href="https://github.com/QB3/sparse-ho"> [Code]</a> '
+  code: https://github.com/QB3/sparse-ho
   data: ''
 - abstract: ''
   accessed: ''
@@ -256,7 +256,7 @@
   journaltitle: Statistics and Computing
   date: '2022'
   path: https://arxiv.org/pdf/2106.02590.pdf
-  code: '<a href="https://github.com/Parietal-INRIA/hidimstat"> [Code]</a> '
+  code: https://github.com/Parietal-INRIA/hidimstat
   data: ''
 - abstract: ''
   accessed: ''
@@ -278,7 +278,7 @@
   journaltitle: ICML
   date: '2022'
   path: https://proceedings.mlr.press/v162/garcin22a/garcin22a.pdf
-  code: '<a href="https://github.com/plantnet/PlantNet-300K"> [Code]</a> '
+  code: https://github.com/plantnet/PlantNet-300K
   data: ''
 - abstract: ''
   accessed: ''
@@ -330,7 +330,7 @@
   journaltitle: NeurIPS
   date: '2022'
   path: https://arxiv.org/abs/2206.13424
-  code: <a href="https://benchopt.github.io/" >[Code]</a> |
+  code: https://benchopt.github.io/
   data: ''
 - abstract: ''
   accessed: ''
@@ -441,7 +441,7 @@
   journaltitle: Neuroimage
   date: '2021'
   path: https://www.sciencedirect.com/science/article/pii/S1053811921001981
-  code: '<a href="https://github.com/Parietal-INRIA/hidimstat"> [Code]</a> '
+  code: https://github.com/Parietal-INRIA/hidimstat
   data: ''
 - abstract: ''
   accessed: ''
@@ -490,7 +490,7 @@
     Datasets and Benchmarks
   date: '2021'
   path: https://datasets-benchmarks-proceedings.neurips.cc/paper/2021/file/7e7757b1e12abcb736ab9a754ffb617a-Paper-round2.pdf
-  code: '<a href="https://github.com/plantnet/PlantNet-300K"> [Code]</a> '
+  code: https://github.com/plantnet/PlantNet-300K
   data: https://zenodo.org/records/5645731
 - abstract: ''
   accessed: ''
@@ -573,7 +573,7 @@
   journaltitle: ICML
   date: '2020'
   path: https://arxiv.org/pdf/2002.08943.pdf
-  code: '<a href="https://github.com/QB3/sparse-ho"> [Code]</a> '
+  code: https://github.com/QB3/sparse-ho
   data: ''
 - abstract: ''
   accessed: ''
@@ -595,7 +595,7 @@
   journaltitle: CAP
   date: '2020'
   path: https://arxiv.org/pdf/2002.08943.pdf
-  code: '<a href="https://github.com/QB3/sparse-ho"> [Code]</a> '
+  code: https://github.com/QB3/sparse-ho
   data: ''
 - abstract: ''
   accessed: ''
@@ -617,7 +617,7 @@
   journaltitle: NeurIPS
   date: '2020'
   path: https://arxiv.org/pdf/2009.14310.pdf
-  code: '<a href="https://github.com/Parietal-INRIA/hidimstat"> [Code]</a> '
+  code: https://github.com/Parietal-INRIA/hidimstat
   data: ''
 - abstract: ''
   accessed: ''
@@ -659,7 +659,7 @@
   journaltitle: J. Mach. Learn. Res.
   date: '2020'
   path: https://arxiv.org/pdf/1907.05830
-  code: <a href="https://mathurinm.github.io/celer/"> [Python Code]</a> |
+  code: https://mathurinm.github.io/celer/
   data: ''
 - abstract: ''
   accessed: ''
@@ -680,8 +680,7 @@
   journaltitle: INFORMS J. Optim.
   date: '2020'
   path: https://arxiv.org/pdf/1902.07039.pdf
-  code: <a href="https://github.com/Victor2175/mathprog_influence_diagrams" >[Code]</a>
-    |
+  code: https://github.com/Victor2175/mathprog_influence_diagrams
   data: ''
 - abstract: ''
   accessed: ''
@@ -703,7 +702,7 @@
   journaltitle: NeurIPS
   date: '2019'
   path: https://hal.archives-ouvertes.fr/hal-02010014/document
-  code: '<a href="https://github.com/QB3/CLaR"> [Code]</a> '
+  code: https://github.com/QB3/CLaR
   data: ''
 - abstract: ''
   accessed: ''
@@ -765,7 +764,7 @@
   journaltitle: ICML
   date: '2019'
   path: https://arxiv.org/pdf/1902.00071.pdf
-  code: '<a href="https://github.com/gowerrobert/StochOpt.jl"> [Code]</a> '
+  code: https://github.com/gowerrobert/StochOpt.jl
   data: ''
 - abstract: ''
   accessed: ''
@@ -829,7 +828,7 @@
   journaltitle: ICML
   date: '2019'
   path: https://arxiv.org/pdf/1810.05471.pdf
-  code: <a href="https://github.com/EugeneNdiaye/safe_grid_search" >[Code]</a>
+  code: https://github.com/EugeneNdiaye/safe_grid_search
   data: ''
 - abstract: ''
   accessed: ''
@@ -850,9 +849,7 @@
   journaltitle: ICML
   date: '2019'
   path: https://hal.archives-ouvertes.fr/hal-02017967v1
-  code: '<a href="https://github.com/arakotom/screening_ncvx_penalty">
-
-    [Code]</a> '
+  code: https://github.com/arakotom/screening_ncvx_penalty
   data: ''
 - abstract: ''
   accessed: ''
@@ -874,7 +871,7 @@
   journaltitle: Inverse Problems
   date: '2018'
   path: https://arxiv.org/abs/1710.08747
-  code: '<a href="https://github.com/agramfort/bayes_mxne"> [Code]</a> '
+  code: https://github.com/agramfort/bayes_mxne
   data: ''
 - abstract: ''
   accessed: ''
@@ -894,7 +891,7 @@
   journaltitle: MICCAI
   date: '2018'
   path: https://arxiv.org/pdf/1806.05829.pdf
-  code: '<a href="https://github.com/Parietal-INRIA/hidimstat"> [Code]</a> '
+  code: https://github.com/Parietal-INRIA/hidimstat
   data: ''
 - abstract: ''
   accessed: ''
@@ -936,7 +933,7 @@
   journaltitle: AISTATS
   date: '2018'
   path: https://arxiv.org/pdf/1705.09778.pdf
-  code: <a href="https://github.com/mathurinm/SHCL"> [Python Code]</a> |
+  code: https://github.com/mathurinm/SHCL
   data: ''
 - abstract: ''
   accessed: ''
@@ -956,7 +953,7 @@
   journaltitle: ICML
   date: '2018'
   path: https://arxiv.org/abs/1802.07481
-  code: <a href="https://mathurinm.github.io/celer/"> [Python Code]</a> |
+  code: https://mathurinm.github.io/celer/
   data: ''
 - abstract: ''
   accessed: ''
@@ -976,7 +973,7 @@
   journaltitle: Electron. J. Statist.
   date: '2017'
   path: https://arxiv.org/pdf/1706.06977.pdf
-  code: '<a href="https://github.com/svaiter/gslope_oracle_inequality"> [Code]</a> '
+  code: https://github.com/svaiter/gslope_oracle_inequality
   data: ''
 - abstract: ''
   accessed: ''
@@ -996,10 +993,7 @@
   journaltitle: Inf. Inference
   date: '2017'
   path: http://arxiv.org/pdf/1606.04760v1
-  code: '<a href="http://www.math.univ-toulouse.fr/~cboyer/codes/html_CBlasso_vs_Blasso/script_example1_CBlasso_vs_Blasso.html">
-
-    [Demo Code]</a> | <a href="http://www.math.univ-toulouse.fr/~cboyer/codes/code_source_CBLasso.zip"
-    >[ZIP]</a> | '
+  code: http://www.math.univ-toulouse.fr/~cboyer/codes/html_CBlasso_vs_Blasso/script_example1_CBlasso_vs_Blasso.html
   data: ''
 - abstract: ''
   accessed: ''
@@ -1019,9 +1013,7 @@
   journaltitle: Electron. J. Statist.
   date: '2017'
   path: http://arxiv.org/pdf/1410.5014.pdf
-  code: '<a href="https://github.com/josephsalmon/AVp">
-
-    [Python Code]</a> |'
+  code: https://github.com/josephsalmon/AVp
   data: ''
 - abstract: ''
   accessed: ''
@@ -1104,7 +1096,7 @@
   journaltitle: NIPS-OPT
   date: '2017'
   path: https://arxiv.org/pdf/1703.07285.pdf
-  code: <a href="https://github.com/mathurinm/A5G">[Python Code]</a> |
+  code: https://github.com/mathurinm/A5G
   data: ''
 - abstract: ''
   accessed: ''
@@ -1230,7 +1222,7 @@
   journaltitle: NeurIPS
   date: '2016'
   path: http://arxiv.org/pdf/1602.06225v1.pdf
-  code: <a href="https://github.com/EugeneNdiaye/GAPSAFE_SGL" >[Code]</a> |
+  code: https://github.com/EugeneNdiaye/GAPSAFE_SGL
   data: ''
 - abstract: ''
   accessed: ''
@@ -1251,7 +1243,7 @@
   journaltitle: NeurIPS
   date: '2015'
   path: http://arxiv.org/pdf/1511.05464v1.pdf
-  code: <a href="https://github.com/igorcolin/gosta" >[Code]</a> |
+  code: https://github.com/igorcolin/gosta
   data: ''
 - abstract: ''
   accessed: ''
@@ -1400,8 +1392,7 @@
   journaltitle: Comput. Graph. Forum
   date: '2014'
   path: http://josephsalmon.eu/papers/eurovis14.pdf
-  code: '<a href="http://perso.telecom-paristech.fr/~tierny/stuff/videos/eurovis14_video.mov"
-    > [video] </a> | '
+  code: http://perso.telecom-paristech.fr/~tierny/stuff/videos/eurovis14_video.mov
   data: ''
 - abstract: ''
   accessed: ''
@@ -1422,8 +1413,7 @@
   journaltitle: NeurIPS
   date: '2014'
   path: http://josephsalmon.eu/papers/nips_full14.pdf
-  code: <a href="http://perso.telecom-paristech.fr/~lafond/downloads/code.tar.gz"
-    >[ZIP]</a> |
+  code: http://perso.telecom-paristech.fr/~lafond/downloads/code.tar.gz
   data: ''
 - abstract: ''
   accessed: ''
@@ -1444,10 +1434,7 @@
   journaltitle: J. Math. Imaging Vis.
   date: '2014'
   path: http://josephsalmon.eu/papers/JMIV_SHDW12.pdf
-  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=NLPCA"> [Demo Matlab]
-
-    </a> | <a href="http://josephsalmon.eu/code/demos/NLPCA_code.zip"> [ZIP] </a>
-    | '
+  code: http://josephsalmon.eu/code/index_codes.php?page=NLPCA
   data: ''
 - abstract: ''
   accessed: ''
@@ -1572,8 +1559,7 @@
   journaltitle: Ann. Statist.
   date: '2012'
   path: http://josephsalmon.eu/papers/Dalalyan_Salmon_AOS.pdf
-  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=EWA" >[Demo Matlab]
-    </a> | <a href="http://josephsalmon.eu/code/demos/EWA_code.zip" >[ZIP]</a> | '
+  code: http://josephsalmon.eu/code/index_codes.php?page=EWA
   data: ''
 - abstract: ''
   accessed: ''
@@ -1594,10 +1580,7 @@
   journaltitle: J. Math. Imaging Vis.
   date: '2012'
   path: http://josephsalmon.eu/papers/JMIV11_NLMSAP.pdf
-  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=NLMSAP" > [Demo
-    Matlab]
-
-    </a>| <a href="http://josephsalmon.eu/code/demos/NLMSAP_code.zip" >[ZIP]</a> |'
+  code: http://josephsalmon.eu/code/index_codes.php?page=NLMSAP
   data: ''
 - abstract: ''
   accessed: ''
@@ -1618,10 +1601,7 @@
   journaltitle: ICASSP
   date: '2012'
   path: http://josephsalmon.eu/papers/ICASSP12_SDWH.pdf
-  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=NLPCA"> [Demo Matlab]
-
-    </a> | <a href="http://josephsalmon.eu/code/demos/NLPCA_code.zip"> [ZIP] </a>
-    | '
+  code: http://josephsalmon.eu/code/index_codes.php?page=NLPCA
   data: ''
 - abstract: ''
   accessed: ''
@@ -1641,13 +1621,7 @@
   journaltitle: Signal Processing
   date: '2012'
   path: http://josephsalmon.eu/papers/NLM_Reprojections_Salmon_Strozecki.pdf
-  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=NLM_reprojection"
-    >
-
-    [Demo Matlab] </a> |
-
-    <a href="http://josephsalmon.eu/code/demos/Reprojections_code.zip" >[ZIP]</a>
-    | '
+  code: http://josephsalmon.eu/code/index_codes.php?page=NLM_reprojection
   data: ''
 - abstract: ''
   accessed: ''
@@ -1667,12 +1641,7 @@
   journaltitle: SSP
   date: '2012'
   path: http://josephsalmon.eu/papers/SSP12.pdf
-  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=PYF" >
-
-    [Demo Matlab] </a> |
-
-    <a href="http://josephsalmon.eu/code/demos/Preprocessed_YF_code.zip" >ZIP</a>
-    | '
+  code: http://josephsalmon.eu/code/index_codes.php?page=PYF
   data: ''
 - abstract: ''
   accessed: ''
@@ -1713,11 +1682,7 @@
   journaltitle: SSVM
   date: '2011'
   path: http://josephsalmon.eu/papers/SSVM11_NLMSAP.pdf
-  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=NLMSAP" >[Demo
-    Matlab]
-
-    </a> | <a href="http://josephsalmon.eu/code/demos/NLMSAP_code.zip" >[ZIP]</a>
-    | '
+  code: http://josephsalmon.eu/code/index_codes.php?page=NLMSAP
   data: ''
 - abstract: ''
   accessed: ''
@@ -1737,10 +1702,7 @@
   journaltitle: BMVC
   date: '2011'
   path: http://josephsalmon.eu/papers/BMVC11_DSD.pdf
-  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=GPPCA"> [Demo Matlab]
-
-    </a> | <a href="http://josephsalmon.eu/code/demos/GP-PCA_code.zip"> [ZIP] </a>
-    | '
+  code: http://josephsalmon.eu/code/index_codes.php?page=GPPCA
   data: ''
 - abstract: ''
   accessed: ''
@@ -1760,9 +1722,7 @@
   journaltitle: COLT
   date: '2011'
   path: http://josephsalmon.eu/papers/COLT11_Dalalyan_Salmon.pdf
-  code: <a href="http://josephsalmon.eu/code/index_codes.php?page=aggregation" >[Demo
-    Matlab] </a> | <a href="http://josephsalmon.eu/code/demos/EWA_code.zip" >[ZIP]</a>
-    |
+  code: http://josephsalmon.eu/code/index_codes.php?page=aggregation
   data: ''
 - abstract: ''
   accessed: ''
@@ -1801,13 +1761,7 @@
   journaltitle: ICIP
   date: '2010'
   path: http://josephsalmon.eu/papers/ICIP10.pdf
-  code: '<a href="http://josephsalmon.eu/code/index_codes.php?page=NLM_reprojection"
-    >
-
-    [Demo Matlab] </a> |
-
-    <a href="http://josephsalmon.eu/code/demos/Reprojections_code.zip" >[ZIP]</a>
-    | '
+  code: http://josephsalmon.eu/code/index_codes.php?page=NLM_reprojection
   data: ''
 - abstract: ''
   accessed: ''

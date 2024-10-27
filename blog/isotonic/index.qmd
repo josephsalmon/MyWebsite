@@ -110,7 +110,7 @@ def isotonic_regression(z, w):
 
 n_sample = 25
 
-rng = np.random.default_rng(2)
+rng = np.random.default_rng(1)
 
 x = np.arange(n_sample)
 w = np.ones(n_sample)

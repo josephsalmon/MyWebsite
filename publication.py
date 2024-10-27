@@ -1,5 +1,3 @@
-
-
 # %%
 import re
 import bibtexparser
@@ -14,7 +12,6 @@ def make_link_author_website(author, emphasize="J. Salmon"):
     names_url = pd.read_csv("data/coauthors_url.csv", header="infer")
     url = names_url.loc[names_url.name == author, "url"].values[0]
     return author if author == emphasize else f'<a href="{url}">{author}</a>'
-
 
 
 def make_nice_author(author, emphasize="J. Salmon"):
@@ -85,9 +82,13 @@ def get_bib_entries(bib_fname):
         bibtex_str_ok = bibtex_str[:start] + author_str_ok + bibtex_str[stop:]
         item["bibtex"] = bibtex_str_ok
         # Search for the pattern in the text
-        pattern = r'<a href="(.*?)">'
+        pattern = r'href="(.*?)"'
+
         if "comment" in item:
-            item["code"] = re.search(pattern, item["comment"])
+            match = re.search(pattern, item["comment"])
+            if match:
+                item["code"] = match.group(1)
+                print(match.group(1))
         item["title"] = make_nice_title(item["title"])
         item["index"] = k
         if "url" in item:
@@ -115,25 +116,25 @@ def transform_to_yaml(entry):
     #         authors.append(given + ' ' + family)
     # Create the YAML structure
     yaml_entry = {
-        'abstract': entry.get('abstract', ''),
-        'accessed': entry.get('accessed', ''),
-        'author': entry.get('author', ''),
-        'container-title': entry.get('journal', entry.get('booktitle', '')),
-        'doi': entry.get('doi', ''),
-        'id': entry.get('ID', ''),
-        'issn': entry.get('issn', ''),
-        'issue': entry.get('issue', ''),
-        'issued': entry.get('issued', ''),
-        'page': entry.get('pages', ''),
-        'title': entry.get('title', ''),
-        'type': entry.get('ENTRYTYPE', ''),
-        'url': entry.get('url', ''),
-        'volume': entry.get('volume', ''),
-        'journaltitle': f"{entry.get('journal', entry.get('booktitle', ''))}",
-        'date': entry.get('year', ''),
-        'path': entry.get('pdf', ''),
-        'code': entry.get('comment', ''),
-        'data': entry.get('data', '')
+        "abstract": entry.get("abstract", ""),
+        "accessed": entry.get("accessed", ""),
+        "author": entry.get("author", ""),
+        "container-title": entry.get("journal", entry.get("booktitle", "")),
+        "doi": entry.get("doi", ""),
+        "id": entry.get("ID", ""),
+        "issn": entry.get("issn", ""),
+        "issue": entry.get("issue", ""),
+        "issued": entry.get("issued", ""),
+        "page": entry.get("pages", ""),
+        "title": entry.get("title", ""),
+        "type": entry.get("ENTRYTYPE", ""),
+        "url": entry.get("url", ""),
+        "volume": entry.get("volume", ""),
+        "journaltitle": f"{entry.get('journal', entry.get('booktitle', ''))}",
+        "date": entry.get("year", ""),
+        "path": entry.get("pdf", ""),
+        "code": entry.get("code", ""),
+        "data": entry.get("data", ""),
     }
 
     return yaml_entry
@@ -142,13 +143,18 @@ def transform_to_yaml(entry):
 def write_yaml_file(entries, output_file):
     yaml_entries = [transform_to_yaml(entry) for entry in entries]
 
-    with open(output_file, 'w', encoding='utf-8') as file:
-        yaml.dump(yaml_entries, file, default_flow_style=False, sort_keys=False, allow_unicode=True)
-
+    with open(output_file, "w", encoding="utf-8") as file:
+        yaml.dump(
+            yaml_entries,
+            file,
+            default_flow_style=False,
+            sort_keys=False,
+            allow_unicode=True,
+        )
 
 
 # Example usage
 entries = [PUBLICATION_LIST]
 for entry in entries:
-    write_yaml_file(entry, 'publications/publications.yml')
+    write_yaml_file(entry, "publications/publications.yml")
 # %%
