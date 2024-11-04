@@ -141,101 +141,54 @@ def replace_after_first_non_increasing(vector):
 
 
 sol, targets, idx = isotonic_regression(z, w)
-
-primals = []
-duals = []
+primals, duals = [], []
 
 def plot_targets(y, targets, x):
     n = len(y)
     fig = go.Figure()
-    fig.update_layout()
     fig.add_trace(go.Scatter(x=x, y=y, mode='markers', name='Raw data', marker=dict(color='black', opacity=1, size=10), legendrank=1, showlegend=True))
     fig.add_trace(go.Scatter(x=[x[0]], y=[y[0]], mode='lines+markers', name='PAVA iterations', marker=dict(color='red'), legendrank=2, showlegend=True))
-    # Create frames for each iteration
-    frames = []
 
+    frames = []
     for iteration, target in enumerate(targets):
-        # Reconstruct the solution.
         yy = y.copy()
         i = 0
         while i < n:
             k = target[i] + 1
-            yy[i : k] = np.mean(y[i : k])
+            yy[i:k] = np.mean(y[i:k])
             i = k
-        duals.append(0.5*np.linalg.norm(y)**2-0.5*np.linalg.norm(yy)**2)
+        duals.append(0.5 * np.linalg.norm(y)**2 - 0.5 * np.linalg.norm(yy)**2)
 
         current_idx = idx[iteration]
-
         primal = replace_after_first_non_increasing(yy.copy())
-        primals.append(0.5*np.linalg.norm(primal - y)**2)
-        if current_idx ==0:
-            frames.append(go.Frame(data=[
-                go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), showlegend=True),  # Keep the black plot
-                go.Scatter(x=[x[current_idx]], y=[yy[current_idx]], mode='lines+markers', marker=dict(color='red'), showlegend=True)
-            ], name=str(iteration)))
-        else:
-            frames.append(go.Frame(data=[
-                go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), showlegend=True),  # Keep the black plot
-                go.Scatter(x=x[:current_idx], y=yy[:current_idx], mode='lines+markers', marker=dict(color='red'), showlegend=True)
-            ], name=str(iteration)))
+        primals.append(0.5 * np.linalg.norm(primal - y)**2)
+
+        frames.append(go.Frame(data=[
+            go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), showlegend=True),
+            go.Scatter(x=x[:current_idx+1], y=yy[:current_idx+1], mode='lines+markers', marker=dict(color='red'), showlegend=True)
+        ], name=str(iteration)))
 
     frames.append(go.Frame(data=[
-            go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), showlegend=True),  # Keep the black plot
-            go.Scatter(x=x, y=sol, mode='lines+markers', marker=dict(color='red'), showlegend=True)
-        ], name=str(iteration)))
+        go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), showlegend=True),
+        go.Scatter(x=x, y=sol, mode='lines+markers', marker=dict(color='red'), showlegend=True)
+    ], name=str(iteration)))
+
     fig.frames = frames
-    # Create slider steps
-    steps = []
-    for i in range(len(frames)):
-        step = dict(
-            method="animate",
-            args=[[str(i)], dict(mode="immediate", frame=dict(duration=300, redraw=True), transition=dict(duration=0))],
-            label=str(i)
-        )
-        steps.append(step)
 
-    sliders = [dict(
-        active=1,
-        steps=steps,
-        currentvalue={"prefix": "Iteration: #"},
-    )]
+    steps = [dict(method="animate", args=[[str(i)], dict(mode="immediate", frame=dict(duration=300, redraw=True), transition=dict(duration=0))], label=str(i)) for i in range(len(frames))]
 
-    # Add play and pause buttons
+    sliders = [dict(active=1, steps=steps, currentvalue={"prefix": "Iteration: #"})]
+
     fig.update_layout(
         sliders=sliders,
-        updatemenus=[
-            {
-                "buttons": [
-                    {
-                        "args": [None, {"frame": {"duration": 500, "redraw": False},
-                                        "fromcurrent": True, "transition": {"duration": 50,
-                                                                            "easing": "linear"}}],
-                        "label": "Play",
-                        "method": "animate"
-                    },
-                    {
-                        "args": [[None], {"frame": {"duration": 0, "redraw": False},
-                                          "mode": "immediate",
-                                          "transition": {"duration": 0}}],
-                        "label": "Pause",
-                        "method": "animate"
-                    }
-                ],
-                "direction": "left",
-                "pad": {"r": 5, "t": 5, "b": 20},
-                "showactive": False,
-                "type": "buttons",
-                "x": 0.5,
-                "xanchor": "center",
-                "y": -0.28,
-                "yanchor": "top",
-            }
-        ],
-        xaxis_title="X",
-        yaxis_title="Y",
-        template='simple_white',
-        xaxis=dict(range=[-0.5, n+0.5]),
-        yaxis=dict(range=[0, 250])
+        updatemenus=[{
+            "buttons": [
+                {"args": [None, {"frame": {"duration": 500, "redraw": False}, "fromcurrent": True, "transition": {"duration": 50, "easing": "linear"}}], "label": "Play", "method": "animate"},
+                {"args": [[None], {"frame": {"duration": 0, "redraw": False}, "mode": "immediate", "transition": {"duration": 0}}], "label": "Pause", "method": "animate"}
+            ],
+            "direction": "left", "pad": {"r": 5, "t": 5, "b": 20}, "showactive": False, "type": "buttons", "x": 0.5, "xanchor": "center", "y": -0.28, "yanchor": "top"
+        }],
+        xaxis_title="X", yaxis_title="Y", template='simple_white', xaxis=dict(range=[-0.5, n+0.5]), yaxis=dict(range=[0, 250])
     )
 
     fig.show()
