@@ -8,7 +8,7 @@ author:
 date: "2024-10-22"
 description: "Iso Iso Iso ... Tonic"
 categories: [statistics, optimization, machine learning]
-image: "softmax.png"
+image: "isotonic.png"
 reference-location: document
 fig-cap-location: bottom
 draft: false
@@ -20,13 +20,20 @@ format:
     include-before-body: ../../html/margin_image.html
     include-after-body: ../../html/blog_footer.html
     code-fold: true
+
 ---
 
-::: {.content-hidden}
-$$
+
+::: {.content-visible when-format="html"}
+::: {.hidden}
+{{
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{stmaryrd}
 \DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
 \DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
-$$
+\DeclareMathOperator{\diag}{diag}
+}}
+:::
 :::
 
 **[Note]{.underline}**: This blog is mainly inspired by the post by Fabian Pedregosa on [Isotonic regression](https://fabianp.net/blog/isotonic-regression/), and the code use is an adaptation of the PAVA algorithm coded in the `sklearn` library (in particular the `_isotonic.pyx` file, as available in October 2024, see [source](https://github.com/scikit-learn/scikit-learn/blob/04fbe04fedda0e86e67867854900a49fb53c4c01/sklearn/_isotonic.pyx)).
@@ -37,15 +44,18 @@ Isotonic regression is a technique used to fit a non-decreasing function to a se
 We can think of isotonic regression as a generalization of linear regression where the function is constrained to be non-decreasing.
 
 More formally suppose that one collects $n$ sample points $y_1,\dots, y_n$ and has weights $w_1, \dots, w_n$ associated with each data point.
-**[Note]{.underline}**: when no priori weights are given, we can set $w_i = 1$ for all $i$.
+
+**[Note]{.underline}**: when no a priori weights are given, we can set $w_i = 1$ for all $i \in \llbracket 1, n \rrbracket$.
 
 Then, the isotonic regression problem can be formulated as follows:
 $$
-\begin{align*}
-\min_{x \in \mathbb{R}^n} & \sum_{i=1}^{n} w_i (x_i - y_i)^2 \\
-\text{s.t.} & \quad x_1 \leq x_2 \leq \ldots \leq x_n
-\end{align*}
-$$
+\begin{align}
+\min_{x \in \mathbb{R}^n}
+\frac{1}{2}
+& \sum_{i=1}^{n} w_i (x_i - y_i)^2 \\
+\text{s.t.} & \quad x_1 \leq x_2 \leq \ldots \leq x_n \nonumber
+\end{align}
+$$ {#eq-isotonic}
 
 
 
@@ -114,12 +124,26 @@ rng = np.random.default_rng(1)
 
 x = np.arange(n_sample)
 w = np.ones(n_sample)
-z = rng.integers(-50, 50, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
+z = rng.integers(-10, 50, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
+
+
+
+def replace_after_first_non_increasing(vector):
+    n = len(vector)
+    for i in range(1, n):
+        if vector[i] < vector[i - 1]:
+            mean_value = np.mean(vector[i:])
+            vector[i:] = mean_value
+            break
+    return vector
+
 
 
 
 sol, targets, idx = isotonic_regression(z, w)
 
+primals = []
+duals = []
 
 def plot_targets(y, targets, x):
     n = len(y)
@@ -129,6 +153,7 @@ def plot_targets(y, targets, x):
     fig.add_trace(go.Scatter(x=[x[0]], y=[y[0]], mode='lines+markers', name='PAVA iterations', marker=dict(color='red'), legendrank=2, showlegend=True))
     # Create frames for each iteration
     frames = []
+
     for iteration, target in enumerate(targets):
         # Reconstruct the solution.
         yy = y.copy()
@@ -137,9 +162,12 @@ def plot_targets(y, targets, x):
             k = target[i] + 1
             yy[i : k] = np.mean(y[i : k])
             i = k
-        # print(target, iteration)
+        duals.append(0.5*np.linalg.norm(y)**2-0.5*np.linalg.norm(yy)**2)
+
         current_idx = idx[iteration]
-        print(current_idx)
+
+        primal = replace_after_first_non_increasing(yy.copy())
+        primals.append(0.5*np.linalg.norm(primal - y)**2)
         if current_idx ==0:
             frames.append(go.Frame(data=[
                 go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), showlegend=True),  # Keep the black plot
@@ -153,7 +181,7 @@ def plot_targets(y, targets, x):
 
     frames.append(go.Frame(data=[
             go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), showlegend=True),  # Keep the black plot
-            go.Scatter(x=x[:current_idx+1], y=yy[:current_idx+1], mode='lines+markers', marker=dict(color='red'), showlegend=True)
+            go.Scatter(x=x, y=sol, mode='lines+markers', marker=dict(color='red'), showlegend=True)
         ], name=str(iteration)))
     fig.frames = frames
     # Create slider steps
@@ -194,12 +222,12 @@ def plot_targets(y, targets, x):
                     }
                 ],
                 "direction": "left",
-                "pad": {"r": 10, "t": 87},
+                "pad": {"r": 5, "t": 5, "b": 20},
                 "showactive": False,
                 "type": "buttons",
                 "x": 0.5,
                 "xanchor": "center",
-                "y": -0.3,
+                "y": -0.28,
                 "yanchor": "top",
             }
         ],
@@ -207,15 +235,194 @@ def plot_targets(y, targets, x):
         yaxis_title="Y",
         template='simple_white',
         xaxis=dict(range=[-0.5, n+0.5]),
-        yaxis=dict(range=[0, 200])
+        yaxis=dict(range=[0, 250])
     )
 
     fig.show()
 
 
 plot_targets(z, targets, x)
-
+print(f"Duals: {duals}")
+print(f"Primals: {primals}")
 ```
 
-<!-- view isotonic gif 
-![Isotonic](isotonic.gif) -->
+
+## Optimization, duality, etc.
+
+The formualtion of the isotonic regression problem given in @eq-isotonic is a quadratic program (QP) with linear constraints.
+Using a matrix notation, introducing the matrix
+$$A = \begin{pmatrix} 1 & -1 &                       &                       &    \\
+  & 1  & -1                    &                       &    \\
+  &    & \ddots & \ddots &    \\
+  &    &                       & 1                     & -1\end{pmatrix}
+ \in \mathbb{R}^{n-1 \times n}\enspace,
+$$
+the isotonic regression problem can be formulated as follows:
+$$
+\begin{align}
+\min_{x \in \mathbb{R}^n}
+\frac{1}{2}
+& \sum_{i=1}^{n} w_i (x_i - y_i)^2 \\
+\text{s.t.} & \quad Ax \leq 0 \nonumber
+\end{align}
+$$ {#eq-isotonic-matrix}
+
+
+Note in particular that the set of **isotonic vectors** $\mathcal{K} = \left\{ x \in \mathbb{R}^n : Ax \leq 0 \right\}$
+is a cone (stable by positive scalar mutliplication).
+We remind also that the **polar cone** of $\mathcal{K}$ is $\mathcal{K}^\circ= \left\{v \in \mathbb{R}^n : \langle v, x \rangle \leq 0 \text{ for all } x \in \mathcal{K}\right\}$.
+
+
+::: {#lem-polar}
+
+## Polar cone of the isotonic cone
+The polar cone of $\mathcal{K}$ is
+$$
+\mathcal{K}^\circ =\left\{ \sum_{i=1}^{n-1} \alpha_i A_{i,:}^\top, \text{ for } \alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0 \right\} = A^\top \mathbb{R}_+^{n-1}\enspace.
+$$
+
+:::
+
+::: {.proof}
+Let $x \in \mathcal{K}$ and $v = \sum_{i=1}^{n-1} \alpha_i A_{i,:}^\top$ with $\alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0$.
+Then, note that $A x \leq 0$ is equivalent to $\langle A_{i,:}^\top, x \rangle \leq 0$ for all $i \in \llbracket 1, n-1 \rrbracket$. Hence, we have
+$$
+\begin{align*}
+\langle v, x \rangle
+& = \sum_{i=1}^{n-1} \alpha_i \langle A_{i,:}^\top, x \rangle\\
+& \leq 0 \enspace.
+\end{align*}
+$$
+So $\left\{ \sum_{i=1}^{n-1} \alpha_i A_{i,:}^\top, \text{ with } \alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0 \right\} \subset \mathcal{K}^\circ$.
+
+For the converse, let $v \in \mathcal{K}^\circ$.
+One can check that $(A_{i,:}^\top)_{i=1,\dots,n-1}$ are linearly independant, so adding the vector $\mathbf{1}_n=(1,\dots,1)^\top/n$ create a basis of $\mathbb{R}^n$.
+
+Hence one can write $v= \alpha_n \mathbf{1}_n + \sum_{i=1}^{n-1} \alpha_i A_{i,:}^\top$.
+Now choosing $x=\mathbf{1}_n \in \mathcal{K}$ yields $\langle v, \mathbf{1}_n \rangle = \alpha_n \leq 0$. Choosing $x = - \mathbf{1}_n \in \mathcal{K}$ yields $\langle v, - \mathbf{1}_n \rangle = - \alpha_n \leq 0$. Hence, $\alpha_n = 0$.
+
+Now, for all $i \in \llbracket 1, n-1 \rrbracket$, choosing $x = \sum_{k=i}^n e_i$ for $i \in \llbracket 2,n\rrbracket$ yields $\langle v, x \rangle = -\alpha_{i}\leq 0$. Hence, for all $ i\in \llbracket 1, n-1 \rrbracket$, we have $\alpha_i \geq 0$, so $\mathcal{K}^\circ \subset \left\{ \sum_{i=1}^{n-1} \alpha_i A_{i,:}^\top, \text{ with } \alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0 \right\}$ and the lemma is proved.
+
+:::
+
+### Fenchel transform
+
+Here we remind the definition of the Fenchel transform of a function $f$ defined on $\mathbb{R}^n$:
+$$
+f^*(v) = \sup_{x \in \mathbb{R}^n} \left\{ \langle v, x \rangle - f(x) \right\}\enspace.
+$$
+
+We also write $\iota_{\mathcal{K}}$ the indicator function of the set $\mathcal{K}$, that is $\iota_{\mathcal{K}}(x) = 0$ if $x \in \mathcal{K}$ and $+\infty$ otherwise.
+
+::: {#lem-fenchel}
+
+## Fenchel transform of indicator of a cone
+The Fenchel transform of the indicator function of a convex cone $\mathcal{K}$ is
+$$
+\iota_{\mathcal{K}}^*(v) = \iota_{\mathcal{K}^\circ}(v)\enspace,
+$$
+where $\iota_{\mathcal{K}^\circ}$ is the indicator function of the set $\mathcal{K}^\circ$.
+
+:::
+
+
+In what follows we will write $W=\diag(w_1,\dots,w_n)$, assuming that $w_i > 0$ for all $i \in \llbracket 1, n \rrbracket$, so $W^{-1}= \diag(1/w_1,\dots,1/w_n)$.
+
+
+With such ingredient we can write the isotonic regression problem as:
+$$
+\begin{align}
+\min_{x \in \mathbb{R}^n}
+\frac{1}{2}
+(y-x)^\top W (y-x) + \iota_{\mathcal{K}}(x) \enspace.
+\end{align}
+$$ {#eq-isotonic-matrix-2}
+We can now rewrite the formulation as
+
+$$
+\begin{align*}
+\min_{x \in \mathbb{R}^n} &
+\frac{1}{2}
+z^\top W z + \iota_{\mathcal{K}}(x)\\
+\text{s.t.} & \quad z = y - x  \enspace.
+\end{align*}
+$$
+We can now introduce the Lagrangian of the problem:
+$$
+\begin{align*}
+\mathcal{L}(x, z, \lambda) & = \frac{1}{2} z^\top W z + \iota_{\mathcal{K}}(x) + \lambda^\top (y - z - x)\\
+& = \frac{1}{2} z^\top W z + \iota_{\mathcal{K}}(x) + \lambda^\top y - \lambda^\top z - \lambda^\top x \enspace.
+\end{align*}
+$$
+Assuming strong duality holds, we can write the dual problem as
+$$
+\begin{align*}
+\min_{x \in \mathbb{R}^n, z \in \mathbb{R}^n} \max_{\lambda \in \mathbb{R}^n} ~
+\mathcal{L}(x, z, \lambda) =
+\max_{\lambda \in \mathbb{R}^n} \min_{x \in \mathbb{R}^n, z \in \mathbb{R}^n} &
+\mathcal{L}(x, z, \lambda) \enspace.
+\end{align*}
+$$
+Now, one can check that the dual problem is equivalent to
+
+$$
+\max_{\lambda \in \mathbb{R}^n} \min_{x \in \mathbb{R}^n, z \in \mathbb{R}^n} \left\{ \frac{1}{2} z^\top W z + \iota_{\mathcal{K}}(x) + \lambda^\top y - \lambda^\top z - \lambda^\top x \right\} \enspace.
+$$
+Separating the terms in $x$ and $z$ yields
+$$
+\max_{\lambda \in \mathbb{R}^n}
+\left[
+    \min_{x \in \mathbb{R}^n} \left\{ \iota_{\mathcal{K}}(x) - \lambda^\top x + \lambda^\top y \right\} + \min_{z \in \mathbb{R}^n} \left\{ \frac{1}{2} z^\top W z - \lambda^\top z \right\}
+\right]
+\enspace.
+$$
+The second term is a simple quadratic problem with a unique solution given by $z = W^{-1} \lambda$, hence this can be rewritten as
+$$
+\left[
+- \frac{1}{2} \lambda^\top W^{-1} \lambda
+\right]
+\enspace.
+$$
+The first term is linked to the Fenchel transform of the indicator function of the cone $\mathcal{K}$, and reads
+$$
+\left[
+    - \iota_{\mathcal{K}^\circ}(\lambda) + \lambda^\top y = - \iota_{\mathcal{K}^\circ}(\lambda) + \lambda^\top W^{-1} W y
+\right]
+\enspace.
+$$
+
+Hence the dual problem reads:
+$$
+\begin{align*}
+\max_{\lambda \in \mathbb{R}^n} &
+\left[
+    - \iota_{\mathcal{K}^\circ}(\lambda) + \lambda^\top y - \frac{1}{2} \lambda^\top W^{-1} \lambda
+\right] \enspace,
+\end{align*}
+$$
+the later can be rewritten as
+
+$$
+\begin{align*}
+\max_{\lambda \in \mathcal{K}^{\circ}} &
+\left[
+    - \frac{1}{2} (\lambda-W y)^\top W^{-1} (\lambda-W y)
+    + \frac{1}{2} y^\top W y
+\right] \enspace.
+\end{align*}
+$$
+Eventually, using the formulation of $\mathcal{K}^{\circ}$ given in @lem-polar, the dual problem can be rewritten as
+$$
+\begin{align*}
+\max_{\alpha \in \mathbb{R}_+^{n-1}} &
+\left[
+    - \frac{1}{2} (A^\top \alpha-W y)^\top W^{-1} (A^\top \alpha-W y)
+    + \frac{1}{2} y^\top W y
+\right] \enspace.
+\end{align*}
+$$
+
+Now given a primal feasible point $x \in \mathcal{K}$ and a dual feasible point $\alpha \in \mathbb{R}_+^{n-1}$, we can obtain upper and lower bounds on the optimal value of the primal problem.
+
+We consider here the case where $W=I_n$ (uniform weights). The iterates of the PAVA algorithm will be dual feasible and can represent $y-\lambda$.
+For creating a primal feasible point, one can simply take the ordered version of the output, making the last element constant to create a non-decreasing vector.
