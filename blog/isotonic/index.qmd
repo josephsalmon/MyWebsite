@@ -64,6 +64,7 @@ $$ {#eq-isotonic}
 # |echo: false
 import numpy as np
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 
 def isotonic_regression(z, w):
@@ -143,11 +144,36 @@ def replace_after_first_non_increasing(vector):
 sol, targets, idx = isotonic_regression(z, w)
 primals, duals = [], []
 
+import numpy as np
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+primals, duals = [], []
+
 def plot_targets(y, targets, x):
     n = len(y)
-    fig = go.Figure()
-    fig.add_trace(go.Scatter(x=x, y=y, mode='markers', name='Raw data', marker=dict(color='black', opacity=1, size=10), legendrank=1, showlegend=True))
-    fig.add_trace(go.Scatter(x=[x[0]], y=[y[0]], mode='lines+markers', name='PAVA iterations', marker=dict(color='red'), legendrank=2, showlegend=True))
+
+    # Create subplots
+    fig = make_subplots(rows=2, cols=1, subplot_titles=("PAVA output evolution", "Primal and dual evolution"))
+
+    # Initial plot
+    fig.add_trace(go.Scatter(x=x, y=y, mode='markers', name='Raw data', marker=dict(color='black', opacity=1, size=10), legendgroup='1', showlegend=True), row=1, col=1)
+    fig.add_trace(go.Scatter(x=[x[0]], y=[y[0]], mode='lines+markers', name='PAVA iterations', marker=dict(color='red'), legendgroup='1', showlegend=True), row=1, col=1)
+    fig.add_trace(go.Scatter(x=[0], y=[0], mode='lines+markers', name='Duals', marker=dict(color='green'), legendgroup='2', showlegend=True), row=2, col=1)
+
+    yy = y.copy()
+    i = 0
+    while i < n:
+        k = targets[0][i] + 1
+        yy[i:k] = np.mean(y[i:k])
+        i = k
+    primal = replace_after_first_non_increasing(yy.copy())
+
+    fig.add_trace(go.Scatter(x=[0], y=[0.5 * np.linalg.norm(primal - y)**2], mode='lines+markers', name='Primals', marker=dict(color='blue'), legendgroup='2', showlegend=True), row=2, col=1)
+
+    fig.update_layout(
+    legend_tracegroupgap = 180,
+    )
 
     frames = []
     for iteration, target in enumerate(targets):
@@ -162,21 +188,23 @@ def plot_targets(y, targets, x):
         current_idx = idx[iteration]
         primal = replace_after_first_non_increasing(yy.copy())
         primals.append(0.5 * np.linalg.norm(primal - y)**2)
-
         frames.append(go.Frame(data=[
-            go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), showlegend=True),
-            go.Scatter(x=x[:current_idx+1], y=yy[:current_idx+1], mode='lines+markers', marker=dict(color='red'), showlegend=True)
+            go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), legendgroup='1', showlegend=True),
+            go.Scatter(x=x[:current_idx+1], y=yy[:current_idx+1], mode='lines+markers', marker=dict(color='red'), legendgroup='1', showlegend=True),
+            go.Scatter(x=np.arange(iteration+1), y=duals[:iteration+1], mode='lines+markers', marker=dict(color='green'), legendgroup='2', showlegend=True),
+            go.Scatter(x=np.arange(iteration+1), y=primals[:iteration+1], mode='lines+markers', marker=dict(color='blue'), legendgroup='2', showlegend=True)
         ], name=str(iteration)))
 
     frames.append(go.Frame(data=[
-        go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), showlegend=True),
-        go.Scatter(x=x, y=sol, mode='lines+markers', marker=dict(color='red'), showlegend=True)
+        go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), legendgroup='1', showlegend=True),
+        go.Scatter(x=x, y=sol, mode='lines+markers', marker=dict(color='red'), legendgroup='1', showlegend=True),
+        go.Scatter(x=np.arange(len(duals)), y=duals, mode='lines+markers', marker=dict(color='green'), legendgroup='2', showlegend=True),
+        go.Scatter(x=np.arange(len(primals)), y=primals, mode='lines+markers', marker=dict(color='blue'), legendgroup='2', showlegend=True)
     ], name=str(iteration)))
 
     fig.frames = frames
 
     steps = [dict(method="animate", args=[[str(i)], dict(mode="immediate", frame=dict(duration=300, redraw=True), transition=dict(duration=0))], label=str(i)) for i in range(len(frames))]
-
     sliders = [dict(active=1, steps=steps, currentvalue={"prefix": "Iteration: #"})]
 
     fig.update_layout(
@@ -188,15 +216,35 @@ def plot_targets(y, targets, x):
             ],
             "direction": "left", "pad": {"r": 5, "t": 5, "b": 20}, "showactive": False, "type": "buttons", "x": 0.5, "xanchor": "center", "y": -0.28, "yanchor": "top"
         }],
-        xaxis_title="X", yaxis_title="Y", template='simple_white', xaxis=dict(range=[-0.5, n+0.5]), yaxis=dict(range=[0, 250])
+    xaxis_title="X", yaxis_title="Y", template='simple_white', xaxis=dict(range=[-0.5, n+0.5]), yaxis=dict(range=[0, 250]), xaxis2=dict(range=[0, len(targets)]), yaxis2=dict(range=[0, 12000]),
+    # legend1=dict(yanchor="top", y=0.99, xanchor="left", x=0.99, yref='paper'),
+    # legend2=dict(yanchor="top", y=0.19, xanchor="left", x=0.99, yref='paper',
+    # visible=True,
+        # )
     )
 
     fig.show()
 
-
 plot_targets(z, targets, x)
-print(f"Duals: {duals}")
-print(f"Primals: {primals}")
+# print(f"Duals: {duals}")
+# print(f"Primals: {primals}")
+
+
+# fig2 = go.Fig2ure()
+# fig2.add_trace(go.Scatter(x=np.arange(len(duals)), y=duals, mode='lines+markers', name='Duals', marker=dict(color='green')))
+# fig2.add_trace(go.Scatter(x=np.arange(len(primals)), y=primals, mode='lines+markers', name='Primals', marker=dict(color='blue')))
+
+# fig2.update_layout(
+#     title='Duals and Primals Evolution',
+#     xaxis_title='Iteration',
+#     yaxis_title='Value',
+#     template='simple_white'
+# )
+
+# fig2.show()
+
+
+
 ```
 
 
