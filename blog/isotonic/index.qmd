@@ -20,7 +20,7 @@ format:
     include-before-body: ../../html/margin_image.html
     include-after-body: ../../html/blog_footer.html
     code-fold: true
-
+    highlight-style: github 
 ---
 
 
@@ -128,7 +128,6 @@ w = np.ones(n_sample)
 z = rng.integers(-10, 50, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
 
 
-
 def replace_after_first_non_increasing(vector):
     n = len(vector)
     for i in range(1, n):
@@ -137,8 +136,6 @@ def replace_after_first_non_increasing(vector):
             vector[i:] = mean_value
             break
     return vector
-
-
 
 
 sol, targets, idx = isotonic_regression(z, w)
@@ -217,36 +214,75 @@ def plot_targets(y, targets, x):
             "direction": "left", "pad": {"r": 5, "t": 5, "b": 20}, "showactive": False, "type": "buttons", "x": 0.5, "xanchor": "center", "y": -0.28, "yanchor": "top"
         }],
     xaxis_title="X", yaxis_title="Y", template='simple_white', xaxis=dict(range=[-0.5, n+0.5]), yaxis=dict(range=[0, 250]), xaxis2=dict(range=[0, len(targets)]), yaxis2=dict(range=[0, 12000]),
-    # legend1=dict(yanchor="top", y=0.99, xanchor="left", x=0.99, yref='paper'),
-    # legend2=dict(yanchor="top", y=0.19, xanchor="left", x=0.99, yref='paper',
-    # visible=True,
-        # )
     )
 
     fig.show()
 
 plot_targets(z, targets, x)
-# print(f"Duals: {duals}")
-# print(f"Primals: {primals}")
-
-
-# fig2 = go.Fig2ure()
-# fig2.add_trace(go.Scatter(x=np.arange(len(duals)), y=duals, mode='lines+markers', name='Duals', marker=dict(color='green')))
-# fig2.add_trace(go.Scatter(x=np.arange(len(primals)), y=primals, mode='lines+markers', name='Primals', marker=dict(color='blue')))
-
-# fig2.update_layout(
-#     title='Duals and Primals Evolution',
-#     xaxis_title='Iteration',
-#     yaxis_title='Value',
-#     template='simple_white'
-# )
-
-# fig2.show()
-
-
-
 ```
 
+Below you will find a simple version of the PAVA algorithm coded in Python. The code illustrated above (the `sklearn` version) is more efficient but less readable.
+
+
+```{python}
+#| echo: true
+#| code-fold: false
+import numpy as np
+
+
+def pool_adjacent_violators(y, w):
+    """
+    Ensure that the sequence y is non-decreasing by pooling adjacent violators.
+
+    Parameters:
+    y (list of float): The initial sequence of values.
+    w (list of float): The weights associated with each value in y.
+
+    Returns:
+    list of float: The adjusted sequence y that is non-decreasing.
+    list of float: The adjusted weights w.
+    """
+    n = len(y)
+    r = y.copy()
+    gps = [1] * n
+    ws = w.copy()
+
+    i = 1
+    while i < n:
+        if r[i] < r[i - 1]:  # Find adjacent violators
+            # Pool the violators
+            r[i] = (ws[i] * r[i] + ws[i - 1] * r[i - 1]) / (ws[i] + ws[i - 1])
+            ws[i] += ws[i - 1]
+            gps[i]+= gps[i - 1]
+            # Remove the previous element and decrease the number of elements
+            r.pop(i - 1)
+            ws.pop(i - 1)
+            gps.pop(i - 1)
+            n -= 1
+            # Move back one step if possible
+            if i > 1:
+                i -= 1
+        else:
+            i += 1
+    sol = []
+    for i, val in enumerate(gps):
+        for _ in range(val):
+            sol.append(r[i])
+    return sol, gps, ws
+
+# n_sample = 25
+
+# rng = np.random.default_rng(1)
+
+# x = np.arange(n_sample)
+# w = np.ones(n_sample)
+# z = rng.integers(-10, 50, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
+# w = [1] * len(z)  # Uniform weights
+# adjusted_y, sol, adjusted_w = pool_adjacent_violators(z.tolist(), w)
+# print("Adjusted y:", adjusted_y)
+# print("Adjusted weights:", adjusted_w)
+
+```
 
 ## Optimization, duality, etc.
 
@@ -256,6 +292,12 @@ $$A = \begin{pmatrix} 1 & -1 &                       &                       &  
   & 1  & -1                    &                       &    \\
   &    & \ddots & \ddots &    \\
   &    &                       & 1                     & -1\end{pmatrix}
+ =
+\begin{pmatrix}
+a_1^\top \\
+\vdots   \\
+a_{n-1}^\top
+\end{pmatrix}
  \in \mathbb{R}^{n-1 \times n}\enspace,
 $$
 the isotonic regression problem can be formulated as follows:
@@ -269,6 +311,21 @@ $$
 $$ {#eq-isotonic-matrix}
 
 
+
+In what follows we will write $W=\diag(w_1,\dots,w_n)$, assuming that $w_i > 0$ for all $i \in \llbracket 1, n \rrbracket$, so $W^{-1}= \diag(1/w_1,\dots,1/w_n)$.
+Hence, we can rewrite the isotonic regression problem as
+
+$$
+\begin{align}
+\min_{x \in \mathbb{R}^n}
+\frac{1}{2}
+& (y-x)^\top W (y-x) \\
+\text{s.t.} & \quad Ax \leq 0 \enspace.
+\end{align}
+$$ {#eq-isotonic-matrix-2}
+
+Hence, the isotonic regression problem can be formulated as a convex quadratic program with linear constraints.
+
 Note in particular that the set of **isotonic vectors** $\mathcal{K} = \left\{ x \in \mathbb{R}^n : Ax \leq 0 \right\}$
 is a cone (stable by positive scalar mutliplication).
 We remind also that the **polar cone** of $\mathcal{K}$ is $\mathcal{K}^\circ= \left\{v \in \mathbb{R}^n : \langle v, x \rangle \leq 0 \text{ for all } x \in \mathcal{K}\right\}$.
@@ -279,30 +336,30 @@ We remind also that the **polar cone** of $\mathcal{K}$ is $\mathcal{K}^\circ= \
 ## Polar cone of the isotonic cone
 The polar cone of $\mathcal{K}$ is
 $$
-\mathcal{K}^\circ =\left\{ \sum_{i=1}^{n-1} \alpha_i A_{i,:}^\top, \text{ for } \alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0 \right\} = A^\top \mathbb{R}_+^{n-1}\enspace.
+\mathcal{K}^\circ =\left\{ \sum_{i=1}^{n-1} \alpha_i a_i, \text{ for } \alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0 \right\} = A^\top \mathbb{R}_+^{n-1}\enspace.
 $$
 
 :::
 
 ::: {.proof}
-Let $x \in \mathcal{K}$ and $v = \sum_{i=1}^{n-1} \alpha_i A_{i,:}^\top$ with $\alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0$.
-Then, note that $A x \leq 0$ is equivalent to $\langle A_{i,:}^\top, x \rangle \leq 0$ for all $i \in \llbracket 1, n-1 \rrbracket$. Hence, we have
+Let $x \in \mathcal{K}$ and $v = \sum_{i=1}^{n-1} \alpha_i a_i$ with $\alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0$.
+Then, note that $A x \leq 0$ is equivalent to $\langle a_i, x \rangle \leq 0$ for all $i \in \llbracket 1, n-1 \rrbracket$. Hence, we have
 $$
 \begin{align*}
 \langle v, x \rangle
-& = \sum_{i=1}^{n-1} \alpha_i \langle A_{i,:}^\top, x \rangle\\
+& = \sum_{i=1}^{n-1} \alpha_i \langle a_i, x \rangle\\
 & \leq 0 \enspace.
 \end{align*}
 $$
-So $\left\{ \sum_{i=1}^{n-1} \alpha_i A_{i,:}^\top, \text{ with } \alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0 \right\} \subset \mathcal{K}^\circ$.
+So $\left\{ \sum_{i=1}^{n-1} \alpha_i a_i, \text{ with } \alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0 \right\} \subset \mathcal{K}^\circ$.
 
 For the converse, let $v \in \mathcal{K}^\circ$.
-One can check that $(A_{i,:}^\top)_{i=1,\dots,n-1}$ are linearly independant, so adding the vector $\mathbf{1}_n=(1,\dots,1)^\top/n$ create a basis of $\mathbb{R}^n$.
+One can check that $(a_i)_{i=1,\dots,n-1}$ are linearly independant, so adding the vector $\mathbf{1}_n=(1,\dots,1)^\top/n$ create a basis of $\mathbb{R}^n$.
 
-Hence one can write $v= \alpha_n \mathbf{1}_n + \sum_{i=1}^{n-1} \alpha_i A_{i,:}^\top$.
+Hence one can write $v= \alpha_n \mathbf{1}_n + \sum_{i=1}^{n-1} \alpha_i a_i$.
 Now choosing $x=\mathbf{1}_n \in \mathcal{K}$ yields $\langle v, \mathbf{1}_n \rangle = \alpha_n \leq 0$. Choosing $x = - \mathbf{1}_n \in \mathcal{K}$ yields $\langle v, - \mathbf{1}_n \rangle = - \alpha_n \leq 0$. Hence, $\alpha_n = 0$.
 
-Now, for all $i \in \llbracket 1, n-1 \rrbracket$, choosing $x = \sum_{k=i}^n e_i$ for $i \in \llbracket 2,n\rrbracket$ yields $\langle v, x \rangle = -\alpha_{i}\leq 0$. Hence, for all $ i\in \llbracket 1, n-1 \rrbracket$, we have $\alpha_i \geq 0$, so $\mathcal{K}^\circ \subset \left\{ \sum_{i=1}^{n-1} \alpha_i A_{i,:}^\top, \text{ with } \alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0 \right\}$ and the lemma is proved.
+Now, for all $i \in \llbracket 1, n-1 \rrbracket$, choosing $x = \sum_{k=i}^n e_i$ for $i \in \llbracket 2,n\rrbracket$ yields $\langle v, x \rangle = -\alpha_{i}\leq 0$. Hence, for all $ i\in \llbracket 1, n-1 \rrbracket$, we have $\alpha_i \geq 0$, so $\mathcal{K}^\circ \subset \left\{ \sum_{i=1}^{n-1} \alpha_i a_i, \text{ with } \alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0 \right\}$ and the lemma is proved.
 
 :::
 
@@ -327,8 +384,27 @@ where $\iota_{\mathcal{K}^\circ}$ is the indicator function of the set $\mathcal
 :::
 
 
-In what follows we will write $W=\diag(w_1,\dots,w_n)$, assuming that $w_i > 0$ for all $i \in \llbracket 1, n \rrbracket$, so $W^{-1}= \diag(1/w_1,\dots,1/w_n)$.
+### Dual problem
 
+Let us now derive the dual problem of the isotonic regression problem given in @eq-isotonic-matrix.
+
+::: {#thm-dual}
+
+## Dual problem of isotonic regression
+The dual problem of the isotonic regression problem given in @eq-isotonic-matrix is
+$$
+\begin{align*}
+\max_{\alpha \in \mathbb{R}_+^{n-1}} &
+\left[
+    - \frac{1}{2} (A^\top \alpha-W y)^\top W^{-1} (A^\top \alpha-W y)
+    + \frac{1}{2} y^\top W y
+\right] \enspace.
+\end{align*}
+$$
+
+:::
+
+::: {.proof}
 
 With such ingredient we can write the isotonic regression problem as:
 $$
@@ -419,11 +495,93 @@ $$
 \left[
     - \frac{1}{2} (A^\top \alpha-W y)^\top W^{-1} (A^\top \alpha-W y)
     + \frac{1}{2} y^\top W y
-\right] \enspace.
+\right] \enspace,
 \end{align*}
 $$
+which is the targeted formulation.
+
+:::
 
 Now given a primal feasible point $x \in \mathcal{K}$ and a dual feasible point $\alpha \in \mathbb{R}_+^{n-1}$, we can obtain upper and lower bounds on the optimal value of the primal problem.
 
 We consider here the case where $W=I_n$ (uniform weights). The iterates of the PAVA algorithm will be dual feasible and can represent $y-\lambda$.
 For creating a primal feasible point, one can simply take the ordered version of the output, making the last element constant to create a non-decreasing vector.
+
+
+
+### Karush-Kuhn-Tucker (KKT) conditions
+
+The KKT conditions for the isotonic regression problem are given by
+
+::: {#thm-kkt}
+
+## KKT conditions for isotonic regression
+Let $x^{\star} \in \mathcal{K}$ and $\lambda^{\star} \in \mathbb{R}_+^{n-1}$ be primal and dual optimal solutions, then the KKT conditions for the isotonic regression problem reads
+$$
+\begin{align*}
+W (y-x^{\star}) + A^\top \lambda^{\star} & = 0 & ~ (\textbf{stationarity})\\
+\langle \lambda^{\star} , A x^{\star} \rangle & = 0 & ~ (\textbf{complementary slackness})\\
+\lambda^{\star} & \geq 0 & ~ (\textbf{dual feasibility})\\
+A x^{\star} & \leq 0 & ~  (\textbf{primal feasibility})
+\end{align*}
+$$
+
+:::
+
+::: {.proof}
+See [@Boyd_Vandenberghe04, Sec. 5.5.3 ]
+:::
+
+In this convex setting (a primal strictly feasible point exists, say $x=(1,\dots,n)^\top$, so the Slater condition holds), the KKT conditions are necessary and sufficient for optimality.
+
+**Stationarity** can be rephrased as:
+
+$$
+\begin{align*}
+w_1 (y_1 - x^{\star}_1) - \lambda^{\star}_1 & = 0 \\
+w_i (y_i - x^{\star}_i) + \lambda^{\star}_{i-1} - \lambda^{\star}_i & = 0, \quad \text{for all } i \in \llbracket 2, n-1 \rrbracket\\
+w_n (y_n - x^{\star}_n) + \lambda^{\star}_{n-1} & = 0 \enspace.
+\end{align*}
+$$
+With the convention $\lambda_0^{\star} = \lambda_n^{\star} = 0$, this reduces to 
+$$
+\begin{align*}
+w_i (y_i - x^{\star}_i) + \lambda^{\star}_{i-1} - \lambda^{\star}_i & = 0, \quad \text{for all } i \in \llbracket 1, n \rrbracket\\
+\end{align*}
+$$ {#eq-stationarity}
+
+
+
+**Complementarity slackness** can also be rephrased:
+$$
+\begin{align*}
+& \lambda_i^{\star} (A x^{\star})_i  = 0 \quad \text{for all } i \in \llbracket 1, n-1 \rrbracket \\
+\iff & \lambda_i^{\star} (x^{\star}_i-x^{\star}_{i+1})  = 0 \quad \text{for all } i \in \llbracket 1, n-1 \rrbracket \enspace.
+\end{align*}
+$$
+
+
+A simple consequence of the complementarity slackness is as follows: if $\lambda_i^{\star} > 0$ for some $i \in \llbracket 1, n-1 \rrbracket$, then $x^{\star}_i = x^{\star}_{i+1}$.
+Hence, the set of ($n-1$) constraints can be partitioned into contiguous blocks.
+Each block B can be written as $B = \llbracket \underline{b}, \overline{b} \rrbracket$ for some $\underline{b} \leq \overline{b}$ and $x^{\star}_{\underline{b}} = x^{\star}_{\underline{b}+1} = \ldots = x^{\star}_{\overline{b}}$. When needed we use the convention $x^{\star}_{0}=0$ and $x^{\star}_{n+1}=n+1$. and $x^{\star}_{n+1}=0$. Then, note that by definition of a block, $x^{\star}_{\underline{b}-1}<x^{\star}_{\underline{b}}$ and $x^{\star}_{\overline{b}}<x^{\star}_{\overline{b}+1}$, and by complementarity $\lambda^{\star}_{\underline{b}-1} = \lambda^{\star}_{\overline{b}+1} = 0$.
+
+Summing over the elements of $B$ in @eq-stationarity yields (telescopic sum):
+$$
+\begin{align*}
+\sum_{i \in B }w_i (y_i-x^{\star}_i) + \lambda_{\underline{b}-1}^{\star} - \lambda_{\overline{b}+1}^{\star} & = 0 \enspace.
+\end{align*}
+$$
+Hence, noticing that the $x_i^{\star}$  in block $B$ are all equal, we have that:
+
+$$
+\begin{align*}
+x^{\star}_{\underline{b}} = \ldots = x^{\star}_{\overline{b}} = \frac{\sum_{i \in B} w_i y_i}{\sum_{i' \in B} w_{i'}}
+\end{align*}
+$$
+
+
+
+# {{< fa link title="link" >}} References
+
+::: {#refs}
+:::
