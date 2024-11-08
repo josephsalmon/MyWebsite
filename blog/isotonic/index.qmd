@@ -255,56 +255,6 @@ def plot_targets(y, targets, x):
 plot_targets(z, targets, x)
 ```
 
-Below you will find a simple version of the PAVA algorithm coded in Python. The code illustrated above (the `sklearn` version) is more efficient but less readable.
-
-
-```{python}
-#| echo: true
-#| code-fold: false
-import numpy as np
-
-
-def pool_adjacent_violators(y, w):
-    n = len(y)
-    r = y.copy()
-    ws = w.copy()
-    target = [[i] for i in range(n)]
-
-    i = 1
-    while i < n:
-        if r[i] < r[i - 1]:  # Find adjacent violators
-            # Pool the violators
-            r[i] = (ws[i] * r[i] + ws[i - 1] * r[i - 1]) / (ws[i] + ws[i - 1])
-            ws[i] += ws[i - 1]
-            target[i] = target[i-1] + target[i]
-            # Remove the previous element and decrease the number of elements
-            r.pop(i - 1)
-            ws.pop(i - 1)
-            target.pop(i - 1)
-            n -= 1
-            # Move back one step if possible
-            if i > 1:
-                i -= 1
-        else:
-            i += 1
-    signal = np.zeros_like(y)
-    for _, block in enumerate(target):
-        signal[block] = np.mean(np.array(y)[block])
-    return signal, target, ws
-
-n_sample = 25
-
-rng = np.random.default_rng(1)
-
-x = np.arange(n_sample)
-w = np.ones(n_sample)
-z = rng.integers(-50, 100, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
-w = [1] * len(z)  # Uniform weights
-adjusted_y, target, adjusted_w = pool_adjacent_violators(z.tolist(), w)
-print("Adjusted y:", adjusted_y)
-print("Adjusted weights:", adjusted_w)
-
-```
 
 ## Optimization, duality, etc.
 
@@ -690,6 +640,10 @@ Hence, the algorithm aims at creating the blocks of constant values in the prima
 \end{algorithmic}
 \end{algorithm}
 ```
+
+Below you will find a simple version of the PAVA algorithm coded in Python.
+The code illustrated above (the `sklearn` version) is more efficient but less readable.
+
 
 ::: {#thm-convergence}
 
