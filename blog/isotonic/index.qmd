@@ -173,14 +173,12 @@ def replace_after_first_non_increasing(vector):
             break
     return vector
 
+
 def create_signal_from_target(target, y):
     signal = np.zeros_like(y)
     for i, block in enumerate(target):
         signal[block] = np.mean(y[block])
     return signal
-
-
-
 
 # sklearn style
 # sol, targets, idx = isotonic_regression(z, w)
@@ -199,7 +197,7 @@ def plot_targets(y, targets, x):
     n = len(y)
 
     # Create subplots
-    fig = make_subplots(rows=2, cols=1, subplot_titles=("PAVA output evolution", "Primal and dual evolution"))
+    fig = make_subplots(rows=2, cols=1, subplot_titles=("PAVA output evolution", "Primal and dual objectives"))
 
     # Initial plot
     fig.add_trace(go.Scatter(x=x, y=y, mode='markers', name='Raw data', marker=dict(color='black', opacity=1, size=10), legendgroup='1', showlegend=True), row=1, col=1)
@@ -219,9 +217,6 @@ def plot_targets(y, targets, x):
     for iteration, target in enumerate(targets):
         yy = create_signal_from_target(target, y)
         duals.append(0.5 * np.linalg.norm(y)**2 - 0.5 * np.linalg.norm(yy)**2)
-        # print(iteration)
-        # print(target)
-        # current_idx = iteration
         primal = replace_after_first_non_increasing(yy.copy())
         primals.append(0.5 * np.linalg.norm(primal - y)**2)
         frames.append(go.Frame(data=[
@@ -270,21 +265,10 @@ import numpy as np
 
 
 def pool_adjacent_violators(y, w):
-    """
-    Ensure that the sequence y is non-decreasing by pooling adjacent violators.
-
-    Parameters:
-    y (list of float): The initial sequence of values.
-    w (list of float): The weights associated with each value in y.
-
-    Returns:
-    list of float: The adjusted sequence y that is non-decreasing.
-    list of float: The adjusted weights w.
-    """
     n = len(y)
     r = y.copy()
-    gps = [1] * n
     ws = w.copy()
+    target = [[i] for i in range(n)]
 
     i = 1
     while i < n:
@@ -292,34 +276,33 @@ def pool_adjacent_violators(y, w):
             # Pool the violators
             r[i] = (ws[i] * r[i] + ws[i - 1] * r[i - 1]) / (ws[i] + ws[i - 1])
             ws[i] += ws[i - 1]
-            gps[i]+= gps[i - 1]
+            target[i] = target[i-1] + target[i]
             # Remove the previous element and decrease the number of elements
             r.pop(i - 1)
             ws.pop(i - 1)
-            gps.pop(i - 1)
+            target.pop(i - 1)
             n -= 1
             # Move back one step if possible
             if i > 1:
                 i -= 1
         else:
             i += 1
-    sol = []
-    for i, val in enumerate(gps):
-        for _ in range(val):
-            sol.append(r[i])
-    return sol, gps, ws
+    signal = np.zeros_like(y)
+    for _, block in enumerate(target):
+        signal[block] = np.mean(np.array(y)[block])
+    return signal, target, ws
 
-# n_sample = 25
+n_sample = 25
 
-# rng = np.random.default_rng(1)
+rng = np.random.default_rng(1)
 
-# x = np.arange(n_sample)
-# w = np.ones(n_sample)
-# z = rng.integers(-10, 50, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
-# w = [1] * len(z)  # Uniform weights
-# adjusted_y, sol, adjusted_w = pool_adjacent_violators(z.tolist(), w)
-# print("Adjusted y:", adjusted_y)
-# print("Adjusted weights:", adjusted_w)
+x = np.arange(n_sample)
+w = np.ones(n_sample)
+z = rng.integers(-50, 100, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
+w = [1] * len(z)  # Uniform weights
+adjusted_y, target, adjusted_w = pool_adjacent_violators(z.tolist(), w)
+print("Adjusted y:", adjusted_y)
+print("Adjusted weights:", adjusted_w)
 
 ```
 
@@ -410,7 +393,7 @@ Now, for all $i \in \llbracket 1, n-1 \rrbracket$, choosing $x = \sum_{k=i}^n e_
 
 :::
 
-### Fenchel transform
+### Conic duality / Fenchel transform
 
 Here we remind the definition of the Fenchel transform of a function $f$ defined on $\mathbb{R}^n$:
 $$
