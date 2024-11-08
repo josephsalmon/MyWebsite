@@ -12,7 +12,8 @@ image: "isotonic.png"
 reference-location: document
 fig-cap-location: bottom
 draft: false
-
+filters:
+  - pseudocode
 # title-block-banner: hello-world-bg.jpg
 
 format:
@@ -20,7 +21,7 @@ format:
     include-before-body: ../../html/margin_image.html
     include-after-body: ../../html/blog_footer.html
     code-fold: true
-    highlight-style: github 
+    highlight-style: github
 ---
 
 
@@ -67,57 +68,92 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 
-def isotonic_regression(z, w):
-    y = z.copy()
-    n=len(y)
-    i = 0
-    target = np.arange(len(y))
+# Easy to read code:
+
+def isotonic_regression(y, w):
+    n = len(y)
+    r = y.copy()
+    gps = [1] * n
+    ws = w.copy()
+    target = [[i] for i in range(n)]
     targets = [target.copy()]
-    idx = [0]
+    i = 1
+    counter = 0
     while i < n:
-        k = target[i] + 1
-        if k == n:
-            break
-        if y[i] < y[k]:
-            # We are in an increasing subsequence.
-            i = k
+        if r[i] < r[i - 1]:  # Find adjacent violators
+            # Pool the violators
+            r[i] = (ws[i] * r[i] + ws[i - 1] * r[i - 1]) / (ws[i] + ws[i - 1])
+            ws[i] += ws[i - 1]
+            gps[i]+= gps[i - 1]
+            target[i] = target[i-1] + target[i]
+            r.pop(i - 1)
+            ws.pop(i - 1)
+            gps.pop(i - 1)
+            target.pop(i - 1)
+            n -= 1
+            # Move back one step if possible
+            if i > 1:
+                i -= 1
+        else:
+            i += 1
+            counter += 1
             targets.append(target.copy())
-            idx.append(k)
-            continue
-        sum_wy = w[i] * y[i]
-        sum_w = w[i]
-        while True:
-            # We are within a decreasing subsequence.
-            prev_y = y[k]
-            sum_wy += w[k] * y[k]
-            sum_w += w[k]
-            k = target[k] + 1
-            if k == n or prev_y < y[k]:
-                targets.append(target.copy())
-                idx.append(k)
+    sol = []
+    for i, val in enumerate(gps):
+        for _ in range(val):
+            sol.append(r[i])
+    return sol, gps, ws, targets
+# def isotonic_regression(z, w):
+#     y = z.copy()
+#     n=len(y)
+#     i = 0
+#     target = np.arange(len(y))
+#     targets = [target.copy()]
+#     idx = [0]
+#     while i < n:
+#         k = target[i] + 1
+#         if k == n:
+#             break
+#         if y[i] < y[k]:
+#             # We are in an increasing subsequence.
+#             i = k
+#             targets.append(target.copy())
+#             idx.append(k)
+#             continue
+#         sum_wy = w[i] * y[i]
+#         sum_w = w[i]
+#         while True:
+#             # We are within a decreasing subsequence.
+#             prev_y = y[k]
+#             sum_wy += w[k] * y[k]
+#             sum_w += w[k]
+#             k = target[k] + 1
+#             if k == n or prev_y < y[k]:
+#                 targets.append(target.copy())
+#                 idx.append(k)
 
-                # Non-singleton decreasing subsequence is finished,
-                # update first entry.
-                y[i] = sum_wy / sum_w
-                w[i] = sum_w
+#                 # Non-singleton decreasing subsequence is finished,
+#                 # update first entry.
+#                 y[i] = sum_wy / sum_w
+#                 w[i] = sum_w
 
-                target[i] = k - 1
-                target[k - 1] = i
+#                 target[i] = k - 1
+#                 target[k - 1] = i
 
-                if i > 0:
-                    # Backtrack if we can.  This makes the algorithm
-                    # single-pass and ensures O(n) complexity.
-                    i = target[i - 1]
-                # Otherwise, restart from the same point.
-                break
+#                 if i > 0:
+#                     # Backtrack if we can.  This makes the algorithm
+#                     # single-pass and ensures O(n) complexity.
+#                     i = target[i - 1]
+#                 # Otherwise, restart from the same point.
+#                 break
 
-    # Reconstruct the solution.
-    i = 0
-    while i < n:
-        k = target[i] + 1
-        y[i + 1 : k] = y[i]
-        i = k
-    return y, targets, idx
+#     # Reconstruct the solution.
+#     i = 0
+#     while i < n:
+#         k = target[i] + 1
+#         y[i + 1 : k] = y[i]
+#         i = k
+#     return y, targets, idx
 
 n_sample = 25
 
@@ -125,7 +161,7 @@ rng = np.random.default_rng(1)
 
 x = np.arange(n_sample)
 w = np.ones(n_sample)
-z = rng.integers(-10, 50, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
+z = rng.integers(-50, 100, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
 
 
 def replace_after_first_non_increasing(vector):
@@ -137,8 +173,20 @@ def replace_after_first_non_increasing(vector):
             break
     return vector
 
+def create_signal_from_target(target, y):
+    signal = np.zeros_like(y)
+    for i, block in enumerate(target):
+        signal[block] = np.mean(y[block])
+    return signal
 
-sol, targets, idx = isotonic_regression(z, w)
+
+
+
+# sklearn style
+# sol, targets, idx = isotonic_regression(z, w)
+sol, _ , idx, targets = isotonic_regression(z.tolist(), w.tolist())
+
+
 primals, duals = [], []
 
 import numpy as np
@@ -158,13 +206,8 @@ def plot_targets(y, targets, x):
     fig.add_trace(go.Scatter(x=[x[0]], y=[y[0]], mode='lines+markers', name='PAVA iterations', marker=dict(color='red'), legendgroup='1', showlegend=True), row=1, col=1)
     fig.add_trace(go.Scatter(x=[0], y=[0], mode='lines+markers', name='Duals', marker=dict(color='green'), legendgroup='2', showlegend=True), row=2, col=1)
 
-    yy = y.copy()
-    i = 0
-    while i < n:
-        k = targets[0][i] + 1
-        yy[i:k] = np.mean(y[i:k])
-        i = k
-    primal = replace_after_first_non_increasing(yy.copy())
+    yy = create_signal_from_target(targets[0], y)
+    primal = replace_after_first_non_increasing(np.array(yy))
 
     fig.add_trace(go.Scatter(x=[0], y=[0.5 * np.linalg.norm(primal - y)**2], mode='lines+markers', name='Primals', marker=dict(color='blue'), legendgroup='2', showlegend=True), row=2, col=1)
 
@@ -174,20 +217,16 @@ def plot_targets(y, targets, x):
 
     frames = []
     for iteration, target in enumerate(targets):
-        yy = y.copy()
-        i = 0
-        while i < n:
-            k = target[i] + 1
-            yy[i:k] = np.mean(y[i:k])
-            i = k
+        yy = create_signal_from_target(target, y)
         duals.append(0.5 * np.linalg.norm(y)**2 - 0.5 * np.linalg.norm(yy)**2)
-
-        current_idx = idx[iteration]
+        # print(iteration)
+        # print(target)
+        # current_idx = iteration
         primal = replace_after_first_non_increasing(yy.copy())
         primals.append(0.5 * np.linalg.norm(primal - y)**2)
         frames.append(go.Frame(data=[
             go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), legendgroup='1', showlegend=True),
-            go.Scatter(x=x[:current_idx+1], y=yy[:current_idx+1], mode='lines+markers', marker=dict(color='red'), legendgroup='1', showlegend=True),
+            go.Scatter(x=x[:iteration+1], y=yy[:iteration+1], mode='lines+markers', marker=dict(color='red'), legendgroup='1', showlegend=True),
             go.Scatter(x=np.arange(iteration+1), y=duals[:iteration+1], mode='lines+markers', marker=dict(color='green'), legendgroup='2', showlegend=True),
             go.Scatter(x=np.arange(iteration+1), y=primals[:iteration+1], mode='lines+markers', marker=dict(color='blue'), legendgroup='2', showlegend=True)
         ], name=str(iteration)))
@@ -213,7 +252,7 @@ def plot_targets(y, targets, x):
             ],
             "direction": "left", "pad": {"r": 5, "t": 5, "b": 20}, "showactive": False, "type": "buttons", "x": 0.5, "xanchor": "center", "y": -0.28, "yanchor": "top"
         }],
-    xaxis_title="X", yaxis_title="Y", template='simple_white', xaxis=dict(range=[-0.5, n+0.5]), yaxis=dict(range=[0, 250]), xaxis2=dict(range=[0, len(targets)]), yaxis2=dict(range=[0, 12000]),
+    xaxis_title="X", yaxis_title="Y", template='simple_white', xaxis=dict(range=[-0.5, n+0.5]), yaxis=dict(range=[0, 300]), xaxis2=dict(range=[0, len(targets)]), yaxis2=dict(range=[0, 50000]),
     )
 
     fig.show()
@@ -326,9 +365,17 @@ $$ {#eq-isotonic-matrix-2}
 
 Hence, the isotonic regression problem can be formulated as a convex quadratic program with linear constraints.
 
-Note in particular that the set of **isotonic vectors** $\mathcal{K} = \left\{ x \in \mathbb{R}^n : Ax \leq 0 \right\}$
+### Notation
+
+The set of **isotonic vectors** $\mathcal{K} = \left\{ x \in \mathbb{R}^n : Ax \leq 0 \right\}$
 is a cone (stable by positive scalar mutliplication).
 We remind also that the **polar cone** of $\mathcal{K}$ is $\mathcal{K}^\circ= \left\{v \in \mathbb{R}^n : \langle v, x \rangle \leq 0 \text{ for all } x \in \mathcal{K}\right\}$.
+
+
+For any set $S \subset \llbracket 1, n\rrbracket$, the weighted average of $y_i$ over the indices in $i \in S$ reads:
+$$
+\bar{y}_S \triangleq \frac{\sum_{i \in S} w_i y_i}{\sum_{i' \in S} w_{'i'}} \enspace.
+$$
 
 
 ::: {#lem-polar}
@@ -543,7 +590,7 @@ w_i (y_i - x^{\star}_i) + \lambda^{\star}_{i-1} - \lambda^{\star}_i & = 0, \quad
 w_n (y_n - x^{\star}_n) + \lambda^{\star}_{n-1} & = 0 \enspace.
 \end{align*}
 $$
-With the convention $\lambda_0^{\star} = \lambda_n^{\star} = 0$, this reduces to 
+With the convention $\lambda_0^{\star} = \lambda_n^{\star} = 0$, this reduces to
 $$
 \begin{align*}
 w_i (y_i - x^{\star}_i) + \lambda^{\star}_{i-1} - \lambda^{\star}_i & = 0, \quad \text{for all } i \in \llbracket 1, n \rrbracket\\
@@ -562,7 +609,7 @@ $$
 
 
 A simple consequence of the complementarity slackness is as follows: if $\lambda_i^{\star} > 0$ for some $i \in \llbracket 1, n-1 \rrbracket$, then $x^{\star}_i = x^{\star}_{i+1}$.
-Hence, the set of ($n-1$) constraints can be partitioned into contiguous blocks.
+Hence, the set of ($n-1$) constraints can be partitioned into contiguous blocks where $x^\star$ has constant value.
 Each block B can be written as $B = \llbracket \underline{b}, \overline{b} \rrbracket$ for some $\underline{b} \leq \overline{b}$ and $x^{\star}_{\underline{b}} = x^{\star}_{\underline{b}+1} = \ldots = x^{\star}_{\overline{b}}$. When needed we use the convention $x^{\star}_{0}=0$ and $x^{\star}_{n+1}=n+1$. and $x^{\star}_{n+1}=0$. Then, note that by definition of a block, $x^{\star}_{\underline{b}-1}<x^{\star}_{\underline{b}}$ and $x^{\star}_{\overline{b}}<x^{\star}_{\overline{b}+1}$, and by complementarity $\lambda^{\star}_{\underline{b}-1} = \lambda^{\star}_{\overline{b}+1} = 0$.
 
 Summing over the elements of $B$ in @eq-stationarity yields (telescopic sum):
@@ -575,11 +622,158 @@ Hence, noticing that the $x_i^{\star}$  in block $B$ are all equal, we have that
 
 $$
 \begin{align*}
-x^{\star}_{\underline{b}} = \ldots = x^{\star}_{\overline{b}} = \frac{\sum_{i \in B} w_i y_i}{\sum_{i' \in B} w_{i'}}
+x^{\star}_{\underline{b}} = \ldots = x^{\star}_{\overline{b}} = \bar{y}_B  \big(= \bar{y}_{\llbracket \underline{b}, \overline{b} \rrbracket} \big)\enspace.
 \end{align*}
 $$
 
+Now, from the values of $x^{\star}_{\underline{b}} = \ldots = x^{\star}_{\overline{b}}$ on the block $B$, one can infer (by recursion) the $\lambda_i$'s for $i\in B$.
 
+::: {#lem-lambda}
+
+## Expression of the dual variables
+Let $B =\llbracket \underline{b}, \overline{b} \rrbracket$ be partitionning block for $x^\star$ (into constants pieces).
+For any $i \in B$:
+
+$$
+\begin{align*}
+\lambda^{\star}_{i} & = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left( \bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B}\right) \enspace.
+\end{align*}
+$$
+
+:::
+
+::: {.proof}
+The proof is a simple induction on the element of block $B$.
+For $i=\underline{b}$ then @eq-stationarity leads to $\lambda^{\star}_{\underline{b}} = w_{\underline{b}} (\bar{y}_{\underline{b}} - x^{\star}_{\underline{b}}) = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left( \bar{y}_{B} - \bar{y}_{B \cap \llbracket 1, i \rrbracket} \right)$.
+Now by induction assume the result for $i\in B$, \emph{e.g.,} $\lambda^{\star}_{i}  = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left( \bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B}\right)$.
+Using @eq-stationarity for $i+1 \in B$ yields
+
+$$
+\begin{align*}
+\lambda^{\star}_{i+1}
+& = w_{i+1} (y_{i+1} - x^{\star}_{i+1}) + \lambda^{\star}_i\\
+& = w_{i+1} (y_{i+1} - \overline{y}_{B}) + \lambda^{\star}_i\\
+& = w_{i+1} (y_{i+1} - \overline{y}_{B}) + \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j  \Big)\left( \bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B}\right)\\
+& = \Big(\sum_{j \in B \cap \llbracket 1, i + 1 \rrbracket} w_j  \Big)\left( \bar{y}_{B \cap \llbracket 1, i+1 \rrbracket} - \bar{y}_{B}\right) \enspace,
+\end{align*}
+$$
+hence the result.
+
+:::
+
+
+### Algorithm
+
+The intuition behind the PAVA algorithm is to merge adjacent blocks of constant values in the primal vector, as the targeted solution is simply the average of the observe signal over each block.
+Hence, the algorithm aims at creating the blocks of constant values in the primal vector. The dual variables can be inferred from the primal solution from the previous lemma.
+
+
+
+```pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+#| pdf-placement: "htb!"
+#| pdf-line-number: true
+
+\begin{algorithm}
+\caption{PAVA}
+\begin{algorithmic}
+\REQUIRE $y \in\mathbb{R}^n, w \in \mathbb{R}^n_{+}$
+\STATE $r \leftarrow y$
+\STATE $W \leftarrow y$
+\STATE $J = [\{1\},\dots, \{n\}]$ \COMMENT{lists of blocks}
+\STATE $i=1$ (index of list start at 0 here)
+\WHILE{$i<n$}
+    \IF{$r_i < r_{i-1}$} \COMMENT{Find adjacent violators and merge groups}
+        \STATE $r_i \leftarrow \frac{W_i r_i + W_{i-1} r_{i-1}}{W_i + W_{i-1}}$
+        \STATE $W_i \leftarrow W_i + W_{i-1}$
+        \STATE $J_i \leftarrow J_i \cup J_{i-1}$
+        \STATE Remove $r_{i-1}$, $W_{i-1}$ and $J_{i-1}$ from the lists
+        \IF{$i > 1$}
+            \STATE{$i\leftarrow i-1$}
+        \ENDIF
+    \ELSE
+        \STATE{$i  \leftarrow i + 1$}
+    \ENDIF
+\ENDWHILE
+\FOR{$i=1$ to len($J$)}
+    \STATE{$r_{J_i} \leftarrow \bar{y}_{J_i} \mathbf{1}_{J_i}$}
+    \COMMENT{Set the block to the average value}
+\ENDFOR
+\RETURN{$r, J$}
+\end{algorithmic}
+\end{algorithm}
+```
+
+::: {#thm-convergence}
+
+## Convergence of the PAVA algorithm
+
+The PAVA algorithm converges in a finite number of iterations and output the primal solution of the isotonic regression problem.
+
+:::
+
+::: {.proof}
+To show the convergence we will create a dual variable $\lambda$, show that it is dual feasible, and that at the end of the algorithm it satisfies KKT along with the output of the PAVA algorithm.
+
+For that let us first prove the following result:
+
+**Fact 1**. Let $B \in J$ be a block at some stage of the algorithm.
+Then,
+$$\forall i \in B, \overline{y}_{B \cap \llbracket 1, i \rrbracket} \geq \overline{y}_{B} \enspace.
+$$
+
+To show this result, we will use induction and show that the merging process does maintain this condition.
+First, at initialization, the condition is true as the blocks have all size 1.
+Now, assume that the condition is true, and check what happen when we merge two consecutive groups $J_i$ and $J_{i-1}$ into $B=J_{i-1} \cup J_{i}$.
+First the condition is true for $J_i$ and $J_{i-1}$, so $\overline{y}_{J_i \cap \llbracket 1, k \rrbracket} \geq \overline{y}_{J_i}$ and $\overline{y}_{J_{i-1} \cap \llbracket 1, k' \rrbracket} \geq \overline{y}_{J_{i-1}}$ for any $k \in J_i$ and $k' \in J_{i-1}$.
+Then, the test $r_i < r_{i-1}$ is equivalent to $\overline{y}_{J_i} < \overline{y}_{J_{i-1}}$.
+So for any $k \in J_{i-1}$, we have $\overline{y}_{J_i \cap \llbracket k, n \rrbracket} \geq \overline{y}_{J_i}$ using the induction hypothesis.
+For $k'\in J_{i}$,  $\overline{y}_{B \cap \llbracket 1, k \rrbracket} = \overline{y}_{J_{i-1} \cap \llbracket 1, k \rrbracket} \geq \overline{y}_{J_{i-1}} \geq \overline{y}_{B}$ (where the last inequality is due to the test $r_i < r_{i-1}$).
+For the case $k' \in J_i$, we have
+
+$$
+\begin{align*}
+\overline{y}_{B \cap \llbracket 1, k' \rrbracket}
+& = \overline{y}_{ J_{i-1} \cup (J_{i} \cap \llbracket 1, k' \rrbracket)} \\
+& \geq \frac{\Big(\sum_{\ell \in J_{i-1}} w_{\ell} \Big) \cdot \overline{y}_{J_{i-1}} + \Big(\sum_{\ell \in J_{i} \cap \llbracket 1, k' \rrbracket} w_{\ell} \Big) \cdot \overline{y}_{J_{i} \cap \llbracket 1, k' \rrbracket}}{\sum_{J_{i-1}} w_i + \sum_{J_{i} \cap \llbracket 1, k' \rrbracket} w_i}\\
+& \geq \frac{\Big(\sum_{\ell \in J_{i-1}} w_{\ell} \Big) \cdot \overline{y}_{J_{i-1}} + \Big(\sum_{\ell \in J_{i} \cap \llbracket 1, k' \rrbracket} w_{\ell} \Big) \cdot \overline{y}_{J_{i}}}{\sum_{J_{i-1}} w_i + \sum_{J_{i} \cap \llbracket 1, k' \rrbracket} w_i} \quad (\text{induction})\\
+& \geq \frac{\Big(\sum_{\ell \in J_{i-1}} w_{\ell} \Big) \cdot \overline{y}_{J_{i-1}} + \Big(\sum_{\ell \in J_{i} \cap \llbracket 1, k' \rrbracket} w_{\ell} \Big) \cdot \overline{y}_{J_{i}}}{\sum_{J_{i-1}} w_i + \sum_{J_{i} \cap \llbracket 1, k' \rrbracket} w_i} \quad (\text{PAVA})\\
+\end{align*}
+$$
+Now, remember that $\overline{y}_{B} = \frac{\Big(\sum_{\ell \in J_{i-1}} w_{\ell} \Big) \cdot \overline{y}_{J_{i-1}} + \Big(\sum_{\ell \in J_{i} } w_{\ell} \Big) \cdot \overline{y}_{J_{i}}}{\sum_{J_{i-1}} w_i + \sum_{J_{i}} w_i}$ and that $\overline{y}_{J_{i-1}} \geq  \overline{y}_{B} \geq \overline{y}_{J_{i}}$ (since $\overline{y}_{B}$ is a convex combination of $\overline{y}_{J_{i-1}}$ and $\overline{y}_{J_i}$), so the last inequality is true. One can check that the weight of $J_{i}$ is larger in the definition of $\overline{y}_{B}$ than in the last inequality above, and so among the two convex combinations, the larger is the former.
+Hence, the fact is proved by induction.
+
+**Fact 2.** If you update $\lambda$ recursively, starting from $\lambda = \mathbf{0}_{n-1}$ and for if for each updated block $B \in J$ you update $\lambda$ (as in @lem-lambda) by
+
+$$
+\begin{align*}
+\forall i \in B, \lambda_i & = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left( \bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B}\right) \enspace,
+\end{align*}
+$$
+then $\lambda$ is dual feasible for all steps of the algorithm
+
+The proof is a direct consequence of Fact 1 and the fact that the weights $w_i$ are non-negative.
+
+
+**Fact 3.**
+$\forall i \in B, \lambda_i=\lambda_{i-1} +w_i(y_i -x_i)$ (where we assume that $x_i = \overline{y}_B$), which means that $\lambda$ and $x$ hence created satsfies.
+
+Again this result is simple to prove, by following the same line in the proof of @lem-lambda.
+
+**Fact 4.** When you exit the while loop, the output of the PAVA algorithm is a primal feasible point.
+
+Indeed, the only way to exist is to have all blocks mean values ordered.
+Hence, when the algorithm stops the primal point create (after the block averaging step) is primal feasible.
+
+Leveraging Fact 1. to 4. ensures that the KKT conditions are satisfied with the primal and dual points created. Hence, at the end of the algorithm, and the optimal solution is found.
+
+
+
+:::
 
 # {{< fa link title="link" >}} References
 
