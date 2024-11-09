@@ -88,7 +88,6 @@ def get_bib_entries(bib_fname):
             match = re.search(pattern, item["comment"])
             if match:
                 item["code"] = match.group(1)
-                print(match.group(1))
         item["title"] = make_nice_title(item["title"])
         item["index"] = k
         if "url" in item:
@@ -157,4 +156,3 @@ def write_yaml_file(entries, output_file):
 entries = [PUBLICATION_LIST]
 for entry in entries:
     write_yaml_file(entry, "publications/publications.yml")
-# %%

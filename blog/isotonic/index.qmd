@@ -37,7 +37,8 @@ format:
 :::
 :::
 
-**[Note]{.underline}**: This blog is mainly inspired by the post by Fabian Pedregosa on [Isotonic regression](https://fabianp.net/blog/isotonic-regression/), and the code use is an adaptation of the PAVA algorithm coded in the `sklearn` library (in particular the `_isotonic.pyx` file, as available in October 2024, see [source](https://github.com/scikit-learn/scikit-learn/blob/04fbe04fedda0e86e67867854900a49fb53c4c01/sklearn/_isotonic.pyx)).
+**[Note]{.underline}**: This blog is mainly inspired by the post by  @Pedregosa13 on Isotonic regression, a version of the PAVA algorithm provided by @Best_Chakravarti90.
+
 
 # Introduction
 
@@ -60,20 +61,23 @@ $$ {#eq-isotonic}
 
 
 
+## Visualization
+
+Below you'll find a visualization, on a synthetic dataset, of the most common algorithm, the Pools Adjacent Violators Algorihtm (PAVA) to solve isotonic regression algorithm.
+The top plot shows the evolution of the PAVA algorithm, while the bottom plot shows the primal and dual objectives until convergence.
+Note that the essence of the algorithm is simple: it Pools Adjacent Violators, *i.e.,* it replaces adjacent points that are not in increasing order by averaging.
 
 ```{python}
-# |echo: false
+#| echo: false
 import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-
 
 # Easy to read code:
 
 def isotonic_regression(y, w):
     n = len(y)
     r = y.copy()
-    gps = [1] * n
     ws = w.copy()
     target = [[i] for i in range(n)]
     targets = [target.copy()]
@@ -84,11 +88,9 @@ def isotonic_regression(y, w):
             # Pool the violators
             r[i] = (ws[i] * r[i] + ws[i - 1] * r[i - 1]) / (ws[i] + ws[i - 1])
             ws[i] += ws[i - 1]
-            gps[i]+= gps[i - 1]
             target[i] = target[i-1] + target[i]
             r.pop(i - 1)
             ws.pop(i - 1)
-            gps.pop(i - 1)
             target.pop(i - 1)
             n -= 1
             # Move back one step if possible
@@ -98,11 +100,10 @@ def isotonic_regression(y, w):
             i += 1
             counter += 1
             targets.append(target.copy())
-    sol = []
-    for i, val in enumerate(gps):
-        for _ in range(val):
-            sol.append(r[i])
-    return sol, gps, ws, targets
+    sol = np.zeros_like(y)
+    for i, block in enumerate(target):
+        sol[block] = r[i]
+    return sol, ws, targets
 # def isotonic_regression(z, w):
 #     y = z.copy()
 #     n=len(y)
@@ -155,13 +156,16 @@ def isotonic_regression(y, w):
 #         i = k
 #     return y, targets, idx
 
-n_sample = 25
+# n_sample = 35
 
 rng = np.random.default_rng(1)
 
+n_sample = 25
 x = np.arange(n_sample)
 w = np.ones(n_sample)
-z = rng.integers(-50, 100, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
+z = rng.integers(-50, 50, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
+# x = np.arange(n_sample)
+# z = rng.integers(-20, 50, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
 
 
 def replace_after_first_non_increasing(vector):
@@ -182,7 +186,7 @@ def create_signal_from_target(target, y):
 
 # sklearn style
 # sol, targets, idx = isotonic_regression(z, w)
-sol, _ , idx, targets = isotonic_regression(z.tolist(), w.tolist())
+sol, ws, targets = isotonic_regression(z.tolist(), w.tolist())
 
 
 primals, duals = [], []
@@ -211,6 +215,7 @@ def plot_targets(y, targets, x):
 
     fig.update_layout(
     legend_tracegroupgap = 180,
+    height=600,
     )
 
     frames = []
@@ -247,7 +252,7 @@ def plot_targets(y, targets, x):
             ],
             "direction": "left", "pad": {"r": 5, "t": 5, "b": 20}, "showactive": False, "type": "buttons", "x": 0.5, "xanchor": "center", "y": -0.28, "yanchor": "top"
         }],
-    xaxis_title="X", yaxis_title="Y", template='simple_white', xaxis=dict(range=[-0.5, n+0.5]), yaxis=dict(range=[0, 300]), xaxis2=dict(range=[0, len(targets)]), yaxis2=dict(range=[0, 50000]),
+    xaxis_title="X", yaxis_title="Y", template='simple_white', xaxis=dict(range=[-0.5, n+0.5]), yaxis=dict(range=[0, 250]), xaxis2=dict(range=[0, len(targets)]), yaxis2=dict(range=[0, 25000]),
     )
 
     fig.show()
@@ -256,7 +261,7 @@ plot_targets(z, targets, x)
 ```
 
 
-## Optimization, duality, etc.
+# Optimization, duality, etc.
 
 The formualtion of the isotonic regression problem given in @eq-isotonic is a quadratic program (QP) with linear constraints.
 Using a matrix notation, introducing the matrix
@@ -343,7 +348,7 @@ Now, for all $i \in \llbracket 1, n-1 \rrbracket$, choosing $x = \sum_{k=i}^n e_
 
 :::
 
-### Conic duality / Fenchel transform
+## Conic duality / Fenchel transform
 
 Here we remind the definition of the Fenchel transform of a function $f$ defined on $\mathbb{R}^n$:
 $$
@@ -364,7 +369,7 @@ where $\iota_{\mathcal{K}^\circ}$ is the indicator function of the set $\mathcal
 :::
 
 
-### Dual problem
+## Dual problem
 
 Let us now derive the dual problem of the isotonic regression problem given in @eq-isotonic-matrix.
 
@@ -489,7 +494,7 @@ For creating a primal feasible point, one can simply take the ordered version of
 
 
 
-### Karush-Kuhn-Tucker (KKT) conditions
+## Karush-Kuhn-Tucker (KKT) conditions
 
 The KKT conditions for the isotonic regression problem are given by
 
@@ -595,12 +600,13 @@ hence the result.
 :::
 
 
-### Algorithm
+# Algorithm
 
 The intuition behind the PAVA algorithm is to merge adjacent blocks of constant values in the primal vector, as the targeted solution is simply the average of the observe signal over each block.
 Hence, the algorithm aims at creating the blocks of constant values in the primal vector. The dual variables can be inferred from the primal solution from the previous lemma.
 
 
+## Pseudo-code and Python implementation
 
 ```pseudocode
 #| html-indent-size: "1.2em"
@@ -642,8 +648,45 @@ Hence, the algorithm aims at creating the blocks of constant values in the prima
 ```
 
 Below you will find a simple version of the PAVA algorithm coded in Python.
-The code illustrated above (the `sklearn` version) is more efficient but less readable.
+The `sklearn` version (in particular the `_isotonic.pyx` file, as available in October 2024, see [source](https://github.com/scikit-learn/scikit-learn/blob/04fbe04fedda0e86e67867854900a49fb53c4c01/sklearn/_isotonic.pyx)). is more efficient but a little less readable.
 
+```{python}
+#| echo: true
+#| code-fold: false
+import numpy as np
+
+def PAVA(y, w):
+    n = len(y)
+    r = y.copy()
+    ws = w.copy()
+    target = [[i] for i in range(n)]
+    i = 1
+    counter = 0
+    while i < n:
+        if r[i] < r[i - 1]:  # Find adjacent violators
+            # Pool the violators
+            r[i] = (ws[i] * r[i] + ws[i - 1] * r[i - 1]) / (ws[i] + ws[i - 1])
+            ws[i] += ws[i - 1]
+            target[i] = target[i-1] + target[i]
+            r.pop(i - 1)
+            ws.pop(i - 1)
+            target.pop(i - 1)
+            n -= 1
+            # Move back one step if possible
+            if i > 1:
+                i -= 1
+        else:
+            i += 1
+            counter += 1
+
+    sol = np.zeros_like(y)
+    for i, block in enumerate(target):
+        sol[block] = r[i]
+    return sol, ws, target
+
+```
+
+## Convergence
 
 ::: {#thm-convergence}
 
