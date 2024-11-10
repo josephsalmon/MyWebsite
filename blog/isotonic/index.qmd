@@ -5,16 +5,15 @@ author:
       given: Joseph
       family: Salmon
 
-date: "2024-10-22"
-description: "Iso Iso Iso ... Tonic"
-categories: [Quadratic programming, Calibration, PAVA]
+date: "2024-11-10"
+description: "Iso, Iso, Iso ... Tonic! Or how to fit a non-decreasing signal."
+categories: [Quadratic programming, Calibration, PAVA, Optimization]
 image: "isotonic.png"
 reference-location: document
 fig-cap-location: bottom
 draft: false
 filters:
   - pseudocode
-# title-block-banner: hello-world-bg.jpg
 
 format:
   html:
@@ -63,7 +62,7 @@ $$ {#eq-isotonic}
 
 ## Visualization
 
-Below you'll find a visualization, on a synthetic dataset, of the most common algorithm, the Pools Adjacent Violators Algorihtm (PAVA) to solve isotonic regression algorithm.
+Below you'll find a visualization, on a synthetic dataset, of the most common algorithm, the Pools Adjacent Violators Algorithm (PAVA) to solve isotonic regression algorithm.
 The top plot shows the evolution of the PAVA algorithm, while the bottom plot shows the primal and dual objectives until convergence.
 Note that the essence of the algorithm is simple: it Pools Adjacent Violators, *i.e.,* it replaces adjacent points that are not in increasing order by averaging.
 
@@ -218,7 +217,7 @@ You will find a some details and examples in the [scikit-learn documentation](ht
 
 # Optimization, duality, etc.
 
-The formualtion of the isotonic regression problem given in @eq-isotonic is a quadratic program (QP) with linear constraints.
+The formulation of the isotonic regression problem given in @eq-isotonic is a quadratic program (QP) with linear constraints.
 Using a matrix notation, introducing the matrix
 $$A = \begin{pmatrix} 1 & -1 &                       &                       &    \\
   & 1  & -1                    &                       &    \\
@@ -261,7 +260,7 @@ Hence, the isotonic regression problem can be formulated as a convex quadratic p
 ### Notation
 
 The set of **isotonic vectors** $\mathcal{K} = \left\{ x \in \mathbb{R}^n : Ax \leq 0 \right\}$
-is a cone (stable by positive scalar mutliplication).
+is a cone (stable by positive scalar multiplication).
 We remind also that the **polar cone** of $\mathcal{K}$ is $\mathcal{K}^\circ= \left\{v \in \mathbb{R}^n : \langle v, x \rangle \leq 0 \text{ for all } x \in \mathcal{K}\right\}$.
 
 
@@ -554,7 +553,7 @@ hence the result.
 # Algorithm
 
 The intuition behind the PAVA algorithm is to merge adjacent blocks of constant values in the primal vector, as the targeted solution is simply the average of the observe signal over each block.
-Hence, the algorithm aims at creating the blocks of constant values in the primal vector. The dual variables can be inferred from the primal solution from the previous lemma.
+Hence, the algorithm aims at creating the blocks of constant values in the primal vector. The dual variables can be inferred from the  solution from the previous lemma.
 
 
 ## Pseudo-code and Python implementation

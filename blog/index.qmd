@@ -11,6 +11,7 @@ listing:
   - id: posts_2024
     contents:
       # - "laptop-mic-obs/index.qmd"
+      - "isotonic/index.qmd"
       - "softmax/index.qmd"
       - "latex/index.qmd"
       - "inflation/index.qmd"
