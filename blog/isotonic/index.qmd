@@ -7,7 +7,7 @@ author:
 
 date: "2024-10-22"
 description: "Iso Iso Iso ... Tonic"
-categories: [statistics, optimization, machine learning]
+categories: [Quadratic programming, Calibration, PAVA]
 image: "isotonic.png"
 reference-location: document
 fig-cap-location: bottom
@@ -40,7 +40,7 @@ format:
 **[Note]{.underline}**: This blog is mainly inspired by the post by  @Pedregosa13 on Isotonic regression, a version of the PAVA algorithm provided by @Best_Chakravarti90.
 
 
-# Introduction
+# Introduction & formulation
 
 Isotonic regression is a technique used to fit a non-decreasing function to a set of data points.
 We can think of isotonic regression as a generalization of linear regression where the function is constrained to be non-decreasing.
@@ -104,59 +104,7 @@ def isotonic_regression(y, w):
     for i, block in enumerate(target):
         sol[block] = r[i]
     return sol, ws, targets
-# def isotonic_regression(z, w):
-#     y = z.copy()
-#     n=len(y)
-#     i = 0
-#     target = np.arange(len(y))
-#     targets = [target.copy()]
-#     idx = [0]
-#     while i < n:
-#         k = target[i] + 1
-#         if k == n:
-#             break
-#         if y[i] < y[k]:
-#             # We are in an increasing subsequence.
-#             i = k
-#             targets.append(target.copy())
-#             idx.append(k)
-#             continue
-#         sum_wy = w[i] * y[i]
-#         sum_w = w[i]
-#         while True:
-#             # We are within a decreasing subsequence.
-#             prev_y = y[k]
-#             sum_wy += w[k] * y[k]
-#             sum_w += w[k]
-#             k = target[k] + 1
-#             if k == n or prev_y < y[k]:
-#                 targets.append(target.copy())
-#                 idx.append(k)
 
-#                 # Non-singleton decreasing subsequence is finished,
-#                 # update first entry.
-#                 y[i] = sum_wy / sum_w
-#                 w[i] = sum_w
-
-#                 target[i] = k - 1
-#                 target[k - 1] = i
-
-#                 if i > 0:
-#                     # Backtrack if we can.  This makes the algorithm
-#                     # single-pass and ensures O(n) complexity.
-#                     i = target[i - 1]
-#                 # Otherwise, restart from the same point.
-#                 break
-
-#     # Reconstruct the solution.
-#     i = 0
-#     while i < n:
-#         k = target[i] + 1
-#         y[i + 1 : k] = y[i]
-#         i = k
-#     return y, targets, idx
-
-# n_sample = 35
 
 rng = np.random.default_rng(1)
 
@@ -164,28 +112,24 @@ n_sample = 25
 x = np.arange(n_sample)
 w = np.ones(n_sample)
 z = rng.integers(-50, 50, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
-# x = np.arange(n_sample)
-# z = rng.integers(-20, 50, size=(n_sample,)) + 50. * np.log(1 + np.arange(n_sample))
 
 
-def replace_after_first_non_increasing(vector):
-    n = len(vector)
+def replace_after_first_non_increasing(x, w=w):
+    n = len(x)
     for i in range(1, n):
-        if vector[i] < vector[i - 1]:
-            mean_value = np.mean(vector[i:])
-            vector[i:] = mean_value
+        if x[i] < x[i - 1]:
+            mean_value = np.sum(x[i:] * w[i:]) / np.sum(w[i:])
+            x[i:] = mean_value
             break
-    return vector
+    return x
 
 
-def create_signal_from_target(target, y):
+def create_signal_from_target(target, y, w=w):
     signal = np.zeros_like(y)
     for i, block in enumerate(target):
-        signal[block] = np.mean(y[block])
+        signal[block] = np.sum(y[block] * w[block]) / np.sum(w[block])
     return signal
 
-# sklearn style
-# sol, targets, idx = isotonic_regression(z, w)
 sol, ws, targets = isotonic_regression(z.tolist(), w.tolist())
 
 
@@ -221,9 +165,9 @@ def plot_targets(y, targets, x):
     frames = []
     for iteration, target in enumerate(targets):
         yy = create_signal_from_target(target, y)
-        duals.append(0.5 * np.linalg.norm(y)**2 - 0.5 * np.linalg.norm(yy)**2)
+        duals.append(0.5 * np.sum( w * y**2) - 0.5 * np.sum(w*yy**2))
         primal = replace_after_first_non_increasing(yy.copy())
-        primals.append(0.5 * np.linalg.norm(primal - y)**2)
+        primals.append(0.5 * np.sum( w*(primal - y)**2))
         frames.append(go.Frame(data=[
             go.Scatter(x=x, y=y, mode='markers', marker=dict(color='black', opacity=1), legendgroup='1', showlegend=True),
             go.Scatter(x=x[:iteration+1], y=yy[:iteration+1], mode='lines+markers', marker=dict(color='red'), legendgroup='1', showlegend=True),
@@ -259,6 +203,17 @@ def plot_targets(y, targets, x):
 
 plot_targets(z, targets, x)
 ```
+
+## Applications
+
+Isotonic regression is used in a variety of applications, including:
+
+- **Monotonicity constraints**: In many applications, it is important to ensure that the relationship between two variables is monotonic. This is the case in physics or biology for instance.
+
+- **Calibration** for machine learning models: Isotonic regression can be used to calibrate the output of a machine learning model to ensure that it is well-calibrated. It is common for binary classifiers to output probabilities that are not well-calibrated, and isotonic regression can be used to correct this.
+You will find a some details and examples in the [scikit-learn documentation](https://scikit-learn.org/1.5/modules/calibration.html).
+
+- **Sparse regression**: isotonic regression has some links with the Slope penalty @Bogdan_vandenBerg_Sabatti_Su_Candes15, a generalization of the Lasso penalty. The Slope estimator has been introduced to improve False Discovery Rate control in high-dimensional settings. It is a weighted ordered $\ell_1$ penalty, whose proximity operator can be computing thanks to the PAVA algorithm @Zeng_Figueiredo14 (using Moreau's identity). I became aware of this while working on @Bellec_Salmon_Vaiter17 : we were using that property to compute efficiently the GSlope estimator (and to control duality gap in this context).
 
 
 # Optimization, duality, etc.
@@ -296,7 +251,7 @@ $$
 \begin{align}
 \min_{x \in \mathbb{R}^n}
 \frac{1}{2}
-& (y-x)^\top W (y-x) \\
+& (x-y)^\top W (x-y) \\
 \text{s.t.} & \quad Ax \leq 0 \enspace.
 \end{align}
 $$ {#eq-isotonic-matrix-2}
@@ -487,10 +442,6 @@ which is the targeted formulation.
 
 :::
 
-Now given a primal feasible point $x \in \mathcal{K}$ and a dual feasible point $\alpha \in \mathbb{R}_+^{n-1}$, we can obtain upper and lower bounds on the optimal value of the primal problem.
-
-We consider here the case where $W=I_n$ (uniform weights). The iterates of the PAVA algorithm will be dual feasible and can represent $y-\lambda$.
-For creating a primal feasible point, one can simply take the ordered version of the output, making the last element constant to create a non-decreasing vector.
 
 
 
@@ -501,12 +452,12 @@ The KKT conditions for the isotonic regression problem are given by
 ::: {#thm-kkt}
 
 ## KKT conditions for isotonic regression
-Let $x^{\star} \in \mathcal{K}$ and $\lambda^{\star} \in \mathbb{R}_+^{n-1}$ be primal and dual optimal solutions, then the KKT conditions for the isotonic regression problem reads
+Let $x^{\star} \in \mathcal{K}$ and $\alpha^{\star} \in \mathbb{R}_+^{n-1}$ be primal and dual optimal solutions, then the KKT conditions for the isotonic regression problem reads
 $$
 \begin{align*}
-W (y-x^{\star}) + A^\top \lambda^{\star} & = 0 & ~ (\textbf{stationarity})\\
-\langle \lambda^{\star} , A x^{\star} \rangle & = 0 & ~ (\textbf{complementary slackness})\\
-\lambda^{\star} & \geq 0 & ~ (\textbf{dual feasibility})\\
+W (x^{\star}-y) + A^\top \alpha^{\star} & = 0 & ~ (\textbf{stationarity})\\
+\langle \alpha^{\star} , A x^{\star} \rangle & = 0 & ~ (\textbf{complementary slackness})\\
+\alpha^{\star} & \geq 0 & ~ (\textbf{dual feasibility})\\
 A x^{\star} & \leq 0 & ~  (\textbf{primal feasibility})
 \end{align*}
 $$
@@ -523,15 +474,15 @@ In this convex setting (a primal strictly feasible point exists, say $x=(1,\dots
 
 $$
 \begin{align*}
-w_1 (y_1 - x^{\star}_1) - \lambda^{\star}_1 & = 0 \\
-w_i (y_i - x^{\star}_i) + \lambda^{\star}_{i-1} - \lambda^{\star}_i & = 0, \quad \text{for all } i \in \llbracket 2, n-1 \rrbracket\\
-w_n (y_n - x^{\star}_n) + \lambda^{\star}_{n-1} & = 0 \enspace.
+w_1 (x^{\star}_1- y_1) + \alpha^{\star}_1 & = 0 \\
+w_i (x^{\star}_i- y_i) + \alpha^{\star}_{i} - \alpha^{\star}_{i-1} & = 0, \quad \text{for all } i \in \llbracket 2, n-1 \rrbracket\\
+w_n (x^{\star}_n - y_n) - \alpha^{\star}_{n-1} & = 0 \enspace.
 \end{align*}
 $$
-With the convention $\lambda_0^{\star} = \lambda_n^{\star} = 0$, this reduces to
+With the convention $\alpha_0^{\star} = \alpha_n^{\star} = 0$, this reduces to
 $$
 \begin{align*}
-w_i (y_i - x^{\star}_i) + \lambda^{\star}_{i-1} - \lambda^{\star}_i & = 0, \quad \text{for all } i \in \llbracket 1, n \rrbracket\\
+w_i (x^{\star}_i - y_i) + \alpha^{\star}_{i} - \alpha^{\star}_{i-1} & = 0, \quad \text{for all } i \in \llbracket 1, n \rrbracket\\
 \end{align*}
 $$ {#eq-stationarity}
 
@@ -540,20 +491,20 @@ $$ {#eq-stationarity}
 **Complementarity slackness** can also be rephrased:
 $$
 \begin{align*}
-& \lambda_i^{\star} (A x^{\star})_i  = 0 \quad \text{for all } i \in \llbracket 1, n-1 \rrbracket \\
-\iff & \lambda_i^{\star} (x^{\star}_i-x^{\star}_{i+1})  = 0 \quad \text{for all } i \in \llbracket 1, n-1 \rrbracket \enspace.
+& \alpha_i^{\star} (A x^{\star})_i  = 0 \quad \text{for all } i \in \llbracket 1, n-1 \rrbracket \\
+\iff & \alpha_i^{\star} (x^{\star}_i-x^{\star}_{i+1})  = 0 \quad \text{for all } i \in \llbracket 1, n-1 \rrbracket \enspace.
 \end{align*}
 $$
 
 
-A simple consequence of the complementarity slackness is as follows: if $\lambda_i^{\star} > 0$ for some $i \in \llbracket 1, n-1 \rrbracket$, then $x^{\star}_i = x^{\star}_{i+1}$.
+A simple consequence of the complementarity slackness is as follows: if $\alpha_i^{\star} > 0$ for some $i \in \llbracket 1, n-1 \rrbracket$, then $x^{\star}_i = x^{\star}_{i+1}$.
 Hence, the set of ($n-1$) constraints can be partitioned into contiguous blocks where $x^\star$ has constant value.
-Each block B can be written as $B = \llbracket \underline{b}, \overline{b} \rrbracket$ for some $\underline{b} \leq \overline{b}$ and $x^{\star}_{\underline{b}} = x^{\star}_{\underline{b}+1} = \ldots = x^{\star}_{\overline{b}}$. When needed we use the convention $x^{\star}_{0}=0$ and $x^{\star}_{n+1}=n+1$. and $x^{\star}_{n+1}=0$. Then, note that by definition of a block, $x^{\star}_{\underline{b}-1}<x^{\star}_{\underline{b}}$ and $x^{\star}_{\overline{b}}<x^{\star}_{\overline{b}+1}$, and by complementarity $\lambda^{\star}_{\underline{b}-1} = \lambda^{\star}_{\overline{b}+1} = 0$.
+Each block B can be written as $B = \llbracket \underline{b}, \overline{b} \rrbracket$ for some $\underline{b} \leq \overline{b}$ and $x^{\star}_{\underline{b}} = x^{\star}_{\underline{b}+1} = \ldots = x^{\star}_{\overline{b}}$. When needed we use the convention $x^{\star}_{0}=0$ and $x^{\star}_{n+1}=n+1$. and $x^{\star}_{n+1}=0$. Then, note that by definition of a block, $x^{\star}_{\underline{b}-1}<x^{\star}_{\underline{b}}$ and $x^{\star}_{\overline{b}}<x^{\star}_{\overline{b}+1}$, and by complementarity $\alpha^{\star}_{\underline{b}-1} = \alpha^{\star}_{\overline{b}+1} = 0$.
 
 Summing over the elements of $B$ in @eq-stationarity yields (telescopic sum):
 $$
 \begin{align*}
-\sum_{i \in B }w_i (y_i-x^{\star}_i) + \lambda_{\underline{b}-1}^{\star} - \lambda_{\overline{b}+1}^{\star} & = 0 \enspace.
+\sum_{i \in B }w_i (x^{\star}_i - y_i) +  \alpha_{\overline{b}+1}^{\star} - \alpha_{\underline{b}-1}^{\star} & = 0 \enspace.
 \end{align*}
 $$
 Hence, noticing that the $x_i^{\star}$  in block $B$ are all equal, we have that:
@@ -564,7 +515,7 @@ x^{\star}_{\underline{b}} = \ldots = x^{\star}_{\overline{b}} = \bar{y}_B  \big(
 \end{align*}
 $$
 
-Now, from the values of $x^{\star}_{\underline{b}} = \ldots = x^{\star}_{\overline{b}}$ on the block $B$, one can infer (by recursion) the $\lambda_i$'s for $i\in B$.
+Now, from the values of $x^{\star}_{\underline{b}} = \ldots = x^{\star}_{\overline{b}}$ on the block $B$, one can infer (by recursion) the $\alpha_i$'s for $i\in B$.
 
 ::: {#lem-lambda}
 
@@ -574,7 +525,7 @@ For any $i \in B$:
 
 $$
 \begin{align*}
-\lambda^{\star}_{i} & = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left( \bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B}\right) \enspace.
+\alpha^{\star}_{i} & = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left(\bar{y}_{B \cap \llbracket 1, i+1 \rrbracket} - \bar{y}_{B}\right) \enspace.
 \end{align*}
 $$
 
@@ -582,17 +533,17 @@ $$
 
 ::: {.proof}
 The proof is a simple induction on the element of block $B$.
-For $i=\underline{b}$ then @eq-stationarity leads to $\lambda^{\star}_{\underline{b}} = w_{\underline{b}} (\bar{y}_{\underline{b}} - x^{\star}_{\underline{b}}) = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left( \bar{y}_{B} - \bar{y}_{B \cap \llbracket 1, i \rrbracket} \right)$.
-Now by induction assume the result for $i\in B$, \emph{e.g.,} $\lambda^{\star}_{i}  = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left( \bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B}\right)$.
+For $i=\underline{b}$ then @eq-stationarity leads to $\alpha^{\star}_{\underline{b}} = w_{\underline{b}} (\bar{y}_{\underline{b}} - x^{\star}_{\underline{b}}) = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left(\bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B} \right)$.
+Now by induction assume the result for $i\in B$, \emph{e.g.,} $\alpha^{\star}_{i}  = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left(\bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B}\right)$.
 Using @eq-stationarity for $i+1 \in B$ yields
 
 $$
 \begin{align*}
-\lambda^{\star}_{i+1}
-& = w_{i+1} (y_{i+1} - x^{\star}_{i+1}) + \lambda^{\star}_i\\
-& = w_{i+1} (y_{i+1} - \overline{y}_{B}) + \lambda^{\star}_i\\
-& = w_{i+1} (y_{i+1} - \overline{y}_{B}) + \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j  \Big)\left( \bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B}\right)\\
-& = \Big(\sum_{j \in B \cap \llbracket 1, i + 1 \rrbracket} w_j  \Big)\left( \bar{y}_{B \cap \llbracket 1, i+1 \rrbracket} - \bar{y}_{B}\right) \enspace,
+\alpha^{\star}_{i+1}
+& = w_{i+1} (y_{i+1} - x^{\star}_{i+1}) + \alpha^{\star}_i\\
+& = w_{i+1} (y_{i+1} - \overline{y}_{B}) + \alpha^{\star}_i\\
+& = w_{i+1} (y_{i+1} - \overline{y}_{B}) + \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j  \Big)\left(\bar{y}_{B \cap \llbracket 1, i \rrbracket} -\bar{y}_{B}\right)\\
+& = \Big(\sum_{j \in B \cap \llbracket 1, i + 1 \rrbracket} w_j  \Big)\left(\bar{y}_{B \cap \llbracket 1, i+1 \rrbracket} - \bar{y}_{B}\right) \enspace,
 \end{align*}
 $$
 hence the result.
@@ -686,6 +637,64 @@ def PAVA(y, w):
 
 ```
 
+Below is a version of the algorithm similar to the one implemented in `sklearn` (yet in pure Python here). Moreover, it can be made an inplace method (as in `sklearn`), which is more memory efficient.
+
+```{python}
+#| echo: true
+#| code-fold: false
+def isotonic_regression(z, w):
+    y = z.copy()
+    n=len(y)
+    i = 0
+    target = np.arange(len(y))
+    targets = [target.copy()]
+    idx = [0]
+    while i < n:
+        k = target[i] + 1
+        if k == n:
+            break
+        if y[i] < y[k]:
+            # We are in an increasing subsequence.
+            i = k
+            targets.append(target.copy())
+            idx.append(k)
+            continue
+        sum_wy = w[i] * y[i]
+        sum_w = w[i]
+        while True:
+            # We are within a decreasing subsequence.
+            prev_y = y[k]
+            sum_wy += w[k] * y[k]
+            sum_w += w[k]
+            k = target[k] + 1
+            if k == n or prev_y < y[k]:
+                targets.append(target.copy())
+                idx.append(k)
+
+                # Non-singleton decreasing subsequence is finished,
+                # update first entry.
+                y[i] = sum_wy / sum_w
+                w[i] = sum_w
+
+                target[i] = k - 1
+                target[k - 1] = i
+
+                if i > 0:
+                    # Backtrack if we can.  This makes the algorithm
+                    # single-pass and ensures O(n) complexity.
+                    i = target[i - 1]
+                # Otherwise, restart from the same point.
+                break
+
+    # Reconstruct the solution.
+    i = 0
+    while i < n:
+        k = target[i] + 1
+        y[i + 1 : k] = y[i]
+        i = k
+    return y, targets, idx
+```
+
 ## Convergence
 
 ::: {#thm-convergence}
@@ -697,7 +706,7 @@ The PAVA algorithm converges in a finite number of iterations and output the pri
 :::
 
 ::: {.proof}
-To show the convergence we will create a dual variable $\lambda$, show that it is dual feasible, and that at the end of the algorithm it satisfies KKT along with the output of the PAVA algorithm.
+To show the convergence we will create a dual variable $\alpha$, show that it is dual feasible, and that at the end of the algorithm it satisfies KKT along with the output of the PAVA algorithm.
 
 For that let us first prove the following result:
 
@@ -727,22 +736,22 @@ $$
 Now, remember that $\overline{y}_{B} = \frac{\Big(\sum_{\ell \in J_{i-1}} w_{\ell} \Big) \cdot \overline{y}_{J_{i-1}} + \Big(\sum_{\ell \in J_{i} } w_{\ell} \Big) \cdot \overline{y}_{J_{i}}}{\sum_{J_{i-1}} w_i + \sum_{J_{i}} w_i}$ and that $\overline{y}_{J_{i-1}} \geq  \overline{y}_{B} \geq \overline{y}_{J_{i}}$ (since $\overline{y}_{B}$ is a convex combination of $\overline{y}_{J_{i-1}}$ and $\overline{y}_{J_i}$), so the last inequality is true. One can check that the weight of $J_{i}$ is larger in the definition of $\overline{y}_{B}$ than in the last inequality above, and so among the two convex combinations, the larger is the former.
 Hence, the fact is proved by induction.
 
-**Fact 2.** If you update $\lambda$ recursively, starting from $\lambda = \mathbf{0}_{n-1}$ and for if for each updated block $B \in J$ you update $\lambda$ (as in @lem-lambda) by
+**Fact 2.** If you update $\alpha$ recursively, starting from $\alpha = \mathbf{0}_{n-1}$ and for if for each updated block $B \in J$ you update $\alpha$ (as in @lem-lambda) by
 
 $$
 \begin{align*}
-\forall i \in B, \lambda_i & = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left( \bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B}\right) \enspace,
+\forall i \in B, \alpha_i & = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left( \bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B}\right) \enspace,
 \end{align*}
 $$
-then $\lambda$ is dual feasible for all steps of the algorithm
+then $\alpha$ is dual feasible for all steps of the algorithm
 
 The proof is a direct consequence of Fact 1 and the fact that the weights $w_i$ are non-negative.
 
 
 **Fact 3.**
-$\forall i \in B, \lambda_i=\lambda_{i-1} +w_i(y_i -x_i)$ (where we assume that $x_i = \overline{y}_B$), which means that $\lambda$ and $x$ hence created satsfies.
+$\forall i \in B, \alpha_i=\alpha_{i-1} +w_i(x_i - y_i)$ (where we assume that $x_i = \overline{y}_B$), which means that $\alpha$ and $x$ hence created satsfies.
 
-Again this result is simple to prove, by following the same line in the proof of @lem-lambda.
+Again this result is simple to prove, by following the exact same line encountered in the proof of @lem-lambda.
 
 **Fact 4.** When you exit the while loop, the output of the PAVA algorithm is a primal feasible point.
 
@@ -752,6 +761,30 @@ Hence, when the algorithm stops the primal point create (after the block averagi
 Leveraging Fact 1. to 4. ensures that the KKT conditions are satisfied with the primal and dual points created. Hence, at the end of the algorithm, and the optimal solution is found.
 
 
+
+## Duality Gap
+
+Given a primal feasible point $x \in \mathcal{K}$ and a dual feasible point $\alpha \in \mathbb{R}_+^{n-1}$, we can obtain upper and lower bounds on the optimal value of the primal problem .
+
+Note that at optimality $W x^\star = W y - A^\top \alpha^\star$
+Hence, using a value of $x$ at some stage of the algorithm (corresponding to a feasible $\alpha$), the dual reads $\frac{1}{2} y^\top W y - \frac{1}{2} x^\top W x$.
+For creating a primal feasible point, one can simply take the ordered version of the output, making the last element constant to create a non-decreasing vector.
+The later is coded in Python with the following function:
+
+```{python}
+#| echo: true
+#| code-fold: false
+def replace_after_first_non_increasing(x, w=w):
+    n = len(x)
+    for i in range(1, n):
+        if x[i] < x[i - 1]:
+            mean_value = np.sum(x[i:] * w[i:]) / np.sum(w[i:])
+            x[i:] = mean_value
+            break
+    return x
+```
+
+As can be seen in the preliminary animation, the primal and dual objectives converge to the same value, which is the optimal value of the primal problem.
 
 :::
 
