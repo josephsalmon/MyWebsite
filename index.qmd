@@ -13,9 +13,11 @@ format:
     html-math-method: katex
 listing:
   - id: blog-listing
+    sort: 'date desc'
     contents:
-      - "blog/softmax/index.qmd"
+      - "blog/isotonic/index.qmd"
       - "blog/latex/index.qmd"
+      - "blog/softmax/index.qmd"
     type: grid
   - id : recent-publications
     contents:
@@ -40,8 +42,12 @@ landing_page_styles.css">
             <h1><span class="gradient_text">
                 <i class="fas fa-house"></i>
                 Joseph Salmon</span>
-            <br> Machine learning & data science.</h1>
-            <p>I am a statistician and an applied mathematician at <a href="https://www.inria.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Inria</span></a> (team Iroko), with a strong interest in machine learning, optimization and data science. In terms of applications, I focus on <strong>citizen science</strong>, <strong>crowdsourcing</strong> and <strong>high dimensional statistics</strong>.</p>
+            <br> Machine learning & data science</h1>
+            <p>I am a statistician and an applied mathematician, with a strong interest in machine learning, optimization and data science.
+            <br>
+            Since Oct. 2024, I have been a senior researcher at <a href="https://www.inria.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Inria</span></a> (team <a href="https://inria.fr/en/iroko"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Iroko</span></a>).
+            In terms of applications, I focus on <strong>citizen science</strong>, <strong>crowdsourcing</strong> and <strong>high dimensional statistics</strong>. I am also in charge of the doctoral program "Statistics and Data Science" (<a href=https://edi2s.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>EDI2S</span></a> at <a href="https://www.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Université de Montpellier</span></a>). </p>
+
             <h2>Short bio </h2>
             <p>From 2018 to 2024, I was a full professor at <a href="https://www.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Université de Montpellier</span></a> and a Junior member of the <a href="http://www.iufrance.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Institut Universitaire de France</span></a> (IUF), from 2021 to 2024.
             For the spring and summer quarters 2018, I was a visiting assistant professor at <a href="https://www.stat.washington.edu/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>UW, Statistics department</span></a>.

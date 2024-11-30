@@ -20,7 +20,6 @@ format:
     include-before-body: ../../html/margin_image.html
     include-after-body: ../../html/blog_footer.html
     code-fold: true
-    highlight-style: github
 ---
 
 
@@ -329,7 +328,7 @@ Let us now derive the dual problem of the isotonic regression problem given in @
 
 ::: {#thm-dual}
 
-## Dual problem of isotonic regression
+## Dual problem of isotonic regression>
 The dual problem of the isotonic regression problem given in @eq-isotonic-matrix is
 $$
 \begin{align*}
