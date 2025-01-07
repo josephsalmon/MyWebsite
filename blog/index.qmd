@@ -5,7 +5,7 @@ title-block-banner: "../img/bg_pine_trees.jpg"
 format:
   html:
     html-math-method: katex
-description-meta: "Welcome to my blog, I’m thrilled to welcome you! Here, you will find a collection of articles on a wide variety of topics. Take a look around and let me know what you think!"
+description-meta: "Welcome to my blog. Any kind of feedback is welcome, so feel free to reach out to me. Thanks for your interest and time."
 
 listing:
   - id: posts_2024
@@ -33,7 +33,7 @@ code-tools: false
 comments: false
 ---
 
-Welcome to my blog, `Donatas Brutas`. Any kind of feedback is welcome, thanks for your interest and time.
+Welcome to my blog, `Donadas Brutas`. Any kind of feedback is welcome, so feel free to reach out to me. Thanks for your interest and time.
 
 ## 2024
 
