@@ -34,7 +34,7 @@ description-meta: "Machine Learning, Data Science Optimization & Image Processin
 website:
   title: "Joseph Salmon"
   description: "Machine Learning, Data Science Optimization & Image Processing | Research"
-  site-url: https://josephsalmon.eu/
+  site-url: "https://josephsalmon.eu/"
   image: img/joseph_2018.png
 
   repo-url: "https://github.com/josephsalmon/MyWebsite"
@@ -64,6 +64,8 @@ website:
         href: misc/index.qmd
 
     right:
+    - icon: rss
+      href: blog/index.xml
     - icon: github
       # text: Github
       href: https://github.com/josephsalmon

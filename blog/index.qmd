@@ -9,6 +9,7 @@ description-meta: "Welcome to my blog. Any kind of feedback is welcome, so feel 
 
 listing:
   - id: posts_2024
+    feed: true
     contents:
       # - "laptop-mic-obs/index.qmd"
       - "isotonic/index.qmd"
@@ -31,6 +32,7 @@ date-format: "MMMM D, YYYY"
 image: ""
 code-tools: false
 comments: false
+
 ---
 
 Welcome to my blog, `Donadas Brutas`. Any kind of feedback is welcome, so feel free to reach out to me. Thanks for your interest and time.

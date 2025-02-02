@@ -109,7 +109,7 @@
   date: '2024'
   path: https://arxiv.org/pdf/2406.03356.pdf
   code: https://peerannot.github.io/
-  data: ''
+  data: https://zenodo.org/records/10782465
 - abstract: ''
   accessed: ''
   author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
