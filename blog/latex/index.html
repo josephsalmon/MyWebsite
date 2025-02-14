@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Joseph Salmon">
+<meta name="dcterms.date" content="2024-09-05">
+<meta name="description" content="Some guidance on why, when, and <strong>when not</strong> using it.">
+
+<title>\LaTeX for scientific writing? – Joseph Salmon</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../..//img/Flag_of_Occitania.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-25d362aa3afec45ecf1ae134bfa15e67.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-7b78b88afbcb31605f781eb1d5bd0002.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(../../img/bg_pine_trees.jpg);
+background-size: cover;
+      }
+</style>
+<meta name="author" content="Joseph Salmon">
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="floating nav-fixed slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../img/Flag_of_Occitania.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Joseph Salmon</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../Courses/index.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications/index.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../talks/index.html"> 
+<span class="menu-text">Talks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../team/index.html"> 
+<span class="menu-text">Team</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../code_new/index.html"> 
+<span class="menu-text">Code</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../misc/index.html"> 
+<span class="menu-text">Misc</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../blog/index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/josephsalmon"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://sigmoid.social/@josephsalmon" rel="me"> <i class="bi bi-mastodon" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/joseph-salmon-6134262a6/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:joseph.salmon@inria.fr"> <i class="bi bi-envelope" role="img" aria-label="email">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default blog-post page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <div class="quarto-title-block"><div><h1 class="title"><span class="math inline">\LaTeX</span> for scientific writing?</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+                  <div>
+        <div class="description">
+          Some guidance on why, when, and <strong>when not</strong> using it.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Latex</div>
+                <div class="quarto-category">writing</div>
+              </div>
+                  </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      <div>
+      <div class="quarto-title-meta-heading">Author</div>
+      <div class="quarto-title-meta-contents">
+               <p>Joseph Salmon </p>
+            </div>
+    </div>
+      
+      <div>
+      <div class="quarto-title-meta-heading">Published</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">September 5, 2024</p>
+      </div>
+    </div>
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contents</h2>
+   
+  <ul>
+  <li><a href="#history-of-latex" id="toc-history-of-latex" class="nav-link active" data-scroll-target="#history-of-latex"><i class="fa-solid fa-book-open" title="an open box" aria-label="book-open"></i> History of <span class="math inline">\LaTeX</span></a></li>
+  <li><a href="#pros-for-latex" id="toc-pros-for-latex" class="nav-link" data-scroll-target="#pros-for-latex"><i class="fa-solid fa-thumbs-up" title="a thumb up" aria-label="thumbs-up"></i> Pros for <span class="math inline">\LaTeX</span></a>
+  <ul class="collapse">
+  <li><a href="#stability-and-reusability" id="toc-stability-and-reusability" class="nav-link" data-scroll-target="#stability-and-reusability">Stability and reusability</a></li>
+  <li><a href="#open-source-software-and-cross-platform" id="toc-open-source-software-and-cross-platform" class="nav-link" data-scroll-target="#open-source-software-and-cross-platform">Open-source software and cross-platform</a></li>
+  <li><a href="#default-language-in-scientific-writing" id="toc-default-language-in-scientific-writing" class="nav-link" data-scroll-target="#default-language-in-scientific-writing">Default language in scientific writing</a></li>
+  <li><a href="#quality-of-the-output" id="toc-quality-of-the-output" class="nav-link" data-scroll-target="#quality-of-the-output">Quality of the output</a></li>
+  <li><a href="#collaborative-work-git-compatibility" id="toc-collaborative-work-git-compatibility" class="nav-link" data-scroll-target="#collaborative-work-git-compatibility">Collaborative work: git compatibility</a></li>
+  <li><a href="#hyperlinks-cross-references-citations-and-bibliographies" id="toc-hyperlinks-cross-references-citations-and-bibliographies" class="nav-link" data-scroll-target="#hyperlinks-cross-references-citations-and-bibliographies">Hyperlinks, cross-references, citations, and bibliographies</a></li>
+  </ul></li>
+  <li><a href="#cons-for-latex" id="toc-cons-for-latex" class="nav-link" data-scroll-target="#cons-for-latex"><i class="fa-solid fa-thumbs-down" title="a thumb down" aria-label="thumbs-down"></i> Cons for <span class="math inline">\LaTeX</span></a>
+  <ul class="collapse">
+  <li><a href="#steep-learning-curve" id="toc-steep-learning-curve" class="nav-link" data-scroll-target="#steep-learning-curve">Steep learning curve</a></li>
+  <li><a href="#not-wysiwyg" id="toc-not-wysiwyg" class="nav-link" data-scroll-target="#not-wysiwyg">Not WYSIWYG</a></li>
+  <li><a href="#debugging-is-hard-in-latex" id="toc-debugging-is-hard-in-latex" class="nav-link" data-scroll-target="#debugging-is-hard-in-latex">Debugging is hard in <span class="math inline">\LaTeX</span></a></li>
+  <li><a href="#really-many-packages" id="toc-really-many-packages" class="nav-link" data-scroll-target="#really-many-packages">(Really) Many packages</a></li>
+  <li><a href="#tables-and-figures-are-not-easy-to-handle" id="toc-tables-and-figures-are-not-easy-to-handle" class="nav-link" data-scroll-target="#tables-and-figures-are-not-easy-to-handle">Tables and figures are not easy to handle</a></li>
+  </ul></li>
+  <li><a href="#whats-next" id="toc-whats-next" class="nav-link" data-scroll-target="#whats-next"><i class="fa-solid fa-magnifying-glass-arrow-right" title="magnifying glass over arrow right" aria-label="magnifying-glass-arrow-right"></i> What’s next?</a></li>
+  <li><a href="#additional-resources" id="toc-additional-resources" class="nav-link" data-scroll-target="#additional-resources"><i class="fa-solid fa-folder-open" title="open folder" aria-label="folder-open"></i> Additional resources</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><i class="fa-solid fa-link" title="link" aria-label="link"></i> References</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+<div class="no-row-height column-margin column-container">
+  <div class="">
+    <img src="Tsybakov2009.svg" style="width:100%">
+  </div>
+</div>
+
+
+
+
+
+<section id="history-of-latex" class="level2">
+<h2 class="anchored" data-anchor-id="history-of-latex"><i class="fa-solid fa-book-open" title="an open box" aria-label="book-open"></i> History of <span class="math inline">\LaTeX</span></h2>
+<p>First a bit of history on <span class="math inline">\LaTeX</span> (pronounced “Lay-tech” or “Lah-tech”). is a typesetting system that was created by Leslie Lamport in 1984. It is based on Donald Knuth’s <span class="math inline">\TeX</span> typesetting system. LaTeX is widely used in academia for the communication and publication of scientific documents in many fields, including mathematics, computer science, engineering, physics, chemistry, biology, and economics. LaTeX is also used in the humanities and social sciences. LaTeX is free and open-source software. It was the prototype of the modern scientific writing, and it is still the standard in many fields, especially in mathematics and computer science as it’s a good way to write equations, and to go towards <a href="https://en.wikipedia.org/wiki/Literate_programming" target="_blank">literate programming</a>.</p>
+<p>As a short motivation, I will show you two books from the same author, one written before using <span class="math inline">\LaTeX</span> and one after. Compare the two following images (you can click on them to enlarge):</p>
+<div>
+
+</div>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="Korostelev_Tsybakov93.svg" class="lightbox" data-gallery="my-gallery" title="[@Korostelev_Tsybakov93]: scientific writing before using \LaTeX"><img src="Korostelev_Tsybakov93.svg" class="img-fluid figure-img" width="350" alt="(Korostelëv and Tsybakov 1993): scientific writing before using \LaTeX"></a></p>
+<figcaption><span class="citation" data-cites="Korostelev_Tsybakov93">(<a href="#ref-Korostelev_Tsybakov93" role="doc-biblioref">Korostelëv and Tsybakov 1993</a>)</span>: scientific writing before using <span class="math inline">\LaTeX</span></figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="Tsybakov2009.svg" class="lightbox" data-gallery="my-gallery" title="[@Tsybakov09]: scientific writing after using \LaTeX"><img src="Tsybakov2009.svg" class="img-fluid figure-img" width="350" alt="(Tsybakov 2009): scientific writing after using \LaTeX"></a></p>
+<figcaption><span class="citation" data-cites="Tsybakov09">(<a href="#ref-Tsybakov09" role="doc-biblioref">Tsybakov 2009</a>)</span>: scientific writing after using <span class="math inline">\LaTeX</span></figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Conclusion: two books, same author, but very different scientific rendering.</p>
+</section>
+<section id="pros-for-latex" class="level2">
+<h2 class="anchored" data-anchor-id="pros-for-latex"><i class="fa-solid fa-thumbs-up" title="a thumb up" aria-label="thumbs-up"></i> Pros for <span class="math inline">\LaTeX</span></h2>
+<p>Below I list some of the important points that make LaTeX the standard tool for scientific writing.</p>
+<section id="stability-and-reusability" class="level3">
+<h3 class="anchored" data-anchor-id="stability-and-reusability">Stability and reusability</h3>
+<p>First, <span class="math inline">\LaTeX</span> guarantees stability in time. You can re-use your files from 20 years ago without any problem (and I did!). You can extract some code you used in a draft or an article, and then use it in a presentation (<code>beamer</code>), a poster, etc., by just copy pasting.</p>
+<p>Moreover for large files (<em>e.g.</em>, books), when it compiles fine, it stays fine. Ok, you might suffer to reach this point though, but that’s another story.</p>
+</section>
+<section id="open-source-software-and-cross-platform" class="level3">
+<h3 class="anchored" data-anchor-id="open-source-software-and-cross-platform">Open-source software and cross-platform</h3>
+<p><span class="math inline">\LaTeX</span> works fine on most operating systems (OS), for instance on</p>
+<ul>
+<li>Linux</li>
+<li>Windows</li>
+<li>MacOS</li>
+</ul>
+<div id="fig-os" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-os-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Linux_logo.svg" class="img-fluid figure-img" width="150"></p>
+<figcaption>Linux</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Windows_logo.svg" class="img-fluid figure-img" width="150"></p>
+<figcaption>Windows</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="MacOS_logo.svg" class="img-fluid figure-img" width="150"></p>
+<figcaption>Mac OS</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-os-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: <span class="math inline">\LaTeX</span> is friendly for multiple OS!
+</figcaption>
+</figure>
+</div>
+<p>Hence, you do not face the problem you might have met while opening a file from Word in Linux (it could be a nightmare, and you could loose information).</p>
+</section>
+<section id="default-language-in-scientific-writing" class="level3">
+<h3 class="anchored" data-anchor-id="default-language-in-scientific-writing">Default language in scientific writing</h3>
+<p><span class="math inline">\LaTeX</span> is widely used academia, so you will find a lot of resources and support, including templates, packages, and tutorials (see for instance <a href="https://www.overleaf.com/learn/latex/Tutorials#Overleaf_LaTeX_tutorials" target="_blank">Overleaf tutorials</a>).</p>
+<p>If you don’t know a command, you can try to find it with <a href="https://detexify.kirelabs.org/classify.html" target="_blank">detexify</a>: just draw the symbol you target and look for the closest output.</p>
+</section>
+<section id="quality-of-the-output" class="level3">
+<h3 class="anchored" data-anchor-id="quality-of-the-output">Quality of the output</h3>
+<p>The quality of the output produced by <span class="math inline">\LaTeX</span> is very high. The typesetting is very professional, and the documents look great. This is especially important for scientific writing, where you want your work to be taken seriously. Hence, publishers often ask for <span class="math inline">\LaTeX</span> files for the final version of the manuscript. Hence, you will produce <code>pdf</code> files thanks to <span class="math inline">\LaTeX</span>. Alternatives formats exist but are now mostly outdated, like <code>dvi</code> files or <code>ps</code> files.</p>
+</section>
+<section id="collaborative-work-git-compatibility" class="level3">
+<h3 class="anchored" data-anchor-id="collaborative-work-git-compatibility">Collaborative work: git compatibility</h3>
+<p>For collaborating <span class="math inline">\LaTeX</span> is simple to use with <code>git</code>. This is not the case if you version a <code>pdf</code> or a <code>docx</code> file for instance, as they are binary files. Hence, you can use <code>git</code> to version your work, and to collaborate with others. This is especially useful if you are working on a large document with multiple authors, as it allows you to track changes, resolve conflicts, and keep everyone on the same page. Another popular alternative is to use <a href="https://www.overleaf.com/" target="_blank">Overleaf</a>, which is an online collaborative writing and publishing tool that makes it easy to work with others on a <span class="math inline">\LaTeX</span> document. I do not recommend this solution much as this is proprietary, and requires a good internet connection.</p>
+</section>
+<section id="hyperlinks-cross-references-citations-and-bibliographies" class="level3">
+<h3 class="anchored" data-anchor-id="hyperlinks-cross-references-citations-and-bibliographies">Hyperlinks, cross-references, citations, and bibliographies</h3>
+<p><span class="math inline">\LaTeX</span> can handle hyperlinks, cross-references, citations, and bibliographies in a very efficient way. For cross-references, I recommend using the package <code>cleveref</code>, as it will simplify your life if you write a lot of equations, figures, tables, theorems, etc. Typically, this is what you will need in your Ph.D.&nbsp;or M.Sc. manuscript.</p>
+<p>For bibliographies I recommend using the more modern <code>biblatex</code>, instead of <code>bibtex</code>. This prove useful if you have several bibliographies, or if you need customize a lot the way you cite your references. The Overleaf website provide a simple introduction to <a href="https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex" target="_blank">biblatex</a>.</p>
+</section>
+</section>
+<section id="cons-for-latex" class="level2">
+<h2 class="anchored" data-anchor-id="cons-for-latex"><i class="fa-solid fa-thumbs-down" title="a thumb down" aria-label="thumbs-down"></i> Cons for <span class="math inline">\LaTeX</span></h2>
+<p>As you have understood, <span class="math inline">\LaTeX</span> is a great tool for scientific writing, but it is not perfect. Here are some of the cons of using <span class="math inline">\LaTeX</span>:</p>
+<section id="steep-learning-curve" class="level3">
+<h3 class="anchored" data-anchor-id="steep-learning-curve">Steep learning curve</h3>
+<p>The learning curve for <span class="math inline">\LaTeX</span> can be steep, especially if you are not familiar with programming or markup languages. However, there are many resources available online to help you learn <span class="math inline">\LaTeX</span>, including tutorials, forums, and books.</p>
+</section>
+<section id="not-wysiwyg" class="level3">
+<h3 class="anchored" data-anchor-id="not-wysiwyg">Not WYSIWYG</h3>
+<p><span class="math inline">\LaTeX</span> is not a WYSIWYG (<strong>What You See Is What You Get</strong>) editor, which means that you have to write the code for your document and then compile it to see the final output. This can be frustrating for some people who are used to working with WYSIWYG editors like Microsoft Word. This is particularly annoying for very graphical documents, like posters, or presentations, where you might want to see the final rendering as you write. Hence for presentations, I would rather recommend using using <a href="https://quarto.org/" target="_blank">Quarto</a>, which is a markdown-based tool, that is lighter than <span class="math inline">\LaTeX</span> (though can use <span class="math inline">\LaTeX</span> for equations).</p>
+<p>Such a drawback is also appearing with large documents. For instance, if you have a large document, you might have to compile it several times to get the references right, or to get the table of contents right. This can be time-consuming, especially if you have a slow computer. For instance, for a Ph.D.&nbsp;manuscript, a book or a very large <code>beamer</code> presentations, it can takes minutes to visualize the final output. It calls for compiling only a few chapters or a few slides at a time.</p>
+</section>
+<section id="debugging-is-hard-in-latex" class="level3">
+<h3 class="anchored" data-anchor-id="debugging-is-hard-in-latex">Debugging is hard in <span class="math inline">\LaTeX</span></h3>
+<p>Debugging in <span class="math inline">\LaTeX</span> can be difficult, especially if you are not familiar with the language. Errors can be cryptic and hard to understand, and it can take some time to figure out what went wrong (enjoy the logs!). Some tools can help you debug your <span class="math inline">\LaTeX</span> code, including editors with built-in error checking, or <a href="https://www.charles-deledalle.fr/pages/moosetex.php" target="_blank">MooseTeX</a>.</p>
+</section>
+<section id="really-many-packages" class="level3">
+<h3 class="anchored" data-anchor-id="really-many-packages">(Really) Many packages</h3>
+<p>There are many packages available for <span class="math inline">\LaTeX</span>. On one hand, packages can extend the functionality of <span class="math inline">\LaTeX</span> and make it more powerful and versatile. On the other hand, it can be difficult to find the right package for your needs, and some packages can be incompatible with others (which can be extremely hard to diagnose). Moreover, some packages are not maintained anymore, and might not work with the latest version of <span class="math inline">\LaTeX</span>.</p>
+</section>
+<section id="tables-and-figures-are-not-easy-to-handle" class="level3">
+<h3 class="anchored" data-anchor-id="tables-and-figures-are-not-easy-to-handle">Tables and figures are not easy to handle</h3>
+<p>For tables, consider <a href="https://www.tablesgenerator.com/" target="_blank">Tables generator</a>, as modifying a <span class="math inline">\LaTeX</span> table could lead to horrible results. For instance, the following code will include a table in your document:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>\begin{tabular}{lllll}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    Col1  <span class="op">&amp;</span> Col2  <span class="op">&amp;</span>  ...   <span class="op">&amp;</span> Col4 <span class="op">&amp;</span> Col5   \<span class="op">\</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    oih   <span class="op">&amp;</span> oih   <span class="op">&amp;</span> oih    <span class="op">&amp;</span>      <span class="op">&amp;</span> oih    \<span class="op">\</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    oh    <span class="op">&amp;</span> oih   <span class="op">&amp;</span> oi     <span class="op">&amp;</span> o    <span class="op">&amp;</span> o</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>\end{tabular}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>as follows:</p>
+<div id="tbl-table" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: My first table
+</figcaption>
+<div aria-describedby="tbl-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Col1</th>
+<th>Col2</th>
+<th>…</th>
+<th>Col4</th>
+<th>Col5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>oih</td>
+<td>oih</td>
+<td>oih</td>
+<td></td>
+<td>oih</td>
+</tr>
+<tr class="even">
+<td>oh</td>
+<td>oih</td>
+<td>oi</td>
+<td>o</td>
+<td>o</td>
+</tr>
+<tr class="odd">
+<td>ooh</td>
+<td>oh</td>
+<td>oh</td>
+<td>oho</td>
+<td>oho</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Note that in Markdown (the language used to write this document), you can use the following code to include a table:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>| Col1  | Col2  |  ...   | Col4 | Col5    |</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>|-----|-----|-----|-----|-----|</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>| oih | oih | oih |     | oih |</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>| oh  | oih | oi  | o   | o   |</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>| ooh | oh  | oh  | oho | oho |</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<style>
+  figure {
+    float: right; /* Align the figure to the right of the text. Use 'left' to align it to the left */
+    margin: 0 0 1em 1em; /* Add some space around the figure */
+  }
+    figcaption {
+    text-align: center; /* Center-align the text of the figcaption */
+  }
+</style>
+<figure class="figure">
+<a href="https://inkscape.org/"> <img id="myimage" src="Inkscape_logo.svg" width="150" alt="Inkscape Logo" class="figure-img"> </a>
+<figcaption>
+Inkscape
+</figcaption>
+</figure>
+<p>For images, that’s a long story. See for instance <a href="https://www.overleaf.com/learn/latex/Inserting_Images" target="_blank">this post</a>. Some authors recommend using <code>tikz</code> for simple figures, and <code>pgfplots</code> for plots:I don’t. You could instead use Inkscape to draw your figures, and then export as <code>pdf</code> files, and include the outputs in your <span class="math inline">\LaTeX</span> document. That’s what I do, and I am happy with the result. This is WYSIWYG (when you draw), and you can easily modify your figure afterwards, and version it ( <code>svg</code> is fine for versioning, while <code>pdf</code> is not). Alternative tools could be using R or Python to generate your plots, and then include them in your <span class="math inline">\LaTeX</span> document.</p>
+</section>
+</section>
+<section id="whats-next" class="level2">
+<h2 class="anchored" data-anchor-id="whats-next"><i class="fa-solid fa-magnifying-glass-arrow-right" title="magnifying glass over arrow right" aria-label="magnifying-glass-arrow-right"></i> What’s next?</h2>
+<p>In the last few years, some alternatives to <span class="math inline">\LaTeX</span> have emerged, like <a href="https://en.wikipedia.org/wiki/Markdown" target="_blank">Markdown</a>, <a href="https://quarto.org/" target="_blank">Quarto</a>, or <a href="https://rmarkdown.rstudio.com/" target="_blank">RMarkdown</a>. These tools are simpler to use than <span class="math inline">\LaTeX</span>, and they are more WYSIWYG. using I would recommend using Markdown, RMarkdown or Quarto for writing blog posts, reports, presentations or light documents with scientific content.</p>
+<p>Moreover, a recent alternative to <span class="math inline">\LaTeX</span> is <a href="https://typst.app/" target="_blank">Typst</a>, which is a new typesetting system that is designed to be more user-friendly and easier to use than <span class="math inline">\LaTeX</span>. Typst is still in development, but it shows promise as a modern alternative to <span class="math inline">\LaTeX</span>.</p>
+</section>
+<section id="additional-resources" class="level2">
+<h2 class="anchored" data-anchor-id="additional-resources"><i class="fa-solid fa-folder-open" title="open folder" aria-label="folder-open"></i> Additional resources</h2>
+<ul>
+<li><a href="https://guides.nyu.edu/LaTeX/bibtex" target="_blank">Getting Started with LaTeX</a> by M. Frenkel.</li>
+<li><a href="https://github.com/josephsalmon/OrganizationFiles/tree/master/tex" target="_blank">Templates, tips and tools</a> by J. Salmon.</li>
+</ul>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references"><i class="fa-solid fa-link" title="link" aria-label="link"></i> References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Korostelev_Tsybakov93" class="csl-entry" role="listitem">
+Korostelëv, A. P., and A. B. Tsybakov. 1993. <em>Minimax Theory of Image Reconstruction</em>. Vol. 82. Lecture Notes in Statistics. New York: Springer-Verlag.
+</div>
+<div id="ref-Tsybakov09" class="csl-entry" role="listitem">
+Tsybakov, A. B. 2009. <em>Introduction to Nonparametric Estimation</em>. Springer Series in Statistics. New York: Springer.
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<hr>
+
+<span style="margin-top:20px; margin-bottom: 20px"></span>
+
+<!-- <img style="width:100%;" src="/img/marvins_log_thumbnail.png"> -->
+
+<!-- <p style="margin: 20px"> Do you enjoy my blog? Subscribe here to get notifications and updates (it's free!):</p> -->
+
+<!-- <div class="grid">
+  <div class=".d-none .d-md-block g-col-md-1"></div>
+  <div class="g-col-12 g-col-md-10">
+    <iframe src="https://embeds.beehiiv.com/c7111066-479b-43db-ad92-8d703fe96bf0?slim=true" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="margin: 0; border-radius: 0px !important; background-color: transparent; width:100%; padding: 20px"></iframe>
+  </div>
+  <div class=".d-none .d-md-block g-col-md-1"></div>
+</div> -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/josephsalmon\.eu\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "$\\LaTeX$ for scientific writing?"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Joseph Salmon"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "2024-09-05"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> "Some guidance on why, when, and **when not** using it."</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="an">categories:</span><span class="co"> [Latex, writing]</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="an">image:</span><span class="co"> Tsybakov2009.svg</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="an">reference-location:</span><span class="co"> document</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="an">fig-cap-location:</span><span class="co"> bottom</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="an">draft:</span><span class="co"> false</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># title-block-banner: hello-world-bg.jpg</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">    include-before-body: ../../html/margin_image.html</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">    include-after-body: ../../html/blog_footer.html</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## {{&lt; fa book-open title="an open box" &gt;}} History of $\LaTeX$</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>First a bit of history on $\LaTeX$ (pronounced "Lay-tech" or "Lah-tech").</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>\LaTeX is a typesetting system that was created by Leslie Lamport in 1984. It is based on Donald Knuth's $\TeX$ typesetting system. LaTeX is widely used in academia for the communication and publication of scientific documents in many fields, including mathematics, computer science, engineering, physics, chemistry, biology, and economics. LaTeX is also used in the humanities and social sciences. LaTeX is free and open-source software.</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>It was the prototype of the modern scientific writing, and it is still the standard in many fields, especially in mathematics and computer science as it's a good way to write equations, and to go towards <span class="co">[</span><span class="ot">literate programming</span><span class="co">](https://en.wikipedia.org/wiki/Literate_programming)</span>.</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>As a short motivation, I will show you two books from the same author, one written before using $\LaTeX$ and one after. Compare the two following images (you can click on them to enlarge):</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>::: {layout-ncol=2}</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>![<span class="co">[</span><span class="ot">@Korostelev_Tsybakov93</span><span class="co">]</span>: scientific writing before using $\LaTeX$](Korostelev_Tsybakov93.svg){width=350 .lightbox group="my-gallery"}</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>![<span class="co">[</span><span class="ot">@Tsybakov09</span><span class="co">]</span>: scientific writing after using $\LaTeX$](Tsybakov2009.svg){width=350 .lightbox group="my-gallery"}</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>Conclusion: two books, same author, but very different scientific rendering.</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="fu">## {{&lt; fa thumbs-up title="a thumb up" &gt;}} Pros for $\LaTeX$</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>Below I list some of the important points that make LaTeX the standard tool for scientific writing.</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### Stability and reusability</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>First, $\LaTeX$ guarantees stability in time.</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>You can re-use your files from 20 years ago without any problem (and I did!). You can extract some code you used in a draft or an article, and then use it in a presentation (<span class="in">`beamer`</span>), a poster, etc., by just copy pasting.</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>Moreover for large files (*e.g.*, books), when it compiles fine, it stays fine. Ok, you might suffer to reach this point though, but that's another story.</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="fu">### Open-source software and cross-platform</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>$\LaTeX$ works fine on most operating systems (OS), for instance on</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Linux</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Windows</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>MacOS</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>::: {#fig-os layout-ncol=3}</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a><span class="al">![Linux](Linux_logo.svg)</span>{width=150}</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a><span class="al">![Windows](Windows_logo.svg)</span>{width=150}</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="al">![Mac OS](MacOS_logo.svg)</span>{width=150}</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>$\LaTeX$ is friendly for multiple OS!</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>Hence, you do not face the problem you might have met while opening a file from Word in Linux (it could be a nightmare, and you could loose information).</span>
+<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="fu">### Default language in scientific writing</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a>$\LaTeX$ is widely used academia, so you will find a lot of resources and support, including templates, packages, and tutorials (see for instance <span class="co">[</span><span class="ot">Overleaf tutorials</span><span class="co">](https://www.overleaf.com/learn/latex/Tutorials#Overleaf_LaTeX_tutorials)</span>).</span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>If you don't know a command, you can try to find it with <span class="co">[</span><span class="ot">detexify</span><span class="co">](https://detexify.kirelabs.org/classify.html)</span>: just draw the symbol you target and look for the closest output.</span>
+<span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="fu">### Quality of the output</span></span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a>The quality of the output produced by $\LaTeX$ is very high. The typesetting is very professional, and the documents look great. This is especially important for scientific writing, where you want your work to be taken seriously. Hence,</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>publishers often ask for $\LaTeX$ files for the final version of the manuscript.</span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>Hence, you will produce <span class="in">`pdf`</span> files thanks to $\LaTeX$.</span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a>Alternatives formats exist but are now mostly outdated, like <span class="in">`dvi`</span> files or <span class="in">`ps`</span> files.</span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="fu">### Collaborative work: git compatibility</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a>For collaborating $\LaTeX$ is simple to use with <span class="in">`git`</span>.</span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>This is not the case if you version a <span class="in">`pdf`</span> or a <span class="in">`docx`</span> file for instance, as they are binary files.</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a>Hence, you can use <span class="in">`git`</span> to version your work, and to collaborate with others. This is especially useful if you are working on a large document with multiple authors, as it allows you to track changes, resolve conflicts, and keep everyone on the same page.</span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a>Another popular alternative is to use <span class="co">[</span><span class="ot">Overleaf</span><span class="co">](https://www.overleaf.com/)</span>, which is an online collaborative writing and publishing tool that makes it easy to work with others on a $\LaTeX$ document. I do not recommend this solution much as this is proprietary, and requires a good internet connection.</span>
+<span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a><span class="fu">### Hyperlinks, cross-references, citations, and bibliographies</span></span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a>$\LaTeX$ can handle hyperlinks, cross-references, citations, and bibliographies in a very efficient way. For cross-references, I recommend using the package <span class="in">`cleveref`</span>, as it will simplify your life if you write a lot of equations, figures, tables, theorems, etc. Typically, this is what you will need in your Ph.D. or M.Sc. manuscript.</span>
+<span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a>For bibliographies I recommend using the more modern <span class="in">`biblatex`</span>, instead of <span class="in">`bibtex`</span>. This prove useful if you have several bibliographies, or if you need customize a lot the way you cite your references. The Overleaf website provide a simple introduction to <span class="co">[</span><span class="ot">biblatex</span><span class="co">](https://www.overleaf.com/learn/latex/Bibliography_management_with_biblatex)</span>.</span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## {{&lt; fa thumbs-down title="a thumb down" &gt;}} Cons for $\LaTeX$</span></span>
+<span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>As you have understood, $\LaTeX$ is a great tool for scientific writing, but it is not perfect. Here are some of the cons of using $\LaTeX$:</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a><span class="fu">### Steep learning curve</span></span>
+<span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a>The learning curve for $\LaTeX$ can be steep, especially if you are not familiar with programming or markup languages. However, there are many resources available online to help you learn $\LaTeX$, including tutorials, forums, and books.</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="fu">### Not WYSIWYG</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>$\LaTeX$ is not a WYSIWYG (**What You See Is What You Get**) editor, which means that you have to write the code for your document and then compile it to see the final output.</span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>This can be frustrating for some people who are used to working with WYSIWYG editors like Microsoft Word.</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>This is particularly annoying for very graphical documents, like posters, or presentations, where you might want to see the final rendering as you write.</span>
+<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>Hence for presentations, I would rather recommend using using <span class="co">[</span><span class="ot">Quarto</span><span class="co">](https://quarto.org/)</span>, which is a markdown-based tool, that is lighter than $\LaTeX$ (though can use $\LaTeX$ for equations).</span>
+<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>Such a drawback is also appearing with large documents. For instance, if you have a large document, you might have to compile it several times to get the references right, or to get the table of contents right. This can be time-consuming, especially if you have a slow computer. For instance, for a Ph.D. manuscript, a book or a very large <span class="in">`beamer`</span> presentations, it can takes minutes to visualize the final output. It calls for compiling only a few chapters or a few slides at a time. </span>
+<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a><span class="fu">### Debugging is hard in $\LaTeX$</span></span>
+<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>Debugging in $\LaTeX$ can be difficult, especially if you are not familiar with the language. Errors can be cryptic and hard to understand, and it can take some time to figure out what went wrong (enjoy the logs!).</span>
+<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>Some tools can help you debug your $\LaTeX$ code, including editors with built-in error checking, or <span class="co">[</span><span class="ot">MooseTeX</span><span class="co">](https://www.charles-deledalle.fr/pages/moosetex.php)</span>.</span>
+<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="fu">### (Really) Many packages</span></span>
+<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>There are many packages available for $\LaTeX$.</span>
+<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>On one hand, packages can extend the functionality of $\LaTeX$ and make it more powerful and versatile. On the other hand, it can be difficult to find the right package for your needs, and some packages can be incompatible with others (which can be extremely hard to diagnose). Moreover, some packages are not maintained anymore, and might not work with the latest version of $\LaTeX$.</span>
+<span id="cb3-130"><a href="#cb3-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-131"><a href="#cb3-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-132"><a href="#cb3-132" aria-hidden="true" tabindex="-1"></a><span class="fu">### Tables and figures are not easy to handle</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-hidden="true" tabindex="-1"></a>For tables, consider <span class="co">[</span><span class="ot">Tables generator</span><span class="co">](https://www.tablesgenerator.com/)</span>, as modifying a $\LaTeX$ table could lead to horrible results.</span>
+<span id="cb3-134"><a href="#cb3-134" aria-hidden="true" tabindex="-1"></a>For instance, the following code will include a table in your document:</span>
+<span id="cb3-135"><a href="#cb3-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-136"><a href="#cb3-136" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb3-137"><a href="#cb3-137" aria-hidden="true" tabindex="-1"></a>\begin{tabular}{lllll}</span>
+<span id="cb3-138"><a href="#cb3-138" aria-hidden="true" tabindex="-1"></a>    Col1  <span class="op">&amp;</span> Col2  <span class="op">&amp;</span>  ...   <span class="op">&amp;</span> Col4 <span class="op">&amp;</span> Col5   \<span class="op">\</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-hidden="true" tabindex="-1"></a>    oih   <span class="op">&amp;</span> oih   <span class="op">&amp;</span> oih    <span class="op">&amp;</span>      <span class="op">&amp;</span> oih    \<span class="op">\</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-hidden="true" tabindex="-1"></a>    oh    <span class="op">&amp;</span> oih   <span class="op">&amp;</span> oi     <span class="op">&amp;</span> o    <span class="op">&amp;</span> o</span>
+<span id="cb3-141"><a href="#cb3-141" aria-hidden="true" tabindex="-1"></a>\end{tabular}</span>
+<span id="cb3-142"><a href="#cb3-142" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-143"><a href="#cb3-143" aria-hidden="true" tabindex="-1"></a>as follows:</span>
+<span id="cb3-144"><a href="#cb3-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-145"><a href="#cb3-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-146"><a href="#cb3-146" aria-hidden="true" tabindex="-1"></a>| Col1  | Col2  |   ...  | Col4 | Col5   |</span>
+<span id="cb3-147"><a href="#cb3-147" aria-hidden="true" tabindex="-1"></a>|-----|-----|-----|-----|-----|</span>
+<span id="cb3-148"><a href="#cb3-148" aria-hidden="true" tabindex="-1"></a>| oih | oih | oih |     | oih |</span>
+<span id="cb3-149"><a href="#cb3-149" aria-hidden="true" tabindex="-1"></a>| oh  | oih | oi  | o   | o   |</span>
+<span id="cb3-150"><a href="#cb3-150" aria-hidden="true" tabindex="-1"></a>| ooh | oh  | oh  | oho | oho |</span>
+<span id="cb3-151"><a href="#cb3-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-152"><a href="#cb3-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-153"><a href="#cb3-153" aria-hidden="true" tabindex="-1"></a>: My first table {#tbl-table}</span>
+<span id="cb3-154"><a href="#cb3-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-155"><a href="#cb3-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-156"><a href="#cb3-156" aria-hidden="true" tabindex="-1"></a>Note that in Markdown (the language used to write this document), you can use the following code to include a table:</span>
+<span id="cb3-157"><a href="#cb3-157" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-158"><a href="#cb3-158" aria-hidden="true" tabindex="-1"></a><span class="in">```markdown</span></span>
+<span id="cb3-159"><a href="#cb3-159" aria-hidden="true" tabindex="-1"></a>| Col1  | Col2  |  ...   | Col4 | Col5    |</span>
+<span id="cb3-160"><a href="#cb3-160" aria-hidden="true" tabindex="-1"></a>|-----|-----|-----|-----|-----|</span>
+<span id="cb3-161"><a href="#cb3-161" aria-hidden="true" tabindex="-1"></a>| oih | oih | oih |     | oih |</span>
+<span id="cb3-162"><a href="#cb3-162" aria-hidden="true" tabindex="-1"></a>| oh  | oih | oi  | o   | o   |</span>
+<span id="cb3-163"><a href="#cb3-163" aria-hidden="true" tabindex="-1"></a>| ooh | oh  | oh  | oho | oho |</span>
+<span id="cb3-164"><a href="#cb3-164" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-165"><a href="#cb3-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-166"><a href="#cb3-166" aria-hidden="true" tabindex="-1"></a>&lt;style&gt;</span>
+<span id="cb3-167"><a href="#cb3-167" aria-hidden="true" tabindex="-1"></a>  figure {</span>
+<span id="cb3-168"><a href="#cb3-168" aria-hidden="true" tabindex="-1"></a>    <span class="kw">float</span><span class="ch">:</span> <span class="dv">right</span><span class="op">;</span> <span class="co">/* Align the figure to the right of the text. Use 'left' to align it to the left */</span></span>
+<span id="cb3-169"><a href="#cb3-169" aria-hidden="true" tabindex="-1"></a>    <span class="kw">margin</span><span class="ch">:</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span><span class="dt">em</span> <span class="dv">1</span><span class="dt">em</span><span class="op">;</span> <span class="co">/* Add some space around the figure */</span></span>
+<span id="cb3-170"><a href="#cb3-170" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-171"><a href="#cb3-171" aria-hidden="true" tabindex="-1"></a>    figcaption {</span>
+<span id="cb3-172"><a href="#cb3-172" aria-hidden="true" tabindex="-1"></a>    <span class="kw">text-align</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span> <span class="co">/* Center-align the text of the figcaption */</span></span>
+<span id="cb3-173"><a href="#cb3-173" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb3-174"><a href="#cb3-174" aria-hidden="true" tabindex="-1"></a>&lt;/style&gt;</span>
+<span id="cb3-175"><a href="#cb3-175" aria-hidden="true" tabindex="-1"></a>&lt;figure&gt;</span>
+<span id="cb3-176"><a href="#cb3-176" aria-hidden="true" tabindex="-1"></a>&lt;a href="https://inkscape.org/"&gt;</span>
+<span id="cb3-177"><a href="#cb3-177" aria-hidden="true" tabindex="-1"></a>&lt;img id="myimage" src="Inkscape_logo.svg" width="150" alt="Inkscape Logo"&gt;</span>
+<span id="cb3-178"><a href="#cb3-178" aria-hidden="true" tabindex="-1"></a>&lt;/a&gt;</span>
+<span id="cb3-179"><a href="#cb3-179" aria-hidden="true" tabindex="-1"></a>&lt;figcaption&gt;Inkscape&lt;/figcaption&gt;</span>
+<span id="cb3-180"><a href="#cb3-180" aria-hidden="true" tabindex="-1"></a>&lt;/figure&gt;</span>
+<span id="cb3-181"><a href="#cb3-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-182"><a href="#cb3-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-183"><a href="#cb3-183" aria-hidden="true" tabindex="-1"></a>For images, that's a long story. See for instance <span class="co">[</span><span class="ot">this post</span><span class="co">](https://www.overleaf.com/learn/latex/Inserting_Images)</span>.</span>
+<span id="cb3-184"><a href="#cb3-184" aria-hidden="true" tabindex="-1"></a>Some authors recommend using <span class="in">`tikz`</span> for simple figures, and <span class="in">`pgfplots`</span> for plots:I don't.</span>
+<span id="cb3-185"><a href="#cb3-185" aria-hidden="true" tabindex="-1"></a>You could instead use Inkscape to draw your figures, and then export as <span class="in">`pdf`</span> files, and include the outputs in your $\LaTeX$ document.</span>
+<span id="cb3-186"><a href="#cb3-186" aria-hidden="true" tabindex="-1"></a>That's what I do, and I am happy with the result. This is WYSIWYG (when you draw), and you can easily modify your figure afterwards, and version it ( <span class="in">`svg`</span> is fine for versioning, while <span class="in">`pdf`</span> is not).</span>
+<span id="cb3-187"><a href="#cb3-187" aria-hidden="true" tabindex="-1"></a>Alternative tools could be using R or Python to generate your plots, and then include them in your $\LaTeX$ document.</span>
+<span id="cb3-188"><a href="#cb3-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-189"><a href="#cb3-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-190"><a href="#cb3-190" aria-hidden="true" tabindex="-1"></a><span class="fu">## {{&lt; fa magnifying-glass-arrow-right title="magnifying glass over arrow right"&gt;}} What's next?</span></span>
+<span id="cb3-191"><a href="#cb3-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-192"><a href="#cb3-192" aria-hidden="true" tabindex="-1"></a>In the last few years, some alternatives to $\LaTeX$ have emerged, like <span class="co">[</span><span class="ot">Markdown</span><span class="co">](https://en.wikipedia.org/wiki/Markdown)</span>, <span class="co">[</span><span class="ot">Quarto</span><span class="co">](https://quarto.org/)</span>, or <span class="co">[</span><span class="ot">RMarkdown</span><span class="co">](https://rmarkdown.rstudio.com/)</span>.</span>
+<span id="cb3-193"><a href="#cb3-193" aria-hidden="true" tabindex="-1"></a>These tools are simpler to use than $\LaTeX$, and they are more WYSIWYG. using I would recommend using Markdown, RMarkdown or Quarto for writing blog posts, reports, presentations or light documents with scientific content.</span>
+<span id="cb3-194"><a href="#cb3-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-195"><a href="#cb3-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-196"><a href="#cb3-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-197"><a href="#cb3-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-198"><a href="#cb3-198" aria-hidden="true" tabindex="-1"></a>Moreover, a recent alternative to $\LaTeX$ is <span class="co">[</span><span class="ot">Typst</span><span class="co">](https://typst.app/)</span>, which is a new typesetting system that is designed to be more user-friendly and easier to use than $\LaTeX$. Typst is still in development, but it shows promise as a modern alternative to $\LaTeX$.</span>
+<span id="cb3-199"><a href="#cb3-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-200"><a href="#cb3-200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-201"><a href="#cb3-201" aria-hidden="true" tabindex="-1"></a><span class="fu">## {{&lt; fa folder-open title="open folder"&gt;}} Additional resources</span></span>
+<span id="cb3-202"><a href="#cb3-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-203"><a href="#cb3-203" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Getting Started with LaTeX</span><span class="co">](https://guides.nyu.edu/LaTeX/bibtex)</span> by M. Frenkel.</span>
+<span id="cb3-204"><a href="#cb3-204" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Templates, tips and tools</span><span class="co">](https://github.com/josephsalmon/OrganizationFiles/tree/master/tex)</span> by J. Salmon.</span>
+<span id="cb3-205"><a href="#cb3-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-206"><a href="#cb3-206" aria-hidden="true" tabindex="-1"></a><span class="fu">## {{&lt; fa link title="link" &gt;}} References</span></span>
+<span id="cb3-207"><a href="#cb3-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-208"><a href="#cb3-208" aria-hidden="true" tabindex="-1"></a>::: {#refs}</span>
+<span id="cb3-209"><a href="#cb3-209" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 Joseph Salmon</span> <span class="faux-block"><a href="https://github.com/josephsalmon/MyWebsite"><i class="fa-brands fa-github" aria-label="github"></i> Source Code</a></span></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><span class="faux-block"> Designed with <i class="fa-solid fa-heart" aria-label="heart"></i></span> <span class="faux-block"> Built with <a href="https://quarto.org/">Quarto</a></span></p>
+</div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

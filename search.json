@@ -1,0 +1,996 @@
+[
+  {
+    "objectID": "team/index.html",
+    "href": "team/index.html",
+    "title": "Team",
+    "section": "",
+    "text": "You want to join? I am always looking for outstanding and highly motivated people to work (as intern, Ph.D. student, post-doctorate or research engineer) on machine learning, optimization and statistics. More precisely, my team is are working on:\nThe application process is light:"
+  },
+  {
+    "objectID": "team/index.html#post-docs",
+    "href": "team/index.html#post-docs",
+    "title": "Team",
+    "section": "Post-docs",
+    "text": "Post-docs\n\nJean-Baptiste Fermanian 2023-2024"
+  },
+  {
+    "objectID": "team/index.html#ph.d.-students",
+    "href": "team/index.html#ph.d.-students",
+    "title": "Team",
+    "section": "Ph.D. Students",
+    "text": "Ph.D. Students\n\nTheo Larcher: co-supervised by Alexis Jolly 2024-2027?\nAntoine Simoes: co-supervised by Yohann de Castro 2022-2025?"
+  },
+  {
+    "objectID": "team/index.html#alumni",
+    "href": "team/index.html#alumni",
+    "title": "Team",
+    "section": "Alumni",
+    "text": "Alumni\n\nTanguy Lefort [Ph.D. 2021-2024] co-supervised with Benjamin Charlier and Alexis Joly (now post-doctorate at Inria Lille)\nAxel Dubar 2023-2024, now Ph.D. student at Univ. Montpellier.\nCamille Garcin [Ph.D. 2020-2023] co-supervised by Alexis Joly and Maximilien Servajean (now post-doctorate at Inria Montpellier)\nEmmanuel Pilliat [Ph.D. 2020-2023] co-supervised by Nicolas Verzelen and Alexandra Carpentier (now assistant professor at ENSAI)\nHashem Ghanem [Ph.D. 2020-2023] co-supervised by Samuel Vaiter and Nicolas Keriven (now datascientist at Expleo)\nDamien Blanc [Ph.D. 2019-2022], co-supervised by Benjamin Charlier and funded by Quantacell\nCassio Fraga Dantas Post-doctorate associate: 2022, (now at Researcher at INRAE) \nFlorent Bascou [Ph.D. 2019-2022], co-supervised by Sophie Lèbre,  Manuscript: “Sparse linear model with quadratic interactions”\nQuentin Bertrand [Ph.D. 2018-2021], co-supervised by Alexandre Gramfort (now at Mila),  Manuscript: “Hyperparameter selection for high dimensional sparse learning : application to neuroimaging”\nNidham Gazagnadou [Ph.D. 2018-2021] co-supervised by Robert Gower (now at Sony AI),  Manuscript: “Expected smoothness for stochastic variance-reduced methods and sketch-and-project methods for structured linear systems”\nPierre-Antoine Bannier [Intern 2021], co-supervised by Alexandre Gramfort\nJérôme-Alexis Chevalier [Ph.D. 2017-2020], co-supervised by Bertrand Thirion (Senior Data Scientist at Emerton Data),  Manuscript: “Statistical control of sparse models in high dimension”\nMathurin Massias [Ph.D. 2016-2019], co-supervised by Alexandre Gramfort (now CR INRIA, Lyon),  Manuscript: “Sparse high dimensional regression in the presence of colored heteroscedastic noise : application to M/EEG source imaging”\nEvgenii Chzhen [Ph.D. 2016-2019], co-supervised by Mohamed Hebiri (now CR CNRS, Saclay),  Manuscript: “Plug-in methods in classification”\nEugene Ndiaye [Ph.D., 2015-2018], co-supervised by Olivier Fercoq (now post-doctorate at GeorgiaTech),  Manuscript: “Safe optimization algorithms for variable selection and hyperparameter tuning”\nJean Lafond [Ph.D., 2013-2016] co-supervised by Éric Moulines (now at Cubist Systematic, UK),  Manuscript: “Complétion de matrice : aspects statistiques et computationnels”\nIgor Colin [Ph.D., 2013-2016] co-supervised by Stéphan Clémençon and funded by Streamwide (now at Huawei),  Manuscript: “Adapting machine learning methods to U-statistics”\nJair Montoya [Post Doc, 2016-2017], co-supervised by Olivier Fercoq\nThierry Guillemot (now at ARIADNEXT) Engineer, co-supervised by Alexandre Gramfort, 2016"
+  },
+  {
+    "objectID": "talks/posts/2024-09-25_slides_sierra/index.html#dataset-release-plntnet-300k",
+    "href": "talks/posts/2024-09-25_slides_sierra/index.html#dataset-release-plntnet-300k",
+    "title": "Joseph Salmon",
+    "section": "Dataset release: Pl@ntNet-300K",
+    "text": "Dataset release: Pl@ntNet-300K"
+  },
+  {
+    "objectID": "talks/posts/2024-09-25_slides_sierra/index.html#sampling-bias",
+    "href": "talks/posts/2024-09-25_slides_sierra/index.html#sampling-bias",
+    "title": "Joseph Salmon",
+    "section": "Sampling bias",
+    "text": "Sampling bias"
+  },
+  {
+    "objectID": "talks/posts/2024-09-25_slides_sierra/index.html#weighted-majority-vote",
+    "href": "talks/posts/2024-09-25_slides_sierra/index.html#weighted-majority-vote",
+    "title": "Joseph Salmon",
+    "section": "(Weighted) Majority Vote",
+    "text": "(Weighted) Majority Vote"
+  },
+  {
+    "objectID": "talks/posts/2024-09-25_slides_sierra/index.html#plntnet-labels-release-south-west.-european-flora",
+    "href": "talks/posts/2024-09-25_slides_sierra/index.html#plntnet-labels-release-south-west.-european-flora",
+    "title": "Joseph Salmon",
+    "section": "Pl@ntNet labels release: South West. European flora",
+    "text": "Pl@ntNet labels release: South West. European flora"
+  },
+  {
+    "objectID": "talks/index.html",
+    "href": "talks/index.html",
+    "title": "Talks",
+    "section": "",
+    "text": "Sep 25, 2024\n        \n        \n            Sciences participatives & apprentissage automatique pour identifier les plantes\n            \n            \n                \n                \n                    citizen sciences\n                \n                \n                \n                    crowdsourcing\n                \n                \n                \n                    labeling\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Sep 25, 2024\n        \n        \n            Citizen science for plant identification: insights from Pl@ntnet\n            \n            \n                \n                \n                    citizen sciences\n                \n                \n                \n                    crowdsourcing\n                \n                \n                \n                    labeling\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Nov 30, 2023\n        \n        \n            Supervised learning by crowdsourcing (I)\n            \n            \n                \n                \n                    crowdsourcing\n                \n                \n                \n                    supervised learning\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Nov 30, 2023\n        \n        \n            Supervised learning by crowdsourcing (II)\n            \n            \n                \n                \n                    crowdsourcing\n                \n                \n                \n                    supervised learning\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Nov 29, 2022\n        \n        \n            Improve learning combining crowdsourced labels by weighting Areas Under the Margin\n            \n            \n                \n                \n                    crowdsourcing\n                \n                \n                \n                    multi-class classification\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Oct 5, 2022\n        \n        \n            Stochastic smoothing of the top-K calibrated hinge loss for deep imbalanced classification\n            \n            \n                \n                \n                    deep learning\n                \n                \n                \n                    imbalanced classification\n                \n                \n                \n                    stochastic methods\n                \n                \n                \n                    smoothing\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Feb 7, 2022\n        \n        \n            Hyperparameter selection for high dimensional sparse learning\n            \n            \n                \n                \n                    optimization\n                \n                \n                \n                    grid search\n                \n                \n                \n                    hyperparameter selection\n                \n                \n                \n                    bilevel optimization\n                \n                \n                \n                    implicit differentiation\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Oct 9, 2020\n        \n        \n            Screening Rules for Lasso with Non-Convex Sparse Regularizers\n            \n            \n                \n                \n                    non-convex optimization\n                \n                \n                \n                    sparse regression\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Jun 15, 2020\n        \n        \n            The smoothed multivariate square-root Lasso: an optimization lens on concomitant estimation\n            \n            \n                \n                \n                    optimization\n                \n                \n                \n                    sparse regression\n                \n                \n                \n                    smoothing\n                \n                \n                \n                    inf-convolution\n                \n                \n                \n                    concomitant estimation\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Nov 14, 2019\n        \n        \n            Fast solver for Sparse Generalized Linear Models\n            \n            \n                \n                \n                    sparse regression\n                \n                \n                \n                    generalized linear models\n                \n                \n                \n                    optimization\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Oct 28, 2019\n        \n        \n            Coordinate descent (and beyond) for sparse learning optimization\n            \n            \n                \n                \n                    coordinate descent\n                \n                \n                \n                    sparse regression\n                \n                \n                \n                    optimization\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            May 24, 2019\n        \n        \n            Safe screening rules to speed-up sparse regression solvers\n            \n            \n                \n                \n                    sparse regression\n                \n                \n                \n                    screening rules\n                \n                \n                \n                    optimization\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            May 21, 2019\n        \n        \n            Optimization: (Block) coordinate descent for neuro-imaging\n            \n            \n                \n                \n                    optimization\n                \n                \n                \n                    coordinate descent\n                \n                \n                \n                    neuro-imaging\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            May 19, 2019\n        \n        \n            Safe Grid Search with Optimal Complexity\n            \n            \n                \n                \n                    grid search\n                \n                \n                \n                    optimization\n                \n                \n                \n                    complexity\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Jan 14, 2019\n        \n        \n            Celer: a Fast Solver for the Lasso with Dual Extrapolation\n            \n            \n                \n                \n                    optimization\n                \n                \n                \n                    dual extrapolation\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Nov 3, 2015\n        \n        \n            Convex optimization, sparsity and regression in high dimension\n            \n            \n                \n                \n                    optimization\n                \n                \n                \n                    sparse regression\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Oct 9, 2014\n        \n        \n            Adaptive Validation, a possible alternative to Cross-Validation\n            \n            \n                \n                \n                    hyperparameter selection\n                \n                \n                \n                    sparse regression\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Feb 1, 2014\n        \n        \n            Poisson noise reduction with non-local PCA\n            \n            \n                \n                \n                    image processing\n                \n                \n                \n                    non-local methods\n                \n                \n            \n            \n            \n        \n        \n    \n    \n    \n        \n            Sep 3, 2013\n        \n        \n            Learning Heteroscedastic Models by Convex Programming under Group Sparsity\n            \n            \n                \n                \n                    high-dimensional statistics\n                \n                \n                \n                    group sparsity\n                \n                \n                \n                    heteroscedastic regression\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Sep 1, 2011\n        \n        \n            Optimal Aggregation for Affine Estimators\n            \n            \n                \n                \n                    aggregation\n                \n                \n                \n                    affine estimators\n                \n                \n                \n                    SURE\n                \n                \n                \n                    Exponential weights\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Jan 28, 2011\n        \n        \n            NL-Means, reprojections et patchs adaptatifs\n            \n            \n                \n                \n                    image processing\n                \n                \n                \n                    non-local methods\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            Sep 25, 2000\n        \n        \n            Update on slideshow gallery\n            \n            \n                \n                \n                    revealjs\n                \n                \n                \n                    slides\n                \n                \n                \n                    quarto\n                \n                \n            \n            \n            \n        \n        \n        \n            \n        \n        \n    \n    \n\n\nNo matching items"
+  },
+  {
+    "objectID": "misc/index.html",
+    "href": "misc/index.html",
+    "title": "Miscellaneous",
+    "section": "",
+    "text": "Advice and guidelines for young researchers"
+  },
+  {
+    "objectID": "misc/index.html#tips-for-young-researchers-on-work-organization",
+    "href": "misc/index.html#tips-for-young-researchers-on-work-organization",
+    "title": "Miscellaneous",
+    "section": "",
+    "text": "Advice and guidelines for young researchers"
+  },
+  {
+    "objectID": "misc/index.html#personal-visualization-and-math-art",
+    "href": "misc/index.html#personal-visualization-and-math-art",
+    "title": "Miscellaneous",
+    "section": "Personal visualization and math art",
+    "text": "Personal visualization and math art\n\nTweets: math art etc.: this includes LaTeX templates/tips, Inkscape first steps, bibliographic help, etc.\n\n\n\n\n\n\n\n         \n\n\n\n\nStudio Ibbini: traversing analog and digital to create works of extreme intricacy and precision, pushing the boundaries of materials in unusual ways. They reference historical pattern and ornament with a contemporary interpretation."
+  },
+  {
+    "objectID": "misc/index.html#conferences-workshop-organized",
+    "href": "misc/index.html#conferences-workshop-organized",
+    "title": "Miscellaneous",
+    "section": "Conferences / Workshop organized",
+    "text": "Conferences / Workshop organized\n\nOptimization for Machine Learning, March 2020\nGraph signals : learning and optimization perspectives, May 2019\nWorkshop on Decentralized Machine Learning, Optimization and Privacy, September 2017"
+  },
+  {
+    "objectID": "misc/index.html#latex",
+    "href": "misc/index.html#latex",
+    "title": "Miscellaneous",
+    "section": "Latex",
+    "text": "Latex\n\nMoosetex: Bored with the log system of Latex? Feed up with converting eps to pdf (and backward)? Need to clean project before commit in a control version system (like SVN or GIT). Then, I highly recommend using Moosetex. Any Linux/Mac user might benefit from it.\nTeXtip\nBibtex: Tame the BeaST by Nicolas Markey\nI used to enjoy Sublime and Latexing though I have now switched to Visual Studio Code for Python and TeX."
+  },
+  {
+    "objectID": "misc/index.html#translation",
+    "href": "misc/index.html#translation",
+    "title": "Miscellaneous",
+    "section": "Translation",
+    "text": "Translation\n\nVarious languages (dictionnaries, conjugation, etc.): Linguee, Lexilogos, and urbandictionary\nA French/English translator: Le grand dictionnaire terminologique\nStatitics glossary"
+  },
+  {
+    "objectID": "misc/index.html#time-zones",
+    "href": "misc/index.html#time-zones",
+    "title": "Miscellaneous",
+    "section": "Time zones",
+    "text": "Time zones\n\nClassic converter"
+  },
+  {
+    "objectID": "misc/index.html#videos-courses-and-lectures-about-mathematics",
+    "href": "misc/index.html#videos-courses-and-lectures-about-mathematics",
+    "title": "Miscellaneous",
+    "section": "Videos, courses, and lectures about mathematics",
+    "text": "Videos, courses, and lectures about mathematics\n\nMathematical Lectures at ENS (Paris): Diffusions des savoirs\nA Convex Optimization course by Stephen P. Boyd\nLectures on Machine Learning\nFeeling the fourth dimension with a movie: www.dimensions-math.org"
+  },
+  {
+    "objectID": "misc/index.html#art-and-mathematics",
+    "href": "misc/index.html#art-and-mathematics",
+    "title": "Miscellaneous",
+    "section": "Art and mathematics",
+    "text": "Art and mathematics\n\nGeometric Sculptures by Bathsheba Grossman\nGeometric Sculptures by George Hart and explanation on Rapid Prototyping\nMathematics through history: Electronic Journal for History of Probability and Statistics\nGraphs for drawing: graphpaper"
+  },
+  {
+    "objectID": "misc/index.html#statistics",
+    "href": "misc/index.html#statistics",
+    "title": "Miscellaneous",
+    "section": "Statistics",
+    "text": "Statistics\n\nFreakonometrics\nVisualisation and Statistics: Gapminder and Worldmapper"
+  },
+  {
+    "objectID": "misc/index.html#cinema",
+    "href": "misc/index.html#cinema",
+    "title": "Miscellaneous",
+    "section": "Cinema",
+    "text": "Cinema\n\nSita Sings the Blues (Creative Commons Attribution-Share Alike License)\nArchive.org: public domain movies\nopenculture : discover Tarkovski’s movies or good ol’ Hitchcock’s"
+  },
+  {
+    "objectID": "misc/index.html#radio",
+    "href": "misc/index.html#radio",
+    "title": "Miscellaneous",
+    "section": "Radio",
+    "text": "Radio\n\nSur les épaules de darwin"
+  },
+  {
+    "objectID": "misc/index.html#ecology",
+    "href": "misc/index.html#ecology",
+    "title": "Miscellaneous",
+    "section": "Ecology",
+    "text": "Ecology\n\nPl@ntnet: Pl@ntnet is a citizen science project available as an app that helps you identify plants thanks to your pictures. .\nopen-sciences-participatives: “OPEN”, le portail qui permet à tous de participer à l’observation de la biodiversité"
+  },
+  {
+    "objectID": "code_new/index.html",
+    "href": "code_new/index.html",
+    "title": "Code",
+    "section": "",
+    "text": "Code is important in applied research. Here are some of the code I have written over the years.\n\npeerannot: a package to make transparent and reproducible comparisons between annotation algorithms, especially in the context of citizen science.\nOrganizationFiles: This repository provides some tools, advice and guidelines for researchers working in applied mathematics, statistics or machine learning.\nBenchOpt: a package to make transparent and reproducible comparisons between optimization algorithms\nPlantNet-300K: a subset of the Pl@ntNet database, with about 300k labeled images (plant species) and 1k classes. The dataset is available on Zenodo.\nCeler: a fast Lasso solver (associated ICML2018 paper “Dual Extrapolation for Faster Lasso Solvers”), pdf, slides\nsparse-ho: a fast hyper-parameter package to select the best Lasso parameter efficiently (associated to ICML2020 paper “Implicit differentiation of Lasso-type models for hyperparameter optimization”, pdf)\nmatlab toolboxes for statistics and image processing (this is legacy), I don’t use Matlab anymore.\n\nMore on my Github Page"
+  },
+  {
+    "objectID": "blog/latex/index.html#history-of-latex",
+    "href": "blog/latex/index.html#history-of-latex",
+    "title": "\\LaTeX for scientific writing?",
+    "section": " History of \\LaTeX",
+    "text": "History of \\LaTeX\nFirst a bit of history on \\LaTeX (pronounced “Lay-tech” or “Lah-tech”). is a typesetting system that was created by Leslie Lamport in 1984. It is based on Donald Knuth’s \\TeX typesetting system. LaTeX is widely used in academia for the communication and publication of scientific documents in many fields, including mathematics, computer science, engineering, physics, chemistry, biology, and economics. LaTeX is also used in the humanities and social sciences. LaTeX is free and open-source software. It was the prototype of the modern scientific writing, and it is still the standard in many fields, especially in mathematics and computer science as it’s a good way to write equations, and to go towards literate programming.\nAs a short motivation, I will show you two books from the same author, one written before using \\LaTeX and one after. Compare the two following images (you can click on them to enlarge):\n\n\n\n\n\n\n\n\n\n(Korostelëv and Tsybakov 1993): scientific writing before using \\LaTeX\n\n\n\n\n\n\n\n(Tsybakov 2009): scientific writing after using \\LaTeX\n\n\n\n\n\nConclusion: two books, same author, but very different scientific rendering."
+  },
+  {
+    "objectID": "blog/latex/index.html#pros-for-latex",
+    "href": "blog/latex/index.html#pros-for-latex",
+    "title": "\\LaTeX for scientific writing?",
+    "section": " Pros for \\LaTeX",
+    "text": "Pros for \\LaTeX\nBelow I list some of the important points that make LaTeX the standard tool for scientific writing.\n\nStability and reusability\nFirst, \\LaTeX guarantees stability in time. You can re-use your files from 20 years ago without any problem (and I did!). You can extract some code you used in a draft or an article, and then use it in a presentation (beamer), a poster, etc., by just copy pasting.\nMoreover for large files (e.g., books), when it compiles fine, it stays fine. Ok, you might suffer to reach this point though, but that’s another story.\n\n\nOpen-source software and cross-platform\n\\LaTeX works fine on most operating systems (OS), for instance on\n\nLinux\nWindows\nMacOS\n\n\n\n\n\n\n\n\n\nLinux\n\n\n\n\n\n\n\nWindows\n\n\n\n\n\n\n\nMac OS\n\n\n\n\n\n\nFigure 1: \\LaTeX is friendly for multiple OS!\n\n\n\nHence, you do not face the problem you might have met while opening a file from Word in Linux (it could be a nightmare, and you could loose information).\n\n\nDefault language in scientific writing\n\\LaTeX is widely used academia, so you will find a lot of resources and support, including templates, packages, and tutorials (see for instance Overleaf tutorials).\nIf you don’t know a command, you can try to find it with detexify: just draw the symbol you target and look for the closest output.\n\n\nQuality of the output\nThe quality of the output produced by \\LaTeX is very high. The typesetting is very professional, and the documents look great. This is especially important for scientific writing, where you want your work to be taken seriously. Hence, publishers often ask for \\LaTeX files for the final version of the manuscript. Hence, you will produce pdf files thanks to \\LaTeX. Alternatives formats exist but are now mostly outdated, like dvi files or ps files.\n\n\nCollaborative work: git compatibility\nFor collaborating \\LaTeX is simple to use with git. This is not the case if you version a pdf or a docx file for instance, as they are binary files. Hence, you can use git to version your work, and to collaborate with others. This is especially useful if you are working on a large document with multiple authors, as it allows you to track changes, resolve conflicts, and keep everyone on the same page. Another popular alternative is to use Overleaf, which is an online collaborative writing and publishing tool that makes it easy to work with others on a \\LaTeX document. I do not recommend this solution much as this is proprietary, and requires a good internet connection.\n\n\nHyperlinks, cross-references, citations, and bibliographies\n\\LaTeX can handle hyperlinks, cross-references, citations, and bibliographies in a very efficient way. For cross-references, I recommend using the package cleveref, as it will simplify your life if you write a lot of equations, figures, tables, theorems, etc. Typically, this is what you will need in your Ph.D. or M.Sc. manuscript.\nFor bibliographies I recommend using the more modern biblatex, instead of bibtex. This prove useful if you have several bibliographies, or if you need customize a lot the way you cite your references. The Overleaf website provide a simple introduction to biblatex."
+  },
+  {
+    "objectID": "blog/latex/index.html#cons-for-latex",
+    "href": "blog/latex/index.html#cons-for-latex",
+    "title": "\\LaTeX for scientific writing?",
+    "section": " Cons for \\LaTeX",
+    "text": "Cons for \\LaTeX\nAs you have understood, \\LaTeX is a great tool for scientific writing, but it is not perfect. Here are some of the cons of using \\LaTeX:\n\nSteep learning curve\nThe learning curve for \\LaTeX can be steep, especially if you are not familiar with programming or markup languages. However, there are many resources available online to help you learn \\LaTeX, including tutorials, forums, and books.\n\n\nNot WYSIWYG\n\\LaTeX is not a WYSIWYG (What You See Is What You Get) editor, which means that you have to write the code for your document and then compile it to see the final output. This can be frustrating for some people who are used to working with WYSIWYG editors like Microsoft Word. This is particularly annoying for very graphical documents, like posters, or presentations, where you might want to see the final rendering as you write. Hence for presentations, I would rather recommend using using Quarto, which is a markdown-based tool, that is lighter than \\LaTeX (though can use \\LaTeX for equations).\nSuch a drawback is also appearing with large documents. For instance, if you have a large document, you might have to compile it several times to get the references right, or to get the table of contents right. This can be time-consuming, especially if you have a slow computer. For instance, for a Ph.D. manuscript, a book or a very large beamer presentations, it can takes minutes to visualize the final output. It calls for compiling only a few chapters or a few slides at a time.\n\n\nDebugging is hard in \\LaTeX\nDebugging in \\LaTeX can be difficult, especially if you are not familiar with the language. Errors can be cryptic and hard to understand, and it can take some time to figure out what went wrong (enjoy the logs!). Some tools can help you debug your \\LaTeX code, including editors with built-in error checking, or MooseTeX.\n\n\n(Really) Many packages\nThere are many packages available for \\LaTeX. On one hand, packages can extend the functionality of \\LaTeX and make it more powerful and versatile. On the other hand, it can be difficult to find the right package for your needs, and some packages can be incompatible with others (which can be extremely hard to diagnose). Moreover, some packages are not maintained anymore, and might not work with the latest version of \\LaTeX.\n\n\nTables and figures are not easy to handle\nFor tables, consider Tables generator, as modifying a \\LaTeX table could lead to horrible results. For instance, the following code will include a table in your document:\n\\begin{tabular}{lllll}\n    Col1  & Col2  &  ...   & Col4 & Col5   \\\\\n    oih   & oih   & oih    &      & oih    \\\\\n    oh    & oih   & oi     & o    & o\n\\end{tabular}\nas follows:\n\n\n\nTable 1: My first table\n\n\n\n\n\nCol1\nCol2\n…\nCol4\nCol5\n\n\n\n\noih\noih\noih\n\noih\n\n\noh\noih\noi\no\no\n\n\nooh\noh\noh\noho\noho\n\n\n\n\n\n\nNote that in Markdown (the language used to write this document), you can use the following code to include a table:\n| Col1  | Col2  |  ...   | Col4 | Col5    |\n|-----|-----|-----|-----|-----|\n| oih | oih | oih |     | oih |\n| oh  | oih | oi  | o   | o   |\n| ooh | oh  | oh  | oho | oho |\n\n\n  \n\nInkscape\n\n\nFor images, that’s a long story. See for instance this post. Some authors recommend using tikz for simple figures, and pgfplots for plots:I don’t. You could instead use Inkscape to draw your figures, and then export as pdf files, and include the outputs in your \\LaTeX document. That’s what I do, and I am happy with the result. This is WYSIWYG (when you draw), and you can easily modify your figure afterwards, and version it ( svg is fine for versioning, while pdf is not). Alternative tools could be using R or Python to generate your plots, and then include them in your \\LaTeX document."
+  },
+  {
+    "objectID": "blog/latex/index.html#whats-next",
+    "href": "blog/latex/index.html#whats-next",
+    "title": "\\LaTeX for scientific writing?",
+    "section": " What’s next?",
+    "text": "What’s next?\nIn the last few years, some alternatives to \\LaTeX have emerged, like Markdown, Quarto, or RMarkdown. These tools are simpler to use than \\LaTeX, and they are more WYSIWYG. using I would recommend using Markdown, RMarkdown or Quarto for writing blog posts, reports, presentations or light documents with scientific content.\nMoreover, a recent alternative to \\LaTeX is Typst, which is a new typesetting system that is designed to be more user-friendly and easier to use than \\LaTeX. Typst is still in development, but it shows promise as a modern alternative to \\LaTeX."
+  },
+  {
+    "objectID": "blog/latex/index.html#additional-resources",
+    "href": "blog/latex/index.html#additional-resources",
+    "title": "\\LaTeX for scientific writing?",
+    "section": " Additional resources",
+    "text": "Additional resources\n\nGetting Started with LaTeX by M. Frenkel.\nTemplates, tips and tools by J. Salmon."
+  },
+  {
+    "objectID": "blog/latex/index.html#references",
+    "href": "blog/latex/index.html#references",
+    "title": "\\LaTeX for scientific writing?",
+    "section": " References",
+    "text": "References\n\n\nKorostelëv, A. P., and A. B. Tsybakov. 1993. Minimax Theory of Image Reconstruction. Vol. 82. Lecture Notes in Statistics. New York: Springer-Verlag.\n\n\nTsybakov, A. B. 2009. Introduction to Nonparametric Estimation. Springer Series in Statistics. New York: Springer."
+  },
+  {
+    "objectID": "blog/isotonic/index.html",
+    "href": "blog/isotonic/index.html",
+    "title": "Isotonic regression",
+    "section": "",
+    "text": "Note: This blog is mainly inspired by the post by Pedregosa (2013) on Isotonic regression, a version of the PAVA algorithm provided by Best and Chakravarti (1990)."
+  },
+  {
+    "objectID": "blog/isotonic/index.html#visualization",
+    "href": "blog/isotonic/index.html#visualization",
+    "title": "Isotonic regression",
+    "section": "Visualization",
+    "text": "Visualization\nBelow you’ll find a visualization, on a synthetic dataset, of the most common algorithm, the Pools Adjacent Violators Algorithm (PAVA) to solve isotonic regression algorithm. The top plot shows the evolution of the PAVA algorithm, while the bottom plot shows the primal and dual objectives until convergence. Note that the essence of the algorithm is simple: it Pools Adjacent Violators, i.e., it replaces adjacent points that are not in increasing order by averaging."
+  },
+  {
+    "objectID": "blog/isotonic/index.html#applications",
+    "href": "blog/isotonic/index.html#applications",
+    "title": "Isotonic regression",
+    "section": "Applications",
+    "text": "Applications\nIsotonic regression is used in a variety of applications, including:\n\nMonotonicity constraints: In many applications, it is important to ensure that the relationship between two variables is monotonic. This is the case in physics or biology for instance.\nCalibration for machine learning models: Isotonic regression can be used to calibrate the output of a machine learning model to ensure that it is well-calibrated. It is common for binary classifiers to output probabilities that are not well-calibrated, and isotonic regression can be used to correct this. You will find a some details and examples in the scikit-learn documentation.\nSparse regression: isotonic regression has some links with the Slope penalty Bogdan et al. (2015), a generalization of the Lasso penalty. The Slope estimator has been introduced to improve False Discovery Rate control in high-dimensional settings. It is a weighted ordered \\ell_1 penalty, whose proximity operator can be computing thanks to the PAVA algorithm Zeng and Figueiredo (2014) (using Moreau’s identity). I became aware of this while working on Bellec, Salmon, and Vaiter (2017) : we were using that property to compute efficiently the GSlope estimator (and to control duality gap in this context)."
+  },
+  {
+    "objectID": "blog/isotonic/index.html#conic-duality-fenchel-transform",
+    "href": "blog/isotonic/index.html#conic-duality-fenchel-transform",
+    "title": "Isotonic regression",
+    "section": "Conic duality / Fenchel transform",
+    "text": "Conic duality / Fenchel transform\nHere we remind the definition of the Fenchel transform of a function f defined on \\mathbb{R}^n: \nf^*(v) = \\sup_{x \\in \\mathbb{R}^n} \\left\\{ \\langle v, x \\rangle - f(x) \\right\\}\\enspace.\n\nWe also write \\iota_{\\mathcal{K}} the indicator function of the set \\mathcal{K}, that is \\iota_{\\mathcal{K}}(x) = 0 if x \\in \\mathcal{K} and +\\infty otherwise.\n\nLemma 2 (Fenchel transform of indicator of a cone) The Fenchel transform of the indicator function of a convex cone \\mathcal{K} is \n\\iota_{\\mathcal{K}}^*(v) = \\iota_{\\mathcal{K}^\\circ}(v)\\enspace,\n where \\iota_{\\mathcal{K}^\\circ} is the indicator function of the set \\mathcal{K}^\\circ."
+  },
+  {
+    "objectID": "blog/isotonic/index.html#dual-problem",
+    "href": "blog/isotonic/index.html#dual-problem",
+    "title": "Isotonic regression",
+    "section": "Dual problem",
+    "text": "Dual problem\nLet us now derive the dual problem of the isotonic regression problem given in Equation 2.\n\nTheorem 1 (Dual problem of isotonic regression&gt;) The dual problem of the isotonic regression problem given in Equation 2 is \n\\begin{align*}\n\\max_{\\alpha \\in \\mathbb{R}_+^{n-1}} &\n\\left[\n    - \\frac{1}{2} (A^\\top \\alpha-W y)^\\top W^{-1} (A^\\top \\alpha-W y)\n    + \\frac{1}{2} y^\\top W y\n\\right] \\enspace.\n\\end{align*}\n\n\n\nProof. With such ingredient we can write the isotonic regression problem as: \n\\begin{align}\n\\min_{x \\in \\mathbb{R}^n}\n\\frac{1}{2}\n(y-x)^\\top W (y-x) + \\iota_{\\mathcal{K}}(x) \\enspace.\n\\end{align}\n\\tag{4} We can now rewrite the formulation as\n\n\\begin{align*}\n\\min_{x \\in \\mathbb{R}^n} &\n\\frac{1}{2}\nz^\\top W z + \\iota_{\\mathcal{K}}(x)\\\\\n\\text{s.t.} & \\quad z = y - x  \\enspace.\n\\end{align*}\n We can now introduce the Lagrangian of the problem: \n\\begin{align*}\n\\mathcal{L}(x, z, \\lambda) & = \\frac{1}{2} z^\\top W z + \\iota_{\\mathcal{K}}(x) + \\lambda^\\top (y - z - x)\\\\\n& = \\frac{1}{2} z^\\top W z + \\iota_{\\mathcal{K}}(x) + \\lambda^\\top y - \\lambda^\\top z - \\lambda^\\top x \\enspace.\n\\end{align*}\n Assuming strong duality holds, we can write the dual problem as \n\\begin{align*}\n\\min_{x \\in \\mathbb{R}^n, z \\in \\mathbb{R}^n} \\max_{\\lambda \\in \\mathbb{R}^n} ~\n\\mathcal{L}(x, z, \\lambda) =\n\\max_{\\lambda \\in \\mathbb{R}^n} \\min_{x \\in \\mathbb{R}^n, z \\in \\mathbb{R}^n} &\n\\mathcal{L}(x, z, \\lambda) \\enspace.\n\\end{align*}\n Now, one can check that the dual problem is equivalent to\n\n\\max_{\\lambda \\in \\mathbb{R}^n} \\min_{x \\in \\mathbb{R}^n, z \\in \\mathbb{R}^n} \\left\\{ \\frac{1}{2} z^\\top W z + \\iota_{\\mathcal{K}}(x) + \\lambda^\\top y - \\lambda^\\top z - \\lambda^\\top x \\right\\} \\enspace.\n Separating the terms in x and z yields \n\\max_{\\lambda \\in \\mathbb{R}^n}\n\\left[\n    \\min_{x \\in \\mathbb{R}^n} \\left\\{ \\iota_{\\mathcal{K}}(x) - \\lambda^\\top x + \\lambda^\\top y \\right\\} + \\min_{z \\in \\mathbb{R}^n} \\left\\{ \\frac{1}{2} z^\\top W z - \\lambda^\\top z \\right\\}\n\\right]\n\\enspace.\n The second term is a simple quadratic problem with a unique solution given by z = W^{-1} \\lambda, hence this can be rewritten as \n\\left[\n- \\frac{1}{2} \\lambda^\\top W^{-1} \\lambda\n\\right]\n\\enspace.\n The first term is linked to the Fenchel transform of the indicator function of the cone \\mathcal{K}, and reads \n\\left[\n    - \\iota_{\\mathcal{K}^\\circ}(\\lambda) + \\lambda^\\top y = - \\iota_{\\mathcal{K}^\\circ}(\\lambda) + \\lambda^\\top W^{-1} W y\n\\right]\n\\enspace.\n\nHence the dual problem reads: \n\\begin{align*}\n\\max_{\\lambda \\in \\mathbb{R}^n} &\n\\left[\n    - \\iota_{\\mathcal{K}^\\circ}(\\lambda) + \\lambda^\\top y - \\frac{1}{2} \\lambda^\\top W^{-1} \\lambda\n\\right] \\enspace,\n\\end{align*}\n the later can be rewritten as\n\n\\begin{align*}\n\\max_{\\lambda \\in \\mathcal{K}^{\\circ}} &\n\\left[\n    - \\frac{1}{2} (\\lambda-W y)^\\top W^{-1} (\\lambda-W y)\n    + \\frac{1}{2} y^\\top W y\n\\right] \\enspace.\n\\end{align*}\n Eventually, using the formulation of \\mathcal{K}^{\\circ} given in Lemma 1, the dual problem can be rewritten as \n\\begin{align*}\n\\max_{\\alpha \\in \\mathbb{R}_+^{n-1}} &\n\\left[\n    - \\frac{1}{2} (A^\\top \\alpha-W y)^\\top W^{-1} (A^\\top \\alpha-W y)\n    + \\frac{1}{2} y^\\top W y\n\\right] \\enspace,\n\\end{align*}\n which is the targeted formulation."
+  },
+  {
+    "objectID": "blog/isotonic/index.html#karush-kuhn-tucker-kkt-conditions",
+    "href": "blog/isotonic/index.html#karush-kuhn-tucker-kkt-conditions",
+    "title": "Isotonic regression",
+    "section": "Karush-Kuhn-Tucker (KKT) conditions",
+    "text": "Karush-Kuhn-Tucker (KKT) conditions\nThe KKT conditions for the isotonic regression problem are given by\n\nTheorem 2 (KKT conditions for isotonic regression) Let x^{\\star} \\in \\mathcal{K} and \\alpha^{\\star} \\in \\mathbb{R}_+^{n-1} be primal and dual optimal solutions, then the KKT conditions for the isotonic regression problem reads \n\\begin{align*}\nW (x^{\\star}-y) + A^\\top \\alpha^{\\star} & = 0 & ~ (\\textbf{stationarity})\\\\\n\\langle \\alpha^{\\star} , A x^{\\star} \\rangle & = 0 & ~ (\\textbf{complementary slackness})\\\\\n\\alpha^{\\star} & \\geq 0 & ~ (\\textbf{dual feasibility})\\\\\nA x^{\\star} & \\leq 0 & ~  (\\textbf{primal feasibility})\n\\end{align*}\n\n\n\nProof. See (Boyd and Vandenberghe 2004, sec. 5.5.3)\n\nIn this convex setting (a primal strictly feasible point exists, say x=(1,\\dots,n)^\\top, so the Slater condition holds), the KKT conditions are necessary and sufficient for optimality.\nStationarity can be rephrased as:\n\n\\begin{align*}\nw_1 (x^{\\star}_1- y_1) + \\alpha^{\\star}_1 & = 0 \\\\\nw_i (x^{\\star}_i- y_i) + \\alpha^{\\star}_{i} - \\alpha^{\\star}_{i-1} & = 0, \\quad \\text{for all } i \\in \\llbracket 2, n-1 \\rrbracket\\\\\nw_n (x^{\\star}_n - y_n) - \\alpha^{\\star}_{n-1} & = 0 \\enspace.\n\\end{align*}\n With the convention \\alpha_0^{\\star} = \\alpha_n^{\\star} = 0, this reduces to \n\\begin{align*}\nw_i (x^{\\star}_i - y_i) + \\alpha^{\\star}_{i} - \\alpha^{\\star}_{i-1} & = 0, \\quad \\text{for all } i \\in \\llbracket 1, n \\rrbracket\\\\\n\\end{align*}\n\\tag{5}\nComplementarity slackness can also be rephrased: \n\\begin{align*}\n& \\alpha_i^{\\star} (A x^{\\star})_i  = 0 \\quad \\text{for all } i \\in \\llbracket 1, n-1 \\rrbracket \\\\\n\\iff & \\alpha_i^{\\star} (x^{\\star}_i-x^{\\star}_{i+1})  = 0 \\quad \\text{for all } i \\in \\llbracket 1, n-1 \\rrbracket \\enspace.\n\\end{align*}\n\nA simple consequence of the complementarity slackness is as follows: if \\alpha_i^{\\star} &gt; 0 for some i \\in \\llbracket 1, n-1 \\rrbracket, then x^{\\star}_i = x^{\\star}_{i+1}. Hence, the set of (n-1) constraints can be partitioned into contiguous blocks where x^\\star has constant value. Each block B can be written as B = \\llbracket \\underline{b}, \\overline{b} \\rrbracket for some \\underline{b} \\leq \\overline{b} and x^{\\star}_{\\underline{b}} = x^{\\star}_{\\underline{b}+1} = \\ldots = x^{\\star}_{\\overline{b}}. When needed we use the convention x^{\\star}_{0}=0 and x^{\\star}_{n+1}=n+1. and x^{\\star}_{n+1}=0. Then, note that by definition of a block, x^{\\star}_{\\underline{b}-1}&lt;x^{\\star}_{\\underline{b}} and x^{\\star}_{\\overline{b}}&lt;x^{\\star}_{\\overline{b}+1}, and by complementarity \\alpha^{\\star}_{\\underline{b}-1} = \\alpha^{\\star}_{\\overline{b}+1} = 0.\nSumming over the elements of B in Equation 5 yields (telescopic sum): \n\\begin{align*}\n\\sum_{i \\in B }w_i (x^{\\star}_i - y_i) +  \\alpha_{\\overline{b}+1}^{\\star} - \\alpha_{\\underline{b}-1}^{\\star} & = 0 \\enspace.\n\\end{align*}\n Hence, noticing that the x_i^{\\star} in block B are all equal, we have that:\n\n\\begin{align*}\nx^{\\star}_{\\underline{b}} = \\ldots = x^{\\star}_{\\overline{b}} = \\bar{y}_B  \\big(= \\bar{y}_{\\llbracket \\underline{b}, \\overline{b} \\rrbracket} \\big)\\enspace.\n\\end{align*}\n\nNow, from the values of x^{\\star}_{\\underline{b}} = \\ldots = x^{\\star}_{\\overline{b}} on the block B, one can infer (by recursion) the \\alpha_i’s for i\\in B.\n\nLemma 3 (Expression of the dual variables) Let B =\\llbracket \\underline{b}, \\overline{b} \\rrbracket be partitionning block for x^\\star (into constants pieces). For any i \\in B:\n\n\\begin{align*}\n\\alpha^{\\star}_{i} & = \\Big(\\sum_{j \\in B \\cap \\llbracket 1, i \\rrbracket} w_j \\Big)\\left(\\bar{y}_{B \\cap \\llbracket 1, i+1 \\rrbracket} - \\bar{y}_{B}\\right) \\enspace.\n\\end{align*}\n\n\n\nProof. The proof is a simple induction on the element of block B. For i=\\underline{b} then Equation 5 leads to \\alpha^{\\star}_{\\underline{b}} = w_{\\underline{b}} (\\bar{y}_{\\underline{b}} - x^{\\star}_{\\underline{b}}) = \\Big(\\sum_{j \\in B \\cap \\llbracket 1, i \\rrbracket} w_j \\Big)\\left(\\bar{y}_{B \\cap \\llbracket 1, i \\rrbracket} - \\bar{y}_{B} \\right). Now by induction assume the result for i\\in B, \\alpha^{\\star}_{i}  = \\Big(\\sum_{j \\in B \\cap \\llbracket 1, i \\rrbracket} w_j \\Big)\\left(\\bar{y}_{B \\cap \\llbracket 1, i \\rrbracket} - \\bar{y}_{B}\\right). Using Equation 5 for i+1 \\in B yields\n\n\\begin{align*}\n\\alpha^{\\star}_{i+1}\n& = w_{i+1} (y_{i+1} - x^{\\star}_{i+1}) + \\alpha^{\\star}_i\\\\\n& = w_{i+1} (y_{i+1} - \\overline{y}_{B}) + \\alpha^{\\star}_i\\\\\n& = w_{i+1} (y_{i+1} - \\overline{y}_{B}) + \\Big(\\sum_{j \\in B \\cap \\llbracket 1, i \\rrbracket} w_j  \\Big)\\left(\\bar{y}_{B \\cap \\llbracket 1, i \\rrbracket} -\\bar{y}_{B}\\right)\\\\\n& = \\Big(\\sum_{j \\in B \\cap \\llbracket 1, i + 1 \\rrbracket} w_j  \\Big)\\left(\\bar{y}_{B \\cap \\llbracket 1, i+1 \\rrbracket} - \\bar{y}_{B}\\right) \\enspace,\n\\end{align*}\n hence the result."
+  },
+  {
+    "objectID": "blog/isotonic/index.html#pseudo-code-and-python-implementation",
+    "href": "blog/isotonic/index.html#pseudo-code-and-python-implementation",
+    "title": "Isotonic regression",
+    "section": "Pseudo-code and Python implementation",
+    "text": "Pseudo-code and Python implementation\n\n\n\\begin{algorithm} \\caption{PAVA} \\begin{algorithmic} \\REQUIRE $y \\in\\mathbb{R}^n, w \\in \\mathbb{R}^n_{+}$ \\STATE $r \\leftarrow y$ \\STATE $W \\leftarrow y$ \\STATE $J = [\\{1\\},\\dots, \\{n\\}]$ \\COMMENT{lists of blocks} \\STATE $i=1$ (index of list start at 0 here) \\WHILE{$i&lt;n$} \\IF{$r_i &lt; r_{i-1}$} \\COMMENT{Find adjacent violators and merge groups} \\STATE $r_i \\leftarrow \\frac{W_i r_i + W_{i-1} r_{i-1}}{W_i + W_{i-1}}$ \\STATE $W_i \\leftarrow W_i + W_{i-1}$ \\STATE $J_i \\leftarrow J_i \\cup J_{i-1}$ \\STATE Remove $r_{i-1}$, $W_{i-1}$ and $J_{i-1}$ from the lists \\IF{$i &gt; 1$} \\STATE{$i\\leftarrow i-1$} \\ENDIF \\ELSE \\STATE{$i \\leftarrow i + 1$} \\ENDIF \\ENDWHILE \\FOR{$i=1$ to len($J$)} \\STATE{$r_{J_i} \\leftarrow \\bar{y}_{J_i} \\mathbf{1}_{J_i}$} \\COMMENT{Set the block to the average value} \\ENDFOR \\RETURN{$r, J$} \\end{algorithmic} \\end{algorithm}\n\n\nBelow you will find a simple version of the PAVA algorithm coded in Python. The sklearn version (in particular the _isotonic.pyx file, as available in October 2024, see source). is more efficient but a little less readable.\n\nimport numpy as np\n\ndef PAVA(y, w):\n    n = len(y)\n    r = y.copy()\n    ws = w.copy()\n    target = [[i] for i in range(n)]\n    i = 1\n    counter = 0\n    while i &lt; n:\n        if r[i] &lt; r[i - 1]:  # Find adjacent violators\n            # Pool the violators\n            r[i] = (ws[i] * r[i] + ws[i - 1] * r[i - 1]) / (ws[i] + ws[i - 1])\n            ws[i] += ws[i - 1]\n            target[i] = target[i-1] + target[i]\n            r.pop(i - 1)\n            ws.pop(i - 1)\n            target.pop(i - 1)\n            n -= 1\n            # Move back one step if possible\n            if i &gt; 1:\n                i -= 1\n        else:\n            i += 1\n            counter += 1\n\n    sol = np.zeros_like(y)\n    for i, block in enumerate(target):\n        sol[block] = r[i]\n    return sol, ws, target\n\nBelow is a version of the algorithm similar to the one implemented in sklearn (yet in pure Python here). Moreover, it can be made an inplace method (as in sklearn), which is more memory efficient.\n\ndef isotonic_regression(z, w):\n    y = z.copy()\n    n=len(y)\n    i = 0\n    target = np.arange(len(y))\n    targets = [target.copy()]\n    idx = [0]\n    while i &lt; n:\n        k = target[i] + 1\n        if k == n:\n            break\n        if y[i] &lt; y[k]:\n            # We are in an increasing subsequence.\n            i = k\n            targets.append(target.copy())\n            idx.append(k)\n            continue\n        sum_wy = w[i] * y[i]\n        sum_w = w[i]\n        while True:\n            # We are within a decreasing subsequence.\n            prev_y = y[k]\n            sum_wy += w[k] * y[k]\n            sum_w += w[k]\n            k = target[k] + 1\n            if k == n or prev_y &lt; y[k]:\n                targets.append(target.copy())\n                idx.append(k)\n\n                # Non-singleton decreasing subsequence is finished,\n                # update first entry.\n                y[i] = sum_wy / sum_w\n                w[i] = sum_w\n\n                target[i] = k - 1\n                target[k - 1] = i\n\n                if i &gt; 0:\n                    # Backtrack if we can.  This makes the algorithm\n                    # single-pass and ensures O(n) complexity.\n                    i = target[i - 1]\n                # Otherwise, restart from the same point.\n                break\n\n    # Reconstruct the solution.\n    i = 0\n    while i &lt; n:\n        k = target[i] + 1\n        y[i + 1 : k] = y[i]\n        i = k\n    return y, targets, idx"
+  },
+  {
+    "objectID": "blog/isotonic/index.html#convergence",
+    "href": "blog/isotonic/index.html#convergence",
+    "title": "Isotonic regression",
+    "section": "Convergence",
+    "text": "Convergence\n\nTheorem 3 (Convergence of the PAVA algorithm) The PAVA algorithm converges in a finite number of iterations and output the primal solution of the isotonic regression problem.\n\n\nProof. To show the convergence we will create a dual variable \\alpha, show that it is dual feasible, and that at the end of the algorithm it satisfies KKT along with the output of the PAVA algorithm.\nFor that let us first prove the following result:\nFact 1. Let B \\in J be a block at some stage of the algorithm. Then, \\forall i \\in B, \\overline{y}_{B \\cap \\llbracket 1, i \\rrbracket} \\geq \\overline{y}_{B} \\enspace.\n\nTo show this result, we will use induction and show that the merging process does maintain this condition. First, at initialization, the condition is true as the blocks have all size 1. Now, assume that the condition is true, and check what happen when we merge two consecutive groups J_i and J_{i-1} into B=J_{i-1} \\cup J_{i}. First the condition is true for J_i and J_{i-1}, so \\overline{y}_{J_i \\cap \\llbracket 1, k \\rrbracket} \\geq \\overline{y}_{J_i} and \\overline{y}_{J_{i-1} \\cap \\llbracket 1, k' \\rrbracket} \\geq \\overline{y}_{J_{i-1}} for any k \\in J_i and k' \\in J_{i-1}. Then, the test r_i &lt; r_{i-1} is equivalent to \\overline{y}_{J_i} &lt; \\overline{y}_{J_{i-1}}. So for any k \\in J_{i-1}, we have \\overline{y}_{J_i \\cap \\llbracket k, n \\rrbracket} \\geq \\overline{y}_{J_i} using the induction hypothesis. For k'\\in J_{i}, \\overline{y}_{B \\cap \\llbracket 1, k \\rrbracket} = \\overline{y}_{J_{i-1} \\cap \\llbracket 1, k \\rrbracket} \\geq \\overline{y}_{J_{i-1}} \\geq \\overline{y}_{B} (where the last inequality is due to the test r_i &lt; r_{i-1}). For the case k' \\in J_i, we have\n\n\\begin{align*}\n\\overline{y}_{B \\cap \\llbracket 1, k' \\rrbracket}\n& = \\overline{y}_{ J_{i-1} \\cup (J_{i} \\cap \\llbracket 1, k' \\rrbracket)} \\\\\n& \\geq \\frac{\\Big(\\sum_{\\ell \\in J_{i-1}} w_{\\ell} \\Big) \\cdot \\overline{y}_{J_{i-1}} + \\Big(\\sum_{\\ell \\in J_{i} \\cap \\llbracket 1, k' \\rrbracket} w_{\\ell} \\Big) \\cdot \\overline{y}_{J_{i} \\cap \\llbracket 1, k' \\rrbracket}}{\\sum_{J_{i-1}} w_i + \\sum_{J_{i} \\cap \\llbracket 1, k' \\rrbracket} w_i}\\\\\n& \\geq \\frac{\\Big(\\sum_{\\ell \\in J_{i-1}} w_{\\ell} \\Big) \\cdot \\overline{y}_{J_{i-1}} + \\Big(\\sum_{\\ell \\in J_{i} \\cap \\llbracket 1, k' \\rrbracket} w_{\\ell} \\Big) \\cdot \\overline{y}_{J_{i}}}{\\sum_{J_{i-1}} w_i + \\sum_{J_{i} \\cap \\llbracket 1, k' \\rrbracket} w_i} \\quad (\\text{induction})\\\\\n& \\geq \\frac{\\Big(\\sum_{\\ell \\in J_{i-1}} w_{\\ell} \\Big) \\cdot \\overline{y}_{J_{i-1}} + \\Big(\\sum_{\\ell \\in J_{i} \\cap \\llbracket 1, k' \\rrbracket} w_{\\ell} \\Big) \\cdot \\overline{y}_{J_{i}}}{\\sum_{J_{i-1}} w_i + \\sum_{J_{i} \\cap \\llbracket 1, k' \\rrbracket} w_i} \\quad (\\text{PAVA})\\\\\n\\end{align*}\n Now, remember that \\overline{y}_{B} = \\frac{\\Big(\\sum_{\\ell \\in J_{i-1}} w_{\\ell} \\Big) \\cdot \\overline{y}_{J_{i-1}} + \\Big(\\sum_{\\ell \\in J_{i} } w_{\\ell} \\Big) \\cdot \\overline{y}_{J_{i}}}{\\sum_{J_{i-1}} w_i + \\sum_{J_{i}} w_i} and that \\overline{y}_{J_{i-1}} \\geq  \\overline{y}_{B} \\geq \\overline{y}_{J_{i}} (since \\overline{y}_{B} is a convex combination of \\overline{y}_{J_{i-1}} and \\overline{y}_{J_i}), so the last inequality is true. One can check that the weight of J_{i} is larger in the definition of \\overline{y}_{B} than in the last inequality above, and so among the two convex combinations, the larger is the former. Hence, the fact is proved by induction.\nFact 2. If you update \\alpha recursively, starting from \\alpha = \\mathbf{0}_{n-1} and for if for each updated block B \\in J you update \\alpha (as in Lemma 3) by\n\n\\begin{align*}\n\\forall i \\in B, \\alpha_i & = \\Big(\\sum_{j \\in B \\cap \\llbracket 1, i \\rrbracket} w_j \\Big)\\left( \\bar{y}_{B \\cap \\llbracket 1, i \\rrbracket} - \\bar{y}_{B}\\right) \\enspace,\n\\end{align*}\n then \\alpha is dual feasible for all steps of the algorithm\nThe proof is a direct consequence of Fact 1 and the fact that the weights w_i are non-negative.\nFact 3. \\forall i \\in B, \\alpha_i=\\alpha_{i-1} +w_i(x_i - y_i) (where we assume that x_i = \\overline{y}_B), which means that \\alpha and x hence created satsfies.\nAgain this result is simple to prove, by following the exact same line encountered in the proof of Lemma 3.\nFact 4. When you exit the while loop, the output of the PAVA algorithm is a primal feasible point.\nIndeed, the only way to exist is to have all blocks mean values ordered. Hence, when the algorithm stops the primal point create (after the block averaging step) is primal feasible.\nLeveraging Fact 1. to 4. ensures that the KKT conditions are satisfied with the primal and dual points created. Hence, at the end of the algorithm, and the optimal solution is found.\n\nDuality Gap\nGiven a primal feasible point x \\in \\mathcal{K} and a dual feasible point \\alpha \\in \\mathbb{R}_+^{n-1}, we can obtain upper and lower bounds on the optimal value of the primal problem .\nNote that at optimality W x^\\star = W y - A^\\top \\alpha^\\star Hence, using a value of x at some stage of the algorithm (corresponding to a feasible \\alpha), the dual reads \\frac{1}{2} y^\\top W y - \\frac{1}{2} x^\\top W x. For creating a primal feasible point, one can simply take the ordered version of the output, making the last element constant to create a non-decreasing vector. The later is coded in Python with the following function:\n\ndef replace_after_first_non_increasing(x, w=w):\n    n = len(x)\n    for i in range(1, n):\n        if x[i] &lt; x[i - 1]:\n            mean_value = np.sum(x[i:] * w[i:]) / np.sum(w[i:])\n            x[i:] = mean_value\n            break\n    return x\n\nAs can be seen in the preliminary animation, the primal and dual objectives converge to the same value, which is the optimal value of the primal problem."
+  },
+  {
+    "objectID": "blog/isotonic/index.html#duality-gap",
+    "href": "blog/isotonic/index.html#duality-gap",
+    "title": "Isotonic regression",
+    "section": "Duality Gap",
+    "text": "Duality Gap\nGiven a primal feasible point x \\in \\mathcal{K} and a dual feasible point \\alpha \\in \\mathbb{R}_+^{n-1}, we can obtain upper and lower bounds on the optimal value of the primal problem .\nNote that at optimality W x^\\star = W y - A^\\top \\alpha^\\star Hence, using a value of x at some stage of the algorithm (corresponding to a feasible \\alpha), the dual reads \\frac{1}{2} y^\\top W y - \\frac{1}{2} x^\\top W x. For creating a primal feasible point, one can simply take the ordered version of the output, making the last element constant to create a non-decreasing vector. The later is coded in Python with the following function:\n\ndef replace_after_first_non_increasing(x, w=w):\n    n = len(x)\n    for i in range(1, n):\n        if x[i] &lt; x[i - 1]:\n            mean_value = np.sum(x[i:] * w[i:]) / np.sum(w[i:])\n            x[i:] = mean_value\n            break\n    return x\n\nAs can be seen in the preliminary animation, the primal and dual objectives converge to the same value, which is the optimal value of the primal problem."
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Donadas Brutas",
+    "section": "",
+    "text": "Welcome to my blog, Donadas Brutas. Any kind of feedback is welcome, so feel free to reach out to me. Thanks for your interest and time."
+  },
+  {
+    "objectID": "blog/index.html#section",
+    "href": "blog/index.html#section",
+    "title": "Donadas Brutas",
+    "section": "2024",
+    "text": "2024\n\n\n    \n    \n        \n            November 10, 2024\n        \n        \n            Isotonic regression\n            \n            \n                \n                \n                    Quadratic programming\n                \n                \n                \n                    Calibration\n                \n                \n                \n                    PAVA\n                \n                \n                \n                    Optimization\n                \n                \n            \n            \n            Iso, Iso, Iso ... Tonic! Or how to fit a non-decreasing signal.\n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            September 5, 2024\n        \n        \n            $\\LaTeX$ for scientific writing?\n            \n            \n                \n                \n                    Latex\n                \n                \n                \n                    writing\n                \n                \n            \n            \n            Some guidance on why, when, and **when not** using it.\n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            September 3, 2024\n        \n        \n            Soft-max and Soft-argmax\n            \n            \n                \n                \n                    statistics\n                \n                \n                \n                    optimization\n                \n                \n                \n                    machine learning\n                \n                \n            \n            \n            Back to exponential weights and log-sum-exp functions\n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            September 2, 2024\n        \n        \n            Public civil servant salaries and inflation\n            \n            \n                \n                \n                    news\n                \n                \n                \n                    code\n                \n                \n                \n                    data science\n                \n                \n                \n                    economics\n                \n                \n            \n            \n            Bye bye public civil servants\n        \n        \n        \n            \n        \n        \n    \n    \n    \n        \n            September 1, 2024\n        \n        \n            Welcome to Donadas Brutas!\n            \n            \n                \n                \n                    news\n                \n                \n            \n            \n            Let's start blogging here, we'll see how it goes...\n        \n        \n        \n            \n        \n        \n    \n    \n\n\nNo matching items\n\n\n\n\nThe blog post listing is based on the website source of Marvin Schmitt, itself inspired by Andrew Heiss, who has put together an incredible listing template under CC-BY-SA 4.0 license. Thanks to both!"
+  },
+  {
+    "objectID": "Courses/index.html",
+    "href": "Courses/index.html",
+    "title": "Courses",
+    "section": "",
+    "text": "This is a master level course on Software development for data science, using Python.  Details can be found here: HAX712X.  Course language: 🇬🇧"
+  },
+  {
+    "objectID": "Courses/index.html#hax712x---software-development-for-data-science-2020-2024",
+    "href": "Courses/index.html#hax712x---software-development-for-data-science-2020-2024",
+    "title": "Courses",
+    "section": "",
+    "text": "This is a master level course on Software development for data science, using Python.  Details can be found here: HAX712X.  Course language: 🇬🇧"
+  },
+  {
+    "objectID": "Courses/index.html#hax603x---stochastic-modeling-2023-2024",
+    "href": "Courses/index.html#hax603x---stochastic-modeling-2023-2024",
+    "title": "Courses",
+    "section": "HAX603X - Stochastic Modeling (2023-2024)",
+    "text": "HAX603X - Stochastic Modeling (2023-2024)\n\nThis is an undergraduate course on stochastic modeling and Monte Carlo methods, with exercises in Python.  Details can be found here: HAX603X - Stochastic Modeling.  Course language: 🇫🇷"
+  },
+  {
+    "objectID": "Courses/index.html#hax606x---convex-optimization-2020-2023",
+    "href": "Courses/index.html#hax606x---convex-optimization-2020-2023",
+    "title": "Courses",
+    "section": "HAX606X - Convex optimization (2020-2023)",
+    "text": "HAX606X - Convex optimization (2020-2023)\n\nThis is an undergraduate course on convex optimization Exercises are proposed in Python.  Details can be found here: HAX606X - Convex optimization.  Course language: 🇫🇷"
+  },
+  {
+    "objectID": "Courses/index.html#hlma310---scientific-python-2018-2020",
+    "href": "Courses/index.html#hlma310---scientific-python-2018-2020",
+    "title": "Courses",
+    "section": "HLMA310 - Scientific Python (2018-2020)",
+    "text": "HLMA310 - Scientific Python (2018-2020)\n This is an undergraduate course introducing Python for scientific computing.  Details can be found here: HLMA310 - Scientific Python.  Course language: 🇫🇷"
+  },
+  {
+    "objectID": "Courses/index.html#stat593---robust-statistics-2018-2019",
+    "href": "Courses/index.html#stat593---robust-statistics-2018-2019",
+    "title": "Courses",
+    "section": "STAT593 - Robust statistics (2018-2019)",
+    "text": "STAT593 - Robust statistics (2018-2019)\n\n This is a grade course on robust statistics and optimization.  Details can be found here: STAT593 - Robust statistics.  Course language: 🇬🇧"
+  },
+  {
+    "objectID": "Courses/index.html#sd204---linear-models-2016-2018",
+    "href": "Courses/index.html#sd204---linear-models-2016-2018",
+    "title": "Courses",
+    "section": "SD204 - Linear Models (2016-2018)",
+    "text": "SD204 - Linear Models (2016-2018)\n \nThis is an undergraduate course on linear models.  Details can be found here: SD204 - Linear Models.  Course language: 🇬🇧"
+  },
+  {
+    "objectID": "Courses/index.html#sd3---descriptive-statistics-2010-2011",
+    "href": "Courses/index.html#sd3---descriptive-statistics-2010-2011",
+    "title": "Courses",
+    "section": "SD3 - Descriptive Statistics (2010-2011)",
+    "text": "SD3 - Descriptive Statistics (2010-2011)\n\n This is an undergraduate course on descriptive statistics.  Details can be found here: SD3 - Descriptive Statistics.  Course language: 🇫🇷"
+  },
+  {
+    "objectID": "Courses/index.html#mdi720---linear-models-2013-2018",
+    "href": "Courses/index.html#mdi720---linear-models-2013-2018",
+    "title": "Courses",
+    "section": "MDI720 - Linear Models (2013-2018)",
+    "text": "MDI720 - Linear Models (2013-2018)\n\n This is an undergraduate course introducing linear models.  Details can be found here MDI720 - Linear Models.  Course language: 🇫🇷"
+  },
+  {
+    "objectID": "Courses/index.html#m53010---econometrics-2009-2010",
+    "href": "Courses/index.html#m53010---econometrics-2009-2010",
+    "title": "Courses",
+    "section": "M53010 - Econometrics (2009-2010)",
+    "text": "M53010 - Econometrics (2009-2010)\n\n\nThis course is mostly about linear models in econometrics.  Details can be found here: M53010 - Econometrics.  Course language: 🇫🇷"
+  },
+  {
+    "objectID": "Courses/index.html#m2mo---statistical-learning-2013-2018",
+    "href": "Courses/index.html#m2mo---statistical-learning-2013-2018",
+    "title": "Courses",
+    "section": "M2MO - Statistical Learning (2013-2018)",
+    "text": "M2MO - Statistical Learning (2013-2018)\n\n\nThis contains Master 2 exercices on statistical learning.  Details can be found here: M2MO - Machine Learning.  Course language: 🇫🇷"
+  },
+  {
+    "objectID": "Courses/index.html#hmma308---statistical-machine-learning-2018-2021",
+    "href": "Courses/index.html#hmma308---statistical-machine-learning-2018-2021",
+    "title": "Courses",
+    "section": "HMMA308 - Statistical Machine Learning (2018-2021)",
+    "text": "HMMA308 - Statistical Machine Learning (2018-2021)\n\n\nThis course is mostly about supervised techniques in Machine Learning.  Details can be found here HMMA308 - Statistical Machine Learning.  Course language: 🇫🇷"
+  },
+  {
+    "objectID": "Courses/index.html#hmma307---advanced-linear-models-2019-2021",
+    "href": "Courses/index.html#hmma307---advanced-linear-models-2019-2021",
+    "title": "Courses",
+    "section": "HMMA307 - Advanced Linear Models (2019-2021)",
+    "text": "HMMA307 - Advanced Linear Models (2019-2021)\n This is an undergraduate course introducing advanced linear models (ANOVA, Mixed-effects models, etc.).  Details can be found here: HMMA307 - Advanced Linear Models.  Course language: 🇫🇷 and 🇬🇧"
+  },
+  {
+    "objectID": "Courses/index.html#hmma238---scientific-software-development-2018-2019",
+    "href": "Courses/index.html#hmma238---scientific-software-development-2018-2019",
+    "title": "Courses",
+    "section": "HMMA238 - Scientific Software Development (2018-2019)",
+    "text": "HMMA238 - Scientific Software Development (2018-2019)\n This is a master level course introducing scientific computing and modern software practices.  Details can be found here: HMMA238 - Scientific Software Development.  Course language: 🇬🇧"
+  },
+  {
+    "objectID": "Courses/index.html#hmma237---advanced-time-series-2018-2019",
+    "href": "Courses/index.html#hmma237---advanced-time-series-2018-2019",
+    "title": "Courses",
+    "section": "HMMA237 - Advanced time series (2018-2019)",
+    "text": "HMMA237 - Advanced time series (2018-2019)\n This is an undergraduate course introducing advanced time series analysis.  Details can be found here: HMMA237 - Advanced time series.  Course language: 🇫🇷 and 🇬🇧"
+  },
+  {
+    "objectID": "Courses/index.html#hlma408---data-science-for-ecology-2018---2021",
+    "href": "Courses/index.html#hlma408---data-science-for-ecology-2018---2021",
+    "title": "Courses",
+    "section": "HLMA408 - Data science for ecology (2018 - 2021)",
+    "text": "HLMA408 - Data science for ecology (2018 - 2021)\n This is an undergraduate course introducing statistics and data visualisation.  Details can be found here: HLMA408 - Data science for ecology.  Course language: 🇫🇷"
+  },
+  {
+    "objectID": "Courses/index.html#cr12---machine-learning-2013-2015",
+    "href": "Courses/index.html#cr12---machine-learning-2013-2015",
+    "title": "Courses",
+    "section": "CR12 - Machine Learning (2013-2015)",
+    "text": "CR12 - Machine Learning (2013-2015)\n\nThis is a Master 2 course on Machine learning (with Z. Harchaoui, J. Mairal and L. Jacob).\nDetails can be found here:\n\nCR12 - Machine Learning (2014-2015)\nCR12 - Machine Learning (2013-2014).\n\nCourse language: 🇬🇧"
+  },
+  {
+    "objectID": "Courses/SD3.html",
+    "href": "Courses/SD3.html",
+    "title": "SD3 - Statistiques Descriptives (2010-2011)",
+    "section": "",
+    "text": "This is an undergraduate course (in French) on descriptive statistics."
+  },
+  {
+    "objectID": "Courses/SD3.html#courses",
+    "href": "Courses/SD3.html#courses",
+    "title": "SD3 - Statistiques Descriptives (2010-2011)",
+    "section": "Courses",
+    "text": "Courses\nLes documents utilisés pour ces TDs sont aussi disponibles sur le site de Stéphane Boucheron. Il est aussi possible de consulter le site du cours HMLA310 pour avoir plus d’informations. En particulier le polycopié de ce cours pourra servir également (avec l’avantage d’être en Python)."
+  },
+  {
+    "objectID": "Courses/SD3.html#tps",
+    "href": "Courses/SD3.html#tps",
+    "title": "SD3 - Statistiques Descriptives (2010-2011)",
+    "section": "TPs",
+    "text": "TPs\n\nTP1: Reprise en main de R\nTP2: Data Frame, Matrices et tableaux\nTP3: Quotients de mortalité et espérance de vie ; Données: tables-mortalite-france.csv, departements.csv, regions.csv, semmelweis.csv, table-mortalite-france-riche.csv. Lien concernant le tp sur la lycanthropie: http://www.pseudo-sciences.org/spip.php?article60\nTP4: Corrélations\nTP5: Algèbre linéaire"
+  },
+  {
+    "objectID": "Courses/SD3.html#resources",
+    "href": "Courses/SD3.html#resources",
+    "title": "SD3 - Statistiques Descriptives (2010-2011)",
+    "section": "Resources:",
+    "text": "Resources:\n\nJake VanderPlas book on datascience and associated videos\nBonnes pratiques par Christophe Genolini.\nR pour les sociologues et assimilés par Julien Barnier.\nR pour les débutants par Emmanuel Paradis.\nVisualisation: dataviz"
+  },
+  {
+    "objectID": "Courses/MDI720.html#cours-slides-et-notebooks",
+    "href": "Courses/MDI720.html#cours-slides-et-notebooks",
+    "title": "MDI720 - Modèles linéaires (2012-2018)",
+    "section": "Cours: slides et notebooks",
+    "text": "Cours: slides et notebooks\n\nIntroduction: IntroStatistics_fr.pdf; IntroStatistics_fr.ipynb, plot_species_kde.py\nMoindres carrés (1D): LeastSquare_1D_fr.pdf; LeastSquare_1D_fr.ipynb\nMoindres carrés (Définition): LeastSquare_Def_fr.pdf; LeastSquare_Def_fr.ipynb\nMoindres carrés (Propriétés): LeastSquare_Prop_fr.pdf;\nSVD: SVD_fr.pdf; SVD.ipynb\nPCA: PCA_fr.pdf; PCA.ipynb\nIntroIC: IntroIC_fr.pdf; IntroIC.ipynb\nBootstrap: Bootstrap_fr.pdf\nIntroTests: IntroTests_fr.pdf; forward_variable_selection.ipynb\nRidge: Ridge_fr.pdf; Ridge_fr.ipynb\nLasso: Lasso_fr.pdf; Lasso_fr.ipynb; functions_Lasso.py; prox_collection.py\nDescente par coordonnées: CD_fr.pdf; CD_fr.ipynb\nGLM: GLM_fr.pdf; GLM_fr.ipynb\nGénéralisation: Generalization_fr.pdf; Generalization_fr.ipynb\nCategoricalVariables: CategoricalVariables.ipynb"
+  },
+  {
+    "objectID": "Courses/MDI720.html#quiz",
+    "href": "Courses/MDI720.html#quiz",
+    "title": "MDI720 - Modèles linéaires (2012-2018)",
+    "section": "Quiz",
+    "text": "Quiz\ntest_fr.html"
+  },
+  {
+    "objectID": "Courses/MDI720.html#tps",
+    "href": "Courses/MDI720.html#tps",
+    "title": "MDI720 - Modèles linéaires (2012-2018)",
+    "section": "TPs",
+    "text": "TPs\n\nTP_intro_python_fr.pdf; TP_Introduction_corr_fr.ipynb\nTP_intro_linear_model_fr.pdf; TP_intro_linear_model_corr_fr.ipynb\nTP_boostrap_n_greedy.pdf; TP_boostrap_n_greedy_corr_fr.ipynb"
+  },
+  {
+    "objectID": "Courses/MDI720.html#examen",
+    "href": "Courses/MDI720.html#examen",
+    "title": "MDI720 - Modèles linéaires (2012-2018)",
+    "section": "Examen:",
+    "text": "Examen:\nExamen-2017-2018.pdf"
+  },
+  {
+    "objectID": "Courses/MDI720.html#more-resources",
+    "href": "Courses/MDI720.html#more-resources",
+    "title": "MDI720 - Modèles linéaires (2012-2018)",
+    "section": "More resources",
+    "text": "More resources\n\nJake VanderPlas book on datascience and associated videos\nA. Tsybakov’s introduction to statistics"
+  },
+  {
+    "objectID": "Courses/M2MO.html",
+    "href": "Courses/M2MO.html",
+    "title": "M2MO - Statistical Learning (2013-2018)",
+    "section": "",
+    "text": "This part contains Master 2 exercises on statistical learning."
+  },
+  {
+    "objectID": "Courses/M2MO.html#slides-and-courses",
+    "href": "Courses/M2MO.html#slides-and-courses",
+    "title": "M2MO - Statistical Learning (2013-2018)",
+    "section": "Slides and courses",
+    "text": "Slides and courses\nDocuments for this course might be found on Stéphan Clémençon’s webpage."
+  },
+  {
+    "objectID": "Courses/M2MO.html#tutorial-classes",
+    "href": "Courses/M2MO.html#tutorial-classes",
+    "title": "M2MO - Statistical Learning (2013-2018)",
+    "section": "Tutorial classes:",
+    "text": "Tutorial classes:\n\nlearning_td1.pdf\nlearning_td2.pdf\nlearning_td3.pdf"
+  },
+  {
+    "objectID": "Courses/M2MO.html#ressources-en-ligne",
+    "href": "Courses/M2MO.html#ressources-en-ligne",
+    "title": "M2MO - Statistical Learning (2013-2018)",
+    "section": "Ressources en ligne:",
+    "text": "Ressources en ligne:\nMaxim Raginsky’s course\nArnak Dalalyan’s course\nShai Shalev-Shwartz’s book"
+  },
+  {
+    "objectID": "Courses/HMMA307.html",
+    "href": "Courses/HMMA307.html",
+    "title": "HMMA307 - Modèles Linéaires Avancés (2019-2020)",
+    "section": "",
+    "text": "This course is in French, and deals with advanced linear models (Anova, Mixed-effects models, etc.)."
+  },
+  {
+    "objectID": "Courses/HMMA307.html#syllabus",
+    "href": "Courses/HMMA307.html#syllabus",
+    "title": "HMMA307 - Modèles Linéaires Avancés (2019-2020)",
+    "section": "Syllabus",
+    "text": "Syllabus\nsyllabus_hmma307.pdf"
+  },
+  {
+    "objectID": "Courses/HMMA307.html#polycopié-algèbre-linéaire-pour-les-statistiques",
+    "href": "Courses/HMMA307.html#polycopié-algèbre-linéaire-pour-les-statistiques",
+    "title": "HMMA307 - Modèles Linéaires Avancés (2019-2020)",
+    "section": "Polycopié: “Algèbre linéaire pour les statistiques”",
+    "text": "Polycopié: “Algèbre linéaire pour les statistiques”\nLinAlg4Stat.pdf (en cours de rédaction)"
+  },
+  {
+    "objectID": "Courses/HMMA307.html#notes-de-cours",
+    "href": "Courses/HMMA307.html#notes-de-cours",
+    "title": "HMMA307 - Modèles Linéaires Avancés (2019-2020)",
+    "section": "Notes de cours",
+    "text": "Notes de cours\n\nIntroduction.pdf, CM1.pdf\nOptimisation.pdf, CM2.pdf\nAnova.pdf, CM3.pdf\nAnova2F.pdf, CM4.pdf\nAnova_aleatoire.pdf, CM5.pdf\nModelesLineairesMixtes.pdf, CM6.pdf\nRegressionQuantile.pdf, CM7.pdf"
+  },
+  {
+    "objectID": "Courses/HMMA307.html#travaux-dirigés",
+    "href": "Courses/HMMA307.html#travaux-dirigés",
+    "title": "HMMA307 - Modèles Linéaires Avancés (2019-2020)",
+    "section": "Travaux dirigés",
+    "text": "Travaux dirigés\n\nTD1-SVD.pdf\nTD2-KKT.pdf\nTD3-EffetAleatoire.pdf\nTD4-ModelesLinMixtes.pdf"
+  },
+  {
+    "objectID": "Courses/HMMA307.html#more-resources",
+    "href": "Courses/HMMA307.html#more-resources",
+    "title": "HMMA307 - Modèles Linéaires Avancés (2019-2020)",
+    "section": "More resources",
+    "text": "More resources\n\nChallenge visualisation, Totem Albert 1er : https://twitter.com/TotemsMtp/status/1310516278256435200\nSimpson’s paradox: https://en.wikipedia.org/wiki/Simpson%27s_paradox\n\nCodes du cours pour les eleves:\n\nOptimisation.ipynb, Optimisation.html\nANOVA.ipynb, ANOVA.html\nAnova2F.ipynb, Anova2F.html\nAnova_aleatoire.ipynb, Anova_aleatoire.html\nRegressionQuantile.ipynb, RegressionQuantile.html, data.csv\nModelesLineairesMixtes.ipynb, ModelesLineairesMixtes.html, data.csv,"
+  },
+  {
+    "objectID": "Courses/HMMA237.html",
+    "href": "Courses/HMMA237.html",
+    "title": "HMMA237 - Advanced time series (2018-2019)",
+    "section": "",
+    "text": "This is an undergraduate course (in French!) introducing advanced"
+  },
+  {
+    "objectID": "Courses/HMMA237.html#syllabus",
+    "href": "Courses/HMMA237.html#syllabus",
+    "title": "HMMA237 - Advanced time series (2018-2019)",
+    "section": "Syllabus:",
+    "text": "Syllabus:\nversion 2018-2019"
+  },
+  {
+    "objectID": "Courses/HMMA237.html#notes-de-cours",
+    "href": "Courses/HMMA237.html#notes-de-cours",
+    "title": "HMMA237 - Advanced time series (2018-2019)",
+    "section": "Notes de cours:",
+    "text": "Notes de cours:\n\nIntroduction.pdf\nRidge.pdf\nFiltrage.pdf\nKalman.pdf\nProgrammationDynamique.pdf\nDetectionRuptures.pdf\nSplines.pdf"
+  },
+  {
+    "objectID": "Courses/HMMA237.html#travaux-dirigés",
+    "href": "Courses/HMMA237.html#travaux-dirigés",
+    "title": "HMMA237 - Advanced time series (2018-2019)",
+    "section": "Travaux dirigés:",
+    "text": "Travaux dirigés:\n\nTD1-Woodbury.pdf\nTD2-Kalman.pdf\nTD3-ProgrammationDynamique.pdf"
+  },
+  {
+    "objectID": "Courses/HMMA237.html#exemple-de-projet-latex",
+    "href": "Courses/HMMA237.html#exemple-de-projet-latex",
+    "title": "HMMA237 - Advanced time series (2018-2019)",
+    "section": "Exemple de projet LaTeX:",
+    "text": "Exemple de projet LaTeX:\nFichier pour la partie LaTeX du cours: latex-homework.zip"
+  },
+  {
+    "objectID": "Courses/HMMA237.html#plus-dinformation-et-quelques-sources-de-données",
+    "href": "Courses/HMMA237.html#plus-dinformation-et-quelques-sources-de-données",
+    "title": "HMMA237 - Advanced time series (2018-2019)",
+    "section": "Plus d’information et quelques sources de données:",
+    "text": "Plus d’information et quelques sources de données:\n\nForecasting: Principles and Practice, by Rob J Hyndman and George Athanasopoulos"
+  },
+  {
+    "objectID": "Courses/HLMA310.html",
+    "href": "Courses/HLMA310.html",
+    "title": "HLMA310 - Logiciels scientifiques (2018-2020)",
+    "section": "",
+    "text": "This is an undergraduate course (in French!) introducing Python for scientific computing.\nWe will address some of the element in the Python scientific ecosystem:"
+  },
+  {
+    "objectID": "Courses/HLMA310.html#syllabus",
+    "href": "Courses/HLMA310.html#syllabus",
+    "title": "HLMA310 - Logiciels scientifiques (2018-2020)",
+    "section": "Syllabus",
+    "text": "Syllabus\nsyllabus_HLMA310.pdf"
+  },
+  {
+    "objectID": "Courses/HLMA310.html#course-note",
+    "href": "Courses/HLMA310.html#course-note",
+    "title": "HLMA310 - Logiciels scientifiques (2018-2020)",
+    "section": "Course note",
+    "text": "Course note\nIntroduction à Python, version 2020-2021 (under construction)"
+  },
+  {
+    "objectID": "Courses/HLMA310.html#cours-slides-et-notebooks",
+    "href": "Courses/HLMA310.html#cours-slides-et-notebooks",
+    "title": "HLMA310 - Logiciels scientifiques (2018-2020)",
+    "section": "Cours: slides et notebooks",
+    "text": "Cours: slides et notebooks\n\nIntroPython_slides.pdf, prise_en_main_notebook.ipynb, prise_en_main_notebook.html\nnumpy_slides.pdf, numpy.ipynb, numpy.html\nmatplotlib_slides.pdf, matplotlib.ipynb, matplotlib.html\npandas_slides.pdf, pandas.ipynb, pandas.html, belgianmunicipalities.ipynb, belgianmunicipalities.html"
+  },
+  {
+    "objectID": "Courses/HLMA310.html#travaux-pratiques",
+    "href": "Courses/HLMA310.html#travaux-pratiques",
+    "title": "HLMA310 - Logiciels scientifiques (2018-2020)",
+    "section": "Travaux pratiques",
+    "text": "Travaux pratiques\n\nTP1-Introduction.pdf, TP1-Introduction-skeleton.ipynb,TP1-Introduction.html, TP1-Introduction.ipynb,\nTP2-boucles_functions.pdf, TP2-boucles_functions-skeleton.ipynb, TP2-boucles_functions.ipynb, TP2-boucles_functions.html\nTP3-numpy_matplolib.pdf, TP3-numpy_matplolib-skeleton.ipynb, TP3-numpy_matplolib-skeleton.html, TP3-numpy_matplolib.ipynb, TP3-numpy_matplolib.html\nTP4-descente_gradient.pdf, TP4-descente_gradient-skeleton.ipynb,\nTP5-pandas.pdf, TP5-pandas.ipynb\nTP_note_2020.pdf"
+  },
+  {
+    "objectID": "Courses/HLMA310.html#more-resources",
+    "href": "Courses/HLMA310.html#more-resources",
+    "title": "HLMA310 - Logiciels scientifiques (2018-2020)",
+    "section": "More resources",
+    "text": "More resources\n\nJake VanderPlas book on Datascience and associated videos\nScipy lecture notes\nDonnés de pollution sur le site data.gouv.fr\nsklearn: example of git https://github.com/scikit-learn/scikit-learn and example of diff https://github.com/scikit-learn/scikit-learn/commit/19eb458567fec216584015c1156d6451d949f2de"
+  },
+  {
+    "objectID": "Courses/HAX603X.html",
+    "href": "Courses/HAX603X.html",
+    "title": "HAX603X - Stochastic modeling (2023 - 2024)",
+    "section": "",
+    "text": "This is an undergraduate course (in French!) introducing standard techniques from stochastic modeling. Numerical elements are provided in Python."
+  },
+  {
+    "objectID": "Courses/HAX603X.html#course-content",
+    "href": "Courses/HAX603X.html#course-content",
+    "title": "HAX603X - Stochastic modeling (2023 - 2024)",
+    "section": "Course content",
+    "text": "Course content\nSee GitHub website: HAX603X - Modélisation Stochastique for the course content.\n\nGenerating randomness\n\nPseudo-random number generators\nDigital illustrations and visualization in Python (law of large numbers, central limit theorem)\nSimulations of random variables (inverse method, rejection method, specific cases, etc.)\n\nMonte Carlo Method\n\nMonte Carlo method for the approximate calculation of an integral\nVariance reduction: antithetic variables, control variables, preferential sampling.\n\nSupplementary topics\n\nGaussian vectors and their connection with common laws in inferential statistics (Student’s t, chi-square)\nConstruction of confidence intervals.\nSimple random walk, etc."
+  },
+  {
+    "objectID": "Courses/HAX603X.html#additional-resources",
+    "href": "Courses/HAX603X.html#additional-resources",
+    "title": "HAX603X - Stochastic modeling (2023 - 2024)",
+    "section": "Additional Resources",
+    "text": "Additional Resources\n\nBeginner Level\n\nIntroduction to Python Python Course 🇫🇷\nHLMA310 - Scientific Software 🇫🇷\nAlgorithmic Manual in Pythonf 🇫🇷\nData Science: Python Data Science Handbook, With Application to Understanding Data by J. Van DerPlas, 2016; 🇬🇧  videos: Reproducible Data Analysis in Jupyter\nMath for Journalists by Naël Shiab 🇬🇧\n\n\n\nAdvanced Level\n\nSoftware Dev. for Data Science by J. Salmon and B. Charlier, 🇬🇧\nMarkov Chains: Markov Chains by Ethan N. Epperly 🇬🇧\nAdvanced Data Analysis from an Elementary Point of View by Cosma Shalizi; 🇬🇧\nMaximum Likelihood by Numerical Optimization 🇬🇧\nConditioning, Martingales, and Other Proofs of the Law of Large Numbers: 🇬🇧"
+  },
+  {
+    "objectID": "Courses/HAX606X.html",
+    "href": "Courses/HAX606X.html",
+    "title": "HAX606X - Convex optimization (2020 - 2023)",
+    "section": "",
+    "text": "This is an undergraduate course (in French!) introducing standard techniques from convex optimization. Numerical elements are provided in Python and are written with Tanguy Lefort."
+  },
+  {
+    "objectID": "Courses/HAX606X.html#references",
+    "href": "Courses/HAX606X.html#references",
+    "title": "HAX606X - Convex optimization (2020 - 2023)",
+    "section": "References",
+    "text": "References\n\nMathematics for Machine Learning; Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong; mml-book.pdf\nIntroduction à l’analyse numérique matricielle et à l’optimisation; G. Ciarlet\nFragments d’Optimisation Différentiable - Théories et Algorithmes; Jean Charles Gilbert .pdf"
+  },
+  {
+    "objectID": "Courses/HAX606X.html#tp",
+    "href": "Courses/HAX606X.html#tp",
+    "title": "HAX606X - Convex optimization (2020 - 2023)",
+    "section": "TP",
+    "text": "TP\n\n\nPremiers pas en Python et introduction à VSCodium TP0.html\n\n\nPrise en main de Python pour l’optimisation TP1.html\n\n\nMéthode de la sécante / méthode du nombre d’or: TP2.html\n\n\nMéthode de descente de gradient et variantes TP3.html, fichiers annexes: dico_math_functions.py widget_convergence.py widget_level_set.py\n\n\nMéthode de descente de gradient projeté et moindres carrés TP4.html"
+  },
+  {
+    "objectID": "Courses/HAX606X.html#notes-pour-aller-plus-loin",
+    "href": "Courses/HAX606X.html#notes-pour-aller-plus-loin",
+    "title": "HAX606X - Convex optimization (2020 - 2023)",
+    "section": "Notes pour aller plus loin",
+    "text": "Notes pour aller plus loin\n\nRetour sur des erreurs fréquentes en Python: TP_cc_mi_parcours_feedback.html\nNotion d’aléatoire avec Python / Numpy: Note_randomness.html"
+  },
+  {
+    "objectID": "Courses/HAX606X.html#cheat-sheet",
+    "href": "Courses/HAX606X.html#cheat-sheet",
+    "title": "HAX606X - Convex optimization (2020 - 2023)",
+    "section": "Cheat Sheet",
+    "text": "Cheat Sheet\nThis work is deeply inspired and adapted from the great work by Nicolas Rougier: https://github.com/rougier/numpy-tutorial\n\n\n\n\n\nCode\n\n\nResult\n\n\n\n\n\n\n x = np.zeros(9) \n\n\n\n\n\n\n\n x = np.ones(9)\n\n\n\n\n\n\n\n x = np.full(9, 0.5)\n\n\n\n\n\n\n\n x = np.array([0, 0, 1, 0, 0, 0, 0, 0, 0])\n\n\n\n\n\n\n\n x = np.arange(9)\n\n\n\n\n\n\n\n x = rng.random(9)\n\n\n\n\n\n\n\n\nCreation: matrix cases\n\n\n\n\n\nCode\n\n\nResult\n\n\n\n\n\n\nM = np.ones((5, 9)) \n\n\n\n\n\n\n\nM = np.zeros((5, 9))\n\n\n\n\n\n\n\n M = np.array(    [        [0.0, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],         [1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],        [0.0, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],        [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],        [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]    ])\n\n\n\n\n\n\n\n M = arange(5 * 9).reshape(5, 9)\n\n\n\n\n\n\n\n M = rng.random(9)\n\n\n\n\n\n\n\n M = np.eye(5, 9)\n\n\n\n\n\n\n\n M = np.diag(np.arange(5)) \n\n\n\n\n\n\n\n M = np.diag(np.arange(3), k=2) \n\n\n\n\n\n\n\n\nCreation: tensor cases\n\n\n\n\n\nCode\n\n\nResult\n\n\n\n\n\n\nT = np.zeros((3, 5, 9))\n\n\n\n\n\n\n\nT = np.ones((3, 5, 9))\n\n\n\n\n\n\n\nT = np.arange(3 * 5 * 9).reshape(3, 5, 9)\n\n\n\n\n\n\n\nT = rng.random((3, rows, cols))\n\n\n\n\n\n\n\n\nMatrix reshaping\n\n\n\n\n\nCode\n\n\nResult\n\n\n\n\n\n\nM = np.zeros((3, 4)); M[2, 2] = 1\n\n\n\n\n\n\n\nM = M.reshape(4, 3)\n\n\n\n\n\n\n\nM = M.reshape(12, 1)\n\n\n\n\n\n\n\nM = M.reshape(1, 12)\n\n\n\n\n\n\n\nM = M.reshape(6, 2)\n\n\n\n\n\n\n\nM = M.reshape(2, 6)\n\n\n\n\n\n\n\n\nSlicing\n\n\nStart from a zero matrix and get the following simple slicing operations:\n\n\n \n\n\n\n\n\nCode\n\n\nResult\n\n\n\n\n\n\nM = np.zeros((5, 9)) \n\n\n\n\n\n\n\nM[...] = 1 \n\n\n\n\n\n\n\nM[:, ::2] = 1\n\n\n\n\n\n\n\nM[::2, :] = 1\n\n\n\n\n\n\n\nM[1, 1] = 1\n\n\n\n\n\n\n\nM[:, 0] = 1\n\n\n\n\n\n\n\nM[0, :] = 1\n\n\n\n\n\n\n\nM[2:, 2:] = 1\n\n\n\n\n\n\n\nM[:-2, :-2] = 1\n\n\n\n\n\n\n\nM[2:4, 2:4] = 1\n\n\n\n\n\n\n\nM[::2, ::2] = 1\n\n\n\n\n\n\n\nM[3::2, 3::2] = 1"
+  },
+  {
+    "objectID": "Courses/HLMA408.html",
+    "href": "Courses/HLMA408.html",
+    "title": "HLMA408 - Traitement de données pour l’écologie (2018–2021)",
+    "section": "",
+    "text": "This is an undergraduate course (in French!) introducing statistics and data visualisation."
+  },
+  {
+    "objectID": "Courses/HLMA408.html#syllabus",
+    "href": "Courses/HLMA408.html#syllabus",
+    "title": "HLMA408 - Traitement de données pour l’écologie (2018–2021)",
+    "section": "Syllabus",
+    "text": "Syllabus\nSyllabus 2020-2021"
+  },
+  {
+    "objectID": "Courses/HLMA408.html#polycopié",
+    "href": "Courses/HLMA408.html#polycopié",
+    "title": "HLMA408 - Traitement de données pour l’écologie (2018–2021)",
+    "section": "Polycopié",
+    "text": "Polycopié\nIntroduction à Python (HLMA310) (en cours de rédaction)"
+  },
+  {
+    "objectID": "Courses/HLMA408.html#widgets-introductifs",
+    "href": "Courses/HLMA408.html#widgets-introductifs",
+    "title": "HLMA408 - Traitement de données pour l’écologie (2018–2021)",
+    "section": "Widgets introductifs",
+    "text": "Widgets introductifs\n\n\n\n\n\n\n\n\nDistributions continues (1D)\nDistributions Gaussiennes (2D)\nDistributions discrètes\n\n\n\n\n  \n  \n  \n\n\n\n\n\n\n\n\n\n\n\nQuantiles\nCourbes ROC et Tests\nMoindres Carrés Ordinaires\n\n\n\n\n  \n  \n  \n\n\n\nSources: https://github.com/josephsalmon/Random-Widgets\nAutres widgets (en anglais): https://seeing-theory.brown.edu/"
+  },
+  {
+    "objectID": "Courses/HLMA408.html#cours-slides-et-notebooks",
+    "href": "Courses/HLMA408.html#cours-slides-et-notebooks",
+    "title": "HLMA408 - Traitement de données pour l’écologie (2018–2021)",
+    "section": "Cours: slides et notebooks",
+    "text": "Cours: slides et notebooks\n\nPreambule.pdf\nStatDescriptives.pdf, StatDescriptives.ipynb, StatDescriptives.html\nGaussianDistribution.pdf, GaussianDistribution.ipynb, GaussianDistribution.html\nEchantillonnage.pdf, Echantillonnage.ipynb, Echantillonnage.html\nEstimationTests.pdf, EstimationTests.ipynb, EstimationTests.html\nICGaussiens.pdf, ICGaussiens.ipynb, ICGaussiens.html\nModeleLineaire.pdf, ModeleLineaire.ipynb, Widgets_MCO.ipynb, ModeleLineaire.html\nAnova.pdf, Anova.ipynb, Anova.html"
+  },
+  {
+    "objectID": "Courses/HLMA408.html#travaux-dirigés",
+    "href": "Courses/HLMA408.html#travaux-dirigés",
+    "title": "HLMA408 - Traitement de données pour l’écologie (2018–2021)",
+    "section": "Travaux dirigés:",
+    "text": "Travaux dirigés:\n\nTD1.pdf, TD1_corr.pdf\nTD2.pdf, TD2_corr.pdf, TD2.ipynb\nTD3.pdf, TD3_corr.pdf\nTD4.pdf, TD4_corr.pdf\nTD5.pdf, TD5_corr.pdf"
+  },
+  {
+    "objectID": "Courses/HLMA408.html#travaux-pratiques",
+    "href": "Courses/HLMA408.html#travaux-pratiques",
+    "title": "HLMA408 - Traitement de données pour l’écologie (2018–2021)",
+    "section": "Travaux pratiques:",
+    "text": "Travaux pratiques:\n\nIntroduction : TP-Introduction.pdf, TP-Introduction_squelette.ipynb, TP-Introduction.ipynb,\nChi2: TP-chi2.pdf, TP-chi2_squelette.ipynb, TP-chi2.ipynb\nTP-Noté: TP-MCO.pdf, TP-MCO.ipynb"
+  },
+  {
+    "objectID": "Courses/HLMA408.html#plus-dinformation-et-quelques-sources-de-données",
+    "href": "Courses/HLMA408.html#plus-dinformation-et-quelques-sources-de-données",
+    "title": "HLMA408 - Traitement de données pour l’écologie (2018–2021)",
+    "section": "Plus d’information et quelques sources de données",
+    "text": "Plus d’information et quelques sources de données\n\nGénéral\n\nScienceEtonnante: Les politiques d’austérité : à cause d’une erreur Excel ?\nPython for Dynamics and Evolution of Earth and Planets\nNumpy Tutorial et from-python-to-numpy par Nicolas P. Rougier\nCompstat: “Tutorial on Computational Statistics”, by Allen Downey\nComment choisir les couleurs pour les daltoniens?\nZététique, autodéfense intellectuelle par R. Monvoisin\nJake VanderPlas book on datascience and associated videos\nScipy lecture notes\n\n\n\nBiais\n\nThe Literary Digest poll : Franklin D. Roosevelt vs. Alf Landon\nSurvivorship bias   \n\n\n\nBiodiversité et science ouverte\n\nOREM: Bases de données des Services d’Observation\nOpen sciences participatives\nFuturam planète: sciences citoyennes\n\n\n\nCovid-19\n\nThe medical test paradox: Can redesigning Bayes rule help?\nThe mathematics of the corona outbreak\nThe Safe Sneeze by Mythbusters\n\n\n\nBases de données ouvertes\n\nOpen Climate Data\nPollution on data.gouv.fr"
+  },
+  {
+    "objectID": "Courses/HMMA238.html",
+    "href": "Courses/HMMA238.html",
+    "title": "HMMA238 - Programmation et bonnes pratiques (2018-2019)",
+    "section": "",
+    "text": "This is a master level course introducing scientific computing and modern software practices. The new website for this course is here: https://github.com/bcharlier/HMMA238\nWe will discover some component of the Python scientific ecosystem"
+  },
+  {
+    "objectID": "Courses/HMMA238.html#syllabus",
+    "href": "Courses/HMMA238.html#syllabus",
+    "title": "HMMA238 - Programmation et bonnes pratiques (2018-2019)",
+    "section": "Syllabus:",
+    "text": "Syllabus:\nversion 2018-2019"
+  },
+  {
+    "objectID": "Courses/HMMA238.html#polycopié",
+    "href": "Courses/HMMA238.html#polycopié",
+    "title": "HMMA238 - Programmation et bonnes pratiques (2018-2019)",
+    "section": "Polycopié:",
+    "text": "Polycopié:\nIntroduction à Python, version 2018-2019 (en cours de rédaction)"
+  },
+  {
+    "objectID": "Courses/HMMA238.html#cours-notebooks",
+    "href": "Courses/HMMA238.html#cours-notebooks",
+    "title": "HMMA238 - Programmation et bonnes pratiques (2018-2019)",
+    "section": "Cours: notebooks",
+    "text": "Cours: notebooks\n1-Intro-Python.ipynb, 1-Intro-Python.html, hello-world.py\n2-Numpy-Matplotlib.ipynb, 2-Numpy-Matplotlib.html\n3-Scipy.ipynb, 3-Scipy.html\n4-Pandas.ipynb, 4-Pandas.html\n5-Statsmodels.ipynb, 5-Statsmodels.html\n6-TempsMemoire.ipynb, force.css, force.html, force.js, force.json, 6-TempsMemoire.html\n7-Numba.ipynb, 7-Numba.html\n8-Git.pdf"
+  },
+  {
+    "objectID": "Courses/HMMA238.html#exemple-de-projet-latex",
+    "href": "Courses/HMMA238.html#exemple-de-projet-latex",
+    "title": "HMMA238 - Programmation et bonnes pratiques (2018-2019)",
+    "section": "Exemple de projet LaTeX:",
+    "text": "Exemple de projet LaTeX:\n\nFichier pour la partie LaTeX du cours: draft-project.zip\nEnoncé du TP noté: TPnote.pdf"
+  },
+  {
+    "objectID": "Courses/HMMA238.html#plus-dinformation-et-quelques-sources-de-données",
+    "href": "Courses/HMMA238.html#plus-dinformation-et-quelques-sources-de-données",
+    "title": "HMMA238 - Programmation et bonnes pratiques (2018-2019)",
+    "section": "Plus d’information et quelques sources de données:",
+    "text": "Plus d’information et quelques sources de données:\n\nJake VanderPlas book on datascience and associated videos\nScipy lecture notes\nPollution sur data.gouv.fr\nOpen Climate Data\nOREM: Bases de données des Services d’Observation"
+  },
+  {
+    "objectID": "Courses/HMMA308.html",
+    "href": "Courses/HMMA308.html",
+    "title": "HMMA308 - Statistical Learning (2018-2020)",
+    "section": "",
+    "text": "This course is in French, and deals with Machine Learning, mostly supervised learning."
+  },
+  {
+    "objectID": "Courses/HMMA308.html#syllabus",
+    "href": "Courses/HMMA308.html#syllabus",
+    "title": "HMMA308 - Statistical Learning (2018-2020)",
+    "section": "Syllabus",
+    "text": "Syllabus\nsyllabus_hmma308.pdf"
+  },
+  {
+    "objectID": "Courses/HMMA308.html#projets",
+    "href": "Courses/HMMA308.html#projets",
+    "title": "HMMA308 - Statistical Learning (2018-2020)",
+    "section": "Projets",
+    "text": "Projets\nProjets_ML.pdf"
+  },
+  {
+    "objectID": "Courses/HMMA308.html#cours",
+    "href": "Courses/HMMA308.html#cours",
+    "title": "HMMA308 - Statistical Learning (2018-2020)",
+    "section": "Cours",
+    "text": "Cours\n\nIntro Machine Learning: IntroML_slides.pdf\nRégression logistique/LDA: RegressionLogistique_slides.pdf\nValidation Croisée: CrossValidation_slides.pdf\nSVD: SVD_slides.pdf, SVD.ipynb\nPCA: PCA_slides.pdf, PCA.ipynb\nRidge: Ridge_slides.pdf, Ridge.ipynb\nArbres : arbres_slides.pdf\nBagging et forêts aléatoires : ForetsAleatoires_slides.pdf\nLasso: Lasso_slides.pdf, Lasso_fr.ipynb, functions_Lasso.py, prox_collection.py\nSVM : svm_slides.pdf\nClustering : clustering_slides.pdf\nSplines et GAM : Splines_GAM_slides.pdf"
+  },
+  {
+    "objectID": "Courses/HMMA308.html#tps",
+    "href": "Courses/HMMA308.html#tps",
+    "title": "HMMA308 - Statistical Learning (2018-2020)",
+    "section": "TPs",
+    "text": "TPs\n\nknn_tp.pdf, tp_knn_source.py, tp_knn_script.py,\n\n\n\nperceptron_tp.pdf, tp_perceptron_source.py, tp_perceptron_script.py, \narbres_tp.pdf, tp_arbres_source.py\nsvm_tp.pdf, svm_tp_sources.zip,\nclustering_tp.pdf, kmeans.py, gap.py, china.jpg"
+  },
+  {
+    "objectID": "Courses/HMMA308.html#more-resources",
+    "href": "Courses/HMMA308.html#more-resources",
+    "title": "HMMA308 - Statistical Learning (2018-2020)",
+    "section": "More resources",
+    "text": "More resources\n\nThe end of the average\nLe fléau de la dimension (Python) inspiré par Le fléau de la dimension (R)\nLeakage (fr: fuite) example : https://twitter.com/acidflask/status/1259531004500488192\nThe Literary Digest poll : https://amsi.org.au/ESA_Senior_Years/SeniorTopic4/4b/4b_2content_4.html\nSurvivorship bias"
+  },
+  {
+    "objectID": "Courses/M53010.html",
+    "href": "Courses/M53010.html",
+    "title": "M53010 - Économétrie (2009-2010)",
+    "section": "",
+    "text": "This is an undergraduate course (in French!) introducing linear models and variants."
+  },
+  {
+    "objectID": "Courses/M53010.html#td",
+    "href": "Courses/M53010.html#td",
+    "title": "M53010 - Économétrie (2009-2010)",
+    "section": "TD:",
+    "text": "TD:\n\nTD1: Rappels et modèles économétriques\nTD2 : Modèle linéaire simple\nTD3 : Modèle linéaire multiple - exemples\nTD4 : Analyse de la variance et Variables qualitatives\nTD5 : Tests\nTD6 : Le Modèle ANOVA\nTD7 : Hétéroscédasticité\nTD8 : Séries Temporelles : Modèles Statiques et Modèles à Retards Finis\nTD9 : Introduction à l’utilisation des variables instrumentales\nTD10 : Différents exemples de séries avec tendance\nTD11 : Autorégression"
+  },
+  {
+    "objectID": "Courses/M53010.html#ressources",
+    "href": "Courses/M53010.html#ressources",
+    "title": "M53010 - Économétrie (2009-2010)",
+    "section": "Ressources:",
+    "text": "Ressources:\n\nCour de Bernard Delyon\nJake VanderPlas book on datascience and associated videos\nA. Tsybakov’s introduction to statistics"
+  },
+  {
+    "objectID": "Courses/SD204.html",
+    "href": "Courses/SD204.html",
+    "title": "SD204 - linear models (2016-2018)",
+    "section": "",
+    "text": "This is an undergraduate course on linear models."
+  },
+  {
+    "objectID": "Courses/SD204.html#slides-and-courses",
+    "href": "Courses/SD204.html#slides-and-courses",
+    "title": "SD204 - linear models (2016-2018)",
+    "section": "Slides and Courses",
+    "text": "Slides and Courses\n\nIntroduction: LeastSquare_1D_en.pdf, LeastSquare_1D_en.ipynb, LeastSquare_1D_en.html\nLeast squares : LeastSquare_Def_en.pdf, LeastSquare_1D_fr.ipynb, LeastSquare_Def_en.html\nLeast squares (properties) : LeastSquare_Prop_fr.pdf\nSVD: SVD_en.pdf (in French), SVD.ipynb, SVD.html\nPCA: PCA_en.pdf (in French), PCA.ipynb, PCA.html\nIntroIC: IntroIC_en.pdf (in French), IntroIC.ipynb, IntroIC.html\nBootstrap: Bootstrap_en.pdf,\nIntroTests: IntroTests_en.pdf, forward_variable_selection.ipynb, forward_variable_selection.html\nRidge: Ridge_en.pdf, Ridge_en.ipynb, Ridge_en.html\nLasso: Lasso_en.pdf, Lasso_fr.ipynb, Lasso_fr.html, functions_Lasso.py, prox_collection.py\nCoordinate descent: CD_en.pdf (in French), CD_fr.ipynb, CD_fr.html\nGLM: GLM_en.pdf (in French), GLM_fr.ipynb, GLM_fr.html\nGeneralization: Generalization_en.pdf, Generalization_fr.ipynb, Generalization_fr.html\nCategorical variables: CategoricalVariables.ipynb, CategoricalVariables.html"
+  },
+  {
+    "objectID": "Courses/STAT593.html",
+    "href": "Courses/STAT593.html",
+    "title": "STAT593 - Robust statistics (2018-2019)",
+    "section": "",
+    "text": "This is a grade course on robust statistics and optimization.\nWARNING: Useful code (for plotting) for the entire notebooks in this course utils.py"
+  },
+  {
+    "objectID": "Courses/STAT593.html#syllabus",
+    "href": "Courses/STAT593.html#syllabus",
+    "title": "STAT593 - Robust statistics (2018-2019)",
+    "section": "Syllabus:",
+    "text": "Syllabus:\nversion 2017-2018"
+  },
+  {
+    "objectID": "Courses/STAT593.html#cours",
+    "href": "Courses/STAT593.html#cours",
+    "title": "STAT593 - Robust statistics (2018-2019)",
+    "section": "Cours:",
+    "text": "Cours:\n\nIntroduction: IntroRobustness.pdf; IntroRobustness.ipynb, LeveragePoints.ipynb, LeveragePoints.html\nEquivariance / Breakdown Point: Equivariance_BP.pdf\nDepth / High Breakdown points: Depth.pdf\nLocation and scale : LocationScale.pdf, Huber_display.ipynb, Huber_display.html\nL-estimates and influence functions : L-Estimates.pdf\nGradient descent : GradientDescent.pdf, Gradient_descent.ipynb, Gradient_descent.html\nMajorization Minimization : MajorizationMinimization.pdf; MajorizationMinimization.ipynb, MajorizationMinimization.html\nConjugacy : Conjugacy.pdf Conjugate.ipynb, Conjugate.html\nSmoothing : Smoothing.pdf Smoothing.ipynb, Smoothing.html\nLinear Models :LinearModels.pdf\nQuantile regression : QuantileRegression.pdf, QuantileRegression.ipynb, QuantileRegression.html\nRobust Optimization : RobustOptim.pdf\nConclusion : Conclusion.pdf"
+  },
+  {
+    "objectID": "blog/hello-world/index.html",
+    "href": "blog/hello-world/index.html",
+    "title": "Welcome to Donadas Brutas!",
+    "section": "",
+    "text": "In this blog, I intend to talk about things I like, powered by Quarto, Python, and a bit of Observable for some visualizations. You can expect math, stats, machine learning, biking and whatever I feel like sharing. And sometimes, I will also share things just because I find them nice…\nI shall also mention\n\nEmil Hvitfeldt’s blog\nFreakonometrics\nploum.net\n\nwho are all great sources of inspiration."
+  },
+  {
+    "objectID": "blog/inflation/index.html",
+    "href": "blog/inflation/index.html",
+    "title": "Public civil servant salaries and inflation",
+    "section": "",
+    "text": "This is a post with executable code. It actually loads an old post from another website, that updates with a GitHub action; see https://josephsalmon.github.io/Tweets/economics/index.html"
+  },
+  {
+    "objectID": "blog/laptop-mic-obs/index.html",
+    "href": "blog/laptop-mic-obs/index.html",
+    "title": "Make your built-in laptop mic sound good in OBS",
+    "section": "",
+    "text": "I recorded a short tutorial video, where I walk you through the steps to improve the audio quality of your built-in laptop microphone in OBS. Here’s the video:\n\nThe video is unlisted because it doesn’t fit in the usual content of my channel. If you’re interested in a polished version of the video for the main channel, let me know and I’ll add it to my content list. If you have any questions or suggestions, feel free to reach out – always happy to help."
+  },
+  {
+    "objectID": "blog/softmax/index.html",
+    "href": "blog/softmax/index.html",
+    "title": "Soft-max and Soft-argmax",
+    "section": "",
+    "text": "The softmax function is a smooth approximation of the max function, and is used in many machine learning models. Similarly we can define the soft-argmax function, which is a smooth approximation of the argmax function."
+  },
+  {
+    "objectID": "blog/softmax/index.html#definition-and-notation",
+    "href": "blog/softmax/index.html#definition-and-notation",
+    "title": "Soft-max and Soft-argmax",
+    "section": " Definition and notation",
+    "text": "Definition and notation\nFirst, let us define \\Delta_{K} = \\{p \\in \\mathbb{R}^K \\geq 0: \\sum_{k} p_k = 1\\} the probability simplex in \\mathbb{R}^K, and u_K = (1/K, \\dots, 1/K)^\\top the uniform distribution in \\Delta_{K}, and the standard basis vectors (\\delta_k)_{k=1,\\dots,K}, where \\delta_k = (0,\\dots,\\underbrace{1}_{k-\\rm{th}},\\dots,0)^\\top \\in \\mathbb{R}^K.\nFormally, the standard soft-argmax function \\sigma \\colon \\mathbb{R}^{K} \\to (0, 1)^{K}, where K \\geq 1, takes a vector z = (z_{1}, \\dots, z_{K})^\\top \\in \\mathbb{R}^{K} and computes each component of the vector \\sigma(z) \\in [0, 1]^{K} by \n\\left(\\sigma(z)\\right)_k = \\frac{\\exp(z_k)}{\\sum_{k'=1}^{K} \\exp(z_{k'})}\\enspace, \\quad \\text{for } k = 1, \\dots, K.\n\nNote in particular that \\sigma(z)=\\sigma_{u_K, 1}(z) for any z \\in \\mathbb{R}^K.\nWe also define for any q \\in \\Delta_{K} with positive coordinates1, i.e., q_k&gt;0, for all k\\in [K], the function \\sigma_{q,\\beta} \\colon \\mathbb{R}^{K} \\to \\mathbb{R}^K as\n\n\\left(\\sigma_{q,\\beta}(z)\\right)_k = \\frac{q_k\\exp(z_k/\\beta)}{\\sum_{k'=1}^{K} q_{k'}\\exp(z_{k'}/\\beta)} \\enspace, \\quad \\text{for } k = 1, \\dots, K.\n\nLast but not least, we introduce the real valued log-sum-exp function (or weighted softmax), defined for any vector z \\in \\mathbb{R}^K by\n\n\\text{logsumexp}_{q,\\beta}(z) = \\beta \\cdot \\log\\left(\\sum_{k=1}^{K} q_k \\cdot \\exp(z_k/\\beta)\\right)."
+  },
+  {
+    "objectID": "blog/softmax/index.html#variational-formulation",
+    "href": "blog/softmax/index.html#variational-formulation",
+    "title": "Soft-max and Soft-argmax",
+    "section": " Variational formulation",
+    "text": "Variational formulation\nIn this note we show that the soft-argmax function can be written as the conjugate of the log-sum-exp function.\n\nTheorem 1 Let q \\in \\Delta_{K} be with positive coordinates, i.e., q_k&gt;0, for all k\\in [K], \\beta&gt;0 and let z \\in \\mathbb{R}^K. Then,\n\n\\begin{align*}\n\\text{logsumexp}_{q,\\beta}(z)\n& =\n\\max_{ p \\in \\Delta_K} \\langle z, p \\rangle - \\beta\\sum_{k=1}^{K} p_k \\log(p_k / q_k) \\\\\n\\sigma_{q,\\beta}(z)\n& =\n\\argmax_{ p \\in \\Delta_K} \\langle z, p \\rangle - \\beta\\sum_{k=1}^{K} p_k \\log(p_k / q_k)\\enspace.\n\\end{align*}\n\n\n\nProof. Using Lagrange multipliers (see for instance Ch. 5, Boyd and Vandenberghe 2004) you get for \\Lambda=(\\lambda_1,\\dots,\\lambda_K)^\\top, \\mu \\in \\mathbb{R} and p \\in \\Delta_K the Lagrangian function:\n\n\\mathcal{L}(p,\\mu,\\Lambda) = \\langle z, p \\rangle - \\beta\\sum_{k=1}^{K} p_k \\log(p_k / q_k) + \\mu\\left(\\sum_{k=1}^{K} p_k - 1\\right) - \\sum_{k=1}^{K} \\lambda_k p_k.\n\nThe Slater condition is satisfied, so the KKT conditions are necessary and sufficient for optimality. The KKT conditions are \n\\begin{align*}\n\\frac{\\partial \\mathcal{L}}{\\partial p_k} &= z_k - \\beta\\log(p_k / q_k) - \\beta - \\mu - \\lambda_k = 0, \\quad k = 1, \\dots, K,\\\\\n\\mu\\left(\\sum_{k=1}^{K} p_k - 1\\right) &= 0,\\\\\n\\lambda_k p_k &= 0, \\quad k = 1, \\dots, K,\\\\\np_k &\\geq 0, \\quad k = 1, \\dots, K.\n\\end{align*}\n From the first KKT condition we get \np_k = q_k\\exp\\left(\\frac{z_k-\\beta-\\mu-\\lambda_k}{\\beta}\\right), \\quad k = 1, \\dots, K.\n Now, since \\lambda_k p_k = 0 and that q_k&gt;0 for all k, we have that \\lambda_k = 0 for all k. Thus, we get after normalisation that \np_k = \\frac{q_k\\exp(z_k/\\beta)}{\\sum_{k'=1}^{K} q_{k'}\\exp(z_{k'}/\\beta)}, \\quad k = 1, \\dots, K.\n Note that \n\\begin{align*}\n& p_k = \\frac{q_k\\exp(z_k/\\beta)}{\\sum_{k'=1}^{K} q_{k'}\\exp(z_{k'}/\\beta)}\\\\\n\\iff & \\log( p_k) = \\log(q_k) + \\frac{z_k}{\\beta} - \\frac{1}{\\beta} \\cdot  \\text{logsumexp}_{q,\\beta}(z).\n\\end{align*}\n Finally, we have that \n\\begin{align*}\n\\beta\\sum_{k=1}^{K} p_k \\log(p_k / q_k) &= \\beta\\sum_{k=1}^{K} p_k \\left(\\frac{z_k}{\\beta} - \\frac{1}{\\beta} \\cdot \\text{logsumexp}_{q,\\beta}(z)\\right)\\\\\n&= \\sum_{k=1}^{K} p_k z_k - \\text{logsumexp}_{q,\\beta}(z),\n\\end{align*}\n Hence, \\sum_{k=1}^{K} p_k z_k - \\beta \\sum_{k=1}^{K} p_k \\log(p_k / q_k) = \\text{logsumexp}_{q,\\beta}(z).\n\nThe following limit properties for infinitesimal \\beta explain the naming and the regularizing property of the (temperature) parameter \\beta:\n\nProposition 1 Reminding that u_K=(1/K,\\dots,1/K)^\\top and \\delta_{k} is the k-th standard basis vector, for any z \\in \\mathbb{R}^K, we have that\n\n\\begin{align*}\n\\sigma_{u_K,\\beta}(z) & \\xrightarrow[\\beta \\to 0]{}  \\delta_{k_0}, \\text{ where } k_0=\\argmax_{k\\in [K]} z_k \\\\\n\\text{logsumexp}_{u_K,\\beta}(z) & \\xrightarrow[\\beta \\to 0]{} \\max_{k\\in [K]} z_k \\enspace.\n\\end{align*}\n\n\nThe first limit show that the soft-argmax function is a kind of smooth approximation of the argmax function, while the log-sum-exp function is a smooth approximation of the max function."
+  },
+  {
+    "objectID": "blog/softmax/index.html#invariance-properties",
+    "href": "blog/softmax/index.html#invariance-properties",
+    "title": "Soft-max and Soft-argmax",
+    "section": " Invariance properties",
+    "text": "Invariance properties\nThe softmax function is invariant to the addition of a constant to each component of the input vector. More precisely, we have the following result:\n\nTheorem 2 Let q \\in \\Delta_{K} be with positive coordinates, i.e., q_k&gt;0, for all k\\in [K], \\beta&gt;0 and let z \\in \\mathbb{R}^K. Then, for any c \\in \\mathbb{R}, we have that \n\\sigma_{q,\\beta}(z) = \\sigma_{q,\\beta}(z+c).\n\n\n\nProof. We have that \n\\begin{align*}\n\\sigma_{q,\\beta}(z+c)_k &= \\frac{q_k\\exp((z_k+c)/\\beta)}{\\sum_{k'=1}^{K} q_{k'}\\exp((z_{k'}+c)/\\beta)}\\\\\n&= \\frac{q_k\\exp(z_k/\\beta)\\exp(c/\\beta)}{\\sum_{k'=1}^{K} q_{k'}\\exp(z_{k'}/\\beta)\\exp(c/\\beta)}\\\\\n&= \\frac{q_k\\exp(z_k/\\beta)}{\\sum_{k'=1}^{K} q_{k'}\\exp(z_{k'}/\\beta)}\\\\\n&= \\sigma_{q,\\beta}(z)_k.\n\\end{align*}\n\n\nLet us consider also the effect of rescaling the input vector by a positive constant. We have the following result:\n\nTheorem 3 Let q \\in \\Delta_{K} be with positive coordinates, i.e., q_k&gt;0, for all k\\in [K], \\beta&gt;0 and let z \\in \\mathbb{R}^K. Then, for any \\alpha &gt;0, we have that \n\\sigma_{q,\\beta}(\\alpha z) = \\sigma_{q,\\tfrac{\\beta}{\\alpha}}(z).\n\n\n\nProof. We have that \n\\begin{align*}\n\\left(\\sigma_{q,\\beta}(\\alpha z)\\right)_k &= \\frac{q_k\\exp(\\alpha z_k/\\beta)}{\\sum_{k'=1}^{K} q_{k'}\\exp(\\alpha z_{k'}/\\beta)}\\\\\n&= \\frac{q_k\\exp(z_k/\\frac{\\beta}{\\alpha})}{\\sum_{k'=1}^{K} q_{k'}\\exp(z_{k'}/\\frac{\\beta}{\\alpha})}\\\\\n&= \\left(\\sigma_{q,\\tfrac{\\beta}{\\alpha}}(z)\\right)_k.\n\\end{align*}"
+  },
+  {
+    "objectID": "blog/softmax/index.html#visualization",
+    "href": "blog/softmax/index.html#visualization",
+    "title": "Soft-max and Soft-argmax",
+    "section": " Visualization",
+    "text": "Visualization\nWe consider the case K=3 for visualization. \nYou can click on the plot to move z (the purple dot), and see the corresponding soft-argmax \\sigma_{q,\\beta} (the red dot). You can modify q (the black dot) and \\beta with the slider. The level sets displayed are for the function after the max in the log-sum-exp definition, i.e., for a fixed z\\in \\mathbb{R}^3, q\\in \\Delta_K and \\beta&gt;0, the level set is the set of points p\\in \\Delta_K such that \n\\begin{align*}\n\\Delta_K &\\to \\mathbb{R} \\\\\np & \\mapsto \\langle z, p \\rangle - \\beta\\sum_{k=1}^{K} p_k \\log(p_k / q_k)\n\\end{align*}\n\n\nCode\nd3 = require(\"d3@v6\", \"d3-hexbin@0.2\")\nmath = require(\"mathjs\")\ndigamma = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/math-base-special-digamma@umd/browser.js' )\n\nimport {legend} from \"@d3/color-legend\"\n\n\ndensityResolution = 80\nmargin = ({ left: 30, top: 30, right: 30, bottom: 30 })\nheight = 400\n\n\n\nbeta = [inputs.beta]\n// lbd = [0.3,0.3,0.4]\n\nviewof q1 = Inputs.range([0.01, 1], {value: 1/3, label: tex`q_1`, step: 0.01})\nviewof q2 = Inputs.range([0.01, 1], {value: 1/3, label: tex`q_2`, step: 0.01})\nviewof q3 = Inputs.range([0.01, 1], {value: 1/3, label: tex`q_3`, step: 0.01})\nviewof z1 = Inputs.range([-10, 10], {value: 0.4, label: tex`z_1`, step: 0.01})\nviewof z2 = Inputs.range([-10, 10], {value: 0.2, label: tex`z_2`, step: 0.01})\nviewof z3 = Inputs.range([-10, 10], {value: 0.2, label: tex`z_3`, step: 0.01})\n\n\nviewof inputs = Inputs.form({\n  z1: viewof z1,\n  z2: viewof z2,\n  z3: viewof z3,\n  beta: Inputs.range([0.01, 10], {value: 1, label: tex`\\beta`, step: 0.01}),\n  q1: viewof q1,\n  q2: viewof q2,\n  q3: viewof q3,\n})\n\nq = [q1, q2, q3]\nz = [z1, z2, z3]\n\nlogsumexp = (x, alpha, beta) =&gt; {\n  let result = 0;\n  for(let i = 0; i &lt; x.length; i++) result += alpha[i] * Math.exp(x[i] / beta);\n  return beta * Math.log(result);\n}\n\n\nobjective = (x, z, alpha, beta) =&gt; {\n  let result = 0;\n  for(let i = 0; i &lt; x.length; i++) result -= beta * x[i] * Math.log(x[i] / alpha[i]);\n  for(let i = 0; i &lt; x.length; i++) result += x[i] * z[i];\n  return result;\n}\n\n\nkull_leibler = (x, alpha, beta) =&gt; {\n  let result = 0;\n  for(let i = 0; i &lt; x.length; i++) result -= x[i] * Math.log(x[i] / alpha[i]);\n  return beta * result;\n}\n\n\nsoftmax = (x, alpha, beta) =&gt; {\n  let result = [];\n  let sum = 0;\n  for(let i = 0; i &lt; x.length; i++) {\n    result.push(alpha[i] * Math.exp(x[i] / beta));\n    sum += result[i];\n  }\n  for(let i = 0; i &lt; x.length; i++) result[i] /= sum;\n  return result;\n}\n\nfunction cartesianToBarycentric(x, y, corners) {\n  const A = corners[0], B = corners[1], C = corners[2];\n  const v0 = { x: C.x - A.x, y: C.y - A.y };\n  const v1 = { x: B.x - A.x, y: B.y - A.y };\n  const v2 = { x: x - A.x, y: y - A.y };\n\n  const d00 = dot(v0, v0);\n  const d01 = dot(v0, v1);\n  const d11 = dot(v1, v1);\n  const d20 = dot(v2, v0);\n  const d21 = dot(v2, v1);\n  const denom = d00 * d11 - d01 * d01;\n\n  const lambda1 = (d11 * d20 - d01 * d21) / denom;\n  const lambda2 = (d00 * d21 - d01 * d20) / denom;\n  const lambda3 = 1.0 - lambda1 - lambda2;\n\n  return [lambda1, lambda2, lambda3];\n}\n\nfunction barycentricToCartesian(q, corners) {\n  return [\n    corners[0].x * q[0] + corners[1].x * q[1] + corners[2].x * q[2],\n    corners[0].y * q[0] + corners[1].y * q[1] + corners[2].y * q[2]\n  ];\n}\n\nfunction dot(v1, v2) {\n  return v1.x * v2.x + v1.y * v2.y;\n}\n\nternaryDensity = (density, resolution, options, lbd) =&gt; {\n  options = Object.assign({\n    size: 400,\n    margin: { left: 30, top: 30, right: 30, bottom: 30 },\n    colorScheme: d3.interpolateBlues\n  }, options);\n\n\n  const fillScale = d3.scaleSequential(options.colorScheme).domain([0\n  , Math.log(Math.max(q[0],q[1],q[2]))]);\n  // const fillScale = d3.scaleSequential(options.colorScheme).domain(d3.extent(density.map(d =&gt; d.density)))\n\n  const svg = d3.create(\"svg\")\n    .attr(\"width\", options.size)\n    .attr(\"height\", options.size);\n\n  const x = d3.scaleLinear()\n    .domain([0, 1])\n    .range([options.margin.left, options.size - options.margin.right])\n\n  const y = d3.scaleLinear()\n    .domain([0, 1])\n    .range([options.size - options.margin.bottom, options.margin.top]);\n\n\n  function inverseScaleX(value) {\n    // Constants from the original scale\n    const domainMin = 0;\n    const domainMax = 1;\n    const rangeMin = options.margin.left;\n    const rangeMax = options.size - options.margin.right;\n\n    // Calculate the proportion of the input value within the range\n    const proportion = (value - rangeMin) / (rangeMax - rangeMin);\n\n    // Apply the proportion to the domain\n    return proportion * (domainMax - domainMin) + domainMin;\n  }\n\n  function inverseInverseScaleX(value) {\n    // Constants from the original scale\n    const domainMin = 0;\n    const domainMax = 1;\n    const rangeMin = options.size - options.margin.right;\n    const rangeMax = options.margin.left;\n\n    // Calculate the proportion of the input value within the range\n    const proportion = (rangeMax - rangeMin);\n\n    // Apply the proportion to the domain\n    return rangeMax - proportion * value ;\n  }\n\n  function inverseScaleY(value) {\n    // Constants from the original scale\n    const domainMin = 0;\n    const domainMax = 1;\n    const rangeMin = options.size - options.margin.bottom;\n    const rangeMax = options.margin.top;\n\n    // Calculate the proportion of the input value within the range\n    const proportion = (value - rangeMin) / (rangeMax - rangeMin);\n\n\n    // Apply the proportion to the domain\n    return proportion * (domainMax - domainMin) + domainMin;\n  }\n\n  function inverseInverseScaleY(value) {\n    // Constants from the original scale\n    const domainMin = 0;\n    const domainMax = 1;\n    const rangeMin = options.size - options.margin.bottom;\n    const rangeMax = options.margin.top;\n\n    // Calculate the proportion of the input value within the range\n    const proportion = (rangeMax - rangeMin);\n\n    // Apply the proportion to the domain\n    return proportion * value + rangeMin;\n  }\n\n\n\n  const axisBottom = g =&gt; g.call(d3.axisBottom(x).ticks(4))\n  const axisTop = g =&gt; g.call(d3.axisTop(x).ticks(4));\n\n  const hexagonSize = ((x(1 / (2 * resolution)) - x(0))) / Math.cos(Math.PI / 6) + 1;\n\n  const corners = [{ x: 0.5, y: Math.sqrt(3)/2 }, { x: 0, y: 0 }, {x: 1, y: 0 }];\n  const corners_expanded = [{ x: 0.5, y: Math.sqrt(3)/2 + 0.1 }, { x: -0.1, y: -0.05 }, {x: 1.1, y: -0.05 }];\n\n  const line = d3.line().x(d =&gt; x(d.x)).y(d =&gt; y(d.y));\n\n  svg.append('defs')\n    .append('clipPath')\n    .attr('id', 'triangle')\n    .append('path')\n    .attr('x', options.size / 2)\n    .attr('y', options.size / 2)\n    .attr('d', line(corners))\n\n  svg.selectAll('.border')\n    .data([[corners[0], corners[1]],\n           [corners[1], corners[2]],\n           [corners[2], corners[0]]])\n    .enter()\n    .append('line')\n    .attr('x1', (d) =&gt; x(d[0].x))\n    .attr('x2', (d) =&gt; x(d[1].x))\n    .attr('y1', (d) =&gt; y(d[0].y))\n    .attr('y2', (d) =&gt; y(d[1].y))\n    .attr('class', 'border')\n    .attr('stroke', 'black');\n\n  const hexbin = d3.hexbin();\n\n  svg.append('g')\n    .attr('clip-path', 'url(#triangle)')\n    .selectAll(\".point\")\n    .data(density)\n    .join('path')\n    .attr('transform', d =&gt; `translate(${x(corners[0].x * d.x[0] + corners[1].x * d.x[1] + corners[2].x * d.x[2])}, ${y(corners[0].y * d.x[0] + corners[1].y * d.x[1] + corners[2].y * d.x[2])})`)\n    .attr('fill', d =&gt; fillScale(d.density))\n    .attr('d', hexbin.hexagon(hexagonSize));\n\n  svg.selectAll('text')\n    .data([[corners_expanded[0], corners_expanded[1]],\n           [corners_expanded[1], corners_expanded[2]],\n           [corners_expanded[2], corners_expanded[0]]])\n    .join(\"text\")\n    .attr(\"text-anchor\", \"middle\")\n    .attr(\"alignment-baseline\", \"middle\")\n    .attr(\"font-style\", \"italic\")\n    .attr(\"x\", d =&gt; (x(d[0].x) + x(d[1].x)) / 2)\n    .attr(\"y\", d =&gt; (y(d[0].y) + y(d[1].y)) / 2)\n    .text((d, i) =&gt; {\n      if(i == 0) return \"x₂\" ;\n      if(i == 1) return \"x₃\";\n      if(i == 2) return \"x₁\";\n    })\n\n    let xy = barycentricToCartesian(z, corners)\n    let xyr = [inverseInverseScaleX(xy[0]), inverseInverseScaleY(xy[1])];\n\n    let xy_q = barycentricToCartesian(q, corners)\n    let xyr_q = [inverseInverseScaleX(xy_q[0]), inverseInverseScaleY(xy_q[1])];\n\n    let sftmax = softmax([z1, z2, z3], q, beta)\n    let xy_s = barycentricToCartesian(sftmax, corners)\n    let xyr_s = [inverseInverseScaleX(xy_s[0]), inverseInverseScaleY(xy_s[1])];\n\n    // If it does not exist, append a new red circle\n    svg.append(\"circle\")\n      .attr(\"class\", \"red-circle\") // Add a class for easy selection\n      .attr(\"cx\", xyr_s[0])\n      .attr(\"cy\", xyr_s[1])\n      .attr(\"z-index\", 1000)\n      .attr(\"r\", 7) // Radius of the circle\n      .attr(\"fill\", \"red\"); // Fill color of the circle\n\n    svg.append(\"circle\")\n      .attr(\"class\", \"purple-circle\") // Add a class for easy selection\n      .attr(\"cx\", xyr[0])\n      .attr(\"cy\", xyr[1])\n      .attr(\"z-index\", 1000)\n      .attr(\"r\", 7) // Radius of the circle\n      .attr(\"fill\", \"purple\"); // Fill color of the circle\n\n\n    svg.append(\"circle\")\n      .attr(\"class\", \"black-circle\") // Add a class for easy selection\n      .attr(\"cx\", xyr_q[0])\n      .attr(\"cy\", xyr_q[1])\n      .attr(\"z-index\", 1000)\n      .attr(\"r\", 7) // Radius of the circle\n      .attr(\"fill\", \"black\"); // Fill color of the circle\n\n\n    // Append text for the coordinates\n    svg.append(\"text\")\n      .attr(\"class\", \"coord-text\") // Add a class for easy selection\n      // .attr(\"x\", xyr[0] + 10) // Position the text right next to the circle\n      // .attr(\"y\", xyr[1])\n      .attr(\"x\", 300) // Position the text right next to the circle\n      .attr(\"y\", 80)\n      .attr(\"fill\", \"black\") // Text color\n      .style(\"font-size\", \"10px\")\n      .text(`q=(${q[0].toFixed(2)}, ${q[1].toFixed(2)}, ${q[2].toFixed(2)})`); // Display coordinates\n    // Append color legend for purple-circle and red-circle:\n\n\n    // Append text for the coordinates\n    svg.append(\"text\")\n      .attr(\"class\", \"coord-text\") // Add a class for easy selection\n      // .attr(\"x\", xyr[0] + 10) // Position the text right next to the circle\n      // .attr(\"y\", xyr[1])\n      .attr(\"x\", 300) // Position the text right next to the circle\n      .attr(\"y\", 100)\n      .attr(\"fill\", \"red\") // Text color\n      .style(\"font-size\", \"10px\")\n      .text(`σ_{q,β}=(${sftmax[0].toFixed(2)}, ${sftmax[1].toFixed(2)}, ${sftmax[2].toFixed(2)})`); // Display coordinates\n    // Append color legend for purple-circle and red-circle:\n\n    svg.append(\"text\")\n      .attr(\"class\", \"coord-text\") // Add a class for easy selection\n      .attr(\"x\", 300) // Position the text right next to the circle\n      .attr(\"y\", 120)\n      .attr(\"fill\", \"purple\") // Text color\n      .style(\"font-size\", \"10px\")\n      .text(`z=(${z1.toFixed(2)}, ${z2.toFixed(2)}, ${z3.toFixed(2)})`); // Display coordinates\n\n\n  const removeLine = g =&gt; g.select(\".domain\").remove();\n\nfunction set(input, value) {\n  input.value = value;\n  input.dispatchEvent(new Event(\"input\", {bubbles: true}));\n}\n\n// Attach a click event listener to the SVG\nsvg.on(\"click\", function(event) {\n  // Extract the click coordinates\n  const [clickX, clickY] = d3.pointer(event);\n  lbd = cartesianToBarycentric(inverseScaleX(clickX), inverseScaleY(clickY), corners);\n\n  set(viewof z1, lbd[2]);\n  set(viewof z2, lbd[1]);\n  set(viewof z3, lbd[0]);\n});\n\n // display axis values\nsvg.append(\"g\")\n    .attr(\"transform\", `translate(0, ${options.size - options.margin.bottom})`)\n    .call(axisBottom)\n    .call(removeLine)\n\n  svg.append(\"g\")\n    .attr(\"transform\", `translate(${x(1) + options.margin.right / 2 }, ${y(0) + 26}) rotate(-120)`)\n    .call(axisBottom)\n    .call(removeLine)\n    .call(g =&gt; g.selectAll(\"text\").attr(\"transform\", \"translate(11, 22) rotate(120)\"));\n\n  svg.append(\"g\")\n    .attr(\"transform\", `translate(${x(0.5) + options.margin.left / 2}, ${y(Math.sqrt(3) / 2) - 26}) rotate(120)`)\n    .call(axisBottom)\n    .call(removeLine)\n    .call(g =&gt; g.selectAll(\"text\").attr(\"transform\", \"translate(-11, 22) rotate(-120)\"));\n\n  return svg.node();\n}\n\n\nlevelLogsumexp = {\n  const density = [];\n  for(let i = 1; i &lt; densityResolution; i++) {\n    for(let j = 1; j &lt; densityResolution - i; j++) {\n      const x1 = i / densityResolution ;\n      const x2 = j / densityResolution;\n      const x3 = Math.max(0, 1 - x1 - x2);\n      const x = [ x1, x2, x3 ];\n\n      density.push({ x, density: logsumexp(x, q, beta) });\n    }\n  }\n  return density;\n}\n\nlevelKL = {\n  const density = [];\n  for(let i = 1; i &lt; densityResolution; i++) {\n    for(let j = 1; j &lt; densityResolution - i; j++) {\n      const x1 = i / densityResolution ;\n      const x2 = j / densityResolution;\n      const x3 = Math.max(0, 1 - x1 - x2);\n      const x = [ x1, x2, x3 ];\n\n      // density.push({ x, density: logsumexp(x, q, beta) / Math.log(Math.max(q[0],q[1], q[2]) * Math.exp(1/beta)) });\n      density.push({ x, density: kull_leibler(x, q, beta) });\n    }\n  }\n  return density;\n}\n\n\nlevelKL_full = {\n  const density = [];\n  for(let i = 1; i &lt; densityResolution; i++) {\n    for(let j = 1; j &lt; densityResolution - i; j++) {\n      const x1 = i / densityResolution ;\n      const x2 = j / densityResolution;\n      const x3 = Math.max(0, 1 - x1 - x2);\n      const x = [ x1, x2, x3 ];\n\n      // density.push({ x, density: logsumexp(x, q, beta) / Math.log(Math.max(q[0],q[1], q[2]) * Math.exp(1/beta)) });\n      density.push({ x, density: objective(x, z, q, beta) });\n    }\n  }\n  return density;\n}\n\nternaryDensity(levelKL_full, densityResolution, { size: 500, colorScheme: d3.interpolateBlues})\nlogsumexpColorScale = legend({color: d3.scaleSequential(d3.extent([0,  logsumexp(z, q, beta)]), d3.interpolateBlues), title: \"Intensity\"})"
+  },
+  {
+    "objectID": "blog/softmax/index.html#credit",
+    "href": "blog/softmax/index.html#credit",
+    "title": "Soft-max and Soft-argmax",
+    "section": " Credit",
+    "text": "Credit\n\nThe observable code was made with the help of François-David Collin\nThe plot is freely inspired from Herb Susmann’s code on Dirichlet Distribution\nThe terminology is inspired by posts from Gabriel Peyré: https://x.com/gabrielpeyre/status/1830470713041354968, https://x.com/gabrielpeyre/status/1680804520862056448"
+  },
+  {
+    "objectID": "blog/softmax/index.html#references",
+    "href": "blog/softmax/index.html#references",
+    "title": "Soft-max and Soft-argmax",
+    "section": " References",
+    "text": "References\n\n\nBoyd, S., and L. Vandenberghe. 2004. Convex Optimization. Cambridge University Press."
+  },
+  {
+    "objectID": "blog/softmax/index.html#footnotes",
+    "href": "blog/softmax/index.html#footnotes",
+    "title": "Soft-max and Soft-argmax",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nthe case with q_k=0 for some k can be reduced to a case with fewer coordinates↩︎"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "\n                \n                Joseph Salmon\n             Machine learning & data science",
+    "section": "",
+    "text": "I am a statistician and an applied mathematician, with a strong interest in machine learning, optimization and data science.\n            \n            Since Oct. 2024, I have been a senior researcher at Inria (team Iroko).\n            In terms of applications, I focus on citizen science, crowdsourcing and high dimensional statistics. I am also in charge of the doctoral program \"Statistics and Data Science\" (EDI2S at Université de Montpellier). \n\n            \n            From 2018 to 2024, I was a full professor at Université de Montpellier and a Junior member of the Institut Universitaire de France (IUF), from 2021 to 2024.\n            For the spring and summer quarters 2018, I was a visiting assistant professor at UW, Statistics department.\n            From 2012 to 2018 I was an assistant professor at Telecom Paris and an associate member at INRIA Parietal Team  (now Mind Team).\n            Back in 2011-2012, I was a post-doctoral Associate at Duke university working with Rebecca Willett.\n\n            In 2010, I finished my Ph.D. in statistics and image processing under the supervision of Dominique Picard and Erwan Le Pennec at the Laboratoire de Probabilités et de Modélisation Aléatoire, now LPSM, in Université Paris Diderot.\nA full list of publications can be found here."
+  },
+  {
+    "objectID": "index.html#recent-publications",
+    "href": "index.html#recent-publications",
+    "title": "\n                \n                Joseph Salmon\n             Machine learning & data science",
+    "section": "Recent Publications",
+    "text": "Recent Publications\n\n\n\n  \n    peerannot: A framework for label aggregation in crowdsourced datasets\n    A. Dubar, T. Lefort and J. Salmon\n    \n    JDS 2024 - 55es Journées de Statistique,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Local linear convergence of proximal coordinate descent\nalgorithm\n    Q. Klopfenstein, Q. Bertrand, A. Gramfort, J. Salmon and S. Vaiter\n    \n    Optimization Letter,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Identify ambiguous tasks combining crowdsourced labels by weighting Areas Under the Margin\n    T. Lefort, B. Charlier, A. Joly and J. Salmon\n    \n    TMLR,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n        \n           Dataset\n        \n        \n  \n\n  \n    Peerannot: classification for crowd-sourced image datasets with Python\n    T. Lefort, B. Charlier, A. Joly and J. Salmon\n    \n    Computo,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Cooperative learning of Pl@ntNet's Artificial Intelligence algorithm: how does it work and how can we improve it?\n    T. Lefort, A. Affouard, B. Charlier, J.-C. Lombardo, M. Chouet, H. Goëau, J. Salmon, P. Bonnet and A. Joly\n    \n    ,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n        \n           Dataset\n        \n        \n  \n\n  \n    Weighted majority vote using Shapley values in crowdsourcing\n    T. Lefort, B. Charlier, A. Joly and J. Salmon\n    \n    CAp 2024 - Conférence sur l'Apprentissage Automatique,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html#news",
+    "href": "index.html#news",
+    "title": "\n                \n                Joseph Salmon\n             Machine learning & data science",
+    "section": "News",
+    "text": "News\n\nSept. 2024: I’ve joined Inria as a senior researcher (Team: Iroko, Montpellier)\nSept. 2023: ANR VITE (PI: B. Thirion, theme: variable importance / explainability) accepted.\nApril 2023: STATLEARN 2023 in Montpellier\nNov. 2022: https://ml4lifesciences.sciencesconf.org/\nMarch 2022: visitor at the Simons Institute for the Theory of Computing\nJuly 2021: IUF Nomination (junior member): https://www.iufrance.fr/detail-de-lactualite/247.html\nNov. 2020: Launching ML-MTP Machine Learning in Montpellier, Theory & Practice.\nDec. 2019: The ANR AI chair proposal CaMeLOt (CooperAtive MachinE Learning and OpTimization) has been selected.\nMay 2019 : Workshop in Montpellier Graph signals : learning and optimization perspectives"
+  },
+  {
+    "objectID": "index.html#contact",
+    "href": "index.html#contact",
+    "title": "\n                \n                Joseph Salmon\n             Machine learning & data science",
+    "section": "Contact",
+    "text": "Contact\n\nIf you want to connect please reach out via email joseph.salmon@inria.fr or Mastodon.\nYou can also write or visit me:\nIMAG, c.c. 051 Université de Montpellier Place Eugène Bataillon 34095 Montpellier Cedex 5 (office 415, building 9)"
+  },
+  {
+    "objectID": "index.html#featured-blog-posts",
+    "href": "index.html#featured-blog-posts",
+    "title": "\n                \n                Joseph Salmon\n             Machine learning & data science",
+    "section": "Featured Blog Posts",
+    "text": "Featured Blog Posts\n\n\n\n\n\n\n\n\n\n\nIsotonic regression\n\n\nIso, Iso, Iso … Tonic! Or how to fit a non-decreasing signal.\n\n\n\nJoseph Salmon\n\n\nNov 10, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\\LaTeX for scientific writing?\n\n\nSome guidance on why, when, and when not using it.\n\n\n\nJoseph Salmon\n\n\nSep 5, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSoft-max and Soft-argmax\n\n\nBack to exponential weights and log-sum-exp functions\n\n\n\nJoseph Salmon, François-David Collin\n\n\nSep 3, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "publications/index.html",
+    "href": "publications/index.html",
+    "title": "Publications",
+    "section": "",
+    "text": "peerannot: A framework for label aggregation in crowdsourced datasets\n    A. Dubar, T. Lefort and J. Salmon\n    \n    JDS 2024 - 55es Journées de Statistique,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Local linear convergence of proximal coordinate descent\nalgorithm\n    Q. Klopfenstein, Q. Bertrand, A. Gramfort, J. Salmon and S. Vaiter\n    \n    Optimization Letter,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Identify ambiguous tasks combining crowdsourced labels by weighting Areas Under the Margin\n    T. Lefort, B. Charlier, A. Joly and J. Salmon\n    \n    TMLR,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n        \n           Dataset\n        \n        \n  \n\n  \n    Peerannot: classification for crowd-sourced image datasets with Python\n    T. Lefort, B. Charlier, A. Joly and J. Salmon\n    \n    Computo,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Cooperative learning of Pl@ntNet's Artificial Intelligence algorithm: how does it work and how can we improve it?\n    T. Lefort, A. Affouard, B. Charlier, J.-C. Lombardo, M. Chouet, H. Goëau, J. Salmon, P. Bonnet and A. Joly\n    \n    ,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n        \n           Dataset\n        \n        \n  \n\n  \n    Weighted majority vote using Shapley values in crowdsourcing\n    T. Lefort, B. Charlier, A. Joly and J. Salmon\n    \n    CAp 2024 - Conférence sur l'Apprentissage Automatique,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Collective Intelligence and Collaborative Data Science\n    J. Salmon\n    \n    Harvard Data Science Review,\n    2024\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    A two-head loss function for deep Average-K classification\n    C. Garcin, M. Servajean, A. Joly and J. Salmon\n    \n    ArXiv e-prints,\n    2023\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Supervised learning of analysis-sparsity priors with automatic differentiation\n    H. Ghanem, J. Salmon, N. Keriven and S. Vaiter\n    \n    IEEE Signal Process. Lett.,\n    2023\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    High-Dimensional Private Empirical Risk Minimization by Greedy Coordinate Descent\n    P. Mangold, A. Bellet, J. Salmon and M. Tommasi\n    \n    AISTATS,\n    2023\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Implicit differentiation for fast hyperparameter selection in non-smooth convex learning\n    Q. Bertrand, Q. Klopfenstein, M. Massias, M. Blondel, S. Vaiter, A. Gramfort and J. Salmon\n    \n    J. Mach. Learn. Res.,\n    2022\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Spatially relaxed inference on high-dimensional linear models\n    J.-A. Chevalier, T. B. Nguyen, B. Thirion and J. Salmon\n    \n    Statistics and Computing,\n    2022\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Stochastic smoothing of the top-K calibrated hinge loss for deep imbalanced classification\n    C. Garcin, M. Servajean, A. Joly and J. Salmon\n    \n    ICML,\n    2022\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Differentially Private Coordinate Descent for Composite Empirical Risk Minimization\n    P. Mangold, A. Bellet, J. Salmon and M. Tommasi\n    \n    ICML,\n    2022\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Benchopt: Reproducible, efficient and collaborative optimization benchmarks\n    T. Moreau, M. Massias, A. Gramfort, P. Ablin, B. Charlier, P.-A. Bannier, M. Dagréou, T. Dupré la Tour, G. Durif, C. F. Dantas, Q. Klopfenstein, J. Larsson, E. Lai, T. Lefort, B. Malézieux, B. Moufad, T. B. Nguyen, A. Rakotomamonjy, Z. Ramzi, J. Salmon and S. Vaiter\n    \n    NeurIPS,\n    2022\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Provably Convergent Working Set Algorithm for Non-Convex Regularized Regression\n    A. Rakotomamonjy, R. Flamary, G. Gasso and J. Salmon\n    \n    AISTATS,\n    2022\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    LassoBench: A High-Dimensional Hyperparameter Optimization Benchmark Suite for Lasso\n    K. Šehić, A. Gramfort, J. Salmon and L. Nardi\n    \n    International Conference on\nAutomated Machine Learning,\n    2022\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Electromagnetic neural source imaging under sparsity constraints with SURE-based hyperparameter tuning\n    P.-A. Bannier, Q. Bertrand, J. Salmon and A. Gramfort\n    \n    Medical imaging meets NeurIPS (Workshop),\n    2021\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    ElasticNet avec gestion des interactions et débiaisage\n    F. Bascou, S. Lèbre and J. Salmon\n    \n    EGC,\n    2021\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Decoding with Confidence: Statistical Control on Decoder Maps\n    J.-A. Chevalier, T. B. Nguyen, G. Varoquaux, J. Salmon and B. Thirion\n    \n    Neuroimage,\n    2021\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Block based refitting in $\\ell_12$ sparse regularisation\n    C.-A. Deledalle, N. Papadakis, J. Salmon and S. Vaiter\n    \n    J. Math. Imaging Vis.,\n    2021\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Pl@ntNet-300K: a plant image dataset with high label ambiguity and a long-tailed distribution\n    C. Garcin, A. Joly, P. Bonnet, A. Affouard, J.-C. Lombardo, M. Chouet, M. Servajean, T. Lorieul and J. Salmon\n    \n    Proceedings of the Neural Information Processing Systems Track on Datasets and Benchmarks,\n    2021\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n        \n           Dataset\n        \n        \n  \n\n  \n    Score-based change detection for gradient-based learning machines\n    L. Liu, J. Salmon and Z. Harchaoui\n    \n    ICASSP,\n    2021\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Screening Rules and its Complexity for Active Set Identification\n    E. Ndiaye, O. Fercoq and J. Salmon\n    \n    J. Convex Anal.,\n    2021\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Debiasing the Elastic Net for models with interactions\n    F. Bascou, S. Lèbre and J. Salmon\n    \n    Journées de Statistique,\n    2020\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Implicit differentiation of Lasso-type models for hyperparameter optimization\n    Q. Bertrand, Q. Klopfenstein, M. Blondel, S. Vaiter, A. Gramfort and J. Salmon\n    \n    ICML,\n    2020\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Implicit differentiation of Lasso-type models for hyperparameter optimization\n    Q. Bertrand, Q. Klopfenstein, M. Blondel, S. Vaiter, A. Gramfort and J. Salmon\n    \n    CAP,\n    2020\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Statistical control for spatio-temporal MEG/EEG source imaging with desparsified multi-task Lasso\n    J.-A. Chevalier, A. Gramfort, J. Salmon and B. Thirion\n    \n    NeurIPS,\n    2020\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Support recovery and sup-norm convergence rates for sparse pivotal estimation\n    Q. Bertrand, M. Massias, A. Gramfort and J. Salmon\n    \n    AISTATS,\n    2020\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Dual extrapolation for Sparse Generalized Linear Models\n    M. Massias, S. Vaiter, A. Gramfort and J. Salmon\n    \n    J. Mach. Learn. Res.,\n    2020\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Integer programming on the junction tree polytope for influence diagrams\n    A. Parmentier, V. Cohen, V. Leclère, G. Obozinski and J. Salmon\n    \n    INFORMS J. Optim.,\n    2020\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Handling correlated and repeated measurements with the smoothed multivariate square-root Lasso\n    Q. Bertrand, M. Massias, A. Gramfort and J. Salmon\n    \n    NeurIPS,\n    2019\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    On Lasso refitting strategies\n    E. Chzhen, M. Hebiri and J. Salmon\n    \n    Bernoulli,\n    2019\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Refitting solutions promoted by $\\ell_12$ sparse analysis regularization with block penalties\n    C.-A. Deledalle, N. Papadakis, J. Salmon and S. Vaiter\n    \n    SSVM,\n    2019\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Optimal mini-batch and step sizes for SAGA\n    N. Gazagnadou, R. Gower and J. Salmon\n    \n    ICML,\n    2019\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Score-based Change Detection for Gradient-based Learning Machines\n    L. Liu, J. Salmon and Z. Harchaoui\n    \n    ,\n    2019\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Exploiting regularity in sparse Generalized Linear Models\n    M. Massias, S. Vaiter, A. Gramfort and J. Salmon\n    \n    SPARS,\n    2019\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Safe Grid Search with Optimal Complexity\n    E. Ndiaye, T. Le, O. Fercoq, J. Salmon and I. Takeuchi\n    \n    ICML,\n    2019\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Screening Rules for Lasso with Non-Convex Sparse Regularizers\n    A. Rakotomamonjy, G. Gasso and J. Salmon\n    \n    ICML,\n    2019\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    A hierarchical Bayesian perspective on majorization-minimization for non-convex sparse regression: application to M/EEG source imaging\n    Y. Bekhti, F. Lucka, J. Salmon and A. Gramfort\n    \n    Inverse Problems,\n    2018\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Statistical Inference with Ensemble of Clustered Desparsified Lasso\n    J.-A. Chevalier, J. Salmon and B. Thirion\n    \n    MICCAI,\n    2018\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    On the benefits of output sparsity for multi-label classification\n    E. Chzhen, C. Denis, M. Hebiri and J. Salmon\n    \n    ArXiv e-prints,\n    2018\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Generalized Concomitant Multi-Task Lasso for sparse multimodal regression\n    M. Massias, O. Fercoq, A. Gramfort and J. Salmon\n    \n    AISTATS,\n    2018\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Celer: a Fast Solver for the Lasso with Dual Extrapolation\n    M. Massias, A. Gramfort and J. Salmon\n    \n    ICML,\n    2018\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    A sharp oracle inequality for Graph-Slope\n    P. C. Bellec, J. Salmon and S. Vaiter\n    \n    Electron. J. Statist.,\n    2017\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Adapting to unknown noise level in sparse deconvolution\n    C. Boyer, Y. De Castro and J. Salmon\n    \n    Inf. Inference,\n    2017\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Optimal two-step prediction in regression\n    D. Chételat, J. Lederer and J. Salmon\n    \n    Electron. J. Statist.,\n    2017\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    CLEAR: Covariant LEAst-square Re-fitting with applications to image restoration\n    C.-A. Deledalle, N. Papadakis, J. Salmon and S. Vaiter\n    \n    SIAM J. Imaging Sci.,\n    2017\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Characterizing the maximum parameter of the total-variation denoising through the pseudo-inverse of the divergence\n    C.-A. Deledalle, N. Papadakis, J. Salmon and S. Vaiter\n    \n    SPARS,\n    2017\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Gap safe screening rules for faster complex-valued multi-task group Lasso\n    M. Massias, A. Gramfort and J. Salmon\n    \n    SPARS,\n    2017\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    From safe screening rules to working sets for faster Lasso-type solvers\n    M. Massias, A. Gramfort and J. Salmon\n    \n    NIPS-OPT,\n    2017\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Efficient Smoothed Concomitant Lasso Estimation for High Dimensional Regression\n    E. Ndiaye, O. Fercoq, A. Gramfort, V. Leclère and J. Salmon\n    \n    Journal of Physics: Conference Series,\n    2017\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Gap Safe screening rules for sparsity enforcing penalties\n    E. Ndiaye, O. Fercoq, A. Gramfort and J. Salmon\n    \n    J. Mach. Learn. Res.,\n    2017\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Perspectives computationnelles et statistiques pour la régression en grande dimension\n    J. Salmon\n    \n    ,\n    2017\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Gossip Dual Averaging for Decentralized Optimization of Pairwise Functions\n    I. Colin, A. Bellet, J. Salmon and S. Clémençon\n    \n    ICML,\n    2016\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Un algorithme de Gossip pour l'optimisation décentralisée de fonctions sur les paires\n    I. Colin, A. Bellet, J. Salmon and S. Clémençon\n    \n    CAP,\n    2016\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Gap Safe Screening Rules for Sparse-Group Lasso\n    E. Ndiaye, O. Fercoq, A. Gramfort and J. Salmon\n    \n    NeurIPS,\n    2016\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Extending Gossip Algorithms to Distributed Estimation of U-Statistics\n    I. Colin, A. Bellet, J. Salmon and S. Clémençon\n    \n    NeurIPS,\n    2015\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    On debiasing restoration algorithms: applications to total-variation and nonlocal-means\n    C.-A. Deledalle, N. Papadakis and J. Salmon\n    \n    SSVM,\n    2015\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Contrast re-enhancement of Total-Variation regularization\njointly with the Douglas-Rachford iterations\n    C.-A. Deledalle, N. Papadakis and J. Salmon\n    \n    SPARS,\n    2015\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Mind the duality gap: safer rules for the Lasso\n    O. Fercoq, A. Gramfort and J. Salmon\n    \n    ICML,\n    2015\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Règles de sélection de variables pour accélérer la localisation de sources en MEG et EEG sous contrainte de parcimonie\n    O. Fercoq, A. Gramfort and J. Salmon\n    \n    GRETSI,\n    2015\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Adaptive Multinomial Matrix Completion\n    O. Klopp, J. Lafond, E. Moulines and J. Salmon\n    \n    Electron. J. Statist.,\n    2015\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    GAP Safe screening rules for sparse multi-task and multi-class models\n    E. Ndiaye, O. Fercoq, A. Gramfort and J. Salmon\n    \n    NeurIPS,\n    2015\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Mandatory Critical Points of 2D Uncertain Scalar Fields\n    D. Günther, J. Salmon and J. Tierny\n    \n    Comput. Graph. Forum,\n    2014\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Probabilistic Low-rank Matrix Completion on Finite Alphabet\n    J. Lafond, O. Klopp, E. Moulines and J. Salmon\n    \n    NeurIPS,\n    2014\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Poisson noise reduction with non-local PCA\n    J. Salmon, Z. T. Harmany, C.-A. Deledalle and R. Willett\n    \n    J. Math. Imaging Vis.,\n    2014\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Learning Heteroscedastic Models by Convex Programming under Group Sparsity\n    A. S. Dalalyan, M. Hebiri, K. Meziani and J. Salmon\n    \n    ICML,\n    2013\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Stable Recovery with Analysis Decomposable Priors\n    J. Fadili, G. Peyré, S. Vaiter, C.-A. Deledalle and J. Salmon\n    \n    SPARS,\n    2013\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Stable Recovery with Analysis Decomposable Priors\n    J. Fadili, G. Peyré, S. Vaiter, C.-A. Deledalle and J. Salmon\n    \n    SampTA,\n    2013\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Reconstruction Stable par Régularisation Décomposable Analyse\n    J. Fadili, G. Peyré, S. Vaiter, C.-A. Deledalle and J. Salmon\n    \n    GRETSI,\n    2013\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Oracle inequalities and minimax rates for non-local means and related adaptive kernel-based methods\n    E. Arias-Castro, J. Salmon and R. Willett\n    \n    SIAM J. Imaging Sci.,\n    2012\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Sharp Oracle Inequalities for Aggregation of Affine Estimators\n    A. S. Dalalyan and J. Salmon\n    \n    Ann. Statist.,\n    2012\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Non-local Methods with Shape-Adaptive Patches (NLM-SAP)\n    C.-A. Deledalle, V. Duval and J. Salmon\n    \n    J. Math. Imaging Vis.,\n    2012\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Poisson Noise Reduction with Non-Local PCA\n    J. Salmon, C.-A. Deledalle, R. Willett and Z. T. Harmany\n    \n    ICASSP,\n    2012\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Patch Reprojections for Non Local Methods\n    J. Salmon and Y. Strozecki\n    \n    Signal Processing,\n    2012\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    A two-stage denoising filter: the preprocessed Yaroslavsky filter\n    J. Salmon, R. Willett and E. Arias-Castro\n    \n    SSP,\n    2012\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Competing against the best nearest neighbor filter in regression\n    A. S. Dalalyan and J. Salmon\n    \n    ALT,\n    2011\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Anisotropic Non-Local Means with Spatially Adaptive Shapes\n    C.-A. Deledalle, V. Duval and J. Salmon\n    \n    SSVM,\n    2011\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Image denoising with patch based PCA: local versus global\n    C.-A. Deledalle, J. Salmon and A. S. Dalalyan\n    \n    BMVC,\n    2011\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Optimal aggregation of affine estimators\n    J. Salmon and A. S. Dalalyan\n    \n    COLT,\n    2011\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    On two parameters for denoising with Non-Local Means\n    J. Salmon\n    \n    IEEE Signal Process. Lett.,\n    2010\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    From Patches to Pixels in Non-Local methods: Weighted-Average Reprojection\n    J. Salmon and Y. Strozecki\n    \n    ICIP,\n    2010\n    \n    \n      \n         PDF\n      \n      \n      \n        \n           Code\n        \n        \n        \n  \n\n  \n    Agrégation d'estimateurs et méthodes à patchs pour le débruitage d'images numériques\n    J. Salmon\n    \n    ,\n    2010\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    NL-Means and aggregation procedures\n    J. Salmon and E. Le Pennec\n    \n    ICIP,\n    2009\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    An aggregator point of view on NL-Means\n    J. Salmon and E. Le Pennec\n    \n    Wavelets XIII,\n    2009\n    \n    \n      \n         PDF\n      \n      \n      \n        \n  \n\n  \n    Ondelettes et modèle Bayesien\n    J. Salmon\n    \n    ,\n    2007\n    \n    \n      \n        \n  \n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "talks/posts/2025-02-17_slides_HDV/index.html#sampling-bias",
+    "href": "talks/posts/2025-02-17_slides_HDV/index.html#sampling-bias",
+    "title": "Joseph Salmon",
+    "section": "Sampling bias",
+    "text": "Sampling bias"
+  }
+]

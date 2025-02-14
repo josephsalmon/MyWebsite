@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.40">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Machine Learning, Data Science Optimization &amp; Image Processing | Research">
+
+<title>Joseph Salmon</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href=".//img/Flag_of_Occitania.svg" rel="icon" type="image/svg+xml">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-04c7cce609aee18406a8a90799f61ee3.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-blog-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-blog-listing'] = new List('listing-blog-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-recent-publications .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-image','listing-date','listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+      page: 25,
+    pagination: { item: "<li class='page-item'><a class='page page-link' href='#'></a></li>" },
+      searchColumns: ["listing-abstract","listing-accessed","listing-author","listing-container-title","listing-doi","listing-id","listing-issn","listing-issue","listing-issued","listing-page","listing-title","listing-type","listing-url","listing-volume","listing-journaltitle","listing-date","listing-code","listing-data"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-recent-publications'] = new List('listing-recent-publications', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+<style>html{ scroll-behavior: smooth; }</style>
+<meta name="author" content="Joseph Salmon">
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./img/Flag_of_Occitania.svg" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Joseph Salmon</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./Courses/index.html"> 
+<span class="menu-text">Courses</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./publications/index.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./talks/index.html"> 
+<span class="menu-text">Talks</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./team/index.html"> 
+<span class="menu-text">Team</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./blog/index.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./code_new/index.html"> 
+<span class="menu-text">Code</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./misc/index.html"> 
+<span class="menu-text">Misc</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="./blog/index.xml"> <i class="bi bi-rss" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/josephsalmon"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://sigmoid.social/@josephsalmon" rel="me"> <i class="bi bi-mastodon" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/joseph-salmon-6134262a6/"> <i class="bi bi-linkedin" role="img">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="mailto:joseph.salmon@inria.fr"> <i class="bi bi-envelope" role="img" aria-label="email">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content page-columns page-full column-body" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"><span class="gradient_text">
+                <i class="fas fa-house"></i>
+                Joseph Salmon</span>
+            <br> Machine learning &amp; data science</h1></header>
+
+
+
+
+<div class="column-screen">
+<link rel="stylesheet" href="html/
+landing_page_styles.css">
+
+<div class="gradient_bg">
+    <div class="hero section_padding">
+        <div class="hero_content">
+            
+            <p>I am a statistician and an applied mathematician, with a strong interest in machine learning, optimization and data science.
+            <br>
+            Since Oct. 2024, I have been a senior researcher at <a href="https://www.inria.fr/" target="_blank"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">Inria</span></a> (team <a href="https://inria.fr/en/iroko"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">Iroko</span></a>).
+            In terms of applications, I focus on <strong>citizen science</strong>, <strong>crowdsourcing</strong> and <strong>high dimensional statistics</strong>. I am also in charge of the doctoral program "Statistics and Data Science" (<a href="https://edi2s.umontpellier.fr/&quot;" target="_blank"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">EDI2S</span></a> at <a href="https://www.umontpellier.fr/" target="_blank"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">Université de Montpellier</span></a>). </p>
+
+            <h2 class="anchored">Short bio </h2>
+            <p>From 2018 to 2024, I was a full professor at <a href="https://www.umontpellier.fr/" target="_blank"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">Université de Montpellier</span></a> and a Junior member of the <a href="http://www.iufrance.fr/" target="_blank"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">Institut Universitaire de France</span></a> (IUF), from 2021 to 2024.
+            For the spring and summer quarters 2018, I was a visiting assistant professor at <a href="https://www.stat.washington.edu/" target="_blank"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">UW, Statistics department</span></a>.
+            From 2012 to 2018 I was an assistant professor at <a href="http://telecom-paris.fr">Telecom Paris</a> and an associate member at INRIA <a href="http://parietal.saclay.inria.fr/" target="_blank"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">Parietal Team </span></a> (now Mind Team).
+            Back in 2011-2012, I was a post-doctoral Associate at <a href="https://www.duke.edu/" target="_blank"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">Duke university</span></a> working with <a href="https://voices.uchicago.edu/willett/" target="_blank"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">Rebecca Willett</span></a>.
+
+            In 2010, I finished my Ph.D. in statistics and image processing under the supervision of Dominique Picard and <a href="http://www.cmap.polytechnique.fr/~lepennec/" target="_blank"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">Erwan Le Pennec</span></a> at the Laboratoire de Probabilités et de Modélisation Aléatoire, now <a href="http://isidore.lpma.math.upmc.fr/" target="_blank"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">LPSM</span></a>, in <a href="https://www.univ-paris-diderot.fr/" target="_blank"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">Université Paris Diderot</span></a>.
+            </p>
+
+        </div>
+        <div class="hero_image">
+            <img src="./img/joseph_2018.png">
+        </div>
+
+         <div id="dot_container">
+        </div>
+    </div>
+
+
+<div w3-include-html="img/waves.html"></div>
+</div>
+
+
+<script src="html/jquery.min.js"></script>
+<script src="html/TweenMax.min.js"></script>
+</div>
+<section id="recent-publications" class="level2" style="font-size: 75%;">
+<h2 class="anchored" data-anchor-id="recent-publications">Recent Publications</h2>
+<div id="listing-recent-publications" class="quarto-listing quarto-listing-container-custom">
+<ul class="pub-list list">
+
+  <li data-index="0" data-listing-date-sort="1704067200000" style="margin: 10px 0;">
+    <span class="listing-title lead"><b>peerannot: A framework for label aggregation in crowdsourced datasets</b></span><br>
+    <span class="listing-author"><a href="https://www.linkedin.com/in/axel-dubar-1b462a182/">A. Dubar</a>, <a href="https://tanglef.github.io/">T. Lefort</a> and <strong>J. Salmon</strong></span><br>
+    <span class="listing-publication fst-italic "></span>
+    <span class="listing-journaltitle">JDS 2024 - 55es Journées de Statistique</span>,
+    <span class="listing-year"><u>2024</u></span><br>
+    <!-- <a href="https://hal.science/hal-04562830/file/Gabarit_JdS.pdf" class="btn btn-primary">
+      Details
+    </a> -->
+    
+      <a href="https://hal.science/hal-04562830/file/Gabarit_JdS.pdf" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </a>
+      
+      
+        <a href="https://peerannot.github.io/" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-code"></i> Code
+        </a>
+        
+        
+  </li>
+
+  <li data-index="1" data-listing-date-sort="1704067200000" style="margin: 10px 0;">
+    <span class="listing-title lead"><b>Local linear convergence of proximal coordinate descent
+algorithm</b></span><br>
+    <span class="listing-author"><a href="https://klopfe.github.io/">Q. Klopfenstein</a>, <a href="https://qb3.github.io/">Q. Bertrand</a>, <a href="http://alexandre.gramfort.net/">A. Gramfort</a>, <strong>J. Salmon</strong> and <a href="http://samuelvaiter.com/">S. Vaiter</a></span><br>
+    <span class="listing-publication fst-italic "></span>
+    <span class="listing-journaltitle">Optimization Letter</span>,
+    <span class="listing-year"><u>2024</u></span><br>
+    <!-- <a href="https://arxiv.org/pdf/2010.11825.pdf" class="btn btn-primary">
+      Details
+    </a> -->
+    
+      <a href="https://arxiv.org/pdf/2010.11825.pdf" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </a>
+      
+      
+        
+  </li>
+
+  <li data-index="2" data-listing-date-sort="1704067200000" style="margin: 10px 0;">
+    <span class="listing-title lead"><b>Identify ambiguous tasks combining crowdsourced labels by weighting Areas Under the Margin</b></span><br>
+    <span class="listing-author"><a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B. Charlier</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a> and <strong>J. Salmon</strong></span><br>
+    <span class="listing-publication fst-italic "></span>
+    <span class="listing-journaltitle">TMLR</span>,
+    <span class="listing-year"><u>2024</u></span><br>
+    <!-- <a href="https://arxiv.org/abs/2209.15380" class="btn btn-primary">
+      Details
+    </a> -->
+    
+      <a href="https://arxiv.org/abs/2209.15380" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </a>
+      
+      
+        <a href="https://peerannot.github.io/" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-code"></i> Code
+        </a>
+        
+        
+        <a href="https://zenodo.org/records/10782465" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-database"></i> Dataset
+        </a>
+        
+  </li>
+
+  <li data-index="3" data-listing-date-sort="1704067200000" style="margin: 10px 0;">
+    <span class="listing-title lead"><b>Peerannot: classification for crowd-sourced image datasets with Python</b></span><br>
+    <span class="listing-author"><a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B. Charlier</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a> and <strong>J. Salmon</strong></span><br>
+    <span class="listing-publication fst-italic "></span>
+    <span class="listing-journaltitle">Computo</span>,
+    <span class="listing-year"><u>2024</u></span><br>
+    <!-- <a href="https://hal.science/hal-04202889" class="btn btn-primary">
+      Details
+    </a> -->
+    
+      <a href="https://hal.science/hal-04202889" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </a>
+      
+      
+        <a href="https://peerannot.github.io/" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-code"></i> Code
+        </a>
+        
+        
+  </li>
+
+  <li data-index="4" data-listing-date-sort="1704067200000" style="margin: 10px 0;">
+    <span class="listing-title lead"><b>Cooperative learning of Pl@ntNet's Artificial Intelligence algorithm: how does it work and how can we improve it?</b></span><br>
+    <span class="listing-author"><a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://www.lirmm.fr/lirmm_eng/users/utilisateurs-lirmm/antoine-affouard">A. Affouard</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B. Charlier</a>, <a href="https://sites.google.com/site/jclombardocv/">J.-C. Lombardo</a>, <a href="https://www.lirmm.fr/users/utilisateurs-lirmm/mathias-chouet">M. Chouet</a>, <a href=" " https:="" amap-dev.cirad.fr="" users="" 119""="">H. Goëau</a>, <strong>J. Salmon</strong>, <a href="http://agents.cirad.fr/index.php/Pierre+BONNET">P. Bonnet</a> and <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a></span><br>
+    <span class="listing-publication fst-italic "></span>
+    <span class="listing-journaltitle"></span>,
+    <span class="listing-year"><u>2024</u></span><br>
+    <!-- <a href="https://arxiv.org/pdf/2406.03356.pdf" class="btn btn-primary">
+      Details
+    </a> -->
+    
+      <a href="https://arxiv.org/pdf/2406.03356.pdf" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </a>
+      
+      
+        <a href="https://peerannot.github.io/" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-code"></i> Code
+        </a>
+        
+        
+        <a href="https://zenodo.org/records/10782465" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-database"></i> Dataset
+        </a>
+        
+  </li>
+
+  <li data-index="5" data-listing-date-sort="1704067200000" style="margin: 10px 0;">
+    <span class="listing-title lead"><b>Weighted majority vote using Shapley values in crowdsourcing</b></span><br>
+    <span class="listing-author"><a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B. Charlier</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a> and <strong>J. Salmon</strong></span><br>
+    <span class="listing-publication fst-italic "></span>
+    <span class="listing-journaltitle">CAp 2024 - Conférence sur l'Apprentissage Automatique</span>,
+    <span class="listing-year"><u>2024</u></span><br>
+    <!-- <a href="https://hal.science/hal-04573727/file/cap2024.pdf" class="btn btn-primary">
+      Details
+    </a> -->
+    
+      <a href="https://hal.science/hal-04573727/file/cap2024.pdf" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-file-earmark-pdf"></i> PDF
+      </a>
+      
+      
+        <a href="https://peerannot.github.io/" class="btn btn-outline-primary btn-sm" target="_blank" rel="noopener noreferrer">
+          <i class="bi bi-code"></i> Code
+        </a>
+        
+        
+  </li>
+
+</ul>
+
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<p>A full list of publications can be found <a href="publications/index.html"><span style="text-decoration: underline;text-decoration-color: #f08f04ff;">here</span></a>.</p>
+<section id="news" class="level2">
+<h2 class="anchored" data-anchor-id="news">News</h2>
+<ul>
+<li><strong>Sept.&nbsp;2024</strong>: I’ve joined Inria as a senior researcher (Team: Iroko, Montpellier)</li>
+<li><strong>Sept.&nbsp;2023</strong>: ANR VITE (PI: B. Thirion, theme: variable importance / explainability) accepted.</li>
+<li><strong>April 2023</strong>: <a href="https://statlearn.sciencesconf.org/" target="_blank">STATLEARN 2023</a> in Montpellier</li>
+<li><strong>Nov.&nbsp;2022</strong>: <a href="Machine Learning for life sciences" target="_blank">https://ml4lifesciences.sciencesconf.org/</a></li>
+<li><strong>March 2022</strong>: visitor at the Simons Institute for the Theory of Computing</li>
+<li><strong>July 2021</strong>: <strong>IUF</strong> Nomination (junior member): <a href="https://www.iufrance.fr/detail-de-lactualite/247.html" target="_blank">https://www.iufrance.fr/detail-de-lactualite/247.html</a></li>
+<li><strong>Nov.&nbsp;2020</strong>: Launching <a href="https://groupes.renater.fr/wiki/ml-mtp/index" target="_blank">ML-MTP Machine Learning in Montpellier, Theory &amp; Practice</a>.</li>
+<li><strong>Dec.&nbsp;2019</strong>: The ANR AI chair proposal CaMeLOt (CooperAtive MachinE Learning and OpTimization) has been selected.</li>
+<li><strong>May 2019</strong> : Workshop in Montpellier <a href="https://graph-sig-2019.sciencesconf.org/" target="_blank">Graph signals : learning and optimization perspectives</a></li>
+</ul>
+</section>
+<section id="contact" class="level2">
+<h2 class="anchored" data-anchor-id="contact">Contact</h2>
+<div id="contact">
+<p>If you want to connect please reach out via email <a href="mailto:joseph.salmon@inria.fr"><span style="text-decoration: underline; text-decoration-color: #f08f04ff;">joseph.salmon@inria.fr</span></a> or Mastodon.</p>
+<p>You can also write or visit me:</p>
+<p>IMAG, c.c. 051<br> Université de Montpellier<br> Place Eugène Bataillon<br> 34095 Montpellier Cedex 5<br> (office 415, building 9)<br></p>
+</div>
+<!--
+- **March 20, 2023**: We are hiring a student assistant to help with software development for probabilistic machine learning, 5-10h/week. <a href="student_assistant_software_engineering_ml/index.html" target="_blank" style="color: #f08f04ff;">Here</a> is a link to the advertisement. <a href="mailto:mail.marvinschmitt@gmail.com?subject=Student assistant ML software engineering" target="_blank" style="color: #f08f04ff;">Drop me a mail</a> if you're interested!
+
+- **March 10, 2023**: Heading to [BayesComp 2023](https://bayescomp2023.com/) in Levi, Finland. Finally putting faces to all those names from papers and Twitter. Presenting a [poster](projects/poster_bayescomp_mms.pdf) and an invited lightning talk. See you around! -->
+<!-- - **01.12.2021**: I have started working as a PhD researcher in Paul Buerkner's Junior Research Group for Bayesian Statistics at the Cluster of Excellence SimTech (University of Stuttgart). Excited to do hands-on research on Bayesian Statistics and Probabilistic Machine Learning! -->
+</section>
+<section id="featured-blog-posts" class="level2">
+<h2 class="anchored" data-anchor-id="featured-blog-posts">Featured Blog Posts</h2>
+<div id="listing-blog-listing" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="UXVhZHJhdGljJTIwcHJvZ3JhbW1pbmclMkNDYWxpYnJhdGlvbiUyQ1BBVkElMkNPcHRpbWl6YXRpb24=" data-listing-date-sort="1731193200000" data-listing-file-modified-sort="1739551303647" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="27" data-listing-word-count-sort="5261">
+<a href="./blog/isotonic/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./blog/isotonic/isotonic.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Isotonic regression
+</h5>
+<div class="card-text listing-description">
+Iso, Iso, Iso … Tonic! Or how to fit a non-decreasing signal.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Joseph Salmon
+</div>
+<div class="listing-date">
+Nov 10, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="TGF0ZXglMkN3cml0aW5n" data-listing-date-sort="1725487200000" data-listing-file-modified-sort="1739551303653" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1602">
+<a href="./blog/latex/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./blog/latex/Tsybakov2009.svg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<span class="math inline">\LaTeX</span> for scientific writing?
+</h5>
+<div class="card-text listing-description">
+Some guidance on why, when, and <strong>when not</strong> using it.
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Joseph Salmon
+</div>
+<div class="listing-date">
+Sep 5, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="c3RhdGlzdGljcyUyQ29wdGltaXphdGlvbiUyQ21hY2hpbmUlMjBsZWFybmluZw==" data-listing-date-sort="1725314400000" data-listing-file-modified-sort="1739551303653" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3286">
+<a href="./blog/softmax/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./blog/softmax/softmax.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Soft-max and Soft-argmax
+</h5>
+<div class="card-text listing-description">
+Back to exponential weights and log-sum-exp functions
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+Joseph Salmon, François-David Collin
+</div>
+<div class="listing-date">
+Sep 3, 2024
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/josephsalmon\.eu\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 Joseph Salmon</span> <span class="faux-block"><a href="https://github.com/josephsalmon/MyWebsite"><i class="fa-brands fa-github" aria-label="github"></i> Source Code</a></span></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p><span class="faux-block"> Designed with <i class="fa-solid fa-heart" aria-label="heart"></i></span> <span class="faux-block"> Built with <a href="https://quarto.org/">Quarto</a></span></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

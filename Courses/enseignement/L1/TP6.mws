@@ -1,0 +1,465 @@
+{VERSION 11 1 "Linux" "11.1" }
+{USTYLETAB {PSTYLE "Heading 4" -1 20 1 {CSTYLE "" -1 -1 "Times" 1 10 0
+ 0 0 1 1 1 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Ord
+ered List 5" -1 200 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 
+2 1 0 0 1 }1 1 0 0 3 3 2 144 2 0 2 2 -1 1 }{PSTYLE "Ordered List 1" -1
+ 201 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 
+0 0 3 3 2 0 2 0 2 2 -1 1 }{PSTYLE "Text Output" -1 2 1 {CSTYLE "" -1 
+-1 "Courier" 1 10 0 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2
+ 2 -1 1 }{PSTYLE "_pstyle3" -1 202 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0
+ 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Bulle
+t Item" -1 15 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 
+0 1 }1 1 0 0 3 3 2 0 2 0 2 2 -1 1 }{PSTYLE "Left Justified Maple Outpu
+t" -1 12 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }
+1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Help" -1 10 1 {CSTYLE "" -1 -1 
+"Courier" 1 9 0 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 
+-1 1 }{PSTYLE "Author" -1 19 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2
+ 2 2 2 2 2 1 0 0 1 }3 1 0 0 8 8 2 0 2 0 2 2 -1 1 }{PSTYLE "Diagnostic"
+ -1 9 1 {CSTYLE "" -1 -1 "Courier" 1 10 64 128 64 1 2 2 2 2 2 1 1 0 0 
+1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Heading 2" -1 4 1 {CSTYLE ""
+ -1 -1 "Times" 1 14 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 8 2 2 0 2 0 2
+ 2 -1 1 }{PSTYLE "_pstyle1" -1 203 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0
+ 0 1 2 1 2 2 2 2 1 0 0 1 }3 1 0 0 8 4 2 0 2 0 2 2 -1 1 }{PSTYLE "Order
+ed List 3" -1 204 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 
+1 0 0 1 }1 1 0 0 3 3 2 72 2 0 2 2 -1 1 }{PSTYLE "Maple Plot" -1 13 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0
+ 2 0 2 0 2 2 -1 1 }{PSTYLE "Normal" -1 0 1 {CSTYLE "" -1 -1 "Times" 1 
+12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE 
+"Annotation Title" -1 205 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 
+2 2 2 2 1 0 0 1 }3 1 0 0 12 12 2 0 2 0 2 2 -1 1 }{PSTYLE "Dash Item" 
+-1 16 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1
+ 0 0 3 3 2 0 2 0 2 2 -1 1 }{PSTYLE "Heading 3" -1 5 1 {CSTYLE "" -1 -1
+ "Times" 1 12 0 0 0 1 1 1 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 
+1 }{PSTYLE "Ordered List 4" -1 206 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0
+ 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 108 2 0 2 2 -1 1 }{PSTYLE "_ps
+tyle2" -1 207 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 
+0 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Maple Output" -1 11 1 
+{CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0
+ 2 0 2 0 2 2 -1 1 }{PSTYLE "Line Printed Output" -1 6 1 {CSTYLE "" -1 
+-1 "Courier" 1 10 0 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2
+ 2 -1 1 }{PSTYLE "List Item" -1 14 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0
+ 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 0 2 0 2 2 -1 1 }{PSTYLE "Warni
+ng" -1 7 1 {CSTYLE "" -1 -1 "Courier" 1 10 0 0 255 1 2 2 2 2 2 1 1 0 0
+ 1 }1 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE "Error" -1 8 1 {CSTYLE "" -1
+ -1 "Courier" 1 10 255 0 255 1 2 2 2 2 2 1 1 0 0 1 }1 1 0 0 0 0 2 0 2 
+0 2 2 -1 1 }{PSTYLE "Fixed Width" -1 17 1 {CSTYLE "" -1 -1 "Courier" 1
+ 10 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }3 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{PSTYLE
+ "Heading 1" -1 3 1 {CSTYLE "" -1 -1 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 
+1 0 0 1 }1 1 0 0 8 4 2 0 2 0 2 2 -1 1 }{PSTYLE "Title" -1 18 1 {CSTYLE
+ "" -1 -1 "Times" 1 18 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }3 1 0 0 12 12 2 0 
+2 0 2 2 -1 1 }{PSTYLE "Ordered List 2" -1 208 1 {CSTYLE "" -1 -1 "Time
+s" 1 12 0 0 0 1 2 2 2 2 2 2 1 0 0 1 }1 1 0 0 3 3 2 36 2 0 2 2 -1 1 }
+{CSTYLE "Help Variable" -1 25 "Courier" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0
+ 1 }{CSTYLE "_cstyle2" -1 200 "Times" 1 24 0 0 0 1 2 1 2 2 2 2 0 0 0 1
+ }{CSTYLE "Help Bold" -1 39 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }
+{CSTYLE "Page Number" -1 33 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "Help Nonterminal" -1 24 "Courier" 1 12 0 0 0 1 2 1 2 2 2 2 0 
+0 0 1 }{CSTYLE "Default" -1 38 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 
+1 }{CSTYLE "Maple Comment" -1 21 "Courier" 1 12 0 0 0 1 2 1 2 2 2 2 0 
+0 0 1 }{CSTYLE "2D Math Small" -1 7 "Times" 1 1 0 0 0 1 2 2 2 2 2 2 0 
+0 0 1 }{CSTYLE "2D Inert Output" -1 201 "Times" 1 12 144 144 144 1 2 2
+ 2 2 1 2 0 0 0 1 }{CSTYLE "Popup" -1 31 "Times" 1 12 0 128 128 1 1 2 1
+ 2 2 2 0 0 0 1 }{CSTYLE "Copyright" -1 34 "Times" 1 10 0 0 0 1 2 2 2 2
+ 2 2 0 0 0 1 }{CSTYLE "2D Input" -1 19 "Times" 1 12 255 0 0 1 2 2 2 2 
+1 2 0 0 0 1 }{CSTYLE "Maple Input Placeholder" -1 202 "Courier" 1 12 
+200 0 200 1 2 1 2 2 1 2 0 0 0 1 }{CSTYLE "Annotation Text" -1 203 "Tim
+es" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Underlined Bold" 
+-1 41 "Times" 1 12 0 0 0 1 1 1 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math Itali
+c Small206" -1 204 "Times" 1 1 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "P
+lot Text" -1 28 "Times" 1 8 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help
+ Italic" -1 42 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help
+ Heading" -1 26 "Times" 1 14 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "_cs
+tyle6" -1 205 "Times" 1 14 0 0 0 1 1 1 2 2 2 2 0 0 0 1 }{CSTYLE "Help \+
+Normal" -1 30 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Dicti
+onary Hyperlink" -1 45 "Times" 1 12 147 0 15 1 2 2 1 2 2 2 0 0 0 1 }
+{CSTYLE "Help Emphasized" -1 22 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0
+ 1 }{CSTYLE "Help Italic Bold" -1 40 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 
+0 0 0 1 }{CSTYLE "LaTeX" -1 32 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 
+1 }{CSTYLE "Help Underlined" -1 44 "Times" 1 12 0 0 0 1 2 2 1 2 2 2 0 
+0 0 1 }{CSTYLE "Help Underlined Italic" -1 43 "Times" 1 12 0 0 0 1 1 2
+ 1 2 2 2 0 0 0 1 }{CSTYLE "2D Math Bold" -1 5 "Times" 1 12 0 0 0 1 2 1
+ 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math Italic" -1 3 "Times" 1 12 0 0 0 1 1
+ 2 2 2 2 2 0 0 0 1 }{CSTYLE "Text" -1 206 "Times" 1 12 0 0 0 1 2 2 2 2
+ 2 2 0 0 0 1 }{CSTYLE "2D Math Italic Small" -1 207 "Times" 1 1 0 0 0 
+1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "_cstyle7" -1 208 "Times" 1 14 0 0 0 1 
+2 1 1 2 2 2 0 0 0 1 }{CSTYLE "Maple Input" -1 0 "Courier" 1 12 255 0 0
+ 1 2 1 2 2 1 2 0 0 0 1 }{CSTYLE "Help Fixed" -1 23 "Courier" 1 10 0 0 
+0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math Italic Small207" -1 209 "Tim
+es" 1 1 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "Plot Title" -1 27 "Times
+" 1 10 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math Bold Small" -1 10
+ "Times" 1 1 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math" -1 2 "Time
+s" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Help Notes" -1 37 "Times
+" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "Hyperlink" -1 17 "Times" 
+1 12 0 128 128 1 2 2 1 2 2 2 0 0 0 1 }{CSTYLE "2D Math Italic Small207
+209" -1 210 "Times" 1 1 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "2D Math \+
+Symbol 2" -1 16 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "Equ
+ation Label" -1 211 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE 
+"_cstyle1" -1 212 "Times" 1 18 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "O
+utput Labels" -1 29 "Times" 1 8 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "
+2D Comment" -1 18 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "2
+D Output" -1 20 "Times" 1 12 0 0 255 1 2 2 2 2 2 2 0 0 0 1 }{CSTYLE "H
+elp Maple Name" -1 35 "Times" 1 12 104 64 92 1 2 1 2 2 2 2 0 0 0 1 }
+{CSTYLE "Help Menus" -1 36 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }
+{CSTYLE "Prompt" -1 1 "Courier" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }
+{PSTYLE "" -1 209 1 {CSTYLE "" -1 -1 "Times" 1 12 0 0 0 1 2 2 2 2 2 2 
+1 0 0 1 }1 1 0 0 8 4 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 213 "Times" 1 12 
+0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 214 "Times" 1 16 0 0 0 1 2 
+1 1 2 2 2 0 0 0 1 }{CSTYLE "" -1 215 "Times" 1 14 0 0 0 1 2 1 2 2 2 2 
+0 0 0 1 }{CSTYLE "" -1 216 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 217 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 218 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 219 "T
+imes" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 220 "Times" 1 12
+ 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 221 "Times" 1 12 0 0 0 1 1
+ 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 222 "Times" 1 12 0 0 0 1 1 2 2 2 2 2
+ 0 0 0 1 }{CSTYLE "" -1 223 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 224 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 225 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 226 "T
+imes" 1 12 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{PSTYLE "" -1 210 1 {CSTYLE ""
+ -1 -1 "Times" 1 14 0 0 0 1 2 1 2 2 2 2 1 0 0 1 }1 1 0 0 0 0 2 0 2 0 2
+ 2 -1 1 }{CSTYLE "" -1 227 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 228 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 229 "Times" 1 14 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 230 "T
+imes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 231 "Times" 1 12
+ 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 232 "Times" 1 16 0 0 0 1 2
+ 1 1 2 2 2 0 0 0 1 }{CSTYLE "" -1 233 "Times" 1 14 0 0 0 1 2 1 2 2 2 2
+ 0 0 0 1 }{CSTYLE "" -1 234 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 235 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 236 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 237 "T
+imes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 238 "Times" 1 14
+ 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 239 "Times" 1 12 0 0 0 1 1
+ 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 240 "Times" 1 12 0 0 0 1 1 2 2 2 2 2
+ 0 0 0 1 }{CSTYLE "" -1 241 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 242 "Times" 1 14 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 243 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 244 "T
+imes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 245 "Times" 1 14
+ 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 246 "Times" 1 12 0 0 0 1 1
+ 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 247 "Times" 1 12 0 0 0 1 1 2 2 2 2 2
+ 0 0 0 1 }{CSTYLE "" -1 248 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 249 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 250 "Times" 1 14 0 0 0 1 2 1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 251 "T
+imes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 252 "Times" 1 12
+ 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 253 "Times" 1 12 0 0 0 1 1
+ 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 254 "Times" 1 12 0 0 0 1 1 2 2 2 2 2
+ 0 0 0 1 }{CSTYLE "" -1 255 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 256 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{PSTYLE ""
+ -1 211 1 {CSTYLE "" -1 -1 "Times" 1 16 0 0 0 1 2 1 1 2 2 2 1 0 0 1 }1
+ 1 0 0 0 0 2 0 2 0 2 2 -1 1 }{CSTYLE "" -1 257 "Times" 1 12 0 0 0 1 2 
+1 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 258 "Times" 1 12 0 0 0 1 2 1 2 2 2 2 
+0 0 0 1 }{CSTYLE "" -1 259 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 260 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 261 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 262 "T
+imes" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 263 "Times" 1 12
+ 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 264 "Times" 1 12 0 0 0 1 1
+ 2 2 2 2 2 0 0 0 1 }{CSTYLE "" -1 265 "Times" 1 12 0 0 0 1 1 2 2 2 2 2
+ 0 0 0 1 }{CSTYLE "" -1 266 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }
+{CSTYLE "" -1 267 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }{CSTYLE ""
+ -1 268 "Times" 1 12 0 0 0 1 1 2 2 2 2 2 0 0 0 1 }}
+{SECT 0 {EXCHG {PARA 209 "" 0 "" {TEXT 206 10 "J.Salmon\n" }{TEXT 206 
+6 "salmon" }{TEXT 206 16 "@math.jussieu.fr" }}{PARA 203 "" 0 "" {TEXT 
+212 27 "MK1 \"Calcul formel\" Maple" }}{PARA 207 "" 0 "" {TEXT 269 0 "
+" }}{PARA 202 "" 0 "" {TEXT 200 109 "TP6 : R\303\251solution d'\303\25
+1quations, d\303\251rivation, int\303\251gration,limite et continuit\3
+03\251" }}{PARA 207 "" 0 "" {TEXT 269 0 "" }}{PARA 207 "" 0 "" {TEXT 
+269 0 "" }}{PARA 207 "" 0 "" {TEXT 269 0 "" }}{PARA 207 "" 0 "" {TEXT 
+269 0 "" }}{PARA 0 "" 0 "" {TEXT 213 9 "But du TP" }{TEXT 270 278 ": O
+n va apprendre lors de ce TP \303\240 manipuler les fonctions num\303
+\251riques \303\240  variable r\303\251elles. On se familiarisera avec
+ les outils \303\251l\303\251mentaires de l'analyse: r\303\251solution
+ d'\303\251quations, d\303\251rivation, int\303\251gration, limite" }
+{TEXT 270 22 " et continuit\303\251." }}{PARA 0 "" 0 "" {TEXT 270 0 ""
+ }}}{EXCHG {PARA 0 "" 0 "" {TEXT 214 39 "1. R\303\251soudre des \303\2
+51quations" }}{PARA 0 "" 0 "" {TEXT 215 61 "1.1 R\303\251soudre une \3
+03\251quation \303\240 une inconnue" }}{PARA 0 "" 0 "" {TEXT 216 6 "Ra
+ppel" }{TEXT 270 89 ": Pour r\303\251soudre une \303\251quation \303\2
+40 une inconnue, on utilise la commande " }{TEXT 217 5 "solve" }{TEXT 
+270 21 " dont la syntaxe est " }{TEXT 218 25 "solve(equation, variable
+)" }{TEXT 270 1 "." }}{PARA 0 "" 0 "" {TEXT 270 142 "L'\303\251quation
+ est d\303\251finie par une \303\251galit\303\251 =, \303\240 bien dif
+f\303\251rencier des affectations, qui se font par : =." }}{PARA 0 "" 
+0 "" {TEXT 270 0 "" }}{PARA 0 "" 0 "" {TEXT 270 28 "Commen\303\247ons \+
+par les   " }{TEXT 219 29 "\303\251quations polynomiales" }{TEXT 270 
+46 ". Maple r\303\251sout compl\303\251tement sur " }{TEXT 220 2 "C " 
+}{TEXT 270 116 "les \303\251quations polynomiales de degr\303\251 <=3 \+
+et quelques \303\251quations de degr\303\251 sup\303\251rieur." }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 10 "restart;\n" }{MPLTEXT 1 0 
+17 "solve(x=1+1/x,x);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6$,&#\"\"\"\"\"
+#F%*&F$F%)\"\"&F$F%F%,&F$F%F'!\"\"" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 
+270 135 "Ici, Maple donne les solutions exactes et explicites de l'\30
+3\251quation. Le type de r\303\251sultat renvoy\303\251 par Maple est \+
+une " }{TEXT 221 15 "s\303\251quence" }{TEXT 270 68 ". On peut demande
+r les valeurs approch\303\251es des solutions par :" }}}{EXCHG {PARA 0
+ "> " 0 "" {MPLTEXT 1 0 9 "evalf(%);" }}{PARA 11 "" 1 "" {XPPMATH 20 "
+6$$\"+))R.=;!\"*$!+!))R.='!#5" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 
+204 "Malheureusement, en degr\303\251 sup\303\251rieur ou \303\251gal \+
+\303\240 4, cela ne se passe pas toujours aussi bien (et ceci pour des
+ raisons th\303\251oriques: cf les travaux de Galois sur ce sujet...)"
+ }}{PARA 0 "" 0 "" {TEXT 270 0 "" }}{PARA 0 "" 0 "" {TEXT 270 64 "Essa
+yons de r\303\251soudre l'\303\251quation : x^7-x^6+x^2-1=0." }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 30 "S:=solve(x^7-x^6+x^2-1=0,x);
+\n" }}{PARA 11 "" 1 "" {XPPMATH 20 "6)\"\"\"-I'RootOfG6$%*protectedGI(
+_syslibG6\"6$,(*$)I#_ZGF&\"\"'F#F#F.F#F#F#/I&indexGF&F#-F%6$F+/F1\"\"#
+-F%6$F+/F1\"\"$-F%6$F+/F1\"\"%-F%6$F+/F1\"\"&-F%6$F+/F1F/" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 270 209 "Parfois, lorsque Maple ne peut pas trou
+ver de solution explicite, ou lorsque celle-ci est trop compliqu\303\2
+51e pour \303\252tre utilisable, les solutions sont exprim\303\251es \+
+\303\240 l'aide de la fonction " }{TEXT 222 6 "RootOf" }{TEXT 270 262 
+" (\"racine de\"), qui \"repr\303\251sente\" toutes les racines \303\2
+40 la fois et aucune en particulier. Ceci  a pour but de pouvoir manip
+uler alg\303\251briquement les racines sans avoir \303\240 les connait
+re.  Factorisons le polyn\303\264me de d\303\251part." }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 22 "factor(x^7-x^6+x^2-1);" }}{PARA 11 
+"" 1 "" {XPPMATH 20 "*&,&I\"xG6\"\"\"\"F&!\"\"F&,(*$)F$\"\"'F&F&F$F&F&
+F&F&" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 190 "Une racine \303\251vide
+nte est 1, les autres racines sont celles de x^6+x+1 (au nombre de 6),
+ que Maple refuse d'expliciter. Cependant, ce n'est pas compl\303\250t
+ement un \303\251chec car :" }}{PARA 0 "" 0 "" {TEXT 270 64 "* certain
+es fonctions de Maple sont capables de travailler avec " }{TEXT 223 7 
+"RootOf," }{TEXT 270 60 " et on peut continuer alors \303\240 \"faire \+
+des calculs\" :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 29 "alias(al
+pha=RootOf(x^6+x+1));" }}{PARA 11 "" 1 "" {XPPMATH 20 "I&alphaG6\"" }}
+}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 10 "alpha^8;\n" }{MPLTEXT 1 0 
+18 "simplify(alpha^8);" }}{PARA 11 "" 1 "" {XPPMATH 20 "*$)I&alphaG6\"
+\"\")\"\"\"" }}{PARA 11 "" 1 "" {XPPMATH 20 ",$*&)I&alphaG6\"\"\"#\"\"
+\",&F(F(F%F(F(!\"\"" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 136 "* si l'
+\303\251quation ne comporte aucun param\303\250tre, on peut obtenir de
+s valeurs num\303\251riques approch\303\251es des racines :" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 9 "evalf(S);" }}{PARA 11 "" 1 ""
+ {XPPMATH 20 "6)$\"\"\"\"\"!,&$\"+LL-a%*!#5F$*&$\"+QpO=hF)F$^#F$F$F$,&
+$\"+X9NZ:F)!\"\"*&$\"+a2QQ5!\"*F$F-F$F$,&$\"+))=n1zF)F1*&$\"+.#p]+$F)F
+$F-F$F$,&F7F1F9F1,&F/F1F2F1,&F'F$F*F1" }}}{EXCHG {PARA 0 "" 0 "" {TEXT
+ 270 12 "La fonction " }{TEXT 224 10 "allvalues " }{TEXT 270 90 "perme
+t parfois de \"d\303\251terminer\" toutes les racines d\303\251sign\30
+3\251es par le " }{TEXT 225 8 "RootOf :" }{TEXT 270 59 " quand c'est p
+ossible, Maple donne des expressions exactes." }}}{EXCHG {PARA 0 "> " 
+0 "" {MPLTEXT 1 0 32 "T:=solve(-x**4+5*x**3+x**2-1,x);" }}{PARA 11 "" 
+1 "" {XPPMATH 20 "6&-I'RootOfG6$%*protectedGI(_syslibG6\"6$,**$)I#_ZGF
+%\"\"%\"\"\"F/*&\"\"&F/)F-\"\"$F/!\"\"*$)F-\"\"#F/F4F/F//I&indexGF%F/-
+F$6$F*/F9F7-F$6$F*/F9F3-F$6$F*/F9F." }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 17 "allvalues([T]):\n" }{MPLTEXT 1 0 18 "allvalues([T])[1
+];" }}{PARA 11 "" 1 "" {XPPMATH 20 ",(#\"\"&\"\"%\"\"\"*(#F&\"#7F&)\"
+\"$#F&\"\"#F&)*&,(*&\"#$)F&),&\"%!)HF&*&F)F&)\"&$pgF,F&F&#F&F+F&F&*&F-
+F&)F4#F-F+F&F&\"$/\"F&F&F3!\"\"F,F&F&*&F(F&)*(,**(\"$)\\F&F3F&F.F&F&*(
+\"\"'F&F.F&F;F&F>*&\"$7$F&F.F&F>*(\"%5EF&F*F&F3F&F&F&F3F>F.F>F,F&F>" }
+}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 0 "" }}{PARA 0 "" 0 "" {TEXT 270 
+42 "Maple peut aussi r\303\251soudre quelques " }{TEXT 226 33 "\303\25
+1quations non polynomiales" }{TEXT 270 9 " simples." }}}{EXCHG {PARA 0
+ "> " 0 "" {MPLTEXT 1 0 20 "solve(exp(x)=1+x,x);" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "\"\"!" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 187 "Pour les \+
+\303\251quations plus compliqu\303\251es, Maple peut trouver une parti
+e des solutions, aucune des solutions, ou meme des solutions qui sont \+
+fausses ! Voir la feuille d'exercices." }}{PARA 0 "" 0 "" {TEXT 270 0 
+"" }}{PARA 210 "" 0 "" {TEXT 206 56 "1.2 R\303\251soudre un syst\303\2
+51me d'\303\251quations" }}{PARA 0 "" 0 "" {TEXT 270 90 "Rappel: Pour \+
+r\303\251soudre un syst\303\251me d'\303\251quations, on utilise la co
+mmande " }{TEXT 227 6 "solve " }{TEXT 270 18 "avec la syntaxe : " }
+{TEXT 228 34 "solve(\{equations\},\{variables\})" }}{PARA 0 "" 0 "" 
+{TEXT 270 96 "Maple retourne les solutions sous la forme \{variable1=e
+xpression1, variable2=expression2,...\}." }}{PARA 0 "" 0 "" {TEXT 270 
+0 "" }}{PARA 0 "" 0 "" {TEXT 270 59 "Exemple : le syst\303\251me \{x+y
++z=4, x+y-z=1, x-y-z=-3\}." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 
+46 "solve(\{x+y+z=4,x+y-z=1,x-y-z=-3\},\{x,y,z\});" }}{PARA 11 "" 1 ""
+ {XPPMATH 20 "<%/I\"zG6\"#\"\"$\"\"#/I\"yGF%F(/I\"xGF%#\"\"\"F(" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 270 38 "Ici, Maple trouve une solution un
+ique." }}{PARA 0 "" 0 "" {TEXT 270 0 "" }}{PARA 0 "" 0 "" {TEXT 270 
+105 "Dans certains cas, on a une famille de solutions, qui s'expriment
+ en fonction de certaines des variables." }}{PARA 0 "" 0 "" {TEXT 270 
+48 "Exemple : le syst\303\250me \{ x-3y=2,3x-9y=6\}." }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 29 "solve(\{x-3*y=2,3*x-9*y=6\});" }}{PARA 11
+ "" 1 "" {XPPMATH 20 "<$/I\"xG6\",&*&\"\"$\"\"\"I\"yGF%F)F)\"\"#F)/F*F
+*" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 250 "Maple a choisi de garder l
+'inconnue y comme param\303\250tre, et a pu exprimer toutes les soluti
+ons en fonction de ce param\303\250tre. Pour les syst\303\250mes d'\30
+3\251quation lin\303\251aires on renvoit au TP sur l'alg\303\250bre li
+n\303\251aire." }}{PARA 0 "" 0 "" {TEXT 270 0 "" }}{PARA 0 "" 0 "" 
+{TEXT 229 38 "1.3 R\303\251solution approch\303\251e" }}{PARA 0 "" 0 "
+" {TEXT 270 132 "Lorsqu'on ne peut r\303\251soudre de mani\303\250re e
+xacte une \303\251quation (sans param\303\250tre), on peut essayer la \+
+fonction " }{TEXT 230 6 "fsolve" }{TEXT 270 28 " pour obtenir des solu
+tions " }{TEXT 231 17 "approch\303\251es" }{TEXT 270 1 "." }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 24 "fsolve(tan(sin(x))=1,x);" }}{PARA 
+11 "" 1 "" {XPPMATH 20 "$\"+36RL!*!#5" }}}{EXCHG {PARA 0 "" 0 "" {TEXT
+ 270 76 "On peut sp\303\251cifier un intervalle sur lequel on cherche \+
+les solutions :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 35 "fsolve(x
+^5-7*x^4+3*x^2+15,x,0..10);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6$$\"+zH'
+pQ\"!\"*$\"+R;0JpF%" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 151 "Par d\30
+3\251faut, Maple cherche des solutions approch\303\251es r\303\251elle
+s. On peut aussi lui demander des solutions approch\303\251es complexe
+s :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 37 "fsolve(x^5-7*x^4+3*x
+^2+15,x,complex);" }}{PARA 11 "" 1 "" {XPPMATH 20 "6'$!+yAFU7!\"*,&$\"
++;q6(y$!#6!\"\"*&$\"+')35?6F%\"\"\"^#F.F.F*,&F'F*F+F.$\"+zH'pQ\"F%$\"+
+R;0JpF%" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 0 "" }}{PARA 0 "" 0 "" 
+{TEXT 232 42 "2. D\303\251rivation et int\303\251gration" }}{PARA 0 ""
+ 0 "" {TEXT 233 33 "2.1 D\303\251river une expression" }}{PARA 0 "" 0 
+"" {TEXT 270 21 "On d\303\251rive une " }{TEXT 234 10 "expression" }
+{TEXT 270 34 " \303\240 l'aide de la commande   " }{TEXT 235 4 "diff" 
+}{TEXT 270 17 ", par la syntaxe " }{TEXT 236 37 "diff(expression_en_va
+riable,variable)" }{TEXT 270 1 "." }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 18 "diff(1/(1+x^2),x);" }}{PARA 11 "" 1 "" {XPPMATH 20 ",
+$*(\"\"#\"\"\"),&F%F%*$)I\"xG6\"F$F%F%F$!\"\"F*F%F," }}}{EXCHG {PARA 0
+ "" 0 "" {TEXT 270 25 "Maple retourne alors une " }{TEXT 237 10 "expre
+ssion" }{TEXT 270 16 " en la variable." }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT 238 31 "2.2 D\303\251river une fonction" }}{PARA 0 "" 0 "" {TEXT
+ 270 21 "On d\303\251rive une " }{TEXT 239 8 "fonction" }{TEXT 270 98 
+" (pr\303\251alablement d\303\251finie \303\240 l'aide de -> ou de una
+pply) par l'op\303\251rateur " }{TEXT 240 1 "D" }{TEXT 270 1 "." }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 30 "restart; f:=x->cos(x)+5*x^2-
+3;" }}{PARA 11 "" 1 "" {XPPMATH 20 "f*6#I\"xG6\"F%6$I)operatorGF%I&arr
+owGF%F%,(-I$cosGF%F#\"\"\"*&\"\"&F,)F$\"\"#F,F,\"\"$!\"\"F%F%F%" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "g:=D(f);" }}{PARA 11 "" 1 "" 
+{XPPMATH 20 "f*6#I\"xG6\"F%6$I)operatorGF%I&arrowGF%F%,&-I$sinG6$%*pro
+tectedGI(_syslibGF%F#!\"\"*&\"#5\"\"\"F$F2F2F%F%F%" }}}{EXCHG {PARA 0 
+"" 0 "" {TEXT 270 25 "Maple retourne alors une " }{TEXT 241 8 "fonctio
+n" }{TEXT 270 1 "." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 6 "g(Pi);
+" }}{PARA 11 "" 1 "" {XPPMATH 20 ",$*&\"#5\"\"\"I#PiG%*protectedGF%F%"
+ }}}{EXCHG {PARA 0 "" 0 "" {TEXT 242 26 "2.3 Calculer une primitive" }
+}{PARA 0 "" 0 "" {TEXT 270 23 "On utilise la commande " }{TEXT 243 3 "
+int" }{TEXT 270 22 ", dont la syntaxe est " }{TEXT 244 36 "int(express
+ion_en_variable,variable)" }{TEXT 270 98 ". Le r\303\251sultat est san
+s constante d'int\303\251gration. C'est une expression en la variable.
+" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 14 "int(tan(x),x);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 ",$-I#lnG6$%*protectedGI(_syslibG6\"6#-I$
+cosGF%6#I\"xGF(!\"\"" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 103 "Rem: C'
+est primitive est utile \303\240 connaitre! retrouver la \303\240 la m
+ain \303\251ventuellement." }}{PARA 0 "" 0 "" {TEXT 270 0 "" }}{PARA 0
+ "" 0 "" {TEXT 270 61 "Parfois, Maple ne sait pas calculer exactement \+
+une primitive." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 23 "int(exp(x
+)*cos(x)^n,x);" }}{PARA 11 "" 1 "" {XPPMATH 20 "-I$intG6$%*protectedGI
+(_syslibG6\"6$*&-I$expGF$6#I\"xGF'\"\"\")-I$cosGF$F,I\"nGF'F.F-" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 270 103 "V\303\251rifier qu'ici, si l'on \+
+donne une valeur pr\303\251cise \303\240 n, Maple sait mener le calcul
+." }}{PARA 0 "" 0 "" {TEXT 270 0 "" }}}{EXCHG {PARA 0 "> " 0 "" 
+{XPPEDIT 19 1 "int(exp(x)*cos(x)^3, x); 1;" "C$-I$intG6$%*protectedGI(
+_syslibG6\"6$*&-I$expGF%6#I\"xGF(\"\"\"-I$cosGF%F-\"\"$F.F/" }}{PARA 
+11 "" 1 "" {XPPMATH 20 ",&**#\"\"\"\"#5F%,&-I$cosG6$%*protectedGI(_sys
+libG6\"6#I\"xGF-F%*&\"\"$F%-I$sinGF*F.F%F%F%-I$expGF*F.F%)F(\"\"#F%F%*
+(#F1F&F%F4F%,&F(F%F2F%F%F%" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 206 87 "Pa
+rfois, Maple exprime les primitives en fonction de fonctions dites sp
+\303\251ciales :" }{TEXT 206 0 "" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT
+ 1 0 16 "int(sin(x)/x,x);" }}{PARA 11 "" 1 "" {XPPMATH 20 "-I#SiG6$%*p
+rotectedGI(_syslibG6\"6#I\"xGF'" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 
+147 "C'est la fonction sinus int\303\251gral (pour en savoir plus, con
+sulter l'aide sur Si). Maple la connait, il sait par exemple en tracer
+ le graphe :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 9 "plot(Si);" }
+}{PARA 13 "" 1 "" {TEXT 271 0 "" }{GLPLOT2D 276 304 304 {PLOTDATA 2 "6
+%-%+AXESLABELSG6$Q!6\"F&-%'CURVESG6$7co7$!#5$!+%fZ$e;!\"*7$$!+<p0k&*F0
+$!+TVut;F07$$!+r^u%=*F0$!+Ksmr;F07$$!+U%p\"e()F0$!+*4D4l\"F07$$!+#4m(G
+$)F0$!+&*pP7;F07$$!+@OS,zF0$!+M&[=c\"F07$$!+/R=0vF0$!+e-L6:F07$$!+P8#
+\\4(F0$!+pG\"RY\"F07$$!+/siqmF0$!+>f[H9F07$$!+&\\g\"fkF0$!+#fk0U\"F07$
+$!+(y$pZiF0$!+%=_#=9F07$$!+&Gu,.'F0$!+&peLU\"F07$$!+$yaE\"eF0$!+C)ejV
+\"F07$$!+\">s%HaF0$!+7a9y9F07$$!+]$*4)*\\F0$!+KfH]:F07$$!+]_&\\c%F0$!+
+\"4V+k\"F07$$!+]1aZTF0$!+8k:H<F07$$!+/#)[oPF0$!+K1Q)z\"F07$$!+%>BJa$F0
+$!+]WeG=F07$$!+$=exJ$F0$!+>s=Z=F07$$!+?8IAKF0$!+1$=4&=F07$$!+eW%o7$F0$
+!+EB!>&=F07$$!+'f(QJIF0$!+u'f*\\=F07$$!+L2$f$HF0$!+%H@\\%=F07$$!+&o_Qr
+#F0$!+4rO?=F07$$!+PYx\"\\#F0$!+Dq`w<F07$$!+Nz>&H#F0$!+#fX1s\"F07$$!+L7
+i)4#F0$!+x98[;F07$$!+P'psm\"F0$!+gdFI9F07$$!+74_c7F0$!+`%*Q^6F07$$!+5V
+BU5F0$!+^V]8)*F-7$$!*3x%z#)F0$!+_udqzF-7$$!+Srl6jF-$!+^xithF-7$$!*?PQM
+%F0$!+W)e&)H%F-7$$!+bvF@AF-$!++x>:AF-7$$!(\"zr)*F0$!+avtr)*!#77$$\"+X]
+-1@F-$\"+MD%35#F-7$$\")!o2J%!\")$\"+%47lE%F-7$$\"++K+IiF-$\"+W6A(4'F-7
+$$\")%Q#\\\")Fcw$\"+7$*\\ayF-7$$\"*;*[H7Fcw$\"+A/!38\"F07$$\"*qvxl\"Fc
+w$\"+4#*eC9F07$$\"*`qn2#Fcw$\"+NC.R;F07$$\"+X+ZzAF0$\"+T/Y:<F07$$\"*cp
+@[#Fcw$\"+:b=u<F07$$\"+?GB2FF0$\"+omM>=F07$$\"*3'HKHFcw$\"+<hmW=F07$$
+\"+_2TLIF0$\"+\"QK+&=F07$$\"+Da_MJF0$\"+\"4H>&=F07$$\"+)4ScB$F0$\"+Iyb
+]=F07$$\"*xanL$Fcw$\"+OL8Y=F07$$\"+gxn_NF0$\"+A,_F=F07$$\"*v+'oPFcw$\"
++6JO)z\"F07$$\"*S<*fTFcw$\"+r(Hms\"F07$$\"*&)Hxe%Fcw$\"+%e7^j\"F07$$\"
+*.o-*\\Fcw$\"+p@!=b\"F07$$\"*TO5T&Fcw$\"+9&H2[\"F07$$\"+:as;cF0$\"+A_!
+[X\"F07$$\"*U9C#eFcw$\"+kbgN9F07$$\"+S<vPgF0$\"+^*[IU\"F07$$\"*1*3`iFc
+w$\"+#)QA=9F07$$\"+&\\%[gkF0$\"+31g?9F07$$\"*$*zym'Fcw$\"+13LH9F07$$\"
+*^j?4(Fcw$\"+$)4ij9F07$$\"*jMF^(Fcw$\"+elF7:F07$$\"*q(G**yFcw$\"+'*4eh
+:F07$$\"*9@BM)Fcw$\"+?#=Qh\"F07$$\"*`v&Q()Fcw$\"+jI_\\;F07$$\"*Ol5;*Fc
+w$\"+zQ-r;F07$$\"*/Uac*Fcw$\"+PTst;F07$\"#5$\"+%fZ$e;F0-%&COLORG6&%$RG
+BG$Fgal!\"\"$\"\"!F_blF`bl-%%VIEWG6$;$!$+\"F_bl$FgalFabl;$!-Ma*yf#>!#6
+$\"2++S$>d+E>!#;" 1 2 2 1 10 1 2 6 1 4 2 1.0 45.0 45.0 1 0 "Curve 1" }
+}{TEXT 271 0 "" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 245 33 "2.4 Calculer u
+ne int\303\251grale" }}{PARA 0 "" 0 "" {TEXT 270 78 "Pour calculer l'i
+nt\303\251grale de a \303\240 b de f, on utilise la commande " }{TEXT 
+246 4 "int " }{TEXT 270 16 "avec la syntaxe " }{TEXT 247 43 "int(expre
+ssion_en_variable, variable=a..b)." }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 40 "restart; int(exp(x)*cos(x)^3,x=0..Pi/2);" }}{PARA 11 
+"" 1 "" {XPPMATH 20 ",&#\"\"#\"\"&!\"\"*&#\"\"$\"#5\"\"\"-I$expG6$%*pr
+otectedGI(_syslibG6\"6#,$*&#F+F$F+I#PiGF/F+F+F+F+" }}}{EXCHG {PARA 0 "
+" 0 "" {TEXT 270 114 "Les bornes ne sont pas n\303\251cessairemment de
+s constantes. Elles peuvent etre des ind\303\251termin\303\251es :" }}
+}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 26 "int(x^2*cos(x),x=0..N*Pi);"
+ }}{PARA 11 "" 1 "" {XPPMATH 20 ",(*()I\"NG6\"\"\"#\"\"\")I#PiG%*prote
+ctedGF'F(-I$sinG6$F+I(_syslibGF&6#*&F%F(F*F(F(F(*&F'F(F,F(!\"\"**F'F(F
+%F(F*F(-I$cosGF.F0F(F(" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 47 "Elles \+
+peuvent etre aussi +l'infini (not\303\251" }{TEXT 248 8 "infinity" }
+{TEXT 270 29 ") ou -l'infini (not\303\251 -" }{TEXT 249 8 "infinity" }
+{TEXT 270 2 ")." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 36 "int(exp(
+-x^2)*cos(x),x=0..infinity);" }}{PARA 11 "" 1 "" {XPPMATH 20 ",$*(#\"
+\"\"\"\"#F%)I#PiG%*protectedGF$F%-I$expG6$F)I(_syslibG6\"6##!\"\"\"\"%
+F%F%" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 250 10 "3. Limites" }}{PARA 0 ""
+ 0 "" {TEXT 270 80 "Pour calculer des limites d'expressions en une var
+iable, on utilise la commande " }{TEXT 251 5 "limit" }{TEXT 270 17 " a
+vec la syntaxe " }{TEXT 252 28 "limit(expression_en_x,x=a). " }{TEXT 
+270 13 "La valeur de " }{TEXT 253 1 "x" }{TEXT 270 56 " pour laquelle \+
+on cherche la limite de l'expression est " }{TEXT 254 1 "a" }{TEXT 
+270 1 "." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 32 "restart; f:=x->
+(1-cos(x))/x^2 ; " }}{PARA 11 "" 1 "" {XPPMATH 20 "f*6#I\"xG6\"F%6$I)o
+peratorGF%I&arrowGF%F%*&,&\"\"\"F+-I$cosGF%F#!\"\"F+)F$\"\"#F.F%F%F%" 
+}}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 101 "La fonction f n'est pas d\303
+\251finie en 0, mais a une limite (finie) en 0 que Maple peut calculer
+ :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 8 "f(0); \n" }{MPLTEXT 1 
+0 16 "limit(f(x),x=0);" }}{PARA 8 "" 1 "" {TEXT 272 49 "Error, (in f) \+
+numeric exception: division by zero" }}{PARA 11 "" 1 "" {XPPMATH 20 "#
+\"\"\"\"\"#" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 255 1 "a" }{TEXT 270 62 "
+ peut valoir + l'infini et -l'infini (infinity et -infinity) :" }}}
+{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 24 "limit(ln(x),x=infinity);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "I)infinityG%*protectedG" }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 15 "limit(1/x,x=0);" }}{PARA 11 "" 1 ""
+ {XPPMATH 20 "I*undefinedG%*protectedG" }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT 270 161 "Ici, Maple r\303\251pond 'undefined' car la fonction x-
+>1/x n'a pas de limite en 0. Par contre, elle a une limite \303\240 ga
+uche et une limite \303\240 droite :" }}}{EXCHG {PARA 0 "> " 0 "" 
+{MPLTEXT 1 0 42 "limit(1/x,x=0,left); limit(1/x,x=0,right);" }}{PARA 
+11 "" 1 "" {XPPMATH 20 ",$I)infinityG%*protectedG!\"\"" }}{PARA 11 "" 
+1 "" {XPPMATH 20 "I)infinityG%*protectedG" }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT 270 207 "Pour d\303\251finir une suite dont on conna\303\256t le
+ terme g\303\251n\303\251ral, on proc\303\250de comme pour une fonctio
+n \"ordinaire\" : par exemple, pour la suite u_n d\303\251finie par u_
+n=cos(1/n) :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 15 "u:=n->cos(1
+/n);" }}{PARA 11 "" 1 "" {XPPMATH 20 "f*6#I\"nG6\"F%6$I)operatorGF%I&a
+rrowGF%F%-I$cosG6$%*protectedGI(_syslibGF%6#*$F$!\"\"F%F%F%" }}}
+{EXCHG {PARA 0 "" 0 "" {TEXT 270 35 "On peut alors utiliser la command
+e " }{TEXT 256 5 "limit" }{TEXT 270 26 " pour calculer la limite :" }}
+}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 23 "limit(u(n),n=infinity);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "\"\"\"" }}}{EXCHG {PARA 211 "" 0 "" 
+{TEXT 206 35 "4. Continuit\303\251 d'une fonction" }}{PARA 0 "" 0 "" 
+{TEXT 270 112 "Maple dispose de commandes pour \303\251tudier la conti
+nuit\303\251 et la discontinuit\303\251 des fonctions de " }{TEXT 257 
+1 "R" }{TEXT 270 6 " dans " }{TEXT 258 1 "R" }{TEXT 270 1 "." }}{PARA 
+0 "" 0 "" {TEXT 270 12 "La commande " }{TEXT 259 6 "iscont" }{TEXT 
+270 59 " permet de tester la continuit\303\251 d'une expression en " }
+{TEXT 260 1 "x" }{TEXT 270 99 " sur un intervalle donn\303\251. Le r\3
+03\251sultat donn\303\251 par Maple est un bool\303\251en : " }{TEXT 
+261 4 "true" }{TEXT 270 54 " (vrai) si la fonction est continue sur l'
+intervalle, " }{TEXT 262 5 "false" }{TEXT 270 45 " (faux) si elle ne l
+'est pas. La syntaxe est " }{TEXT 263 30 "iscont(expression_en_x,x=a..
+b)" }{TEXT 270 2 " ." }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 25 "res
+tart; f:=x->1/(x-1);\n" }{MPLTEXT 1 0 20 "iscont(f(x),x=0..2);" }}
+{PARA 11 "" 1 "" {XPPMATH 20 "f*6#I\"xG6\"F%6$I)operatorGF%I&arrowGF%F
+%*$,&F$\"\"\"F+!\"\"F,F%F%F%" }}{PARA 11 "" 1 "" {XPPMATH 20 "I&falseG
+%*protectedG" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 170 "Ici, f n'est pa
+s continue sur l'intervalle 0..2 car elle n'est pas continue en 1. Att
+ention, par d\303\251faut, Maple \303\251tudie la continuit\303\251 su
+r l'intervalle " }{TEXT 264 6 "ouvert" }{TEXT 270 22 " ]a,b[. Par exem
+ple, :" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 20 "iscont(f(x),x=0..
+1);" }}{PARA 11 "" 1 "" {XPPMATH 20 "I%trueG%*protectedG" }}}{EXCHG 
+{PARA 0 "" 0 "" {TEXT 270 4 "car " }{TEXT 265 1 "f" }{TEXT 270 142 " n
+'est pas continue au point 1, mais l'est sur l'intervalle ouvert en 1 \+
+]0,1[. Il est possible de lui demander de travailler sur l'intervalle \+
+" }{TEXT 266 12 "ferm\303\251" }{TEXT 270 7 "[a,b] :" }}}{EXCHG {PARA 
+0 "> " 0 "" {MPLTEXT 1 0 29 "iscont(f(x),x=0..1,'closed');" }}{PARA 11
+ "" 1 "" {XPPMATH 20 "I&falseG%*protectedG" }}}{EXCHG {PARA 0 "" 0 "" 
+{TEXT 270 12 "La commande " }{TEXT 267 7 "discont" }{TEXT 270 69 " don
+ne l'ensemble des points de discontinuit\303\251. Sa syntaxe est " }
+{TEXT 268 26 "discont(expression_en_x,x)" }{TEXT 270 1 "." }}}{EXCHG 
+{PARA 0 "> " 0 "" {MPLTEXT 1 0 16 "discont(f(x),x);" }}{PARA 11 "" 1 "
+" {XPPMATH 20 "<#\"\"\"" }}}{EXCHG {PARA 0 "> " 0 "" {MPLTEXT 1 0 20 "
+discont(1/sin(x),x);" }}{PARA 11 "" 1 "" {XPPMATH 20 "<#*&I#PiG%*prote
+ctedG\"\"\"I%_Z1|irG6\"F&" }}}{EXCHG {PARA 0 "" 0 "" {TEXT 270 123 "(Q
+uel est l'ensemble des points de discontinuit\303\251 ? Essayez de com
+prendre la derni\303\250re r\303\251ponse de Maple)" }}}{EXCHG {PARA 0
+ "> " 0 "" {XPPEDIT 19 1 "" "%#%?G" }}}}
+{MARK "0 0 0" 0 }{VIEWOPTS 1 1 0 1 1 1803 1 1 1 1 }{PAGENUMBERS 0 1 2 
+33 1 1 }

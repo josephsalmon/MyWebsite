@@ -1,0 +1,32 @@
+[
+  {
+    "listing": "/talks/index.html",
+    "items": [
+      "/talks/posts/2025-02-17_slides_HDV/index.html",
+      "/talks/posts/2024-09-25_slides_sierra/index.html",
+      "/talks/posts/2024-09-25_slides/index.html"
+    ]
+  },
+  {
+    "listing": "/blog/index.html",
+    "items": [
+      "/blog/isotonic/index.html",
+      "/blog/latex/index.html",
+      "/blog/softmax/index.html",
+      "/blog/inflation/index.html",
+      "/blog/hello-world/index.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/blog/isotonic/index.html",
+      "/blog/latex/index.html",
+      "/blog/softmax/index.html"
+    ]
+  },
+  {
+    "listing": "/publications/index.html",
+    "items": []
+  }
+]

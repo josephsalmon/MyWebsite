@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Joseph Salmon</title>
+<link>https://josephsalmon.eu/talks/</link>
+<atom:link href="https://josephsalmon.eu/talks/index.xml" rel="self" type="application/rss+xml"/>
+<description>Machine Learning, Data Science Optimization &amp; Image Processing | Research</description>
+<image>
+<url>https://josephsalmon.eu/img/joseph_2018.png</url>
+<title>Joseph Salmon</title>
+<link>https://josephsalmon.eu/talks/</link>
+<height>154</height>
+<width>144</width>
+</image>
+<generator>quarto-1.6.40</generator>
+<lastBuildDate>Tue, 24 Sep 2024 22:00:00 GMT</lastBuildDate>
+<item>
+  <title></title>
+  <link>https://josephsalmon.eu/talks/posts/2025-02-17_slides_HDV/</link>
+  <description><![CDATA[ undefined ]]></description>
+  <category>citizen sciences</category>
+  <category>crowdsourcing</category>
+  <category>labeling</category>
+  <guid>https://josephsalmon.eu/talks/posts/2025-02-17_slides_HDV/</guid>
+  <pubDate>Tue, 24 Sep 2024 22:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/posts/2025-02-17_slides_HDV/images/Campagne_don2.svg" medium="image" type="image/svg+xml"/>
+</item>
+<item>
+  <title></title>
+  <link>https://josephsalmon.eu/talks/posts/2024-09-25_slides_sierra/</link>
+  <description><![CDATA[ undefined ]]></description>
+  <category>citizen sciences</category>
+  <category>crowdsourcing</category>
+  <category>labeling</category>
+  <guid>https://josephsalmon.eu/talks/posts/2024-09-25_slides_sierra/</guid>
+  <pubDate>Tue, 24 Sep 2024 22:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/posts/2024-09-25_slides_sierra/images/plantnet_schema_global_js.svg" medium="image" type="image/svg+xml"/>
+</item>
+<item>
+  <title>Supervised learning by crowdsourcing (I)</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>crowdsourcing</category>
+  <category>supervised learning</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Wed, 29 Nov 2023 23:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/confusion_matrix.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Supervised learning by crowdsourcing (II)</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>crowdsourcing</category>
+  <category>supervised learning</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Wed, 29 Nov 2023 23:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/AUMS.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Improve learning combining crowdsourced labels by weighting Areas Under the Margin</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>crowdsourcing</category>
+  <category>multi-class classification</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Mon, 28 Nov 2022 23:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/fox.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Stochastic smoothing of the top-K calibrated hinge loss for deep imbalanced classification</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>deep learning</category>
+  <category>imbalanced classification</category>
+  <category>stochastic methods</category>
+  <category>smoothing</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Tue, 04 Oct 2022 22:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/posts/2024-09-25_slides_sierra/images/LossGarcin_k=2_9_margin_5.svg" medium="image" type="image/svg+xml"/>
+</item>
+<item>
+  <title>Hyperparameter selection for high dimensional sparse learning</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>optimization</category>
+  <category>grid search</category>
+  <category>hyperparameter selection</category>
+  <category>bilevel optimization</category>
+  <category>implicit differentiation</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Sun, 06 Feb 2022 23:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/lasso_opt_path.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Screening Rules for Lasso with Non-Convex Sparse Regularizers</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>non-convex optimization</category>
+  <category>sparse regression</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Thu, 08 Oct 2020 22:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/nncvx.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>The smoothed multivariate square-root Lasso: an optimization lens on concomitant estimation</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>optimization</category>
+  <category>sparse regression</category>
+  <category>smoothing</category>
+  <category>inf-convolution</category>
+  <category>concomitant estimation</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Sun, 14 Jun 2020 22:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/quad_over_lin.svg" medium="image" type="image/svg+xml"/>
+</item>
+<item>
+  <title>Fast solver for Sparse Generalized Linear Models</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>sparse regression</category>
+  <category>generalized linear models</category>
+  <category>optimization</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Wed, 13 Nov 2019 23:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/Duality.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Coordinate descent (and beyond) for sparse learning optimization</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>coordinate descent</category>
+  <category>sparse regression</category>
+  <category>optimization</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Sun, 27 Oct 2019 23:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/CoordinateDescent.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Safe screening rules to speed-up sparse regression solvers</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>sparse regression</category>
+  <category>screening rules</category>
+  <category>optimization</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Thu, 23 May 2019 22:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/SafeScreening.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Optimization: (Block) coordinate descent for neuro-imaging</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>optimization</category>
+  <category>coordinate descent</category>
+  <category>neuro-imaging</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Mon, 20 May 2019 22:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/BrainExample.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Safe Grid Search with Optimal Complexity</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>grid search</category>
+  <category>optimization</category>
+  <category>complexity</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Sat, 18 May 2019 22:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/SafeGrid.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Celer: a Fast Solver for the Lasso with Dual Extrapolation</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>optimization</category>
+  <category>dual extrapolation</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Sun, 13 Jan 2019 23:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/Extrapolated.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Convex optimization, sparsity and regression in high dimension</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>optimization</category>
+  <category>sparse regression</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Mon, 02 Nov 2015 23:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/l1.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Adaptive Validation, a possible alternative to Cross-Validation</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>hyperparameter selection</category>
+  <category>sparse regression</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Wed, 08 Oct 2014 22:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/LSLasso.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title>Poisson noise reduction with non-local PCA</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>image processing</category>
+  <category>non-local methods</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Fri, 31 Jan 2014 23:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Learning Heteroscedastic Models by Convex Programming under Group Sparsity</title>
+  <link>https://josephsalmon.eu/</link>
+  <description></description>
+  <category>high-dimensional statistics</category>
+  <category>group sparsity</category>
+  <category>heteroscedastic regression</category>
+  <guid>https://josephsalmon.eu/</guid>
+  <pubDate>Mon, 02 Sep 2013 22:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/images/sparsity.png" medium="image" type="image/png"/>
+</item>
+<item>
+  <title></title>
+  <link>https://josephsalmon.eu/talks/posts/2024-09-25_slides/</link>
+  <description><![CDATA[ undefined ]]></description>
+  <category>revealjs</category>
+  <category>slides</category>
+  <category>quarto</category>
+  <guid>https://josephsalmon.eu/talks/posts/2024-09-25_slides/</guid>
+  <pubDate>Sun, 24 Sep 2000 22:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/posts/2024-09-25_slides/images/Celting_knot_color.svg" medium="image" type="image/svg+xml"/>
+</item>
+</channel>
+</rss>

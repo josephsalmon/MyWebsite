@@ -1,0 +1,277 @@
+/*
+Theme Name:     MathJax
+Theme URI:      http: //mathjax.org/
+Description:    Child theme for the Twenty Ten theme with MathJax design
+Author:         Casey Stark
+Author URI:     http: //thestarkeffect.com
+Template:       twentyten
+Version:        0.5
+*/
+
+@import url("twentyten_style.css");
+
+/* GLOBAL */
+
+selection {
+    background: #169538;
+    color: #ffffff;
+}
+
+moz-selection{
+    background: #169538;
+    color: #ffffff;
+}
+
+a, a:link { color: #219b42; text-decoration: none; }
+a:visited { color: #1a7e34; text-decoration: none; }
+a:hover { color: #115624; text-decoration: underline; }
+
+.clear {
+    clear: both;
+}
+
+#content tr td { padding: 4px 8px; }
+
+#content { font-size: 16px; }
+
+/* HEADER */
+#header {
+	padding: 17px 0 0;
+}
+#site-title {
+ 
+    margin: 0;
+    width: auto;
+}
+
+#branding img {
+	border: 100;
+}
+
+#site-description {
+    margin: 30px 0 0;
+    font-size: 18px;
+    float: left;
+    width: auto;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: -1px;
+    color: #a5a5a5;
+}
+
+#header-box-right {
+    margin: 1px 0 0;
+    float: right;
+}
+.icon-list {
+    display: block;
+    margin: 0 0 0 93px;
+    list-style: none;
+}
+.icon-list li {
+    float: left;
+    display: inline;
+    margin: 0 8px 5px 0;
+}
+.icon-list img { border: 0; }
+.widget_search {
+    clear: both;
+    margin: 0;
+}
+.widget_search #s {
+    width: 150px;
+    height: 16px;
+    float: left;
+}
+input[type="text"], textarea {
+    border: 2px solid #b5bfb8;
+    background-color: #eaeaea;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+input[type="text"]:focus, textarea:focus{
+    outline-width: 0;
+    border-color: #169538;
+}
+.search-button {
+    float: left;
+    display: inline;
+    margin: 2px 0 0 5px;
+}
+
+/* NAVIGATION */
+
+#access {
+    margin: 20px 0 10px;
+}
+#access li { min-width: 20px; }
+#access a { color: #dddddd; font-weight: bold; }
+#access a:hover, #access ul li.current_page_item > a, #access ul li.current-menu-ancestor > a,
+#access ul li.current-menu-item > a, #access ul li.current-menu-parent > a {
+    color: #ffffff;
+    font-weight: bold;
+}
+#access li:hover > a, #access ul ul :hover > a {
+	color:#fff;
+	background:#444;
+}
+#access ul ul a {
+	background:#444;
+}
+
+#menu-item-1167 {
+    margin-right: 12px;
+    float: right !important;
+    background: #E17416 !important;
+}
+#menu-item-1167:hover > a {
+    background: #E12316 !important;
+}
+#menu-item-1167 a, #menu-item-1167 a:visited {
+    color: #ffffff !important;
+}
+
+/* MAIN */
+
+#main {
+    padding: 10px 0 0;
+}
+
+.entry-content, .entry-summary {
+    padding: 0;
+}
+
+#content {  }
+
+#content pre {
+    margin: 0; padding: 10px;
+}
+
+/* SIDEBAR */
+
+#primary {
+    background: #d4e9f7;
+    padding: 10px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* HOME */
+
+.mathjax-description {
+    float: left;
+    width: 500px;
+    padding: 20px; margin: 0 20px 20px 0;
+    color: #ffffff;
+    background: #169538;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+.primary-blurb {
+    font-size: 24px; line-height: 28px;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+    font-weight: bold;
+}
+.secondary-blurb { margin-bottom: 0!important; }
+
+.equation-block-right {
+    float: left;
+    width: 380px;
+}
+.equation-box {
+    margin: 20px 0 0;
+}
+.equation-label {
+    font-weight: bold;
+    margin: 0 20px 0 0;
+}
+.equation-caption {
+    text-align: center;
+}
+
+#news-bar {
+    float: left;
+    width: 900px;
+    background: #D2D3D3;
+    line-height: 38px;
+    padding: 0px 20px;
+    margin: 0 20px 20px 0;
+    font-weight: bold;
+}
+#news-bar a { color: #333 !important; text-decoration: underline; }
+#news-bar a:hover { color: #333 !important; text-decoration: none; }
+#news-bar-description { margin-right: 10px; }
+
+.news-date {
+    margin-left: 10px;
+}
+#news-description {
+    float: left;
+    margin: 10px 0 0;
+    width: 50px;
+}
+#more-news { margin-left: 10px; }
+
+.feature-header {
+    clear: both;
+    font-size: 24px; line-height: 30px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    border-bottom: 3px solid;
+}
+
+.column-block {
+    padding: 0 0 10px 0;
+    margin: 0 0 10px 0;
+    clear: both;
+}
+
+.left-block {
+    float: left;
+    width: 460px;
+    padding: 0 10px 0 0;
+    margin: 0 10px 0 0;
+}
+
+.right-block {
+    float: left;
+    width: 460px;
+}
+
+/* EXTRA */
+
+.math-header, .section-header {
+    background: #eee;
+    border-top: 1px solid #ccc;
+    color: #333;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 10px;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.math-caption {
+    background: #eee;
+    border: 1px solid #ccc;
+    color: #666;
+    font-family: "Helvetica Neue", Arial, Helvetica, "Nimbus Sans L", sans-serif;
+    font-weight: bold;
+    margin: 10px auto;
+    padding: 10px;
+    text-align: center;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.rendering-mode {
+    font-weight: bold;
+}
+
+#wpcf_msg {
+    width: 600px;
+}
+
