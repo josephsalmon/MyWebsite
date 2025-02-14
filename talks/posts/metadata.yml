@@ -1,4 +1,12 @@
 # Internal slide decks
+- title: "Sciences participatives & apprentissage automatique pour identifier les plantes"
+  date: 2024-09-25
+  image: posts/2025-02-17_slides_HDV/images/Campagne_don2.svg
+  path: 2025-02-17_slides_HDV/index.qmd
+  categories:
+   - citizen sciences
+   - crowdsourcing
+   - labeling
 - title: "Citizen science for plant identification: insights from Pl@ntnet"
   date: 2024-09-25
   image: posts/2024-09-25_slides_sierra/images/plantnet_schema_global_js.svg
