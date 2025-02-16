@@ -2,15 +2,17 @@
 # description: |
 #   Talk on Pl@ntnet and questions on citizen science
 date: "2025-02-17"
+title-slide-attributes:
+  center-title-slide: false
 format:
   revealjs:
     # preview-links: true
     code-link: true
     highlight-style: a11y
-    center: true
     width: 1280
     height: 720
     theme: local.scss
+    slideNumber: false
 ---
 
 ::: {.hidden}
@@ -107,25 +109,46 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 <!-------------------------------------------------------------------------- -->
 :::: {.columns style='display: flex !important'}
 
-::: {.column width="67%"}
+::: {.column width="55%"}
 
 <div style="text-align: center;">
 
-<img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="32%" align="middle">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="../2024-09-25_slides_sierra/images/AppStoreandGooglePlay.svg" width="30%" align="middle">
+<img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="60%" align="middle">
 
 - **Lieu de naissance**: Montpellier
 - **Date de naissance**: 2011
 - **Site web**: [https://plantnet.org/](https://plantnet.org/)
 - **[Note]{.underline}**: pas de champignons, désolé!
-
 </div>
 
 :::
 
 
-::: {.column width="33%"}
-![](../2024-09-25_slides_sierra/images/plantnet_image_ambiguity_js.svg){width=50%}
+::: {.column width="30%"}
+![](../2024-09-25_slides_sierra/images/plantnet_image_ambiguity_js.svg){width=64%}
 :::
+
+
+
+::: {.column width="15%"}
+
+
+::: {layout-nrow=3  .v-center-container}
+
+<br>
+<br>
+<br>
+<br>
+
+<img src="images/AppStore_FR-1.png" width="100%" align="middle">
+<img src="images/Google_FR-1.png" width="100%" align="middle">
+<img src="images/identifyFR.png" width="100%" align="middle">
+
+:::
+
+:::
+
+
 
 ::::
 <!-------------------------------------------------------------------------- -->
@@ -202,15 +225,21 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 
 
 <!-------------------------------------------------------------------------- -->
-### {{< iconify vaadin:hourglass-start >}} Chronologie de Pl@ntNet {.center }
-<hr>
+### {{< iconify vaadin:hourglass-start >}} Chronologie de Pl@ntNet
 
+<br>
+<br>
+<br>
+<br>
 <br>
 
 <center>
 <img src="images/PlantNet-overview-Janv-2022_fr.svg" width="99%">
 
 <br>
+<br>
+<br>
+
 <!-- **Note:** I am mostly innocent; started working with the Pl@ntNet team in 2020 -->
 
 </center>
@@ -247,24 +276,24 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 
 
 <!-------------------------------------------------------------------------- -->
-### {{< iconify eos-icons:science >}} Enjeux scientifiques et locaux
+<!-- ### {{< iconify eos-icons:science >}} Enjeux scientifiques et locaux
 <hr>
 <br>
 
 - Effort communautaire avec et pour les citoyens!
 
 
-- Effort **pluridisciplinaire**, issu de la recherche et y contribue à la recherche
+- Effort **pluridisciplinaire**, issu de la recherche et y contribue à la recherche -->
 
 
-### {{< iconify eos-icons:science >}} Atouts de Montpellier en IA & écologie 
+<!-- ### {{< iconify eos-icons:science >}} Atouts de Montpellier en IA & écologie  -->
 
-
-<br>
+### 
+<!-- <br> -->
 
 
 <center>
-<img src="images/montpellier_atout.svg" width="75%">
+<img src="images/montpellier_atout.svg" width="95%">
 </center>
 
 <br>
@@ -331,7 +360,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 ![Echium vulgare L.](images/Echium_vulgare_L.svg){width=200px height=200px}
 *Echium vulgare L.*
 
-**24720 obs.**>
+**24720 obs.**
 ![Ranunculus ficaria L.](images/Ranunculus_ficaria_L.svg){width=200px height=200px}
 *Ranunculus ficaria L.*
 
