@@ -251,13 +251,8 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 
 ### <img src="../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg" height="50" style="vertical-align: -.4em;"> lab, à la pointe de l'IA et de l'écologie
 
-
-<br>
-
 <center>
 <img src="images/plantnet_ai_ecology.svg" width="90%">
-
-<br>
 </center>
 
 
