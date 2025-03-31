@@ -1,5 +1,31 @@
 - abstract: ''
   accessed: ''
+  author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://www.lirmm.fr/lirmm_eng/users/utilisateurs-lirmm/antoine-affouard">A.
+    Affouard</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
+    Charlier</a>, <a href="https://sites.google.com/site/jclombardocv/">J.-C. Lombardo</a>,
+    <a href="https://www.lirmm.fr/users/utilisateurs-lirmm/mathias-chouet">M. Chouet</a>,
+    <a href=" "https://amap-dev.cirad.fr/users/119"">H. Goëau</a>, <strong>J. Salmon</strong>,
+    <a href="http://agents.cirad.fr/index.php/Pierre+BONNET">P. Bonnet</a> and <a
+    href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
+  container-title: Methods in Ecology and Evolution
+  doi: ''
+  id: Lefort_etal24
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: 'Cooperative learning of Pl@ntNet''s Artificial Intelligence algorithm: how
+    does it work and how can we improve it?'
+  type: article
+  url: https://arxiv.org/abs/2406.03356
+  volume: ''
+  journaltitle: Methods in Ecology and Evolution
+  date: '2025'
+  path: https://arxiv.org/pdf/2406.03356.pdf
+  code: https://peerannot.github.io/
+  data: https://zenodo.org/records/10782465
+- abstract: ''
+  accessed: ''
   author: <a href="https://www.linkedin.com/in/axel-dubar-1b462a182/">A. Dubar</a>,
     <a href="https://tanglef.github.io/">T. Lefort</a> and <strong>J. Salmon</strong>
   container-title: JDS 2024 - 55es Journées de Statistique
@@ -84,32 +110,6 @@
   path: https://hal.science/hal-04202889
   code: https://peerannot.github.io/
   data: ''
-- abstract: ''
-  accessed: ''
-  author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://www.lirmm.fr/lirmm_eng/users/utilisateurs-lirmm/antoine-affouard">A.
-    Affouard</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
-    Charlier</a>, <a href="https://sites.google.com/site/jclombardocv/">J.-C. Lombardo</a>,
-    <a href="https://www.lirmm.fr/users/utilisateurs-lirmm/mathias-chouet">M. Chouet</a>,
-    <a href=" "https://amap-dev.cirad.fr/users/119"">H. Goëau</a>, <strong>J. Salmon</strong>,
-    <a href="http://agents.cirad.fr/index.php/Pierre+BONNET">P. Bonnet</a> and <a
-    href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
-  container-title: ''
-  doi: ''
-  id: Lefort_etal24
-  issn: ''
-  issue: ''
-  issued: ''
-  page: ''
-  title: 'Cooperative learning of Pl@ntNet''s Artificial Intelligence algorithm: how
-    does it work and how can we improve it?'
-  type: techreport
-  url: https://arxiv.org/abs/2406.03356
-  volume: ''
-  journaltitle: ''
-  date: '2024'
-  path: https://arxiv.org/pdf/2406.03356.pdf
-  code: https://peerannot.github.io/
-  data: https://zenodo.org/records/10782465
 - abstract: ''
   accessed: ''
   author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.

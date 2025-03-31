@@ -460,26 +460,25 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 
 <br>
 
-
 ::: {layout-nrow=1  .v-center-container}
 **25134 obs.**
-![Echium vulgare L.](images/Echium_vulgare_L.jpeg){width=200px height=200px}
+![Echium vulgare L.](../2025-02-17_slides_HDV/images/Echium_vulgare_L.svg){width=200px height=200px}
 *Echium vulgare L.*
 
 **24720 obs.**
-![Ranunculus ficaria L.](images/Ranunculus_ficaria_L.jpeg){width=200px height=200px}
+![Ranunculus ficaria L.](../2025-02-17_slides_HDV/images/Ranunculus_ficaria_L.svg){width=200px height=200px}
 *Ranunculus ficaria L.*
 
 **24103 obs.**
-![Prunus spinosa L.](images/Prunus_spinosa_L.jpeg){width=200px height=200px}
+![Prunus spinosa L.](../2025-02-17_slides_HDV/images/Prunus_spinosa_L.svg){width=200px height=200px}
 *Prunus spinosa L.*
 
 **23288 obs.**
-![Zea mays L.](images/Zea_mays_L.jpeg){width=200px height=200px}
+![Zea mays L.](../2025-02-17_slides_HDV/images/Zea_mays_L.svg){width=200px height=200px}
 *Zea mays L.*
 
 **23075 obs.**
-![Alliaria petiolata](images/Alliaria_petiolata.jpeg){width=200px height=200px}
+![Alliaria petiolata](../2025-02-17_slides_HDV/images/Alliaria_petiolata.svg){width=200px height=200px}
 *Alliaria petiolata*
 :::
 

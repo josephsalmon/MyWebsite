@@ -1,0 +1,418 @@
+---
+# description: |
+#   Talk on Pl@ntnet and questions on citizen science
+date: "2025-03-11"
+title-slide-attributes:
+  center-title-slide: false
+format:
+  revealjs:
+    # preview-links: true
+    code-link: true
+    highlight-style: a11y
+    width: 1280
+    height: 720
+    theme: local.scss
+    slideNumber: false
+---
+
+::: {.hidden}
+{{
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\1}{{1\hspace{-3.8pt} 1}}
+
+}}
+:::
+
+<style>
+    .vertical-line{
+        display: inline-block;
+        border-left: 6px solid rgb(0, 0, 0);
+        margin: 0 10px;
+        height: 500px;
+        border-radius: 3px;
+        overflow: hidden;
+
+}
+</style>
+
+<!-------------------------------------------------------------------------- -->
+#### {#title-slide data-menu-title="Title Slide" background="#053660"}
+
+<!-- [Sciences participatives & apprentissage automatique pour identifier les plantes]{.custom-title} -->
+
+<div style="text-align: center;">
+
+![](images/benchopt-padded.svg){width=30%}
+
+
+
+<br>
+
+<!-- <hr class="hr-teal"> -->
+
+
+
+[Joseph Salmon]{.custom-subtitle2}
+
+[IMAG, Univ Montpellier, CNRS, Inria, Montpellier, France]{.custom-subtitle3}
+
+![](../../images/inr_logo_rouge.svg){width=20%}
+![](../../images/logo_um_2022_rouge_RVB.svg){width=20%}
+
+![](../../images/CNRS-2023.svg){width=8%}
+![](../../images/IMAG_logo.svg){width=18%}
+
+</div>
+
+
+
+###
+
+<iframe src="https://josephsalmon.eu"     width=1280 height=720></iframe>
+
+
+<!--------------------------------------------------------------------------->
+### Apprentissage automatique & sciences participatives
+<hr>
+
+::::{.columns}
+
+::: {.column width="30%"}
+![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=106%}
+:::
+
+::: {.column width="69%"}
+Une plateforme de **science citoyenne** utilisant l'apprentissage automatique pour aider les gens à **identifier les plantes** avec leur téléphone
+:::
+
+::::
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+:::: {.columns style='display: flex !important'}
+
+::: {.column width="55%"}
+
+<div style="text-align: center;">
+
+<img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="60%" align="middle">
+
+- **Lieu de naissance**: Montpellier
+- **Date de naissance**: 2011
+- **Site web**: [https://plantnet.org/](https://plantnet.org/)
+- **[Note]{.underline}**: pas de champignons, désolé!
+</div>
+
+:::
+
+
+::: {.column width="30%"}
+![](../2024-09-25_slides_sierra/images/plantnet_image_ambiguity_js.svg){width=64%}
+:::
+
+
+
+::: {.column width="15%"}
+
+
+::: {layout-nrow=3  .v-center-container}
+
+<br>
+<br>
+<br>
+<br>
+
+<img src="images/AppStore_FR-1.png" width="100%" align="middle">
+<img src="images/Google_FR-1.png" width="100%" align="middle">
+<img src="images/identifyFR.png" width="100%" align="middle">
+
+:::
+
+:::
+
+
+
+::::
+<!-------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------- -->
+### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet : utilisation et popularité
+<hr>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+<!-- ![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=35%} -->
+
+
+
+
+- **25 Millions d'utilisateurs**
+- **200+** pays
+- Jusqu'à **2 Millions** d'images téléchargées par jour
+- **50 000** espèces de plantes (sur 300 000)
+- **1.2 Milliards** d'images
+- **20 Millions** étiquetées / validées
+- **20** chercheurs / ingénieurs (à Montpellier)
+:::
+
+::: {.column width="50%"}
+
+<div style="text-align: center;">
+
+[https://identify.plantnet.org/stats](https://identify.plantnet.org/stats){.scriptsize}
+
+![](../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png){width=99%}
+</div>
+
+:::
+
+::::
+
+. . .
+
+<div style="text-align: center;">
+
+<img src="images/plantnet_usage_rastereurized.svg" width="99%" align="middle" >
+
+</div>
+<!-------------------------------------------------------------------------- -->
+
+### How we started ?
+
+Conversation with **Alex (Gramfort)** while:
+
+- working on speeding-up Lasso solvers (for application in neuro-imaging)
+- being both grumpy at the review process (as reviewers)
+
+We talked about launching a benchmarking platform for optimization algorithms, but got too busy for a while.
+
+<br>
+<br>
+<br>
+<br>
+
+and then **Thomas (Moreau)** arrived, soon backed-up by **Mathurin (Massias)**
+
+
+### My contributions
+
+- Creating, first benchmarks and solvers (around l1 solvers etc.)
+- Helping Writing NeurIPS paper
+- Logo design (Inkscape / SVG)
+- Organizing sprints (two in Montpellier, then they did a bigger on in Paris)
+- Funding people on it (especially Mission Complémentaire de Code, Tanguy Le Fort, Amélie Vernay)
+- Talking about it, e.g., answer to Donoho's paper "**Data Science at the Singularity**" in Harvard Data Science
+
+### Benchmarking Optimization Algorithms
+
+#### The Problem
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/tweet_steinner.png)
+![](images/tweet_steinner2.png)
+:::
+::: {.column width="40%"}
+![](images/DL_optimizers.jpg)
+:::
+::::
+
+### Benchmarking Algorithms in Practice
+
+Choosing the best algorithm to solve an optimization problem often depends on:
+
+- The data **scale, conditioning**
+- The objective parameters **regularization**
+- The implementation **complexity, language**
+
+An impartial selection requires a time-consuming **benchmark**!
+
+The goal of **benchopt** is to make this step as easy as possible.
+
+### 
+
+<div style="text-align: center;">
+
+![](images/benchopt-padded.svg){width=15%}
+
+</div>
+
+
+Doing a benchmark for the $\ell_2$ regularized logistic regression with multiple solvers and datasets is now easy as calling:
+
+```bash
+git clone https://github.com/benchopt/benchmark_logreg_l2
+benchopt run ./benchmark_logreg_l2
+```
+<div style="text-align: center;">
+
+![](images/logreg_l2.png){width=45%} ![](images/logreg_l2_1.png){width=45%}
+</div>
+
+
+### `benchopt`: Language Comparison
+
+`benchopt` can also compare the same algorithm in different languages.
+
+Here is an example comparing PGD in: Python; R; Julia.
+
+<div style="text-align: center;">
+
+![](images/lasso_3_languages.png){width=65%}
+
+</div>
+
+### `benchopt`: Publishing Results
+
+`benchopt` also allows easy publishing of benchmark results:
+
+<div style="text-align: center;">
+
+[https://benchopt.github.io/results/](https://benchopt.github.io/results/)
+
+![](images/benchopt_results.png){width=65%}
+
+</div>
+
+### Benchmark Example
+
+<div style="text-align: center;">
+
+![](images/benchmark_lasso.png){width=70%}
+</div>
+
+### Benchmark: Principle
+
+A benchmark is a directory with:
+
+- An `objective.py` file with an `Objective`
+- A directory `solvers` with one file per `Solver`
+- A directory `datasets` with `Dataset` generators/fetchers
+
+<div style="text-align: center;">
+
+![](images/benchopt_structure.png){width=70%}
+
+</div>
+
+The `benchopt` client runs a cross product and generates a CSV file + convergence plots like above.
+
+### Benchmark: Objective & Dataset
+
+```python
+class Objective(BaseObjective):
+    name = "Benchmark Name"
+
+    def set_data(self, X, y):
+        # Store data
+
+    def compute(self, beta):
+        return dict(obj1=.., obj2=..)
+
+    def to_dict(self):
+        return dict(X=.., y=.., reg=..)
+```
+
+<br>
+
+```python
+class Dataset(BaseDataset):
+    name = "Dataset Name"
+
+    def get_data(self):
+        return dict(X=.., y=..)
+```
+
+### Benchmark: Solver
+
+```python
+class Solver(BaseSolver):
+    name = "Solver Name"
+
+    def set_objective(self, X, y, reg):
+        # Store objective info
+
+    def run(self, n_iter):
+        # Run computations for n_iter
+
+    def get_result(self):
+        return beta
+```
+
+**Flexible API**
+
+- `get_data` and `set_objective` allow compatibility between packages.
+- `n_iter` can be replaced with a tolerance or a callback.
+
+### `benchopt`
+
+<div style="text-align: center;">
+
+![](images/benchopt.jpeg){width=60%}
+
+</div>
+
+
+### `benchopt`: Making Tedious Tasks Easy
+
+**Automatizing tasks:**
+
+- Automatic installation of competitors' solvers.
+- Parametrized datasets, objectives, and solvers, and run on cross products.
+- Quantify the variance.
+- Automatic caching.
+- First visualization of the results.
+- Automatic parallelization, ... ?
+
+### Bus Factor
+
+1 and half:
+
+Mostly Thomas, Mathurin could revive it needed.
+
+### Credits (core package, but does not reflect all)
+
+<div style="text-align: center;">
+
+![](images/Screenshot from 2025-03-10 17-11-56.png){width=40%}
+
+</div>
+
+### Credits with pictures
+
+<div style="text-align: center;">
+
+![](images/jsalmon.png){width=18.8%} ![](images/agramfort.jpg){width=18.8%} ![](images/tommoral.png){width=18.8%}
+<br>
+ ![](images/mmassias.jpg){width=18.8%}
+![](images/tanglef.png){width=18.8%}
+ ![](images/tomdlt.jpg){width=18.8%}
+
+
+and more persons, but those where the only one with pictures at hand!
+</div>
+
+<!-------------------------------------------------------------------------- -->
+
+### {#contact data-menu-title="Contact"}
+
+
+<div style="text-align: center;">
+
+[https://plantnet.org/2024/10/24/campagne-de-dons-2024/](https://plantnet.org/2024/10/24/campagne-de-dons-2024/)
+
+![](images/Campagne_don2.svg){width=75%}
+
+![](https://raw.githubusercontent.com/josephsalmon/OrganizationFiles/master/inkscape/images/contact_js_long.svg){width=75%}
+
+</div>
+
+<!-------------------------------------------------------------------------- -->
+

@@ -45,8 +45,8 @@ landing_page_styles.css">
             <br> Machine learning & data science</h1>
             <p>I am a statistician and an applied mathematician, with a strong interest in machine learning, optimization and data science.
             <br>
-            Since Oct. 2024, I have been a senior researcher at <a href="https://www.inria.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Inria</span></a> (team <a href="https://inria.fr/en/iroko"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Iroko</span></a>).
-            In terms of applications, I focus on <strong>citizen science</strong>, <strong>crowdsourcing</strong> and <strong>high dimensional statistics</strong>. I am also in charge of the doctoral program "Statistics and Data Science" (<a href=https://edi2s.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>EDI2S</span></a> at <a href="https://www.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Université de Montpellier</span></a>). </p>
+            Since Oct. 2024, I have been a senior researcher at <a href="https://www.inria.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Inria</span></a> (team <a href="https://inria.fr/en/iroko"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Iroko</span></a>), working with the <a  href="https://plantnet.org/en/">Pl@nNet</a> team.
+            In terms of applications, I focus on <strong>citizen science</strong>, <strong>crowd-sourcing</strong> and <strong>high dimensional statistics</strong>. I am also in charge of the doctoral program "Statistics and Data Science" (<a href=https://edi2s.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>EDI2S</span></a> at <a href="https://www.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Université de Montpellier</span></a>). </p>
 
             <h2>Short bio </h2>
             <p>From 2018 to 2024, I was a full professor at <a href="https://www.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Université de Montpellier</span></a> and a Junior member of the <a href="http://www.iufrance.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Institut Universitaire de France</span></a> (IUF), from 2021 to 2024.
@@ -117,8 +117,9 @@ IMAG, c.c. 051</br>
 Université de Montpellier</br>
 Place Eugène Bataillon</br>
 34095 Montpellier Cedex 5</br>
-(office 415, building 9)</br>
-
+Offices:</br>
+- 02/226 Building 5 St Priest</br>
+- 415, building 9, FDS</br>
 
 :::
 
