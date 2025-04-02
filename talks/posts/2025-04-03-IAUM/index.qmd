@@ -42,7 +42,7 @@ format:
 <!-------------------------------------------------------------------------- -->
 #### {#title-slide data-menu-title="Title Slide" background="#053660"}
 
-[Sciences participatives & apprentissage automatique pour identifier les plantes]{.custom-title}
+[IAUM: <br> Sciences participatives & apprentissage automatique pour identifier les plantes]{.custom-title}
 
 
 <br>
