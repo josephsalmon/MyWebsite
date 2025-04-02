@@ -14,6 +14,9 @@ format:
     theme: local.scss
     slideNumber: true
     jupyter: python3
+resources:
+    - "*.html"
+
 ---
 
 ::: {.hidden}
@@ -42,7 +45,7 @@ format:
 <!-------------------------------------------------------------------------- -->
 #### {#title-slide data-menu-title="Title Slide" background="#053660"}
 
-[IAUM: <br> Sciences participatives & apprentissage automatique pour identifier les plantes]{.custom-title}
+[Sciences participatives & apprentissage automatique pour identifier les plantes]{.custom-title}
 
 
 <br>
@@ -217,7 +220,7 @@ paris_map = create_city_map("Paris")
 
 ::: {.column width="22%"}
 
-![](images/Paris.jpeg){width=7.03cm}
+![](images/Paris.png){width=7.03cm}
 
 ![](images/st-louis.jpg){width=7.03cm}
 
@@ -250,11 +253,11 @@ malakoff_map = create_city_map("Malakoff")
 
 ::: {.column width="22%"}
 
-![](images/Malakoff.jpeg){width=7.03cm}
-
-![](images/ensae.jpg){width=7.03cm}
+![](images/Malakoff.png){width=7.03cm}
 
 ![](images/ENSAE.png){width=7.03cm}
+
+![](images/ensae.png){width=7.03cm}
 
 
 :::
@@ -311,9 +314,9 @@ paris_map = create_city_map("Paris")
 
 ::: {.column width="22%"}
 
-![](images/Paris_BNF.jpg){width=7.03cm}
+![](images/Paris_BNF.png){width=7.03cm}
 
-![](images/Paris7_grands_moulins.jpg){width=7.03cm}
+![](images/Paris7_grands_moulins.png){width=7.03cm}
 
 ![](images/Université_Paris_Diderot_logo.svg){width=7.03cm}
 
@@ -374,7 +377,7 @@ paris_map = create_city_map("Paris")
 
 ![](images/Paris_butte_aux_cailles.png){width=7.03cm}
 
-![](images/TPT.jpg){width=7.03cm}
+![](images/TPT.png){width=7.03cm}
 
 ![](images/Logo_Telecom_ParisTech.svg){width=7.03cm}
 
@@ -469,7 +472,7 @@ montpellier_map = create_city_map("Montpellier")
 
 ![](images/Montferrier.png){width=7.03cm}
 
-![](images/Inria_Montpellier.jpg){width=7.03cm}
+![](images/Inria_Montpellier.png){width=7.03cm}
 
 ![](../../images/inr_logo_rouge.svg){width=7.03cm}
 
