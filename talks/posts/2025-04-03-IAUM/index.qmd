@@ -1,0 +1,952 @@
+---
+# description: |
+#   Talk on Pl@ntnet for teenagers
+date: "2025-04-03"
+title-slide-attributes:
+  center-title-slide: false
+format:
+  revealjs:
+    # preview-links: true
+    code-link: true
+    highlight-style: a11y
+    width: 1280
+    height: 720
+    theme: local.scss
+    slideNumber: false
+    jupyter: python3
+---
+
+::: {.hidden}
+{{
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\1}{{1\hspace{-3.8pt} 1}}
+
+}}
+
+:::
+
+<style>
+    .vertical-line{
+        display: inline-block;
+        border-left: 6px solid rgb(0, 0, 0);
+        margin: 0 10px;
+        height: 500px;
+        border-radius: 3px;
+        overflow: hidden;
+
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@300;800&family=Roboto+Mono:wght@300;400&family=Sanchez&display=swap');
+</style>
+
+<!-------------------------------------------------------------------------- -->
+#### {#title-slide data-menu-title="Title Slide" background="#053660"}
+
+[Sciences participatives & apprentissage automatique pour identifier les plantes]{.custom-title}
+
+
+<br>
+<br>
+
+<!-- <hr class="hr-teal"> -->
+
+:::: {.columns}
+
+::: {.column width="48% border-right:5px solid rgb(0, 0, 0);"}
+[Joseph Salmon]{.custom-subtitle2}
+
+[IMAG, Univ Montpellier, CNRS, Inria, Montpellier, France]{.custom-subtitle3}
+<div style="text-align: center;">
+
+![](../../images/inr_logo_rouge.svg){width=40%}
+![](../../images/logo_um_2022_rouge_RVB.svg){width=40%}
+
+![](../../images/CNRS-2023.svg){width=17%}
+![](../../images/IMAG_logo.svg){width=36%}
+
+</div>
+
+:::
+
+::: {.column width="2%"}
+
+<span class="vertical-line"></span>
+
+:::
+
+::: {.column width="48%"}
+
+<div style="text-align: center;">
+
+[Consortium  Pl@ntnet]{.custom-subtitle2}
+
+![](../../images/plantnet_consortium.svg){width=100%}
+
+</div>
+
+:::
+
+::::
+
+
+
+
+
+### Présentation et parcours
+
+<hr>
+
+
+```{python}
+import folium
+
+cities = {
+    "Plaisir": (48.816669, 1.95),
+    "Montpellier": (43.6116, 3.8772),
+    "Paris": (48.8566, 2.3522),
+    "Malakoff": (48.8196, 2.3075),
+    "Durham": (35.9940, -78.8986),
+    "Cachan": (48.7914, 2.3314),
+    "Seattle": (47.6062, -122.3321),
+}
+
+
+def create_city_map(city_name, zoom_start=5):
+    # Create a Folium map centered around the given GPS coordinates
+    map_file_path = f"{city_name.lower()}_map.html"
+    gps_coordinates = cities[city_name]
+    m = folium.Map(
+        width=800,
+        height=600,
+        location=gps_coordinates,
+        control_scale=True,
+        zoom_start=zoom_start,
+    )
+
+    # Add a marker for the city
+    folium.Marker(
+        location=gps_coordinates,
+        tooltip="Click me!",
+        popup=city_name,
+        icon=folium.Icon(icon="certificate", icon_color="#047C90"),
+    ).add_to(m)
+
+    # Define the custom label style
+    div_style = f'<div style="font-size: 40pt; color: #047c90; font-family: \'Nunito\', sans-serif; font-weight: bold;">{city_name}</div>'
+
+    # Add a permanent label
+    folium.map.Marker(
+        location=gps_coordinates,
+        icon=folium.DivIcon(
+            html=div_style,
+            icon_size=(100, 20),
+            icon_anchor=(0, 0),
+        )
+    ).add_to(m)
+
+    # Save the map to an HTML file
+    m.save(map_file_path)
+
+```
+
+
+::: {style="font-size: 200%;"}
+
+- **Prénom**: Joseph
+
+- **Nom**: Salmon
+
+- **Profession**: Directeur de recherche
+
+- **Employeur**: Inria 
+
+- **Lieu de travail**: Montpellier
+
+- **Site web**: [https://josephsalmon.eu/](https://josephsalmon.eu/)
+
+:::
+
+
+### Baccalauréat, lycée J. Vilar (2000)
+<hr>
+
+:::: {.columns}
+
+::: {.column width="74%"}
+
+```{python}
+plaisir_map = create_city_map("Plaisir")
+```
+<!-- load in html the file plaisir_map.html  and center it-->
+<p style="text-align:center">
+<iframe src="plaisir_map.html" width=1000 height=600></iframe>
+</p>
+
+:::
+
+::: {.column width="22%"}
+
+![](images/plaisir.png){width=7.03cm}
+
+![](images/jean_vilar.jpg){width=7.03cm}
+
+![](images/IDF.svg){width=7.03cm}
+
+:::
+
+::::
+
+### Classe préparatoire, St-Louis (2000-2003)
+<hr>
+
+:::: {.columns}
+
+::: {.column width="74%"}
+```{python}
+paris_map = create_city_map("Paris")
+```
+<p style="text-align:center">
+<iframe src="paris_map.html" width=1000 height=600></iframe>
+</p>
+
+:::
+
+::: {.column width="22%"}
+
+![](images/Paris.jpeg){width=7.03cm}
+
+![](images/st-louis.jpg){width=7.03cm}
+
+![](images/st-louis.svg){width=7.03cm}
+
+
+:::
+
+::::
+
+
+
+
+
+### ENSAE (2003-2007)
+<hr>
+
+:::: {.columns}
+
+::: {.column width="74%"}
+
+```{python}
+malakoff_map = create_city_map("Malakoff")
+```
+<p style="text-align:center">
+<iframe src="malakoff_map.html" width=1000 height=600></iframe>
+</p>
+
+:::
+
+::: {.column width="22%"}
+
+![](images/Malakoff.jpeg){width=7.03cm}
+
+![](images/ensae.jpg){width=7.03cm}
+
+![](images/ENSAE.png){width=7.03cm}
+
+
+:::
+
+::::
+
+
+### ENS de Cachan (2005-2007)
+<hr>
+
+:::: {.columns}
+
+::: {.column width="74%"}
+
+```{python}
+cachan_map = create_city_map("Cachan")
+```
+<p style="text-align:center">
+<iframe src="cachan_map.html" width=1000 height=600></iframe>
+</p>
+
+:::
+
+::: {.column width="22%"}
+
+![](images/Cachan.png){width=7.03cm}
+
+![](images/ENS_Cachan.jpg){width=7.03cm}
+
+![](images/ENS_Cachan.svg){width=7.03cm}
+
+
+:::
+
+::::
+
+### Doctorat, Univ. Paris 7 (2007-2010)
+<hr>
+
+
+:::: {.columns}
+
+::: {.column width="74%"}
+
+```{python}
+paris_map = create_city_map("Paris")
+```
+<p style="text-align:center">
+<iframe src="paris_map.html" width=1000 height=600></iframe>
+</p>
+
+
+:::
+
+::: {.column width="22%"}
+
+![](images/Paris_BNF.jpg){width=7.03cm}
+
+![](images/Paris7_grands_moulins.jpg){width=7.03cm}
+
+![](images/Université_Paris_Diderot_logo.svg){width=7.03cm}
+
+
+:::
+
+::::
+
+### Post-doctorat, Duke University (2011-2012)
+<hr>
+
+:::: {.columns}
+
+::: {.column width="74%"}
+
+```{python}
+durham_map = create_city_map("Durham", zoom_start=4)
+```
+<p style="text-align:center">
+<iframe src="durham_map.html" width=1000 height=600></iframe>
+</p>
+
+:::
+
+::: {.column width="22%"}
+
+![](images/Durham.jpg){width=7.03cm}
+
+![](images/Duke.jpeg){width=7.03cm}
+
+![](images/Duke_logo.svg){width=7.03cm}
+
+
+:::
+
+::::
+
+
+
+### Maître de conférence, Télécom Paris (2013-2018)
+<hr>
+
+:::: {.columns}
+
+::: {.column width="74%"}
+
+
+```{python}
+paris_map = create_city_map("Paris")
+```
+<p style="text-align:center">
+<iframe src="paris_map.html" width=1000 height=600></iframe>
+</p>
+
+:::
+
+::: {.column width="22%"}
+
+![](images/Paris_butte_aux_cailles.png){width=7.03cm}
+
+![](images/TPT.jpg){width=7.03cm}
+
+![](images/Logo_Telecom_ParisTech.svg){width=7.03cm}
+
+
+:::
+
+::::
+
+
+
+### Visiting professor, Univ. of Washington (2018)
+<hr>
+
+:::: {.columns}
+
+::: {.column width="74%"}
+
+
+
+```{python}
+seattle_map = create_city_map("Seattle", zoom_start=4)
+```
+<p style="text-align:center">
+<iframe src="seattle_map.html" width=1000 height=600></iframe>
+</p>
+
+:::
+
+::: {.column width="22%"}
+
+![](images/Seattle.png){width=7.03cm}
+
+![](images/UW.png){width=7.03cm}
+
+![](images/UW.svg){width=7.03cm}
+
+
+:::
+
+::::
+
+
+
+### Professeur, UM (2018-2024)
+<hr>
+
+:::: {.columns}
+
+::: {.column width="74%"}
+
+```{python}
+montpellier_map = create_city_map("Montpellier")
+```
+<p style="text-align:center">
+<iframe src="montpellier_map.html" width=1000 height=600></iframe>
+</p>
+
+:::
+
+::: {.column width="22%"}
+
+![](images/Montpellier.png){width=7.03cm}
+
+![](images/UM.jpg){width=7.03cm}
+
+![](images/UM.svg){width=7.03cm}
+
+
+:::
+
+::::
+
+### Directeur de recherche, Inria (2024-)
+<hr>
+
+
+:::: {.columns}
+
+::: {.column width="74%"}
+
+
+```{python}
+montpellier_map = create_city_map("Montpellier")
+```
+<p style="text-align:center">
+<iframe src="montpellier_map.html" width=1000 height=600></iframe>
+</p>
+
+:::
+
+::: {.column width="22%"}
+
+![](images/Montferrier.png){width=7.03cm}
+
+![](images/Inria_Montpellier.jpg){width=7.03cm}
+
+![](../../images/inr_logo_rouge.svg){width=7.03cm}
+
+
+:::
+
+::::
+
+<!--------------------------------------------------------------------------->
+### Apprentissage automatique & sciences participatives
+<hr>
+
+::::{.columns}
+
+::: {.column width="30%"}
+![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=106%}
+:::
+
+::: {.column width="69%"}
+Une plateforme de **science citoyenne** utilisant l'apprentissage automatique pour aider les gens à **identifier les plantes** avec leur téléphone
+:::
+
+::::
+
+:::: {.columns style='display: flex !important'}
+
+::: {.column width="55%"}
+
+<div style="text-align: center;">
+
+<img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="60%" align="middle">
+
+- **Lieu de naissance**: Montpellier
+- **Date de naissance**: 2011
+- **Site web**: [https://plantnet.org/](https://plantnet.org/)
+- **[Note]{.underline}**: pas de champignons, désolé!
+- **Annecdote**: découverte grâce à mon père, un passionné de botanique [Patrice Salmon](https://identify.plantnet.org/fr/users/100504685) 
+</div>
+
+:::
+
+
+::: {.column width="30%"}
+![](../2024-09-25_slides_sierra/images/plantnet_image_ambiguity_js.svg){width=64%}
+:::
+
+
+
+::: {.column width="15%"}
+
+
+::: {layout-nrow=3  .v-center-container}
+
+<br>
+<br>
+<br>
+<br>
+
+<img src="images/AppStore_FR-1.png" width="100%" align="middle">
+<img src="images/Google_FR-1.png" width="100%" align="middle">
+<img src="images/identifyFR.png" width="100%" align="middle">
+
+:::
+
+:::
+
+
+
+::::
+<!-------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------- -->
+### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet : utilisation et popularité
+<hr>
+
+:::: {.columns}
+
+::: {.column width="50%"}
+<!-- ![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=35%} -->
+
+
+
+
+- **25 Millions d'utilisateurs**
+- **200+** pays
+- Jusqu'à **2 Millions** d'images téléchargées par jour
+- **50 000** espèces de plantes (sur 300 000)
+- **1.2 Milliards** d'images
+- **20 Millions** étiquetées / validées
+- **20** chercheurs / ingénieurs (à Montpellier)
+:::
+
+::: {.column width="50%"}
+
+<div style="text-align: center;">
+
+[https://identify.plantnet.org/stats](https://identify.plantnet.org/stats){.scriptsize}
+
+![](../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png){width=99%}
+</div>
+
+:::
+
+::::
+
+. . .
+
+<div style="text-align: center;">
+
+<img src="images/plantnet_usage_rastereurized.svg" width="99%" align="middle" >
+
+</div>
+<!-------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------- -->
+### Pl@ntNet & l'apprentissage coopératif
+<!-- <hr> -->
+
+
+<!-- <center> -->
+
+::: {.r-stack}
+![](images/plantnet_schema_global_js_0.svg){.fragment width=100% fragment-index=2 style="background-color:white;"}
+
+![](images/plantnet_schema_global_js_1.svg){.fragment width=100% fragment-index=3 style="background-color:white;"}
+
+![](images/plantnet_schema_global_js_2.svg){.fragment width=100% fragment-index=4 style="background-color:white;"}
+
+![](images/plantnet_schema_global_js_3.svg){.fragment width=100% fragment-index=5 style="background-color:white;"}
+
+![](images/plantnet_schema_global_js_4.svg){.fragment width=100% fragment-index=6 style="background-color:white;"}
+<!-- https://lvngd.com/blog/how-embed-google-font-svg/ -->
+
+:::
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+### {{< iconify vaadin:hourglass-start >}} Chronologie de Pl@ntNet
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<center>
+<img src="images/PlantNet-overview-Janv-2022_fr.svg" width="99%">
+
+<br>
+<br>
+<br>
+
+<!-- **Note:** I am mostly innocent; started working with the Pl@ntNet team in 2020 -->
+
+</center>
+
+
+<!-------------------------------------------------------------------------- -->
+### Que faut-il pour entraîner un réseau de neurone?
+<hr>
+<br>
+
+::: {style="font-size: 200%;"}
+
+- **Données** : images de plantes
+- **Etiquettes** : noms des plantes
+- **Modèle (architecture)** : réseau de neurones
+- **Algorithme** : sert à optimiser les performances du modèle
+- **Infrastructure** : puissance de calcul (GPU, TPU, etc.)
+
+:::
+
+<!-------------------------------------------------------------------------- -->
+
+<!-------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------- -->
+### Vote majoritaire:
+<hr>
+<br>
+<center>
+![](images/MV_smiley.svg){.fragment width=95%}
+</center>
+
+<!-------------------------------------------------------------------------- -->
+
+<!-------------------------------------------------------------------------- -->
+
+### Vote majoritaire pondéré
+<hr>
+<br>
+
+<center>
+![](images/WMV_simley.svg){width="95%"}
+</center>
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+### <img src="../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg" height="50" style="vertical-align: -.4em;"> lab, à la pointe de l'IA et de l'écologie
+
+<center>
+<img src="images/plantnet_ai_ecology.svg" width="90%">
+</center>
+
+
+
+### <img src="images/geoplantnet.svg" height="50" style="vertical-align: -.4em;"> : jumeau numérique de la biodiversité
+
+
+<br>
+
+<center>
+<img src="images/geoplantnet.png" width="90%">
+
+<br>
+</center>
+
+
+
+<!-------------------------------------------------------------------------- -->
+<!-- ### {{< iconify eos-icons:science >}} Enjeux scientifiques et locaux
+<hr>
+<br>
+
+- Effort communautaire avec et pour les citoyens!
+
+
+- Effort **pluridisciplinaire**, issu de la recherche et y contribue à la recherche -->
+
+
+<!-- ### {{< iconify eos-icons:science >}} Atouts de Montpellier en IA & écologie  -->
+
+### 
+<!-- <br> -->
+
+
+<center>
+<img src="images/montpellier_atout.svg" width="95%">
+</center>
+
+<br>
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+
+### {#contact data-menu-title="Contact"}
+
+
+<div style="text-align: center;">
+
+[https://plantnet.org/2024/10/24/campagne-de-dons-2024/](https://plantnet.org/2024/10/24/campagne-de-dons-2024/)
+
+![](images/Campagne_don2.svg){width=75%}
+
+![](https://raw.githubusercontent.com/josephsalmon/OrganizationFiles/master/inkscape/images/contact_js_long.svg){width=75%}
+
+</div>
+
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+# Appendix {.section-background}
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+## Sampling bias {.section-background-small}
+<!-------------------------------------------------------------------------- -->
+
+
+<!-------------------------------------------------------------------------- -->
+### {{<iconify gis:globe-earth-alt>}} Geographic bias
+
+
+<div style="display: flex; flex-direction: column;">
+![](../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png){width=100%}
+
+<center>Spatial density of images collected by Pl@ntNet (13/04/2024)</center>
+</div>
+<!-------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------- -->
+### {{<iconify fluent:food-20-filled>}} Food bias
+<hr>
+
+<br>
+
+Top-5 most observed plant species in Pl@ntNet (13/04/2024):
+
+<br>
+
+
+::: {layout-nrow=1  .v-center-container}
+**25134 obs.**
+![Echium vulgare L.](images/Echium_vulgare_L.svg){width=200px height=200px}
+*Echium vulgare L.*
+
+**24720 obs.**
+![Ranunculus ficaria L.](images/Ranunculus_ficaria_L.svg){width=200px height=200px}
+*Ranunculus ficaria L.*
+
+**24103 obs.**
+![Prunus spinosa L.](images/Prunus_spinosa_L.svg){width=200px height=200px}
+*Prunus spinosa L.*
+
+**23288 obs.**
+![Zea mays L.](images/Zea_mays_L.svg){width=200px height=200px}
+*Zea mays L.*
+
+**23075 obs.**
+![Alliaria petiolata](images/Alliaria_petiolata.svg){width=200px height=200px}
+*Alliaria petiolata*
+:::
+
+
+### {{<iconify ri:sparkling-2-line>}} Beauty bias
+
+:::: {.columns}
+
+::: {.column  style='text-align: center;'}
+**10753 obs.**
+
+![](../2024-09-25_slides_sierra/images/Centaurea_jacea.jpg){width=65%}
+
+*Centaurea jacea*
+:::
+
+
+::: {.column  style='text-align: center;'}
+
+**6 obs.**
+
+![](../2024-09-25_slides_sierra/images/Cenchrus_agrimonioides.jpg){width=65%}
+
+*Cenchrus agrimonioides*
+:::
+
+::::
+<!-------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------- -->
+
+### {{<iconify emojione-monotone:straight-ruler>}} Size bias
+
+
+:::: {.columns style='display: flex !important'}
+
+::: {.column  style='text-align: center;'}
+
+**8376 obs.**
+
+![](../2024-09-25_slides_sierra/images/Magnolia_grandiflora.png){width=75%}
+
+*Magnolia grandiflora*
+
+:::
+
+
+::: {.column  style='text-align: center;'}
+
+![](../2024-09-25_slides_sierra/images/rule.png){width=20%}
+
+:::
+
+::: {.column  style='text-align: center;'}
+
+**413 obs.**
+
+![](../2024-09-25_slides_sierra/images/Moehringia_trinervia.png){width=25%}
+
+*Moehringia trinervia*
+
+:::
+
+::::
+
+<!-------------------------------------------------------------------------- -->
+
+### Many more biases ...
+<hr>
+
+<br>
+
+- Selection bias
+    - Convenience sampling:  **easily** vs. *hardly* accessible
+    - Preference for certain species: **visibility** / **ease of identification**
+    - Subjective bias: selection based on **personal judgment**, may not be random or representative
+     - Rare species: **rare** or **endangered** species may be under-represented
+
+- Temporal bias / seasonal variation: **seasonal changes** in plant characteristics
+- ...
+
+<!-------------------------------------------------------------------------- -->
+
+<!-------------------------------------------------------------------------- -->
+
+
+<!-------------------------------------------------------------------------- -->
+### Intra-class variability
+
+::: {layout-nrow=2}
+
+![Guizotia abyssinica](../2024-09-25_slides_sierra/images/6_a.jpg){width=93%}
+
+![Diascia rigescens](../2024-09-25_slides_sierra/images/7_a.jpg){width=93%}
+
+![Lapageria rosea](../2024-09-25_slides_sierra/images/8_a.jpg){width=93%}
+
+![Casuarina cunninghamiana](../2024-09-25_slides_sierra/images/9_a.jpg){width=93%}
+
+![Freesia alba](../2024-09-25_slides_sierra/images/10_a.jpg){width=93%}
+
+![Guizotia abyssinica](../2024-09-25_slides_sierra/images/6_b.jpg){width=93%}
+
+![Diascia rigescens](../2024-09-25_slides_sierra/images/7_b.jpg){width=93%}
+
+![Lapageria rosea](../2024-09-25_slides_sierra/images/8_b.jpg){width=93%}
+
+![Casuarina cunninghamiana](../2024-09-25_slides_sierra/images/9_b.jpg){width=93%}
+
+![Freesia alba](../2024-09-25_slides_sierra/images/10_b.jpg){width=93%}
+
+:::
+
+<center>
+**Based on pictures only, plant species are challenging to discriminate!**
+</center>
+<!-------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------- -->
+### Inter-class ambiguity
+
+
+::: {layout-nrow=2}
+
+![Cirsium rivulare](../2024-09-25_slides_sierra/images/1_a.jpg){width=93%}
+
+![Chaerophyllum aromaticum](../2024-09-25_slides_sierra/images/2_a.jpg){width=93%}
+
+![Conostomium kenyense](../2024-09-25_slides_sierra/images/3_a.jpg){width=93%}
+
+![Adenostyles leucophylla](../2024-09-25_slides_sierra/images/4_a.jpg){width=93%}
+
+![Sedum montanum](../2024-09-25_slides_sierra/images/5_a.jpg){width=93%}
+
+![Cirsium tuberosum](../2024-09-25_slides_sierra/images/1_b.jpg){width=93%}
+
+![Chaerophyllum temulum](../2024-09-25_slides_sierra/images/2_b.jpg){width=93%}
+
+![Conostomium quadrangulare](../2024-09-25_slides_sierra/images/3_b.jpg){width=93%}
+
+![Adenostyles alliariae](../2024-09-25_slides_sierra/images/4_b.jpg){width=93%}
+
+![Sedum rupestre](../2024-09-25_slides_sierra/images/5_b.jpg){width=93%}
+
+:::
+
+<center>
+**Based on pictures only, plant species are challenging to discriminate!**
+</center>
+<!-------------------------------------------------------------------------- -->

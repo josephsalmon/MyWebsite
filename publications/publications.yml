@@ -1,5 +1,28 @@
 - abstract: ''
   accessed: ''
+  author: <a href="https://garcinc.github.io/Camille-Garcin/">C. Garcin</a>, <a href="https://maximiliense.github.io/">M.
+    Servajean</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
+    and <strong>J. Salmon</strong>
+  container-title: Proceedings of the Winter Conference on Applications of Computer
+    Vision (WACV)
+  doi: ''
+  id: Garcin_Servajean_Joly_Salmon23
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 7358-7367
+  title: A Two-Head Loss Function for Deep Average-K Classification
+  type: inproceedings
+  url: https://arxiv.org/abs/2303.18118
+  volume: ''
+  journaltitle: Proceedings of the Winter Conference on Applications of Computer Vision
+    (WACV)
+  date: '2025'
+  path: ''
+  code: ''
+  data: ''
+- abstract: ''
+  accessed: ''
   author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://www.lirmm.fr/lirmm_eng/users/utilisateurs-lirmm/antoine-affouard">A.
     Affouard</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
     Charlier</a>, <a href="https://sites.google.com/site/jclombardocv/">J.-C. Lombardo</a>,
@@ -148,27 +171,6 @@
   journaltitle: Harvard Data Science Review
   date: '2024'
   path: https://s3.amazonaws.com/assets.pubpub.org/76kzbqtth9sijli28do0cni43xejcfjw.pdf
-  code: ''
-  data: ''
-- abstract: ''
-  accessed: ''
-  author: <a href="https://garcinc.github.io/Camille-Garcin/">C. Garcin</a>, <a href="https://maximiliense.github.io/">M.
-    Servajean</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
-    and <strong>J. Salmon</strong>
-  container-title: ArXiv e-prints
-  doi: ''
-  id: Garcin_Servajean_Joly_Salmon23
-  issn: ''
-  issue: ''
-  issued: ''
-  page: ''
-  title: A two-head loss function for deep Average-K classification
-  type: techreport
-  url: https://arxiv.org/abs/2303.18118
-  volume: ''
-  journaltitle: ArXiv e-prints
-  date: '2023'
-  path: https://arxiv.org/pdf/2303.18118.pdf
   code: ''
   data: ''
 - abstract: ''
