@@ -12,7 +12,7 @@ format:
     width: 1280
     height: 720
     theme: local.scss
-    slideNumber: false
+    slideNumber: true
     jupyter: python3
 ---
 
@@ -91,8 +91,12 @@ format:
 
 
 
+## Présentation et parcours personnel {.section-background-small}
 
-### Présentation et parcours
+
+
+
+### En bref
 
 <hr>
 
@@ -158,7 +162,7 @@ def create_city_map(city_name, zoom_start=5):
 
 - **Profession**: Directeur de recherche
 
-- **Employeur**: Inria 
+- **Employeur**: Inria
 
 - **Lieu de travail**: Montpellier
 
@@ -474,6 +478,12 @@ montpellier_map = create_city_map("Montpellier")
 
 ::::
 
+
+
+## Ma recherche aujourd'hui {.section-background-small}
+
+
+
 <!--------------------------------------------------------------------------->
 ### Apprentissage automatique & sciences participatives
 <hr>
@@ -486,6 +496,8 @@ montpellier_map = create_city_map("Montpellier")
 
 ::: {.column width="69%"}
 Une plateforme de **science citoyenne** utilisant l'apprentissage automatique pour aider les gens à **identifier les plantes** avec leur téléphone
+
+**Site web**: [https://plantnet.org/](https://plantnet.org/)
 :::
 
 ::::
@@ -498,11 +510,9 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 
 <img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="60%" align="middle">
 
-- **Lieu de naissance**: Montpellier
-- **Date de naissance**: 2011
-- **Site web**: [https://plantnet.org/](https://plantnet.org/)
+- **Naissance**: Montpellier, 2011
 - **[Note]{.underline}**: pas de champignons, désolé!
-- **Annecdote**: découverte grâce à mon père, un passionné de botanique [Patrice Salmon](https://identify.plantnet.org/fr/users/100504685) 
+- **Anecdote**: découverte grâce à mon père [Patrice Salmon](https://identify.plantnet.org/fr/users/100504685), amateur de botanique
 </div>
 
 :::
@@ -532,10 +542,9 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 
 :::
 
-
-
 ::::
 <!-------------------------------------------------------------------------- -->
+
 
 
 
@@ -634,26 +643,70 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 <hr>
 <br>
 
-::: {style="font-size: 200%;"}
+::: {style="font-size: 150%;"}
 
-- **Données** : images de plantes
+
+#### Données:
+- **Images** : images de plantes
 - **Etiquettes** : noms des plantes
+
+
+#### Apprentissage:
 - **Modèle (architecture)** : réseau de neurones
-- **Algorithme** : sert à optimiser les performances du modèle
+- **Algorithme** : optimise les performances du modèle
 - **Infrastructure** : puissance de calcul (GPU, TPU, etc.)
+
+D'excellentes vidéos pour comprendre les réseaux de neurones:
+
+<center>
+[3Blue1Brown: Neural Network](https://www.youtube.com/@3blue1brown/courses)
+</center>
+:::
+
+
+
+<!-------------------------------------------------------------------------- -->
+### Mais les données d'où viennent-elles?
+
+::: {style="font-size: 150%;"}
+
+- **Images** : images de plantes, facile à trouver (mais pas toujours de qualité), 1.2 Milliards d'images dans Pl@ntNet
+
+- **Données étiquetées** : images de plantes avec leur nom. Plus difficile à obtenir, 20 Millions d'images étiquetées dans Pl@ntNet
+
+<br>
+
+**Question**: Mais comment obtenir ces données étiquetées?
+
+**Réponse**: laissons les utilisateurs, experts ou non, étiqueter les images!
+
+<br>
+
+**[Note]{.underline}** : dans d'autres contextes on fait appel à des **microtravailleurs** (ex: Amazon Mechanical Turk) pour étiqueter les données
 
 :::
 
 <!-------------------------------------------------------------------------- -->
 
-<!-------------------------------------------------------------------------- -->
-
 
 
 <!-------------------------------------------------------------------------- -->
-### Vote majoritaire:
+### Exemple d'annotation dans Pl@ntNet
+
+<center>
+![](https://bs.plantnet.org/image/o/7f574459569e18955d6adc5126cd0fbc84cf7567.jpeg){width=34%}
+
+[Aciachne pulvinata Benth.](https://identify.plantnet.org/fr/k-world-flora/observations/1004726011)
+
+</center>
+<!-------------------------------------------------------------------------- -->
+
+
+<!-------------------------------------------------------------------------- -->
+###  Vote majoritaire
 <hr>
 <br>
+
 <center>
 ![](images/MV_smiley.svg){.fragment width=95%}
 </center>
@@ -662,117 +715,83 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 
 <!-------------------------------------------------------------------------- -->
 
-### Vote majoritaire pondéré
+### {{<iconify arcticons:emoji-ballot-box-with-ballot>}} Vote majoritaire pondéré
 <hr>
 <br>
 
 <center>
-![](images/WMV_simley.svg){width="95%"}
+![](images/WMV_smiley.svg){width="95%"}
 </center>
 <!-------------------------------------------------------------------------- -->
 
 
-
-
-
-<!-------------------------------------------------------------------------- -->
-### <img src="../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg" height="50" style="vertical-align: -.4em;"> lab, à la pointe de l'IA et de l'écologie
-
-<center>
-<img src="images/plantnet_ai_ecology.svg" width="90%">
-</center>
-
-
-
-### <img src="images/geoplantnet.svg" height="50" style="vertical-align: -.4em;"> : jumeau numérique de la biodiversité
-
-
-<br>
-
-<center>
-<img src="images/geoplantnet.png" width="90%">
-
-<br>
-</center>
-
-
-
-<!-------------------------------------------------------------------------- -->
-<!-- ### {{< iconify eos-icons:science >}} Enjeux scientifiques et locaux
+### Enjeux de recherche
 <hr>
 <br>
 
-- Effort communautaire avec et pour les citoyens!
+::: {style="font-size: 129%;"}
+
+Il faut donc proposer des bons poids!
+
+**[Contraintes]{.underline}**:
+
+- larges poids aux experts, ou aux personnes sur le terrain
+- faibles poids aux novices, aux tricheurs, aux spammeurs
+- faire évoluer les poids avec les temps: on peut devenir expert ou perdre la boule!
 
 
-- Effort **pluridisciplinaire**, issu de la recherche et y contribue à la recherche -->
+Mais surtout: il faut pouvoir traiter
+
+- 2 millions d'images collectées par jour
+- 60 000 utilisateurs actifs par jour
 
 
-<!-- ### {{< iconify eos-icons:science >}} Atouts de Montpellier en IA & écologie  -->
+Et on travaille à améliorer tout cela!
 
-### 
-<!-- <br> -->
+:::
 
 
-<center>
-<img src="images/montpellier_atout.svg" width="95%">
-</center>
 
+<!-------------------------------------------------------------------------- -->
+## Quelques histoires de biais {.section-background-small}
+<!-------------------------------------------------------------------------- -->
+
+
+### Mais le biais c'est quoi?
+
+<hr>
 <br>
 
-
-
-
-<!-------------------------------------------------------------------------- -->
-
-### {#contact data-menu-title="Contact"}
-
-
-<div style="text-align: center;">
-
-[https://plantnet.org/2024/10/24/campagne-de-dons-2024/](https://plantnet.org/2024/10/24/campagne-de-dons-2024/)
-
-![](images/Campagne_don2.svg){width=75%}
-
-![](https://raw.githubusercontent.com/josephsalmon/OrganizationFiles/master/inkscape/images/contact_js_long.svg){width=75%}
-
-</div>
-
-<!-------------------------------------------------------------------------- -->
-
-
-
-
-# Appendix {.section-background}
+<center>
+![](images/cible_meme_variance_bias_varie.svg){width="90%"}
+</center>
 
 
 
 
 <!-------------------------------------------------------------------------- -->
-## Sampling bias {.section-background-small}
-<!-------------------------------------------------------------------------- -->
-
-
-<!-------------------------------------------------------------------------- -->
-### {{<iconify gis:globe-earth-alt>}} Geographic bias
+### {{<iconify gis:globe-earth-alt>}} Biais géographique
 
 
 <div style="display: flex; flex-direction: column;">
 ![](../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png){width=100%}
 
-<center>Spatial density of images collected by Pl@ntNet (13/04/2024)</center>
+<center>Densité spatiale d'images collectées par Pl@ntNet (13/04/2024)</center>
 </div>
 <!-------------------------------------------------------------------------- -->
 
 
 
 <!-------------------------------------------------------------------------- -->
-### {{<iconify fluent:food-20-filled>}} Food bias
+### {{<iconify fluent:food-20-filled>}} Biais d'estomac
 <hr>
 
 <br>
 
-Top-5 most observed plant species in Pl@ntNet (13/04/2024):
+::: {style="font-size: 150%;"}
+
+Top-5 des espèces les plus observées dans Pl@ntNet (13/04/2024):
+:::
 
 <br>
 
@@ -800,7 +819,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 :::
 
 
-### {{<iconify ri:sparkling-2-line>}} Beauty bias
+### {{<iconify ri:sparkling-2-line>}} Biais esthétique
 
 :::: {.columns}
 
@@ -829,7 +848,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 
 <!-------------------------------------------------------------------------- -->
 
-### {{<iconify emojione-monotone:straight-ruler>}} Size bias
+### {{<iconify emojione-monotone:straight-ruler>}} Biais de taille
 
 
 :::: {.columns style='display: flex !important'}
@@ -863,90 +882,128 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 
 ::::
 
-<!-------------------------------------------------------------------------- -->
 
-### Many more biases ...
-<hr>
+
+## En conclusion {.section-background-small}
+
+
+
+<!-------------------------------------------------------------------------- -->
+### <img src="../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg" height="50" style="vertical-align: -.4em;"> lab, à la pointe de l'IA et de l'écologie
+
+
+
+<center>
+::: {.r-stack}
+
+![](images/plantnet_ai_ecology0.svg){width="1200px"}
+
+![](images/plantnet_ai_ecology.svg){.fragment width="1200px"}
+
+:::
+
+</center>
+
+
+
+### 
+<!-- <br> -->
+
+
+<center>
+<img src="images/montpellier_atout.svg" width="90%">
+</center>
 
 <br>
 
-- Selection bias
-    - Convenience sampling:  **easily** vs. *hardly* accessible
-    - Preference for certain species: **visibility** / **ease of identification**
-    - Subjective bias: selection based on **personal judgment**, may not be random or representative
-     - Rare species: **rare** or **endangered** species may be under-represented
-
-- Temporal bias / seasonal variation: **seasonal changes** in plant characteristics
-- ...
-
-<!-------------------------------------------------------------------------- -->
-
-<!-------------------------------------------------------------------------- -->
 
 
 <!-------------------------------------------------------------------------- -->
-### Intra-class variability
+### Pour aller plus loin
 
-::: {layout-nrow=2}
 
-![Guizotia abyssinica](../2024-09-25_slides_sierra/images/6_a.jpg){width=93%}
+:::: {.columns}
 
-![Diascia rigescens](../2024-09-25_slides_sierra/images/7_a.jpg){width=93%}
+::: {.column width="25%"}
 
-![Lapageria rosea](../2024-09-25_slides_sierra/images/8_a.jpg){width=93%}
 
-![Casuarina cunninghamiana](../2024-09-25_slides_sierra/images/9_a.jpg){width=93%}
 
-![Freesia alba](../2024-09-25_slides_sierra/images/10_a.jpg){width=93%}
+<center>
 
-![Guizotia abyssinica](../2024-09-25_slides_sierra/images/6_b.jpg){width=93%}
+::: {style="font-size: 150%;"}
 
-![Diascia rigescens](../2024-09-25_slides_sierra/images/7_b.jpg){width=93%}
+**Livres**
+:::
 
-![Lapageria rosea](../2024-09-25_slides_sierra/images/8_b.jpg){width=93%}
 
-![Casuarina cunninghamiana](../2024-09-25_slides_sierra/images/9_b.jpg){width=93%}
+::: {layout-nrow=2  .v-center-container}
 
-![Freesia alba](../2024-09-25_slides_sierra/images/10_b.jpg){width=93%}
+
+![](images/en-attendant-les-robos.png){width=150px}
+
+![](images/vive-les-communs-numeriques.png){width=150px}
+
 
 :::
 
-<center>
-**Based on pictures only, plant species are challenging to discriminate!**
 </center>
-<!-------------------------------------------------------------------------- -->
-
-
-
-<!-------------------------------------------------------------------------- -->
-### Inter-class ambiguity
-
-
-::: {layout-nrow=2}
-
-![Cirsium rivulare](../2024-09-25_slides_sierra/images/1_a.jpg){width=93%}
-
-![Chaerophyllum aromaticum](../2024-09-25_slides_sierra/images/2_a.jpg){width=93%}
-
-![Conostomium kenyense](../2024-09-25_slides_sierra/images/3_a.jpg){width=93%}
-
-![Adenostyles leucophylla](../2024-09-25_slides_sierra/images/4_a.jpg){width=93%}
-
-![Sedum montanum](../2024-09-25_slides_sierra/images/5_a.jpg){width=93%}
-
-![Cirsium tuberosum](../2024-09-25_slides_sierra/images/1_b.jpg){width=93%}
-
-![Chaerophyllum temulum](../2024-09-25_slides_sierra/images/2_b.jpg){width=93%}
-
-![Conostomium quadrangulare](../2024-09-25_slides_sierra/images/3_b.jpg){width=93%}
-
-![Adenostyles alliariae](../2024-09-25_slides_sierra/images/4_b.jpg){width=93%}
-
-![Sedum rupestre](../2024-09-25_slides_sierra/images/5_b.jpg){width=93%}
 
 :::
 
+::: {.column width="75%"}
+
 <center>
-**Based on pictures only, plant species are challenging to discriminate!**
+
+::: {style="font-size: 150%;"}
+
+**Youtubeurs à suivre**
+
+:::
+
+
+
+::: {layout-nrow=2  .v-center-container}
+
+![[Science Étonnante](https://www.youtube.com/scienceetonnante)](images/ScienceEtonnante.png){width=370px}
+
+
+![[Science 4 All](https://www.youtube.com/channel/UC0NCbj8CxzeCGIF6sODJ-7A)](images/Science4all.png){width=370px}
+
+
+
+![[3Blue1Brown](https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw)](images/3Blue1Brown.png){width=370px}
+
+
+![[Veritasium](https://www.youtube.com/user/1veritasium)](images/Veritasium.png){width=370px}
+
+
+:::
+
 </center>
+
+:::
+
+::::
+
 <!-------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------- -->
+
+### {#contact data-menu-title="Contact"}
+
+
+<div style="text-align: center;">
+
+[https://plantnet.org/2024/10/24/campagne-de-dons-2024/](https://plantnet.org/2024/10/24/campagne-de-dons-2024/)
+
+![](images/Campagne_don2.svg){width=75%}
+
+![](https://raw.githubusercontent.com/josephsalmon/OrganizationFiles/master/inkscape/images/contact_js_long.svg){width=75%}
+
+</div>
+
+<!-------------------------------------------------------------------------- -->
+
+
