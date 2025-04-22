@@ -73,9 +73,6 @@ website:
       # text: Mastodon
       href: https://sigmoid.social/@josephsalmon
       rel: me
-    - icon: linkedin
-      # text: LinkedIn
-      href: https://www.linkedin.com/in/joseph-salmon-6134262a6/
     - icon: envelope
       aria-label: email
       href: "mailto:joseph.salmon@inria.fr"

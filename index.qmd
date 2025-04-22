@@ -39,13 +39,20 @@ landing_page_styles.css">
 <div class="gradient_bg">
     <div class="hero section_padding">
         <div class="hero_content">
-            <h1><span class="gradient_text">
+            <br>
+            <style>
+                h1.decrease {
+                  font-size: 250%;
+            }
+            </style>
+
+            <h1 class="decrease"><span class="gradient_text">
                 <i class="fas fa-house"></i>
-                Joseph Salmon</span>
-            <br> Machine learning & data science</h1>
+                Joseph Salmon</span></h1>
+            <h2>Machine learning & data science</h2>
             <p>I am a statistician and an applied mathematician, with a strong interest in machine learning, optimization and data science.
             <br>
-            Since Oct. 2024, I have been a senior researcher at <a href="https://www.inria.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Inria</span></a> (team <a href="https://inria.fr/en/iroko"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Iroko</span></a>), working with the <a  href="https://plantnet.org/en/">Pl@nNet</a> team.
+            Since Oct. 2024, I have been a senior researcher at <a href="https://www.inria.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Inria</span></a> (team <a href="https://team.inria.fr/iroko/"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Iroko</span></a>), working with the <a  href="https://plantnet.org/en/">Pl@nNet</a> team.
             In terms of applications, I focus on <strong>citizen science</strong>, <strong>crowd-sourcing</strong> and <strong>high dimensional statistics</strong>. I am also in charge of the doctoral program "Statistics and Data Science" (<a href=https://edi2s.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>EDI2S</span></a> at <a href="https://www.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Université de Montpellier</span></a>). </p>
 
             <h2>Short bio </h2>
