@@ -24,7 +24,7 @@ format:
   html:
     from: markdown+emoji
     html-math-method: katex
-    code-tools: true
+    # code-tools: true
     quarto-template-params:
       banner-header-class: "blog-post"
     include-after-body: ../html/blog_footer.html
