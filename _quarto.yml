@@ -120,3 +120,4 @@ format:
     reference-location: margin
     footnotes-hover: true
     highlight-style: github
+    email-obfuscation: javascript
