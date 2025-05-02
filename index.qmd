@@ -13,7 +13,7 @@ format:
     html-math-method: katex
     theme:
       light: [html/landing_page_styles.scss]
-      dark: [superhero,html/landing_page_styles_dark.scss,html/styles_dark.scss]
+      dark: [superhero,html/,html/styles_dark.scss]
 
 
 listing:
