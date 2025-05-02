@@ -113,7 +113,9 @@ format:
     html-math-method: katex
     fontsize: 1.1em
     theme:
-      - html/styles.scss
+      # - html/styles.scss
+      light: [html/styles.scss]
+      dark: [superhero, html/styles.scss, html/styles_dark.scss]
     toc: false
     anchor-sections: true
     fig-cap-location: margin

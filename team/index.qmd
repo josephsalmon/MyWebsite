@@ -36,7 +36,7 @@ The application process is light:
 
 ## Ph.D. Students
 - [Theo Larcher](https://fr.linkedin.com/in/th%C3%A9o-larcher-3405a5147/en):
-co-supervised by [Alexis Jolly](http://www-sop.inria.fr/members/Alexis.Joly/wiki/pmwiki.php) 2024-2027?
+co-supervised by [Alexis Joly](http://www-sop.inria.fr/members/Alexis.Joly/wiki/pmwiki.php) 2024-2027?
 - [Antoine Simoes](https://fr.linkedin.com/in/antoine-simoes-4a2b67197): co-supervised by [Yohann de Castro](https://ydecastro.github.io/) 2022-2025?
 
 <!-- ## Engineers -->

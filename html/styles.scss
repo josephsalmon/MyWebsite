@@ -145,6 +145,15 @@ pre.text, pre.sourceCode, .cell-output pre {
 
 }
 
+// change color h2 hyperlink to black when in the light mode, and white when in the dark mode
+
+// h2 hyperlink color when in the light mode
+
+h2 a {
+    color: black;
+}
+
+
 
 .quarto-grid-item img.thumbnail-image {
                 height: 100%;

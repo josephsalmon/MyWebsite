@@ -11,6 +11,11 @@ format:
     # css: styles.css
     from: markdown+emoji
     html-math-method: katex
+    theme:
+      light: [html/landing_page_styles.scss]
+      dark: [superhero,html/landing_page_styles_dark.scss,html/styles_dark.scss]
+
+
 listing:
   - id: blog-listing
     sort: 'date desc'
@@ -33,8 +38,8 @@ listing:
 
 ::: {.column-screen}
 ```{=html}
-<link rel="stylesheet" href="html/
-landing_page_styles.css">
+<!-- <link rel="stylesheet" href="html/
+landing_page_styles.css"> -->
 
 <div class="gradient_bg">
     <div class="hero section_padding">

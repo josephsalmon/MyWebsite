@@ -18,7 +18,7 @@ comments: false
 ---
 
 
-## <a href="https://josephsalmon.github.io/HAX712X/" style="color:black">HAX712X - Software development for data science (2020-2024)</a>
+## <a href="https://josephsalmon.github.io/HAX712X/">HAX712X - Software development for data science (2020-2024)</a>
 
 <img style="float: right;" src="images/python_ecosystem.svg" width=20%>
 
@@ -30,7 +30,7 @@ Course language: &#127468;&#127463;
 
 
 
-## <a href="HAX603X.html" style="color:black">HAX603X - Stochastic Modeling (2023-2024)</a>
+## <a href="HAX603X.html">HAX603X - Stochastic Modeling (2023-2024)</a>
 
 <img style="float: right;" src="images/output.gif" width=12%>
 
@@ -44,7 +44,7 @@ Course language: &#127467;&#127479;
 
 
 
-## <a href="HAX606X.html" style="color:black">HAX606X - Convex optimization (2020-2023)</a>
+## <a href="HAX606X.html">HAX606X - Convex optimization (2020-2023)</a>
 
 <img style="float: right;" src="images/descente_gradient.svg" width=20%>
 
@@ -57,7 +57,7 @@ Course language: &#127467;&#127479;
 
 
 
-## <a href="HLMA310.html" style="color:black">HLMA310 - Scientific Python (2018-2020)</a>
+## <a href="HLMA310.html">HLMA310 - Scientific Python (2018-2020)</a>
 
 
 <img style="float: right;" src="images/python_ecosystem.svg" width=20%>
@@ -70,7 +70,7 @@ Course language: &#127467;&#127479;
 
 
 
-## <a href="STAT593.html" style="color:black">STAT593 - Robust statistics (2018-2019)
+## <a href="STAT593.html">STAT593 - Robust statistics (2018-2019)
 </a>
 
 <img style="float: right;" src="images/depth_level_sets_full.svg" width=20%>
@@ -80,7 +80,7 @@ Details can be found here: [STAT593 - Robust statistics](STAT593.html).
 <br>
 Course language: &#127468;&#127463;
 
-## <a href="SD204.html" style="color:black">SD204 - Linear Models (2016-2018)
+## <a href="SD204.html">SD204 - Linear Models (2016-2018)
 </a>
 <img style="float: right;" src="images/fig_pca_axis2.svg" width=20%>
 
@@ -93,7 +93,7 @@ Course language: &#127468;&#127463;
 
 
 
-## <a href="SD3.html" style="color:black">SD3 - Descriptive Statistics (2010-2011)
+## <a href="SD3.html">SD3 - Descriptive Statistics (2010-2011)
 </a>
 
 <img style="float: right;" src="images/boxplots.svg" width=20%>
@@ -104,7 +104,7 @@ Details can be found here: [SD3 - Descriptive Statistics](SD3.html).
 Course language: &#127467;&#127479;
 
 
-## <a href="MDI720.html" style="color:black">MDI720 - Linear Models (2013-2018)
+## <a href="MDI720.html">MDI720 - Linear Models (2013-2018)
 </a>
 
 <img style="float: right;" src="images/l1_ball_projection.svg" width=20%>
@@ -114,7 +114,7 @@ Details can be found here [MDI720 - Linear Models](MDI720.html).
 <br>
 Course language: &#127467;&#127479;
 
-## <a href="M5310.html" style="color:black">M53010 - Econometrics (2009-2010)
+## <a href="M5310.html">M53010 - Econometrics (2009-2010)
 </a>
 
 
@@ -127,7 +127,7 @@ Details can be found here: [M53010 - Econometrics](M53010.html).
 Course language: &#127467;&#127479;
 
 
-## <a href="M2MO.html" style="color:black">M2MO - Statistical Learning (2013-2018)
+## <a href="M2MO.html">M2MO - Statistical Learning (2013-2018)
 </a>
 
 <img style="float: right;" src="images/CV_10_two.svg" width=20%>
@@ -138,7 +138,7 @@ Details can be found here: [M2MO - Machine Learning](M2MO.html).
 <br>
 Course language: &#127467;&#127479;
 
-## <a href="HMMA308.html" style="color:black">HMMA308 - Statistical Machine Learning (2018-2021)
+## <a href="HMMA308.html">HMMA308 - Statistical Machine Learning (2018-2021)
 </a>
 
 <img style="float: right;" src="images/level_sets.svg" width=20%>
@@ -150,7 +150,7 @@ Details can be found here [HMMA308 - Statistical Machine Learning](HMMA308.html)
 Course language: &#127467;&#127479;
 
 
-## <a href="HMMA307.html" style="color:black">HMMA307 - Advanced Linear Models (2019-2021)</a>
+## <a href="HMMA307.html">HMMA307 - Advanced Linear Models (2019-2021)</a>
 
 <img style="float: right;" src="images/pollution_occitanie.svg" width=20%>
 This is an undergraduate course introducing advanced linear models (ANOVA, Mixed-effects models, etc.).
@@ -160,7 +160,7 @@ Details can be found here: [HMMA307 - Advanced Linear Models](HMMA307.html).
 Course language: &#127467;&#127479; and &#127468;&#127463;
 
 
-## <a href="HMMA238.html" style="color:black">HMMA238 - Scientific Software Development (2018-2019)</a>
+## <a href="HMMA238.html">HMMA238 - Scientific Software Development (2018-2019)</a>
 
 <img style="float: right;" src="images/python_ecosystem.svg" width=20%>
 This is a master level course introducing scientific computing and modern software practices.
@@ -170,7 +170,7 @@ Details can be found here: [HMMA238 - Scientific Software Development](HMMA238.h
 Course language: &#127468;&#127463;
 
 
-## <a href="HMMA237.html" style="color:black">HMMA237 - Advanced time series (2018-2019)</a>
+## <a href="HMMA237.html">HMMA237 - Advanced time series (2018-2019)</a>
 
 <img style="float: right;" src="images/splines.svg" width=20%>
 This is an undergraduate course introducing advanced time series analysis.
@@ -181,7 +181,7 @@ Course language: &#127467;&#127479; and &#127468;&#127463;
 
 
 
-## <a href="HLMA408.html" style="color:black">HLMA408 - Data science for ecology (2018 - 2021)</a>
+## <a href="HLMA408.html">HLMA408 - Data science for ecology (2018 - 2021)</a>
 
 <img style="float: right;" src="images/jitter_male_mouse_by_gene_only_ICs.svg" width=20%>
 This is an undergraduate course introducing statistics and data visualisation.
