@@ -101,11 +101,14 @@ website:
       <span class="faux-block"> Designed with {{< fa heart >}}</span>
       <span class="faux-block"> Built with <a href="https://quarto.org/">Quarto</a></span>
 
-execute:
-  freeze: true
+# execute:
+#   freeze: auto
+
+
 
 filters:
   - html/newpagelink.lua
+
 
 format:
   html:

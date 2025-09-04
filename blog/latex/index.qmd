@@ -1,6 +1,9 @@
 ---
-title: "$\\LaTeX$ for scientific writing?"
-author: "Joseph Salmon"
+title: "LaTeX for scientific writing?"
+author:
+  - name: Joseph Salmon
+    url: https://josephsalmon.eu/
+    orcid: 0000-0002-3181-0634
 date: "2024-09-05"
 description: "Some guidance on why, when, and **when not** using it."
 categories: [Latex, writing]
@@ -10,10 +13,10 @@ fig-cap-location: bottom
 draft: false
 # title-block-banner: hello-world-bg.jpg
 
-format:
-  html:
-    include-before-body: ../../html/margin_image.html
-    include-after-body: ../../html/blog_footer.html
+# format:
+#   html:
+#     include-before-body: ../../html/margin_image.html
+#     include-after-body: ../../html/blog_footer.html
 
 ---
 

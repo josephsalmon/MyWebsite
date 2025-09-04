@@ -32,10 +32,11 @@ date-format: "MMMM D, YYYY"
 image: ""
 code-tools: false
 comments: false
+citation: false
 
 ---
 
-Welcome to my blog, `Donadas Brutas`. Any kind of feedback is welcome, so feel free to reach out to me. Thanks for your interest and time.
+Welcome to my blog, `Donadas Brutas`. Any kind of feedback is welcome, so feel free to reach out. Thanks for your interest and time.
 
 ## 2024
 

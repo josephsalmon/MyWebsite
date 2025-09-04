@@ -27,13 +27,22 @@ format:
     code-tools: true
     quarto-template-params:
       banner-header-class: "blog-post"
+    google-scholar: true
+    include-before-body: ../html/margin_image.html
     include-after-body: ../html/blog_footer.html
+    code-fold: true
+# # Default author
+# author:
+#   - name: Joseph Salmon
+#     url: https://josephsalmon.eu/
+#     orcid: 0000-0002-3181-0634
 
-# Default author
-author:
-  - name: Joseph Salmon
-    url: https://josephsalmon.eu/
-    orcid: 0000-0002-3181-0634
 
-bibliography: /home/jsalmon/Documents/OrganizationFiles/tex/biblio/references_all.bib
+citation: true
+appendix-cite-as: bibtex
+bibliography: references_all.bib
+
+
+
+# Use a symlink to avcoid duplicate:
 # bibliography: https://github.com/josephsalmon/OrganizationFiles/blob/master/tex/biblio/references_all.bib

@@ -1,5 +1,46 @@
 - abstract: ''
   accessed: ''
+  author: <a href="https://tiffanyding.github.io/">T. Ding</a>, <a href=" "https://jeanbaptistefermanian.github.io/"">J.-B.
+    Fermanian</a> and <strong>J. Salmon</strong>
+  container-title: ArXiv e-prints
+  doi: ''
+  id: Ding_Fermanian_Salmon25
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Conformal Prediction for Long-Tailed Classification
+  type: techreport
+  url: https://arxiv.org/abs/2507.06867
+  volume: ''
+  journaltitle: ArXiv e-prints
+  date: '2025'
+  path: https://arxiv.org/pdf/2507.06867
+  code: ''
+  data: ''
+- abstract: ''
+  accessed: ''
+  author: <a href=" "https://jeanbaptistefermanian.github.io/"">J.-B. Fermanian</a>,
+    <a href="http://perso-math.univ-mlv.fr/users/hebiri.mohamed/">M. Hebiri</a> and
+    <strong>J. Salmon</strong>
+  container-title: ArXiv e-prints
+  doi: ''
+  id: Fermanian_Hebiri_Salmon25
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: Class conditional conformal prediction for multiple inputs by p-value aggregation
+  type: techreport
+  url: https://hal.science/hal-05151303
+  volume: ''
+  journaltitle: ArXiv e-prints
+  date: '2025'
+  path: https://hal.science/hal-05151303v1/file/arxiv_predsetcomb.pdf
+  code: ''
+  data: ''
+- abstract: ''
+  accessed: ''
   author: <a href="https://garcinc.github.io/Camille-Garcin/">C. Garcin</a>, <a href="https://maximiliense.github.io/">M.
     Servajean</a>, <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
     and <strong>J. Salmon</strong>

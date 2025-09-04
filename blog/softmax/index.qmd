@@ -1,12 +1,12 @@
 ---
 title: "Soft-max and Soft-argmax"
 author:
-  - name:
-      given: Joseph
-      family: Salmon
-  - name:
-      given: François-David
-      family: Collin
+  - name: Joseph Salmon
+    url: https://josephsalmon.eu/
+    orcid: 0000-0002-3181-0634
+  - name: François-David Collin
+    url: https://fradav.perso.math.cnrs.fr/
+    orcid: 0000-0002-8374-7163
 date: "2024-09-03"
 description: "Back to exponential weights and log-sum-exp functions"
 categories: [statistics, optimization, machine learning]
@@ -17,11 +17,11 @@ draft: false
 
 # title-block-banner: hello-world-bg.jpg
 
-format:
-  html:
-    include-before-body: ../../html/margin_image.html
-    include-after-body: ../../html/blog_footer.html
-    code-fold: true
+# format:
+#   html:
+#     include-before-body: ../../html/margin_image.html
+#     include-after-body: ../../html/blog_footer.html
+#     code-fold: true
 ---
 
 ::: {.content-hidden}

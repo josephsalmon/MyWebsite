@@ -1,27 +1,43 @@
 ---
 title: "Public civil servant salaries and inflation"
-author: "Joseph Salmon"
 description: "Bye bye public civil servants"
 date: "2024-09-02"
 categories: [news, code, data science, economics]
+author:
+  - name: Joseph Salmon
+    url: https://josephsalmon.eu/
+    orcid: 0000-0002-3181-0634
 
 image: point_indice.png
 reference-location: margin
 draft: false
+citation: false
+
 # title-block-banner: hello-world-bg.jpg
 
-format:
-  html:
-    include-before-body: ../../html/margin_image.html
-    include-after-body: ../../html/blog_footer.html
+# format:
+#   html:
+#     include-before-body: ../../html/margin_image.html
+#     include-after-body: ../../html/blog_footer.html
 ---
 
 
 This is a post with executable code. It actually loads an old post from another website, that updates with a GitHub action; see [https://josephsalmon.github.io/Tweets/economics/index.html](https://josephsalmon.github.io/Tweets/economics/index.html)
 
 
+<br>
+<br>
+<br>
+<br>
+<div style="transform: scale(0.5); transform-origin: top left; width: 200%; height: 200%;">
+<iframe src="https://josephsalmon.github.io/Tweets/economics/index.html" width="105%" height="280%" ></iframe>
 
-<iframe src="https://josephsalmon.github.io/Tweets/economics/index.html" width="105%" height="500%" ></iframe>
+</div>
+
+<br>
+<br>
+<br>
+
 
 
 

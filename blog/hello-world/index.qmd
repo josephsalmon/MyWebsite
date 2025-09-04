@@ -1,5 +1,9 @@
 ---
 title: "Welcome to Donadas Brutas!"
+author:
+  - name: Joseph Salmon
+    url: https://josephsalmon.eu/
+    orcid: 0000-0002-3181-0634
 description: "Let's start blogging here, we'll see how it goes..."
 date: "2024-09-01"
 categories:
@@ -9,10 +13,10 @@ reference-location: margin
 draft: false
 title-block-banner: hello-world-bg.jpg
 
-format:
-  html:
-    include-before-body: ../../html/margin_image.html
-    include-after-body: ../../html/blog_footer.html
+# format:
+#   html:
+#     include-before-body: ../../html/margin_image.html
+#     include-after-body: ../../html/blog_footer.html
 ---
 
 In this blog, I intend to talk about things I like, powered by Quarto, Python, and a bit of Observable for some visualizations.

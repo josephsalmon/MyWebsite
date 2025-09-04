@@ -1,9 +1,9 @@
 ---
 title: "Isotonic regression"
 author:
-  - name:
-      given: Joseph
-      family: Salmon
+  - name: Joseph Salmon
+    url: https://josephsalmon.eu/
+    orcid: 0000-0002-3181-0634
 
 date: "2024-11-10"
 description: "Iso, Iso, Iso ... Tonic! Or how to fit a non-decreasing signal."
@@ -15,12 +15,10 @@ draft: false
 filters:
   - pseudocode
 
-format:
-  html:
-    include-before-body: ../../html/margin_image.html
-    include-after-body: ../../html/blog_footer.html
-    code-fold: true
+
+
 ---
+
 
 
 ::: {.content-visible when-format="html"}
@@ -785,6 +783,8 @@ def replace_after_first_non_increasing(x, w=w):
 As can be seen in the preliminary animation, the primal and dual objectives converge to the same value, which is the optimal value of the primal problem.
 
 :::
+
+
 
 # {{< fa link title="link" >}} References
 
