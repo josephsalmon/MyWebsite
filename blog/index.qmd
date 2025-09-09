@@ -12,6 +12,15 @@ listing:
     feed: true
     contents:
       # - "laptop-mic-obs/index.qmd"
+      - "gaussian_elimination/index.qmd"
+    sort: "date desc"
+    template: ../html/blog/listing.ejs
+    categories: true
+  - id: posts_2024
+    feed: true
+    contents:
+      # - "laptop-mic-obs/index.qmd"
+      - "gaussian_elimination/index.qmd"
       - "isotonic/index.qmd"
       - "softmax/index.qmd"
       - "latex/index.qmd"
@@ -37,6 +46,13 @@ citation: false
 ---
 
 Welcome to my blog, `Donadas Brutas`. Any kind of feedback is welcome, so feel free to reach out. Thanks for your interest and time.
+
+
+## 2025
+
+:::{#posts_2025}
+:::
+
 
 ## 2024
 

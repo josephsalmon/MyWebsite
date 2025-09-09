@@ -1,11 +1,11 @@
 ---
-title: "Soft-max and Soft-argmax"
+title: "Gaussian elimination in a glimpse"
 author:
   - name: Joseph Salmon
     url: https://josephsalmon.eu/
     orcid: 0000-0002-3181-0634
 date: "2025-09-09"
-description: "Gaussian elimination"
+description: "Gaussian elimination in action: a simple visualization of a famous algorithm "
 categories: [linear algebra, math visualization]
 image: "gaussian_elimination.gif"
 reference-location: document
@@ -15,10 +15,10 @@ draft: false
 
 # Gaussian elimination
 
-A simple visualisation of the Gaussian elimination steps:
-
-[<img src="https://raw.github.com/josephsalmon/Tweets/master/Pivot_Gauss_video/gauss_pivot.gif" height="200">]([https://github.com/josephsalmon/Tweets/tree/master/Pivot_Gauss_video/README.md](https://github.com/josephsalmon/Tweets/tree/master/Pivot_Gauss_video/README.md))
+Here is a simple visualisation of the Gaussian elimination steps:
+<img src="https://raw.github.com/josephsalmon/Tweets/master/Pivot_Gauss_video/gauss_pivot.gif" title="Evolution of a random square matrix along the steps of a Gaussian elimination" style="width:100%" />
 
 and a more complete one:
+<img src="https://raw.github.com/josephsalmon/Tweets/master/Pivot_Gauss_video/gauss_pivot_4figs.gif" title="Evolution of a random square matrix along the steps of a Gaussian elimination: on the top left you have the transvection matrix used at each step, on the top right the original matrix, on the bottom left the matrix display the approximation of the inverse matrix, on the bottom right the remaining extra-diagonal terms of the matrix that need to be canceled to find the inverse." style="width:100%" />
 
-[<img src="https://raw.github.com/josephsalmon/Tweets/master/Pivot_Gauss_video/gauss_pivot_4figs.gif" height="200">]([https://github.com/josephsalmon/Tweets/tree/master/Pivot_Gauss_video/README.md](https://github.com/josephsalmon/Tweets/tree/master/Pivot_Gauss_video/README.md))
+For more details, the Python source code is available here: [https://github.com/josephsalmon/Tweets/tree/master/Pivot_Gauss_video](https://github.com/josephsalmon/Tweets/tree/master/Pivot_Gauss_video)
