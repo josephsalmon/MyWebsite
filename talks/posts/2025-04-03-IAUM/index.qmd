@@ -26,7 +26,6 @@ resources:
 \newcommand{\1}{{1\hspace{-3.8pt} 1}}
 
 }}
-quarto-prez
 :::
 
 <style>
