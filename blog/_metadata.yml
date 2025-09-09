@@ -44,5 +44,5 @@ bibliography: references_all.bib
 
 
 
-# Use a symlink to avcoid duplicate:
+# Use a symlink to avoid duplicate:
 # bibliography: https://github.com/josephsalmon/OrganizationFiles/blob/master/tex/biblio/references_all.bib

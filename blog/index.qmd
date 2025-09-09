@@ -8,7 +8,7 @@ format:
 description-meta: "Welcome to my blog. Any kind of feedback is welcome, so feel free to reach out to me. Thanks for your interest and time."
 
 listing:
-  - id: posts_2024
+  - id: posts_2025
     feed: true
     contents:
       # - "laptop-mic-obs/index.qmd"
@@ -19,8 +19,6 @@ listing:
   - id: posts_2024
     feed: true
     contents:
-      # - "laptop-mic-obs/index.qmd"
-      - "gaussian_elimination/index.qmd"
       - "isotonic/index.qmd"
       - "softmax/index.qmd"
       - "latex/index.qmd"
