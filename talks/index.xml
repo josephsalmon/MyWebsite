@@ -17,7 +17,29 @@
 <width>144</width>
 </image>
 <generator>quarto-1.6.40</generator>
-<lastBuildDate>Tue, 24 Sep 2024 22:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 02 Apr 2025 22:00:00 GMT</lastBuildDate>
+<item>
+  <title></title>
+  <link>https://josephsalmon.eu/talks/posts/2025-04-03-IAUM/</link>
+  <description><![CDATA[ undefined ]]></description>
+  <category>citizen sciences</category>
+  <category>crowdsourcing</category>
+  <category>labeling</category>
+  <guid>https://josephsalmon.eu/talks/posts/2025-04-03-IAUM/</guid>
+  <pubDate>Wed, 02 Apr 2025 22:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/posts/2025-04-03-IAUM/images/WMV_smiley.svg" medium="image" type="image/svg+xml"/>
+</item>
+<item>
+  <title></title>
+  <link>https://josephsalmon.eu/talks/posts/2025-03-10_Aussois/</link>
+  <description><![CDATA[ undefined ]]></description>
+  <category>open source</category>
+  <category>optimization</category>
+  <category>labeling</category>
+  <guid>https://josephsalmon.eu/talks/posts/2025-03-10_Aussois/</guid>
+  <pubDate>Sun, 09 Mar 2025 23:00:00 GMT</pubDate>
+  <media:content url="https://josephsalmon.eu/posts/2025-03-10_Aussois/images/benchopt-padded.svg" medium="image" type="image/svg+xml"/>
+</item>
 <item>
   <title></title>
   <link>https://josephsalmon.eu/talks/posts/2025-02-17_slides_HDV/</link>
@@ -26,7 +48,7 @@
   <category>crowdsourcing</category>
   <category>labeling</category>
   <guid>https://josephsalmon.eu/talks/posts/2025-02-17_slides_HDV/</guid>
-  <pubDate>Tue, 24 Sep 2024 22:00:00 GMT</pubDate>
+  <pubDate>Sun, 16 Feb 2025 23:00:00 GMT</pubDate>
   <media:content url="https://josephsalmon.eu/posts/2025-02-17_slides_HDV/images/Campagne_don2.svg" medium="image" type="image/svg+xml"/>
 </item>
 <item>
@@ -211,28 +233,6 @@
   <category>non-local methods</category>
   <guid>https://josephsalmon.eu/</guid>
   <pubDate>Fri, 31 Jan 2014 23:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Learning Heteroscedastic Models by Convex Programming under Group Sparsity</title>
-  <link>https://josephsalmon.eu/</link>
-  <description></description>
-  <category>high-dimensional statistics</category>
-  <category>group sparsity</category>
-  <category>heteroscedastic regression</category>
-  <guid>https://josephsalmon.eu/</guid>
-  <pubDate>Mon, 02 Sep 2013 22:00:00 GMT</pubDate>
-  <media:content url="https://josephsalmon.eu/images/sparsity.png" medium="image" type="image/png"/>
-</item>
-<item>
-  <title></title>
-  <link>https://josephsalmon.eu/talks/posts/2024-09-25_slides/</link>
-  <description><![CDATA[ undefined ]]></description>
-  <category>revealjs</category>
-  <category>slides</category>
-  <category>quarto</category>
-  <guid>https://josephsalmon.eu/talks/posts/2024-09-25_slides/</guid>
-  <pubDate>Sun, 24 Sep 2000 22:00:00 GMT</pubDate>
-  <media:content url="https://josephsalmon.eu/posts/2024-09-25_slides/images/Celting_knot_color.svg" medium="image" type="image/svg+xml"/>
 </item>
 </channel>
 </rss>

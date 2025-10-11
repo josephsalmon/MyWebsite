@@ -2,86 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://josephsalmon.eu/team/index.html</loc>
-    <lastmod>2025-02-14T16:41:45.276Z</lastmod>
+    <lastmod>2025-05-02T21:59:07.646Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/talks/posts/2024-09-25_slides_sierra/index.html</loc>
-    <lastmod>2025-02-14T16:41:44.194Z</lastmod>
+    <loc>https://josephsalmon.eu/talks/posts/2025-04-03-IAUM/index.html</loc>
+    <lastmod>2025-09-09T07:06:56.852Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/talks/index.html</loc>
-    <lastmod>2025-02-14T16:41:44.045Z</lastmod>
+    <loc>https://josephsalmon.eu/talks/posts/2025-02-17_slides_HDV/index.html</loc>
+    <lastmod>2025-02-16T15:22:57.617Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/misc/index.html</loc>
-    <lastmod>2025-02-14T16:41:43.773Z</lastmod>
+    <loc>https://josephsalmon.eu/talks/posts/2024-09-25_slides/index.html</loc>
+    <lastmod>2025-02-14T16:41:44.046Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/code_new/index.html</loc>
-    <lastmod>2025-02-14T16:41:43.759Z</lastmod>
+    <loc>https://josephsalmon.eu/publications/index.html</loc>
+    <lastmod>2025-04-29T08:45:38.068Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/blog/latex/index.html</loc>
-    <lastmod>2025-02-14T16:41:43.653Z</lastmod>
+    <loc>https://josephsalmon.eu/index.html</loc>
+    <lastmod>2025-07-04T19:22:30.493Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/blog/softmax/index.html</loc>
+    <lastmod>2025-07-04T21:04:03.880Z</lastmod>
   </url>
   <url>
     <loc>https://josephsalmon.eu/blog/isotonic/index.html</loc>
-    <lastmod>2025-02-14T16:41:43.647Z</lastmod>
+    <lastmod>2025-09-09T07:12:33.134Z</lastmod>
   </url>
   <url>
     <loc>https://josephsalmon.eu/blog/index.html</loc>
-    <lastmod>2025-02-14T16:41:43.646Z</lastmod>
+    <lastmod>2025-09-09T08:46:26.327Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/Courses/index.html</loc>
-    <lastmod>2025-02-14T16:41:43.611Z</lastmod>
+    <loc>https://josephsalmon.eu/blog/gaussian_elimination/index.html</loc>
+    <lastmod>2025-09-15T20:20:40.790Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/Courses/SD3.html</loc>
-    <lastmod>2025-02-14T16:41:41.758Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.eu/Courses/MDI720.html</loc>
-    <lastmod>2025-02-14T16:41:41.758Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.eu/Courses/M2MO.html</loc>
-    <lastmod>2025-02-14T16:41:41.757Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.eu/Courses/HMMA307.html</loc>
-    <lastmod>2025-02-14T16:41:41.757Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.eu/Courses/HMMA237.html</loc>
-    <lastmod>2025-02-14T16:41:41.757Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.eu/Courses/HLMA310.html</loc>
-    <lastmod>2025-02-14T16:41:41.756Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.eu/Courses/HAX603X.html</loc>
-    <lastmod>2025-02-14T16:41:41.756Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.eu/Courses/HAX606X.html</loc>
-    <lastmod>2025-02-14T16:41:41.756Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.eu/Courses/HLMA408.html</loc>
-    <lastmod>2025-02-14T16:41:41.756Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.eu/Courses/HMMA238.html</loc>
-    <lastmod>2025-02-14T16:41:41.757Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.eu/Courses/HMMA308.html</loc>
-    <lastmod>2025-02-14T16:41:41.757Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.eu/Courses/M53010.html</loc>
+    <loc>https://josephsalmon.eu/Courses/STAT593.html</loc>
     <lastmod>2025-02-14T16:41:41.758Z</lastmod>
   </url>
   <url>
@@ -89,39 +49,91 @@
     <lastmod>2025-02-14T16:41:41.758Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/Courses/STAT593.html</loc>
+    <loc>https://josephsalmon.eu/Courses/M53010.html</loc>
     <lastmod>2025-02-14T16:41:41.758Z</lastmod>
   </url>
   <url>
+    <loc>https://josephsalmon.eu/Courses/HMMA308.html</loc>
+    <lastmod>2025-02-14T16:41:41.757Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/Courses/HMMA238.html</loc>
+    <lastmod>2025-02-14T16:41:41.757Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/Courses/HLMA408.html</loc>
+    <lastmod>2025-02-14T16:41:41.756Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/Courses/HAX606X.html</loc>
+    <lastmod>2025-02-14T16:41:41.756Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/Courses/HAX603X.html</loc>
+    <lastmod>2025-04-29T20:55:44.238Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/Courses/HLMA310.html</loc>
+    <lastmod>2025-02-14T16:41:41.756Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/Courses/HMMA237.html</loc>
+    <lastmod>2025-02-14T16:41:41.757Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/Courses/HMMA307.html</loc>
+    <lastmod>2025-02-14T16:41:41.757Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/Courses/M2MO.html</loc>
+    <lastmod>2025-02-14T16:41:41.757Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/Courses/MDI720.html</loc>
+    <lastmod>2025-02-14T16:41:41.758Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/Courses/SD3.html</loc>
+    <lastmod>2025-02-14T16:41:41.758Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/Courses/index.html</loc>
+    <lastmod>2025-05-02T22:41:54.666Z</lastmod>
+  </url>
+  <url>
     <loc>https://josephsalmon.eu/blog/hello-world/index.html</loc>
-    <lastmod>2025-02-14T16:41:43.646Z</lastmod>
+    <lastmod>2025-07-04T21:22:55.662Z</lastmod>
   </url>
   <url>
     <loc>https://josephsalmon.eu/blog/inflation/index.html</loc>
-    <lastmod>2025-02-14T16:41:43.646Z</lastmod>
+    <lastmod>2025-07-04T21:47:06.515Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/blog/laptop-mic-obs/index.html</loc>
-    <lastmod>2025-02-14T16:41:43.648Z</lastmod>
+    <loc>https://josephsalmon.eu/blog/latex/index.html</loc>
+    <lastmod>2025-07-04T21:03:47.082Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/blog/softmax/index.html</loc>
-    <lastmod>2025-02-14T16:41:43.653Z</lastmod>
+    <loc>https://josephsalmon.eu/code_new/index.html</loc>
+    <lastmod>2025-02-14T16:41:43.759Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/index.html</loc>
+    <loc>https://josephsalmon.eu/misc/index.html</loc>
     <lastmod>2025-02-14T16:41:43.773Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/publications/index.html</loc>
-    <lastmod>2025-02-14T16:41:44.021Z</lastmod>
+    <loc>https://josephsalmon.eu/talks/index.html</loc>
+    <lastmod>2025-02-14T16:41:44.045Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/talks/posts/2024-09-25_slides/index.html</loc>
-    <lastmod>2025-02-14T16:41:44.046Z</lastmod>
+    <loc>https://josephsalmon.eu/talks/posts/2024-09-25_slides_sierra/index.html</loc>
+    <lastmod>2025-03-13T08:43:03.543Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.eu/talks/posts/2025-02-17_slides_HDV/index.html</loc>
-    <lastmod>2025-02-14T16:35:05.798Z</lastmod>
+    <loc>https://josephsalmon.eu/talks/posts/2025-03-10_Aussois/index.html</loc>
+    <lastmod>2025-03-19T11:14:43.691Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.eu/talks/posts/2025-05-019-ADT-TPG/index.html</loc>
+    <lastmod>2025-05-20T06:57:10.596Z</lastmod>
   </url>
 </urlset>

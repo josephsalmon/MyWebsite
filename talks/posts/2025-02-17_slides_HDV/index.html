@@ -11,7 +11,7 @@
 <script src="../../../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
-  <meta name="dcterms.date" content="2024-09-25">
+  <meta name="dcterms.date" content="2025-02-17">
   <title>Joseph Salmon – index</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -31,7 +31,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../../../site_libs/revealjs/dist/theme/quarto-52f73f6ad85f358a420d2f467af88b78.css">
+  <link rel="stylesheet" href="../../../site_libs/revealjs/dist/theme/quarto-4523a30ee118eb618936446780b26672.css">
   <link rel="stylesheet" href="../slides.css">
   <link href="../../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -143,102 +143,61 @@
     <div class="slides">
 
 
-<section class="slide level3 center">
+<section class="slide level3">
 
 <div class="hidden">
 <p>{{</p>
 <p>}}</p>
 </div>
+<style>
+    .vertical-line{
+        display: inline-block;
+        border-left: 6px solid rgb(0, 0, 0);
+        margin: 0 10px;
+        height: 500px;
+        border-radius: 3px;
+        overflow: hidden;
+
+}
+</style>
 <!-------------------------------------------------------------------------- -->
 <h4 data-menu-title="Title Slide" data-background="#053660" id="title-slide" class="center"></h4>
 <p><span class="custom-title">Sciences participatives &amp; apprentissage automatique pour identifier les plantes</span></p>
-<p><br></p>
+<p><br> <br></p>
 <!-- <hr class="hr-teal"> -->
 <div class="columns">
-<div class="column" style="border-right:5px solid rgb(0, 0, 0);">
+<div class="column" style="width:48% border-right:5px solid rgb(0, 0, 0);;">
 <p><span class="custom-subtitle2">Joseph Salmon</span></p>
 <span class="custom-subtitle3">IMAG, Univ Montpellier, CNRS, Inria, Montpellier, France</span>
 <div style="text-align: center;">
 <p><img data-src="../../images/inr_logo_rouge.svg" style="width:40.0%"> <img data-src="../../images/logo_um_2022_rouge_RVB.svg" style="width:40.0%"></p>
 <p><img data-src="../../images/CNRS-2023.svg" style="width:17.0%"> <img data-src="../../images/IMAG_logo.svg" style="width:36.0%"></p>
 </div>
+</div><div class="column" style="width:2%;">
+<p><span class="vertical-line"></span></p>
 </div><div class="column" style="width:48%;">
 <div style="text-align: center;">
 <p><span class="custom-subtitle2">Consortium Pl@ntnet</span></p>
 <p><img data-src="../../images/plantnet_consortium.svg" style="width:100.0%"></p>
 </div>
 </div></div>
-<!-------------------------------------------------------------------------- -->
-<!-------------------------------------------------------------------------- -->
-<!-- ###   Flower power in Montpellier   {.large-header}
-<hr>
-
-
-Mainly joint work with:
-
-- **Tanguy Lefort** (Univ. Montpellier, IMAG)
-- **Benjamin Charlier** (Univ. Montpellier, IMAG)
-- **Camille Garcin** (Univ. Montpellier, IMAG)
-- **Maximilien Servajean** (Univ. Paul-Valéry-Montpellier, LIRMM, Univ. Montpellier)
-- **Alexis Joly** (Inria, LIRMM, Univ. Montpellier)
-
-::::{.columns style='display: flex !important'}
-
-::: {.column width="30%"}
-
-:::
-
-::: {.column  align="center" style='display: flex; justify-content: center; align-items: center;'}
-and from
-:::
-
-::: {.column width="30%"}
-
-:::
-
-::::
-
-
-
-::::{.columns style='display: flex !important'}
-
-::: {.column width="10%"}
-
-:::
-
-::: {.column align="center" style='display: flex; justify-content: center; align-items: center;'}
-![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=100%}
-:::
-
-::: {.column width="10%"}
-
-:::
-
-::::
-
-- **Pierre Bonnet**, **Hervé Goëau** (CIRAD, AMAP)
-- **Antoine Affouard**, **Jean-Christophe Lombardo**, **Titouan Lorieul**, **Mathias Chouet** (Inria, LIRMM, Univ. Montpellier) -->
-<!-------------------------------------------------------------------------- -->
-<!-- ------------------------------------------------------------------------ -->
-<!-- # Pl@ntNet description {.section-background} -->
-<!-- <!-------------------------------------------------------------------------- -->
-<!-------------------------------------------------------------------------- -->
+<!--------------------------------------------------------------------------->
 </section>
-<section id="apprentissage-automatique-sciences-participatives" class="slide level3 center">
+<section id="apprentissage-automatique-sciences-participatives" class="slide level3">
 <h3>Apprentissage automatique &amp; sciences participatives</h3>
 <hr>
 <div class="columns">
 <div class="column" style="width:30%;">
 <p><img data-src="../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg" style="width:106.0%"></p>
 </div><div class="column" style="width:69%;">
-<p>Une plateforme de <strong>science citoyenne</strong> utilisant l’apprentissage automatique pour aider les gens à identifier les plantes avec leur téléphone</p>
+<p>Une plateforme de <strong>science citoyenne</strong> utilisant l’apprentissage automatique pour aider les gens à <strong>identifier les plantes</strong> avec leur téléphone</p>
 </div></div>
 <!-------------------------------------------------------------------------- -->
 <!-------------------------------------------------------------------------- -->
 <div class="columns" style="display: flex !important">
-<div class="column" style="width:67%;">
+<div class="column" style="width:55%;">
 <div style="text-align: center;">
-<p><img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="32%" align="middle">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="../2024-09-25_slides_sierra/images/AppStoreandGooglePlay.svg" width="30%" align="middle"></p>
+<p><img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="60%" align="middle"></p>
 <ul>
 <li><strong>Lieu de naissance</strong>: Montpellier</li>
 <li><strong>Date de naissance</strong>: 2011</li>
@@ -246,13 +205,29 @@ and from
 <li><strong><u>Note</u></strong>: pas de champignons, désolé!</li>
 </ul>
 </div>
-</div><div class="column" style="width:33%;">
-<p><img data-src="../2024-09-25_slides_sierra/images/plantnet_image_ambiguity_js.svg" style="width:50.0%"></p>
+</div><div class="column" style="width:30%;">
+<p><img data-src="../2024-09-25_slides_sierra/images/plantnet_image_ambiguity_js.svg" style="width:64.0%"></p>
+</div><div class="column" style="width:15%;">
+<div>
+
+</div>
+<div class="v-center-container quarto-layout-panel" data-layout-nrow="3">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><br> <br> <br> <br></p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<p><img src="images/AppStore_FR-1.png" width="100%" align="middle"> <img src="images/Google_FR-1.png" width="100%" align="middle"> <img src="images/identifyFR.png" width="100%" align="middle"></p>
+</div>
+</div>
+</div>
 </div></div>
 <!-------------------------------------------------------------------------- -->
 <!-------------------------------------------------------------------------- -->
 </section>
-<section id="plntnet-utilisation-et-popularité" class="slide level3 center">
+<section id="plntnet-utilisation-et-popularité" class="slide level3">
 <h3><iconify-icon role="img" inline="" icon="hugeicons:chatting-01" aria-label="Icon chatting-01 from hugeicons Iconify.design set." title="Icon chatting-01 from hugeicons Iconify.design set."></iconify-icon> Pl@ntNet : utilisation et popularité</h3>
 <hr>
 <div class="columns">
@@ -262,7 +237,7 @@ and from
 <li><strong>25 Millions d’utilisateurs</strong></li>
 <li><strong>200+</strong> pays</li>
 <li>Jusqu’à <strong>2 Millions</strong> d’images téléchargées par jour</li>
-<li><strong>50 000</strong> espèces</li>
+<li><strong>50 000</strong> espèces de plantes (sur 300 000)</li>
 <li><strong>1.2 Milliards</strong> d’images</li>
 <li><strong>20 Millions</strong> étiquetées / validées</li>
 <li><strong>20</strong> chercheurs / ingénieurs (à Montpellier)</li>
@@ -281,7 +256,7 @@ and from
 <!-------------------------------------------------------------------------- -->
 </div>
 </section>
-<section id="plntnet-lapprentissage-coopératif" class="slide level3 center">
+<section id="plntnet-lapprentissage-coopératif" class="slide level3">
 <h3>Pl@ntNet &amp; l’apprentissage coopératif</h3>
 <!-- <hr> -->
 <!-- <center> -->
@@ -294,50 +269,50 @@ and from
 </div>
 <!-------------------------------------------------------------------------- -->
 </section>
-<section id="chronologie-de-plntnet" class="slide level3 center">
+<section id="chronologie-de-plntnet" class="slide level3">
 <h3><iconify-icon role="img" inline="" icon="vaadin:hourglass-start" aria-label="Icon hourglass-start from vaadin Iconify.design set." title="Icon hourglass-start from vaadin Iconify.design set."></iconify-icon> Chronologie de Pl@ntNet</h3>
-<hr>
-<p><br></p>
+<p><br> <br> <br> <br> <br></p>
 <center>
-<p><img src="images/PlantNet-overview-Janv-2022_fr.svg" width="90%"></p>
-<p><br> <!-- **Note:** I am mostly innocent; started working with the Pl@ntNet team in 2020 --></p>
+<p><img src="images/PlantNet-overview-Janv-2022_fr.svg" width="99%"></p>
+<p><br> <br> <br></p>
+<!-- **Note:** I am mostly innocent; started working with the Pl@ntNet team in 2020 -->
 </center>
 <!-------------------------------------------------------------------------- -->
-<!-------------------------------------------------------------------------- -->
 </section>
-<section id="enjeu-scientifique" class="slide level3 center">
-<h3><iconify-icon role="img" inline="" icon="eos-icons:science" aria-label="Icon science from eos-icons Iconify.design set." title="Icon science from eos-icons Iconify.design set."></iconify-icon> Enjeu scientifique</h3>
-<hr>
+<section id="lab-à-la-pointe-de-lia-et-de-lécologie" class="slide level3">
+<h3><img src="../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg" height="50" style="vertical-align: -.4em;"> lab, à la pointe de l’IA et de l’écologie</h3>
+<center>
+<img src="images/plantnet_ai_ecology.svg" width="90%">
+</center>
+</section>
+<section id="jumeau-numérique-de-la-biodiversité" class="slide level3">
+<h3><img src="images/geoplantnet.svg" height="50" style="vertical-align: -.4em;"> : jumeau numérique de la biodiversité</h3>
 <p><br></p>
-<ul>
-<li>Effort communautaire avec et pour les citoyens!</li>
-</ul>
-<p>Mais aussi:</p>
-<ul>
-<li><ol type="1">
-<li>est issue de la recherche</li>
-</ol></li>
-<li><ol start="2" type="1">
-<li>contribue à la recherche</li>
-</ol></li>
-<li><p>Challenges en recherche :</p>
-<ul>
-<li>Volume énorme de données (1.2 Milliards d’images)</li>
-<li><strong>Données étiquetées</strong> de qualité variable</li>
-<li>Recherche en IA mais spécifique aux contraintes du domaine: incertitude, biais, énorme nombre de classes (300 000 espèces), modèles de fondation, etc.</li>
-</ul></li>
-<li><p>Visibilité internationale en recherche à travers: articles, challenges, données, codes, etc.</p></li>
-<li><p>Effort <strong>pluridisciplinaire</strong> : apprentissage automatique, écologie, statistiques, base de données, ingénierie.</p></li>
-</ul>
-<p>Atouts de Montpellier:</p>
-<ul>
-<li>on a les données</li>
-<li>on a les experts</li>
-<li>on a les infrastructures</li>
-</ul>
+<center>
+<p><img src="images/geoplantnet.png" width="90%"></p>
+<br>
+</center>
+<!-------------------------------------------------------------------------- -->
+<!-- ###  Enjeux scientifiques et locaux
+<hr>
+<br>
+
+- Effort communautaire avec et pour les citoyens!
+
+
+- Effort **pluridisciplinaire**, issu de la recherche et y contribue à la recherche -->
+<!-- ###  Atouts de Montpellier en IA & écologie  -->
+</section>
+<section id="section" class="slide level3">
+<h3></h3>
+<!-- <br> -->
+<center>
+<img src="images/montpellier_atout.svg" width="95%">
+</center>
+<p><br></p>
 <!-------------------------------------------------------------------------- -->
 </section>
-<section id="contact" class="slide level3 center" data-menu-title="Contact">
+<section id="contact" class="slide level3" data-menu-title="Contact">
 <h3></h3>
 <div style="text-align: center;">
 <p><a href="https://plantnet.org/2024/10/24/campagne-de-dons-2024/" target="_blank">https://plantnet.org/2024/10/24/campagne-de-dons-2024/</a></p>
@@ -356,7 +331,7 @@ and from
 <!-------------------------------------------------------------------------- -->
 <!-------------------------------------------------------------------------- -->
 </section>
-<section id="geographic-bias" class="slide level3 center">
+<section id="geographic-bias" class="slide level3">
 <h3><iconify-icon role="img" inline="" icon="gis:globe-earth-alt" aria-label="Icon globe-earth-alt from gis Iconify.design set." title="Icon globe-earth-alt from gis Iconify.design set."></iconify-icon> Geographic bias</h3>
 <div style="display: flex; flex-direction: column;">
 <p><img data-src="../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png" style="width:100.0%"></p>
@@ -367,7 +342,7 @@ Spatial density of images collected by Pl@ntNet (13/04/2024)
 <!-------------------------------------------------------------------------- -->
 <!-------------------------------------------------------------------------- -->
 </section>
-<section id="food-bias" class="slide level3 center">
+<section id="food-bias" class="slide level3">
 <h3><iconify-icon role="img" inline="" icon="fluent:food-20-filled" aria-label="Icon food-20-filled from fluent Iconify.design set." title="Icon food-20-filled from fluent Iconify.design set."></iconify-icon> Food bias</h3>
 <hr>
 <p><br></p>
@@ -379,24 +354,24 @@ Spatial density of images collected by Pl@ntNet (13/04/2024)
 <div class="v-center-container quarto-layout-panel" data-layout-nrow="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
-<p><strong>25134 obs.</strong> <img data-src="../2024-09-25_slides_sierra/images/Echium_vulgare_L.jpeg" width="200" height="200" alt="Echium vulgare L."> <em>Echium vulgare L.</em></p>
+<p><strong>25134 obs.</strong> <img data-src="images/Echium_vulgare_L.svg" width="200" height="200" alt="Echium vulgare L."> <em>Echium vulgare L.</em></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
-<p><strong>24720 obs.</strong> <img data-src="../2024-09-25_slides_sierra/images/Ranunculus_ficaria_L.jpeg" width="200" height="200" alt="Ranunculus ficaria L."> <em>Ranunculus ficaria L.</em></p>
+<p><strong>24720 obs.</strong> <img data-src="images/Ranunculus_ficaria_L.svg" width="200" height="200" alt="Ranunculus ficaria L."> <em>Ranunculus ficaria L.</em></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
-<p><strong>24103 obs.</strong> <img data-src="../2024-09-25_slides_sierra/images/Prunus_spinosa_L.jpeg" width="200" height="200" alt="Prunus spinosa L."> <em>Prunus spinosa L.</em></p>
+<p><strong>24103 obs.</strong> <img data-src="images/Prunus_spinosa_L.svg" width="200" height="200" alt="Prunus spinosa L."> <em>Prunus spinosa L.</em></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
-<p><strong>23288 obs.</strong> <img data-src="../2024-09-25_slides_sierra/images/Zea_mays_L.jpeg" width="200" height="200" alt="Zea mays L."> <em>Zea mays L.</em></p>
+<p><strong>23288 obs.</strong> <img data-src="images/Zea_mays_L.svg" width="200" height="200" alt="Zea mays L."> <em>Zea mays L.</em></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: flex-start;">
-<p><strong>23075 obs.</strong> <img data-src="../2024-09-25_slides_sierra/images/Alliaria_petiolata.jpeg" width="200" height="200" alt="Alliaria petiolata"> <em>Alliaria petiolata</em></p>
+<p><strong>23075 obs.</strong> <img data-src="images/Alliaria_petiolata.svg" width="200" height="200" alt="Alliaria petiolata"> <em>Alliaria petiolata</em></p>
 </div>
 </div>
 </div>
 </section>
-<section id="beauty-bias" class="slide level3 center">
+<section id="beauty-bias" class="slide level3">
 <h3><iconify-icon role="img" inline="" icon="ri:sparkling-2-line" aria-label="Icon sparkling-2-line from ri Iconify.design set." title="Icon sparkling-2-line from ri Iconify.design set."></iconify-icon> Beauty bias</h3>
 <div class="columns">
 <div class="column" style="text-align: center;">
@@ -411,7 +386,7 @@ Spatial density of images collected by Pl@ntNet (13/04/2024)
 <!-------------------------------------------------------------------------- -->
 <!-------------------------------------------------------------------------- -->
 </section>
-<section id="size-bias" class="slide level3 center">
+<section id="size-bias" class="slide level3">
 <h3><iconify-icon role="img" inline="" icon="emojione-monotone:straight-ruler" aria-label="Icon straight-ruler from emojione-monotone Iconify.design set." title="Icon straight-ruler from emojione-monotone Iconify.design set."></iconify-icon> Size bias</h3>
 <div class="columns" style="display: flex !important">
 <div class="column" style="text-align: center;">
@@ -427,7 +402,7 @@ Spatial density of images collected by Pl@ntNet (13/04/2024)
 </div></div>
 <!-------------------------------------------------------------------------- -->
 </section>
-<section id="many-more-biases" class="slide level3 center">
+<section id="many-more-biases" class="slide level3">
 <h3>Many more biases …</h3>
 <hr>
 <p><br></p>
@@ -446,7 +421,7 @@ Spatial density of images collected by Pl@ntNet (13/04/2024)
 <!-------------------------------------------------------------------------- -->
 <!-------------------------------------------------------------------------- -->
 </section>
-<section id="intra-class-variability" class="slide level3 center">
+<section id="intra-class-variability" class="slide level3">
 <h3>Intra-class variability</h3>
 <div>
 
@@ -543,7 +518,7 @@ Spatial density of images collected by Pl@ntNet (13/04/2024)
 <!-------------------------------------------------------------------------- -->
 <!-------------------------------------------------------------------------- -->
 </section>
-<section id="inter-class-ambiguity" class="slide level3 center">
+<section id="inter-class-ambiguity" class="slide level3">
 <h3>Inter-class ambiguity</h3>
 <div>
 
@@ -700,7 +675,7 @@ Spatial density of images collected by Pl@ntNet (13/04/2024)
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: 'c/t',
+        slideNumber: false,
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -729,7 +704,7 @@ Spatial density of images collected by Pl@ntNet (13/04/2024)
         disableLayout: false,
 
         // Vertical centering of slides
-        center: true,
+        center: false,
 
         // Enables touch navigation on devices with touch input
         touch: true,

@@ -38,10 +38,12 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-25d362aa3afec45ecf1ae134bfa15e67.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-25d362aa3afec45ecf1ae134bfa15e67.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-27741747c7e800ef03c20cefdd1ad89e.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-7b78b88afbcb31605f781eb1d5bd0002.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-12a31f434ccf002d554196a069361be1.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-8199f10e9e0ee5dfe1384397268b16b0.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -80,9 +82,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-authorname','listing-draft','listing-project','listing-title-meta','listing-description-meta','listing-website','listing-execute','listing-filters','listing-format','listing-language','listing-license','listing-from','listing-bibliography','listing-history','listing-lang','listing-toc','listing-toc-depth','listing-code-line-numbers','listing-jupyter','listing-editor','listing-slide-level','listing-title-slide-attributes','listing-date','listing-path','listing-outputHref','listing-title','listing-date-modified','listing-author','listing-categories','listing-image','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-image-alt','listing-link','listing-location','listing-video','listing-images','listing-slides',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      valueNames: ['listing-authorname','listing-draft','listing-project','listing-title-meta','listing-description-meta','listing-website','listing-execute','listing-filters','listing-format','listing-language','listing-license','listing-from','listing-bibliography','listing-history','listing-lang','listing-toc','listing-toc-depth','listing-code-line-numbers','listing-jupyter','listing-editor','listing-slide-level','listing-title-slide-attributes','listing-date','listing-resources','listing-path','listing-outputHref','listing-title','listing-date-modified','listing-author','listing-categories','listing-image','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-image-alt','listing-link','listing-location','listing-video','listing-images','listing-slides',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
       
-      searchColumns: ["listing-authorname","listing-draft","listing-project","listing-title-meta","listing-description-meta","listing-website","listing-execute","listing-filters","listing-format","listing-language","listing-license","listing-from","listing-bibliography","listing-history","listing-lang","listing-toc","listing-toc-depth","listing-code-line-numbers","listing-jupyter","listing-editor","listing-slide-level","listing-title-slide-attributes","listing-date","listing-path","listing-outputHref","listing-title","listing-date-modified","listing-author","listing-categories","listing-image","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-image-alt","listing-link","listing-location","listing-video","listing-images","listing-slides"],
+      searchColumns: ["listing-authorname","listing-draft","listing-project","listing-title-meta","listing-description-meta","listing-website","listing-execute","listing-filters","listing-format","listing-language","listing-license","listing-from","listing-bibliography","listing-history","listing-lang","listing-toc","listing-toc-depth","listing-code-line-numbers","listing-jupyter","listing-editor","listing-slide-level","listing-title-slide-attributes","listing-date","listing-resources","listing-path","listing-outputHref","listing-title","listing-date-modified","listing-author","listing-categories","listing-image","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-image-alt","listing-link","listing-location","listing-video","listing-images","listing-slides"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -220,11 +222,6 @@ window.Quarto = {
 <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://www.linkedin.com/in/joseph-salmon-6134262a6/"> <i class="bi bi-linkedin" role="img">
-</i> 
-<span class="menu-text"></span></a>
-  </li>  
-  <li class="nav-item compact">
     <a class="nav-link" href="mailto:joseph.salmon@inria.fr"> <i class="bi bi-envelope" role="img" aria-label="email">
 </i> 
 <span class="menu-text"></span></a>
@@ -232,6 +229,7 @@ window.Quarto = {
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -257,7 +255,7 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(22)</span></div><div class="category" data-category="RXhwb25lbnRpYWwlMjB3ZWlnaHRz">Exponential weights <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U1VSRQ==">SURE <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YWZmaW5lJTIwZXN0aW1hdG9ycw==">affine estimators <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YWdncmVnYXRpb24=">aggregation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YmlsZXZlbCUyMG9wdGltaXphdGlvbg==">bilevel optimization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y2l0aXplbiUyMHNjaWVuY2Vz">citizen sciences <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Y29tcGxleGl0eQ==">complexity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29uY29taXRhbnQlMjBlc3RpbWF0aW9u">concomitant estimation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29vcmRpbmF0ZSUyMGRlc2NlbnQ=">coordinate descent <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Y3Jvd2Rzb3VyY2luZw==">crowdsourcing <span class="quarto-category-count">(5)</span></div><div class="category" data-category="ZGVlcCUyMGxlYXJuaW5n">deep learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZHVhbCUyMGV4dHJhcG9sYXRpb24=">dual extrapolation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2VuZXJhbGl6ZWQlMjBsaW5lYXIlMjBtb2RlbHM=">generalized linear models <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z3JpZCUyMHNlYXJjaA==">grid search <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Z3JvdXAlMjBzcGFyc2l0eQ==">group sparsity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aGV0ZXJvc2NlZGFzdGljJTIwcmVncmVzc2lvbg==">heteroscedastic regression <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aGlnaC1kaW1lbnNpb25hbCUyMHN0YXRpc3RpY3M=">high-dimensional statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aHlwZXJwYXJhbWV0ZXIlMjBzZWxlY3Rpb24=">hyperparameter selection <span class="quarto-category-count">(2)</span></div><div class="category" data-category="aW1hZ2UlMjBwcm9jZXNzaW5n">image processing <span class="quarto-category-count">(2)</span></div><div class="category" data-category="aW1iYWxhbmNlZCUyMGNsYXNzaWZpY2F0aW9u">imbalanced classification <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW1wbGljaXQlMjBkaWZmZXJlbnRpYXRpb24=">implicit differentiation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW5mLWNvbnZvbHV0aW9u">inf-convolution <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGFiZWxpbmc=">labeling <span class="quarto-category-count">(2)</span></div><div class="category" data-category="bXVsdGktY2xhc3MlMjBjbGFzc2lmaWNhdGlvbg==">multi-class classification <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV1cm8taW1hZ2luZw==">neuro-imaging <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bm9uLWNvbnZleCUyMG9wdGltaXphdGlvbg==">non-convex optimization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bm9uLWxvY2FsJTIwbWV0aG9kcw==">non-local methods <span class="quarto-category-count">(2)</span></div><div class="category" data-category="b3B0aW1pemF0aW9u">optimization <span class="quarto-category-count">(9)</span></div><div class="category" data-category="cXVhcnRv">quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmV2ZWFsanM=">revealjs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c2NyZWVuaW5nJTIwcnVsZXM=">screening rules <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c2xpZGVz">slides <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c21vb3RoaW5n">smoothing <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c3BhcnNlJTIwcmVncmVzc2lvbg==">sparse regression <span class="quarto-category-count">(7)</span></div><div class="category" data-category="c3RvY2hhc3RpYyUyMG1ldGhvZHM=">stochastic methods <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3VwZXJ2aXNlZCUyMGxlYXJuaW5n">supervised learning <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(24)</span></div><div class="category" data-category="RXhwb25lbnRpYWwlMjB3ZWlnaHRz">Exponential weights <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U1VSRQ==">SURE <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YWZmaW5lJTIwZXN0aW1hdG9ycw==">affine estimators <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YWdncmVnYXRpb24=">aggregation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YmlsZXZlbCUyMG9wdGltaXphdGlvbg==">bilevel optimization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y2l0aXplbiUyMHNjaWVuY2Vz">citizen sciences <span class="quarto-category-count">(3)</span></div><div class="category" data-category="Y29tcGxleGl0eQ==">complexity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29uY29taXRhbnQlMjBlc3RpbWF0aW9u">concomitant estimation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Y29vcmRpbmF0ZSUyMGRlc2NlbnQ=">coordinate descent <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Y3Jvd2Rzb3VyY2luZw==">crowdsourcing <span class="quarto-category-count">(6)</span></div><div class="category" data-category="ZGVlcCUyMGxlYXJuaW5n">deep learning <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZHVhbCUyMGV4dHJhcG9sYXRpb24=">dual extrapolation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z2VuZXJhbGl6ZWQlMjBsaW5lYXIlMjBtb2RlbHM=">generalized linear models <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Z3JpZCUyMHNlYXJjaA==">grid search <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Z3JvdXAlMjBzcGFyc2l0eQ==">group sparsity <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aGV0ZXJvc2NlZGFzdGljJTIwcmVncmVzc2lvbg==">heteroscedastic regression <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aGlnaC1kaW1lbnNpb25hbCUyMHN0YXRpc3RpY3M=">high-dimensional statistics <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aHlwZXJwYXJhbWV0ZXIlMjBzZWxlY3Rpb24=">hyperparameter selection <span class="quarto-category-count">(2)</span></div><div class="category" data-category="aW1hZ2UlMjBwcm9jZXNzaW5n">image processing <span class="quarto-category-count">(2)</span></div><div class="category" data-category="aW1iYWxhbmNlZCUyMGNsYXNzaWZpY2F0aW9u">imbalanced classification <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW1wbGljaXQlMjBkaWZmZXJlbnRpYXRpb24=">implicit differentiation <span class="quarto-category-count">(1)</span></div><div class="category" data-category="aW5mLWNvbnZvbHV0aW9u">inf-convolution <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGFiZWxpbmc=">labeling <span class="quarto-category-count">(4)</span></div><div class="category" data-category="bXVsdGktY2xhc3MlMjBjbGFzc2lmaWNhdGlvbg==">multi-class classification <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bmV1cm8taW1hZ2luZw==">neuro-imaging <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bm9uLWNvbnZleCUyMG9wdGltaXphdGlvbg==">non-convex optimization <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bm9uLWxvY2FsJTIwbWV0aG9kcw==">non-local methods <span class="quarto-category-count">(2)</span></div><div class="category" data-category="b3BlbiUyMHNvdXJjZQ==">open source <span class="quarto-category-count">(1)</span></div><div class="category" data-category="b3B0aW1pemF0aW9u">optimization <span class="quarto-category-count">(10)</span></div><div class="category" data-category="cXVhcnRv">quarto <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cmV2ZWFsanM=">revealjs <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c2NyZWVuaW5nJTIwcnVsZXM=">screening rules <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c2xpZGVz">slides <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c21vb3RoaW5n">smoothing <span class="quarto-category-count">(2)</span></div><div class="category" data-category="c3BhcnNlJTIwcmVncmVzc2lvbg==">sparse regression <span class="quarto-category-count">(7)</span></div><div class="category" data-category="c3RvY2hhc3RpYyUyMG1ldGhvZHM=">stochastic methods <span class="quarto-category-count">(1)</span></div><div class="category" data-category="c3VwZXJ2aXNlZCUyMGxlYXJuaW5n">supervised learning <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 
@@ -272,9 +270,73 @@ window.Quarto = {
 <div class="quarto-listing quarto-listing-container-custom" id="listing-post_2024">
 <div class="list blog">
     
-    <div class="blog-entry" data-index="0" data-categories="Y2l0aXplbiUyMHNjaWVuY2VzJTJDY3Jvd2Rzb3VyY2luZyUyQ2xhYmVsaW5n" data-listing-date-sort="1727215200000" data-listing-file-modified-sort="1739550905798" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="665">
+    <div class="blog-entry" data-index="0" data-categories="Y2l0aXplbiUyMHNjaWVuY2VzJTJDY3Jvd2Rzb3VyY2luZyUyQ2xhYmVsaW5n" data-listing-date-sort="1743631200000" data-listing-file-modified-sort="1757401616852" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1172">
         <div class="metadata">
-            <p class="date listing-date">Sep 25, 2024</p>
+            <p class="date listing-date">Apr 3, 2025</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../talks/posts/2025-04-03-IAUM/index.html">IAUM: Sciences participatives &amp; apprentissage automatique pour identifier les plantes</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('citizen sciences'); return false;">
+                    citizen sciences
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('crowdsourcing'); return false;">
+                    crowdsourcing
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('labeling'); return false;">
+                    labeling
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description"></p>
+        </div>
+        
+        <div class="thumbnail">
+            <img src="posts/2025-04-03-IAUM/images/WMV_smiley.svg" alt="IAUM: Sciences participatives &amp; apprentissage automatique pour identifier les plantes" title="IAUM: Sciences participatives &amp; apprentissage automatique pour identifier les plantes">
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="1" data-categories="b3BlbiUyMHNvdXJjZSUyQ29wdGltaXphdGlvbiUyQ2xhYmVsaW5n" data-listing-date-sort="1741561200000" data-listing-file-modified-sort="1742382883691" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="759">
+        <div class="metadata">
+            <p class="date listing-date">Mar 10, 2025</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../talks/posts/2025-03-10_Aussois/index.html">Benchopt: open source discussions</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('open source'); return false;">
+                    open source
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('optimization'); return false;">
+                    optimization
+                </div>
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('labeling'); return false;">
+                    labeling
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description"></p>
+        </div>
+        
+        <div class="thumbnail">
+            <img src="posts/2025-03-10_Aussois/images/benchopt-padded.svg" alt="Benchopt: open source discussions" title="Benchopt: open source discussions">
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="2" data-categories="Y2l0aXplbiUyMHNjaWVuY2VzJTJDY3Jvd2Rzb3VyY2luZyUyQ2xhYmVsaW5n" data-listing-date-sort="1739746800000" data-listing-file-modified-sort="1739719377617" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="603">
+        <div class="metadata">
+            <p class="date listing-date">Feb 17, 2025</p>
         </div>
         <div class="body">
             <p class="title listing-title"><a href="../talks/posts/2025-02-17_slides_HDV/index.html">Sciences participatives &amp; apprentissage automatique pour identifier les plantes</a></p>
@@ -304,7 +366,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="1" data-categories="Y2l0aXplbiUyMHNjaWVuY2VzJTJDY3Jvd2Rzb3VyY2luZyUyQ2xhYmVsaW5n" data-listing-date-sort="1727215200000" data-listing-file-modified-sort="1739551304194" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1964">
+    <div class="blog-entry" data-index="3" data-categories="Y2l0aXplbiUyMHNjaWVuY2VzJTJDY3Jvd2Rzb3VyY2luZyUyQ2xhYmVsaW5n" data-listing-date-sort="1727215200000" data-listing-file-modified-sort="1741855383543" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1964">
         <div class="metadata">
             <p class="date listing-date">Sep 25, 2024</p>
         </div>
@@ -336,7 +398,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="2" data-categories="Y3Jvd2Rzb3VyY2luZyUyQ3N1cGVydmlzZWQlMjBsZWFybmluZw==" data-listing-date-sort="1701298800000">
+    <div class="blog-entry" data-index="4" data-categories="Y3Jvd2Rzb3VyY2luZyUyQ3N1cGVydmlzZWQlMjBsZWFybmluZw==" data-listing-date-sort="1701298800000">
         <div class="metadata">
             <p class="date listing-date">Nov 30, 2023</p>
         </div>
@@ -364,7 +426,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="3" data-categories="Y3Jvd2Rzb3VyY2luZyUyQ3N1cGVydmlzZWQlMjBsZWFybmluZw==" data-listing-date-sort="1701298800000">
+    <div class="blog-entry" data-index="5" data-categories="Y3Jvd2Rzb3VyY2luZyUyQ3N1cGVydmlzZWQlMjBsZWFybmluZw==" data-listing-date-sort="1701298800000">
         <div class="metadata">
             <p class="date listing-date">Nov 30, 2023</p>
         </div>
@@ -392,7 +454,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="4" data-categories="Y3Jvd2Rzb3VyY2luZyUyQ211bHRpLWNsYXNzJTIwY2xhc3NpZmljYXRpb24=" data-listing-date-sort="1669676400000">
+    <div class="blog-entry" data-index="6" data-categories="Y3Jvd2Rzb3VyY2luZyUyQ211bHRpLWNsYXNzJTIwY2xhc3NpZmljYXRpb24=" data-listing-date-sort="1669676400000">
         <div class="metadata">
             <p class="date listing-date">Nov 29, 2022</p>
         </div>
@@ -420,7 +482,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="5" data-categories="ZGVlcCUyMGxlYXJuaW5nJTJDaW1iYWxhbmNlZCUyMGNsYXNzaWZpY2F0aW9uJTJDc3RvY2hhc3RpYyUyMG1ldGhvZHMlMkNzbW9vdGhpbmc=" data-listing-date-sort="1664920800000">
+    <div class="blog-entry" data-index="7" data-categories="ZGVlcCUyMGxlYXJuaW5nJTJDaW1iYWxhbmNlZCUyMGNsYXNzaWZpY2F0aW9uJTJDc3RvY2hhc3RpYyUyMG1ldGhvZHMlMkNzbW9vdGhpbmc=" data-listing-date-sort="1664920800000">
         <div class="metadata">
             <p class="date listing-date">Oct 5, 2022</p>
         </div>
@@ -456,7 +518,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="6" data-categories="b3B0aW1pemF0aW9uJTJDZ3JpZCUyMHNlYXJjaCUyQ2h5cGVycGFyYW1ldGVyJTIwc2VsZWN0aW9uJTJDYmlsZXZlbCUyMG9wdGltaXphdGlvbiUyQ2ltcGxpY2l0JTIwZGlmZmVyZW50aWF0aW9u" data-listing-date-sort="1644188400000">
+    <div class="blog-entry" data-index="8" data-categories="b3B0aW1pemF0aW9uJTJDZ3JpZCUyMHNlYXJjaCUyQ2h5cGVycGFyYW1ldGVyJTIwc2VsZWN0aW9uJTJDYmlsZXZlbCUyMG9wdGltaXphdGlvbiUyQ2ltcGxpY2l0JTIwZGlmZmVyZW50aWF0aW9u" data-listing-date-sort="1644188400000">
         <div class="metadata">
             <p class="date listing-date">Feb 7, 2022</p>
         </div>
@@ -496,7 +558,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="7" data-categories="bm9uLWNvbnZleCUyMG9wdGltaXphdGlvbiUyQ3NwYXJzZSUyMHJlZ3Jlc3Npb24=" data-listing-date-sort="1602194400000">
+    <div class="blog-entry" data-index="9" data-categories="bm9uLWNvbnZleCUyMG9wdGltaXphdGlvbiUyQ3NwYXJzZSUyMHJlZ3Jlc3Npb24=" data-listing-date-sort="1602194400000">
         <div class="metadata">
             <p class="date listing-date">Oct 9, 2020</p>
         </div>
@@ -524,7 +586,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="8" data-categories="b3B0aW1pemF0aW9uJTJDc3BhcnNlJTIwcmVncmVzc2lvbiUyQ3Ntb290aGluZyUyQ2luZi1jb252b2x1dGlvbiUyQ2NvbmNvbWl0YW50JTIwZXN0aW1hdGlvbg==" data-listing-date-sort="1592172000000">
+    <div class="blog-entry" data-index="10" data-categories="b3B0aW1pemF0aW9uJTJDc3BhcnNlJTIwcmVncmVzc2lvbiUyQ3Ntb290aGluZyUyQ2luZi1jb252b2x1dGlvbiUyQ2NvbmNvbWl0YW50JTIwZXN0aW1hdGlvbg==" data-listing-date-sort="1592172000000">
         <div class="metadata">
             <p class="date listing-date">Jun 15, 2020</p>
         </div>
@@ -564,7 +626,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="9" data-categories="c3BhcnNlJTIwcmVncmVzc2lvbiUyQ2dlbmVyYWxpemVkJTIwbGluZWFyJTIwbW9kZWxzJTJDb3B0aW1pemF0aW9u" data-listing-date-sort="1573686000000">
+    <div class="blog-entry" data-index="11" data-categories="c3BhcnNlJTIwcmVncmVzc2lvbiUyQ2dlbmVyYWxpemVkJTIwbGluZWFyJTIwbW9kZWxzJTJDb3B0aW1pemF0aW9u" data-listing-date-sort="1573686000000">
         <div class="metadata">
             <p class="date listing-date">Nov 14, 2019</p>
         </div>
@@ -596,7 +658,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="10" data-categories="Y29vcmRpbmF0ZSUyMGRlc2NlbnQlMkNzcGFyc2UlMjByZWdyZXNzaW9uJTJDb3B0aW1pemF0aW9u" data-listing-date-sort="1572217200000">
+    <div class="blog-entry" data-index="12" data-categories="Y29vcmRpbmF0ZSUyMGRlc2NlbnQlMkNzcGFyc2UlMjByZWdyZXNzaW9uJTJDb3B0aW1pemF0aW9u" data-listing-date-sort="1572217200000">
         <div class="metadata">
             <p class="date listing-date">Oct 28, 2019</p>
         </div>
@@ -628,7 +690,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="11" data-categories="c3BhcnNlJTIwcmVncmVzc2lvbiUyQ3NjcmVlbmluZyUyMHJ1bGVzJTJDb3B0aW1pemF0aW9u" data-listing-date-sort="1558648800000">
+    <div class="blog-entry" data-index="13" data-categories="c3BhcnNlJTIwcmVncmVzc2lvbiUyQ3NjcmVlbmluZyUyMHJ1bGVzJTJDb3B0aW1pemF0aW9u" data-listing-date-sort="1558648800000">
         <div class="metadata">
             <p class="date listing-date">May 24, 2019</p>
         </div>
@@ -660,7 +722,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="12" data-categories="b3B0aW1pemF0aW9uJTJDY29vcmRpbmF0ZSUyMGRlc2NlbnQlMkNuZXVyby1pbWFnaW5n" data-listing-date-sort="1558389600000">
+    <div class="blog-entry" data-index="14" data-categories="b3B0aW1pemF0aW9uJTJDY29vcmRpbmF0ZSUyMGRlc2NlbnQlMkNuZXVyby1pbWFnaW5n" data-listing-date-sort="1558389600000">
         <div class="metadata">
             <p class="date listing-date">May 21, 2019</p>
         </div>
@@ -692,7 +754,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="13" data-categories="Z3JpZCUyMHNlYXJjaCUyQ29wdGltaXphdGlvbiUyQ2NvbXBsZXhpdHk=" data-listing-date-sort="1558216800000">
+    <div class="blog-entry" data-index="15" data-categories="Z3JpZCUyMHNlYXJjaCUyQ29wdGltaXphdGlvbiUyQ2NvbXBsZXhpdHk=" data-listing-date-sort="1558216800000">
         <div class="metadata">
             <p class="date listing-date">May 19, 2019</p>
         </div>
@@ -724,7 +786,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="14" data-categories="b3B0aW1pemF0aW9uJTJDZHVhbCUyMGV4dHJhcG9sYXRpb24=" data-listing-date-sort="1547420400000">
+    <div class="blog-entry" data-index="16" data-categories="b3B0aW1pemF0aW9uJTJDZHVhbCUyMGV4dHJhcG9sYXRpb24=" data-listing-date-sort="1547420400000">
         <div class="metadata">
             <p class="date listing-date">Jan 14, 2019</p>
         </div>
@@ -752,7 +814,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="15" data-categories="b3B0aW1pemF0aW9uJTJDc3BhcnNlJTIwcmVncmVzc2lvbg==" data-listing-date-sort="1446505200000">
+    <div class="blog-entry" data-index="17" data-categories="b3B0aW1pemF0aW9uJTJDc3BhcnNlJTIwcmVncmVzc2lvbg==" data-listing-date-sort="1446505200000">
         <div class="metadata">
             <p class="date listing-date">Nov 3, 2015</p>
         </div>
@@ -780,7 +842,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="16" data-categories="aHlwZXJwYXJhbWV0ZXIlMjBzZWxlY3Rpb24lMkNzcGFyc2UlMjByZWdyZXNzaW9u" data-listing-date-sort="1412805600000">
+    <div class="blog-entry" data-index="18" data-categories="aHlwZXJwYXJhbWV0ZXIlMjBzZWxlY3Rpb24lMkNzcGFyc2UlMjByZWdyZXNzaW9u" data-listing-date-sort="1412805600000">
         <div class="metadata">
             <p class="date listing-date">Oct 9, 2014</p>
         </div>
@@ -808,7 +870,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="17" data-categories="aW1hZ2UlMjBwcm9jZXNzaW5nJTJDbm9uLWxvY2FsJTIwbWV0aG9kcw==" data-listing-date-sort="1391209200000">
+    <div class="blog-entry" data-index="19" data-categories="aW1hZ2UlMjBwcm9jZXNzaW5nJTJDbm9uLWxvY2FsJTIwbWV0aG9kcw==" data-listing-date-sort="1391209200000">
         <div class="metadata">
             <p class="date listing-date">Feb 1, 2014</p>
         </div>
@@ -832,7 +894,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="18" data-categories="aGlnaC1kaW1lbnNpb25hbCUyMHN0YXRpc3RpY3MlMkNncm91cCUyMHNwYXJzaXR5JTJDaGV0ZXJvc2NlZGFzdGljJTIwcmVncmVzc2lvbg==" data-listing-date-sort="1378159200000">
+    <div class="blog-entry" data-index="20" data-categories="aGlnaC1kaW1lbnNpb25hbCUyMHN0YXRpc3RpY3MlMkNncm91cCUyMHNwYXJzaXR5JTJDaGV0ZXJvc2NlZGFzdGljJTIwcmVncmVzc2lvbg==" data-listing-date-sort="1378159200000">
         <div class="metadata">
             <p class="date listing-date">Sep 3, 2013</p>
         </div>
@@ -864,7 +926,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="19" data-categories="YWdncmVnYXRpb24lMkNhZmZpbmUlMjBlc3RpbWF0b3JzJTJDU1VSRSUyQ0V4cG9uZW50aWFsJTIwd2VpZ2h0cw==" data-listing-date-sort="1314828000000">
+    <div class="blog-entry" data-index="21" data-categories="YWdncmVnYXRpb24lMkNhZmZpbmUlMjBlc3RpbWF0b3JzJTJDU1VSRSUyQ0V4cG9uZW50aWFsJTIwd2VpZ2h0cw==" data-listing-date-sort="1314828000000">
         <div class="metadata">
             <p class="date listing-date">Sep 1, 2011</p>
         </div>
@@ -900,7 +962,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="20" data-categories="aW1hZ2UlMjBwcm9jZXNzaW5nJTJDbm9uLWxvY2FsJTIwbWV0aG9kcw==" data-listing-date-sort="1296169200000">
+    <div class="blog-entry" data-index="22" data-categories="aW1hZ2UlMjBwcm9jZXNzaW5nJTJDbm9uLWxvY2FsJTIwbWV0aG9kcw==" data-listing-date-sort="1296169200000">
         <div class="metadata">
             <p class="date listing-date">Jan 28, 2011</p>
         </div>
@@ -928,7 +990,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="21" data-categories="cmV2ZWFsanMlMkNzbGlkZXMlMkNxdWFydG8=" data-listing-date-sort="969832800000" data-listing-file-modified-sort="1739551304046" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39">
+    <div class="blog-entry" data-index="23" data-categories="cmV2ZWFsanMlMkNzbGlkZXMlMkNxdWFydG8=" data-listing-date-sort="969832800000" data-listing-file-modified-sort="1739551304046" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="39">
         <div class="metadata">
             <p class="date listing-date">Sep 25, 2000</p>
         </div>
@@ -985,6 +1047,150 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
   const icon = "";
   const anchorJS = new window.AnchorJS();
   anchorJS.options = {

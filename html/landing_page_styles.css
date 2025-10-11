@@ -1,14 +1,14 @@
 :root {
 
     --gradient-text: var(--color-primary);
-    --gradient-bar: linear-gradient(103.22deg, #c7c7c7 -13.86%, #ff7a48 99.55%);
+    --gradient-bar: linear-gradient(103.22deg, #c7c7c7 -13.86%, rgb(219, 91, 59) 99.55%);
 
-    --color-primary: #f08f04ff;
+    --color-primary: rgb(219, 91, 59);
     --color-bg: #fff;
     --color-bg-1: #b3a69f;
     --color-bg-2: #d8f2ea;
     --color-text: #000;
-    --color-subtext: #f08f04ff;
+    --color-subtext: rgb(219, 91, 59);
 }
 
 * {
@@ -298,13 +298,13 @@ a {
 }
 
 
-/* change the attribute for <a class="listing-author"  with     text-decoration: underline; and text-decoration-color: #f08f04ff;*/
+/* change the attribute for <a class="listing-author"  with     text-decoration: underline; and text-decoration-color: rgb(219, 91, 59);*/
 .listing-author a {
     text-decoration: underline;
-    text-decoration-color: #f08f04ff;
+    text-decoration-color: rgb(219, 91, 59);
 }
 
 #news a {
     text-decoration: underline;
-    text-decoration-color: #f08f04ff;
+    text-decoration-color: rgb(219, 91, 59);
 }
