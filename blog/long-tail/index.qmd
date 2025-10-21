@@ -123,7 +123,7 @@ engine: knitr
 google-scholar: true
 biblatex: true
 date: "2025-10-20"
-image: plantnet-overview.png
+image: GMM.png
 date-format: "MMM D, YYYY"
 description: "Insights and visualization of conformal prediction in the context of long-tailed classification. Challenges from citizen sciences platforms like Pl@ntNet"
 
