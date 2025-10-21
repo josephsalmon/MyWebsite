@@ -14,12 +14,18 @@ project:
     - "code/**"
     - "data/**"
     - "papers/**"
-
-
-
+    - "blog/long-tail/*.js"
+    - "blog/long-tail/*.js"
+    - "blog/long-tail/*.csv"
+    - "blog/long-tail/*.json"
+    - "blog/long-tail/images"
+    - "blog/long-tail/images"
+    - "blog/long-tail/Metadata"
+    - "blog/long-tail/tiny_plantnet300k"
 
   render:
     - "*.qmd"
+    - "!blog/long-tail/gaussian_params_description.qmd"
     - "!Courses/*.ipynb"
 
   preview:
@@ -127,3 +133,4 @@ format:
     footnotes-hover: true
     highlight-style: github
     email-obfuscation: javascript
+engine: knitr

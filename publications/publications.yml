@@ -23,7 +23,7 @@
   author: <a href=" "https://jeanbaptistefermanian.github.io/"">J.-B. Fermanian</a>,
     <a href="http://perso-math.univ-mlv.fr/users/hebiri.mohamed/">M. Hebiri</a> and
     <strong>J. Salmon</strong>
-  container-title: ArXiv e-prints
+  container-title: NeurIPS
   doi: ''
   id: Fermanian_Hebiri_Salmon25
   issn: ''
@@ -31,10 +31,10 @@
   issued: ''
   page: ''
   title: Class conditional conformal prediction for multiple inputs by p-value aggregation
-  type: techreport
+  type: inproceedings
   url: https://hal.science/hal-05151303
   volume: ''
-  journaltitle: ArXiv e-prints
+  journaltitle: NeurIPS
   date: '2025'
   path: https://hal.science/hal-05151303v1/file/arxiv_predsetcomb.pdf
   code: ''

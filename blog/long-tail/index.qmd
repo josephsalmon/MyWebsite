@@ -1,0 +1,961 @@
+---
+title: "Optimal prediction sets for plant identification: an interactive guide"
+categories: [Conformal prediction, classification, machine learning, Pl@ntNet]
+execute:
+  enabled: true
+format:
+  html:
+    table-striped: true
+    from: markdown+emoji
+    html-math-method: mathjax
+    code-tools: true
+    include-in-header:
+      - text: |
+          <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+          <style>
+            :root {
+              --quarto-font-family: inherit;
+            }
+
+            .proof-container {
+              margin: 1em 0;
+              border: 1px solid #ddd;
+              border-radius: 5px;
+              overflow: hidden;
+            }
+
+            .proof-header {
+              background-color: #edf1f5ff;
+              padding: 0.25em 0.25em;
+              cursor: pointer;
+              user-select: none;
+              border-bottom: 1px solid #ddd;
+              display: flex;
+              align-items: center;
+            }
+
+            .proof-header:hover {
+              background-color: #e9ecef;
+            }
+
+            .proof-header p {
+              margin: 0;
+              padding: 0;
+            }
+
+            .proof-title {
+              font-weight: bold;
+              margin-left: 0.2em;
+            }
+
+            .proof-arrow {
+              font-size: 0.8em;
+              transition: transform 0.3s ease;
+              display: inline-block;
+            }
+
+            .proof-arrow.expanded {
+              transform: rotate(90deg);
+            }
+
+            .proof-content {
+              padding: 1em 1em 0em 1em;
+              display: none;
+              background-color: #fdfdfd;
+            }
+
+            .proof-content.expanded {
+              display: block;
+            }
+
+            table caption, .table-caption, .striped .hover caption {
+              color: #222 !important;
+              font-weight: bold !important;
+              font-size: 1em !important;
+            }
+            .proof-content::after {
+            content: "\25A1";
+            display: block;
+            font-size: x-large;
+            text-align-last: right;
+            margin-top: -1em;
+            margin-bottom: 1em;
+          }
+          </style>
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              // Toggle proof visibility
+              window.toggleProof = function(id) {
+                const content = document.getElementById('proof-content-' + id);
+                const arrow = document.getElementById('proof-arrow-' + id);
+
+                if (content && arrow) {
+                  const isExpanded = content.classList.contains('expanded');
+
+                  if (isExpanded) {
+                    content.classList.remove('expanded');
+                    arrow.classList.remove('expanded');
+                  } else {
+                    content.classList.add('expanded');
+                    arrow.classList.add('expanded');
+                  }
+                }
+              };
+            });
+          </script>
+reference-location: document
+fig-cap-location: bottom
+bibliography: references.bib
+appendix-cite-as: bibtex
+author:
+  - name: Tiffany Ding
+    url: https://tiffanyding.github.io/
+    orcid: 0000-0002-6918-9572
+  - name: Jean-Baptiste Fermanian
+    url: https://jeanbaptistefermanian.github.io/
+    orcid: 0000-0001-7750-8337
+  - name: Joseph Salmon
+    url: https://josephsalmon.eu/
+    orcid: 0000-0002-3181-0634
+filters:
+  - pseudocode
+engine: knitr
+google-scholar: true
+biblatex: true
+date: "2025-10-20"
+image: plantnet-overview.png
+date-format: "MMM D, YYYY"
+description: "Insights and visualization of conformal prediction in the context of long-tailed classification. Challenges from citizen sciences platforms like Pl@ntNet"
+
+---
+
+
+
+
+<!-- Installation, needed steps:
+
+for icones run in terminal:
+  quarto add quarto-ext/fontawesome
+  quarto add mcanouil/quarto-iconify
+  quarto add leovan/quarto-pseudocode
+also run the following for javascript:
+
+npm install seedrandom
+node generate_samples.js
+-->
+
+::: {.content-visible when-format="html"}
+::: {.hidden}
+{{
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{stmaryrd}
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+\newcommand{\paren}[1]{\left( #1 \right)} % Parentheses
+\DeclareMathOperator{\diag}{diag}
+}}
+\def\P{{\mathbb P}}
+\def\R{{\mathbb R}}
+\def\cC{{\mathcal C}}
+\def\cX{{\mathcal X}}
+\def\cY{{\mathcal Y}}
+\def\PAS{\mathsf{PAS}}
+\def\WPAS{\mathsf{WPAS}}
+\newcommand{\qhat}{\hat{q}}
+\newcommand{\qq}{\mathbf{q}}
+
+:::
+:::
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
+
+## Introduction and motivation
+
+This blog post is an effort led by Joseph Salmon, with contributions from Tiffany Ding and Jean-Baptiste Fermanian, to synthesize joint research by the three authors. The full paper [@Ding_Fermanian_Salmon25] is available on [arXiv](https://arxiv.org/abs/2507.06867) and the code is on [Github](https://github.com/tiffanyding/long-tail-conformal).
+
+### Why settle for one label when you could have a set?
+
+Traditionally, machine learning models give you a single best guess: but what if the problem is tricky, or multiple answers are plausible? In those cases, a **set** of possible labels is far more useful, especially when it comes with a statistical guarantee that the true answer is included.
+
+**Conformal prediction** (often abbreviated CP below) provides a framework for constructing prediction sets with valid coverage guarantees [@vovk2005algorithmic]. A particular focus on classification was later considered [@vovk2016criteria], and methods for minimizing the size of prediction sets, such as the Least Ambiguous Set-Valued Classifiers, were proposed in parallel by @sadinle2019least. In this post, we focus on extensions of the later approach.
+
+
+
+
+_What does it mean for a prediction set to be optimal?_ Given that we have decided to generate prediction sets, how do we generate an "optimal" prediction set? A reasonable definition, and the one we will use, is that a **prediction-set-generating procedure is optimal if it generates the smallest sets that satisfy a given coverage constraint** (e.g., the probability that the true label is contained within the prediction is at least 90%).
+What kind of coverage we care about depends on the setting, and the coverage notion you choose can make a big difference in the resulting sets. @sadinle2019least derive the theoretically optimal sets with a minimal constraint on the marginal coverage or class-conditional coverage and show how to approximate the optimal sets using conformal prediction while maintaining a coverage guarantee. We do the same for two new notions of coverage — macro-coverage and weighted macro-coverage — and show that these lead to more useful prediction sets in long-tailed classification settings.
+
+Here is an overview of the four coverage notions we cover below:
+
+- [**Marginal coverage**](#marginal-coverage): **Guarantees coverage across all data points**, ensuring the true label is included with the desired probability *on average over the dataset*, but may neglect rare or underrepresented classes.
+
+- [**Class-conditional coverage**](#conditional-coverage): **Guarantees coverage within each class separately**, guaranteeing the desired inclusion probability *for every class*, but often producing impractically large sets for classes with high uncertainty or few samples.
+
+- [**Macro coverage**](#macro-coverage): **Balances coverage evenly across classes**, by averaging the per-class coverages to emphasize fairness between common and rare classes.
+
+- [**Weighted macro coverage**](#weighted-macro-coverage): **Balances coverage according to class importance**, extending macro coverage by incorporating user-specified weights on each class that reflect the relative importance of covering each class
+
+Depending on which coverage notion appears in the constraint, the resulting sets can look very different. We will illustrate this using an artificial 2D example and real-world plant identification data.
+
+## {{< iconify hugeicons:plant-04 >}} Motivating example: Pl@ntNet
+
+[Pl@ntNet](https://plantnet.org/en/), a leading citizen-science platform for plant identification, serves as our real-world context for exploring these ideas.
+More precisely we focus on the **Pl@ntNet-300K dataset** [@garcin2021pl], a representative and more manageable subset of the full Pl@ntNet collection.
+The Pl@ntNet-300K dataset is available on [Zenodo](https://zenodo.org/records/5645731#.Yuehg3ZBxPY), with documentation and code provided on the [Pl@ntNet-300K GitHub repository](https://github.com/plantnet/PlantNet-300K). The dataset comprises approximately **300,000 images** spanning **over 1,000 plant species**.
+Here are a few sample images from the Pl@ntNet-300K dataset (cropped to a consistent size for visualization):
+
+<div style="max-width:950px; margin:12px auto 20px; display:grid; grid-template-columns:repeat(4,1fr); gap:12px; align-items:start;">
+  <figure style="margin:0;">
+    <img src="tiny_plantnet300k/1/9cf6b7997a95b2bab8d840e70397b98dc8321106.jpg" alt="Pelargonium capitatum" style="width:100%; height:165px; object-fit:cover; border-radius:6px; display:block;" />
+  <figcaption style="font-size:12px; margin-top:6px; text-align:center;"><em>Pelargonium capitatum</em> (L.) L'Hér.</figcaption>
+  </figure>
+
+  <figure style="margin:0;">
+    <img src="tiny_plantnet300k/57/81141f286ca624ff8685f4a954af48764548a4ca.jpg" alt="Sedum litoreum" style="width:100%; height:165px; object-fit:cover; border-radius:6px; display:block;" />
+  <figcaption style="font-size:12px; margin-top:6px; text-align:center;"><em>Sedum litoreum</em> Guss.</figcaption>
+  </figure>
+
+  <figure style="margin:0;">
+    <img src="tiny_plantnet300k/710/738b2af661ef2102b8748844939f0034320fc2c2.jpg" alt="Daucus pusillus" style="width:100%; height:165px; object-fit:cover; border-radius:6px; display:block;" />
+  <figcaption style="font-size:12px; margin-top:6px; text-align:center;"><em>Daucus pusillus</em> Michx.</figcaption>
+  </figure>
+
+  <figure style="margin:0;">
+    <img src="tiny_plantnet300k/397/8d9e895a91786169a299ab25d3a34f417dc07e1b.jpg" alt="Geropogon hybridus (L.) Sch.Bip." style="width:100%; height:165px; object-fit:cover; border-radius:6px; display:block;" />
+  <figcaption style="font-size:12px; margin-top:6px; text-align:center;"><em>Geropogon hybridus</em> (L.) Sch.Bip. </figcaption>
+  </figure>
+
+</div>
+
+The dataset exhibits a **highly imbalanced class distribution**: a small number of species are well-represented with numerous images, while the majority have only a few examples. This characteristic makes it an ideal benchmark for studying **long-tailed classification** problems, as illustrated in the interactive figure below.
+
+
+### {{< iconify fluent:globe-shield-20-regular >}} **Conservation status in Pl@ntNet-300K**
+Each species in the dataset has an **[International Union for Conservation of Nature (IUCN) conservation status](https://www.iucnredlist.org/)**, which indicates its risk of extinction. We categorize these statuses into two groups for later analysis:
+
+
+| **At Risk**                | **Not at Risk**                      |
+|-----------------------------|--------------------------------------|
+| Critically Endangered (CR) | Least Concern (LC)                   |
+| Endangered (EN)            | Data Deficient (DD)                  |
+| Vulnerable (VU)            | Not assessed (or missing data)                         |
+| Near Threatened (NT)       |  |
+
+
+:  IUCN conservation status  {.striped .hover}
+
+<br>
+
+This metadata allows us to analyze species distributions both in terms of their popularity and their conservation status, adding a critical ecological perspective to our study. This dual focus serves as a key motivation for introducing our weighted macro coverage metric.
+
+
+### {{< iconify carbon:chart-line-smooth >}} **Plant species visualization**
+
+
+The interactive visualization below lets you explore the species distribution in the Pl@ntNet-300K training set, enriched with their IUCN conservation statuses.
+
+```{=html}
+<div id="plantnet-viz" style="max-width: 1200px; margin: 0 auto;">
+
+  <div id="filter-container" style="margin-bottom: 20px;"></div>
+
+  <!-- Main content area with side-by-side layout -->
+  <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 20px;">
+    <!-- Plot container on the left (wider and shorter) -->
+    <div id="plotly-container" style="flex: 4; height: 400px;"></div>
+
+    <!-- Right sidebar with controls and image preview -->
+    <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column;">
+      <!-- Controls for plot options (moved to align with plot head) -->
+      <div style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
+        <div class="scale-toggle" style="display: flex; align-items: center; background-color: #f0f0f0; border-radius: 4px; padding: 4px 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+          <span style="margin-right: 8px; font-size: 14px;">Y-Scale:</span>
+          <button type="button" id="log-scale-btn" class="scale-btn"
+            onclick="window.setScale('log'); return false;"
+            style="background-color: #f1f1f1; color: #333; border: none; border-radius: 3px 0 0 3px; padding: 4px 10px; cursor: pointer; font-size: 14px;">Log</button>
+          <button type="button" id="linear-scale-btn" class="scale-btn active"
+            onclick="window.setScale('linear'); return false;"
+            style="background-color: #4CAF50; color: white; border: none; border-radius: 0 3px 3px 0; padding: 4px 10px; cursor: pointer; font-size: 14px;">Linear</button>
+        </div>
+      </div>
+
+      <!-- Image preview container -->
+      <div id="image-preview-container" style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; flex: 1;">
+        <div style="margin-bottom: 10px;">Species Preview</div>
+        <img id="preview-image" src="" style="max-width: 100%; height: auto; max-height: calc(100vh - 300px); min-height: 200px; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: contain;" />
+        <div id="image-label" style="font-weight: bold; font-size: 13px; min-height: 3.5em; margin-top: 10px; text-align: center; width: 100%; line-height: 1.2;"></div>
+      </div>
+    </div
+  </div>
+</div>
+
+<script type="module" src="plantnet_viz.js"></script>
+
+```
+This visualization provides a dynamic way to explore the intersection of species popularity and ecological importance.
+**"At-risk" species** are highlighted and typically have far fewer observations, reflecting the challenges in documenting rare or threatened flora. Use the interactive features (**hover** the points on the left!) to navigate observation counts, conservation status, and the distribution of both common and rare species.
+
+
+## {{< iconify fluent:clipboard-math-formula-20-regular >}} Notation and model
+
+
+Let $(X,Y) \in \mathcal{X} \times \mathcal{Y}$ be a (feature, label) pair. In our example, $X$ is an image, and $Y$ is the true label (species) associated with it. Let $\hat{p}(y|x)$ be an estimate of the probability $p(y|x)$ that the label is $y$ given features $x$. Let $\alpha \in [0,1]$ be a user-specified miscoverage probability, so $1-\alpha$ corresponds to the desired **coverage** level.
+
+
+The available data is randomly split into four distinct sets: a **training set** for fitting the model $\hat{p}(y|x)$, a **validation set** for hyperparameter tuning (in our experiments, the only hyperparameter is the number of training epochs), a **calibration set** $(X_i, Y_i) \in \mathcal{X} \times \mathcal{Y}$ for $i \in [n]$ to evaluate coverage,  and a **test set** for final evaluation. Note that in order for the coverage guarantees from conformal prediction to hold, the calibration set must be exchangeable with the test set. The random splitting procedure ensure this is satisfied.
+
+
+### {{< iconify hugeicons:curvy-right-direction >}} Technical detour
+
+As a key technical tool for our proofs, we state the following version of the Neyman–Pearson Lemma. The proof may be skipped on first reading.
+
+::: {#lem-neyman_pearson}
+
+## @neyman1933ix
+
+Let $\mu$ be a measure on $\cX \times \cY$ and let $f,g: \cX\times \cY \to \R_{\geq 0}$ be two non-negative functions. For $\nu \geq 0$, consider the problem
+$$
+\begin{align*}
+&\min_{\cC:\cX \to 2^{\cY}} \int_{\cX\times \cY}\mathbb{1}\{y \in \cC(x)\} g(x,y)d\mu(x,y) \\
+&\quad \text{subject to}  \int_{\cX\times \cY}\mathbb{1}\{y\in\cC(x)\} f(x,y)d\mu(x,y)\geq \nu.
+\end{align*}
+$${#eq-neyman}
+
+If there exists $t_\nu$ such that
+$$
+\begin{equation}
+    \int_{\cX\times \cY} \mathbb{1}\{f(x,y) \geq t_\nu \cdot g(x,y)\} f(x,y) d\mu(x,y) = \nu,
+\end{equation}
+$${#eq-neyman_condition}
+then
+$$
+\begin{align}
+    \cC^{*}_{\nu}(x) = \{y \in \cY : f(x,y) \geq t_\nu \cdot g(x,y) \}
+\end{align}
+$${#eq-neyman_solution}
+
+is the optimal solution to ([-@eq-neyman]). Moreover, any other minimizer $\cC$ of ([-@eq-neyman]) is equal to $\cC_{\nu}^*$, $\mu_f$ and $\mu_g$-almost everywhere, i.e., for $h\in \{f,g\}$, $\mu_h\big( \{ (x,y) : y\in \cC^*_\nu(x) \}\Delta \{ (x,y) : y\in \cC(x) \}\big)=0$ where $\Delta$ denotes the symmetric distance between the sets and $\mu_h$ is defined as $\mu_h(A) = \int_A h d\mu$.
+
+:::
+
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('marginal-coverage')"}
+[▶]{#proof-arrow-marginal-coverage .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-marginal-coverage .proof-content}
+
+ We will show that $\cC^*(x) = \{y :f(x,y) \geq t_\nu g(x,y) \}$ is the optimal solution to ([-@eq-neyman]). We first demonstrate that it is an optimal solution and then that it is unique.
+
+*Optimality*. By definition of $t_\nu$, we have
+$$
+\begin{equation}
+    \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} f(x,y) d\mu(x,y) = \nu,
+\end{equation}
+$${#eq-np_equality}
+which is trivially greater than or equal to $\nu`, so $\cC^*(x)$ is indeed a feasible solution.
+To show that $\cC^*(x)$ is optimal, we must argue that it achieves a smaller objective value than any other feasible solution.
+Let $\cC: \cX \to 2^\cY$ be any other set-generating procedure that satisfies the constraint in ([-@eq-neyman]). We want to show that
+$$
+\begin{equation*}
+    \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} g(x,y) d\mu(x,y) \leq  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} g(x,y) d\mu(x,y)\,.
+\end{equation*}
+$$
+We prove this by showing their difference is negative:
+$$
+\begin{align*}
+     &\int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} g(x,y) d\mu(x,y) -  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} g(x,y) d\mu(x,y) \\
+     &= \int_{\cX\times \cY} \Big(\mathbb{1}\{ y \in \cC^*(x) \backslash \cC(x)\} -  \mathbb{1}\{ y \in \cC(x)\backslash \cC^*(x)\}\Big) g(x,y) d\mu(x,y) \\
+     & \leq  \frac{1}{t_\nu}\int_{\cX\times \cY} \Big(\mathbb{1}\{ y \in \cC^*(x) \backslash \cC(x)\} - \mathbb{1}\{ y \in \cC(x)\backslash \cC^*(x)\} \Big) f(x,y) d\mu(x,y) \\
+     &= \frac{1}{t_\nu} \int_{\cX\times \cY} \Big( \mathbb{1}\{ y \in \cC^*(x) \}  -  \mathbb{1}\{ y \in \cC(x)\}\Big) f(x,y) d\mu(x,y)  \\
+     & \leq \frac{1}{t_\nu} \paren{ \nu - \nu} \leq 0\,.
+\end{align*}
+$$
+The first inequality follows from $y \in \cC^*(x)\Longleftrightarrow g(x,y)$ $\leq t_\nu^{-1}f(x,y)$.
+The second inequality comes from applying the equality stated in ([-@eq-np_equality]) to the first integral and then using the definition of $\cC$ as satisfying the constraint of ([-@eq-neyman]) to lower bound the second integral.
+
+*Uniqueness*. Let $\cC : \cX \to 2^{\cY}$ be another optimal set-generating procedure, so it achieves the same objective value as $\cC^*$,
+$$
+\begin{equation}
+    \int_{\cX\times \cY} \!\!\!\! \mathbb{1}\{ y \in \cC(x)\} g(x,y) d\mu(x,y) = \! \int_{\cX\times \cY} \!\!\!\!\mathbb{1}\{ y \in \cC^*(x)\} g(x,y) d\mu(x,y)\,,
+\end{equation}
+$${#eq-aux_uniq1}
+and it is a feasible solution,
+$$
+\begin{equation*}
+     \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} f(x,y) d\mu(x,y) \geq \nu\,.
+\end{equation*}
+$$
+Let us first note the following non-negativity relationship, for all $(x,y) \in \cX \times \cY$:
+$$
+\begin{equation}\label{eq:aux_uniq2}
+    \paren{\mathbb{1}\{ y \in \cC^*(x)\} - \mathbb{1}\{ y \in \cC(x)\}   }\paren{ f(x,y) - t_\nu g(x,y)} \geq 0, \,.
+\end{equation}
+$${#eq-aux_uniq2}
+Integrating ([-@eq-aux_uniq2]) over $\cX \times \cY$, then applying ([-@eq-aux_uniq1]), we get
+$$
+\begin{equation*}
+       \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} f(x,y) d\mu(x,y) -  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} f(x,y) d\mu(x,y)\geq 0\,.
+\end{equation*}
+$$
+
+Combining this with the definition of $\cC^*$ and the feasibility of $\cC$, we must have $\int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} f(x,y) d\mu(x,y) = \nu`. Thus,  ([-@eq-aux_uniq2]) integrates to zero. Since we also know that ([-@eq-aux_uniq2]) is nonnegative, it must be true that, $\mu$-almost everywhere,
+$$
+\begin{equation*}
+    \paren{\mathbb{1}\{ y \in \cC^*(x)\} - \mathbb{1}\{ y \in \cC(x)\}   }\paren{ f(x,y) - t_\nu g(x,y)} = 0.
+\end{equation*}
+$$
+For $(x,y) \in \cX \times \cY$ such that $f(x,y) \neq t_\nu g(x,y)$, then $\mathbb{1}\{ y \in \cC^*(x)\}= \mathbb{1}\{ y \in \cC(x)\}$, and in turn
+it implies, using the definition of $\cC^*(x) = \{y :f(x,y) \geq t_\nu g(x,y) \}$, that $\mu$-almost everywhere, $\cC(x) \subseteq \cC^*(x)$ and $\cC^*(x) \subseteq \cC(x) \cup \{ y : f(x,y) = t_\nu g(x,y)\}$. It remains to show that the sets are equal almost everywhere by showing that the set
+$$
+\begin{align*}
+    D &:= \big\{ (x,y) : y \notin \cC(x) \text{ and }  y \in \cC^*(x) \big\} \\
+       &= \big\{ (x,y) : y \notin \cC(x) \text{ and } f(x,y) = t_\nu g(x,y)\big\}
+    \end{align*}
+$$
+is of measure $0$ under $\mu_f$. By definition of $\cC^*$,
+$$
+\begin{align*}
+    \nu &=  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} f(x,y) d\mu(x,y) \\
+    &=  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} f(x,y) d\mu(x,y) +  \int_{\cX\times \cY} \mathbb{1}\{ (x,y) \in D\} f(x,y) d\mu(x,y) \\
+    &= \nu + \int_{D} f d\mu \,.
+\end{align*}
+$$
+Thus we must have $\mu_f(D) = 0$. Since $t_\nu g=f$ on $D$, we also get that $\mu_g(D) =0$.
+:::
+::::
+
+
+## Marginal coverage
+
+In classification setting, suppose our aim is to control the size of our prediction sets while ensuring marginal coverage. This corresponds to the following optimization problem:
+
+$$
+\min_{\mathcal{C} : \mathcal{X} \mapsto 2^\mathcal{Y}} \mathbb{E}[|\mathcal{C}(X)|] \, \text{ s.t. }  \P\paren{ Y \in \mathcal{C}(X)} \geq 1-\alpha,
+$$ {#eq-min_st_margcoverage}
+The following result due to @sadinle2019least describes the optimal set.
+
+
+::: {#prp-margcoverage}
+
+## Marginal coverage and prediction set
+Assuming that $p(Y|X)$ does not have point mass at its $\alpha$-quantile, denoted $t^*_{\alpha}$, the solution of (-@{eq-min_st_margcoverage}) is given by
+$$
+\begin{align*}
+\mathcal{C}^*(x) & = \left\{ y \in \mathcal{Y} : p(y|x) \geq t^*_{\alpha}\right\}.
+\end{align*}
+$$
+<!--for some threshold $t_{\alpha}$.-->
+
+:::
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('marg-coverage')"}
+[▶]{#proof-arrow-marg-coverage .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-marg-coverage .proof-content}
+This result is a direct consequence of @{prp-wmacrocoverage} stated below with the particular choice of $\omega(y) = \frac{1}{|\mathcal{Y}|}$.
+:::
+::::
+<u>Interpretation</u>:
+This result implies that the smallest sets that achieve marginal coverage are created by including the classes with the highest probability of being the correct class. Specifically, we include all labels $y$ where $p(y|x)$ exceeds some threshold $t^*_{\alpha}$ chosen to ensure the desired coverage level of $1-\alpha$.
+
+
+<u>In practice</u>: While we do not have direct access to $p(y|x)$, we can use an estimate $\hat{p}(y|x)$ to approximate the optimal prediction set for a chosen threshold $t_\alpha$:
+
+$$
+\widehat{\cC}(X) = \{y \in \cY : \hat{p}(y|X) \geq t_\alpha\},
+$$
+To ensure marginal coverage of $1-\alpha$, we select $t_\alpha$ by rewriting $\widehat{\cC}(x)$ in terms of a conformal score:
+$$
+\widehat{\cC}(x) = \{y \in \cY : s(x,y) \leq -t_\alpha\},
+$$
+where the **score** is defined as
+$$
+s(x,y) = -\hat{p}(y|x).
+$$
+
+
+
+By setting $-t_\alpha$ as the $(1-\alpha)(1+\tfrac{1}{n})$-level quantile of the calibration scores $s(X_{i},Y_{i})$ for $i=1,\dots, n$, i.e., $\hat{q} = \lceil (n+1)(1-\alpha) \rceil$-th largest value in $\{s(X_{1},Y_{1}), \dots, s(X_{n},Y_{n})\}$, the conformal prediction set $\smash{\widehat{\cC}}$ achieves a **marginal coverage** guarantee [@vovk2005algorithmic], that is,
+
+$$
+\begin{align}
+\P(Y \in \widehat{\cC}(X))
+ \geq 1-\alpha.
+\end{align}
+$$
+We will refer to the above procedure as Standard Conformal Prediction (**Standard CP**) with the **softmax** score function (so named because the $\hat{p}$ that appears in $s(x,y) = -\hat p(y|x)$ is frequently obtained from a softmax vector). Note that other scores have also been considered in the literature, see for instance @romano2020classification.
+
+We generalize this procedure for generating prediction sets in @algo-conformal.
+Standard CP is a special case where the threshold function $\hat{\mathbf{q}}=(\hat{q},\dots,\hat{q}) \in
+\R^{|\cY|}$ applies the same threshold to all classes. However, the other conformal procedures we present below, such as Classwise CP, impose different thresholds for each class.
+
+
+```pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+#| pdf-placement: "htb!"
+#| pdf-line-number: true
+#| label: algo-conformal
+
+\begin{algorithm}
+\caption{Conformal prediction meta-algorithm}
+\begin{algorithmic}
+\REQUIRE Score function $s: \mathcal{X} \times \mathcal{Y} \to \mathbb{R}$, miscoverage level $\alpha \in [0,1]$, calibration set $\mathcal{D}_{\mathrm{cal}} = \{(X_i, Y_i)\}_{i=1}^n$, test point $X_{n+1}$, threshold function $\hat{\mathbf{q}}: \mathbb{R}^n \times [0,1] \to \mathbb{R}^{|\mathcal{Y}|}$
+\STATE Compute scores: $S_i \gets s(X_i, Y_i)$ for $i = 1, \ldots, n$
+\STATE Compute thresholds: $\mathbf{q} \gets \hat{\mathbf{q}}((S_i)_{i=1}^n, \alpha)$
+\RETURN Prediction set $\mathcal{C}(X_{n+1}) = \{ y : s(X_{n+1}, y) \leq q_y \}$, where $q_y$ is the $y$-th entry of $\mathbf{q}$
+\end{algorithmic}
+\end{algorithm}
+```
+
+Currently (as of October 2025), Standard CP with softmax is more or less the strategy used to generate prediction sets in the Pl@ntNet app. This performs reasonably well, but can we do better?
+
+
+
+
+### {{< iconify gis:map-edit >}} 2D example
+To build intuition, let's visualize the Standard CP prediction sets for a simple 2D Gaussian mixture model.
+
+
+#### {{< iconify fa:sliders >}} Parameters
+{{< include gaussian_params_description.qmd >}}
+
+
+
+#### {{< iconify lucide:chart-spline >}} Visualizing the data
+
+
+The data-generating model is a **three-class Gaussian mixture** with known parameters (means, covariances, mixing proportions) given above, enabling exact density and theoretical boundary computation. We provide an *interactive visualization* below.
+
+In both plots, the *red boundary* is the decision boundary of the Bayes classifier (the theoretically optimal boundary).
+
+- *Left plot:* Individual class densities (color-filled contours) and mixture density (grey level lines).
+- *Right plot:* The points are samples from the mixture distribution, colored by true class. The colored shading indicates the Bayes classifier's predicted class for each region.
+
+
+```{=html}
+<div id="plots" style="width:100%; max-width:800px; overflow-x:auto;"></div>
+<script type="module" src="mixture_viz.js"></script>
+
+```
+
+
+#### {{< iconify fluent:laptop-shield-16-filled >}} Visualizing Standard CP sets
+
+
+Concerning the distribution $p(y|x)$, we provide three candidates in our Gaussian mixture model visualization, though for the moment only the first (true density function) is used:
+
+- **Theoretical**: $\hat p(y|x)=p(y|x)$ (only available in simulations),
+- **Empirical**: $\hat p(y|x)$ is a Gaussian mixture whose parameters are estimated with vanilla estimators (empirical means, empirical covariances and empirical proportions),
+- **Logistic Reg.**: $\hat p(y|x)$ is obtained by logistic regression.
+
+
+
+We now provide a visualization for the **Standard Conformal prediction**, as decribed in the previous section.
+Hence, our classifier can output multiple classes, forming **prediction sets** rather than a single label. The size of these sets is controlled by the allowed **miscoverage level** $\alpha$ (accessible through the slider), which reflects the confidence of the predictions.
+
+
+As $\alpha$ varies, the prediction sets shrink:small $\alpha$ yields larger, conservative sets, while large $\alpha$ allows smaller, selective ones. This reflects the core principle of conformal prediction, balancing coverage and uncertainty.
+
+
+
+```{=html}
+
+
+  <div id="plots2mono" style="width: 100%; max-width: 800px"></div>
+  <div id="alphaControlMono" style="margin-top: 15px; display:flex; align-items:center; justify-content:center; gap:12px;">
+    <label for="alphaSliderMono"><span class="math inline">\(\alpha=\)</span> <span id="alphaValueMono">0.15</span></label>
+    <input type="range" id="alphaSliderMono" min="0.001" max="0.20" step="0.001" value="0.15">
+  </div>
+
+<script type="module" src="subplot_viz_mono.js"></script>
+```
+
+<br>
+
+Using the $\alpha$ **slider** above reveals two extremes of this trade-off:
+
+* When $\alpha$ is **small** (high coverage), the classifier may need to include **all classes** in some regions to meet the coverage requirement. For example, at $\alpha = 0.0001$, the **central area** contains full prediction sets.
+* When $\alpha$ is **large** (low coverage), it may output **empty sets** in uncertain regions (shown in white), as seen around $\alpha = 0.15$. If a **non-empty output** is required, one can instead return the class with the **highest conditional probability**.
+
+Together, these extremes illustrate how $\alpha$ directly controls the **size–coverage trade-off** in conformal prediction.
+
+
+
+
+## Conditional coverage
+
+A concern with the standard conformal prediction approach is that all classes are treated similarly. If certain rare classes behave differently from the majority, they may never appear in the prediction set. For instance, the classifier may consistently assign low probabilities to rare classes, as these are not sufficiently represented during training and then, they never get above the threshold.
+
+For this reason, it makes sense to control the conditional coverage for all classes $y \in \cY$, while targeting sets of minimum size. Then the optimization formulation now becomes:
+$$
+\min_{\mathcal{C} : \mathcal{X} \mapsto 2^\mathcal{Y}} \mathbb{E}[|\mathcal{C}(X)|] \, \text{ s.t. }  \P\paren{ y \in \mathcal{C}(X) \mid Y=y } \geq 1-\alpha, \forall y \in \mathcal{Y}.
+$$ {#eq-min_st_condcoverage}
+
+@sadinle2019least have shown that the optimal solution for such a set:
+
+::: {#prp-concoverage}
+
+## Conditional-coverage and prediction set
+
+The solutions of (@{eq-min_st_condcoverage})
+
+$$
+\begin{align*}
+\mathcal{C}^*(x) = \left\{ y \in \mathcal{Y} : p(y|x) \geq t_{\alpha,y}\right\},
+\end{align*}
+$$
+where the threshold $t_{\alpha,y}$ is fixed as the $\alpha$-quantile of the conditional distribution $p(Y|X)$ knowing $Y=y$, *i.e,*  $\P(p(Y|X) \geq t_{\alpha,y} |Y = y) = 1 − \alpha$.
+
+:::
+
+<!-- :::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('macro-coverage')"}
+[▶]{#proof-arrow-macro-coverage .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-macro-coverage .proof-content}
+This result is a direct consequence of @{prp-wmacrocoverage} stated below with the particular choice of $\omega(y) = \frac{1}{|\mathcal{Y}|}$.
+:::
+:::: -->
+
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('cond-coverage')"}
+[▶]{#proof-arrow-cond-coverage .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-cond-coverage .proof-content}
+This result also follows from the Neyman-Pearson lemma applied to each class separately. We refer to Theorem 6 of @sadinle2019least for the complete proof.
+:::
+::::
+
+
+<u>Interpretation</u>: this means that the optimal way to get conditional coverage is to select the labels whose probability is larger than a particular threshold $t_{\alpha,y}$, where now the threshold $t_{\alpha,y}$ can be adapted in a class-wise fashion, and is fixed as the $\alpha$-quantile of the conditional distribution $p(Y|X)$ knowing $Y=y$, *i.e,*  $\P(p(Y|X) \geq t_{\alpha,y} |Y = y) = 1 − \alpha$.
+
+In practice, the threshold of each class $y$ is now computed as the quantile of the scores on class $y$.
+This is known under the name Mondrian conformal prediction [@vovk2005algorithmic].
+Formally, for any class $y\in \mathcal{Y}$, we set $t_{\alpha,y}$ as the $(n_y+1)(1-\alpha)$ score of the calibration points over class $y$, where $n_y$ is the number of these points.
+It corresponds to apply @algo-conformal with the threshold function $\hat{\mathbf{q}}$ equal to the vector of these conditional quantiles.
+
+
+For classes whose number of calibration points $n_y$ is not large enough (i.e., $n_y< \alpha^{-1}$), this threshold is fixed as the maximum possible value of the score function, or formally to $+\infty$.  It implies that **these rare classes will always be included** in the prediction sets. It can be observed below in the plots for $\alpha$ small enough.
+
+
+
+
+```{=html}
+
+<div id="plots2" style="width:100%; max-width:800px; overflow-x:auto;"></div>
+<div id="alphaControl" style="display:flex; align-items:center; justify-content:center; gap:12px;">
+  <label for="alphaSlider"><span class="math inline">\(\alpha=\)</span> <span id="alphaValue">0.15</span></label>
+  <input type="range" id="alphaSlider" min="0.001" max="0.20" step="0.001" value="0.15">
+</div>
+<script type="module" src="subplot_viz.js"></script>
+```
+
+<br>
+
+The figure above illustrates the influence of **conditional modeling**: overall, the predicted sets tend to be larger, especially when the miscoverage rate $\alpha$ is close to 0, and often include the marginal prediction sets.
+In practice, estimating the **conditional distribution** in high-dimensional spaces with limited data is challenging, which can lead to excessively large prediction sets.
+We also include bar plots showing per-class coverage, which reveal that Standard CP tends to under-cover rare classes (e.g., Class 2 in green). This poor class-conditional behavior motivates our next proposal.
+
+## Macro-coverage
+
+To tackle the coverage imbalance where rare classes are often undercovered by standard conformal prediction, we introduce a macro-coverage constraint, inspired by the macro-accuracy metric in multi-class classification.
+Our objective is to minimize the expected size of prediction sets while ensuring that all classes (including those with limited data) benefit from equitable and reliable coverage.
+
+The macro-coverage formulation reads as follows: 
+$$
+\min_{\mathcal{C} : \mathcal{X} \mapsto 2^\mathcal{Y}} \mathbb{E}[|\mathcal{C}(X)|] \, \text{ s.t. } \text{MacroCov}(\cC) \geq 1-\alpha,
+$$ {#eq-min_st_macrocoverage}
+where we defined the macro-coverage as
+$$
+\text{MacroCov}(\cC) = \frac{1}{|\mathcal{Y}|}\sum_{y \in \mathcal{Y}} \P(Y \in \mathcal{C}(X) \mid Y = y).
+$$ {#eq-def_macrocov}
+The motivation of this program is to treat all classes equally. We provide an adaptation of the previous proposition for this new constraints:
+
+
+
+::: {#prp-macrocoverage}
+
+## Macro-coverage and prediction set
+
+The solutions of (@{eq-min_st_macrocoverage})
+$$
+\begin{align*}
+\mathcal{C}^*(x) = \left\{ y \in \mathcal{Y} : \frac{p(y|x)}{p(y)} \geq t\right\},
+\end{align*}
+$$
+for some threshold $t$ that depends on $\alpha$.
+
+:::
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('macro-coverage')"}
+[▶]{#proof-arrow-macro-coverage .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-macro-coverage .proof-content}
+This result is a direct consequence of @{prp-wmacrocoverage} stated below with the particular choice of $\omega(y) = \frac{1}{|\mathcal{Y}|}$.
+:::
+::::
+
+
+
+Though we do not have access to $p(y|x)$ and $p(y)$ in practice, we have estimates $\hat{p}(y|x)$ and $\hat{p}(y)$ from our classifier and the distribution of empirical training labels, respectively.
+By creating prediction sets as $\smash{\widehat{\cC}_{\PAS}(X) = \{y \in \cY : \hat{p}(y|X)/\hat{p}(y) \geq t\}}$ for a threshold $t$.
+We choose $t$ to achieve $1-\alpha$ marginal coverage in the following way:
+Observe that $\smash{\widehat{\cC}}$ can be rewritten as $\smash{\widehat{\cC}(x) = \{y \in \cY : s_{\PAS}(x,y) \leq -t\}}$, where
+$$
+\begin{align}
+    s_{\PAS}(x,y) = - \frac{\hat{p}(y|x)}{\hat{p}(y)},
+\end{align}
+$$
+and $\PAS$ stands for **prevalence-adjusted softmax**.
+
+
+In summary, the method we propose is simply running @algo-conformal with the $\PAS$ score function (which we will refer to as Standard with $\PAS$) and $\hat{\qq}=(\hat{q},\dots,\hat{q})$ as the vector of quantile of the scores, where $\hat{q} = \lceil (n+1)(1-\alpha) \rceil$-th largest value in $\{s_{\PAS}(X_{1},Y_{1}), \dots, s_{\PAS}(X_{n},Y_{n})\}$. This corresponds to running Standard CP with the new $s_{\PAS}$ score. Note that for **fair comparisons** with Standard CP, we set the threshold in Standard with PAS to achieve marginal coverage $1-\alpha$, i.e., we fix $t$ so $\P(Y \in \widehat{\cC}_{\PAS}(X))
+ = 1-\alpha$.
+
+Then, this achieves the desired marginal coverage guarantee while (approximately) optimally trading off set size and macro-coverage.
+In the visusalization below, we also illustrate the variation of the **(empirical) coverage per class**  w.r.t. $\alpha$ (evaluated on the test set).
+
+<br>
+
+```{=html}
+
+<div id="plots3" style="width:100%; max-width:800px; overflow-x:auto;"></div>
+<div id="alphaControl2" style="display:flex; align-items:center; justify-content:center; gap:2px;">
+  <label for="alphaSlider2"><span class="math inline">\(\alpha\)</span>: <span id="alphaValue2">0.15</span></label>
+  <input type="range" id="alphaSlider2" min="0.001" max="0.20" step="0.001" value="0.15">
+</div>
+<script type="module" src="subplot_viz_3.js"></script>
+<!-- <script type="module" src="subplot_viz_3.js"></script> -->
+
+```
+
+
+
+## Weighted-macro coverage
+
+<!--### General case-->
+
+
+Recall that macro-coverage is the unweighted average of the class-conditional coverages.
+However, in some settings it may be more important to cover some classes than others; in these settings, it makes sense to instead optimize a _weighted_ average of the class-conditional coverages.
+Given user-chosen class weights $\omega(y)$ for $y \in \cY$ that sum to one, we can define the _$\omega$-weighted macro-coverage_ as
+
+$$
+\begin{align}
+    \mathrm{MacroCov}_{\omega}(\cC) =
+    \sum_{y \in \cY} \omega(y) \P(Y \in \cC(X) \mid Y = y).
+\end{align}
+$$ {#eq-min_st_wmacrocoverage}
+
+::: {#prp-wmacrocoverage}
+## Weighted macro-coverage and prediction set
+
+The solutions of @{eq-min_st_macrocoverage} when  $\mathrm{MacroCov}$ is replaced with $\mathrm{MacroCov}_{\omega}$ are of the form
+$$
+  \begin{align}
+    \cC^*(x) = \left\{ y \in \cY : \omega(y) \dfrac{p(y|x)}{p(y)} \geq t\right\},
+  \end{align}
+$$
+for some threshold $t$ that depends on $\omega$ and $\alpha$, respectively.
+:::
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('weighted-macro-coverage')"}
+[▶]{#proof-arrow-weighted-macro-coverage .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-weighted-macro-coverage .proof-content}
+We assume that $X$ has a density $p$ with respect to the Lebesgue measure $\lambda$, but the proof can be adapted for any measure. Define the functions $f(x,y) := \omega(y)p(x|y)$ and $g(x,y) =  p(x)$ and the measure $\mu = \lambda \times \Big( \sum_{y\in \cY} \delta_y\Big)$, which is the product measure between the Lebesgue measure (denoted by $\lambda$) and the counting measure on $\cY$. Let $\nu = 1-\alpha$. Observe that plugging these values of $f$, $g$, $\mu$, and $\nu$ into @{eq-neyman} yields @{eq-min_st_macrocoverage}, because
+\begin{align*}
+    \int_{\cX\times \cY}1_{y\in \cC(x)}f(x,y)d \mu(x,y) &= \sum_{y\in \cY} \omega(y) \int_\cX 1_{y\in \cC(x)} p(x|y) dx \\
+    &=  \sum_{y\in \cY} \omega(y)  \P \left( y \in \cC(X) \mid Y=y \right),
+\end{align*}
+and
+\begin{align*}
+    \int_{\cX\times \cY}1_{y\in \cC(x)} g(x,y)d\mu(x,y) &= \sum_{y\in \cY} \int_\cX1_{y\in \cC(x)} p(x) dx \\
+    &=  \int_\cX \sum_{y\in \cY} 1_{y\in \cC(x)} p(x) dx \\
+    &=  \int_\cX |\cC(X)| p(x) dx \\
+    &= \mathbb{E}\left( |\cC(X)| \right).
+\end{align*}
+By @{lem-neyman_pearson}, it follows that the optimal solution to @{eq-min_st_macrocoverage} is
+given by @{eq-neyman_solution}, which for our choice of $f$ and $g$ can be rewritten as
+$$\cC_{1-\alpha}^*(x) = \{y \in \cY : \frac{\omega(y)p(y|x)}{p(y)} \geq t_{1-\alpha}\}$$
+by observing that
+\begin{equation*}
+    \frac{f(x,y)}{g(x,y)} = \frac{\omega(y)p(x|y)}{p(x)}  = \frac{\omega(y)p(x,y)}{p(x)p(y)} =\frac{\omega(y)p(y|x)}{p(y)}\,.
+\end{equation*}
+
+:::
+::::
+
+We can approximate these optimal sets by running standard CP with the *weighted prevalence-adjusted softmax* (WPAS),
+$$
+\begin{align}
+    s_{\WPAS}(x,y) := - \omega(y) \frac{\hat{p}(y|x)}{\hat{p}(y)},
+\end{align}
+$$
+as the score function.
+
+
+Again, for **fair comparisons** with Standard CP, we set the threshold in Standard with WPAS to achieve marginal coverage $1-\alpha$, i.e., we fix $t$ so $\P(Y \in \widehat{\cC}_{\WPAS}(X))
+ = 1-\alpha$.
+
+
+<!--###  Weighted score to handle endangered species
+
+
+Motivated by plant conservation, we use the weighted prevalence-adjusted softmax (WPAS) score to target coverage of at-risk species in Pl@ntNet-300K.
+
+Let $\mathcal{Y}_{\text{at-risk}} \subseteq \mathcal{Y}$ be the set of at-risk species. The coverage of at-risk species is weighted $\lambda \geq 1$ times more than the coverage of other species, so
+
+$$
+\omega(y) = \begin{cases}
+    \frac{\lambda}{W} & \text{if } y \in \mathcal{Y}_{\text{at-risk}} \\
+    \frac{1}{W} & \text{otherwise,}
+\end{cases}
+$$
+
+where $W = \lambda|\mathcal{Y}_{\text{at-risk}}| + |\mathcal{Y} \setminus \mathcal{Y}_{\text{at-risk}}|$ is a normalizing factor to ensure $\sum_{y \in \mathcal{Y}} \omega(y) = 1$.
+
+
+The results are shown in the figure below. We observe that **Standard with WPAS** improves the class-conditional coverage of at-risk classes relative to **Standard with Softmax** or **PAS**. When comparing WPAS to PAS, increasing $\lambda$, the parameter that upweights at-risk classes, leads to larger improvements in the class-conditional coverage of those classes, as expected.
+These improvements are accompanied by only a mild increase in average set size and do not affect the class-conditional coverage of not-at-risk classes, which is appealing from a practical perspective.
+-->
+
+
+
+###  Weighted score adapted to handle endangered species
+
+Motivated by plant conservation, we design weights for the weighted prevalence-adjusted softmax (WPAS) score to target coverage of at-risk species in Pl@ntNet-300K.
+
+Let $\mathcal{Y}_{\text{at-risk}} \subseteq \mathcal{Y}$ be the set of at-risk species. The coverage of at-risk species is weighted $\lambda \geq 1$ times more than the coverage of other species, so
+
+$$
+\omega(y) = \begin{cases}
+    \frac{\lambda}{W} & \text{if } y \in \mathcal{Y}_{\text{at-risk}} \\
+    \frac{1}{W} & \text{otherwise,}
+\end{cases}
+$$
+
+where $W = \lambda|\mathcal{Y}_{\text{at-risk}}| + |\mathcal{Y} \setminus \mathcal{Y}_{\text{at-risk}}|$ is a normalizing factor to ensure $\sum_{y \in \mathcal{Y}} \omega(y) = 1$. We will show the result of running WPAS with this $\omega$ in the Pl@ntNet-300K experimental results below.
+
+## Summary of Propositions 1-4
+
+It might help readers to compare at a glance the objective and the quantity being thresholded in each approach (for instance $p(y\mid x)$ vs $p(y\mid x)/p(y)$). Below is a compact synthesis of the propositions discussed above.
+
+| Constraint  | Quantity thresholded |
+|-------------|-------------|
+| Marginal coverage  | $p(y\mid x) \ge t_{\alpha}$ (same for all y) |
+| Class-conditional coverage  | $p(y\mid x) \geq t_{\alpha,y}$ (class-specific) |
+| Macro-coverage  | $\dfrac{p(y\mid x)}{p(y)} \geq t_{\alpha}$ (prevalence-adjusted) |
+| Weighted macro coverage | $\omega(y)\dfrac{p(y\mid x)}{p(y)} \geq t_{\alpha}$ (weights $\omega$) |
+
+: Theoretical synthesis (coverage $\geq 1-\alpha$) {.striped .hover}
+
+In each case, $t_{\alpha}$ is the threshold that ensures $1-\alpha$ marginal coverage (or in the case of class-conditional coverage, $t_{\alpha,y}$ is chosen to ensure $1-\alpha$ class-conditional coverage for class $y$, which implies $1-\alpha$ marginal coverage after marginalizing over classes).
+
+
+## Conformal prediction in action on Pl@ntNet-300K
+
+We will now turn back on the Pl@ntNet-300K dataset presented earlier.
+
+
+### {{< iconify hugeicons:tape-measure >}} Evaluation metrics
+
+
+We introduce here some evaluation metrics of interest.
+Let $\hat{c}_y$ denote the **empirical coverage for class** $y$ (evaluated on the test set), and let $1-\alpha$ be the target coverage level. We leverage in particular the per-class coverage $\hat{c}_y$, through class-balanced averages: the **at‑risk class-coverage average**
+$\tfrac{1}{|\mathcal{Y}_{\mathrm{at\text{-}risk}}|}\sum_{y\in\mathcal{Y}_{\mathrm{at\text{-}risk}}}\hat{c}_y$ and the **not‑at‑risk average** computed analogously.
+
+We introduce here some evaluation metrics of interest.
+Let $\hat{c}_y$ denote the **empirical coverage for class** $y$ (evaluated on the test set), and let $1-\alpha$ be the target coverage level. We leverage in particular the per-class coverage $\hat{c}_y$, through class-balanced averages: the **at‑risk class-coverage average**
+$\tfrac{1}{|\mathcal{Y}_{\mathrm{at\text{-}risk}}|}\sum_{y\in\mathcal{Y}_{\mathrm{at\text{-}risk}}}\hat{c}_y$ and the **not‑at‑risk average** computed analogously.
+
+
+
+
+| **Metric**          | **Definition**                     | **Target** |
+|---------------------|------------------------------------|------------|
+| Avg. set size       | $\frac{1}{N}\sum_{i=1}^{N}|\mathcal{C}(X_i^{\mathcal{T}})|$ | Lower      |
+| MarginalCov         | $\frac{1}{N}\sum_{i=1}^{N}\mathbb{1}\{Y_i^{\mathcal{T}}\in\mathcal{C}(X_i^{\mathcal{T}})\}$ | Higher      |
+| MacroCov            | $\frac{1}{|\mathcal{Y}|}\sum_{y\in \mathcal{Y}}\hat{c}_y$ | Higher      |
+| FracBelow50%        | $\frac{1}{|\mathcal{Y}|}\sum_{y\in \mathcal{Y}} \mathbb{1}\{\hat{c}_y \le 0.5\}$ | Lower      |
+| UnderCovGap         | $\frac{1}{|\mathcal{Y}|}\sum_{y\in \mathcal{Y}} \max(1-\alpha-\hat{c}_y,0)$ | Lower      |
+| At-risk average $\hat{c}_y$ | $\tfrac{1}{|\mathcal{Y}_{\mathrm{at\text{-}risk}}|} \sum_{y \in \mathcal{Y}_{\mathrm{at\text{-}risk}}} \hat{c}_y$ | Higher |
+| Not-at-risk average $\hat{c}_y$ | $\tfrac{1}{|\mathcal{Y} \setminus \mathcal{Y}_{\mathrm{at\text{-}risk}}|} \sum_{y \in \mathcal{Y} \setminus \mathcal{Y}_{\mathrm{at\text{-}risk}}} \hat{c}_y$ | Higher |
+
+
+: Evaluation metrics ($\hat{c}_y$ : empirical coverage for class $y$) {.striped .hover}
+
+### {{< iconify carbon:result-new >}}  Results
+
+We present a summary of the result obtained on such a dataset. We consider the softmax score function described as an initial conformal score, and the base model is a ResNet-50 @he2016deep trained using the standard cross-entropy loss.
+Code for reproducing the experiments is available at [https://github.com/tiffanyding/long-tail-conformal]().
+We consider four different values of $\alpha$ in the following, but the behaviors remain similar irrespective to this choice.
+
+#### Overall analysis
+Let us start with a synthesis over all classes/species.
+
+```{=html}
+<div id="all-metrics-softmax-container" style="width: 100%; height: 450px; margin: 20px 0;">
+</div>
+
+<script type="module" src="all_metrics_softmax_viz.js"></script>
+```
+
+
+When targeting set size and class-conditional or macro-coverage, it is more effective to optimize for this trade-off directly than trading off set size and marginal coverage.
+Adjusting $\alpha$ in Standard CP is a plausible solution to target class-conditional coverage but the results show that this does not optimally navigate the set size/class-conditional coverage trade-off (Pareto front), which is our goal.
+In comparison, our methods, which explicitly optimize macro-coverage, consistently achieve better trade-offs than Standard CP.
+
+**Classwise should generally be avoided** in long-tail settings, as comparable class-conditional and macro-coverage can be achieved with significantly smaller sets using our proposed methods (above their associated sets almost reach the full set of classes).
+
+Standard with $\PAS$ is Pareto optimal, in the sense that at any marginal coverage level, there is no method that simultaneously achieves better set size and class-conditional/macro- coverage. This suggests that Standard with $\PAS$ is a good starting place for practitioners due to its simplicity and strong performance on all metrics.
+
+#### At-risk species analysis
+
+We now turn to a more detailed analysis of at-risk species. To this end, we present results for the Standard method applied to the Pl@ntNet-300K dataset, using three conformal score functions: Softmax, PAS, and WPAS with $\lambda \in \{1, 10, 10^2, 10^3\}$.
+Our findings show that increasing $\lambda$ in WPAS enhances the class-conditional coverage for at-risk classes, as measured by $\hat{c}_y$, the empirical class-conditional coverage for class $y$. We summarize these results by computing the "at-risk average $\hat{c}_y$" as $(1/|\mathcal{Y}_{\text{at-risk}}|)\sum_{y \in \mathcal{Y}_{\text{at-risk}}} \hat{c}_y$, and similarly for the "not-at-risk average $\hat{c}_y$".
+
+
+```{=html}
+<div id="plantnet-comparison-container" style="width: 100%; height: 500px; margin: 20px 0;">
+</div>
+
+<script type="module" src="plantnet_comparison_viz.js"></script>
+```
+We observe that Standard with $\WPAS$ improves the class-conditional coverage of at-risk classes relative to Standard with softmax or $\PAS$. Comparing $\WPAS$ to $\PAS$, we see that increasing $\lambda$, the amount we upweight at-risk classes, leads to larger improvements in the class-conditional coverage of at-risk classes, as expected. These increases are "paid for'' in terms of a mild increase in average set size and have no discernible effect on the class-conditional coverage of not-at-risk classes, which is appealing from a practical perspective.
+
+## Conclusion
+
+In summary, conformal prediction provides a principled and flexible framework for uncertainty quantification in plant species identification, especially in the presence of long-tailed and imbalanced data. By carefully choosing the coverage notion, we can achieve both reliable guarantees and practical interpretability, empowering both researchers and practitioners to make more informed decisions in challenging real-world settings.
+For the interested reader the associated paper not only consider new conformal score function approaches, we also propose another approach that requires modifying the conformal procedure itself.
+
+
+
+# {{< fa link title="link" >}} References
+
+
+::: {#refs}
+:::
+
+

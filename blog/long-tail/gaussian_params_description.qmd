@@ -1,0 +1,8 @@
+We generate $n=900$ samples from a mixture of $|\mathcal{Y}|=3$ Gaussian distributions with the following parameters:
+ 
+| $\pi_1 = 0.6$ | $\pi_2 = 0.1$ | $\pi_3 = 0.3$ |
+|---------------|---------------|---------------|
+| $\mu_1 = \begin{pmatrix} 0 \\ 3.5 \end{pmatrix}$ | $\mu_2 = \begin{pmatrix} -2 \\ 0 \end{pmatrix}$ | $\mu_3 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$ |
+| $\Sigma_1 = \begin{pmatrix} 1 & 0.8 \\ 0.8 & 1 \end{pmatrix}$ | $\Sigma_2 = \begin{pmatrix} 0.25 & 0 \\ 0 & 0.25 \end{pmatrix}$ | $\Sigma_3 = \begin{pmatrix} 1.85 & 1.4 \\ 1.4 & 1.85 \end{pmatrix}$ |
+
+: Parameters {.striped .hover}

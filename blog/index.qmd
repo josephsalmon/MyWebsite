@@ -11,7 +11,7 @@ listing:
   - id: posts_2025
     feed: true
     contents:
-      # - "laptop-mic-obs/index.qmd"
+      - "long-tail/index.qmd"
       - "gaussian_elimination/index.qmd"
     sort: "date desc"
     template: ../html/blog/listing.ejs
