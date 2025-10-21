@@ -14,6 +14,11 @@ image: "softmax.png"
 reference-location: document
 fig-cap-location: bottom
 draft: false
+format:
+  html:
+    include-in-header:
+      - text: |
+          <script src="../proof-toggle.js"></script>
 
 # title-block-banner: hello-world-bg.jpg
 
@@ -87,7 +92,12 @@ $$
 ::::
 
 
-::: {.proof}
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('thm-lfgn')"}
+[▶]{#proof-arrow-thm-lfgn .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-lfgn .proof-content}
 
 Using Lagrange multipliers [see for instance Ch. 5, @Boyd_Vandenberghe04] you get for $\Lambda=(\lambda_1,\dots,\lambda_K)^\top$, $\mu \in \mathbb{R}$ and $p \in \Delta_K$ the Lagrangian function:
 
@@ -128,6 +138,7 @@ $$
 $$
 Hence, $\sum_{k=1}^{K} p_k z_k - \beta \sum_{k=1}^{K} p_k \log(p_k / q_k) = \text{logsumexp}_{q,\beta}(z)$.
 :::
+::::
 
 
 
@@ -160,7 +171,13 @@ $$
 $$
 ::::
 
-::: {.proof}
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('thm-invariance')"}
+[▶]{#proof-arrow-thm-invariance .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-invariance .proof-content}
+
 We have that
 $$
 \begin{align*}
@@ -171,6 +188,7 @@ $$
 \end{align*}
 $$
 :::
+::::
 
 
 Let us consider also the effect of rescaling the input vector by a positive constant. We have the following result:
@@ -184,7 +202,13 @@ $$
 ::::
 
 
-::: {.proof}
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('thm-rescaling')"}
+[▶]{#proof-arrow-thm-rescaling .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-rescaling .proof-content}
+
 We have that
 $$
 \begin{align*}
@@ -194,6 +218,7 @@ $$
 \end{align*}
 $$
 :::
+::::
 
 ## {{< fa sliders >}} Visualization
 We consider the case $K=3$ for visualization.
