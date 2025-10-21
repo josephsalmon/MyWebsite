@@ -23,15 +23,14 @@ document.addEventListener('DOMContentLoaded', async function() {
     if (!authorsResponse.ok) {
       console.warn('Authors data not available - proceeding without author information');
     }
-    
-    const csvText = await csvResponse.text();
-    const authorsData = authorsResponse.ok ? await authorsResponse.json() : {};
+  const csvText = await csvResponse.text();
+  const authorsData = authorsResponse.ok ? await authorsResponse.json() : {};
 
     // Helper function to extract image hash from image path
     function getImageHash(imagePath) {
       if (!imagePath) return null;
       // Extract filename from path like "tiny_plantnet300k/203/8af5c1790935598cd896b692523bcfafdb1f15f2.jpg"
-      const filename = imagePath.split('/').pop();
+    const filename = imagePath.split('/').pop();
       // Remove the .jpg extension to get the hash
       return filename ? filename.replace('.jpg', '') : null;
     }
@@ -42,13 +41,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     function splitSpeciesName(species) {
       if (!species || typeof species !== 'string') return { main: '', author: '' };
       // Match trailing parentheses like "Genus species (L.)"
-      const parenMatch = species.match(/^(.*?)(\s*\(.*\))$/);
-      if (parenMatch) return { main: parenMatch[1].trim(), author: parenMatch[2].trim() };
-      const parts = species.trim().split(/\s+/);
+    const parenMatch = species.match(/^(.*?)(\s*\(.*\))$/);
+    if (parenMatch) return { main: parenMatch[1].trim(), author: parenMatch[2].trim() };
+    const parts = species.trim().split(/\s+/);
       if (parts.length <= 2) return { main: species.trim(), author: '' };
-      return { main: parts.slice(0, 2).join(' '), author: ' ' + parts.slice(2).join(' ') };
+  return { main: parts.slice(0, 2).join(' '), author: ' ' + parts.slice(2).join(' ') };
     }
-
     // Minimal HTML escaper for label content
     function escapeHtml(str) {
       if (str == null) return '';
@@ -152,7 +150,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Create organized legend container
     const filterContainer = document.getElementById('filter-container');
 
-    // Create a styled legend box
+  // Create a styled legend box
     const legendBox = document.createElement('div');
     legendBox.style.border = '1px solid #ddd';
     legendBox.style.borderRadius = '5px';
@@ -268,9 +266,10 @@ document.addEventListener('DOMContentLoaded', async function() {
       label.style.alignItems = 'center';
       label.style.cursor = 'pointer';
 
-      // Color box
+      // Color box (marked with class for theme updates)
       if (statusColors[status]) {
         const colorBox = document.createElement('span');
+        colorBox.className = 'status-color-box';
         colorBox.style.display = 'inline-block';
         colorBox.style.width = '14px';
         colorBox.style.height = '14px';
@@ -341,6 +340,104 @@ document.addEventListener('DOMContentLoaded', async function() {
     legendGrid.appendChild(rightColumn);
 
     filterContainer.appendChild(legendBox);
+
+    // --- Dark mode support -------------------------------------------------
+    // Determine if dark mode is active. Check explicit theme attributes and
+    // fall back to prefers-color-scheme media query.
+    function isDarkMode() {
+      try {
+        // Quarto may set a data-theme or class on <html> or <body>
+        const html = document.documentElement;
+        const body = document.body;
+        const themeAttr = html.getAttribute('data-theme') || body.getAttribute('data-theme');
+        if (themeAttr && themeAttr.toLowerCase().includes('dark')) return true;
+        if (html.classList.contains('dark') || body.classList.contains('dark')) return true;
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) return true;
+      } catch (e) {
+        // ignore
+      }
+      return false;
+    }
+
+    // Apply theme colors to the legend box and its child elements
+    function applyThemeToLegend(dark) {
+      // Always use a light background and dark text for the legend
+      legendBox.style.backgroundColor = '#fafafa';
+      legendBox.style.border = '1px solid #ddd';
+      legendBox.style.color = '#222';
+
+      // Headers
+      const headers = legendBox.querySelectorAll('[role=heading]');
+      headers.forEach(h => {
+        h.style.color = '#222';
+      });
+
+      // Tables (if present)
+      const tables = legendBox.querySelectorAll('table');
+      tables.forEach(table => {
+        table.style.backgroundColor = '';
+        table.style.color = '#222';
+      });
+
+      // Color box borders
+      const colorBoxes = legendBox.querySelectorAll('.status-color-box');
+      colorBoxes.forEach(cb => {
+        cb.style.border = '1px solid #ccc';
+      });
+
+      // Labels
+      const labels = legendBox.querySelectorAll('label');
+      labels.forEach(l => {
+        l.style.color = '#222';
+      });
+
+      // Y-scale controls: always light background, dark text
+      const scaleToggle = document.querySelector('.scale-toggle');
+      if (scaleToggle) {
+        scaleToggle.style.backgroundColor = '#fafafa';
+        scaleToggle.style.color = '#222';
+        const scaleBtns = scaleToggle.querySelectorAll('.scale-btn');
+        scaleBtns.forEach(btn => {
+          btn.style.backgroundColor = '#fafafa';
+          btn.style.color = '#222';
+          btn.style.border = '1px solid #bbb';
+          btn.classList.remove('active');
+        });
+        // Activate the Linear button by default
+        const linearBtn = scaleToggle.querySelector('#linear-scale-btn');
+        if (linearBtn) {
+          linearBtn.classList.add('active');
+          linearBtn.style.backgroundColor = '#4CAF50';
+          linearBtn.style.color = '#fff';
+        }
+      }
+    }
+
+    // Track current theme and update when system/theme changes
+    let currentDark = isDarkMode();
+    applyThemeToLegend(currentDark);
+    if (window.matchMedia) {
+      try {
+        const mq = window.matchMedia('(prefers-color-scheme: dark)');
+        // Use addEventListener when available
+        if (mq.addEventListener) {
+          mq.addEventListener('change', e => {
+            currentDark = isDarkMode();
+            applyThemeToLegend(currentDark);
+            // Re-render plot with new theme
+            updatePlot();
+          });
+        } else if (mq.addListener) {
+          mq.addListener(e => {
+            currentDark = isDarkMode();
+            applyThemeToLegend(currentDark);
+            updatePlot();
+          });
+        }
+      } catch (e) {
+        // ignore
+      }
+    }
 
   // (Highlight button removed per user request)
 
@@ -460,7 +557,11 @@ document.addEventListener('DOMContentLoaded', async function() {
             marker: {
               size: 8,
               color: statusColors[status] || '#1f77b4',
-              opacity: 0.7
+                opacity: 0.85,
+                line: {
+                  width: currentDark ? 0.5 : 0.4,
+                  color: currentDark ? 'rgba(0,0,0,0.25)' : 'rgba(255,255,255,0.05)'
+                }
             },
             hoverinfo: 'text',
             customdata: items.map(d => {
@@ -494,7 +595,11 @@ document.addEventListener('DOMContentLoaded', async function() {
             font: fontConfig.axis
           },
           tickfont: fontConfig.tick,
-          zeroline: true
+          zeroline: true,
+          // Keep grid and axis text dark because the plot background stays white
+          gridcolor: 'rgba(0,0,0,0.06)',
+          zerolinecolor: 'rgba(0,0,0,0.06)',
+          color: '#222'
         },
         yaxis: {
           title: {
@@ -503,7 +608,10 @@ document.addEventListener('DOMContentLoaded', async function() {
           },
           tickfont: fontConfig.tick,
           type: currentScale, // Use the current scale type
-          zeroline: true
+          zeroline: true,
+          gridcolor: 'rgba(0,0,0,0.06)',
+          zerolinecolor: 'rgba(0,0,0,0.06)',
+          color: '#222'
         },
         hovermode: 'closest',
         legend: {
@@ -518,8 +626,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         autosize: true,
         showlegend: false, // We use our custom legend with checkboxes
         font: {
-          family: fontConfig.family
-        }
+          family: fontConfig.family,
+          color: '#222'
+        },
+        // Keep the plot background white in both light and dark modes
+        paper_bgcolor: 'white',
+        plot_bgcolor: 'white'
       };
 
       const config = {

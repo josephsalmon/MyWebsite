@@ -14,6 +14,7 @@ project:
     - "code/**"
     - "data/**"
     - "papers/**"
+    - "blog/*.js"
     - "blog/long-tail/*.js"
     - "blog/long-tail/*.js"
     - "blog/long-tail/*.csv"
@@ -125,7 +126,7 @@ format:
     theme:
       # - html/styles.scss
       light: [html/styles.scss]
-      dark: [superhero, html/styles.scss, html/styles_dark.scss]
+      dark: [superhero,html/styles.scss,html/styles_dark.scss]
     toc: false
     anchor-sections: true
     fig-cap-location: margin

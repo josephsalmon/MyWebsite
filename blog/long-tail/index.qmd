@@ -17,92 +17,77 @@ format:
               --quarto-font-family: inherit;
             }
 
-            .proof-container {
-              margin: 1em 0;
-              border: 1px solid #ddd;
-              border-radius: 5px;
-              overflow: hidden;
-            }
 
-            .proof-header {
-              background-color: #edf1f5ff;
-              padding: 0.25em 0.25em;
-              cursor: pointer;
-              user-select: none;
-              border-bottom: 1px solid #ddd;
-              display: flex;
+            /* Theme-aware styles for the Y-scale control used in the PlantNet viz
+               Buttons and container use CSS variables so they adapt to light/dark
+               modes. Detection is via prefers-color-scheme and Quarto's
+               data-theme="dark" attribute. */
+            .scale-toggle {
+              display: inline-flex;
               align-items: center;
+              gap: 0.5rem;
+              background-color: var(--control-bg, #f0f0f0);
+              color: var(--control-text, #222);
+              border-radius: 4px;
+              padding: 4px 8px;
+              box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+              border: 1px solid var(--control-border, #ddd);
+              font-size: 14px;
             }
 
-            .proof-header:hover {
-              background-color: #e9ecef;
+            .scale-toggle .scale-label {
+              margin-right: 8px;
+              font-size: 14px;
+              color: inherit;
             }
 
-            .proof-header p {
-              margin: 0;
-              padding: 0;
+            .scale-btn {
+              background: var(--btn-bg, #f1f1f1);
+              color: var(--btn-text, #333);
+              border: none;
+              padding: 4px 10px;
+              cursor: pointer;
+              border-radius: 0;
+              font-size: 14px;
             }
 
-            .proof-title {
-              font-weight: bold;
-              margin-left: 0.2em;
+            .scale-btn:focus {
+              outline: 2px solid rgba(0,0,0,0.12);
+              outline-offset: 1px;
             }
 
-            .proof-arrow {
-              font-size: 0.8em;
-              transition: transform 0.3s ease;
-              display: inline-block;
+            .scale-btn.active {
+              background: var(--btn-active-bg, #4CAF50);
+              color: var(--btn-active-text, #fff);
             }
 
-            .proof-arrow.expanded {
-              transform: rotate(90deg);
+            /* Dark mode overrides: prefer actual page theme via data-theme or system preference */
+            @media (prefers-color-scheme: dark) {
+              :root {
+                --control-bg: #111111;
+                --control-text: #f3f3f3;
+                --control-border: #333;
+                --btn-bg: #222222;
+                --btn-text: #ddd;
+                --btn-active-bg: #2e8b57; /* slightly softer green on dark */
+                --btn-active-text: #fff;
+              }
             }
 
-            .proof-content {
-              padding: 1em 1em 0em 1em;
-              display: none;
-              background-color: #fdfdfd;
+            /* Quarto often adds data-theme="dark" on the <html> element for dark theme */
+            html[data-theme="dark"] :root,
+            body[data-theme="dark"] :root {
+              --control-bg: #0b0b0b;
+              --control-text: #efefef;
+              --control-border: #2b2b2b;
+              --btn-bg: #1a1a1a;
+              --btn-text: #e6e6e6;
+              --btn-active-bg: #2e8b57;
+              --btn-active-text: #fff;
             }
-
-            .proof-content.expanded {
-              display: block;
-            }
-
-            table caption, .table-caption, .striped .hover caption {
-              color: #222 !important;
-              font-weight: bold !important;
-              font-size: 1em !important;
-            }
-            .proof-content::after {
-            content: "\25A1";
-            display: block;
-            font-size: x-large;
-            text-align-last: right;
-            margin-top: -1em;
-            margin-bottom: 1em;
-          }
           </style>
-          <script>
-            document.addEventListener('DOMContentLoaded', function() {
-              // Toggle proof visibility
-              window.toggleProof = function(id) {
-                const content = document.getElementById('proof-content-' + id);
-                const arrow = document.getElementById('proof-arrow-' + id);
+          <script src="../proof-toggle.js"></script>
 
-                if (content && arrow) {
-                  const isExpanded = content.classList.contains('expanded');
-
-                  if (isExpanded) {
-                    content.classList.remove('expanded');
-                    arrow.classList.remove('expanded');
-                  } else {
-                    content.classList.add('expanded');
-                    arrow.classList.add('expanded');
-                  }
-                }
-              };
-            });
-          </script>
 reference-location: document
 fig-cap-location: bottom
 bibliography: references.bib
@@ -260,28 +245,26 @@ The interactive visualization below lets you explore the species distribution in
 
   <!-- Main content area with side-by-side layout -->
   <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 20px;">
-    <!-- Plot container on the left (wider and shorter) -->
-    <div id="plotly-container" style="flex: 4; height: 400px;"></div>
+  <!-- Plot container on the left (wider and shorter) -->
+  <div id="plotly-container" style="flex: 4; height: 400px; width: 48vw; max-width: 48vw; min-width: 200px;"></div>
 
     <!-- Right sidebar with controls and image preview -->
     <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column;">
       <!-- Controls for plot options (moved to align with plot head) -->
       <div style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
-        <div class="scale-toggle" style="display: flex; align-items: center; background-color: #f0f0f0; border-radius: 4px; padding: 4px 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
-          <span style="margin-right: 8px; font-size: 14px;">Y-Scale:</span>
+        <div class="scale-toggle">
+          <span class="scale-label">Y-Scale:</span>
           <button type="button" id="log-scale-btn" class="scale-btn"
-            onclick="window.setScale('log'); return false;"
-            style="background-color: #f1f1f1; color: #333; border: none; border-radius: 3px 0 0 3px; padding: 4px 10px; cursor: pointer; font-size: 14px;">Log</button>
+            onclick="window.setScale('log'); return false;">Log</button>
           <button type="button" id="linear-scale-btn" class="scale-btn active"
-            onclick="window.setScale('linear'); return false;"
-            style="background-color: #4CAF50; color: white; border: none; border-radius: 0 3px 3px 0; padding: 4px 10px; cursor: pointer; font-size: 14px;">Linear</button>
+            onclick="window.setScale('linear'); return false;">Linear</button>
         </div>
       </div>
 
       <!-- Image preview container -->
       <div id="image-preview-container" style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; flex: 1;">
         <div style="margin-bottom: 10px;">Species Preview</div>
-        <img id="preview-image" src="" style="max-width: 100%; height: auto; max-height: calc(100vh - 300px); min-height: 200px; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: contain;" />
+        <img id="preview-image" src="" style="max-width: 100%; height: auto; max-height: calc(100vh - 300px); min-height: 100px; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: contain;" />
         <div id="image-label" style="font-weight: bold; font-size: 13px; min-height: 3.5em; margin-top: 10px; text-align: center; width: 100%; line-height: 1.2;"></div>
       </div>
     </div
@@ -316,7 +299,7 @@ Let $\mu$ be a measure on $\cX \times \cY$ and let $f,g: \cX\times \cY \to \R_{\
 $$
 \begin{align*}
 &\min_{\cC:\cX \to 2^{\cY}} \int_{\cX\times \cY}\mathbb{1}\{y \in \cC(x)\} g(x,y)d\mu(x,y) \\
-&\quad \text{subject to}  \int_{\cX\times \cY}\mathbb{1}\{y\in\cC(x)\} f(x,y)d\mu(x,y)\geq \nu.
+&\, \text{s.t.}  \int_{\cX\times \cY}\mathbb{1}\{y\in\cC(x)\} f(x,y)d\mu(x,y)\geq \nu.
 \end{align*}
 $${#eq-neyman}
 
@@ -594,8 +577,12 @@ Together, these extremes illustrate how $\alpha$ directly controls the **size–
 A concern with the standard conformal prediction approach is that all classes are treated similarly. If certain rare classes behave differently from the majority, they may never appear in the prediction set. For instance, the classifier may consistently assign low probabilities to rare classes, as these are not sufficiently represented during training and then, they never get above the threshold.
 
 For this reason, it makes sense to control the conditional coverage for all classes $y \in \cY$, while targeting sets of minimum size. Then the optimization formulation now becomes:
+
 $$
-\min_{\mathcal{C} : \mathcal{X} \mapsto 2^\mathcal{Y}} \mathbb{E}[|\mathcal{C}(X)|] \, \text{ s.t. }  \P\paren{ y \in \mathcal{C}(X) \mid Y=y } \geq 1-\alpha, \forall y \in \mathcal{Y}.
+\begin{align}
+& \min_{\mathcal{C} : \mathcal{X} \mapsto 2^\mathcal{Y}} \mathbb{E}[|\mathcal{C}(X)|] \, . \\
+\text{ s.t. } & \P\paren{ y \in \mathcal{C}(X) \mid Y=y } \geq 1-\alpha, \forall y \in \mathcal{Y}
+\end{align}
 $$ {#eq-min_st_condcoverage}
 
 @sadinle2019least have shown that the optimal solution for such a set:
@@ -674,7 +661,10 @@ Our objective is to minimize the expected size of prediction sets while ensuring
 
 The macro-coverage formulation reads as follows: 
 $$
-\min_{\mathcal{C} : \mathcal{X} \mapsto 2^\mathcal{Y}} \mathbb{E}[|\mathcal{C}(X)|] \, \text{ s.t. } \text{MacroCov}(\cC) \geq 1-\alpha,
+\begin{align}
+&\min_{\mathcal{C} : \mathcal{X} \mapsto 2^\mathcal{Y}} \mathbb{E}[|\mathcal{C}(X)|]  \\
+\text{ s.t. } & \text{MacroCov}(\cC) \geq 1-\alpha,
+\end{align}
 $$ {#eq-min_st_macrocoverage}
 where we defined the macro-coverage as
 $$

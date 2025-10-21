@@ -277,7 +277,13 @@ $$
 
 :::
 
-::: {.proof}
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('lem-polar')"}
+[▶]{#proof-arrow-lem-polar .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-lem-polar .proof-content}
+
 Let $x \in \mathcal{K}$ and $v = \sum_{i=1}^{n-1} \alpha_i a_i$ with $\alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0$.
 Then, note that $A x \leq 0$ is equivalent to $\langle a_i, x \rangle \leq 0$ for all $i \in \llbracket 1, n-1 \rrbracket$. Hence, we have
 $$
@@ -298,6 +304,8 @@ Now choosing $x=\mathbf{1}_n \in \mathcal{K}$ yields $\langle v, \mathbf{1}_n \r
 Now, for all $i \in \llbracket 1, n-1 \rrbracket$, choosing $x = \sum_{k=i}^n e_i$ for $i \in \llbracket 2,n\rrbracket$ yields $\langle v, x \rangle = -\alpha_{i}\leq 0$. Hence, for all $ i\in \llbracket 1, n-1 \rrbracket$, we have $\alpha_i \geq 0$, so $\mathcal{K}^\circ \subset \left\{ \sum_{i=1}^{n-1} \alpha_i a_i, \text{ with } \alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0 \right\}$ and the lemma is proved.
 
 :::
+::::
+
 
 ## Conic duality / Fenchel transform
 
@@ -340,7 +348,12 @@ $$
 
 :::
 
-::: {.proof}
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('thm-dual')"}
+[▶]{#proof-arrow-thm-dual .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-dual .proof-content}
 
 With such ingredient we can write the isotonic regression problem as:
 $$
@@ -437,6 +450,8 @@ $$
 which is the targeted formulation.
 
 :::
+::::
+
 
 
 
@@ -460,9 +475,16 @@ $$
 
 :::
 
-::: {.proof}
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('thm-kkt')"}
+[▶]{#proof-arrow-thm-kkt .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-kkt .proof-content}
 See [@Boyd_Vandenberghe04, Sec. 5.5.3 ]
 :::
+::::
+
 
 In this convex setting (a primal strictly feasible point exists, say $x=(1,\dots,n)^\top$, so the Slater condition holds), the KKT conditions are necessary and sufficient for optimality.
 
@@ -527,7 +549,13 @@ $$
 
 :::
 
-::: {.proof}
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('lem-lambda')"}
+[▶]{#proof-arrow-lem-lambda .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-lem-lambda .proof-content}
+
 The proof is a simple induction on the element of block $B$.
 For $i=\underline{b}$ then @eq-stationarity leads to $\alpha^{\star}_{\underline{b}} = w_{\underline{b}} (\bar{y}_{\underline{b}} - x^{\star}_{\underline{b}}) = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left(\bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B} \right)$.
 Now by induction assume the result for $i\in B$, \emph{e.g.,} $\alpha^{\star}_{i}  = \Big(\sum_{j \in B \cap \llbracket 1, i \rrbracket} w_j \Big)\left(\bar{y}_{B \cap \llbracket 1, i \rrbracket} - \bar{y}_{B}\right)$.
@@ -545,6 +573,7 @@ $$
 hence the result.
 
 :::
+::::
 
 
 # Algorithm
@@ -701,7 +730,14 @@ The PAVA algorithm converges in a finite number of iterations and output the pri
 
 :::
 
-::: {.proof}
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('thm-convergence')"}
+[▶]{#proof-arrow-thm-convergence .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-convergence .proof-content}
+
 To show the convergence we will create a dual variable $\alpha$, show that it is dual feasible, and that at the end of the algorithm it satisfies KKT along with the output of the PAVA algorithm.
 
 For that let us first prove the following result:
@@ -756,6 +792,8 @@ Hence, when the algorithm stops the primal point create (after the block averagi
 
 Leveraging Fact 1. to 4. ensures that the KKT conditions are satisfied with the primal and dual points created. Hence, at the end of the algorithm, and the optimal solution is found.
 
+:::
+::::
 
 
 ## Duality Gap
@@ -781,8 +819,6 @@ def replace_after_first_non_increasing(x, w=w):
 ```
 
 As can be seen in the preliminary animation, the primal and dual objectives converge to the same value, which is the optimal value of the primal problem.
-
-:::
 
 
 

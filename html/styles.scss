@@ -455,6 +455,75 @@ div.theorem {
     margin-bottom: 1em;
   }
 
+
+
+    .proof-container {
+        margin: 1em 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .proof-header {
+        background-color: #edf1f5ff;
+        padding: 0.25em 0.25em;
+        cursor: pointer;
+        user-select: none;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+    }
+
+    .proof-header:hover {
+        background-color: #e9ecef;
+    }
+
+    .proof-header p {
+        margin: 0;
+        padding: 0;
+    }
+
+    .proof-title {
+        font-weight: bold;
+        margin-left: 0.2em;
+    }
+
+    .proof-arrow {
+        font-size: 0.8em;
+        transition: transform 0.3s ease;
+        display: inline-block;
+    }
+
+    .proof-arrow.expanded {
+        transform: rotate(90deg);
+    }
+
+    .proof-content {
+        padding: 1em 1em 0em 1em;
+        display: none;
+        background-color: #fdfdfd;
+    }
+
+    .proof-content.expanded {
+        display: block;
+    }
+
+    table caption, .table-caption, .striped .hover caption {
+        font-weight: bold !important;
+        font-size: 1em !important;
+    }
+    .proof-content::after {
+    content: "\25A1";
+    display: block;
+    font-size: x-large;
+    text-align-last: right;
+    margin-top: -1em;
+    margin-bottom: 1em;
+    }
+
+
+
+
   p {
   text-align: justify
     }
