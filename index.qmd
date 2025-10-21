@@ -12,10 +12,8 @@ format:
     from: markdown+emoji
     html-math-method: katex
     theme:
-      light: [html/landing_page_styles.scss]
-      dark: [superhero,html/,html/styles_dark.scss]
-
-
+      light: [html/styles_dark.scss,html/landing_page_styles.scss]
+      dark: [superhero,html/styles_dark.scss]
 listing:
   - id: blog-listing
     sort: 'date desc'

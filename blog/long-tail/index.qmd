@@ -17,7 +17,6 @@ format:
               --quarto-font-family: inherit;
             }
 
-
             /* Theme-aware styles for the Y-scale control used in the PlantNet viz
                Buttons and container use CSS variables so they adapt to light/dark
                modes. Detection is via prefers-color-scheme and Quarto's
@@ -86,7 +85,7 @@ format:
               --btn-active-text: #fff;
             }
           </style>
-          <script src="../proof-toggle.js"></script>
+          <script src="https://josephsalmon.eu/blog/proof-toggle.js"></script>
 
 reference-location: document
 fig-cap-location: bottom
