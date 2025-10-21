@@ -167,12 +167,6 @@ node generate_samples.js
 :::
 :::
 
-```{css}
-#| echo: false
-p {
-  text-align: justify
-}
-```
 
 ## Introduction and motivation
 
@@ -239,12 +233,12 @@ The dataset exhibits a **highly imbalanced class distribution**: a small number 
 Each species in the dataset has an **[International Union for Conservation of Nature (IUCN) conservation status](https://www.iucnredlist.org/)**, which indicates its risk of extinction. We categorize these statuses into two groups for later analysis:
 
 
-| **At Risk**                | **Not at Risk**                      |
-|-----------------------------|--------------------------------------|
-| Critically Endangered (CR) | Least Concern (LC)                   |
-| Endangered (EN)            | Data Deficient (DD)                  |
-| Vulnerable (VU)            | Not assessed (or missing data)                         |
-| Near Threatened (NT)       |  |
+| **At Risk**                | **Not at Risk**                      | **Unknown/unclear** |
+|----------------|------------|--------------------|
+| Critically Endangered (CR) | Least Concern (LC)                   | Not assessed (or missing data)             |
+| Endangered (EN)            |                   | Data Deficient (DD) |
+| Vulnerable (VU)            |                                    |   |
+| Near Threatened (NT)       |                                    |             |
 
 
 :  IUCN conservation status  {.striped .hover}

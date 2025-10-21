@@ -172,10 +172,10 @@ document.addEventListener('DOMContentLoaded', async function() {
     applyDocumentFont(legendTitle, '16px');
     legendBox.appendChild(legendTitle);
 
-  // Create two-column layout for legend: left = "At risk", right = "Not at risk"
+  // Create three-column layout for legend to mimic the page table: At Risk | Not at Risk | Unknown/unclear
     const legendGrid = document.createElement('div');
     legendGrid.style.display = 'grid';
-    legendGrid.style.gridTemplateColumns = '1fr 1fr';
+    legendGrid.style.gridTemplateColumns = '1fr 1fr 1fr';
     legendGrid.style.gap = '12px';
     legendBox.appendChild(legendGrid);
 
@@ -205,31 +205,44 @@ document.addEventListener('DOMContentLoaded', async function() {
     const atRiskSet = new Set(['CR', 'EN', 'VU', 'NT']);
     const statusCheckboxes = [];
 
-    const leftColumn = document.createElement('div');
-    const rightColumn = document.createElement('div');
+  const leftColumn = document.createElement('div');
+  const middleColumn = document.createElement('div');
+  const rightColumn = document.createElement('div');
 
-    // Column headers with accessibility
-    const leftHeader = document.createElement('div');
-    leftHeader.textContent = 'At risk';
-    leftHeader.style.fontWeight = '600';
-    leftHeader.style.marginBottom = '6px';
-    leftHeader.setAttribute('role', 'heading');
-    leftHeader.setAttribute('aria-level', '2');
-    applyDocumentFont(leftHeader, '13px');
-    leftColumn.appendChild(leftHeader);
+  // Column headers with accessibility
+  const leftHeader = document.createElement('div');
+  leftHeader.textContent = 'At risk';
+  leftHeader.style.fontWeight = '600';
+  leftHeader.style.marginBottom = '6px';
+  leftHeader.setAttribute('role', 'heading');
+  leftHeader.setAttribute('aria-level', '2');
+  applyDocumentFont(leftHeader, '13px');
+  leftColumn.appendChild(leftHeader);
 
-    const rightHeader = document.createElement('div');
-    rightHeader.textContent = 'Not at risk';
-    rightHeader.style.fontWeight = '600';
-    rightHeader.style.marginBottom = '6px';
-    rightHeader.setAttribute('role', 'heading');
-    rightHeader.setAttribute('aria-level', '2');
-    applyDocumentFont(rightHeader, '13px');
-    rightColumn.appendChild(rightHeader);
+  const middleHeader = document.createElement('div');
+  middleHeader.textContent = 'Not at Risk';
+  middleHeader.style.fontWeight = '600';
+  middleHeader.style.marginBottom = '6px';
+  middleHeader.setAttribute('role', 'heading');
+  middleHeader.setAttribute('aria-level', '2');
+  applyDocumentFont(middleHeader, '13px');
+  middleColumn.appendChild(middleHeader);
 
-    // Desired ordering within columns
-    const atRiskOrder = ['CR', 'EN', 'VU', 'NT']; // most to least endangered
-    const notAtRiskOrder = ['LC', 'DD', 'Not Evaluated', 'Not assessed', 'RE', 'EW', 'EX'];
+  const rightHeader = document.createElement('div');
+  rightHeader.textContent = 'Unknown/unclear';
+  rightHeader.style.fontWeight = '600';
+  rightHeader.style.marginBottom = '6px';
+  rightHeader.setAttribute('role', 'heading');
+  rightHeader.setAttribute('aria-level', '2');
+  applyDocumentFont(rightHeader, '13px');
+  rightColumn.appendChild(rightHeader);
+
+  // Desired ordering within columns
+  const atRiskOrder = ['CR', 'EN', 'VU', 'NT']; // most to least endangered
+  // Put primary not-at-risk statuses here; additional/rare statuses will be appended later
+  const notAtRiskOrder = ['LC', 'Not Evaluated', 'RE', 'EW', 'EX'];
+  // Unknown/unclear column per the page table
+  const unknownOrder = ['Not assessed', 'DD'];
 
     // Helper to create a checkbox row
     function createStatusRow(status) {
@@ -303,21 +316,28 @@ document.addEventListener('DOMContentLoaded', async function() {
       if (row) leftColumn.appendChild(row);
     });
 
-    // Fill right (not at risk) column in desired order
+    // Fill middle (not at risk) column in desired order
     notAtRiskOrder.forEach(s => {
+      const row = createStatusRow(s);
+      if (row) middleColumn.appendChild(row);
+    });
+
+    // Fill right (unknown/unclear) column in desired order
+    unknownOrder.forEach(s => {
       const row = createStatusRow(s);
       if (row) rightColumn.appendChild(row);
     });
 
-    // Append any remaining statuses that weren't included above
+    // Append any remaining statuses that weren't included above to the middle (not at risk) column
     sortedStatuses.forEach(s => {
-      if (!atRiskOrder.includes(s) && !notAtRiskOrder.includes(s)) {
+      if (!atRiskOrder.includes(s) && !notAtRiskOrder.includes(s) && !unknownOrder.includes(s)) {
         const row = createStatusRow(s);
-        if (row) rightColumn.appendChild(row);
+        if (row) middleColumn.appendChild(row);
       }
     });
 
     legendGrid.appendChild(leftColumn);
+    legendGrid.appendChild(middleColumn);
     legendGrid.appendChild(rightColumn);
 
     filterContainer.appendChild(legendBox);
