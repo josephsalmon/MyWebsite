@@ -631,7 +631,7 @@ This result also follows from the Neyman-Pearson lemma applied to each class sep
 In practice, the threshold of each class $y$ is now computed as the quantile of the scores on class $y$.
 This is known under the name Mondrian conformal prediction [@vovk2005algorithmic].
 Formally, for any class $y\in \mathcal{Y}$, we set $t_{\alpha,y}$ as the $(n_y+1)(1-\alpha)$ score of the calibration points over class $y$, where $n_y$ is the number of these points.
-It corresponds to apply @algo-conformal with the threshold function $\hat{\mathbf{q}}$ equal to the vector of these conditional quantiles.
+It corresponds to applying @algo-conformal with the threshold function $\hat{\mathbf{q}}$ equal to the vector of these conditional quantiles.
 
 
 For classes whose number of calibration points $n_y$ is not large enough (i.e., $n_y< \alpha^{-1}$), this threshold is fixed as the maximum possible value of the score function, or formally to $+\infty$.  It implies that **these rare classes will always be included** in the prediction sets. It can be observed below in the plots for $\alpha$ small enough.
