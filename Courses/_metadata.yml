@@ -35,5 +35,5 @@ format:
 #     url: https://josephsalmon.eu/
 #     orcid: 0000-0002-3181-0634
 
-bibliography: /home/jsalmon/Documents/OrganizationFiles/tex/biblio/references_all.bib
+# bibliography: /home/jsalmon/Documents/OrganizationFiles/tex/biblio/references_all.bib
 # bibliography: https://github.com/josephsalmon/OrganizationFiles/blob/master/tex/biblio/references_all.bib

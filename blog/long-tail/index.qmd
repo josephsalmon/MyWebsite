@@ -407,13 +407,15 @@ Thus we must have $\mu_f(D) = 0$. Since $t_\nu g=f$ on $D$, we also get that $\m
 :::
 ::::
 
-
 ## Marginal coverage
 
 In classification setting, suppose our aim is to control the size of our prediction sets while ensuring marginal coverage. This corresponds to the following optimization problem:
 
 $$
-\min_{\mathcal{C} : \mathcal{X} \mapsto 2^\mathcal{Y}} \mathbb{E}[|\mathcal{C}(X)|] \, \text{ s.t. }  \P\paren{ Y \in \mathcal{C}(X)} \geq 1-\alpha,
+\begin{align}
+&\min_{\mathcal{C} : \mathcal{X} \mapsto 2^\mathcal{Y}} \mathbb{E}[|\mathcal{C}(X)|] \\
+ \text{ s.t. } & \P\paren{ Y \in \mathcal{C}(X)} \geq 1-\alpha,
+\end{align}
 $$ {#eq-min_st_margcoverage}
 The following result due to @sadinle2019least describes the optimal set.
 
