@@ -166,7 +166,7 @@ Traditionally, machine learning models give you a single best guess: but what if
 
 
 _What does it mean for a prediction set to be optimal?_ Given that we have decided to generate prediction sets, how do we generate an "optimal" prediction set? A reasonable definition, and the one we will use, is that a **prediction-set-generating procedure is optimal if it generates the smallest sets that satisfy a given coverage constraint** (e.g., the probability that the true label is contained within the prediction is at least 90%).
-What kind of coverage we care about depends on the setting, and the coverage notion you choose can make a big difference in the resulting sets. @sadinle2019least derive the theoretically optimal sets with a minimal constraint on the marginal coverage or class-conditional coverage and show how to approximate the optimal sets using conformal prediction while maintaining a coverage guarantee. We do the same for two new notions of coverage — macro-coverage and weighted macro-coverage — and show that these lead to more useful prediction sets in long-tailed classification settings.
+What kind of coverage we care about depends on the setting, and the coverage notion you choose can make a big difference in the resulting sets. @sadinle2019least have derived the theoretically optimal sets with a minimal constraint on the marginal coverage or class-conditional coverage and show how to approximate the optimal sets using conformal prediction while maintaining a coverage guarantee. We do the same for two new notions of coverage, macro-coverage and weighted macro-coverage, and show that these lead to more useful prediction sets in long-tailed classification settings.
 
 Here is an overview of the four coverage notions we cover below:
 
@@ -210,7 +210,7 @@ Here are a few sample images from the Pl@ntNet-300K dataset (cropped to a consis
 
 </div>
 
-The dataset exhibits a **highly imbalanced class distribution**: a small number of species are well-represented with numerous images, while the majority have only a few examples. This characteristic makes it an ideal benchmark for studying **long-tailed classification** problems, as illustrated in the interactive figure below.
+The dataset exhibits a **highly imbalanced class distribution**: a few species are well-represented with numerous images, while the majority have only a few examples. This characteristic makes it an ideal benchmark for studying **long-tailed classification** problems, as illustrated in the interactive figure below.
 
 
 ### {{< iconify fluent:globe-shield-20-regular >}} **Conservation status in Pl@ntNet-300K**
@@ -626,7 +626,7 @@ This result also follows from the Neyman-Pearson lemma applied to each class sep
 ::::
 
 
-<u>Interpretation</u>: this means that the optimal way to get conditional coverage is to select the labels whose probability is larger than a particular threshold $t_{\alpha,y}$, where now the threshold $t_{\alpha,y}$ can be adapted in a class-wise fashion, and is fixed as the $\alpha$-quantile of the conditional distribution $p(Y|X)$ knowing $Y=y$, *i.e,*  $\P(p(Y|X) \geq t_{\alpha,y} |Y = y) = 1 − \alpha$.
+<u>Interpretation</u>: this means that the optimal way to get conditional coverage is to select the labels whose probability is larger than a particular threshold $t_{\alpha,y}$, where now the threshold $t_{\alpha,y}$ can be adapted in a class-wise fashion, and is fixed as the $\alpha$-quantile of the conditional distribution $p(Y|X)$ knowing $Y=y$, *i.e,* $\P(p(Y|X) \geq t_{\alpha,y} |Y = y) = 1 − \alpha$.
 
 In practice, the threshold of each class $y$ is now computed as the quantile of the scores on class $y$.
 This is known under the name Mondrian conformal prediction [@vovk2005algorithmic].
@@ -713,11 +713,11 @@ $$
 and $\PAS$ stands for **prevalence-adjusted softmax**.
 
 
-In summary, the method we propose is simply running @algo-conformal with the $\PAS$ score function (which we will refer to as Standard with $\PAS$) and $\hat{\qq}=(\hat{q},\dots,\hat{q})$ as the vector of quantile of the scores, where $\hat{q} = \lceil (n+1)(1-\alpha) \rceil$-th largest value in $\{s_{\PAS}(X_{1},Y_{1}), \dots, s_{\PAS}(X_{n},Y_{n})\}$. This corresponds to running Standard CP with the new $s_{\PAS}$ score. Note that for **fair comparisons** with Standard CP, we set the threshold in Standard with PAS to achieve marginal coverage $1-\alpha$, i.e., we fix $t$ so $\P(Y \in \widehat{\cC}_{\PAS}(X))
+In summary, the method we propose is simply running @algo-conformal with the $\PAS$ score function (which we will refer to as Standard with $\PAS$) and $\hat{\qq}=(\hat{q},\dots,\hat{q})$ as the vector of quantile of the scores, where  $\hat{q}$ is the $\lceil (n+1)(1-\alpha) \rceil$-th largest value in $\{s_{\PAS}(X_{1},Y_{1}), \dots, s_{\PAS}(X_{n},Y_{n})\}$. This corresponds to running Standard CP with the new $s_{\PAS}$ score. Note that for **fair comparisons** with Standard CP, we set the threshold in Standard with PAS to achieve marginal coverage $1-\alpha$, i.e., we fix $t$ so $\P(Y \in \widehat{\cC}_{\PAS}(X))
  = 1-\alpha$.
 
 Then, this achieves the desired marginal coverage guarantee while (approximately) optimally trading off set size and macro-coverage.
-In the visusalization below, we also illustrate the variation of the **(empirical) coverage per class**  w.r.t. $\alpha$ (evaluated on the test set).
+In the visualization below, we also illustrate the variation of the **(empirical) coverage per class** w.r.t. $\alpha$ (evaluated on the test set).
 
 <br>
 
@@ -805,28 +805,6 @@ Again, for **fair comparisons** with Standard CP, we set the threshold in Standa
  = 1-\alpha$.
 
 
-<!--###  Weighted score to handle endangered species
-
-
-Motivated by plant conservation, we use the weighted prevalence-adjusted softmax (WPAS) score to target coverage of at-risk species in Pl@ntNet-300K.
-
-Let $\mathcal{Y}_{\text{at-risk}} \subseteq \mathcal{Y}$ be the set of at-risk species. The coverage of at-risk species is weighted $\lambda \geq 1$ times more than the coverage of other species, so
-
-$$
-\omega(y) = \begin{cases}
-    \frac{\lambda}{W} & \text{if } y \in \mathcal{Y}_{\text{at-risk}} \\
-    \frac{1}{W} & \text{otherwise,}
-\end{cases}
-$$
-
-where $W = \lambda|\mathcal{Y}_{\text{at-risk}}| + |\mathcal{Y} \setminus \mathcal{Y}_{\text{at-risk}}|$ is a normalizing factor to ensure $\sum_{y \in \mathcal{Y}} \omega(y) = 1$.
-
-
-The results are shown in the figure below. We observe that **Standard with WPAS** improves the class-conditional coverage of at-risk classes relative to **Standard with Softmax** or **PAS**. When comparing WPAS to PAS, increasing $\lambda$, the parameter that upweights at-risk classes, leads to larger improvements in the class-conditional coverage of those classes, as expected.
-These improvements are accompanied by only a mild increase in average set size and do not affect the class-conditional coverage of not-at-risk classes, which is appealing from a practical perspective.
--->
-
-
 
 ###  Weighted score adapted to handle endangered species
 
@@ -909,7 +887,7 @@ Let us start with a synthesis over all classes/species.
 
 
 When targeting set size and class-conditional or macro-coverage, it is more effective to optimize for this trade-off directly than trading off set size and marginal coverage.
-Adjusting $\alpha$ in Standard CP is a plausible solution to target class-conditional coverage but the results show that this does not optimally navigate the set size/class-conditional coverage trade-off (Pareto front), which is our goal.
+Adjusting $\alpha$ in Standard CP is a plausible solution to target class-conditional coverage, but the results show that this does not optimally navigate the set size/class-conditional coverage trade-off (Pareto front), which is our goal.
 In comparison, our methods, which explicitly optimize macro-coverage, consistently achieve better trade-offs than Standard CP.
 
 **Classwise should generally be avoided** in long-tail settings, as comparable class-conditional and macro-coverage can be achieved with significantly smaller sets using our proposed methods (above their associated sets almost reach the full set of classes).
@@ -918,7 +896,7 @@ Standard with $\PAS$ is Pareto optimal, in the sense that at any marginal covera
 
 #### At-risk species analysis
 
-We now turn to a more detailed analysis of at-risk species. To this end, we present results for the Standard method applied to the Pl@ntNet-300K dataset, using three conformal score functions: Softmax, PAS, and WPAS with $\lambda \in \{1, 10, 10^2, 10^3\}$.
+We now turn to a more detailed analysis of at-risk species. To this end, we present results for the Standard method applied to the Pl@ntNet-300K dataset, using three conformal score functions: softmax, PAS, and WPAS with $\lambda \in \{1, 10, 10^2, 10^3\}$.
 Our findings show that increasing $\lambda$ in WPAS enhances the class-conditional coverage for at-risk classes, as measured by $\hat{c}_y$, the empirical class-conditional coverage for class $y$. We summarize these results by computing the "at-risk average $\hat{c}_y$" as $(1/|\mathcal{Y}_{\text{at-risk}}|)\sum_{y \in \mathcal{Y}_{\text{at-risk}}} \hat{c}_y$, and similarly for the "not-at-risk average $\hat{c}_y$".
 
 
@@ -928,7 +906,7 @@ Our findings show that increasing $\lambda$ in WPAS enhances the class-condition
 
 <script type="module" src="plantnet_comparison_viz.js"></script>
 ```
-We observe that Standard with $\WPAS$ improves the class-conditional coverage of at-risk classes relative to Standard with softmax or $\PAS$. Comparing $\WPAS$ to $\PAS$, we see that increasing $\lambda$, the amount we upweight at-risk classes, leads to larger improvements in the class-conditional coverage of at-risk classes, as expected. These increases are "paid for'' in terms of a mild increase in average set size and have no discernible effect on the class-conditional coverage of not-at-risk classes, which is appealing from a practical perspective.
+We observe that Standard with $\WPAS$ improves the class-conditional coverage of at-risk classes relative to Standard with softmax or $\PAS$. Comparing $\WPAS$ to $\PAS$, we see that increasing $\lambda$, the amount we up-weight at-risk classes, leads to larger improvements in the class-conditional coverage of at-risk classes, as expected. These increases are "paid for'' in terms of a mild increase in average set size and have no discernible effect on the class-conditional coverage of not-at-risk classes, which is appealing from a practical perspective.
 
 ## Conclusion
 
