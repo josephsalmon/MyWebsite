@@ -283,7 +283,7 @@ This visualization provides a dynamic way to explore the intersection of species
 Let $(X,Y) \in \mathcal{X} \times \mathcal{Y}$ be a (feature, label) pair. In our example, $X$ is an image, and $Y$ is the true label (species) associated with it. Let $\hat{p}(y|x)$ be an estimate of the probability $p(y|x)$ that the label is $y$ given features $x$. Let $\alpha \in [0,1]$ be a user-specified miscoverage probability, so $1-\alpha$ corresponds to the desired **coverage** level.
 
 
-The available data is randomly split into four distinct sets: a **training set** for fitting the model $\hat{p}(y|x)$, a **validation set** for hyperparameter tuning (in our experiments, the only hyperparameter is the number of training epochs), a **calibration set** $(X_i, Y_i) \in \mathcal{X} \times \mathcal{Y}$ for $i \in [n]$ to evaluate coverage,  and a **test set** for final evaluation. Note that in order for the coverage guarantees from conformal prediction to hold, the calibration set must be exchangeable with the test set. The random splitting procedure ensure this is satisfied.
+The available data is randomly split into four distinct sets: a **training set** for fitting the model $\hat{p}(y|x)$, a **validation set** for hyperparameter tuning (in our experiments, the only hyperparameter is the number of training epochs), a **calibration set** $(X_i, Y_i) \in \mathcal{X} \times \mathcal{Y}$ for $i \in [n]$ to evaluate coverage, and a **test set** for final evaluation. Note that in order for the coverage guarantees from conformal prediction to hold, the calibration set must be exchangeable with the test set. The random splitting procedure ensure this is satisfied.
 
 
 ### {{< iconify hugeicons:curvy-right-direction >}} Technical detour
@@ -371,7 +371,7 @@ $$
 Let us first note the following non-negativity relationship, for all $(x,y) \in \cX \times \cY$:
 $$
 \begin{equation}\label{eq:aux_uniq2}
-    \paren{\mathbb{1}\{ y \in \cC^*(x)\} - \mathbb{1}\{ y \in \cC(x)\}   }\paren{ f(x,y) - t_\nu g(x,y)} \geq 0, \,.
+    \paren{\mathbb{1} \{ y \in \cC^*(x)\} - \mathbb{1}\{ y \in \cC(x)\}}\paren{ f(x,y) - t_\nu g(x,y)} \geq 0, \,.
 \end{equation}
 $${#eq-aux_uniq2}
 Integrating ([-@eq-aux_uniq2]) over $\cX \times \cY$, then applying ([-@eq-aux_uniq1]), we get
@@ -403,7 +403,7 @@ $$
     &= \nu + \int_{D} f d\mu \,.
 \end{align*}
 $$
-Thus we must have $\mu_f(D) = 0$. Since $t_\nu g=f$ on $D$, we also get that $\mu_g(D) =0$.
+Thus, we must have $\mu_f(D) = 0$. Since $t_\nu g=f$ on $D$, we also get that $\mu_g(D) =0$.
 :::
 ::::
 
@@ -660,7 +660,7 @@ We also include bar plots showing per-class coverage, which reveal that Standard
 To tackle the coverage imbalance where rare classes are often undercovered by standard conformal prediction, we introduce a macro-coverage constraint, inspired by the macro-accuracy metric in multi-class classification.
 Our objective is to minimize the expected size of prediction sets while ensuring that all classes (including those with limited data) benefit from equitable and reliable coverage.
 
-The macro-coverage formulation reads as follows: 
+The macro-coverage formulation reads as follows:
 $$
 \begin{align}
 &\min_{\mathcal{C} : \mathcal{X} \mapsto 2^\mathcal{Y}} \mathbb{E}[|\mathcal{C}(X)|]  \\
@@ -713,7 +713,7 @@ $$
 and $\PAS$ stands for **prevalence-adjusted softmax**.
 
 
-In summary, the method we propose is simply running @algo-conformal with the $\PAS$ score function (which we will refer to as Standard with $\PAS$) and $\hat{\qq}=(\hat{q},\dots,\hat{q})$ as the vector of quantile of the scores, where  $\hat{q}$ is the $\lceil (n+1)(1-\alpha) \rceil$-th largest value in $\{s_{\PAS}(X_{1},Y_{1}), \dots, s_{\PAS}(X_{n},Y_{n})\}$. This corresponds to running Standard CP with the new $s_{\PAS}$ score. Note that for **fair comparisons** with Standard CP, we set the threshold in Standard with PAS to achieve marginal coverage $1-\alpha$, i.e., we fix $t$ so $\P(Y \in \widehat{\cC}_{\PAS}(X))
+In summary, the method we propose is simply running @algo-conformal with the $\PAS$ score function (which we will refer to as Standard with $\PAS$) and $\hat{\qq}=(\hat{q},\dots,\hat{q})$ as the vector of quantile of the scores, where $\hat{q}$ is the $\lceil (n+1)(1-\alpha) \rceil$-th largest value in $\{s_{\PAS}(X_{1},Y_{1}), \dots, s_{\PAS}(X_{n},Y_{n})\}$. This corresponds to running Standard CP with the new $s_{\PAS}$ score. Note that for **fair comparisons** with Standard CP, we set the threshold in Standard with PAS to achieve marginal coverage $1-\alpha$, i.e., we fix $t$ so $\P(Y \in \widehat{\cC}_{\PAS}(X))
  = 1-\alpha$.
 
 Then, this achieves the desired marginal coverage guarantee while (approximately) optimally trading off set size and macro-coverage.
@@ -729,15 +729,12 @@ In the visualization below, we also illustrate the variation of the **(empirical
   <input type="range" id="alphaSlider2" min="0.001" max="0.20" step="0.001" value="0.15">
 </div>
 <script type="module" src="subplot_viz_3.js"></script>
-<!-- <script type="module" src="subplot_viz_3.js"></script> -->
 
 ```
 
 
 
 ## Weighted-macro coverage
-
-<!--### General case-->
 
 
 Recall that macro-coverage is the unweighted average of the class-conditional coverages.
@@ -815,7 +812,7 @@ Let $\mathcal{Y}_{\text{at-risk}} \subseteq \mathcal{Y}$ be the set of at-risk s
 $$
 \omega(y) = \begin{cases}
     \frac{\lambda}{W} & \text{if } y \in \mathcal{Y}_{\text{at-risk}} \\
-    \frac{1}{W} & \text{otherwise,}
+    \frac{1}{W} & \text{otherwise},
 \end{cases}
 $$
 
