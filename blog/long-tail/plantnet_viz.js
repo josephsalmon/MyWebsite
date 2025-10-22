@@ -713,6 +713,30 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
       });
 
+      // On mobile, or for accessibility, clicking a point should also update the image preview
+      plotContainer.on('plotly_click', function(data) {
+        const point = data.points[0];
+        const customData = point.customdata;
+
+        if (customData && customData.image) {
+          previewImage.src = customData.image;
+          previewImage.style.display = 'block';
+
+          // Build the label with italicized main species and normal author/photographer
+          const main = escapeHtml(customData.speciesMain || '');
+          const spAuthor = escapeHtml(customData.speciesAuthor || '');
+          let labelHtml = `<span style="font-size: 13px; font-weight: normal;"><em>${main}</em>${spAuthor}</span><br>`;
+          labelHtml += `<span style="font-size: 13px; color: #666;"># of examples: ${customData.count.toLocaleString()}</span>`;
+
+          if (customData.author) {
+            labelHtml += `<br><span style="font-size: 12px; color: #888; font-style: italic;">Photo by: ${escapeHtml(customData.author)}</span>`;
+          }
+
+          imageLabel.innerHTML = labelHtml;
+          imagePreviewContainer.querySelector('div:first-child').textContent = 'Species Preview';
+        }
+      });
+
       plotContainer.on('plotly_unhover', function(data) {
         // Don't clear the image to keep it displayed
       });
