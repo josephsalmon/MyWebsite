@@ -844,11 +844,6 @@ We will now turn back on the Pl@ntNet-300K dataset presented earlier.
 
 ### {{< iconify hugeicons:tape-measure >}} Evaluation metrics
 
-
-We introduce here some evaluation metrics of interest.
-Let $\hat{c}_y$ denote the **empirical coverage for class** $y$ (evaluated on the test set), and let $1-\alpha$ be the target coverage level. We leverage in particular the per-class coverage $\hat{c}_y$, through class-balanced averages: the **at‑risk class-coverage average**
-$\tfrac{1}{|\mathcal{Y}_{\mathrm{at\text{-}risk}}|}\sum_{y\in\mathcal{Y}_{\mathrm{at\text{-}risk}}}\hat{c}_y$ and the **not‑at‑risk average** computed analogously.
-
 We introduce here some evaluation metrics of interest.
 Let $\hat{c}_y$ denote the **empirical coverage for class** $y$ (evaluated on the test set), and let $1-\alpha$ be the target coverage level. We leverage in particular the per-class coverage $\hat{c}_y$, through class-balanced averages: the **at‑risk class-coverage average**
 $\tfrac{1}{|\mathcal{Y}_{\mathrm{at\text{-}risk}}|}\sum_{y\in\mathcal{Y}_{\mathrm{at\text{-}risk}}}\hat{c}_y$ and the **not‑at‑risk average** computed analogously.
