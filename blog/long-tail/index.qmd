@@ -286,130 +286,11 @@ Let $(X,Y) \in \mathcal{X} \times \mathcal{Y}$ be a (feature, label) pair. In ou
 The available data is randomly split into four distinct sets: a **training set** for fitting the model $\hat{p}(y|x)$, a **validation set** for hyperparameter tuning (in our experiments, the only hyperparameter is the number of training epochs), a **calibration set** $(X_i, Y_i) \in \mathcal{X} \times \mathcal{Y}$ for $i \in [n]$ to evaluate coverage, and a **test set** for final evaluation. Note that in order for the coverage guarantees from conformal prediction to hold, the calibration set must be exchangeable with the test set. The random splitting procedure ensure this is satisfied.
 
 
-### {{< iconify hugeicons:curvy-right-direction >}} Technical detour
 
-As a key technical tool for our proofs, we state the following version of the Neyman–Pearson Lemma. The proof may be skipped on first reading.
-
-::: {#lem-neyman_pearson}
-
-## @neyman1933ix
-
-Let $\mu$ be a measure on $\cX \times \cY$ and let $f,g: \cX\times \cY \to \R_{\geq 0}$ be two non-negative functions. For $\nu \geq 0$, consider the problem
-$$
-\begin{align*}
-&\min_{\cC:\cX \to 2^{\cY}} \int_{\cX\times \cY}\mathbb{1}\{y \in \cC(x)\} g(x,y)d\mu(x,y) \\
-&\, \text{s.t.}  \int_{\cX\times \cY}\mathbb{1}\{y\in\cC(x)\} f(x,y)d\mu(x,y)\geq \nu.
-\end{align*}
-$${#eq-neyman}
-
-If there exists $t_\nu$ such that
-$$
-\begin{equation}
-    \int_{\cX\times \cY} \mathbb{1}\{f(x,y) \geq t_\nu \cdot g(x,y)\} f(x,y) d\mu(x,y) = \nu,
-\end{equation}
-$${#eq-neyman_condition}
-then
-$$
-\begin{align}
-    \cC^{*}_{\nu}(x) = \{y \in \cY : f(x,y) \geq t_\nu \cdot g(x,y) \}
-\end{align}
-$${#eq-neyman_solution}
-
-is the optimal solution to ([-@eq-neyman]). Moreover, any other minimizer $\cC$ of ([-@eq-neyman]) is equal to $\cC_{\nu}^*$, $\mu_f$ and $\mu_g$-almost everywhere, i.e., for $h\in \{f,g\}$, $\mu_h\big( \{ (x,y) : y\in \cC^*_\nu(x) \}\Delta \{ (x,y) : y\in \cC(x) \}\big)=0$ where $\Delta$ denotes the symmetric distance between the sets and $\mu_h$ is defined as $\mu_h(A) = \int_A h d\mu$.
-
-:::
-
-
-:::: {.proof-container}
-::: {.proof-header onclick="toggleProof('marginal-coverage')"}
-[▶]{#proof-arrow-marginal-coverage .proof-arrow} [Proof]{.proof-title}
-:::
-
-::: {#proof-content-marginal-coverage .proof-content}
-
- We will show that $\cC^*(x) = \{y :f(x,y) \geq t_\nu g(x,y) \}$ is the optimal solution to ([-@eq-neyman]). We first demonstrate that it is an optimal solution and then that it is unique.
-
-*Optimality*. By definition of $t_\nu$, we have
-$$
-\begin{equation}
-    \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} f(x,y) d\mu(x,y) = \nu,
-\end{equation}
-$${#eq-np_equality}
-which is trivially greater than or equal to $\nu`, so $\cC^*(x)$ is indeed a feasible solution.
-To show that $\cC^*(x)$ is optimal, we must argue that it achieves a smaller objective value than any other feasible solution.
-Let $\cC: \cX \to 2^\cY$ be any other set-generating procedure that satisfies the constraint in ([-@eq-neyman]). We want to show that
-$$
-\begin{equation*}
-    \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} g(x,y) d\mu(x,y) \leq  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} g(x,y) d\mu(x,y)\,.
-\end{equation*}
-$$
-We prove this by showing their difference is negative:
-$$
-\begin{align*}
-     &\int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} g(x,y) d\mu(x,y) -  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} g(x,y) d\mu(x,y) \\
-     &= \int_{\cX\times \cY} \Big(\mathbb{1}\{ y \in \cC^*(x) \backslash \cC(x)\} -  \mathbb{1}\{ y \in \cC(x)\backslash \cC^*(x)\}\Big) g(x,y) d\mu(x,y) \\
-     & \leq  \frac{1}{t_\nu}\int_{\cX\times \cY} \Big(\mathbb{1}\{ y \in \cC^*(x) \backslash \cC(x)\} - \mathbb{1}\{ y \in \cC(x)\backslash \cC^*(x)\} \Big) f(x,y) d\mu(x,y) \\
-     &= \frac{1}{t_\nu} \int_{\cX\times \cY} \Big( \mathbb{1}\{ y \in \cC^*(x) \}  -  \mathbb{1}\{ y \in \cC(x)\}\Big) f(x,y) d\mu(x,y)  \\
-     & \leq \frac{1}{t_\nu} \paren{ \nu - \nu} \leq 0\,.
-\end{align*}
-$$
-The first inequality follows from $y \in \cC^*(x)\Longleftrightarrow g(x,y)$ $\leq t_\nu^{-1}f(x,y)$.
-The second inequality comes from applying the equality stated in ([-@eq-np_equality]) to the first integral and then using the definition of $\cC$ as satisfying the constraint of ([-@eq-neyman]) to lower bound the second integral.
-
-*Uniqueness*. Let $\cC : \cX \to 2^{\cY}$ be another optimal set-generating procedure, so it achieves the same objective value as $\cC^*$,
-$$
-\begin{equation}
-    \int_{\cX\times \cY} \!\!\!\! \mathbb{1}\{ y \in \cC(x)\} g(x,y) d\mu(x,y) = \! \int_{\cX\times \cY} \!\!\!\!\mathbb{1}\{ y \in \cC^*(x)\} g(x,y) d\mu(x,y)\,,
-\end{equation}
-$${#eq-aux_uniq1}
-and it is a feasible solution,
-$$
-\begin{equation*}
-     \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} f(x,y) d\mu(x,y) \geq \nu\,.
-\end{equation*}
-$$
-Let us first note the following non-negativity relationship, for all $(x,y) \in \cX \times \cY$:
-$$
-\begin{equation}\label{eq:aux_uniq2}
-    \paren{\mathbb{1} \{ y \in \cC^*(x)\} - \mathbb{1}\{ y \in \cC(x)\}}\paren{ f(x,y) - t_\nu g(x,y)} \geq 0, \,.
-\end{equation}
-$${#eq-aux_uniq2}
-Integrating ([-@eq-aux_uniq2]) over $\cX \times \cY$, then applying ([-@eq-aux_uniq1]), we get
-$$
-\begin{equation*}
-       \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} f(x,y) d\mu(x,y) -  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} f(x,y) d\mu(x,y)\geq 0\,.
-\end{equation*}
-$$
-
-Combining this with the definition of $\cC^*$ and the feasibility of $\cC$, we must have $\int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} f(x,y) d\mu(x,y) = \nu`. Thus,  ([-@eq-aux_uniq2]) integrates to zero. Since we also know that ([-@eq-aux_uniq2]) is nonnegative, it must be true that, $\mu$-almost everywhere,
-$$
-\begin{equation*}
-    \paren{\mathbb{1}\{ y \in \cC^*(x)\} - \mathbb{1}\{ y \in \cC(x)\}   }\paren{ f(x,y) - t_\nu g(x,y)} = 0.
-\end{equation*}
-$$
-For $(x,y) \in \cX \times \cY$ such that $f(x,y) \neq t_\nu g(x,y)$, then $\mathbb{1}\{ y \in \cC^*(x)\}= \mathbb{1}\{ y \in \cC(x)\}$, and in turn
-it implies, using the definition of $\cC^*(x) = \{y :f(x,y) \geq t_\nu g(x,y) \}$, that $\mu$-almost everywhere, $\cC(x) \subseteq \cC^*(x)$ and $\cC^*(x) \subseteq \cC(x) \cup \{ y : f(x,y) = t_\nu g(x,y)\}$. It remains to show that the sets are equal almost everywhere by showing that the set
-$$
-\begin{align*}
-    D &:= \big\{ (x,y) : y \notin \cC(x) \text{ and }  y \in \cC^*(x) \big\} \\
-       &= \big\{ (x,y) : y \notin \cC(x) \text{ and } f(x,y) = t_\nu g(x,y)\big\}
-    \end{align*}
-$$
-is of measure $0$ under $\mu_f$. By definition of $\cC^*$,
-$$
-\begin{align*}
-    \nu &=  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} f(x,y) d\mu(x,y) \\
-    &=  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} f(x,y) d\mu(x,y) +  \int_{\cX\times \cY} \mathbb{1}\{ (x,y) \in D\} f(x,y) d\mu(x,y) \\
-    &= \nu + \int_{D} f d\mu \,.
-\end{align*}
-$$
-Thus, we must have $\mu_f(D) = 0$. Since $t_\nu g=f$ on $D$, we also get that $\mu_g(D) =0$.
-:::
-::::
 
 ## Marginal coverage
 
-In classification setting, suppose our aim is to control the size of our prediction sets while ensuring marginal coverage. This corresponds to the following optimization problem:
+In classification setting, suppose our aim is to control the **size** (here the **cardinality**) of our prediction sets while ensuring marginal coverage. This corresponds to the following optimization problem:
 
 $$
 \begin{align}
@@ -541,7 +422,7 @@ Concerning the distribution $p(y|x)$, we provide three candidates in our Gaussia
 
 
 
-We now provide a visualization for the **Standard Conformal prediction**, as decribed in the previous section.
+We now provide a visualization for the **Standard conformal prediction**, as decribed in the previous section.
 Hence, our classifier can output multiple classes, forming **prediction sets** rather than a single label. The size of these sets is controlled by the allowed **miscoverage level** $\alpha$ (accessible through the slider), which reflects the confidence of the predictions.
 
 
@@ -592,7 +473,7 @@ $$ {#eq-min_st_condcoverage}
 
 ## Conditional-coverage and prediction set
 
-The solutions of (@{eq-min_st_condcoverage})
+The solutions of (@{eq-min_st_condcoverage}) can be written
 
 $$
 \begin{align*}
@@ -626,12 +507,12 @@ This result also follows from the Neyman-Pearson lemma applied to each class sep
 ::::
 
 
-<u>Interpretation</u>: this means that the optimal way to get conditional coverage is to select the labels whose probability is larger than a particular threshold $t_{\alpha,y}$, where now the threshold $t_{\alpha,y}$ can be adapted in a class-wise fashion, and is fixed as the $\alpha$-quantile of the conditional distribution $p(Y|X)$ knowing $Y=y$, *i.e,* $\P(p(Y|X) \geq t_{\alpha,y} |Y = y) = 1 − \alpha$.
+<u>Interpretation</u>: the optimal way to get conditional coverage is to select the labels whose probability is larger than a particular threshold $t_{\alpha,y}$, where now the threshold $t_{\alpha,y}$ can be adapted in a class-wise fashion, and is fixed as the $\alpha$-quantile of the conditional distribution $p(Y|X)$ knowing $Y=y$, *i.e,* $\P(p(Y|X) \geq t_{\alpha,y} |Y = y) = 1 − \alpha$.
 
 In practice, the threshold of each class $y$ is now computed as the quantile of the scores on class $y$.
 This is known under the name Mondrian conformal prediction [@vovk2005algorithmic].
 Formally, for any class $y\in \mathcal{Y}$, we set $t_{\alpha,y}$ as the $(n_y+1)(1-\alpha)$ score of the calibration points over class $y$, where $n_y$ is the number of these points.
-It corresponds to applying @algo-conformal with the threshold function $\hat{\mathbf{q}}$ equal to the vector of these conditional quantiles.
+It corresponds to applying @algo-conformal with the threshold function $\hat{\mathbf{q}}$ equal to the vector of these conditional quantiles. We refer to this method as Conditional conformal prediction.
 
 
 For classes whose number of calibration points $n_y$ is not large enough (i.e., $n_y< \alpha^{-1}$), this threshold is fixed as the maximum possible value of the score function, or formally to $+\infty$.  It implies that **these rare classes will always be included** in the prediction sets. It can be observed below in the plots for $\alpha$ small enough.
@@ -657,7 +538,9 @@ We also include bar plots showing per-class coverage, which reveal that Standard
 
 ## Macro-coverage
 
-To tackle the coverage imbalance where rare classes are often undercovered by standard conformal prediction, we introduce a macro-coverage constraint, inspired by the macro-accuracy metric in multi-class classification.
+Standard conformal prediction often under-covers rare classes, despite producing compact prediction sets. On the other end of the spectrum, conditional conformal prediction ensures equal coverage across all classes, but at the cost of unwieldy, oversized sets. What if we could find a middle ground?
+
+This is what we tackle by introducing a macro-coverage constraint, inspired by the macro-accuracy metric in multi-class classification.
 Our objective is to minimize the expected size of prediction sets while ensuring that all classes (including those with limited data) benefit from equitable and reliable coverage.
 
 The macro-coverage formulation reads as follows:
@@ -679,7 +562,7 @@ The motivation of this program is to treat all classes equally. We provide an ad
 
 ## Macro-coverage and prediction set
 
-The solutions of (@{eq-min_st_macrocoverage})
+The solutions of (@{eq-min_st_macrocoverage}) are given by 
 $$
 \begin{align*}
 \mathcal{C}^*(x) = \left\{ y \in \mathcal{Y} : \frac{p(y|x)}{p(y)} \geq t\right\},
@@ -766,6 +649,7 @@ for some threshold $t$ that depends on $\omega$ and $\alpha$, respectively.
 :::
 
 ::: {#proof-content-weighted-macro-coverage .proof-content}
+This proof mainly realies on @lem-neyman_pearson.
 We assume that $X$ has a density $p$ with respect to the Lebesgue measure $\lambda$, but the proof can be adapted for any measure. Define the functions $f(x,y) := \omega(y)p(x|y)$ and $g(x,y) =  p(x)$ and the measure $\mu = \lambda \times \Big( \sum_{y\in \cY} \delta_y\Big)$, which is the product measure between the Lebesgue measure (denoted by $\lambda$) and the counting measure on $\cY$. Let $\nu = 1-\alpha$. Observe that plugging these values of $f$, $g$, $\mu$, and $\nu$ into @{eq-neyman} yields @{eq-min_st_macrocoverage}, because
 \begin{align*}
     \int_{\cX\times \cY}1_{y\in \cC(x)}f(x,y)d \mu(x,y) &= \sum_{y\in \cY} \omega(y) \int_\cX 1_{y\in \cC(x)} p(x|y) dx \\
@@ -907,6 +791,8 @@ For the interested reader the associated paper not only consider new conformal s
 
 
 
+
+
 # {{< fa link title="link" >}} References
 
 
@@ -914,3 +800,128 @@ For the interested reader the associated paper not only consider new conformal s
 :::
 
 
+
+
+## Appendix
+
+
+### {{< iconify hugeicons:curvy-right-direction >}} Technical detour
+
+As a key technical tool for our proofs, we state the following version of the Neyman–Pearson Lemma. The proof may be skipped on first reading.
+
+::: {#lem-neyman_pearson}
+
+## @neyman1933ix
+
+Let $\mu$ be a measure on $\cX \times \cY$ and let $f,g: \cX\times \cY \to \R_{\geq 0}$ be two non-negative functions. For $\nu \geq 0$, consider the problem
+$$
+\begin{align*}
+&\min_{\cC:\cX \to 2^{\cY}} \int_{\cX\times \cY}\mathbb{1}\{y \in \cC(x)\} g(x,y)d\mu(x,y) \\
+&\, \text{s.t.}  \int_{\cX\times \cY}\mathbb{1}\{y\in\cC(x)\} f(x,y)d\mu(x,y)\geq \nu.
+\end{align*}
+$${#eq-neyman}
+
+If there exists $t_\nu$ such that
+$$
+\begin{equation}
+    \int_{\cX\times \cY} \mathbb{1}\{f(x,y) \geq t_\nu \cdot g(x,y)\} f(x,y) d\mu(x,y) = \nu,
+\end{equation}
+$${#eq-neyman_condition}
+then
+$$
+\begin{align}
+    \cC^{*}_{\nu}(x) = \{y \in \cY : f(x,y) \geq t_\nu \cdot g(x,y) \}
+\end{align}
+$${#eq-neyman_solution}
+
+is the optimal solution to ([-@eq-neyman]). Moreover, any other minimizer $\cC$ of ([-@eq-neyman]) is equal to $\cC_{\nu}^*$, $\mu_f$ and $\mu_g$-almost everywhere, i.e., for $h\in \{f,g\}$, $\mu_h\big( \{ (x,y) : y\in \cC^*_\nu(x) \}\Delta \{ (x,y) : y\in \cC(x) \}\big)=0$ where $\Delta$ denotes the symmetric distance between the sets and $\mu_h$ is defined as $\mu_h(A) = \int_A h d\mu$.
+
+:::
+
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('marginal-coverage')"}
+[▶]{#proof-arrow-marginal-coverage .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-marginal-coverage .proof-content}
+
+ We will show that $\cC^*(x) = \{y :f(x,y) \geq t_\nu g(x,y) \}$ is the optimal solution to ([-@eq-neyman]). We first demonstrate that it is an optimal solution and then that it is unique.
+
+*Optimality*. By definition of $t_\nu$, we have
+$$
+\begin{equation}
+    \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} f(x,y) d\mu(x,y) = \nu,
+\end{equation}
+$${#eq-np_equality}
+which is trivially greater than or equal to $\nu`, so $\cC^*(x)$ is indeed a feasible solution.
+To show that $\cC^*(x)$ is optimal, we must argue that it achieves a smaller objective value than any other feasible solution.
+Let $\cC: \cX \to 2^\cY$ be any other set-generating procedure that satisfies the constraint in ([-@eq-neyman]). We want to show that
+$$
+\begin{equation*}
+    \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} g(x,y) d\mu(x,y) \leq  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} g(x,y) d\mu(x,y)\,.
+\end{equation*}
+$$
+We prove this by showing their difference is negative:
+$$
+\begin{align*}
+     &\int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} g(x,y) d\mu(x,y) -  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} g(x,y) d\mu(x,y) \\
+     &= \int_{\cX\times \cY} \Big(\mathbb{1}\{ y \in \cC^*(x) \backslash \cC(x)\} -  \mathbb{1}\{ y \in \cC(x)\backslash \cC^*(x)\}\Big) g(x,y) d\mu(x,y) \\
+     & \leq  \frac{1}{t_\nu}\int_{\cX\times \cY} \Big(\mathbb{1}\{ y \in \cC^*(x) \backslash \cC(x)\} - \mathbb{1}\{ y \in \cC(x)\backslash \cC^*(x)\} \Big) f(x,y) d\mu(x,y) \\
+     &= \frac{1}{t_\nu} \int_{\cX\times \cY} \Big( \mathbb{1}\{ y \in \cC^*(x) \}  -  \mathbb{1}\{ y \in \cC(x)\}\Big) f(x,y) d\mu(x,y)  \\
+     & \leq \frac{1}{t_\nu} \paren{ \nu - \nu} \leq 0\,.
+\end{align*}
+$$
+The first inequality follows from $y \in \cC^*(x)\Longleftrightarrow g(x,y)$ $\leq t_\nu^{-1}f(x,y)$.
+The second inequality comes from applying the equality stated in ([-@eq-np_equality]) to the first integral and then using the definition of $\cC$ as satisfying the constraint of ([-@eq-neyman]) to lower bound the second integral.
+
+*Uniqueness*. Let $\cC : \cX \to 2^{\cY}$ be another optimal set-generating procedure, so it achieves the same objective value as $\cC^*$,
+$$
+\begin{equation}
+    \int_{\cX\times \cY} \!\!\!\! \mathbb{1}\{ y \in \cC(x)\} g(x,y) d\mu(x,y) = \! \int_{\cX\times \cY} \!\!\!\!\mathbb{1}\{ y \in \cC^*(x)\} g(x,y) d\mu(x,y)\,,
+\end{equation}
+$${#eq-aux_uniq1}
+and it is a feasible solution,
+$$
+\begin{equation*}
+     \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} f(x,y) d\mu(x,y) \geq \nu\,.
+\end{equation*}
+$$
+Let us first note the following non-negativity relationship, for all $(x,y) \in \cX \times \cY$:
+$$
+\begin{equation}\label{eq:aux_uniq2}
+    \paren{\mathbb{1} \{ y \in \cC^*(x)\} - \mathbb{1}\{ y \in \cC(x)\}}\paren{ f(x,y) - t_\nu g(x,y)} \geq 0, \,.
+\end{equation}
+$${#eq-aux_uniq2}
+Integrating ([-@eq-aux_uniq2]) over $\cX \times \cY$, then applying ([-@eq-aux_uniq1]), we get
+$$
+\begin{equation*}
+       \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} f(x,y) d\mu(x,y) -  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} f(x,y) d\mu(x,y)\geq 0\,.
+\end{equation*}
+$$
+
+Combining this with the definition of $\cC^*$ and the feasibility of $\cC$, we must have $\int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} f(x,y) d\mu(x,y) = \nu`. Thus,  ([-@eq-aux_uniq2]) integrates to zero. Since we also know that ([-@eq-aux_uniq2]) is nonnegative, it must be true that, $\mu$-almost everywhere,
+$$
+\begin{equation*}
+    \paren{\mathbb{1}\{ y \in \cC^*(x)\} - \mathbb{1}\{ y \in \cC(x)\}   }\paren{ f(x,y) - t_\nu g(x,y)} = 0.
+\end{equation*}
+$$
+For $(x,y) \in \cX \times \cY$ such that $f(x,y) \neq t_\nu g(x,y)$, then $\mathbb{1}\{ y \in \cC^*(x)\}= \mathbb{1}\{ y \in \cC(x)\}$, and in turn
+it implies, using the definition of $\cC^*(x) = \{y :f(x,y) \geq t_\nu g(x,y) \}$, that $\mu$-almost everywhere, $\cC(x) \subseteq \cC^*(x)$ and $\cC^*(x) \subseteq \cC(x) \cup \{ y : f(x,y) = t_\nu g(x,y)\}$. It remains to show that the sets are equal almost everywhere by showing that the set
+$$
+\begin{align*}
+    D &:= \big\{ (x,y) : y \notin \cC(x) \text{ and }  y \in \cC^*(x) \big\} \\
+       &= \big\{ (x,y) : y \notin \cC(x) \text{ and } f(x,y) = t_\nu g(x,y)\big\}
+    \end{align*}
+$$
+is of measure $0$ under $\mu_f$. By definition of $\cC^*$,
+$$
+\begin{align*}
+    \nu &=  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC^*(x)\} f(x,y) d\mu(x,y) \\
+    &=  \int_{\cX\times \cY} \mathbb{1}\{ y \in \cC(x)\} f(x,y) d\mu(x,y) +  \int_{\cX\times \cY} \mathbb{1}\{ (x,y) \in D\} f(x,y) d\mu(x,y) \\
+    &= \nu + \int_{D} f d\mu \,.
+\end{align*}
+$$
+Thus, we must have $\mu_f(D) = 0$. Since $t_\nu g=f$ on $D$, we also get that $\mu_g(D) =0$.
+:::
+::::
