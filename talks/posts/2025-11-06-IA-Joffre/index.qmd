@@ -107,13 +107,15 @@ resources:
 import folium
 
 cities = {
-    "Plaisir": (48.816669, 1.95),
-    "Montpellier": (43.6116, 3.8772),
-    "Paris": (48.8566, 2.3522),
-    "Malakoff": (48.8196, 2.3075),
-    "Durham": (35.9940, -78.8986),
-    "Cachan": (48.7914, 2.3314),
-    "Seattle": (47.6062, -122.3321),
+    "Plaisir": (48.824045,1.959343),
+    "Paris": (48.849494,2.341241),
+    "Paris-tpt": (48.826344,2.346380),
+    "Paris-p7":(48.833135,2.368492),
+    "Malakoff": (48.824476,2.302306),
+    "Cachan": (48.790261,2.327251),
+    "Durham": (36.003257,-78.939951),
+    "Seattle": (47.657189,-122.304230),
+    "Montpellier": (43.631086,3.866066),
 }
 
 
@@ -192,11 +194,11 @@ plaisir_map = create_city_map("Plaisir")
 
 ::: {.column width="22%"}
 
-![](images/plaisir.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/plaisir.png){width=7.03cm}
 
-![](images/jean_vilar.jpg){width=7.03cm}
+![](../2025-04-03-IAUM/images/jean_vilar.jpg){width=7.03cm}
 
-![](images/IDF.svg){width=7.03cm}
+![](../2025-04-03-IAUM/images/IDF.svg){width=7.03cm}
 
 :::
 
@@ -219,11 +221,11 @@ paris_map = create_city_map("Paris")
 
 ::: {.column width="22%"}
 
-![](images/Paris.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/Paris.png){width=7.03cm}
 
-![](images/st-louis.jpg){width=7.03cm}
+![](../2025-04-03-IAUM/images/st-louis.jpg){width=7.03cm}
 
-![](images/st-louis.svg){width=7.03cm}
+![](../2025-04-03-IAUM/images/st-louis.svg){width=7.03cm}
 
 
 :::
@@ -252,11 +254,11 @@ malakoff_map = create_city_map("Malakoff")
 
 ::: {.column width="22%"}
 
-![](images/Malakoff.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/Malakoff.png){width=7.03cm}
 
-![](images/ENSAE.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/ENSAE.png){width=7.03cm}
 
-![](images/ensae.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/ensae.png){width=7.03cm}
 
 
 :::
@@ -282,11 +284,11 @@ cachan_map = create_city_map("Cachan")
 
 ::: {.column width="22%"}
 
-![](images/Cachan.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/Cachan.png){width=7.03cm}
 
-![](images/ENS_Cachan.jpg){width=7.03cm}
+![](../2025-04-03-IAUM/images/ENS_Cachan.jpg){width=7.03cm}
 
-![](images/ENS_Cachan.svg){width=7.03cm}
+![](../2025-04-03-IAUM/images/ENS_Cachan.svg){width=7.03cm}
 
 
 :::
@@ -302,7 +304,7 @@ cachan_map = create_city_map("Cachan")
 ::: {.column width="74%"}
 
 ```{python}
-paris_map = create_city_map("Paris")
+paris_map = create_city_map("Paris-p7")
 ```
 <p style="text-align:center">
 <iframe src="paris_map.html" width=1000 height=600></iframe>
@@ -313,11 +315,11 @@ paris_map = create_city_map("Paris")
 
 ::: {.column width="22%"}
 
-![](images/Paris_BNF.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/Paris_BNF.png){width=7.03cm}
 
-![](images/Paris7_grands_moulins.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/Paris7_grands_moulins.png){width=7.03cm}
 
-![](images/Université_Paris_Diderot_logo.svg){width=7.03cm}
+![](../2025-04-03-IAUM/images/Université_Paris_Diderot_logo.svg){width=7.03cm}
 
 
 :::
@@ -342,11 +344,11 @@ durham_map = create_city_map("Durham", zoom_start=4)
 
 ::: {.column width="22%"}
 
-![](images/Durham.jpg){width=7.03cm}
+![](../2025-04-03-IAUM/images/Durham.jpg){width=7.03cm}
 
-![](images/Duke.jpeg){width=7.03cm}
+![](../2025-04-03-IAUM/images/Duke.jpeg){width=7.03cm}
 
-![](images/Duke_logo.svg){width=7.03cm}
+![](../2025-04-03-IAUM/images/Duke_logo.svg){width=7.03cm}
 
 
 :::
@@ -364,7 +366,7 @@ durham_map = create_city_map("Durham", zoom_start=4)
 
 
 ```{python}
-paris_map = create_city_map("Paris")
+paris_map = create_city_map("Paris-tpt")
 ```
 <p style="text-align:center">
 <iframe src="paris_map.html" width=1000 height=600></iframe>
@@ -374,11 +376,11 @@ paris_map = create_city_map("Paris")
 
 ::: {.column width="22%"}
 
-![](images/Paris_butte_aux_cailles.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/Paris_butte_aux_cailles.png){width=7.03cm}
 
-![](images/TPT.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/TPT.png){width=7.03cm}
 
-![](images/Logo_Telecom_ParisTech.svg){width=7.03cm}
+![](../2025-04-03-IAUM/images/Logo_Telecom_ParisTech.svg){width=7.03cm}
 
 
 :::
@@ -407,11 +409,11 @@ seattle_map = create_city_map("Seattle", zoom_start=4)
 
 ::: {.column width="22%"}
 
-![](images/Seattle.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/Seattle.png){width=7.03cm}
 
-![](images/UW.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/UW.png){width=7.03cm}
 
-![](images/UW.svg){width=7.03cm}
+![](../2025-04-03-IAUM/images/UW.svg){width=7.03cm}
 
 
 :::
@@ -438,11 +440,11 @@ montpellier_map = create_city_map("Montpellier")
 
 ::: {.column width="22%"}
 
-![](images/Montpellier.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/Montpellier.png){width=7.03cm}
 
-![](images/UM.jpg){width=7.03cm}
+![](../2025-04-03-IAUM/images/UM.jpg){width=7.03cm}
 
-![](images/UM.svg){width=7.03cm}
+![](../2025-04-03-IAUM/images/UM.svg){width=7.03cm}
 
 
 :::
@@ -469,9 +471,9 @@ montpellier_map = create_city_map("Montpellier")
 
 ::: {.column width="22%"}
 
-![](images/Montferrier.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/Montferrier.png){width=7.03cm}
 
-![](images/Inria_Montpellier.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/Inria_Montpellier.png){width=7.03cm}
 
 ![](../../images/inr_logo_rouge.svg){width=7.03cm}
 
@@ -536,9 +538,9 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 <br>
 <br>
 
-<img src="images/AppStore_FR-1.png" width="100%" align="middle">
-<img src="images/Google_FR-1.png" width="100%" align="middle">
-<img src="images/identifyFR.png" width="100%" align="middle">
+<img src="../2025-04-03-IAUM/images/AppStore_FR-1.png" width="100%" align="middle">
+<img src="../2025-04-03-IAUM/images/Google_FR-1.png" width="100%" align="middle">
+<img src="../2025-04-03-IAUM/images/identifyFR.png" width="100%" align="middle">
 
 :::
 
@@ -551,23 +553,34 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 
 
 <!-------------------------------------------------------------------------- -->
-### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet : utilisation et popularité
+### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet : utilisation et popularité^[Source: [https://identify.plantnet.org/stats](https://identify.plantnet.org/stats){.scriptsize}]
 <hr>
 
-:::: {.columns}
+
+
+
+
+
+```{=html}
+<div style="text-align: center;">
+  <iframe src="https://identify.plantnet.org/fr/stats" width="600" height="660" style="border: none; display: inline-block;"></iframe>
+</div>
+```
+
+
+
+
+<!-- :::: {.columns}
 
 ::: {.column width="50%"}
-<!-- ![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=35%} -->
-
-
 
 
 - **25 Millions d'utilisateurs**
 - **200+** pays
 - Jusqu'à **2 Millions** d'images téléchargées par jour
-- **50 000** espèces de plantes (sur 300 000)
-- **1.2 Milliards** d'images
-- **20 Millions** étiquetées / validées
+- **77 000** espèces de plantes (sur $\approx$ 400 000)
+- **1.5 Milliards** d'images
+- ** Millions** étiquetées / validées
 - **20** chercheurs / ingénieurs (à Montpellier)
 :::
 
@@ -588,9 +601,9 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 
 <div style="text-align: center;">
 
-<img src="images/plantnet_usage_rastereurized.svg" width="99%" align="middle" >
+<img src="../2025-04-03-IAUM/images/plantnet_usage_rastereurized.svg" width="99%" align="middle" >
 
-</div>
+</div> -->
 <!-------------------------------------------------------------------------- -->
 
 
@@ -603,15 +616,15 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 <!-- <center> -->
 
 ::: {.r-stack}
-![](images/plantnet_schema_global_js_0.svg){.fragment width=100% fragment-index=2 style="background-color:white;"}
+![](../2025-04-03-IAUM/images/plantnet_schema_global_js_0.svg){.fragment width=100% fragment-index=2 style="background-color:white;"}
 
-![](images/plantnet_schema_global_js_1.svg){.fragment width=100% fragment-index=3 style="background-color:white;"}
+![](../2025-04-03-IAUM/images/plantnet_schema_global_js_1.svg){.fragment width=100% fragment-index=3 style="background-color:white;"}
 
-![](images/plantnet_schema_global_js_2.svg){.fragment width=100% fragment-index=4 style="background-color:white;"}
+![](../2025-04-03-IAUM/images/plantnet_schema_global_js_2.svg){.fragment width=100% fragment-index=4 style="background-color:white;"}
 
-![](images/plantnet_schema_global_js_3.svg){.fragment width=100% fragment-index=5 style="background-color:white;"}
+![](../2025-04-03-IAUM/images/plantnet_schema_global_js_3.svg){.fragment width=100% fragment-index=5 style="background-color:white;"}
 
-![](images/plantnet_schema_global_js_4.svg){.fragment width=100% fragment-index=6 style="background-color:white;"}
+![](../2025-04-03-IAUM/images/plantnet_schema_global_js_4.svg){.fragment width=100% fragment-index=6 style="background-color:white;"}
 <!-- https://lvngd.com/blog/how-embed-google-font-svg/ -->
 
 :::
@@ -629,7 +642,7 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 <br>
 
 <center>
-<img src="images/PlantNet-overview-Janv-2022_fr.svg" width="99%">
+<img src="../2025-04-03-IAUM/images/PlantNet-overview-Janv-2022_fr.svg" width="99%">
 
 <br>
 <br>
@@ -648,21 +661,22 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 ::: {style="font-size: 150%;"}
 
 
-#### Données:
+#### Collecter des données:
 - **Images** : images de plantes
 - **Etiquettes** : noms des plantes
 
 
-#### Apprentissage:
+#### Entraîner un système automatisé:
 - **Modèle (architecture)** : réseau de neurones
 - **Algorithme** : optimise les performances du modèle
 - **Infrastructure** : puissance de calcul (GPU, TPU, etc.)
 
+<!--
 D'excellentes vidéos pour comprendre les réseaux de neurones:
 
-<center>
+ <center>
 [3Blue1Brown: Neural Network](https://www.youtube.com/@3blue1brown/courses)
-</center>
+</center> -->
 :::
 
 
@@ -672,9 +686,9 @@ D'excellentes vidéos pour comprendre les réseaux de neurones:
 
 ::: {style="font-size: 150%;"}
 
-- **Images** : images de plantes, facile à trouver (mais pas toujours de qualité), 1.2 Milliards d'images dans Pl@ntNet
+- **Images** : images de plantes, facile à trouver (mais pas toujours de qualité), 1.5 Milliards d'images dans Pl@ntNet
 
-- **Données étiquetées** : images de plantes avec leur nom. Plus difficile à obtenir, 20 Millions d'images étiquetées dans Pl@ntNet
+- **Données étiquetées** : images de plantes avec leur nom. Plus difficile à obtenir, 30 Millions d'images étiquetées dans Pl@ntNet
 
 <br>
 
@@ -698,7 +712,7 @@ D'excellentes vidéos pour comprendre les réseaux de neurones:
 <center>
 ![](https://bs.plantnet.org/image/o/7f574459569e18955d6adc5126cd0fbc84cf7567.jpeg){width=34%}
 
-[Aciachne pulvinata Benth.](https://identify.plantnet.org/fr/k-world-flora/observations/1004726011)
+[*Aciachne pulvinata* Benth.](https://identify.plantnet.org/fr/k-world-flora/observations/1004726011)
 
 </center>
 <!-------------------------------------------------------------------------- -->
@@ -710,7 +724,7 @@ D'excellentes vidéos pour comprendre les réseaux de neurones:
 <br>
 
 <center>
-![](images/MV_smiley.svg){.fragment width=95%}
+![](../2025-04-03-IAUM/images/MV_smiley.svg){.fragment width=95%}
 </center>
 
 <!-------------------------------------------------------------------------- -->
@@ -722,7 +736,7 @@ D'excellentes vidéos pour comprendre les réseaux de neurones:
 <br>
 
 <center>
-![](images/WMV_smiley.svg){width="95%"}
+![](../2025-04-03-IAUM/images/WMV_smiley.svg){width="95%"}
 </center>
 <!-------------------------------------------------------------------------- -->
 
@@ -737,9 +751,9 @@ Il faut donc proposer des bons poids!
 
 **[Contraintes]{.underline}**:
 
-- larges poids aux experts, ou aux personnes sur le terrain
+- larges poids aux experts ou aux personnes sur le terrain
 - faibles poids aux novices, aux tricheurs, aux spammeurs
-- faire évoluer les poids avec les temps: on peut devenir expert ou perdre la boule!
+- faire évoluer les poids avec le temps: on peut devenir expert ou perdre la boule!
 
 
 Mais surtout: il faut pouvoir traiter
@@ -749,6 +763,28 @@ Mais surtout: il faut pouvoir traiter
 
 
 Et on travaille à améliorer tout cela!
+
+:::
+
+
+
+### Pl@ntNet label aggregation (EM algorithm) {.center style="text-align: center;"}
+
+**Weighting scheme**: weight user vote by its number of identified species
+
+
+::: {.r-stack}
+
+![](images/schema_plantnet_aggregation_js_0.svg){.fragment width=81% fragment-index=1}
+
+![](images/schema_plantnet_aggregation_js_1.svg){.fragment width=81% fragment-index=2}
+
+![](images/schema_plantnet_aggregation_js.svg){.fragment width=81% fragment-index=3}
+:::
+
+
+::: {.fragment}
+
 
 :::
 
@@ -765,12 +801,157 @@ Et on travaille à améliorer tout cela!
 <br>
 
 <center>
-![](images/cible_meme_variance_bias_varie.svg){width="90%"}
+![](../2025-04-03-IAUM/images/cible_meme_variance_bias_varie.svg){width="90%"}
+</center>
+
+. . .
+
+
+<center>
+Biais = erreur systématique
 </center>
 
 
 
+### {{<iconify material-symbols:history-rounded>}} Sondage raté ("*epic fail*")
+
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem;">
+<div style="flex: 1; text-align: center;">
+**Franklin D. Roosevelt**<br>
+![](images/FDR-1944-Campaign-Portrait_3x4_retouched,_cropped.jpg){width=280px fig-alt="Franklin D. Roosevelt campaign portrait"}<br>
+<span style="font-size:55%; line-height:1.1; display:block; margin-top:0.2rem;">Credit: L. Perskie, CC BY 2.0, FDR Presidential Library & Museum</span>
+</div>
+
+<div style="flex: 0 0 auto; text-align: center;">
+<div style="font-size:90%; margin-bottom:1.5rem; margin-top:0;">
+Élection présidentielle (USA 1936)
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+</div>
+<div style="margin-bottom:1.5rem;">
+<span style="background:#fff; border-radius:50px; border:2px solid #047C90; padding:0.3em 1.2em; font-size:180%; font-weight:bold; color:#047C90; box-shadow:0 2px 8px rgba(4, 124, 144, 0.15);">vs.</span>
+</div>
+</div>
+
+<div style="flex: 1; text-align: center;">
+**Alf Landon**<br>
+![](images/Unsuccessful_1936.jpeg){width=280px fig-alt="Alf Landon campaign portrait"}<br>
+<span style="font-size:55%; line-height:1.1; display:block; margin-top:0.2rem;">Credit: Unknown author, Public Domain, Library of Congress</span>
+</div>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 2rem;">
+<div style="flex: 1; text-align: center;">
+**Prédiction**: 43%
+</div>
+
+<div style="flex: 0 0 auto; text-align: center; font-size:90%;">
+Sondage du journal ***The Literary Digest***
+</div>
+
+<div style="flex: 1; text-align: center;">
+**Prédiction**: 57%
+</div>
+</div>
+
+::: {.fragment}
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 2rem; margin-top: 0.2rem;">
+<div style="flex: 1; text-align: center;">
+**Résultat**: 62%
+</div>
+
+<div style="flex: 0 0 auto; text-align: center;">
+<span style="visibility: hidden; font-size:90%;">Sondage du journal ***The Literary Digest***</span>
+</div>
+
+<div style="flex: 1; text-align: center;">
+**Résultat**: 38%
+</div>
+</div>
+:::
+
+::: {.fragment}
+<div style="margin-top: 0.5rem; padding: 0.8rem 1.5rem; background: #f8f9fa; border-left: 4px solid #047C90; border-radius: 4px; font-size: 90%;">
+**Cause du naufrage:** le journal avait sondé ses abonnés, le registre des conducteurs automobiles et les personnes ayant le téléphone (2.38 million de personnes). Mauvais échantillonnage, sur-représentation des plus aisés
+</div>
+:::
+
+
+
+### {{<iconify material-symbols:history-rounded>}} Sauver les pilotes!
+
+:::: {.columns}
+::: {.column width="63%"}
+
+<center>
+![](images/Survivorship-bias.svg){width=40% fig-alt="Survivorship bias diagram showing damage pattern on aircraft"}
+
+<span style="font-size:55%; line-height:1.1; display:block; margin-top:0.5rem;">Credit: Martin Grandjean (vector), McGeddon (picture), <br> US Air Force (hit plot concept), CC BY-SA 4.0</span>
+</center>
+
+
+::: {style="font-size: 130%;"}
+
+**Question militaire** (USA, 1943): Où renforcer les avions de combat, pour limiter les pertes?
+
+[Données]{.underline}: impacts sur les avions récupérés
+
+:::
+
+::: {.fragment fragment-index=1}
+
+::: {style="font-size: 130%;"}
+
+**La réponse (Wald)** : Renforcer les **autres zones**, les avions touchés dans ces zones **ne sont pas revenus**!
+
+→ **Biais de survie** (*survivorship bias*) : les données des avions détruits sont **ignorées**.
+
+<br>
+
+:::
+
+:::
+
+:::
+
+::: {.column width="37%"}
+
+::: {.fragment fragment-index=1}
+
+<center>
+![](images/Abraham_Wald.jpeg){width=50% fig-alt="Portrait of Abraham Wald"}
+
+<span style="font-size:55%; line-height:1.1; display:block; margin-top:0.5rem;">Credit: By Konrad Jacobs, Erlangen, Copyright is Mathematisches Forschungsinstitut Oberwolfach, CC BY-SA 2.0 </span>
+</center>
+
+**Abraham Wald** (1902-1950)
+
+Statisticien hongro-américain, ayant fui le nazisme, il a travaillé pour l'armée américaine durant la Seconde Guerre mondiale.
+
+:::
+
+:::
+
+::::
+
+
+<!-- Source: 
+- https://www.ams.org/publicoutreach/feature-column/fc-2016-06#comments
+- http://madesautels.rbind.io/publication/trou_balles/ -->
+
 <!-------------------------------------------------------------------------- -->
+
+<!-------------------------------------------------------------------------- -->
+## Retour aux plantes {.section-background-small}
+<!-------------------------------------------------------------------------- -->
+
+
+
 ### {{<iconify gis:globe-earth-alt>}} Biais géographique
 
 
@@ -799,24 +980,24 @@ Top-5 des espèces les plus observées dans Pl@ntNet (13/04/2024):
 
 ::: {layout-nrow=1  .v-center-container}
 **25134 obs.**
-![Echium vulgare L.](images/Echium_vulgare_L.svg){width=200px height=200px}
-*Echium vulgare L.*
+![Echium vulgare L.](../2025-04-03-IAUM/images/Echium_vulgare_L.svg){width=200px height=200px}
+*Echium vulgare* L.
 
 **24720 obs.**
-![Ranunculus ficaria L.](images/Ranunculus_ficaria_L.svg){width=200px height=200px}
-*Ranunculus ficaria L.*
+![Ranunculus ficaria L.](../2025-04-03-IAUM/images/Ranunculus_ficaria_L.svg){width=200px height=200px}
+*Ranunculus ficaria* L.
 
 **24103 obs.**
-![Prunus spinosa L.](images/Prunus_spinosa_L.svg){width=200px height=200px}
-*Prunus spinosa L.*
+![Prunus spinosa L.](../2025-04-03-IAUM/images/Prunus_spinosa_L.svg){width=200px height=200px}
+*Prunus spinosa* L.
 
 **23288 obs.**
-![Zea mays L.](images/Zea_mays_L.svg){width=200px height=200px}
-*Zea mays L.*
+![Zea mays L.](../2025-04-03-IAUM/images/Zea_mays_L.svg){width=200px height=200px}
+*Zea mays* L.
 
 **23075 obs.**
-![Alliaria petiolata](images/Alliaria_petiolata.svg){width=200px height=200px}
-*Alliaria petiolata*
+![Alliaria petiolata](../2025-04-03-IAUM/images/Alliaria_petiolata.svg){width=200px height=200px}
+*Alliaria petiolata* (M.Bieb.) Cavara & Grande
 :::
 
 
@@ -897,9 +1078,9 @@ Top-5 des espèces les plus observées dans Pl@ntNet (13/04/2024):
 <center>
 ::: {.r-stack}
 
-![](images/plantnet_ai_ecology0.svg){width="1200px"}
+![](../2025-04-03-IAUM/images/plantnet_ai_ecology0.svg){width="1200px"}
 
-![](images/plantnet_ai_ecology.svg){.fragment width="1200px"}
+![](../2025-04-03-IAUM/images/plantnet_ai_ecology.svg){.fragment width="1200px"}
 
 :::
 
@@ -912,7 +1093,7 @@ Top-5 des espèces les plus observées dans Pl@ntNet (13/04/2024):
 
 
 <center>
-<img src="images/montpellier_atout.svg" width="90%">
+<img src="../2025-04-03-IAUM/images/montpellier_atout.svg" width="90%">
 </center>
 
 <br>
@@ -940,9 +1121,9 @@ Top-5 des espèces les plus observées dans Pl@ntNet (13/04/2024):
 ::: {layout-nrow=2  .v-center-container}
 
 
-![](images/en-attendant-les-robos.png){width=150px}
+![](../2025-04-03-IAUM/images/en-attendant-les-robos.png){width=150px}
 
-![](images/vive-les-communs-numeriques.png){width=150px}
+![](../2025-04-03-IAUM/images/vive-les-communs-numeriques.png){width=150px}
 
 
 :::
@@ -951,7 +1132,10 @@ Top-5 des espèces les plus observées dans Pl@ntNet (13/04/2024):
 
 :::
 
-::: {.column width="75%"}
+
+
+
+::: {.fragment .column width="75%"}
 
 <center>
 
@@ -965,17 +1149,17 @@ Top-5 des espèces les plus observées dans Pl@ntNet (13/04/2024):
 
 ::: {layout-nrow=2  .v-center-container}
 
-![[Science Étonnante](https://www.youtube.com/scienceetonnante)](images/ScienceEtonnante.png){width=370px}
+![[Science Étonnante](https://www.youtube.com/scienceetonnante)](../2025-04-03-IAUM/images/ScienceEtonnante.png){width=370px}
 
 
-![[Science 4 All](https://www.youtube.com/channel/UC0NCbj8CxzeCGIF6sODJ-7A)](images/Science4all.png){width=370px}
+![[Science 4 All](https://www.youtube.com/channel/UC0NCbj8CxzeCGIF6sODJ-7A)](../2025-04-03-IAUM/images/Science4all.png){width=370px}
 
 
 
-![[3Blue1Brown](https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw)](images/3Blue1Brown.png){width=370px}
+![[3Blue1Brown](https://www.youtube.com/channel/UCYO_jab_esuFRV4b17AJtAw)](../2025-04-03-IAUM/images/3Blue1Brown.png){width=370px}
 
 
-![[Veritasium](https://www.youtube.com/user/1veritasium)](images/Veritasium.png){width=370px}
+![[Veritasium](https://www.youtube.com/user/1veritasium)](../2025-04-03-IAUM/images/Veritasium.png){width=370px}
 
 
 :::
@@ -999,7 +1183,7 @@ Top-5 des espèces les plus observées dans Pl@ntNet (13/04/2024):
 
 [https://plantnet.org/2024/10/24/campagne-de-dons-2024/](https://plantnet.org/2024/10/24/campagne-de-dons-2024/)
 
-![](images/Campagne_don2.svg){width=75%}
+![](../2025-04-03-IAUM/images/Campagne_don2.svg){width=75%}
 
 ![](https://raw.githubusercontent.com/josephsalmon/OrganizationFiles/master/inkscape/images/contact_js_long.svg){width=75%}
 
