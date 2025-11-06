@@ -739,7 +739,7 @@ Il faut donc proposer des bons poids!
 
 - larges poids aux experts, ou aux personnes sur le terrain
 - faibles poids aux novices, aux tricheurs, aux spammeurs
-- faire évoluer les poids avec les temps: on peut devenir expert ou perdre la boule!
+- faire évoluer les poids avec le temps: on peut devenir expert ou perdre la boule!
 
 
 Mais surtout: il faut pouvoir traiter

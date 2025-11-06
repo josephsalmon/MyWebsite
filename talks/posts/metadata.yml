@@ -1,4 +1,12 @@
 # Internal slide decks
+- title: "IAUM: Sciences participatives & apprentissage automatique pour identifier les plantes (Joffre)"
+  date: 2025-11-06
+  image: posts/2025-11-06-IA-Joffre/images/dinov2-PN.svg
+  path: 2025-11-06-IA-Joffre/index.qmd
+  categories:
+   - citizen sciences
+   - crowdsourcing
+   - labeling
 - title: "IAUM: Sciences participatives & apprentissage automatique pour identifier les plantes"
   date: 2025-04-03
   image: posts/2025-04-03-IAUM/images/WMV_smiley.svg

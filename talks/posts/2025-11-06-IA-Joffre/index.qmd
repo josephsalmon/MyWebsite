@@ -38,7 +38,20 @@ resources:
         overflow: hidden;
 
 }
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@300;800&family=Roboto+Mono:wght@300;400&family=Sanchez&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@200;300;400;500;600;700;800;900&family=Roboto+Mono:wght@300;400&family=Sanchez&display=swap');
+
+
+/* Set default font for entire SVG */
+svg {
+    font-family: 'Nunito', 'Arial', sans-serif;
+}
+
+/* Specific targeting for dinov2 SVG numbers */
+img[src*="dinov2-PN.svg"] + svg text,
+img[src*="dinov2-PN.svg"] + svg tspan {
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 800 !important;
+}
 </style>
 
 <!-------------------------------------------------------------------------- -->
@@ -47,7 +60,6 @@ resources:
 [Sciences participatives & apprentissage automatique pour identifier les plantes]{.custom-title}
 
 
-<br>
 <br>
 
 <!-- <hr class="hr-teal"> -->
@@ -60,11 +72,11 @@ resources:
 [IMAG, Univ Montpellier, CNRS, Inria, Montpellier, France]{.custom-subtitle3}
 <div style="text-align: center;">
 
-![](../../images/inr_logo_rouge.svg){width=40%}
-![](../../images/logo_um_2022_rouge_RVB.svg){width=40%}
+![](../../images/inr_logo_rouge.svg){width=36%}
+![](../../images/logo_um_2022_rouge_RVB.svg){width=36%}
 
-![](../../images/CNRS-2023.svg){width=17%}
-![](../../images/IMAG_logo.svg){width=36%}
+![](../../images/CNRS-2023.svg){width=15%}
+![](../../images/IMAG_logo.svg){width=33%}
 
 </div>
 
@@ -221,11 +233,11 @@ paris_map = create_city_map("Paris")
 
 ::: {.column width="22%"}
 
-![](../2025-04-03-IAUM/images/Paris.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/Paris.png){width=6cm}
 
-![](../2025-04-03-IAUM/images/st-louis.jpg){width=7.03cm}
+![](../2025-04-03-IAUM/images/st-louis.jpg){width=6cm}
 
-![](../2025-04-03-IAUM/images/st-louis.svg){width=7.03cm}
+![](../2025-04-03-IAUM/images/st-louis.svg){width=6cm}
 
 
 :::
@@ -376,11 +388,11 @@ paris_map = create_city_map("Paris-tpt")
 
 ::: {.column width="22%"}
 
-![](../2025-04-03-IAUM/images/Paris_butte_aux_cailles.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/Paris_butte_aux_cailles.png){width=6cm}
 
-![](../2025-04-03-IAUM/images/TPT.png){width=7.03cm}
+![](../2025-04-03-IAUM/images/TPT.png){width=6cm}
 
-![](../2025-04-03-IAUM/images/Logo_Telecom_ParisTech.svg){width=7.03cm}
+![](../2025-04-03-IAUM/images/Logo_Telecom_ParisTech.svg){width=6cm}
 
 
 :::
@@ -512,7 +524,7 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 
 <div style="text-align: center;">
 
-<img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="60%" align="middle">
+<img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="55%" align="middle">
 
 - **Naissance**: Montpellier, 2011
 - **[Note]{.underline}**: pas de champignons, désolé!
@@ -523,7 +535,7 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 
 
 ::: {.column width="30%"}
-![](../2024-09-25_slides_sierra/images/plantnet_image_ambiguity_js.svg){width=64%}
+![](../2024-09-25_slides_sierra/images/plantnet_image_ambiguity_js.svg){width=60%}
 :::
 
 
@@ -653,6 +665,8 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 </center>
 
 
+
+
 <!-------------------------------------------------------------------------- -->
 ### Que faut-il pour entraîner un réseau de neurone?
 <hr>
@@ -682,6 +696,22 @@ D'excellentes vidéos pour comprendre les réseaux de neurones:
 
 
 <!-------------------------------------------------------------------------- -->
+### Entraînement du réseau de neurone
+<hr>
+<br>
+
+Mathématiquement: on minimmise une mesure de l'erreur sur une base d'entraînement (image - espèce)
+
+- Architecture: Dino-V2, finement calibré sur 10M d'images Pl@ntNet
+- Durée de l'entraînement : 5-6 jours sur "Jean Zay"
+
+<center>
+![](images/dinov2-PN.svg){width=70% fig-alt="Architecture du réseau DinoV2"}
+</center>
+
+
+
+<!-------------------------------------------------------------------------- -->
 ### Mais les données d'où viennent-elles?
 
 ::: {style="font-size: 150%;"}
@@ -703,6 +733,8 @@ D'excellentes vidéos pour comprendre les réseaux de neurones:
 :::
 
 <!-------------------------------------------------------------------------- -->
+
+
 
 
 
@@ -768,18 +800,18 @@ Et on travaille à améliorer tout cela!
 
 
 
-### Pl@ntNet label aggregation (EM algorithm) {.center style="text-align: center;"}
+### Pl@ntNet agrégation d'étiquettes (EM algorithm) {.center style="text-align: center;"}
 
-**Weighting scheme**: weight user vote by its number of identified species
+**Schméma de pondération**: doner un poids aux utilisateurs en fonctions du nombre d'espèces reconnues
 
 
 ::: {.r-stack}
 
-![](images/schema_plantnet_aggregation_js_0.svg){.fragment width=81% fragment-index=1}
+![](images/schema_plantnet_aggregation_js_0_fr.svg){.fragment width=72% fragment-index=1}
 
-![](images/schema_plantnet_aggregation_js_1.svg){.fragment width=81% fragment-index=2}
+![](images/schema_plantnet_aggregation_js_1_fr.svg){.fragment width=72% fragment-index=2}
 
-![](images/schema_plantnet_aggregation_js.svg){.fragment width=81% fragment-index=3}
+![](images/schema_plantnet_aggregation_js_fr.svg){.fragment width=72% fragment-index=3}
 :::
 
 
@@ -818,7 +850,7 @@ Biais = erreur systématique
 <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 2rem;">
 <div style="flex: 1; text-align: center;">
 **Franklin D. Roosevelt**<br>
-![](images/FDR-1944-Campaign-Portrait_3x4_retouched,_cropped.jpg){width=280px fig-alt="Franklin D. Roosevelt campaign portrait"}<br>
+![](images/FDR-1944-Campaign-Portrait_3x4_retouched,_cropped.jpg){width=240px fig-alt="Franklin D. Roosevelt campaign portrait"}<br>
 <span style="font-size:55%; line-height:1.1; display:block; margin-top:0.2rem;">Credit: L. Perskie, CC BY 2.0, FDR Presidential Library & Museum</span>
 </div>
 
@@ -840,7 +872,7 @@ Biais = erreur systématique
 
 <div style="flex: 1; text-align: center;">
 **Alf Landon**<br>
-![](images/Unsuccessful_1936.jpeg){width=280px fig-alt="Alf Landon campaign portrait"}<br>
+![](images/Unsuccessful_1936.jpeg){width=240px fig-alt="Alf Landon campaign portrait"}<br>
 <span style="font-size:55%; line-height:1.1; display:block; margin-top:0.2rem;">Credit: Unknown author, Public Domain, Library of Congress</span>
 </div>
 </div>
@@ -876,9 +908,7 @@ Sondage du journal ***The Literary Digest***
 :::
 
 ::: {.fragment}
-<div style="margin-top: 0.5rem; padding: 0.8rem 1.5rem; background: #f8f9fa; border-left: 4px solid #047C90; border-radius: 4px; font-size: 90%;">
 **Cause du naufrage:** le journal avait sondé ses abonnés, le registre des conducteurs automobiles et les personnes ayant le téléphone (2.38 million de personnes). Mauvais échantillonnage, sur-représentation des plus aisés
-</div>
 :::
 
 
@@ -907,9 +937,9 @@ Sondage du journal ***The Literary Digest***
 
 ::: {style="font-size: 130%;"}
 
-**La réponse (Wald)** : Renforcer les **autres zones**, les avions touchés dans ces zones **ne sont pas revenus**!
+**La réponse (Wald)** : Renforcer les autres zones, les avions touchés dans ces zones **ne sont pas revenus**!
 
-→ **Biais de survie** (*survivorship bias*) : les données des avions détruits sont **ignorées**.
+→ **Biais de survie** (*survivorship bias*) : les données des avions détruits sont ignorées.
 
 <br>
 
@@ -944,6 +974,59 @@ Statisticien hongro-américain, ayant fui le nazisme, il a travaillé pour l'arm
 - https://www.ams.org/publicoutreach/feature-column/fc-2016-06#comments
 - http://madesautels.rbind.io/publication/trou_balles/ -->
 
+
+
+
+### {{<iconify medical-icon:i-health-services>}} Biais de confirmation et pseudoscience
+<hr>
+
+**Question**: Est-ce que l'hydroxychloroquine est utile pour traiter le Covid-19?
+
+::: {.fragment fragment-index=1}
+
+:::: {.columns}
+
+::: {.column width="33%"}
+
+<center>
+![](images/Didier_Raoult_au_1er_Cercle_franco-chinois.png){width=70% fig-alt="Portrait de Didier Raoult"}
+
+<span style="font-size:55%; line-height:1.1; display:block; margin-top:0.5rem;">Credit: Chinese Business Club, CC BY 3.0</span>
+</center>
+
+
+**Didier Raoult** (Dakar, 1952 - ??): Charlatan professionnel, moralement responable de la mort de nombreuses personnes pour avoir promu un traitement inutile
+
+:::
+
+
+::: {.column width="65%"}
+
+<center>
+
+![](images/hyrdoxy.svg){width=80% fig-alt="Schéma de l'étude sur l'hydroxychloroquine"}
+</center>
+
+::: {.fragment style="font-size: 120%;" fragment-index=2}
+
+- **Patients jeunes** : principalement traités
+- **Patients âgés/graves** : souvent exclus de l'étude
+- **Conclusion erronée** : le médicament semble efficace car testé sur les moins à risque (**biais de sélection**)
+  $\implies$ retard dans l'adoption de traitements efficaces
+
+:::
+
+:::
+
+::::
+
+:::
+
+<!-- Par Chinese Business Club — YouTube : https://www.youtube.com/watch?v=3Mn0tVfl-_8 – Voir/enregistrer des versions archivées sur archive.org et sur archive.today, CC BY 3.0, https://commons.wikimedia.org/w/index.php?curid=114322573
+
+
+
+
 <!-------------------------------------------------------------------------- -->
 
 <!-------------------------------------------------------------------------- -->
@@ -956,7 +1039,7 @@ Statisticien hongro-américain, ayant fui le nazisme, il a travaillé pour l'arm
 
 
 <div style="display: flex; flex-direction: column;">
-![](../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png){width=100%}
+![](../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png){width=95%}
 
 <center>Densité spatiale d'images collectées par Pl@ntNet (13/04/2024)</center>
 </div>
@@ -1008,7 +1091,7 @@ Top-5 des espèces les plus observées dans Pl@ntNet (13/04/2024):
 ::: {.column  style='text-align: center;'}
 **10753 obs.**
 
-![](../2024-09-25_slides_sierra/images/Centaurea_jacea.jpg){width=65%}
+![](../2024-09-25_slides_sierra/images/Centaurea_jacea.jpg){width=63%}
 
 *Centaurea jacea*
 :::
@@ -1018,7 +1101,7 @@ Top-5 des espèces les plus observées dans Pl@ntNet (13/04/2024):
 
 **6 obs.**
 
-![](../2024-09-25_slides_sierra/images/Cenchrus_agrimonioides.jpg){width=65%}
+![](../2024-09-25_slides_sierra/images/Cenchrus_agrimonioides.jpg){width=63%}
 
 *Cenchrus agrimonioides*
 :::
