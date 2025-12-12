@@ -21,7 +21,6 @@ format:
           <script src="https://josephsalmon.eu/blog/proof-toggle.js"></script>
 
 
-
 ---
 
 
@@ -306,7 +305,7 @@ One can check that $(a_i)_{i=1,\dots,n-1}$ are linearly independant, so adding t
 Hence one can write $v= \alpha_n \mathbf{1}_n + \sum_{i=1}^{n-1} \alpha_i a_i$.
 Now choosing $x=\mathbf{1}_n \in \mathcal{K}$ yields $\langle v, \mathbf{1}_n \rangle = \alpha_n \leq 0$. Choosing $x = - \mathbf{1}_n \in \mathcal{K}$ yields $\langle v, - \mathbf{1}_n \rangle = - \alpha_n \leq 0$. Hence, $\alpha_n = 0$.
 
-Now, for all $i \in \llbracket 1, n-1 \rrbracket$, choosing $x = \sum_{k=i}^n e_i$ for $i \in \llbracket 2,n\rrbracket$ yields $\langle v, x \rangle = -\alpha_{i}\leq 0$. Hence, for all $ i\in \llbracket 1, n-1 \rrbracket$, we have $\alpha_i \geq 0$, so $\mathcal{K}^\circ \subset \left\{ \sum_{i=1}^{n-1} \alpha_i a_i, \text{ with } \alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0 \right\}$ and the lemma is proved.
+Now, for all $i \in \llbracket 1, n-1 \rrbracket$, choosing $x = \sum_{k=i}^n e_i$ for $i \in \llbracket 2, n \rrbracket$ yields $\langle v, x \rangle = -\alpha_{i}\leq 0$. Hence, for all $i \in \llbracket 1, n-1 \rrbracket$, we have $\alpha_i \geq 0$, so $\mathcal{K}^\circ \subset \left\{ \sum_{i=1}^{n-1} \alpha_i a_i, \text{ with } \alpha_1 \geq 0, \dots, \alpha_{n-1} \geq 0 \right\}$ and the lemma is proved.
 
 :::
 ::::
@@ -522,12 +521,13 @@ $$
 
 A simple consequence of the complementarity slackness is as follows: if $\alpha_i^{\star} > 0$ for some $i \in \llbracket 1, n-1 \rrbracket$, then $x^{\star}_i = x^{\star}_{i+1}$.
 Hence, the set of ($n-1$) constraints can be partitioned into contiguous blocks where $x^\star$ has constant value.
-Each block B can be written as $B = \llbracket \underline{b}, \overline{b} \rrbracket$ for some $\underline{b} \leq \overline{b}$ and $x^{\star}_{\underline{b}} = x^{\star}_{\underline{b}+1} = \ldots = x^{\star}_{\overline{b}}$. When needed we use the convention $x^{\star}_{0}=0$ and $x^{\star}_{n+1}=n+1$. and $x^{\star}_{n+1}=0$. Then, note that by definition of a block, $x^{\star}_{\underline{b}-1}<x^{\star}_{\underline{b}}$ and $x^{\star}_{\overline{b}}<x^{\star}_{\overline{b}+1}$, and by complementarity $\alpha^{\star}_{\underline{b}-1} = \alpha^{\star}_{\overline{b}+1} = 0$.
+Each block B can be written as $B = \llbracket \underline{b}, \overline{b} \rrbracket$ for some $\underline{b} \leq \overline{b}$ and $x^{\star}_{\underline{b}} = x^{\star}_{\underline{b}+1} = \ldots = x^{\star}_{\overline{b}}$.
+When needed, we use the convention $x^{\star}_{0}=0$ and $x^{\star}_{n+1}=0$. Then, note that by definition of a block, $x^{\star}_{\underline{b}-1}<x^{\star}_{\underline{b}}$ and $x^{\star}_{\overline{b}}<x^{\star}_{\overline{b}+1}$, and by complementarity $\alpha^{\star}_{\underline{b}-1} = \alpha^{\star}_{\overline{b}} = 0$.
 
 Summing over the elements of $B$ in @eq-stationarity yields (telescopic sum):
 $$
 \begin{align*}
-\sum_{i \in B }w_i (x^{\star}_i - y_i) +  \alpha_{\overline{b}+1}^{\star} - \alpha_{\underline{b}-1}^{\star} & = 0 \enspace.
+\sum_{i \in B }w_i (x^{\star}_i - y_i) +  \alpha_{\overline{b}}^{\star} - \alpha_{\underline{b}-1}^{\star} & = 0 \enspace.
 \end{align*}
 $$
 Hence, noticing that the $x_i^{\star}$  in block $B$ are all equal, we have that:
@@ -826,6 +826,12 @@ def replace_after_first_non_increasing(x, w=w):
 As can be seen in the preliminary animation, the primal and dual objectives converge to the same value, which is the optimal value of the primal problem.
 
 
+## Further reading
+For readers interested in generalization of isotonic regression (to partial orders in particular), one can check the book by @robertson1988order.
+
+
+# Acknowledgement
+I am grateful to Hugo Negrel for his kind help, catching a few typos in the first version of the post.
 
 # {{< fa link title="link" >}} References
 

@@ -1,0 +1,530 @@
+---
+# description: |
+#   Talk on Pl@ntnet for teenagers
+date: "2025-04-03"
+title-slide-attributes:
+  center-title-slide: false
+format:
+  revealjs:
+    # preview-links: true
+    code-link: true
+    highlight-style: a11y
+    width:  1680
+    height: 1050
+    # width: 1280
+    # height: 720
+    theme: local.scss
+    slideNumber: true
+    jupyter: python3
+    pdf-separate-fragments: false
+    pdf-max-pages-per-slide: 1
+    view-distance: 100
+    mobile-view-distance: 100
+    include-in-header:
+      - text: |
+          <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+bibliography: references.bib
+csl: https://www.zotero.org/styles/apa
+cite-method: citeproc
+link-citations: true
+resources:
+    - "*.html"
+
+---
+
+::: {.hidden}
+{{
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\1}{{1\hspace{-3.8pt} 1}}
+
+}}
+:::
+
+<style>
+    .vertical-line{
+        display: inline-block;
+        border-left: 6px solid rgb(0, 0, 0);
+        margin: 0 10px;
+        height: 500px;
+        border-radius: 3px;
+        overflow: hidden;
+
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@300;800&family=Roboto+Mono:wght@300;400&family=Sanchez&display=swap');
+
+/* Increase text size */
+.reveal .slides section p,
+.reveal .slides section li {
+    font-size: 1.7em !important;
+    line-height: 1.3 !important;
+}
+
+/* Increase h1 (#) and h3 (###) header size */
+.reveal .slides section h1 {
+    font-size: 3em !important;
+}
+
+.reveal .slides section h3 {
+    font-size: 2.5em !important;
+}
+
+/* Ensure callout boxes have same font size */
+.reveal .slides section .callout p,
+.reveal .slides section .callout li,
+.reveal .slides section .callout-note p,
+.reveal .slides section .callout-note li {
+    font-size: 2.4em !important;
+    line-height: 1.3 !important;
+}
+
+/* avoid scrolling bar and set refs content size */
+#refs {
+    font-size: 2.4em !important;
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+}
+.reveal .slides section {
+    overflow: visible !important;
+}
+.reveal .slides {
+    overflow: visible !important;
+}
+.reveal {
+    overflow: visible !important;
+}
+
+/* PDF print adjustments */
+@media print {
+    .reveal .slides section {
+        page-break-after: always !important;
+        overflow: visible !important;
+        height: 100% !important;
+    }
+    .reveal .slides {
+        width: 100% !important;
+        height: 100% !important;
+        zoom: 1 !important;
+        transform: none !important;
+    }
+}
+</style>
+
+<!-------------------------------------------------------------------------- -->
+#### {#title-slide data-menu-title="Title Slide" background="#053660"}
+
+[Conformal Prediction <br> for Long-Tailed Classification]{.custom-title}
+
+
+<br>
+<br>
+
+<!-- <hr class="hr-teal"> -->
+
+:::: {.columns}
+
+::: {.column width="48% border-right:5px solid rgb(0, 0, 0);"}
+[Joseph Salmon]{.custom-subtitle2}
+
+[IMAG, Univ Montpellier, CNRS, Inria, Montpellier, France]{.custom-subtitle3}
+<div style="text-align: center;">
+
+![](../../images/inr_logo_rouge.svg){width=40%}
+![](../../images/logo_um_2022_rouge_RVB.svg){width=40%}
+
+![](../../images/CNRS-2023.svg){width=17%}
+![](../../images/IMAG_logo.svg){width=36%}
+
+</div>
+
+:::
+
+::: {.column width="2%"}
+
+<span class="vertical-line"></span>
+
+:::
+
+::: {.column width="48%"}
+
+<div style="text-align: center;">
+
+[Pl@ntnet Consortium]{.custom-subtitle2}
+
+![](../../images/plantnet_consortium.svg){width=100%}
+
+</div>
+
+:::
+
+::::
+
+
+
+<!-------------------------------------------------------------------------- -->
+### {{< iconify mdi:account-group >}} Joint work with
+<hr>
+
+:::: {.columns}
+
+::: {.column width="48%"}
+
+<div style="text-align: center;">
+
+<img src="images/Tiffany_Ding.jpg" style="width: 300px; height: 300px; object-fit: cover; border-radius: 10px;">
+
+**Tiffany Ding**
+
+UC Berkeley
+
+</div>
+
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+
+<div style="text-align: center;">
+
+<img src="images/JB_Fermanian.png" style="width: 300px; height: 300px; object-fit: cover; border-radius: 10px;">
+
+**Jean-Baptiste Fermanian**
+
+Inria
+
+</div>
+
+:::
+
+::::
+
+<div style="text-align: center;">
+
+<br>
+
+and all the team from 
+
+<br>
+
+
+![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=40%}
+
+</div>
+
+
+<!-------------------------------------------------------------------------- -->
+### {{< iconify fa7-solid:user-friends >}} Pl@ntNet:  ML for citizen science
+<hr>
+
+::::{.columns}
+
+::: {.column width="30%"}
+![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=80%}
+:::
+
+::: {.column width="69%"}
+A **citizen science** platform using machine learning to help people identify plants with their mobile phones
+:::
+
+::::
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+::::{.columns style='display: flex !important'}
+
+::: {.column width="65%"}
+
+<div style="text-align: center;">
+
+
+<img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="26%" align="middle">
+
+<img src="../2024-09-25_slides_sierra/images/AppStoreandGooglePlay.svg" width="35%" align="middle">
+
+</div>
+
+- **Website**: [https://plantnet.org/](https://plantnet.org/)
+- **[Note]{.underline}**: no mushroom identification!
+
+:::
+
+
+::: {.column width="35%"}
+![](../2024-09-25_slides_sierra/images/plantnet_image_ambiguity_js.svg){width=55%}
+:::
+
+::::
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+
+
+### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet: usage and popularity
+<hr>
+
+:::: {.columns}
+::: {.column width="53%"}
+<!-- ![](images/plantnet-logo-title.26755cd.svg){width=35%} -->
+
+
+- **25M+** users
+- **200+** countries
+- Up to **2M** image uploaded/day
+- **75K+** species (=labels)
+- **1B+** total images
+- **10M+** labeled / validated
+
+:::
+
+::: {.column width="45%"}
+
+[https://identify.plantnet.org/stats](https://identify.plantnet.org/stats){.scriptsize}
+
+![](../2024-09-25_slides_sierra/images/map_plantnet.png){width=90%}
+:::
+
+::::
+
+. . .
+
+<div style="text-align: center;">
+
+<img src="../2024-09-25_slides_sierra/images/plantnet_usage_rasterized.svg" width="75%" align="middle" >
+
+</div>
+<!-------------------------------------------------------------------------- -->
+
+
+### {{< iconify eos-icons:database >}} Pl@ntNet and long-tail
+<hr>
+
+
+
+
+![](images/plantnet_class_distribution_iucn_status_with_images.svg){width=100%}
+
+<!-------------------------------------------------------------------------- -->
+
+<br>
+
+**Pl@ntNet-300K** dataset [@garcin2021pl]: a baby Pl@ntNet, available on [Zenodo](https://zenodo.org/records/5645731)
+
+<br>
+
+
+- **~300,000 images** spanning **1,000+ plant species**
+- Classification setting: $X_i$ are images, $Y_i$ are labels=species
+- Note the long tail: many rarely collected species (notably endangered one)
+
+
+
+### Conformal Prediction [@vovk2005algorithmic]
+<hr>
+
+<br>
+**{{< iconify mdi:bullseye-arrow >}} Goal:** Propose the most probable classes with **confidence level** $1-\alpha$
+
+<br>
+<br>
+
+. . .
+
+**{{< iconify mdi:lightbulb-on >}} Main idea:** Return classes with predicted score above a threshold:
+
+$$
+\mathcal{C}_{\alpha}(X) = \big\{ y : s(X,y) \geq t_\alpha \big\}
+$$
+
+<br>
+<br>
+
+. . .
+
+**{{< iconify mdi:swap-horizontal >}} Key assumption:** The data $(X_i, Y_i)$ are **exchangeable**
+
+<br>
+<br>
+
+. . .
+
+**{{< iconify mdi:help-circle >}} Question:** How to select $t_\alpha$ to get **statistical guarantees**?
+
+
+
+### {{< iconify ic:round-tune >}} Optimal sets [@sadinle2019least]
+<hr>
+
+:::: {.columns}
+
+::: {.column width="48%"}
+
+**Marginal coverage** targets:
+
+$$\mathbb{P}\big[ Y \in \mathcal{C}_{\alpha}(X) \big ] \geq 1 - \alpha.$$
+
+:::
+
+::: {.column width="48%"}
+
+::: {.fragment}
+
+**Class conditional coverage** targets:
+
+$$\forall y,\quad  \mathbb{P}\big[ Y \in \mathcal{C}_\alpha(X) | Y=y \big ] \geq 1 - \alpha.$$
+
+:::
+
+:::
+
+::::
+
+::: {.fragment}
+
+:::: {.columns}
+
+::: {.column width="48%"}
+
+::: {.callout-note icon=false appearance="simple"}
+
+## Theorem (Informal)
+
+The optimal set $\mathcal{C}$ of minimum size and **marginal coverage** of at least $1-\alpha$ is:
+
+$$
+\mathcal{C}_{\alpha}(x) = \left\{ y : p(y|x) \geq t_\alpha \right\}
+$$
+
+:::
+
+:::
+
+::: {.column width="48%"}
+
+::: {.fragment}
+
+::: {.callout-note icon=false appearance="simple"}
+
+## Theorem (Informal)
+
+The optimal set $\mathcal{C}$ of minimum size and **conditional coverage** of at least $1-\alpha$ is:
+
+$$
+\mathcal{C}_{\alpha}(x) = \left\{ y : p(y|x) \geq t_\alpha^{y} \right\}
+$$
+
+:::
+
+:::
+
+:::
+
+::::
+
+:::
+
+<br>
+
+::: {.fragment}
+
+{{< iconify mdi:arrow-right-bold >}} **In practice**: consider a conformal score $s(x,y) = \hat{p}(y|x)$ (= softmax score)
+
+<br>
+
+:::
+
+::: {.fragment}
+
+:::: {.columns}
+
+::: {.column width="48%"}
+
+**Marginal:** calibrate $t_{\alpha}$ on **whole calibration set** $(X_i, Y_i)_{i=1}^n$
+
+:::
+
+::: {.column width="48%"}
+
+**Conditional:** calibrate $t_{\alpha}^y$  **only on** $(X_i, Y_i)$ such that $Y_i = y$
+
+:::
+
+::::
+
+:::
+
+<!-------------------------------------------------------------------------- -->
+
+### Targeting Macro-Coverage
+<hr>
+
+**{{< iconify mdi:bullseye-arrow >}} Goal:** Average coverage across all classes (better for long-tail!)
+
+$$
+\text{MacroCoverage} = \frac{1}{|\mathcal{Y}|} \sum_{y \in \mathcal{Y}} \mathbb{P}\big( y \in \mathcal{C}(X) \, | \, Y = y \big)
+$$
+
+::: {.fragment}
+
+::: {.callout-note icon=false appearance="simple"}
+
+## Theorem (Informal)
+
+The optimal set $\mathcal{C}$ of minimum size and **Macro-Coverage** of at least $1-\alpha$ is:
+
+$$
+\mathcal{C}_{\alpha}(x) = \left\{ y : \frac{p(y|x)}{p(y)} \geq t_\alpha \right\}
+$$
+
+:::
+
+:::
+
+::: {.fragment}
+
+{{< iconify mdi:arrow-right-bold >}} **Prevalence Adjusted Softmax**: consider a conformal score $s(x,y) = \frac{\hat{p}(y|x)}{\hat{p}(y)}$
+
+:::
+
+<!-------------------------------------------------------------------------- -->
+
+
+### Experiments on Pl@ntNet-300K
+
+<hr>
+
+
+![](../../../blog/long-tail/images/ALL_metrics_plantnet_softmax_pareto_NO_LEGEND_js.svg){width=100%}
+
+![](../../../blog/long-tail/images/ALL_metrics_plantnet_softmax_pareto_LEGEND_ONLY_js.svg){width=100%}
+
+<br>
+
+. . .
+
+<div style="text-align: center;">
+
+{{< iconify mdi:web >}} **Blog post:** [https://josephsalmon.eu/blog/long-tail/](https://josephsalmon.eu/blog/long-tail/)
+
+</div>
+
+
+
+
+# References {.section-background}
+
+
+<!-------------------------------------------------------------------------- -->
+### [References]{style="font-size: 62.5px;"}
+<hr>
+<!-- above 2.5em × 25px = 62.5px -->
+::: {#refs}
+:::
+<!-------------------------------------------------------------------------- -->

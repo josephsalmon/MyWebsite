@@ -1,4 +1,12 @@
 # Internal slide decks
+- title: "Conformal Prediction for Long-Tailed Classification"
+  date: 2025-12-15
+  image: posts/2025-12-15-ICSDS25/images/plantnet_class_distribution_iucn_status_with_images.svg
+  path: 2025-12-15-ICSDS25/index.qmd
+  categories:
+   - citizen sciences
+   - crowdsourcing
+   - conformal prediction
 - title: "IAUM: Sciences participatives & apprentissage automatique pour identifier les plantes (Joffre)"
   date: 2025-11-06
   image: posts/2025-11-06-IA-Joffre/images/dinov2-PN.svg

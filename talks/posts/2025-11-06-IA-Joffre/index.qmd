@@ -40,17 +40,34 @@ resources:
 }
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@200;300;400;500;600;700;800;900&family=Roboto+Mono:wght@300;400&family=Sanchez&display=swap');
 
-
-/* Set default font for entire SVG */
-svg {
-    font-family: 'Nunito', 'Arial', sans-serif;
+/* Set default font for entire SVG - force Nunito everywhere */
+svg text, svg tspan {
+    font-family: 'Nunito', Arial, sans-serif !important;
+    font-weight: bold !important;
 }
 
-/* Specific targeting for dinov2 SVG numbers */
-img[src*="dinov2-PN.svg"] + svg text,
-img[src*="dinov2-PN.svg"] + svg tspan {
-    font-family: 'Nunito', sans-serif !important;
+/* Force override any Inkscape font specifications */
+svg text[style*="font-family"], 
+svg tspan[style*="font-family"] {
+    font-family: 'Nunito', Arial, sans-serif !important;
+}
+
+/* Specific targeting for dinov2 SVG numbers - extra weight */
+svg text:contains("DinoV2"), 
+svg tspan:contains("DinoV2"),
+svg text:contains("224"), 
+svg tspan:contains("224"),
+svg text:contains("518") {
+    font-family: 'Nunito', Arial, sans-serif !important;
     font-weight: 800 !important;
+}
+
+/* Force Nunito for any SVG that might be inline */
+object[data*=".svg"] text,
+object[data*=".svg"] tspan,
+embed[src*=".svg"] text,
+embed[src*=".svg"] tspan {
+    font-family: 'Nunito', Arial, sans-serif !important;
 }
 </style>
 
@@ -1003,8 +1020,7 @@ Statisticien hongro-américain, ayant fui le nazisme, il a travaillé pour l'arm
 ::: {.column width="65%"}
 
 <center>
-
-![](images/hyrdoxy.svg){width=80% fig-alt="Schéma de l'étude sur l'hydroxychloroquine"}
+<img src="images/hyrdoxy.svg" width="80%" alt="Schéma de l'étude sur l'hydroxychloroquine" />
 </center>
 
 ::: {.fragment style="font-size: 120%;" fragment-index=2}
@@ -1037,12 +1053,12 @@ Statisticien hongro-américain, ayant fui le nazisme, il a travaillé pour l'arm
 
 ### {{<iconify gis:globe-earth-alt>}} Biais géographique
 
-
+<center>
 <div style="display: flex; flex-direction: column;">
-![](../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png){width=95%}
-
-<center>Densité spatiale d'images collectées par Pl@ntNet (13/04/2024)</center>
+![](../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png){width=89%}
 </div>
+
+Densité spatiale d'images collectées par Pl@ntNet (13/04/2024)</center>
 <!-------------------------------------------------------------------------- -->
 
 
