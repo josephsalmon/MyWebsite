@@ -1012,7 +1012,7 @@ Statisticien hongro-américain, ayant fui le nazisme, il a travaillé pour l'arm
 </center>
 
 
-**Didier Raoult** (Dakar, 1952 - ??): Charlatan professionnel, moralement responable de la mort de nombreuses personnes pour avoir promu un traitement inutile
+**Didier Raoult** (Dakar, 1952 - ??): Druitde, promotteur acharné d'un traitement inutile contre le covid-19 (et ce n'était pas l'eau de javel)
 
 :::
 
@@ -1020,7 +1020,7 @@ Statisticien hongro-américain, ayant fui le nazisme, il a travaillé pour l'arm
 ::: {.column width="65%"}
 
 <center>
-<img src="images/hyrdoxy.svg" width="80%" alt="Schéma de l'étude sur l'hydroxychloroquine" />
+![](images/hyrdoxy_font.svg){width=80% fig-alt="Schéma de l'étude sur l'hydroxychloroquine"}
 </center>
 
 ::: {.fragment style="font-size: 120%;" fragment-index=2}

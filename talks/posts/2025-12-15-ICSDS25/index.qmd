@@ -396,7 +396,7 @@ $$\forall y,\quad  \mathbb{P}\big[ Y \in \mathcal{C}_\alpha(X) | Y=y \big ] \geq
 
 ## Theorem (Informal)
 
-The optimal set $\mathcal{C}$ of minimum size and **marginal coverage** of at least $1-\alpha$ is:
+The optimal set of minimum size and **marginal coverage** of at least $1-\alpha$ is:
 
 $$
 \mathcal{C}_{\alpha}(x) = \left\{ y : p(y|x) \geq t_\alpha \right\}
@@ -414,7 +414,7 @@ $$
 
 ## Theorem (Informal)
 
-The optimal set $\mathcal{C}$ of minimum size and **conditional coverage** of at least $1-\alpha$ is:
+The optimal set of minimum size and **conditional coverage** of at least $1-\alpha$ is:
 
 $$
 \mathcal{C}_{\alpha}(x) = \left\{ y : p(y|x) \geq t_\alpha^{y} \right\}
@@ -477,7 +477,7 @@ $$
 
 ## Theorem (Informal)
 
-The optimal set $\mathcal{C}$ of minimum size and **Macro-Coverage** of at least $1-\alpha$ is:
+The optimal set of minimum size and **Macro-Coverage** of at least $1-\alpha$ is:
 
 $$
 \mathcal{C}_{\alpha}(x) = \left\{ y : \frac{p(y|x)}{p(y)} \geq t_\alpha \right\}
