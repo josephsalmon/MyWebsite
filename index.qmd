@@ -18,8 +18,8 @@ listing:
   - id: blog-listing
     sort: 'date desc'
     contents:
+      - "long-tail/index.qmd"
       - "blog/isotonic/index.qmd"
-      - "blog/latex/index.qmd"
       - "blog/softmax/index.qmd"
     type: grid
   - id : recent-publications

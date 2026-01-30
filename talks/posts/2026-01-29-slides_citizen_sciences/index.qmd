@@ -1,0 +1,973 @@
+---
+# description: |
+date: "2026-29-01"
+title-slide-attributes:
+  center-title-slide: false
+format:
+  revealjs:
+    # preview-links: true
+    code-link: true
+    highlight-style: a11y
+    width: 1280
+    height: 720
+    theme: local.scss
+    slideNumber: true
+    jupyter: python3
+    pdf-separate-fragments: false
+    pdf-max-pages-per-slide: 1
+    view-distance: 100
+    mobile-view-distance: 100
+    include-in-header:
+      - text: |
+          <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+bibliography: references.bib
+csl: https://www.zotero.org/styles/apa
+cite-method: citeproc
+link-citations: true
+resources:
+    - "*.html"
+
+---
+
+::: {.hidden}
+{{
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\1}{{1\hspace{-3.8pt} 1}}
+
+}}
+:::
+
+<style>
+    .vertical-line{
+        display: inline-block;
+        border-left: 6px solid rgb(0, 0, 0);
+        margin: 0 10px;
+        height: 500px;
+        border-radius: 3px;
+        overflow: hidden;
+
+}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@200;300;400;500;600;700;800;900&family=Roboto+Mono:wght@300;400&family=Sanchez&display=swap');
+
+/* Set default font for entire SVG */
+svg {
+    font-family: 'Nunito Bold', 'Arial', sans-serif;
+}
+
+/* Specific targeting for dinov2 SVG numbers */
+img[src*="dinov2-PN.svg"] + svg text,
+img[src*="dinov2-PN.svg"] + svg tspan {
+    font-family: 'Nunito', sans-serif !important;
+    font-weight: 800 !important;
+}
+
+/* Specific targeting for dinov2 SVG numbers - extra weight */
+svg text:contains("DinoV2"), 
+svg tspan:contains("DinoV2"),
+svg text:contains("224"), 
+svg tspan:contains("224"),
+svg text:contains("518") {
+    font-family: 'Nunito', Arial, sans-serif !important;
+    font-weight: 800 !important;
+}
+
+/* Force Nunito for any SVG that might be inline */
+object[data*=".svg"] text,
+object[data*=".svg"] tspan,
+embed[src*=".svg"] text,
+embed[src*=".svg"] tspan {
+    font-family: 'Nunito', Arial, sans-serif !important;
+}
+
+
+/* avoid scrolling bar and set refs content size */
+#refs {
+    font-size: 150% !important;
+    overflow: visible !important;
+    max-height: none !important;
+    height: auto !important;
+}
+.reveal .slides section {
+    overflow: visible !important;
+}
+.reveal .slides {
+    overflow: visible !important;
+}
+.reveal {
+    overflow: visible !important;
+}
+
+/* PDF print adjustments */
+@media print {
+    .reveal .slides section {
+        page-break-after: always !important;
+        overflow: visible !important;
+        height: 100% !important;
+    }
+    .reveal .slides {
+        width: 100% !important;
+        height: 100% !important;
+        zoom: 1 !important;
+        transform: none !important;
+    }
+}
+
+</style>
+
+<!------------------------------------------------------------------------ -->
+#### {#title-slide data-menu-title="Title Slide" background="#053660"}
+
+[Citizen science & machine learning for plant Identification: challenges from Pl@ntNet]{.custom-title}
+
+
+<br>
+
+<!-- <hr class="hr-teal"> -->
+
+:::: {.columns}
+
+::: {.column width="48% border-right:5px solid rgb(0, 0, 0);"}
+[Joseph Salmon]{.custom-subtitle2}
+
+[IMAG, Univ Montpellier, CNRS, Inria, Montpellier, France]{.custom-subtitle3}
+<div style="text-align: center;">
+
+![](../../images/team_logo.svg){width=100% style="display: block; margin-left: 0; margin-right: auto;"}
+<!-- ![](../../images/inr_logo_rouge.svg){width=33%}
+
+![](../../images/logo_um_2022_rouge_RVB.svg){width=23%}
+![](../../images/CNRS-2023.svg){width=15%} -->
+<!-- ![](../../images/IMAG_logo.svg){width=25%} -->
+
+</div>
+
+:::
+
+::: {.column width="2%"}
+
+<span class="vertical-line"></span>
+
+:::
+
+::: {.column width="48%"}
+
+<div style="text-align: center;">
+
+[Consortium  Pl@ntnet]{.custom-subtitle2}
+
+![](../../images/plantnet_consortium.svg){width=89%}
+
+</div>
+
+:::
+
+::::
+
+
+
+<!------------------------------------------------------------------------ -->
+# Pl@ntNet insights {.section-background}
+<!------------------------------------------------------------------------ -->
+
+
+
+<!------------------------------------------------------------------------- -->
+### Pl@ntNet:  ML for citizen science
+<hr>
+
+
+::::{.columns}
+
+::: {.column width="30%"}
+![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=106%}
+:::
+
+::: {.column width="69%"}
+A **citizen science** platform using machine learning to help people identify plants with their mobile phones
+
+
+
+:::
+
+::::
+
+:::: {.columns style='display: flex !important'}
+
+::: {.column width="55%"}
+
+<div style="text-align: center;">
+
+<img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="55%" align="middle">
+
+- **Birth**: Montpellier, circa 2010
+- **Website**: [https://plantnet.org/](https://plantnet.org/)
+- **[Note]{.underline}**: no mushroom identification!
+</div>
+:::
+
+
+::: {.column width="30%"}
+![](../2024-09-25_slides_sierra/images/plantnet_image_ambiguity_js.svg){width=60%}
+:::
+
+
+
+::: {.column width="15%"}
+
+
+::: {layout-nrow=3  .v-center-container}
+
+<br>
+<br>
+<br>
+<br>
+
+<img src="../2025-04-03-IAUM/images/AppStore_FR-1.png" width="100%" align="middle">
+<img src="../2025-04-03-IAUM/images/Google_FR-1.png" width="100%" align="middle">
+<img src="../2025-04-03-IAUM/images/identifyFR.png" width="100%" align="middle">
+
+:::
+
+:::
+
+::::
+<!------------------------------------------------------------------------ -->
+
+
+### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet: usage
+<hr>
+
+<br>
+<div style="text-align: center;">
+
+<img src="../2024-09-25_slides_sierra/images/plantnet_usage_rasterized.svg" width="95%" align="middle" >
+
+</div>
+
+
+
+
+<!------------------------------------------------------------------------ -->
+###
+
+<div style="text-align: center;">
+  <iframe src="https://identify.plantnet.org/stats" width="850" height="700" style="border: none; display: inline-block;"></iframe>
+</div>
+
+
+### {{< iconify fluent:people-community-20-filled >}} Pl@ntNet & Cooperative Learning
+
+<!-- <center> -->
+
+<!-- <center> -->
+
+::: {.r-stack}
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_0.svg){.fragment width=100% fragment-index=2}
+
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_1.svg){.fragment width=100% fragment-index=3}
+
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_2.svg){.fragment width=100% fragment-index=4}
+
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_3.svg){.fragment width=100% fragment-index=5}
+
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_4.svg){.fragment width=100% fragment-index=6}
+<!-- SVG fonts embedding trick -->
+<!-- https://lvngd.com/blog/how-embed-google-font-svg/ -->
+<!-- https://amio.github.io/embedded-google-fonts/ -->
+:::
+
+
+
+### {{< iconify vaadin:hourglass-start >}} Chronology of Pl@ntNet {.center }
+<hr>
+
+
+<center>
+<img src="images/PlantNet-overview-Janv-2026_en.svg" width="80%" >
+
+
+**Note:** I am mostly innocent, I started working with the Pl@ntNet team in 2020
+
+</center>
+
+<!------------------------------------------------------------------------ -->
+
+
+<!------------------------------------------------------------------------ -->
+### {{< iconify eos-icons:science >}} Scientific challenges
+<hr>
+<br>
+
+[**Motivation**]{.underline}: excellent app ... but not a perfect app; **How to improve?**
+
+. . .
+
+
+- Community effort involving
+  - machine learners
+  - ecologist
+  - engineers
+  - amateurs
+
+. . .
+
+- Many open problems:
+  - theoretical
+  - methodological
+  - computational (due ot the size of the problems)
+  - interfacing many disciplines
+
+<!------------------------------------------------------------------------ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------------ -->
+# Contributions {.section-background}
+<!------------------------------------------------------------------------ -->
+
+
+<!------------------------------------------------------------------------ -->
+### {{<iconify bxs:user-detail>}} Personal contributions
+<hr>
+
+<br>
+
+:::: {.columns }
+
+::: {.column width="68%"}
+
+- **Pl@ntNet-300K** [@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean_Lorieul_Salmon2021]: Creation and **release** of a large-scale dataset sharing the same property (Long Tail!) as Pl@ntNet; available for the community to improve learning systems
+
+:::
+
+::: {.column width="29%"}
+
+<center>
+<img src="../2024-09-25_slides_sierra/images/sample_genus.svg" width="62%" align="middle">
+</center>
+
+:::
+
+::::
+
+::: fragment
+
+:::: columns
+
+::: {.column width="68%"}
+
+- **Learning & crowd-sourced data** [@Lefort_Charlier_Joly_Salmon22] and [@Lefort_etal24]: How to leverage multiple labels per image to improve the model? Need to **assert quality**: the workers, the images/labels, the model, etc.
+
+:::
+
+::: {.column width="29%"}
+<center>
+<img src="../2024-09-25_slides_sierra/images/fullpipeline_small.svg" width="78%" align="middle">
+</center>
+
+:::
+
+::::
+
+:::
+
+::: fragment
+
+:::: columns
+
+::: {.column width="68%"}
+
+- **Conformal Prediction** with long tail data [@Ding_Fermanian_Salmon25] : providing prediction sets when labels are long tails (many, many rare species)
+
+:::
+
+::: {.column width="29%"}
+<center>
+<img src="../../../blog/long-tail/GMM.png" width="78%" align="middle">
+</center>
+
+:::
+
+::::
+
+:::
+<!------------------------------------------------------------------------ -->
+
+
+
+
+### Intra-class variability
+
+
+
+<!-- Image with author overlay function -->
+<!-- Usage: 
+
+<br>
+<div class="img-author-container" style="width:93%;">
+    <img src="../2024-09-25_slides_sierra/images/6_a.jpg" alt="Guizotia abyssinica" class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">AUTHOR_NAME</span>
+</div>
+-->
+<!-- Place this style block at the top of the file or outside any Markdown/Quarto container for global effect -->
+<style>
+.img-author-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 180px;
+    box-sizing: border-box;
+}
+.img-author-img {
+    display: block;
+    width: 100% !important;
+    object-fit: contain !important;
+    background: transparent;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+}
+.img-author-overlay {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: 0.5em;
+    font-family: Nunito, Arial, sans-serif;
+    font-weight: bold;
+    z-index: 2;
+    pointer-events: none;
+}
+
+
+</style>
+<style>
+/* Make captions immune to long names and keep grid aligned */
+.img-author-caption {
+     text-align: center;
+     font-size: 0.75em;
+     color: #222;
+     margin-top: 2px;
+     font-family: Nunito, Arial, sans-serif;
+     height: 2.6em; /* fixed height for one line */
+     line-height: 1.3em;
+     white-space: normal;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     width: 100%;
+     display: block;
+}
+</style>
+
+```{=html}
+<div class="img-author-group-centered">
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+      <img src="images/66c06ee4e4fd35c5a58b4d0b97dffcb2053a41d3.jpg" alt="Guizotia abyssinica (L.f.) Cass." class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">Photo by Benoît Janichon</span>
+      <span class="img-author-caption"><span style="font-style:italic">Guizotia abyssinica</span> (L.f.) Cass.</span>
+  </div>
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+      <img src="images/858de40efb7c3c934e320429634aaef273c16878.jpg" alt="Diascia rigescens E.Mey. ex Benth." class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">Photo by Patrice SIROT</span>
+      <span class="img-author-caption"><span style="font-style:italic">Diascia rigescens</span> E.Mey. ex Benth.</span>
+  </div>
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+      <img src="images/6ad45f4e4d2454728e6e41847dc8267227fc9b0d.jpg" alt="Lapageria rosea Ruiz & Pav." class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">Photo by Borquez Vicent</span>
+      <span class="img-author-caption"><span style="font-style:italic">Lapageria rosea</span> Ruiz & Pav.</span>
+  </div>
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+      <img src="images/5b4cd720ce747c8a53e09e0caa2dc43f12b62610.jpg" alt="Casuarina cunninghamiana Miq. LC" class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">Photo by Наталья</span>
+      <span class="img-author-caption"><span style="font-style:italic">Casuarina cunninghamiana</span> Miq. LC</span>
+  </div>
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+      <img src="../2024-09-25_slides_sierra/images/6_b.jpg" alt="Guizotia abyssinica (L.f.) Cass." class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">Photo by Annette Bejany</span>
+      <span class="img-author-caption"><span style="font-style:italic">Guizotia abyssinica</span> (L.f.) Cass.</span>
+  </div>
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+      <img src="images/0231e8d9cb679d11e814a1f8c4227bd6cf7d2fe6.jpg" alt="Diascia rigescens E.Mey. ex Benth." class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">Photo by A Lee</span>
+      <span class="img-author-caption"><span style="font-style:italic">Diascia rigescens</span> E.Mey. ex Benth.</span>
+  </div>
+    <div class="img-author-container" style="width:21%; min-width:120px;">
+        <img src="images/ba4b0161aa17c364744ec58b69a9f77f26a4d8ce.jpg" alt="Lapageria rosea Ruiz & Pav.
+" class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">Photo by Daniel Barthelemy</span>
+    <span class="img-author-caption"><span style="font-style:italic">Lapageria rosea</span> Ruiz & Pav.</span>
+    </div>
+    <div class="img-author-container" style="width:21%; min-width:120px;">
+        <img src="images/fa8e288f400456e08994113b3217a4cd2e1238df.jpg" alt="Casuarina cunninghamiana Miq. LC" class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">Photo by Campos Ignacio</span>
+    <span class="img-author-caption"><span style="font-style:italic">Casuarina cunninghamiana</span> Miq. LC</span>
+    </div>
+</div>
+```
+
+
+<br>
+
+
+<center>
+**Based on pictures only, plant species are challenging to discriminate!**
+</center>
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+### Inter-class ambiguity
+
+
+```{=html}
+<div class="img-author-group-centered">
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+    <img src="images/12d7b180752393e86822c1fff68df8f8a19189fe.jpg" alt="Cirsium rivulare (Jacq.) All." class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">Photo by stefano mazzotti</span>
+    <span class="img-author-caption"><span style="font-style:italic">Cirsium rivulare</span> (Jacq.) All.</span>
+  </div>
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+    <img src="images/565322614481c3092ce52239a62725f1992be393.jpg" alt="Chaerophyllum aromaticum L." class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">Photo by buqa Jarmil</span>
+    <span class="img-author-caption"><span style="font-style:italic">Chaerophyllum aromaticum</span> L.</span>
+  </div>
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+    <img src="images/3f82867ba9d74fe1fd3af3093158634a666dd790.jpg" alt="Adenostyles leucophylla Rchb." class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">Photo by Walter Reider</span>
+    <span class="img-author-caption"><span style="font-style:italic">Adenostyles leucophylla</span> Rchb.</span>
+  </div>
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+    <img src="images/7ebd92cd30be0d3476c79908347e4020ce359c61.jpg" alt="Petrosedum montanum (Songeon & E.P.Perrier) Grulich" class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">Photo by furs</span>
+    <span class="img-author-caption"><span style="font-style:italic">Petrosedum montanum</span> (Songeon & E.P.Perrier) Grulich</span>
+  </div>
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+    <img src="images/47fad454bb29c34687cf1ab3ee6b456201ea0725.jpg" alt="Cirsium tuberosum (L.) All." class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">Photo by Rene Weck</span>
+    <span class="img-author-caption"><span style="font-style:italic">Cirsium tuberosum</span> (L.) All.</span>
+  </div>
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+    <img src="images/ffc5f1b5aab703ea359922c92273ef86791f1662.jpg" alt="Chaerophyllum temulum L." class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">Photo by Jcm Arthur</span>
+    <span class="img-author-caption"><span style="font-style:italic">Chaerophyllum temulum</span> L.</span>
+  </div>
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+    <img src="images/92e4cbe38e831d11526946389c2342db4499d436.jpg" alt="Adenostyles alpina (L.) Bluff & Fingerh." class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">Photo by pierre Lamy</span>
+    <span class="img-author-caption"><span style="font-style:italic">Adenostyles alpina</span> (L.) Bluff & Fingerh.</span>
+  </div>
+  <div class="img-author-container" style="width:21%; min-width:120px;">
+    <img src="images/dc051dace6de6cbdfe5202a4b900290525bfee3e.jpg" alt="Petrosedum rupestre (L.) P.V.Heath" class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">Photo by Wolfi 41</span>
+    <span class="img-author-caption"><span style="font-style:italic">Petrosedum rupestre</span> (L.) P.V.Heath</span>
+  </div>
+</div>
+```
+
+<br>
+
+
+<center>
+**Based on pictures only, plant species are challenging to discriminate!**
+</center>
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+## Sampling bias {.section-background-small}
+<!-------------------------------------------------------------------------- -->
+
+
+<!-------------------------------------------------------------------------- -->
+### {{<iconify gis:globe-earth-alt>}} Geographic bias
+
+
+<div style="display: flex; flex-direction: column;">
+![](../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png){width=100%}
+
+<center>Spatial density of images collected by Pl@ntNet (13/04/2024)</center>
+</div>
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+### {{<iconify fluent:food-20-filled>}} Food bias
+<hr>
+
+<br>
+<center>
+Top-5 most observed plant species in Pl@ntNet (13/04/2024):
+</center>
+
+<br>
+
+
+  <!-- <div class="img-author-container" style="width:21%; min-width:120px;">
+      <img src="images/66c06ee4e4fd35c5a58b4d0b97dffcb2053a41d3.jpg" alt="Guizotia abyssinica (L.f.) Cass." class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">Photo by Benoît Janichon</span>
+      <span class="img-author-caption"><span style="font-style:italic">Guizotia abyssinica</span> (L.f.) Cass.</span>
+  </div> -->
+
+```{=html}
+<div class="img-author-group-centered">
+      <div class="img-author-container" style="width:19%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">25134 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/Echium_vulgare_L_1012470528.svg" alt="Echium vulgare L." class="img-author-img">
+            <span class="img-author-overlay">Photo by Llandrich anna</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Echium vulgare</span> L.</span>
+    </div>
+      <div class="img-author-container" style="width:19%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">24720 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/Ranunculus_ficaria_L_1012578129.svg" alt="Ranunculus ficaria L." class="img-author-img">
+            <span class="img-author-overlay">Photo by JYCO</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Ranunculus ficaria</span> L.</span>
+    </div>
+      <div class="img-author-container" style="width:19%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">24103 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/Prunus_spinosa_L_1023984740.svg" alt="Prunus spinosa L." class="img-author-img">
+            <span class="img-author-overlay">Photo by fuerst.ernst</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Prunus spinosa</span> L.</span>
+    </div>
+      <div class="img-author-container" style="width:19%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">23288 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/Zea_mays_L_1020124455.svg" alt="Zea mays L." class="img-author-img">
+            <span class="img-author-overlay">Photo by Uta Groger</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Zea mays</span> L.</span>
+    </div>
+      <div class="img-author-container" style="width:19%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">23075 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/Alliaria_petiolata_1013116480.svg" alt="Alliaria petiolata (M.Bieb.) Cavara &amp; Grande" class="img-author-img">
+            <span class="img-author-overlay">Photo by Pascal Ollagnier</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Alliaria petiolata</span> (M.Bieb.) Cavara &amp; Grande</span>
+    </div>
+</div>
+```
+<!----------------------------------------------------------------------- -->
+
+
+
+
+
+<!----------------------------------------------------------------------- -->
+### {{<iconify ri:sparkling-2-line>}} Beauty bias
+<hr>
+
+
+```{=html}
+<div class="img-author-group-centered">
+      <div class="img-author-container" style="width:45%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">10753 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/68ea71ff35a4ebf2c67011fcb54eba3a7671ea5e.jpeg" alt="Centaurea jacea L." class="img-author-img" style="width:100%;">
+            <span class="img-author-overlay">Photo by Dieter Wagner</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Centaurea jacea</span> L.</span>
+    </div>
+      <div class="img-author-container" style="width:45%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">6 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/4fe3e22073f23ba342555f2003fbb80221d47de3.jpeg" alt="Cenchrus agrimonioides Trin." class="img-author-img" style="width:100%;">
+            <span class="img-author-overlay">Photo by David Eickhoff − EOL</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Cenchrus agrimonioides</span> Trin.</span>
+    </div>
+</div>
+```
+<!----------------------------------------------------------------------- -->
+
+
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+
+### {{<iconify emojione-monotone:straight-ruler>}} Size bias
+<hr>
+
+
+```{=html}
+<div class="img-author-group-centered" style="gap:0;">
+    <div class="img-author-container" style="width:45%; min-width:120px; margin-right:2%;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">8376 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/0daa10dc3118cfb826faedc4e87a2f4b034db1d1.jpeg" alt="Magnolia grandiflora L." class="img-author-img" style="width:100%;">
+            <span class="img-author-overlay">Photo by Patrick Cartier</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Magnolia grandiflora</span> L.</span>
+    </div>
+    <div style="width:10%; min-width:60px; display:flex; align-items:center; justify-content:center;">
+        <img src="../2024-09-25_slides_sierra/images/rule.png" style="width:80%; max-width:80px;">
+    </div>
+    <div class="img-author-container" style="width:45%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">413 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/942686a7353fb3a7f566b7369f48ec6ca56b4338.jpeg" alt="Moehringia trinervia (L.) Clairv." class="img-author-img" style="width:100%;">
+            <span class="img-author-overlay">Photo by Maximilien Perrin</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Moehringia trinervia</span> (L.) Clairv.</span>
+    </div>
+</div>
+```
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+# References {.section-background}
+
+
+<!----------------------------------------------------------------------- -->
+### References
+<hr>
+
+::: {#refs}
+:::
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const refs = document.getElementById('refs');
+    if (refs) {
+        refs.innerHTML = refs.innerHTML.replace(/Salmon, J\./g, '<strong>Salmon, J.</strong>');
+    }
+});
+</script>
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------------ -->
+
+### {{< iconify streamline-ultimate:workflow-teamwork-user-high-five-bold >}} The current Pl@ntNet Team
+<!-- copy paste here the full list of plantnet pople -->
+```{=html}
+<style>
+    .team-slide-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1px 1px;
+        font-size: 40%;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+    .team-member {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 180px;
+        margin-bottom: 10px;
+    }
+    .team-member img + p {
+        margin-top: -2px !important;
+    }
+
+.img-author-group-centered {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5em 0.5em;
+    width: 100%;
+    margin: 0 auto 1em auto;
+}
+</style>
+<div class="team-slide-container">
+
+<div class="team-member" id="AlexisJoly">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/Sans-titre.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Alexis Joly</strong><br>
+                            Primary investigator, INRIA<br>
+                            <a href="https://www.researchgate.net/profile/Alexis-Joly">ResearchGate</a>
+                        </p>
+</div>
+<div class="team-member" id="PierreBonnet">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/image-20221012-11-obdm4k.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Pierre Bonnet</strong><br>
+                            Primary investigator, CIRAD<br>
+                            <a href="https://www.researchgate.net/profile/Pierre-Bonnet-5">ResearchGate</a>
+                        </p>
+</div>
+<div class="team-member" id="HervéGoëau">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/photo_130.jpeg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Hervé Goëau</strong><br>
+                            Researcher, CIRAD<br>
+                            <a href="https://www.researchgate.net/profile/Herve-Goeau">ResearchGate</a>
+                        </p>
+</div>
+<div class="team-member" id="AntoineAffouard">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/1700494763648.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Antoine Affouard</strong><br>
+                            Backend &amp; Staff engineer, INRIA<br>
+                            <a href="https://www.linkedin.com/in/antoine-affouard-044b01a3/">LinkedIn</a>
+                        </p>
+</div>
+<div class="team-member" id="Jean-ChristopheLombardo">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/1562916381981.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Jean-Christophe Lombardo</strong><br>
+                            IA engineer, INRIA<br>
+                            <a href="https://www.linkedin.com/in/jeanchristophelombardo">LinkedIn</a>
+                        </p>
+</div>
+<div class="team-member" id="MathiasChouet">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/chouet_mathias_c4c.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Mathias Chouet</strong><br>
+                            Backend engineer, CIRAD<br>
+                            <a href="https://github.com/matcho">GitHub</a>
+                        </p>
+</div>
+<div class="team-member" id="HugoGresse">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/HTukpCAn_400x400-1.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Hugo Gresse</strong><br>
+                            Mobile engineer, INRIA<br>
+                            <a href="https://github.com/HugoGresse/">GitHub</a> | <a href="https://www.linkedin.com/in/hugogresse/">LinkedIn</a>
+                        </p>
+</div>
+<div class="team-member" id="ThomasPaillot">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/1633618903597.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Thomas Paillot</strong><br>
+                            Front engineer, INRIA<br>
+                            <a href="https://www.linkedin.com/in/thomaspaillot/">LinkedIn</a>
+                        </p>
+</div>
+<div class="team-member" id="RémiPalard">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/1668098526264.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Rémi Palard</strong><br>
+                            Geo &amp; Fullstack engineer, CIRAD<br>
+                            <a href="https://www.linkedin.com/in/remi-palard/">LinkedIn</a>
+                        </p>
+</div>
+<div class="team-member" id="VanessaHequet">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/vanessa.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Vanessa Hequet</strong><br>
+                            Botanist, IRD<br>
+                            <a href="https://www.linkedin.com/in/vanessa-hequet-1a091b180/">LinkedIn</a>
+                        </p>
+</div>
+<div class="team-member" id="MurielleSimo-Droissart">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2024/03/murielle_3-scaled.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Murielle Simo-Droissart</strong><br>
+                            Botanist, IRD<br>
+                            <a href="https://www.researchgate.net/profile/Murielle-Simo-Droissart">ResearchGate</a>
+                        </p>
+</div>
+<div class="team-member" id="ThéoSimoes">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2024/10/theo.simoes.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Théo Simoes</strong><br>
+                            Backend engineer, INRAE<br>
+                            <a href="https://www.linkedin.com/in/th%C3%A9o-simoes-311480157/">LinkedIn</a>
+                        </p>
+</div>
+<div class="team-member" id="Jean-MarcSadaillan">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2025/01/jean-marc_sadaillan.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Jean-Marc Sadaillan</strong><br>
+                            Project manager, INRAE<br>
+                            <a href="https://fr.linkedin.com/in/jean-marc-sadaillan/">LinkedIn</a>
+                        </p>
+</div>
+<div class="team-member" id="ChristopheBotella">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2025/05/44.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Christophe Botella</strong><br>
+                            Researcher, INRIA<br>
+                            <a href="https://www.researchgate.net/profile/Christophe-Botella?ev=hdr_xprf">ResearchGate</a>
+                        </p>
+</div>
+<div class="team-member" id="JosephSalmon">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2025/09/joseph_2018.png" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Joseph Salmon</strong><br>
+                            Researcher, INRIA<br>
+                            <a href="https://josephsalmon.eu/">Website</a>
+                        </p>
+</div>
+<div class="team-member" id="BenjaminBourel">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2025/09/IMG_20210524_111031_modifi.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Benjamin Bourel</strong><br>
+                            Researcher, INRIA<br>
+                            <a href="https://www-sop.inria.fr/members/Benjamin.Bourel/">Website</a>
+                        </p>
+</div>
+<div class="team-member" id="ThéoLarcher">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/12/photo_passe_partout1.jpeg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Théo Larcher</strong><br>
+                            PhD candidate, INRIA<br>
+                            <a href="https://www.linkedin.com/in/th%C3%A9o-larcher-3405a5147/">LinkedIn</a>
+                        </p>
+</div>
+<div class="team-member" id="GiulioMartellucci">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2026/01/1666560273150.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Giulio Martellucci</strong><br>
+                            PhD candidate, INRIA<br>
+                            <a href="https://www.linkedin.com/in/giulio-martellucci-a05232176/">LinkedIn</a>
+                        </p>
+</div>
+<div class="team-member" id="RaphaëlBenerradi">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2026/01/1645482074565.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Raphaël Benerradi</strong><br>
+                            PhD candidate, INRIA<br>
+                            <a href="https://www.linkedin.com/in/rapha%C3%ABl-benerradi-531a83196/">LinkedIn</a>
+                        </p>
+</div>
+<div class="team-member" id="IlyassMoummad">
+                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2026/01/Ilyass-Moummad.webp" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
+<p style="text-align: center;">
+                            <strong>Ilyass Moummad</strong><br>
+                            Post-doc, INRIA<br>
+                            <a href="https://ilyassmoummad.github.io/">Personal website</a> | <a href="https://scholar.google.com/citations?user=2hA2XZcAAAAJ&amp;hl=en">Google Scholar</a>
+                        </p>
+</div>
+
+</div>
+```
