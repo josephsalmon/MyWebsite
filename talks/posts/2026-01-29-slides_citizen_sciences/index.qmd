@@ -185,11 +185,6 @@ embed[src*=".svg"] tspan {
 <div style="text-align: center;">
 
 ![](../../images/team_logo.svg){width=100% style="display: block; margin-left: 0; margin-right: auto;"}
-<!-- ![](../../images/inr_logo_rouge.svg){width=33%}
-
-![](../../images/logo_um_2022_rouge_RVB.svg){width=23%}
-![](../../images/CNRS-2023.svg){width=15%} -->
-<!-- ![](../../images/IMAG_logo.svg){width=25%} -->
 
 </div>
 
@@ -289,11 +284,49 @@ A **citizen science** platform using machine learning to help people identify pl
 
 
 
-<!------------------------------------------------------------------------ -->
 
+
+
+<!------------------------------------------------------------------------ -->
+### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet: usage
+<hr>
+
+<br>
+<div style="text-align: center;">
+
+<img src="../2024-09-25_slides_sierra/images/plantnet_usage_rasterized.svg" width="95%" align="middle" >
+
+</div>
+<!------------------------------------------------------------------------
+
+
+
+
+<!------------------------------------------------------------------------ -->
+###
+
+<div style="text-align: center;">
+  <iframe src="https://identify.plantnet.org/stats" width="850" height="700" style="border: none; display: inline-block;"></iframe>
+</div>
+
+
+<!------------------------------------------------------------------------ -->
 ### {{< iconify streamline-ultimate:workflow-teamwork-user-high-five-bold >}} The current Pl@ntNet Team
 <!-- copy paste here the full list of plantnet pople -->
 ```{=html}
+<style>
+    /* Custom gap and width for 4 images per row */
+    .img-author-group-centered.img-4-per-row {
+        gap: 3vw 3vw !important;
+        justify-content: center;
+    }
+    .img-author-group-centered.img-4-per-row .img-author-container {
+        width: 22vw !important;
+        min-width: 180px;
+        max-width: 24vw;
+    }
+</style>
+<div class="img-author-group-centered img-4-per-row">
 <style>
     .team-slide-container {
         display: flex;
@@ -494,34 +527,11 @@ A **citizen science** platform using machine learning to help people identify pl
 
 
 
-<!------------------------------------------------------------------------ -->
-### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet: usage
-<hr>
-
-<br>
-<div style="text-align: center;">
-
-<img src="../2024-09-25_slides_sierra/images/plantnet_usage_rasterized.svg" width="95%" align="middle" >
-
-</div>
-<!------------------------------------------------------------------------
 
 
-
-
-<!------------------------------------------------------------------------ -->
-###
-
-<div style="text-align: center;">
-  <iframe src="https://identify.plantnet.org/stats" width="850" height="700" style="border: none; display: inline-block;"></iframe>
-</div>
-
+<!-------------------------------------------------------------------------- -->
 
 ### {{< iconify fluent:people-community-20-filled >}} Pl@ntNet & Cooperative Learning
-
-<!-- <center> -->
-
-<!-- <center> -->
 
 ::: {.r-stack}
 ![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_0.svg){.fragment width=100% fragment-index=2}
@@ -559,26 +569,40 @@ A **citizen science** platform using machine learning to help people identify pl
 <!------------------------------------------------------------------------ -->
 ### {{< iconify eos-icons:science >}} Scientific challenges
 <hr>
-<br>
 
-[**Motivation**]{.underline}: excellent app ... but not a perfect app; **How to improve?**
+:::: {.columns style='display: flex !important'}
 
-. . .
+::: {.column width="50%"}
+
+- Community effort involving:
+    - machine learners
+    - ecologist
+    - engineers
+    - amateurs
+
+:::
 
 
-- Community effort involving
-  - machine learners
-  - ecologist
-  - engineers
-  - amateurs
-
-. . .
+::: {.column width="50%" .fragment}
 
 - Many open problems:
-  - theoretical
-  - methodological
-  - computational (due ot the size of the problems)
-  - interfacing many disciplines
+    - theoretical
+    - methodological
+    - computational (due ot the size of the problems)
+    - interfacing many disciplines
+:::
+::::
+
+
+. . .
+
+
+<center>
+![](images/liftarn_Uncle_Sam_pointing.svg){width=23%}
+
+**[We need you]{.underline}**: come and help improving it!
+
+</center>
 
 <!------------------------------------------------------------------------ -->
 
@@ -600,7 +624,7 @@ A **citizen science** platform using machine learning to help people identify pl
 
 
 <!------------------------------------------------------------------------ -->
-### {{<iconify bxs:user-detail>}} Personal contributions
+### {{<iconify bxs:user-detail>}} Some personal contributions
 <hr>
 
 <br>
@@ -609,7 +633,7 @@ A **citizen science** platform using machine learning to help people identify pl
 
 ::: {.column width="68%"}
 
-- **Pl@ntNet-300K** [@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean_Lorieul_Salmon2021]: Creation and **release** of a large-scale dataset sharing the same property (Long Tail!) as Pl@ntNet; available for the community to improve learning systems
+- **Pl@ntNet-300K** [@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean_Lorieul_Salmon2021]: **Creation** and **release** of a large-scale dataset sharing the same property (Long Tail!) as Pl@ntNet; available for the community to improve learning systems
 
 :::
 
@@ -618,7 +642,7 @@ A **citizen science** platform using machine learning to help people identify pl
 <center>
 <img src="../2024-09-25_slides_sierra/images/sample_genus.svg" width="62%" align="middle">
 </center>
-
+<br>
 :::
 
 ::::
@@ -637,7 +661,7 @@ A **citizen science** platform using machine learning to help people identify pl
 <center>
 <img src="../2024-09-25_slides_sierra/images/fullpipeline_small.svg" width="78%" align="middle">
 </center>
-
+<br>
 :::
 
 ::::
@@ -650,7 +674,7 @@ A **citizen science** platform using machine learning to help people identify pl
 
 ::: {.column width="68%"}
 
-- **Conformal Prediction** with long tail data [@Ding_Fermanian_Salmon25] : providing prediction sets when labels are long tails (many, many rare species)
+- **Conformal Prediction** with long tail data [@Ding_Fermanian_Salmon25] : providing prediction sets with statistical guarantees
 
 :::
 
@@ -658,7 +682,7 @@ A **citizen science** platform using machine learning to help people identify pl
 <center>
 <img src="../../../blog/long-tail/GMM.png" width="78%" align="middle">
 </center>
-
+<br>
 :::
 
 ::::
@@ -701,7 +725,7 @@ A **citizen science** platform using machine learning to help people identify pl
 </div>
 ```
 
-<center style="margin-top:-5.5em;">
+<center style="margin-top:-6vw;">
 **[Consequences]{.underline}**: for supervised learning, the classes are **many** and **hierarchically structured**
 </center>
 
@@ -710,44 +734,44 @@ A **citizen science** platform using machine learning to help people identify pl
 
 
 ```{=html}
-<div class="img-author-group-centered">
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+<div class="img-author-group-centered" style="gap:0.7em; align-items:stretch;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
       <img src="images/66c06ee4e4fd35c5a58b4d0b97dffcb2053a41d3.jpg" alt="Guizotia abyssinica (L.f.) Cass." class="img-author-img" style="width:100%;">
       <span class="img-author-overlay">© Benoît Janichon</span>
       <span class="img-author-caption"><span style="font-style:italic">Guizotia abyssinica</span> (L.f.) Cass.</span>
   </div>
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
       <img src="images/858de40efb7c3c934e320429634aaef273c16878.jpg" alt="Diascia rigescens E.Mey. ex Benth." class="img-author-img" style="width:100%;">
       <span class="img-author-overlay">© Patrice SIROT</span>
       <span class="img-author-caption"><span style="font-style:italic">Diascia rigescens</span> E.Mey. ex Benth.</span>
   </div>
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
       <img src="images/6ad45f4e4d2454728e6e41847dc8267227fc9b0d.jpg" alt="Lapageria rosea Ruiz & Pav." class="img-author-img" style="width:100%;">
       <span class="img-author-overlay">© Borquez Vicent</span>
       <span class="img-author-caption"><span style="font-style:italic">Lapageria rosea</span> Ruiz & Pav.</span>
   </div>
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
       <img src="images/5b4cd720ce747c8a53e09e0caa2dc43f12b62610.jpg" alt="Casuarina cunninghamiana Miq. LC" class="img-author-img" style="width:100%;">
       <span class="img-author-overlay">© Наталья</span>
       <span class="img-author-caption"><span style="font-style:italic">Casuarina cunninghamiana</span> Miq. LC</span>
   </div>
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
       <img src="../2024-09-25_slides_sierra/images/6_b.jpg" alt="Guizotia abyssinica (L.f.) Cass." class="img-author-img" style="width:100%;">
       <span class="img-author-overlay">© Annette Bejany</span>
       <span class="img-author-caption"><span style="font-style:italic">Guizotia abyssinica</span> (L.f.) Cass.</span>
   </div>
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
       <img src="images/0231e8d9cb679d11e814a1f8c4227bd6cf7d2fe6.jpg" alt="Diascia rigescens E.Mey. ex Benth." class="img-author-img" style="width:100%;">
       <span class="img-author-overlay">© A Lee</span>
       <span class="img-author-caption"><span style="font-style:italic">Diascia rigescens</span> E.Mey. ex Benth.</span>
   </div>
-    <div class="img-author-container" style="width:20%; min-width:120px;">
+    <div class="img-author-container" style="width:19%; min-width:120px;">
         <img src="images/ba4b0161aa17c364744ec58b69a9f77f26a4d8ce.jpg" alt="Lapageria rosea Ruiz & Pav.
 " class="img-author-img" style="width:100%;">
     <span class="img-author-overlay">© Daniel Barthelemy</span>
     <span class="img-author-caption"><span style="font-style:italic">Lapageria rosea</span> Ruiz & Pav.</span>
     </div>
-    <div class="img-author-container" style="width:20%; min-width:120px;">
+    <div class="img-author-container" style="width:19%; min-width:120px;">
         <img src="images/fa8e288f400456e08994113b3217a4cd2e1238df.jpg" alt="Casuarina cunninghamiana Miq. LC" class="img-author-img" style="width:100%;">
     <span class="img-author-overlay">© Campos Ignacio</span>
     <span class="img-author-caption"><span style="font-style:italic">Casuarina cunninghamiana</span> Miq. LC</span>
@@ -768,43 +792,43 @@ A **citizen science** platform using machine learning to help people identify pl
 
 
 ```{=html}
-<div class="img-author-group-centered">
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+<div class="img-author-group-centered" style="gap:0.7em; align-items:stretch;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/12d7b180752393e86822c1fff68df8f8a19189fe.jpg" alt="Cirsium rivulare (Jacq.) All." class="img-author-img" style="width:100%;">
     <span class="img-author-overlay">© stefano mazzotti</span>
     <span class="img-author-caption"><span style="font-style:italic">Cirsium rivulare</span> (Jacq.) All.</span>
   </div>
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/565322614481c3092ce52239a62725f1992be393.jpg" alt="Chaerophyllum aromaticum L." class="img-author-img" style="width:100%;">
     <span class="img-author-overlay">© buqa Jarmil</span>
     <span class="img-author-caption"><span style="font-style:italic">Chaerophyllum aromaticum</span> L.</span>
   </div>
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/3f82867ba9d74fe1fd3af3093158634a666dd790.jpg" alt="Adenostyles leucophylla Rchb." class="img-author-img" style="width:100%;">
     <span class="img-author-overlay">© Walter Reider</span>
     <span class="img-author-caption"><span style="font-style:italic">Adenostyles leucophylla</span> Rchb.</span>
   </div>
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/7ebd92cd30be0d3476c79908347e4020ce359c61.jpg" alt="Petrosedum montanum (Songeon & E.P.Perrier) Grulich" class="img-author-img" style="width:100%;">
     <span class="img-author-overlay">© furs</span>
     <span class="img-author-caption"><span style="font-style:italic">Petrosedum montanum</span> (Songeon & E.P.Perrier) Grulich</span>
   </div>
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/47fad454bb29c34687cf1ab3ee6b456201ea0725.jpg" alt="Cirsium tuberosum (L.) All." class="img-author-img" style="width:100%;">
     <span class="img-author-overlay">© Rene Weck</span>
     <span class="img-author-caption"><span style="font-style:italic">Cirsium tuberosum</span> (L.) All.</span>
   </div>
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/ffc5f1b5aab703ea359922c92273ef86791f1662.jpg" alt="Chaerophyllum temulum L." class="img-author-img" style="width:100%;">
     <span class="img-author-overlay">© Jcm Arthur</span>
     <span class="img-author-caption"><span style="font-style:italic">Chaerophyllum temulum</span> L.</span>
   </div>
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/92e4cbe38e831d11526946389c2342db4499d436.jpg" alt="Adenostyles alpina (L.) Bluff & Fingerh." class="img-author-img" style="width:100%;">
     <span class="img-author-overlay">© pierre Lamy</span>
     <span class="img-author-caption"><span style="font-style:italic">Adenostyles alpina</span> (L.) Bluff & Fingerh.</span>
   </div>
-  <div class="img-author-container" style="width:20%; min-width:120px;">
+  <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/dc051dace6de6cbdfe5202a4b900290525bfee3e.jpg" alt="Petrosedum rupestre (L.) P.V.Heath" class="img-author-img" style="width:100%;">
     <span class="img-author-overlay">© Wolfi 41</span>
     <span class="img-author-caption"><span style="font-style:italic">Petrosedum rupestre</span> (L.) P.V.Heath</span>
@@ -933,7 +957,6 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 
 
 <!-------------------------------------------------------------------------- -->
-
 ### {{<iconify emojione-monotone:straight-ruler>}} Size bias
 <hr>
 
@@ -964,6 +987,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 <!-------------------------------------------------------------------------- -->
 
 
+<!-------------------------------------------------------------------------- -->
 ### Many more biases ...
 <hr>
 
@@ -980,6 +1004,9 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 
 <!-------------------------------------------------------------------------- -->
 
+<!-------------------------------------------------------------------------- -->
+## The Pl@ntNet-300K dataset {.section-background-small}
+<!-------------------------------------------------------------------------- -->
 
 
 <!-------------------------------------------------------------------------- -->
@@ -989,9 +1016,9 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 **Popular datasets limitations:**
 
 - structure of labels too simplistic (CIFAR-10, CIFAR-100)
-  - might have tasks too easy to discriminate
-  - might be too well-balanced (same number of images per class)
-- contains duplicate, low-quality, or irrelevant images
+- tasks too easy to discriminate (MNIST)
+- too well-balanced, with same number of images per class (Imagenet)
+- contains duplicate, low-quality, or irrelevant images [@recht2019imagenet]
 
 
 **[Motivation]{.underline}**:
@@ -1006,6 +1033,379 @@ $\implies$ Pl@ntNet-300K [@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean
 
 ***"The collective behavior induced by frictionless research exchange is the emergent superpower driving many events that are so striking today."*** [@donoho2024data]
 <!------------------------------------------------------------------------ -->
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+### Construction of Pl@ntNet-300K {style="text-align: center;"}
+
+
+<center>
+![](../2024-09-25_slides_sierra/images/sample_genus.svg){width=80%}
+
+Sample at genus level to preserve intra-genus ambiguity: use **hierarchical structure**
+</center>
+
+<!-------------------------------------------------------------------------- -->
+### {{<iconify icon-park-solid:chart-histogram-two>}} Species distribution, long tail & Lorenz curve
+<hr>
+
+:::: {.columns style='display: flex !important'}
+
+::: {.column width=82%}
+
+::: {.r-stack}
+![](../2024-09-25_slides_sierra/images/lorentz_plantnet.svg){.fragment width=85% fragment-index=2}
+
+![](../2024-09-25_slides_sierra/images/lorentz_plantnet300K.svg){.fragment width=85% fragment-index=3}
+
+![](../2024-09-25_slides_sierra/images/lorentz_with_Imagenet.svg){.fragment width=85% fragment-index=4}
+
+![](../2024-09-25_slides_sierra/images/lorentz_with_CIFAR_Imagenet.svg){.fragment width=85% fragment-index=5}
+
+:::
+
+:::
+
+::: {.column style='text-align: center;'}
+
+<br>
+
+:::{.fragment fragment-index=1}
+- Earth: 300K+ species
+- Pl@ntNet: 80K+ species
+- Pl@ntNet-300K: 1K+ species
+:::
+
+:::{.fragment fragment-index=3}
+**[Note]{.underline}**: long tail preserved by genera subsampling
+:::
+:::
+
+::::
+
+<br>
+
+:::{.fragment fragment-index=2}
+
+<center>
+**80% of species | 11% of images** $\iff$ **20% of species | 89% of images**
+</center>
+
+:::
+
+
+### {{<iconify eos-icons:database>}} Details on Pl@ntNet-300K
+<hr>
+
+
+:::: {.columns style='display: flex !important'}
+
+::: {.column }
+
+[**Caracteristics**]{.underline}:
+
+<br>
+
+- **306,146** color images
+- Size : **32 GB**
+- Labels: K=**1,081** species
+- Required **2,079,003** volunteers
+:::
+
+
+::: {.column width=55%}
+:::{.fragment}
+
+<br>
+
+<center>
+**Zenodo, 1 click download**
+
+[https://zenodo.org/record/5645731](https://zenodo.org/record/5645731)
+
+<br>
+
+**Code to train models**
+
+[https://github.com/plantnet/PlantNet-300K](https://github.com/plantnet/PlantNet-300K)
+</center>
+
+:::
+
+:::
+
+::::
+
+
+. . .
+
+<center>
+![](../2025-12-15-ICSDS25/images/plantnet_class_distribution_iucn_status_with_images.svg){width=100%}
+
+More details on my blog post:  [https://josephsalmon.eu/blog/long-tail/](https://josephsalmon.eu/blog/long-tail/)
+
+</center>
+
+<!-------------------------------------------------------------------------- -->
+
+
+# Prediction and uncertainty quantification
+
+
+<!-------------------------------------------------------------------------- -->
+### {{< iconify mdi:account-group >}} Joint work with
+<hr>
+
+:::: {.columns}
+
+::: {.column width="48%"}
+
+<div style="text-align: center;">
+
+<img src="../2025-12-15-ICSDS25/images/Tiffany_Ding.jpg" style="width: 300px; height: 300px; object-fit: cover; border-radius: 10px;">
+
+**Tiffany Ding**
+
+UC Berkeley
+
+</div>
+
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+
+<div style="text-align: center;">
+
+<img src="../2025-12-15-ICSDS25/images/JB_Fermanian.png" style="width: 300px; height: 300px; object-fit: cover; border-radius: 10px;">
+
+**Jean-Baptiste Fermanian**
+
+Inria
+
+</div>
+
+:::
+
+::::
+
+<div style="text-align: center;">
+
+<br>
+
+and all the team from 
+
+<br>
+
+
+![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=40%}
+
+</div>
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+### Conformal Prediction [@vovk2005algorithmic]
+<hr>
+
+<br>
+**{{< iconify mdi:bullseye-arrow >}} Goal:** Propose the most probable classes with **confidence level** $1-\alpha$
+
+<br>
+<br>
+
+. . .
+
+**{{< iconify mdi:lightbulb-on >}} Main idea:** Return classes with predicted score above a threshold:
+
+$$
+\mathcal{C}_{\alpha}(X) = \big\{ y : s(X,y) \geq t_\alpha \big\}
+$$
+
+<br>
+<br>
+
+. . .
+
+**{{< iconify mdi:swap-horizontal >}} Key assumption:** The data $(X_i, Y_i)$ are **exchangeable**
+
+<br>
+<br>
+
+. . .
+
+**{{< iconify mdi:help-circle >}} Question:** How to select $t_\alpha$ to get **statistical guarantees**?
+<!-------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------- -->
+### {{< iconify ic:round-tune >}} Optimal sets [@sadinle2019least]
+<hr>
+
+:::: {.columns}
+
+::: {.column width="48%"}
+
+**Marginal coverage** targets:
+
+$$\mathbb{P}\big[ Y \in \mathcal{C}_{\alpha}(X) \big ] \geq 1 - \alpha.$$
+
+:::
+
+::: {.column width="48%"}
+
+::: {.fragment}
+
+**Class conditional coverage** targets:
+
+$$\forall y,\quad  \mathbb{P}\big[ Y \in \mathcal{C}_\alpha(X) | Y=y \big ] \geq 1 - \alpha.$$
+
+:::
+
+:::
+
+::::
+
+::: {.fragment}
+
+:::: {.columns}
+
+::: {.column width="48%"}
+
+::: {.callout-note icon=false appearance="simple"}
+
+## Theorem (Informal)
+
+The optimal set of minimum size and **marginal coverage** of at least $1-\alpha$ is:
+
+$$
+\mathcal{C}_{\alpha}(x) = \left\{ y : p(y|x) \geq t_\alpha \right\}
+$$
+
+:::
+
+:::
+
+::: {.column width="48%"}
+
+::: {.fragment}
+
+::: {.callout-note icon=false appearance="simple"}
+
+## Theorem (Informal)
+
+The optimal set of minimum size and **conditional coverage** of at least $1-\alpha$ is:
+
+$$
+\mathcal{C}_{\alpha}(x) = \left\{ y : p(y|x) \geq t_\alpha^{y} \right\}
+$$
+
+:::
+
+:::
+
+:::
+
+::::
+
+:::
+
+<br>
+
+::: {.fragment}
+
+{{< iconify mdi:arrow-right-bold >}} **In practice**: consider a conformal score $s(x,y) = \hat{p}(y|x)$ (= softmax score)
+
+<br>
+
+:::
+
+::: {.fragment}
+
+:::: {.columns}
+
+::: {.column width="48%"}
+
+**Marginal:** calibrate $t_{\alpha}$ on **whole calibration set** $(X_i, Y_i)_{i=1}^n$
+
+:::
+
+::: {.column width="48%"}
+
+**Conditional:** calibrate $t_{\alpha}^y$  **only on** $(X_i, Y_i)$ such that $Y_i = y$
+
+:::
+
+::::
+
+:::
+<!-------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------- -->
+### Targeting Macro-Coverage
+<hr>
+
+**{{< iconify mdi:bullseye-arrow >}} Goal:** Average coverage across all classes (better for long-tail!)
+
+$$
+\text{MacroCoverage} = \frac{1}{|\mathcal{Y}|} \sum_{y \in \mathcal{Y}} \mathbb{P}\big( y \in \mathcal{C}(X) \, | \, Y = y \big)
+$$
+
+::: {.fragment}
+
+::: {.callout-note icon=false appearance="simple"}
+
+## Theorem (Informal)
+
+The optimal set of minimum size and **Macro-Coverage** of at least $1-\alpha$ is:
+
+$$
+\mathcal{C}_{\alpha}(x) = \left\{ y : \frac{p(y|x)}{p(y)} \geq t_\alpha \right\}
+$$
+
+:::
+
+:::
+
+::: {.fragment}
+
+{{< iconify mdi:arrow-right-bold >}} **Prevalence Adjusted Softmax**: consider a conformal score $s(x,y) = \frac{\hat{p}(y|x)}{\hat{p}(y)}$
+
+:::
+
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+### Experiments on Pl@ntNet-300K
+
+<hr>
+
+
+![](../../../blog/long-tail/images/ALL_metrics_plantnet_softmax_pareto_NO_LEGEND_js.svg){width=100%}
+
+![](../../../blog/long-tail/images/ALL_metrics_plantnet_softmax_pareto_LEGEND_ONLY_js.svg){width=100%}
+
+<br>
+
+. . .
+
+<div style="text-align: center;">
+
+{{< iconify mdi:web >}} **Blog post:** [https://josephsalmon.eu/blog/long-tail/](https://josephsalmon.eu/blog/long-tail/)
+
+</div>
 
 
 
