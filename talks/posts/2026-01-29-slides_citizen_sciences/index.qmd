@@ -98,6 +98,57 @@ embed[src*=".svg"] tspan {
     overflow: visible !important;
 }
 
+
+.img-author-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 180px;
+    box-sizing: border-box;
+}
+.img-author-img {
+    display: block;
+    width: 100% !important;
+    object-fit: contain !important;
+    background: transparent;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+}
+.img-author-overlay {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 1px 6px;
+    border-radius: 8px;
+    font-size: 0.5em;
+    font-family: Nunito, Arial, sans-serif;
+    font-weight: bold;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Make captions immune to long names and keep grid aligned */
+.img-author-caption {
+     text-align: center;
+     font-size: 0.75em;
+     color: #222;
+     margin-top: 2px;
+     font-family: Nunito, Arial, sans-serif;
+     height: 2.6em; /* fixed height for one line */
+     line-height: 1.3em;
+     white-space: normal;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     width: 100%;
+     display: block;
+}
+
+
 /* PDF print adjustments */
 @media print {
     .reveal .slides section {
@@ -200,7 +251,7 @@ A **citizen science** platform using machine learning to help people identify pl
 
 <img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="55%" align="middle">
 
-- **Birth**: Montpellier, circa 2010
+- **Birth**: Montpellier,  2009
 - **Website**: [https://plantnet.org/](https://plantnet.org/)
 - **[Note]{.underline}**: no mushroom identification!
 </div>
@@ -233,538 +284,6 @@ A **citizen science** platform using machine learning to help people identify pl
 
 ::::
 <!------------------------------------------------------------------------ -->
-
-
-### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet: usage
-<hr>
-
-<br>
-<div style="text-align: center;">
-
-<img src="../2024-09-25_slides_sierra/images/plantnet_usage_rasterized.svg" width="95%" align="middle" >
-
-</div>
-
-
-
-
-<!------------------------------------------------------------------------ -->
-###
-
-<div style="text-align: center;">
-  <iframe src="https://identify.plantnet.org/stats" width="850" height="700" style="border: none; display: inline-block;"></iframe>
-</div>
-
-
-### {{< iconify fluent:people-community-20-filled >}} Pl@ntNet & Cooperative Learning
-
-<!-- <center> -->
-
-<!-- <center> -->
-
-::: {.r-stack}
-![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_0.svg){.fragment width=100% fragment-index=2}
-
-![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_1.svg){.fragment width=100% fragment-index=3}
-
-![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_2.svg){.fragment width=100% fragment-index=4}
-
-![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_3.svg){.fragment width=100% fragment-index=5}
-
-![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_4.svg){.fragment width=100% fragment-index=6}
-<!-- SVG fonts embedding trick -->
-<!-- https://lvngd.com/blog/how-embed-google-font-svg/ -->
-<!-- https://amio.github.io/embedded-google-fonts/ -->
-:::
-
-
-
-### {{< iconify vaadin:hourglass-start >}} Chronology of Pl@ntNet {.center }
-<hr>
-
-
-<center>
-<img src="images/PlantNet-overview-Janv-2026_en.svg" width="80%" >
-
-
-**Note:** I am mostly innocent, I started working with the Pl@ntNet team in 2020
-
-</center>
-
-<!------------------------------------------------------------------------ -->
-
-
-<!------------------------------------------------------------------------ -->
-### {{< iconify eos-icons:science >}} Scientific challenges
-<hr>
-<br>
-
-[**Motivation**]{.underline}: excellent app ... but not a perfect app; **How to improve?**
-
-. . .
-
-
-- Community effort involving
-  - machine learners
-  - ecologist
-  - engineers
-  - amateurs
-
-. . .
-
-- Many open problems:
-  - theoretical
-  - methodological
-  - computational (due ot the size of the problems)
-  - interfacing many disciplines
-
-<!------------------------------------------------------------------------ -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!------------------------------------------------------------------------ -->
-# Contributions {.section-background}
-<!------------------------------------------------------------------------ -->
-
-
-<!------------------------------------------------------------------------ -->
-### {{<iconify bxs:user-detail>}} Personal contributions
-<hr>
-
-<br>
-
-:::: {.columns }
-
-::: {.column width="68%"}
-
-- **Pl@ntNet-300K** [@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean_Lorieul_Salmon2021]: Creation and **release** of a large-scale dataset sharing the same property (Long Tail!) as Pl@ntNet; available for the community to improve learning systems
-
-:::
-
-::: {.column width="29%"}
-
-<center>
-<img src="../2024-09-25_slides_sierra/images/sample_genus.svg" width="62%" align="middle">
-</center>
-
-:::
-
-::::
-
-::: fragment
-
-:::: columns
-
-::: {.column width="68%"}
-
-- **Learning & crowd-sourced data** [@Lefort_Charlier_Joly_Salmon22] and [@Lefort_etal24]: How to leverage multiple labels per image to improve the model? Need to **assert quality**: the workers, the images/labels, the model, etc.
-
-:::
-
-::: {.column width="29%"}
-<center>
-<img src="../2024-09-25_slides_sierra/images/fullpipeline_small.svg" width="78%" align="middle">
-</center>
-
-:::
-
-::::
-
-:::
-
-::: fragment
-
-:::: columns
-
-::: {.column width="68%"}
-
-- **Conformal Prediction** with long tail data [@Ding_Fermanian_Salmon25] : providing prediction sets when labels are long tails (many, many rare species)
-
-:::
-
-::: {.column width="29%"}
-<center>
-<img src="../../../blog/long-tail/GMM.png" width="78%" align="middle">
-</center>
-
-:::
-
-::::
-
-:::
-<!------------------------------------------------------------------------ -->
-
-
-
-
-### Intra-class variability
-
-
-
-<!-- Image with author overlay function -->
-<!-- Usage: 
-
-<br>
-<div class="img-author-container" style="width:93%;">
-    <img src="../2024-09-25_slides_sierra/images/6_a.jpg" alt="Guizotia abyssinica" class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">AUTHOR_NAME</span>
-</div>
--->
-<!-- Place this style block at the top of the file or outside any Markdown/Quarto container for global effect -->
-<style>
-.img-author-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-width: 180px;
-    box-sizing: border-box;
-}
-.img-author-img {
-    display: block;
-    width: 100% !important;
-    object-fit: contain !important;
-    background: transparent;
-    border-radius: 8px;
-    position: relative;
-    z-index: 1;
-}
-.img-author-overlay {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    background: rgba(0,0,0,0.5);
-    color: #fff;
-    padding: 1px 6px;
-    border-radius: 8px;
-    font-size: 0.5em;
-    font-family: Nunito, Arial, sans-serif;
-    font-weight: bold;
-    z-index: 2;
-    pointer-events: none;
-}
-
-
-</style>
-<style>
-/* Make captions immune to long names and keep grid aligned */
-.img-author-caption {
-     text-align: center;
-     font-size: 0.75em;
-     color: #222;
-     margin-top: 2px;
-     font-family: Nunito, Arial, sans-serif;
-     height: 2.6em; /* fixed height for one line */
-     line-height: 1.3em;
-     white-space: normal;
-     overflow: hidden;
-     text-overflow: ellipsis;
-     width: 100%;
-     display: block;
-}
-</style>
-
-```{=html}
-<div class="img-author-group-centered">
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-      <img src="images/66c06ee4e4fd35c5a58b4d0b97dffcb2053a41d3.jpg" alt="Guizotia abyssinica (L.f.) Cass." class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">Photo by Benoît Janichon</span>
-      <span class="img-author-caption"><span style="font-style:italic">Guizotia abyssinica</span> (L.f.) Cass.</span>
-  </div>
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-      <img src="images/858de40efb7c3c934e320429634aaef273c16878.jpg" alt="Diascia rigescens E.Mey. ex Benth." class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">Photo by Patrice SIROT</span>
-      <span class="img-author-caption"><span style="font-style:italic">Diascia rigescens</span> E.Mey. ex Benth.</span>
-  </div>
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-      <img src="images/6ad45f4e4d2454728e6e41847dc8267227fc9b0d.jpg" alt="Lapageria rosea Ruiz & Pav." class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">Photo by Borquez Vicent</span>
-      <span class="img-author-caption"><span style="font-style:italic">Lapageria rosea</span> Ruiz & Pav.</span>
-  </div>
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-      <img src="images/5b4cd720ce747c8a53e09e0caa2dc43f12b62610.jpg" alt="Casuarina cunninghamiana Miq. LC" class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">Photo by Наталья</span>
-      <span class="img-author-caption"><span style="font-style:italic">Casuarina cunninghamiana</span> Miq. LC</span>
-  </div>
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-      <img src="../2024-09-25_slides_sierra/images/6_b.jpg" alt="Guizotia abyssinica (L.f.) Cass." class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">Photo by Annette Bejany</span>
-      <span class="img-author-caption"><span style="font-style:italic">Guizotia abyssinica</span> (L.f.) Cass.</span>
-  </div>
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-      <img src="images/0231e8d9cb679d11e814a1f8c4227bd6cf7d2fe6.jpg" alt="Diascia rigescens E.Mey. ex Benth." class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">Photo by A Lee</span>
-      <span class="img-author-caption"><span style="font-style:italic">Diascia rigescens</span> E.Mey. ex Benth.</span>
-  </div>
-    <div class="img-author-container" style="width:21%; min-width:120px;">
-        <img src="images/ba4b0161aa17c364744ec58b69a9f77f26a4d8ce.jpg" alt="Lapageria rosea Ruiz & Pav.
-" class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">Photo by Daniel Barthelemy</span>
-    <span class="img-author-caption"><span style="font-style:italic">Lapageria rosea</span> Ruiz & Pav.</span>
-    </div>
-    <div class="img-author-container" style="width:21%; min-width:120px;">
-        <img src="images/fa8e288f400456e08994113b3217a4cd2e1238df.jpg" alt="Casuarina cunninghamiana Miq. LC" class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">Photo by Campos Ignacio</span>
-    <span class="img-author-caption"><span style="font-style:italic">Casuarina cunninghamiana</span> Miq. LC</span>
-    </div>
-</div>
-```
-
-
-<br>
-
-
-<center>
-**Based on pictures only, plant species are challenging to discriminate!**
-</center>
-<!-------------------------------------------------------------------------- -->
-
-
-
-
-### Inter-class ambiguity
-
-
-```{=html}
-<div class="img-author-group-centered">
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-    <img src="images/12d7b180752393e86822c1fff68df8f8a19189fe.jpg" alt="Cirsium rivulare (Jacq.) All." class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">Photo by stefano mazzotti</span>
-    <span class="img-author-caption"><span style="font-style:italic">Cirsium rivulare</span> (Jacq.) All.</span>
-  </div>
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-    <img src="images/565322614481c3092ce52239a62725f1992be393.jpg" alt="Chaerophyllum aromaticum L." class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">Photo by buqa Jarmil</span>
-    <span class="img-author-caption"><span style="font-style:italic">Chaerophyllum aromaticum</span> L.</span>
-  </div>
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-    <img src="images/3f82867ba9d74fe1fd3af3093158634a666dd790.jpg" alt="Adenostyles leucophylla Rchb." class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">Photo by Walter Reider</span>
-    <span class="img-author-caption"><span style="font-style:italic">Adenostyles leucophylla</span> Rchb.</span>
-  </div>
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-    <img src="images/7ebd92cd30be0d3476c79908347e4020ce359c61.jpg" alt="Petrosedum montanum (Songeon & E.P.Perrier) Grulich" class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">Photo by furs</span>
-    <span class="img-author-caption"><span style="font-style:italic">Petrosedum montanum</span> (Songeon & E.P.Perrier) Grulich</span>
-  </div>
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-    <img src="images/47fad454bb29c34687cf1ab3ee6b456201ea0725.jpg" alt="Cirsium tuberosum (L.) All." class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">Photo by Rene Weck</span>
-    <span class="img-author-caption"><span style="font-style:italic">Cirsium tuberosum</span> (L.) All.</span>
-  </div>
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-    <img src="images/ffc5f1b5aab703ea359922c92273ef86791f1662.jpg" alt="Chaerophyllum temulum L." class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">Photo by Jcm Arthur</span>
-    <span class="img-author-caption"><span style="font-style:italic">Chaerophyllum temulum</span> L.</span>
-  </div>
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-    <img src="images/92e4cbe38e831d11526946389c2342db4499d436.jpg" alt="Adenostyles alpina (L.) Bluff & Fingerh." class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">Photo by pierre Lamy</span>
-    <span class="img-author-caption"><span style="font-style:italic">Adenostyles alpina</span> (L.) Bluff & Fingerh.</span>
-  </div>
-  <div class="img-author-container" style="width:21%; min-width:120px;">
-    <img src="images/dc051dace6de6cbdfe5202a4b900290525bfee3e.jpg" alt="Petrosedum rupestre (L.) P.V.Heath" class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">Photo by Wolfi 41</span>
-    <span class="img-author-caption"><span style="font-style:italic">Petrosedum rupestre</span> (L.) P.V.Heath</span>
-  </div>
-</div>
-```
-
-<br>
-
-
-<center>
-**Based on pictures only, plant species are challenging to discriminate!**
-</center>
-<!-------------------------------------------------------------------------- -->
-
-
-
-
-<!-------------------------------------------------------------------------- -->
-## Sampling bias {.section-background-small}
-<!-------------------------------------------------------------------------- -->
-
-
-<!-------------------------------------------------------------------------- -->
-### {{<iconify gis:globe-earth-alt>}} Geographic bias
-
-
-<div style="display: flex; flex-direction: column;">
-![](../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png){width=100%}
-
-<center>Spatial density of images collected by Pl@ntNet (13/04/2024)</center>
-</div>
-<!-------------------------------------------------------------------------- -->
-
-
-
-
-### {{<iconify fluent:food-20-filled>}} Food bias
-<hr>
-
-<br>
-<center>
-Top-5 most observed plant species in Pl@ntNet (13/04/2024):
-</center>
-
-<br>
-
-
-  <!-- <div class="img-author-container" style="width:21%; min-width:120px;">
-      <img src="images/66c06ee4e4fd35c5a58b4d0b97dffcb2053a41d3.jpg" alt="Guizotia abyssinica (L.f.) Cass." class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">Photo by Benoît Janichon</span>
-      <span class="img-author-caption"><span style="font-style:italic">Guizotia abyssinica</span> (L.f.) Cass.</span>
-  </div> -->
-
-```{=html}
-<div class="img-author-group-centered">
-      <div class="img-author-container" style="width:19%; min-width:120px;">
-        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">25134 obs.</div>
-        <div style="position:relative; width:100%;">
-            <img src="images/Echium_vulgare_L_1012470528.svg" alt="Echium vulgare L." class="img-author-img">
-            <span class="img-author-overlay">Photo by Llandrich anna</span>
-        </div>
-        <span class="img-author-caption"><span style="font-style:italic">Echium vulgare</span> L.</span>
-    </div>
-      <div class="img-author-container" style="width:19%; min-width:120px;">
-        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">24720 obs.</div>
-        <div style="position:relative; width:100%;">
-            <img src="images/Ranunculus_ficaria_L_1012578129.svg" alt="Ranunculus ficaria L." class="img-author-img">
-            <span class="img-author-overlay">Photo by JYCO</span>
-        </div>
-        <span class="img-author-caption"><span style="font-style:italic">Ranunculus ficaria</span> L.</span>
-    </div>
-      <div class="img-author-container" style="width:19%; min-width:120px;">
-        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">24103 obs.</div>
-        <div style="position:relative; width:100%;">
-            <img src="images/Prunus_spinosa_L_1023984740.svg" alt="Prunus spinosa L." class="img-author-img">
-            <span class="img-author-overlay">Photo by fuerst.ernst</span>
-        </div>
-        <span class="img-author-caption"><span style="font-style:italic">Prunus spinosa</span> L.</span>
-    </div>
-      <div class="img-author-container" style="width:19%; min-width:120px;">
-        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">23288 obs.</div>
-        <div style="position:relative; width:100%;">
-            <img src="images/Zea_mays_L_1020124455.svg" alt="Zea mays L." class="img-author-img">
-            <span class="img-author-overlay">Photo by Uta Groger</span>
-        </div>
-        <span class="img-author-caption"><span style="font-style:italic">Zea mays</span> L.</span>
-    </div>
-      <div class="img-author-container" style="width:19%; min-width:120px;">
-        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">23075 obs.</div>
-        <div style="position:relative; width:100%;">
-            <img src="images/Alliaria_petiolata_1013116480.svg" alt="Alliaria petiolata (M.Bieb.) Cavara &amp; Grande" class="img-author-img">
-            <span class="img-author-overlay">Photo by Pascal Ollagnier</span>
-        </div>
-        <span class="img-author-caption"><span style="font-style:italic">Alliaria petiolata</span> (M.Bieb.) Cavara &amp; Grande</span>
-    </div>
-</div>
-```
-<!----------------------------------------------------------------------- -->
-
-
-
-
-
-<!----------------------------------------------------------------------- -->
-### {{<iconify ri:sparkling-2-line>}} Beauty bias
-<hr>
-
-
-```{=html}
-<div class="img-author-group-centered">
-      <div class="img-author-container" style="width:45%; min-width:120px;">
-        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">10753 obs.</div>
-        <div style="position:relative; width:100%;">
-            <img src="images/68ea71ff35a4ebf2c67011fcb54eba3a7671ea5e.jpeg" alt="Centaurea jacea L." class="img-author-img" style="width:100%;">
-            <span class="img-author-overlay">Photo by Dieter Wagner</span>
-        </div>
-        <span class="img-author-caption"><span style="font-style:italic">Centaurea jacea</span> L.</span>
-    </div>
-      <div class="img-author-container" style="width:45%; min-width:120px;">
-        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">6 obs.</div>
-        <div style="position:relative; width:100%;">
-            <img src="images/4fe3e22073f23ba342555f2003fbb80221d47de3.jpeg" alt="Cenchrus agrimonioides Trin." class="img-author-img" style="width:100%;">
-            <span class="img-author-overlay">Photo by David Eickhoff − EOL</span>
-        </div>
-        <span class="img-author-caption"><span style="font-style:italic">Cenchrus agrimonioides</span> Trin.</span>
-    </div>
-</div>
-```
-<!----------------------------------------------------------------------- -->
-
-
-
-
-
-
-<!-------------------------------------------------------------------------- -->
-
-### {{<iconify emojione-monotone:straight-ruler>}} Size bias
-<hr>
-
-
-```{=html}
-<div class="img-author-group-centered" style="gap:0;">
-    <div class="img-author-container" style="width:45%; min-width:120px; margin-right:2%;">
-        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">8376 obs.</div>
-        <div style="position:relative; width:100%;">
-            <img src="images/0daa10dc3118cfb826faedc4e87a2f4b034db1d1.jpeg" alt="Magnolia grandiflora L." class="img-author-img" style="width:100%;">
-            <span class="img-author-overlay">Photo by Patrick Cartier</span>
-        </div>
-        <span class="img-author-caption"><span style="font-style:italic">Magnolia grandiflora</span> L.</span>
-    </div>
-    <div style="width:10%; min-width:60px; display:flex; align-items:center; justify-content:center;">
-        <img src="../2024-09-25_slides_sierra/images/rule.png" style="width:80%; max-width:80px;">
-    </div>
-    <div class="img-author-container" style="width:45%; min-width:120px;">
-        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">413 obs.</div>
-        <div style="position:relative; width:100%;">
-            <img src="images/942686a7353fb3a7f566b7369f48ec6ca56b4338.jpeg" alt="Moehringia trinervia (L.) Clairv." class="img-author-img" style="width:100%;">
-            <span class="img-author-overlay">Photo by Maximilien Perrin</span>
-        </div>
-        <span class="img-author-caption"><span style="font-style:italic">Moehringia trinervia</span> (L.) Clairv.</span>
-    </div>
-</div>
-```
-<!-------------------------------------------------------------------------- -->
-
-
-
-
-# References {.section-background}
-
-
-<!----------------------------------------------------------------------- -->
-### References
-<hr>
-
-::: {#refs}
-:::
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const refs = document.getElementById('refs');
-    if (refs) {
-        refs.innerHTML = refs.innerHTML.replace(/Salmon, J\./g, '<strong>Salmon, J.</strong>');
-    }
-});
-</script>
-<!-------------------------------------------------------------------------- -->
-
-
-
 
 
 
@@ -971,3 +490,560 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </div>
 ```
+<!-------------------------------------------------------------------------- -->
+
+
+
+<!------------------------------------------------------------------------ -->
+### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet: usage
+<hr>
+
+<br>
+<div style="text-align: center;">
+
+<img src="../2024-09-25_slides_sierra/images/plantnet_usage_rasterized.svg" width="95%" align="middle" >
+
+</div>
+<!------------------------------------------------------------------------
+
+
+
+
+<!------------------------------------------------------------------------ -->
+###
+
+<div style="text-align: center;">
+  <iframe src="https://identify.plantnet.org/stats" width="850" height="700" style="border: none; display: inline-block;"></iframe>
+</div>
+
+
+### {{< iconify fluent:people-community-20-filled >}} Pl@ntNet & Cooperative Learning
+
+<!-- <center> -->
+
+<!-- <center> -->
+
+::: {.r-stack}
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_0.svg){.fragment width=100% fragment-index=2}
+
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_1.svg){.fragment width=100% fragment-index=3}
+
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_2.svg){.fragment width=100% fragment-index=4}
+
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_3.svg){.fragment width=100% fragment-index=5}
+
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_4.svg){.fragment width=100% fragment-index=6}
+<!-- SVG fonts embedding trick -->
+<!-- https://lvngd.com/blog/how-embed-google-font-svg/ -->
+<!-- https://amio.github.io/embedded-google-fonts/ -->
+:::
+<!------------------------------------------------------------------------ -->
+
+
+
+<!------------------------------------------------------------------------ -->
+### {{< iconify vaadin:hourglass-start >}} Chronology of Pl@ntNet {.center }
+<hr>
+
+
+<center>
+<img src="images/PlantNet-overview-Janv-2026_en.svg" width="80%" >
+
+
+**Note:** I am mostly innocent, I started working with the Pl@ntNet team in 2020
+
+</center>
+<!------------------------------------------------------------------------ -->
+
+
+<!------------------------------------------------------------------------ -->
+### {{< iconify eos-icons:science >}} Scientific challenges
+<hr>
+<br>
+
+[**Motivation**]{.underline}: excellent app ... but not a perfect app; **How to improve?**
+
+. . .
+
+
+- Community effort involving
+  - machine learners
+  - ecologist
+  - engineers
+  - amateurs
+
+. . .
+
+- Many open problems:
+  - theoretical
+  - methodological
+  - computational (due ot the size of the problems)
+  - interfacing many disciplines
+
+<!------------------------------------------------------------------------ -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!------------------------------------------------------------------------ -->
+# Contributions {.section-background}
+<!------------------------------------------------------------------------ -->
+
+
+<!------------------------------------------------------------------------ -->
+### {{<iconify bxs:user-detail>}} Personal contributions
+<hr>
+
+<br>
+
+:::: {.columns }
+
+::: {.column width="68%"}
+
+- **Pl@ntNet-300K** [@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean_Lorieul_Salmon2021]: Creation and **release** of a large-scale dataset sharing the same property (Long Tail!) as Pl@ntNet; available for the community to improve learning systems
+
+:::
+
+::: {.column width="29%"}
+
+<center>
+<img src="../2024-09-25_slides_sierra/images/sample_genus.svg" width="62%" align="middle">
+</center>
+
+:::
+
+::::
+
+::: fragment
+
+:::: columns
+
+::: {.column width="68%"}
+
+- **Learning & crowd-sourced data** [@Lefort_Charlier_Joly_Salmon22] and [@Lefort_etal24]: How to leverage multiple labels per image to improve the model? Need to **assert quality**: the workers, the images/labels, the model, etc.
+
+:::
+
+::: {.column width="29%"}
+<center>
+<img src="../2024-09-25_slides_sierra/images/fullpipeline_small.svg" width="78%" align="middle">
+</center>
+
+:::
+
+::::
+
+:::
+
+::: fragment
+
+:::: columns
+
+::: {.column width="68%"}
+
+- **Conformal Prediction** with long tail data [@Ding_Fermanian_Salmon25] : providing prediction sets when labels are long tails (many, many rare species)
+
+:::
+
+::: {.column width="29%"}
+<center>
+<img src="../../../blog/long-tail/GMM.png" width="78%" align="middle">
+</center>
+
+:::
+
+::::
+
+:::
+<!------------------------------------------------------------------------ -->
+
+
+
+
+
+<!------------------------------------------------------------------------ -->
+# Pl@ntNet data characteristics {.section-background}
+<!------------------------------------------------------------------------ -->
+
+
+
+
+### {{<iconify roentgen:tree-with-leaf>}}  Plants trivia
+<hr>
+
+```{=html}
+<div class="img-author-group-centered" style="gap:3vw;">
+    <div class="img-author-container" style="height:35vw; min-width:120px;">
+        <div style="position:relative; width:100%; height:25vw;">
+            <img src="images/Diversity_of_plants_(Streptophyta)_version_2.png" alt="Diversity of plants (Streptophyta)" class="img-author-img" style="width:100%; height:100%; object-fit:contain;">
+            <span class="img-author-overlay" style="top: 1.2vw;
+    right: 1.2vw;">@ Rkitko (Wikimedia Commons)</span>
+        </div>
+        <span class="img-author-caption">Diversity of plants (400K+ species)</span>
+    </div>
+    <div class="img-author-container" style="height:35vw; min-width:120px;">
+        <div style="position:relative; width:100%; height:25vw;">
+            <img src="images/03. Angiosperm Tree of Life_RBG_Kew_36_ppi.jpg.webp" alt="Angiosperm Tree of Life" class="img-author-img" style="width:100%; height:100%; object-fit:contain;">
+            <span class="img-author-overlay">© RBG Kew</span>
+        </div>
+        <span class="img-author-caption" style="top: 1.2vw;
+    right: 1.2vw;">Angiosperm Tree of Life</span>
+    </div>
+</div>
+```
+
+<center style="margin-top:-5.5em;">
+**[Consequences]{.underline}**: for supervised learning, the classes are **many** and **hierarchically structured**
+</center>
+
+<!------------------------------------------------------------------------ -->
+### Intra-class variability
+
+
+```{=html}
+<div class="img-author-group-centered">
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+      <img src="images/66c06ee4e4fd35c5a58b4d0b97dffcb2053a41d3.jpg" alt="Guizotia abyssinica (L.f.) Cass." class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">© Benoît Janichon</span>
+      <span class="img-author-caption"><span style="font-style:italic">Guizotia abyssinica</span> (L.f.) Cass.</span>
+  </div>
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+      <img src="images/858de40efb7c3c934e320429634aaef273c16878.jpg" alt="Diascia rigescens E.Mey. ex Benth." class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">© Patrice SIROT</span>
+      <span class="img-author-caption"><span style="font-style:italic">Diascia rigescens</span> E.Mey. ex Benth.</span>
+  </div>
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+      <img src="images/6ad45f4e4d2454728e6e41847dc8267227fc9b0d.jpg" alt="Lapageria rosea Ruiz & Pav." class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">© Borquez Vicent</span>
+      <span class="img-author-caption"><span style="font-style:italic">Lapageria rosea</span> Ruiz & Pav.</span>
+  </div>
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+      <img src="images/5b4cd720ce747c8a53e09e0caa2dc43f12b62610.jpg" alt="Casuarina cunninghamiana Miq. LC" class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">© Наталья</span>
+      <span class="img-author-caption"><span style="font-style:italic">Casuarina cunninghamiana</span> Miq. LC</span>
+  </div>
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+      <img src="../2024-09-25_slides_sierra/images/6_b.jpg" alt="Guizotia abyssinica (L.f.) Cass." class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">© Annette Bejany</span>
+      <span class="img-author-caption"><span style="font-style:italic">Guizotia abyssinica</span> (L.f.) Cass.</span>
+  </div>
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+      <img src="images/0231e8d9cb679d11e814a1f8c4227bd6cf7d2fe6.jpg" alt="Diascia rigescens E.Mey. ex Benth." class="img-author-img" style="width:100%;">
+      <span class="img-author-overlay">© A Lee</span>
+      <span class="img-author-caption"><span style="font-style:italic">Diascia rigescens</span> E.Mey. ex Benth.</span>
+  </div>
+    <div class="img-author-container" style="width:20%; min-width:120px;">
+        <img src="images/ba4b0161aa17c364744ec58b69a9f77f26a4d8ce.jpg" alt="Lapageria rosea Ruiz & Pav.
+" class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">© Daniel Barthelemy</span>
+    <span class="img-author-caption"><span style="font-style:italic">Lapageria rosea</span> Ruiz & Pav.</span>
+    </div>
+    <div class="img-author-container" style="width:20%; min-width:120px;">
+        <img src="images/fa8e288f400456e08994113b3217a4cd2e1238df.jpg" alt="Casuarina cunninghamiana Miq. LC" class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">© Campos Ignacio</span>
+    <span class="img-author-caption"><span style="font-style:italic">Casuarina cunninghamiana</span> Miq. LC</span>
+    </div>
+</div>
+```
+
+
+<center>
+**Based on pictures only, plant species are challenging to discriminate!**
+</center>
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+### Inter-class ambiguity
+
+
+```{=html}
+<div class="img-author-group-centered">
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+    <img src="images/12d7b180752393e86822c1fff68df8f8a19189fe.jpg" alt="Cirsium rivulare (Jacq.) All." class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">© stefano mazzotti</span>
+    <span class="img-author-caption"><span style="font-style:italic">Cirsium rivulare</span> (Jacq.) All.</span>
+  </div>
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+    <img src="images/565322614481c3092ce52239a62725f1992be393.jpg" alt="Chaerophyllum aromaticum L." class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">© buqa Jarmil</span>
+    <span class="img-author-caption"><span style="font-style:italic">Chaerophyllum aromaticum</span> L.</span>
+  </div>
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+    <img src="images/3f82867ba9d74fe1fd3af3093158634a666dd790.jpg" alt="Adenostyles leucophylla Rchb." class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">© Walter Reider</span>
+    <span class="img-author-caption"><span style="font-style:italic">Adenostyles leucophylla</span> Rchb.</span>
+  </div>
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+    <img src="images/7ebd92cd30be0d3476c79908347e4020ce359c61.jpg" alt="Petrosedum montanum (Songeon & E.P.Perrier) Grulich" class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">© furs</span>
+    <span class="img-author-caption"><span style="font-style:italic">Petrosedum montanum</span> (Songeon & E.P.Perrier) Grulich</span>
+  </div>
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+    <img src="images/47fad454bb29c34687cf1ab3ee6b456201ea0725.jpg" alt="Cirsium tuberosum (L.) All." class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">© Rene Weck</span>
+    <span class="img-author-caption"><span style="font-style:italic">Cirsium tuberosum</span> (L.) All.</span>
+  </div>
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+    <img src="images/ffc5f1b5aab703ea359922c92273ef86791f1662.jpg" alt="Chaerophyllum temulum L." class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">© Jcm Arthur</span>
+    <span class="img-author-caption"><span style="font-style:italic">Chaerophyllum temulum</span> L.</span>
+  </div>
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+    <img src="images/92e4cbe38e831d11526946389c2342db4499d436.jpg" alt="Adenostyles alpina (L.) Bluff & Fingerh." class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">© pierre Lamy</span>
+    <span class="img-author-caption"><span style="font-style:italic">Adenostyles alpina</span> (L.) Bluff & Fingerh.</span>
+  </div>
+  <div class="img-author-container" style="width:20%; min-width:120px;">
+    <img src="images/dc051dace6de6cbdfe5202a4b900290525bfee3e.jpg" alt="Petrosedum rupestre (L.) P.V.Heath" class="img-author-img" style="width:100%;">
+    <span class="img-author-overlay">© Wolfi 41</span>
+    <span class="img-author-caption"><span style="font-style:italic">Petrosedum rupestre</span> (L.) P.V.Heath</span>
+  </div>
+</div>
+```
+
+<center>
+**Based on pictures only, plant species are challenging to discriminate!**
+</center>
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+## Sampling bias {.section-background-small}
+<!-------------------------------------------------------------------------- -->
+
+
+<!-------------------------------------------------------------------------- -->
+### {{<iconify gis:globe-earth-alt>}} Geographic bias
+
+
+<div style="display: flex; flex-direction: column;">
+<center>
+<img src="../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png" style="width:100%; border-radius: 15px;" alt="Spatial density of images collected by Pl@ntNet (13/04/2024)">
+
+Spatial density of images collected by Pl@ntNet (13/04/2024)
+</center>
+</div>
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+### {{<iconify fluent:food-20-filled>}} Food bias
+<hr>
+
+<br>
+<center>
+Top-5 most observed plant species in Pl@ntNet (13/04/2024):
+</center>
+
+<br>
+
+
+```{=html}
+<div class="img-author-group-centered">
+      <div class="img-author-container" style="width:19%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">25134 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/Echium_vulgare_L_1012470528.svg" alt="Echium vulgare L." class="img-author-img">
+            <span class="img-author-overlay">© Llandrich anna</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Echium vulgare</span> L.</span>
+    </div>
+      <div class="img-author-container" style="width:19%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">24720 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/Ranunculus_ficaria_L_1012578129.svg" alt="Ranunculus ficaria L." class="img-author-img">
+            <span class="img-author-overlay">© JYCO</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Ranunculus ficaria</span> L.</span>
+    </div>
+      <div class="img-author-container" style="width:19%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">24103 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/Prunus_spinosa_L_1023984740.svg" alt="Prunus spinosa L." class="img-author-img">
+            <span class="img-author-overlay">© fuerst.ernst</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Prunus spinosa</span> L.</span>
+    </div>
+      <div class="img-author-container" style="width:19%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">23288 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/Zea_mays_L_1020124455.svg" alt="Zea mays L." class="img-author-img">
+            <span class="img-author-overlay">© Uta Groger</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Zea mays</span> L.</span>
+    </div>
+      <div class="img-author-container" style="width:19%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">23075 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/Alliaria_petiolata_1013116480.svg" alt="Alliaria petiolata (M.Bieb.) Cavara &amp; Grande" class="img-author-img">
+            <span class="img-author-overlay">© Pascal Ollagnier</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Alliaria petiolata</span> (M.Bieb.) Cavara &amp; Grande</span>
+    </div>
+</div>
+```
+<!----------------------------------------------------------------------- -->
+
+
+
+
+
+<!----------------------------------------------------------------------- -->
+### {{<iconify ri:sparkling-2-line>}} Beauty bias
+<hr>
+
+
+```{=html}
+<div class="img-author-group-centered">
+      <div class="img-author-container" style="width:40%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">10753 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/68ea71ff35a4ebf2c67011fcb54eba3a7671ea5e.jpeg" alt="Centaurea jacea L." class="img-author-img" style="width:100%;">
+            <span class="img-author-overlay">© Dieter Wagner</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Centaurea jacea</span> L.</span>
+    </div>
+      <div class="img-author-container" style="width:40%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">6 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/4fe3e22073f23ba342555f2003fbb80221d47de3.jpeg" alt="Cenchrus agrimonioides Trin." class="img-author-img" style="width:100%;">
+            <span class="img-author-overlay">© David Eickhoff − EOL</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Cenchrus agrimonioides</span> Trin.</span>
+    </div>
+</div>
+```
+<!----------------------------------------------------------------------- -->
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+
+### {{<iconify emojione-monotone:straight-ruler>}} Size bias
+<hr>
+
+
+```{=html}
+<div class="img-author-group-centered" style="gap:4em; align-items:stretch;">
+    <div class="img-author-container" style="width:30%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">8376 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/0daa10dc3118cfb826faedc4e87a2f4b034db1d1.jpeg" alt="Magnolia grandiflora L." class="img-author-img" style="width:100%;">
+            <span class="img-author-overlay">© Patrick Cartier</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Magnolia grandiflora</span> L.</span>
+    </div>
+    <div style="width:8%; min-width:60px; display:flex; align-items:center; justify-content:center; flex-direction:column;">
+        <img src="../2024-09-25_slides_sierra/images/rule.png" style="width:100%; max-width:80px; height:80%; object-fit:contain; display:block; margin:auto; align-self:center;">
+    </div>
+    <div class="img-author-container" style="width:30%; min-width:120px;">
+        <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">413 obs.</div>
+        <div style="position:relative; width:100%;">
+            <img src="images/942686a7353fb3a7f566b7369f48ec6ca56b4338.jpeg" alt="Moehringia trinervia (L.) Clairv." class="img-author-img" style="width:100%;">
+            <span class="img-author-overlay">© Maximilien Perrin</span>
+        </div>
+        <span class="img-author-caption"><span style="font-style:italic">Moehringia trinervia</span> (L.) Clairv.</span>
+    </div>
+</div>
+```
+<!-------------------------------------------------------------------------- -->
+
+
+### Many more biases ...
+<hr>
+
+<br>
+
+- Selection bias
+    - Convenience sampling:  **easily** vs. *hardly* accessible
+    - Preference for certain species: **visibility** / **ease of identification**
+    - Subjective bias: selection based on **personal judgment**, may not be random or representative
+     - Rare species: **rare** or **endangered** species may be under-represented
+
+- Temporal bias / seasonal variation: **seasonal changes** in plant characteristics
+- ...
+
+<!-------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------- -->
+### {{<iconify gravity-ui:magnifier>}} A need for new benchmarks
+<hr>
+<br>
+**Popular datasets limitations:**
+
+- structure of labels too simplistic (CIFAR-10, CIFAR-100)
+  - might have tasks too easy to discriminate
+  - might be too well-balanced (same number of images per class)
+- contains duplicate, low-quality, or irrelevant images
+
+
+**[Motivation]{.underline}**:
+
+Release a dataset **sharing similar features** as the Pl@ntNet dataset to foster research in plant identification
+
+$\implies$ Pl@ntNet-300K [@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean_Lorieul_Salmon2021]
+<!-------------------------------------------------------------------------- -->
+
+<br>
+<br>
+
+***"The collective behavior induced by frictionless research exchange is the emergent superpower driving many events that are so striking today."*** [@donoho2024data]
+<!------------------------------------------------------------------------ -->
+
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+### {#contact data-menu-title="Contact"}
+
+<!-- ![](https://raw.githubusercontent.com/josephsalmon/OrganizationFiles/master/inkscape/images/contact_js.svg) -->
+![](images/contact_js.svg)
+
+<br>
+<br>
+<br>
+
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+
+# References {.section-background}
+
+
+<!----------------------------------------------------------------------- -->
+### References
+<hr>
+
+::: {#refs}
+:::
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const refs = document.getElementById('refs');
+    if (refs) {
+        refs.innerHTML = refs.innerHTML.replace(/Salmon, J\./g, '<strong>Salmon, J.</strong>');
+    }
+});
+</script>
+<!-------------------------------------------------------------------------- -->
+
+
