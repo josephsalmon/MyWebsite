@@ -691,16 +691,16 @@ Again, for **fair comparisons** with Standard CP, we set the threshold in Standa
 
 Motivated by plant conservation, we design weights for the weighted prevalence-adjusted softmax (WPAS) score to target coverage of at-risk species in Pl@ntNet-300K.
 
-Let $\mathcal{Y}_{\text{at-risk}} \subseteq \mathcal{Y}$ be the set of at-risk species. The coverage of at-risk species is weighted $\lambda \geq 1$ times more than the coverage of other species, so
+Let $\mathcal{Y}_{\text{at-risk}} \subseteq \mathcal{Y}$ be the set of at-risk species. The coverage of at-risk species is weighted $\gamma \geq 1$ times more than the coverage of other species, so
 
 $$
 \omega(y) = \begin{cases}
-    \frac{\lambda}{W} & \text{if } y \in \mathcal{Y}_{\text{at-risk}} \\
+    \frac{\gamma}{W} & \text{if } y \in \mathcal{Y}_{\text{at-risk}} \\
     \frac{1}{W} & \text{otherwise},
 \end{cases}
 $$
 
-where $W = \lambda|\mathcal{Y}_{\text{at-risk}}| + |\mathcal{Y} \setminus \mathcal{Y}_{\text{at-risk}}|$ is a normalizing factor to ensure $\sum_{y \in \mathcal{Y}} \omega(y) = 1$. We will show the result of running WPAS with this $\omega$ in the Pl@ntNet-300K experimental results below.
+where $W = \gamma|\mathcal{Y}_{\text{at-risk}}| + |\mathcal{Y} \setminus \mathcal{Y}_{\text{at-risk}}|$ is a normalizing factor to ensure $\sum_{y \in \mathcal{Y}} \omega(y) = 1$. We will show the result of running WPAS with this $\omega$ in the Pl@ntNet-300K experimental results below.
 
 ## Summary of Propositions 1-4
 
@@ -772,8 +772,8 @@ Standard with $\PAS$ is Pareto optimal, in the sense that at any marginal covera
 
 #### At-risk species analysis
 
-We now turn to a more detailed analysis of at-risk species. To this end, we present results for the Standard method applied to the Pl@ntNet-300K dataset, using three conformal score functions: softmax, PAS, and WPAS with $\lambda \in \{1, 10, 10^2, 10^3\}$.
-Our findings show that increasing $\lambda$ in WPAS enhances the class-conditional coverage for at-risk classes, as measured by $\hat{c}_y$, the empirical class-conditional coverage for class $y$. We summarize these results by computing the "at-risk average $\hat{c}_y$" as $(1/|\mathcal{Y}_{\text{at-risk}}|)\sum_{y \in \mathcal{Y}_{\text{at-risk}}} \hat{c}_y$, and similarly for the "not-at-risk average $\hat{c}_y$".
+We now turn to a more detailed analysis of at-risk species. To this end, we present results for the Standard method applied to the Pl@ntNet-300K dataset, using three conformal score functions: softmax, PAS, and WPAS with $\gamma \in \{1, 10, 10^2, 10^3\}$.
+Our findings show that increasing $\gamma$ in WPAS enhances the class-conditional coverage for at-risk classes, as measured by $\hat{c}_y$, the empirical class-conditional coverage for class $y$. We summarize these results by computing the "at-risk average $\hat{c}_y$" as $(1/|\mathcal{Y}_{\text{at-risk}}|)\sum_{y \in \mathcal{Y}_{\text{at-risk}}} \hat{c}_y$, and similarly for the "not-at-risk average $\hat{c}_y$".
 
 
 ```{=html}
@@ -782,7 +782,7 @@ Our findings show that increasing $\lambda$ in WPAS enhances the class-condition
 
 <script type="module" src="plantnet_comparison_viz.js"></script>
 ```
-We observe that Standard with $\WPAS$ improves the class-conditional coverage of at-risk classes relative to Standard with softmax or $\PAS$. Comparing $\WPAS$ to $\PAS$, we see that increasing $\lambda$, the amount we up-weight at-risk classes, leads to larger improvements in the class-conditional coverage of at-risk classes, as expected. These increases are "paid for'' in terms of a mild increase in average set size and have no discernible effect on the class-conditional coverage of not-at-risk classes, which is appealing from a practical perspective.
+We observe that Standard with $\WPAS$ improves the class-conditional coverage of at-risk classes relative to Standard with softmax or $\PAS$. Comparing $\WPAS$ to $\PAS$, we see that increasing $\gamma$, the amount we up-weight at-risk classes, leads to larger improvements in the class-conditional coverage of at-risk classes, as expected. These increases are "paid for'' in terms of a mild increase in average set size and have no discernible effect on the class-conditional coverage of not-at-risk classes, which is appealing from a practical perspective.
 
 ## Conclusion
 

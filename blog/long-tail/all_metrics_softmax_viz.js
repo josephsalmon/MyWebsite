@@ -30,8 +30,8 @@ function parseCSV(csvText) {
 // Data loading and processing functions
 async function loadSoftmaxData() {
   try {
-    // Load the CSV data
-    const response = await fetch('images/ALL_metrics_plantnet_softmax_pareto_DATA.csv');
+
+    const response = await fetch(new URL('images/ALL_metrics_plantnet_softmax_pareto_DATA.csv', import.meta.url));
     if (response.ok) {
       const csvText = await response.text();
       const rawData = parseCSV(csvText);

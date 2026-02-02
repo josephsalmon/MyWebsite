@@ -31,7 +31,7 @@ function parseCSV(csvText) {
 async function loadComparisonData() {
   try {
     // Load the CSV data
-    const response = await fetch('images/plantnet_conformal_comparison_data.csv');
+    const response = await fetch(new URL('images/plantnet_conformal_comparison_data.csv', import.meta.url));
     if (response.ok) {
       const csvText = await response.text();
       const rawData = parseCSV(csvText);

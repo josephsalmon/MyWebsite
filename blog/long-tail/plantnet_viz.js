@@ -9,12 +9,25 @@ window.setScale = function(scale) {
   return false;
 }
 
-document.addEventListener('DOMContentLoaded', async function() {
+// Export initialization function for multiple instances
+export async function initializePlantNetViz(config = {}) {
+  const {
+    vizId = 'plantnet-viz',
+    filterContainerId = 'filter-container',
+    plotContainerId = 'plotly-container',
+    previewImageId = 'preview-image',
+    imageLabelId = 'image-label',
+    imagePreviewContainerId = 'image-preview-container',
+    logScaleBtnId = 'log-scale-btn',
+    linearScaleBtnId = 'linear-scale-btn',
+    scaleChangeEvent = 'scaleChange'
+  } = config;
+
   // Load the CSV data and authors data in parallel
   try {
     const [csvResponse, authorsResponse] = await Promise.all([
-      fetch('tiny_plantnet300k_metadata.csv'),
-      fetch('Metadata/authors.json')
+      fetch(new URL('tiny_plantnet300k_metadata.csv', import.meta.url)),
+      fetch(new URL('Metadata/authors.json', import.meta.url))
     ]);
     
     if (!csvResponse.ok) {
@@ -148,7 +161,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
 
     // Create organized legend container
-    const filterContainer = document.getElementById('filter-container');
+    const filterContainer = document.getElementById(filterContainerId);
 
   // Create a styled legend box
     const legendBox = document.createElement('div');
@@ -404,7 +417,7 @@ document.addEventListener('DOMContentLoaded', async function() {
           btn.classList.remove('active');
         });
         // Activate the Linear button by default
-        const linearBtn = scaleToggle.querySelector('#linear-scale-btn');
+        const linearBtn = scaleToggle.querySelector(`#${linearScaleBtnId}`);
         if (linearBtn) {
           linearBtn.classList.add('active');
           linearBtn.style.backgroundColor = '#4CAF50';
@@ -480,12 +493,12 @@ document.addEventListener('DOMContentLoaded', async function() {
   let currentScale = 'linear';
 
     // Event listener for scale changes
-    document.addEventListener('scaleChange', function(e) {
+    document.addEventListener(scaleChangeEvent, function(e) {
       currentScale = e.detail;
 
       // Update button appearance
-      const logBtn = document.querySelector('#log-scale-btn');
-      const linearBtn = document.querySelector('#linear-scale-btn');
+      const logBtn = document.querySelector(`#${logScaleBtnId}`);
+      const linearBtn = document.querySelector(`#${linearScaleBtnId}`);
 
       if (logBtn && linearBtn) {
         if (currentScale === 'log') {
@@ -571,7 +584,7 @@ document.addEventListener('DOMContentLoaded', async function() {
               return {
                 speciesMain: sp.main,
                 speciesAuthor: sp.author || '',
-                image: d.image,
+                image: d.image ? new URL(d.image, import.meta.url).href : null,
                 count: d.counts,
                 author: authorInfo ? authorInfo.author : null,
                 iucn: d.iucn_status
@@ -645,13 +658,61 @@ document.addEventListener('DOMContentLoaded', async function() {
       };
 
       // Get plot container element and create/update the plot
-      const plotContainer = document.getElementById('plotly-container');
-      Plotly.newPlot('plotly-container', traces, layout, config);
+      const plotContainer = document.getElementById(plotContainerId);
+      Plotly.newPlot(plotContainerId, traces, layout, config);
 
       // Handle hover events for image display
-      const previewImage = document.getElementById('preview-image');
-      const imageLabel = document.getElementById('image-label');
-      const imagePreviewContainer = document.getElementById('image-preview-container');
+      const previewImage = document.getElementById(previewImageId);
+      const imageLabel = document.getElementById(imageLabelId);
+      const imagePreviewContainer = document.getElementById(imagePreviewContainerId);
+
+      // Helper function to update author overlay
+      function updateAuthorOverlay(author) {
+        if (!previewImage) return;
+        
+        // Ensure wrapper exists
+        let wrapper = previewImage.parentElement;
+        if (wrapper.className !== 'img-preview-wrapper') {
+          const newWrapper = document.createElement('div');
+          newWrapper.className = 'img-preview-wrapper';
+          newWrapper.style.position = 'relative';
+          newWrapper.style.display = 'inline-block';
+          newWrapper.style.maxWidth = '100%';
+          wrapper.insertBefore(newWrapper, previewImage);
+          newWrapper.appendChild(previewImage);
+          wrapper = newWrapper;
+        }
+
+        // Ensure overlay exists
+        let overlay = wrapper.querySelector('.img-author-overlay');
+        if (!overlay) {
+          overlay = document.createElement('div');
+          overlay.className = 'img-author-overlay';
+          // Apply user-requested styles inline
+          Object.assign(overlay.style, {
+            position: 'absolute',
+            top: '0.75vw',
+            right: '0.5vw',
+            background: 'rgba(0,0,0,0.5)',
+            color: '#fff',
+            padding: '1px 6px',
+            borderRadius: '8px',
+            fontSize: '0.5em', // Adjusted slightly for readability, user asked for 0.5em
+            fontFamily: 'Nunito, Arial, sans-serif',
+            fontWeight: 'bold',
+            zIndex: '2',
+            pointerEvents: 'none'
+          });
+          wrapper.appendChild(overlay);
+        }
+
+        if (author) {
+          overlay.textContent = `© ${author}`;
+          overlay.style.display = 'block';
+        } else {
+          overlay.style.display = 'none';
+        }
+      }
 
       // Display the most common species by default (highest count)
       let maxCount = 0;
@@ -678,11 +739,15 @@ document.addEventListener('DOMContentLoaded', async function() {
         labelHtml += `<span style="font-size: 13px; color: #666;"># of examples: ${maxCustomData.count.toLocaleString()}</span>`;
 
         if (maxCustomData.author) {
-          labelHtml += `<br><span style="font-size: 12px; color: #888; font-style: italic;">Photo by: ${escapeHtml(maxCustomData.author)}</span>`;
+          // labelHtml += `<br><span style="font-size: 12px; color: #888; font-style: italic;">© ${escapeHtml(maxCustomData.author)}</span>`; -- Moved to overlay
         }
+        updateAuthorOverlay(maxCustomData.author);
 
         imageLabel.innerHTML = labelHtml;
         imagePreviewContainer.querySelector('div:first-child').textContent = 'Most Common Species';
+
+        // Update author overlay
+        updateAuthorOverlay(maxCustomData.author);
       }
 
       // Set initial state for image preview
@@ -705,11 +770,14 @@ document.addEventListener('DOMContentLoaded', async function() {
           labelHtml += `<span style="font-size: 13px; color: #666;"># of examples: ${customData.count.toLocaleString()}</span>`;
 
           if (customData.author) {
-            labelHtml += `<br><span style="font-size: 12px; color: #888; font-style: italic;">Photo by: ${escapeHtml(customData.author)}</span>`;
+//             labelHtml += `<br><span style="font-size: 12px; color: #888; font-style: italic;">Photo by: ${escapeHtml(customData.author)}</span>`;
           }
 
           imageLabel.innerHTML = labelHtml;
           imagePreviewContainer.querySelector('div:first-child').textContent = 'Species Preview';
+
+          // Update author overlay
+          updateAuthorOverlay(customData.author);
         }
       });
 
@@ -729,11 +797,14 @@ document.addEventListener('DOMContentLoaded', async function() {
           labelHtml += `<span style="font-size: 13px; color: #666;"># of examples: ${customData.count.toLocaleString()}</span>`;
 
           if (customData.author) {
-            labelHtml += `<br><span style="font-size: 12px; color: #888; font-style: italic;">Photo by: ${escapeHtml(customData.author)}</span>`;
+//             labelHtml += `<br><span style="font-size: 12px; color: #888; font-style: italic;">Photo by: ${escapeHtml(customData.author)}</span>`;
           }
 
           imageLabel.innerHTML = labelHtml;
           imagePreviewContainer.querySelector('div:first-child').textContent = 'Species Preview';
+
+          // Update author overlay
+          updateAuthorOverlay(customData.author);
         }
       });
 
@@ -752,7 +823,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
   } catch (error) {
     console.error('Error setting up visualization:', error);
-    const vizDiv = document.getElementById('plantnet-viz');
+    const vizDiv = document.getElementById(vizId);
     if (vizDiv) {
       vizDiv.innerHTML = `
         <div style="color: red; padding: 20px; border: 1px solid red; margin: 20px;">
@@ -762,4 +833,9 @@ document.addEventListener('DOMContentLoaded', async function() {
       `;
     }
   }
+}
+
+// Default initialization on DOMContentLoaded for backward compatibility
+document.addEventListener('DOMContentLoaded', async function() {
+  await initializePlantNetViz();
 });
