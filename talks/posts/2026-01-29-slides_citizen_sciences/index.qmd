@@ -760,12 +760,12 @@ A **citizen science** platform using machine learning to help people identify pl
 ```{=html}
 <div style="display: flex; gap: 2vw; max-width: 60%; margin: 0 auto; align-items: flex-start; justify-content: center;">
     <div style="width: 40%; text-align: center; position: relative;">
-        <img src="images/Diversity_of_plants_(Streptophyta)_version_2.png" alt="Diversity of plants (Streptophyta)" style="width: 100%; height: auto; max-height: 350px; object-fit: contain;">
+        <img src="images/Diversity_of_plants_(Streptophyta)_version_2.png" alt="Diversity of plants (Streptophyta)" style="width: 100%; height: auto; max-height: 450px; object-fit: contain;">
         <span class="img-author-overlay">@ Rkitko (Wikimedia Commons)</span>
         <div style="font-size: 0.75em; margin-top: 5px;">Diversity of plants (400K+ species)</div>
     </div>
     <div style="width: 55%; text-align: center; position: relative;">
-        <img src="images/03. Angiosperm Tree of Life_RBG_Kew_36_ppi.jpg.webp" alt="Angiosperm Tree of Life" style="width: 100%; height: auto; max-height: 350px; object-fit: contain;">
+        <img src="images/03. Angiosperm Tree of Life_RBG_Kew_36_ppi.jpg.webp" alt="Angiosperm Tree of Life" style="width: 100%; height: auto; max-height: 450px; object-fit: contain;">
         <span class="img-author-overlay">© RBG Kew</span>
         <div style="font-size: 0.75em; margin-top: 5px;">Angiosperm Tree of Life</div>
     </div>
@@ -1209,6 +1209,12 @@ Sample at genus level to preserve intra-genus ambiguity: use **hierarchical stru
 <!-------------------------------------------------------------------------- -->
 ### {{<iconify eos-icons:database>}} Details on Pl@ntNet-300K
 <hr>
+<br>
+
+**{{< iconify mdi:bullseye-arrow >}} Goal:**
+Provide a real life scenario for supervised learning, with multi-class and long-tail label distribution
+
+<br>
 
 
 :::: {.columns style='display: flex !important'}
@@ -1256,14 +1262,14 @@ Sample at genus level to preserve intra-genus ambiguity: use **hierarchical stru
 <center>
 <!-- ![](../2025-12-15-ICSDS25/images/plantnet_class_distribution_iucn_status_with_images.svg){width=100%} -->
 
-More details on my blog post:  [https://josephsalmon.eu/blog/long-tail/](https://josephsalmon.eu/blog/long-tail/)
+<!-- More details on my blog post:  [https://josephsalmon.eu/blog/long-tail/](https://josephsalmon.eu/blog/long-tail/) -->
 
 </center>
 
 <!-------------------------------------------------------------------------- -->
 
 <!------------------------------------------------------------------------ -->
-# Prediction & uncertainty quantification {.section-background}
+# Prediction<br>&<br>uncertainty quantification {.section-background}
 <!------------------------------------------------------------------------ -->
 
 
@@ -1332,6 +1338,30 @@ ICLR 2026
 
 
 
+<!-------------------------------------------------------------------------- -->
+### Current Pl@ntNetSet outputs
+<hr>
+
+<br>
+
+::::{.columns}
+::: {.column width="53%"}
+![](images/plantnet_image_ambiguity_js_detailed.svg){width=90%}
+:::
+
+::: {.column width="35%"}
+
+Elements to help guide the users
+
+- provide a set of possible species/labels
+- display similar images from proposed species
+- give a score of confidence
+
+:::
+::::
+<!-------------------------------------------------------------------------- -->
+
+
 
 
 <!-------------------------------------------------------------------------- -->
@@ -1339,7 +1369,9 @@ ICLR 2026
 <hr>
 
 <br>
-**{{< iconify mdi:bullseye-arrow >}} Goal:** Propose the most probable classes with **confidence level** $1-\alpha$
+**{{< iconify mdi:bullseye-arrow >}} Goal:**
+
+For an input image $X$, propose the most probable classes $y$ with **confidence level** $1-\alpha$ (with small $\alpha$)
 
 <br>
 <br>
@@ -1353,7 +1385,7 @@ $$
 $$
 
 
-{{< iconify mdi:arrow-right-bold >}} **Note**: use as conformal score $s(x,y) = \hat{p}(y|x)$ (= softmax score in deep learning)
+{{< iconify mdi:arrow-right-bold >}} **In classification**: a common conformal score is $s(x,y) = \hat{p}(y|x)$ (= softmax score in deep learning)
 
 <br>
 <br>
@@ -1368,8 +1400,7 @@ $$
 . . .
 
 
-Conformal prediction sets $t_{\alpha}$ as follows:
-$t_{\alpha}$ is the $(1-\alpha)$ quantile of the scores on a calibration set.
+**Conformal prediction**: sets $t_{\alpha}$ as the $(1-\alpha)$ quantile of the scores on a calibration set 
 
 
 <!-------------------------------------------------------------------------- -->
@@ -1497,12 +1528,10 @@ calibrate $t_{\alpha}^y$  **only on** $(X_i, Y_i)$ such that $Y_i = y$
 
 
 
-### Limits of class conditional
+### Class conditional: useless for long-tail
 <hr>
 
-Best control: (label) class-conditional coverage,
 
-But, with long-tail useless 
 
 <br>
 <br>
