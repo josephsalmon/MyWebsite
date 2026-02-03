@@ -753,32 +753,27 @@ A **citizen science** platform using machine learning to help people identify pl
 
 
 
-
+<!------------------------------------------------------------------------ -->
 ### {{<iconify roentgen:tree-with-leaf>}}  Plants trivia
 <hr>
 
 ```{=html}
-<div class="img-author-group-centered" style="gap:3vw;">
-    <div class="img-author-container" style="height:35vw; min-width:120px;">
-        <div style="position:relative; width:100%; height:25vw;">
-            <img src="images/Diversity_of_plants_(Streptophyta)_version_2.png" alt="Diversity of plants (Streptophyta)" class="img-author-img" style="width:100%; height:100%; object-fit:contain;">
-            <span class="img-author-overlay" style="top: 1.2vw;
-    right: 1.2vw;">@ Rkitko (Wikimedia Commons)</span>
-        </div>
-        <span class="img-author-caption">Diversity of plants (400K+ species)</span>
+<div style="display: flex; gap: 2vw; max-width: 60%; margin: 0 auto; align-items: flex-start; justify-content: center;">
+    <div style="width: 40%; text-align: center; position: relative;">
+        <img src="images/Diversity_of_plants_(Streptophyta)_version_2.png" alt="Diversity of plants (Streptophyta)" style="width: 100%; height: auto; max-height: 350px; object-fit: contain;">
+        <span class="img-author-overlay">@ Rkitko (Wikimedia Commons)</span>
+        <div style="font-size: 0.75em; margin-top: 5px;">Diversity of plants (400K+ species)</div>
     </div>
-    <div class="img-author-container" style="height:35vw; min-width:120px;">
-        <div style="position:relative; width:100%; height:25vw;">
-            <img src="images/03. Angiosperm Tree of Life_RBG_Kew_36_ppi.jpg.webp" alt="Angiosperm Tree of Life" class="img-author-img" style="width:100%; height:100%; object-fit:contain;">
-            <span class="img-author-overlay">© RBG Kew</span>
-        </div>
-        <span class="img-author-caption" style="top: 1.2vw;
-    right: 1.2vw;">Angiosperm Tree of Life</span>
+    <div style="width: 55%; text-align: center; position: relative;">
+        <img src="images/03. Angiosperm Tree of Life_RBG_Kew_36_ppi.jpg.webp" alt="Angiosperm Tree of Life" style="width: 100%; height: auto; max-height: 350px; object-fit: contain;">
+        <span class="img-author-overlay">© RBG Kew</span>
+        <div style="font-size: 0.75em; margin-top: 5px;">Angiosperm Tree of Life</div>
     </div>
 </div>  
 ```
+<br>
 
-<center style="margin-top:-6vw;">
+<center>
 **[Consequences]{.underline}**: for supervised learning, the classes are **many** and **hierarchically structured**
 </center>
 
@@ -1176,7 +1171,7 @@ Sample at genus level to preserve intra-genus ambiguity: use **hierarchical stru
   <!-- Main content area with side-by-side layout -->
   <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 20px;">
   <!-- Plot container on the left (wider and shorter) -->
-  <div id="plotly-container" style="flex: 4; height: 400px; width: 48vw; max-width: 48vw; min-width: 200px;"></div>
+  <div id="plotly-container" style="flex: 4; height: 400px; width: 65vw; max-width: 65vw; min-width: 200px;"></div>
 
     <!-- Right sidebar with controls and image preview -->
     <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column;">
@@ -1194,8 +1189,8 @@ Sample at genus level to preserve intra-genus ambiguity: use **hierarchical stru
       <!-- Image preview container -->
       <div id="image-preview-container" style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; flex: 1;">
         <div style="margin-bottom: 10px;">Species Preview</div>
-        <img id="preview-image" src="" style="max-width: 100%; height: auto; max-height: calc(100vh - 300px); min-height: 100px; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: contain;" />
-        <div id="image-label" style="font-weight: bold; font-size: 13px; min-height: 3.5em; margin-top: 10px; text-align: center; width: 100%; line-height: 1.2;"></div>
+        <img id="preview-image" src="" style="max-width: 100%; width: 35vw; max-height: calc(100vh - 300px); min-height: 100px; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: contain;" />
+        <div id="image-label" style="font-weight: bold; font-size: 8px; min-height: 3.5em; margin-top: 10px; text-align: center; width: 100%; line-height: 1.2;"></div>
       </div>
     </div>
   </div>
@@ -1340,7 +1335,7 @@ ICLR 2026
 
 
 <!-------------------------------------------------------------------------- -->
-### Conformal Prediction [@vovk2005algorithmic]
+### {{<iconify icon-park-solid:chart-histogram-two>}} Conformal Prediction [@vovk2005algorithmic]
 <hr>
 
 <br>
@@ -1484,6 +1479,7 @@ calibrate $t_{\alpha}^y$  **only on** $(X_i, Y_i)$ such that $Y_i = y$
 <!-------------------------------------------------------------------------- -->
 
 ### Interactive optimal set visualization
+<hr>
 
 ```{=html}
 <div style="width:50%; margin: 0 auto;">
@@ -1504,70 +1500,28 @@ calibrate $t_{\alpha}^y$  **only on** $(X_i, Y_i)$ such that $Y_i = y$
 ### Limits of class conditional
 <hr>
 
-Ideally you would like to use (label) class-conditional to have stronger guarantees:
+Best control: (label) class-conditional coverage,
 
-In practice, the long-tail is killing you : too many classes with very few labels:
+But, with long-tail useless 
 
 <br>
 <br>
+
+
 
 ```{=html}
-<div style="text-align: center;">
-
-<div style="width:68%; margin: 0 auto;">
-
-<div id="plantnet-viz-2" style="max-width: f; margin: 0 auto;">
-
-  <div id="filter-container-2" style="margin-bottom: 20px;"></div>
-
-  <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 20px;">
-  <div id="plotly-container-2" style="flex: 4; height: 400px; width: 48vw; max-width: 48vw; min-width: 200px;"></div>
-
-    <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column;">
-      <div style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
-        <div class="scale-toggle">
-          <span class="scale-label">Y-Scale:</span>
-          <button type="button" id="log-scale-btn-2" class="scale-btn"
-            onclick="window.setScale2('log'); return false;">Log</button>
-          <button type="button" id="linear-scale-btn-2" class="scale-btn active"
-            onclick="window.setScale2('linear'); return false;">Linear</button>
-        </div>
-      </div>
-
-      <div id="image-preview-container-2" style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; flex: 1;">
-        <div style="margin-bottom: 10px;">Species Preview</div>
-        <img id="preview-image-2" src="" style="max-width: 100%; height: auto; max-height: calc(100vh - 300px); min-height: 100px; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: contain;" />
-        <div id="image-label-2" style="font-weight: bold; font-size: 13px; min-height: 3.5em; margin-top: 10px; text-align: center; width: 100%; line-height: 1.2;"></div>
-      </div>
-    </div>
-  </div>
+<div id="all-metrics-softmax-container-2" style="width: 100%; height: 450px; margin: 20px 0;">
 </div>
 
-<script type="module">
-  import { initializePlantNetViz } from '../../../../blog/long-tail/plantnet_viz.js';
-  
-  window.setScale2 = function(scale) {
-    document.dispatchEvent(new CustomEvent('scaleChange2', { detail: scale }));
-    return false;
-  }
-  
-  initializePlantNetViz({
-    vizId: 'plantnet-viz-2',
-    filterContainerId: 'filter-container-2',
-    plotContainerId: 'plotly-container-2',
-    previewImageId: 'preview-image-2',
-    imageLabelId: 'image-label-2',
-    imagePreviewContainerId: 'image-preview-container-2',
-    logScaleBtnId: 'log-scale-btn-2',
-    linearScaleBtnId: 'linear-scale-btn-2',
-    scaleChangeEvent: 'scaleChange2'
-  });
-</script>
-
-</div>
-</div>
-
+<script type="module" src="../../../blog/long-tail/all_metrics_softmax_viz_no_yellow.js"></script>
 ```
+
+
+<!-------------------------------------------------------------------------- -->
+
+
+
+
 
 
 <!-------------------------------------------------------------------------- -->
@@ -1625,8 +1579,10 @@ $$
 <!-------------------------------------------------------------------------- -->
 
 
+
+
 <!-------------------------------------------------------------------------- -->
-### Interactive score visualization
+### Interactive optimal set visualization (II)
 <hr>
 
 ```{=html}
@@ -1647,11 +1603,16 @@ $$
 
 
 <!-------------------------------------------------------------------------- -->
-
 ### Experiments on Pl@ntNet-300K
 
 <hr>
 <br>
+
+<!-- ![](../../../blog/long-tail/images/ALL_metrics_plantnet_softmax_pareto_NO_LEGEND_js.svg){width=100%}
+
+![](../../../blog/long-tail/images/ALL_metrics_plantnet_softmax_pareto_LEGEND_ONLY_js.svg){width=100%}
+
+<br> -->
 
 ```{=html}
 <div id="all-metrics-softmax-container" style="width: 100%; height: 450px; margin: 20px 0;">
@@ -1660,23 +1621,15 @@ $$
 <script type="module" src="../../../blog/long-tail/all_metrics_softmax_viz.js"></script>
 ```
 
-<!-- ![](../../../blog/long-tail/images/ALL_metrics_plantnet_softmax_pareto_NO_LEGEND_js.svg){width=100%}
-
-![](../../../blog/long-tail/images/ALL_metrics_plantnet_softmax_pareto_LEGEND_ONLY_js.svg){width=100%}
-
-<br> -->
-
 <!-------------------------------------------------------------------------- -->
 
 
 
-<!-------------------------------------------------------------------------- -->
 
 <!-------------------------------------------------------------------------- -->
 ### Generalization : weighted Macro-Coverage
 <hr>
 
-**{{< iconify mdi:bullseye-arrow >}} Goal:**  handle different weight per classes
 
 
 Given user-chosen class weights $\omega(y)$ for $y \in \mathcal{Y}$ that sum to one, we can define the _$\omega$-weighted macro-coverage_ as
@@ -1727,22 +1680,20 @@ $$
 
 <br>
 
-{{< iconify mdi:arrow-right-bold >}} Introduce a new conformal score,  **Prevalence Adjusted Softmax (PAS)** : $s(x,y) = -\omega(y) \frac{\hat{p}(y|x)}{\hat{p}(y)}$
+{{< iconify mdi:arrow-right-bold >}} Introduce a new conformal score,  **Wighted Prevalence Adjusted Softmax (WPAS)** : $s(x,y) = -\omega(y) \frac{\hat{p}(y|x)}{\hat{p}(y)}$
 
 :::
-
 <!-------------------------------------------------------------------------- -->
 
 
-<!-------------------------------------------------------------------------- -->
+
+
 
 <!-------------------------------------------------------------------------- -->
 ### Experiments on Pl@ntNet-300K: endangered species
 <hr>
 
-
-
-To target coverage of at-risk species in Pl@ntNet-300K,  weight by $\gamma \geq 1$ times more at-risk species:
+**{{< iconify mdi:bullseye-arrow >}} Goal:**  handle at-risk species in Pl@ntNet-300K,  weight by $\gamma \geq 1$ times more at-risk species:
 
 $$
 \omega(y) = \begin{cases}

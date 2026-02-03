@@ -473,15 +473,20 @@ document.addEventListener('DOMContentLoaded', function() {
   initializeSoftmaxViz();
 });
 
+// ES6 module exports
+export { loadSoftmaxData, createSoftmaxPlot, initializeSoftmaxViz };
+
 // Module exports
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { 
+    loadSoftmaxData,
     createSoftmaxPlot,
     initializeSoftmaxViz
   };
 } else if (typeof define === 'function' && define.amd) {
   define([], function() { 
     return { 
+      loadSoftmaxData,
       createSoftmaxPlot,
       initializeSoftmaxViz
     }; 
@@ -489,6 +494,7 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
   // Browser global
   window.AllMetricsSoftmax = { 
+    loadSoftmaxData,
     createSoftmaxPlot,
     initializeSoftmaxViz
   };
