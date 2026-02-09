@@ -1,4 +1,12 @@
 # Internal slide decks
+- title: "Citizen science & machine learning for plant Identification: challenges from Pl@ntNet"
+  date: 2026-02-05
+  image: posts/2026-01-29-slides_citizen_sciences/images/set_prediction.png
+  path: 2026-01-29-slides_citizen_sciences/index.qmd
+  categories:
+   - citizen sciences
+   - crowdsourcing
+   - conformal prediction
 - title: "Conformal Prediction for Long-Tailed Classification"
   date: 2025-12-15
   image: posts/2025-12-15-ICSDS25/images/plantnet_class_distribution_iucn_status_with_images.svg

@@ -272,7 +272,7 @@ embed[src*=".svg"] tspan {
 
 
 <!------------------------------------------------------------------------- -->
-### Pl@ntNet:  ML for citizen science
+### Pl@ntNet: ML for citizen science
 <hr>
 
 
@@ -641,7 +641,7 @@ A **citizen science** platform using machine learning to help people identify pl
 - Open problems:
     - theoretical
     - methodological
-    - computational (due ot the size of the problems)
+    - computational (due to the size of the problems)
     - interfacing many disciplines
 :::
 ::::
@@ -653,21 +653,11 @@ A **citizen science** platform using machine learning to help people identify pl
 <center>
 ![](images/liftarn_Uncle_Sam_pointing.svg){width=23%}
 
-**[We need you]{.underline}**: come and help improving it!
+**[We need you]{.underline}**: come and help us improve it!
 
 </center>
 
 <!------------------------------------------------------------------------ -->
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -700,6 +690,30 @@ A **citizen science** platform using machine learning to help people identify pl
 
 ::::
 
+
+
+::: fragment
+
+:::: columns
+
+::: {.column width="68%"}
+
+- **Prediction uncertainty quantification** with long tail data [@Ding_Fermanian_Salmon25] : providing prediction sets with statistical guarantees with Conformal Prediction
+
+:::
+
+::: {.column width="29%"}
+<center>
+<img src="../../../blog/long-tail/GMM.png" width="78%" align="middle">
+</center>
+<br>
+:::
+
+::::
+
+:::
+
+
 ::: fragment
 
 :::: columns
@@ -721,26 +735,7 @@ A **citizen science** platform using machine learning to help people identify pl
 
 :::
 
-::: fragment
 
-:::: columns
-
-::: {.column width="68%"}
-
-- **Conformal Prediction** with long tail data [@Ding_Fermanian_Salmon25] : providing prediction sets with statistical guarantees
-
-:::
-
-::: {.column width="29%"}
-<center>
-<img src="../../../blog/long-tail/GMM.png" width="78%" align="middle">
-</center>
-<br>
-:::
-
-::::
-
-:::
 <!------------------------------------------------------------------------ -->
 
 
@@ -754,17 +749,32 @@ A **citizen science** platform using machine learning to help people identify pl
 
 
 <!------------------------------------------------------------------------ -->
-### {{<iconify roentgen:tree-with-leaf>}}  Plants trivia
+### {{<iconify roentgen:tree-with-leaf>}} Plants trivia
 <hr>
+<br>
 
 ```{=html}
-<div style="display: flex; gap: 2vw; max-width: 60%; margin: 0 auto; align-items: flex-start; justify-content: center;">
-    <div style="width: 40%; text-align: center; position: relative;">
-        <img src="images/Diversity_of_plants_(Streptophyta)_version_2.png" alt="Diversity of plants (Streptophyta)" style="width: 100%; height: auto; max-height: 450px; object-fit: contain;">
-        <span class="img-author-overlay">@ Rkitko (Wikimedia Commons)</span>
-        <div style="font-size: 0.75em; margin-top: 5px;">Diversity of plants (400K+ species)</div>
+<div style="display: flex; gap: 2vw; max-width: 98%; margin: 0 auto; align-items: flex-start; justify-content: center;">
+
+    <div style="height:75%; text-align: center; position: relative;">
+        <img src="images/biomass.svg" alt="Biomass on earth" style="width: 100%; height: auto; max-height: 450px; object-fit: contain;">
+```
+
+
+<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
+
+
+```{=html}
     </div>
-    <div style="width: 55%; text-align: center; position: relative;">
+
+    <div style="height:75%; text-align: center; position: relative;">
+        <img src="images/Diversity_of_plants_(Streptophyta)_version_2.png" alt="Diversity of plants" style="width: 100%; height: auto; max-height: 450px; object-fit: contain;">
+        <span class="img-author-overlay" style="top: 15px;
+    right: 15px;">@ Rkitko (Wikimedia Commons)</span>
+        <div style="font-size: 0.75em; margin-top: 5px;">Diversity: 400K+ species</div>
+    </div>
+
+    <div style="height:75%; text-align: center; position: relative;">
         <img src="images/03. Angiosperm Tree of Life_RBG_Kew_36_ppi.jpg.webp" alt="Angiosperm Tree of Life" style="width: 100%; height: auto; max-height: 450px; object-fit: contain;">
         <span class="img-author-overlay">© RBG Kew</span>
         <div style="font-size: 0.75em; margin-top: 5px;">Angiosperm Tree of Life</div>
@@ -773,9 +783,15 @@ A **citizen science** platform using machine learning to help people identify pl
 ```
 <br>
 
+. . .
+
 <center>
 **[Consequences]{.underline}**: for supervised learning, the classes are **many** and **hierarchically structured**
 </center>
+<!------------------------------------------------------------------------ -->
+
+
+
 
 <!------------------------------------------------------------------------ -->
 ### Intra-class variability
@@ -1042,7 +1058,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 <br>
 
 - Selection bias
-    - Convenience sampling:  **easily** vs. *hardly* accessible
+    - Convenience sampling: **easily** vs. *hardly* accessible
     - Preference for certain species: **visibility** / **ease of identification**
     - Subjective bias: selection based on **personal judgment**, may not be random or representative
      - Rare species: **rare** or **endangered** species may be under-represented
@@ -1063,18 +1079,22 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 <br>
 **Popular datasets limitations:**
 
+<div style="margin-left: 2em;">
+
 - structure of labels too simplistic (CIFAR-10, CIFAR-100)
 - tasks too easy to discriminate (MNIST)
 - too well-balanced, with same number of images per class (Imagenet)
 - contains duplicate, low-quality, or irrelevant images [@recht2019imagenet]
 
+</div>
 
 **[Motivation]{.underline}**:
+<div style="margin-left: 2em;">
 
 Release a dataset **sharing similar features** as the Pl@ntNet dataset to foster research in plant identification
 
 $\implies$ Pl@ntNet-300K [@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean_Lorieul_Salmon2021]
-<!-------------------------------------------------------------------------- -->
+</div>
 
 <br>
 <br>
@@ -1126,7 +1146,7 @@ Sample at genus level to preserve intra-genus ambiguity: use **hierarchical stru
 <br>
 
 :::{.fragment fragment-index=1}
-- Earth: 300K+ species
+- Earth: 400K+ species
 - Pl@ntNet: 80K+ species
 - Pl@ntNet-300K: 1K+ species
 :::
@@ -1152,7 +1172,7 @@ Sample at genus level to preserve intra-genus ambiguity: use **hierarchical stru
 
 
 <!-------------------------------------------------------------------------- -->
-### Pl@ntNet300K: Long tail visualisation
+### Pl@ntNet300K: Long tail visualization
 <hr>
 <br>
 
@@ -1265,12 +1285,16 @@ Provide a real life scenario for supervised learning, with multi-class and long-
 <!-- More details on my blog post:  [https://josephsalmon.eu/blog/long-tail/](https://josephsalmon.eu/blog/long-tail/) -->
 
 </center>
-
 <!-------------------------------------------------------------------------- -->
 
-<!------------------------------------------------------------------------ -->
+
+
+
+
+<!-------------------------------------------------------------------------- -->
 # Prediction<br>&<br>uncertainty quantification {.section-background}
-<!------------------------------------------------------------------------ -->
+<!-------------------------------------------------------------------------- -->
+
 
 
 <!-------------------------------------------------------------------------- -->
@@ -1339,17 +1363,17 @@ ICLR 2026
 
 
 <!-------------------------------------------------------------------------- -->
-### Current Pl@ntNetSet outputs
+### Pl@ntNet: set prediction (recommendation)
 <hr>
 
 <br>
 
 ::::{.columns}
-::: {.column width="53%"}
+::: {.column width="58%"}
 ![](images/plantnet_image_ambiguity_js_detailed.svg){width=90%}
 :::
 
-::: {.column width="35%"}
+::: {.column width="42%"}
 
 Elements to help guide the users
 
@@ -1365,7 +1389,7 @@ Elements to help guide the users
 
 
 <!-------------------------------------------------------------------------- -->
-### {{<iconify icon-park-solid:chart-histogram-two>}} Conformal Prediction [@vovk2005algorithmic]
+### {{<iconify icon-park-solid:chart-histogram-two>}}  (Split) Conformal Prediction [@vovk2005algorithmic]
 <hr>
 
 <br>
@@ -1385,15 +1409,14 @@ $$
 $$
 
 
-{{< iconify mdi:arrow-right-bold >}} **In classification**: a common conformal score is $s(x,y) = \hat{p}(y|x)$ (= softmax score in deep learning)
+{{< iconify mdi:arrow-right-bold >}} **In classification**: a common conformal score is $s(x,y) = \hat{p}(y|x)$ (*e.g.,* softmax score from a classifier fitted on a train/validation set).
 
 <br>
 <br>
 
 . . .
 
-**{{< iconify mdi:swap-horizontal >}} Key assumption:** The data $(X_i, Y_i)$ are **exchangeable**
-
+**{{< iconify mdi:swap-horizontal >}} Key assumption:** The data calibration $(X_i, Y_i)$ are **exchangeable** with the tested points.
 <br>
 <br>
 
@@ -1494,7 +1517,7 @@ calibrate $t_{\alpha}$ on **whole calibration set** $(X_i, Y_i)_{i=1}^n$
 
 **Conditional:**
 
-calibrate $t_{\alpha}^y$  **only on** $(X_i, Y_i)$ such that $Y_i = y$
+calibrate $t_{\alpha}^y$ **only on** $(X_i, Y_i)$ such that $Y_i = y$
 
 :::
 :::
@@ -1601,7 +1624,7 @@ $$
 
 <br>
 
-{{< iconify mdi:arrow-right-bold >}} Introduce a new conformal score,  **Prevalence Adjusted Softmax (PAS)** : $s(x,y) = \frac{\hat{p}(y|x)}{\hat{p}(y)}$
+{{< iconify mdi:arrow-right-bold >}} Introduce a new conformal score, **Prevalence Adjusted Softmax (PAS)** : $s(x,y) = \frac{\hat{p}(y|x)}{\hat{p}(y)}$
 
 :::
 
@@ -1709,7 +1732,7 @@ $$
 
 <br>
 
-{{< iconify mdi:arrow-right-bold >}} Introduce a new conformal score,  **Wighted Prevalence Adjusted Softmax (WPAS)** : $s(x,y) = -\omega(y) \frac{\hat{p}(y|x)}{\hat{p}(y)}$
+{{< iconify mdi:arrow-right-bold >}} Introduce a new conformal score, **Weighted Prevalence Adjusted Softmax (WPAS)** : $s(x,y) = \omega(y) \frac{\hat{p}(y|x)}{\hat{p}(y)}$
 
 :::
 <!-------------------------------------------------------------------------- -->
@@ -1722,7 +1745,7 @@ $$
 ### Experiments on Pl@ntNet-300K: endangered species
 <hr>
 
-**{{< iconify mdi:bullseye-arrow >}} Goal:**  handle at-risk species in Pl@ntNet-300K,  weight by $\gamma \geq 1$ times more at-risk species:
+**{{< iconify mdi:bullseye-arrow >}} Goal:** handle at-risk species in Pl@ntNet-300K, weight by $\gamma \geq 1$ times more at-risk species:
 
 $$
 \omega(y) = \begin{cases}
@@ -1740,20 +1763,252 @@ $$
 
 <script type="module" src="../../../blog/long-tail/plantnet_comparison_viz.js"></script>
 ```
+<!-------------------------------------------------------------------------- -->
+
+
+
+<!-------------------------------------------------------------------------- -->
+# Crowd-sourced data: <br> Votes, labels & aggregation {.section-background}
+<!-------------------------------------------------------------------------- -->
+
+
+
+### {{< iconify mdi:account-group >}} Joint work with
+<hr>
+
+<center>
+
+:::: {.columns}
+
+::: {.column width="34%"}
+
+<div style="text-align: center;">
+
+<img src="images/tanguy_lefort.jpeg" style="width: 300px; height: 300px; object-fit: cover; border-radius: 10px;">
+
+**Tanguy Lefort**
+
+Now at Seenovate
+
+</div>
+
+:::
+
+::: {.column width="22%"}
+
+<div style="text-align: center;">
+
+within
+
+![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=96%}
+
+</div>
+:::
+
+::: {.column width="34%"}
+
+<div style="text-align: center;">
+
+<img src="images/Benjamin_charlier.jpg" style="width: 300px; height: 300px; object-fit: cover; border-radius: 10px;">
+
+**Benjamin Charlier**
+
+Inrae
+
+</div>
+
+:::
+
+::::
+
+<br>
+<br>
+
+
+***"Cooperative learning of Pl@ntNet's Artificial Intelligence algorithm: <br> how does it work and how can we improve it?" ***
+
+
+T. Lefort et al.
+
+Methods in Ecology and Evolution, 2025
+
+</center>
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+### {{<iconify fluent:vote-24-filled>}} Pl@ntNet online "votes"
+<hr>
+<center>
+![](../2024-09-25_slides_sierra/images/plantnet_online.png){width=50%}
+
+Link: [https://identify.plantnet.org/weurope/observations/1012500059](https://identify.plantnet.org/weurope/observations/1012500059)
+</center>
+<!-------------------------------------------------------------------------- -->
+
+
+<!-------------------------------------------------------------------------- -->
+### {{<iconify pajamas:labels>}} What about labels?
+<hr>
+
+<br>
+
+- Images from users... so are the labels!
+
+- But **users** can be wrong or **not experts**
+
+- **Several labels** can be available per image!
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+### {{<iconify jam:write-f>}} Users can make corrections
+<hr>
+
+<center>
+![](../2024-09-25_slides_sierra/images/plantnet_corrected.png){width=50%}
+</center>
 
 <!-------------------------------------------------------------------------- -->
 
-<!-------------------------------------------------------------------------- -->
-### {#contact data-menu-title="Contact"}
 
+
+<!-------------------------------------------------------------------------- -->
+### ... sometimes can't be trusted
+<hr>
+
+
+<center>
+::: {.r-stack}
+
+![](../2024-09-25_slides_sierra/images/vanessa_corrected.png){width=67%}
+
+![](../2024-09-25_slides_sierra/images/right_vanessa_corrected.png){.fragment width=67% fragment-index=1}
+
+:::
+
+
+Link: [https://identify.plantnet.org/weurope/observations/1012500059](https://identify.plantnet.org/weurope/observations/1012500059)
+
+</center>
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+### Pl@ntNet label aggregation (EM algorithm) {.center style="text-align: center;"}
+<hr>
+
+
+**Weighting scheme**: weight user vote by its number of identified species
+
+
+::: {.r-stack}
+
+![](images/schema_plantnet_aggregation_js_0.svg){.fragment width=81% fragment-index=1}
+
+![](images/schema_plantnet_aggregation_js_1.svg){.fragment width=81% fragment-index=2}
+
+![](images/schema_plantnet_aggregation_js.svg){.fragment width=81% fragment-index=3}
+:::
+
+
+::: {.fragment}
+
+
+:::
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+
+<!-------------------------------------------------------------------------- -->
+### Take home message
+<hr>
+
+
+:::: {.columns}
+
+::: {.column width="65%"}
+- Challenges in citizen science: many and varied (need more attention)
+- Crowdsourcing / Label uncertainty: helpful for **data curation**
+- Improved **data quality** $\implies$ **improved learning** performance
+- Prediction: theory can guide the set to display
+:::
+
+
+::: {.column width="33%"}
+
+![](images/contact_js_short.svg)
 <!-- ![](https://raw.githubusercontent.com/josephsalmon/OrganizationFiles/master/inkscape/images/contact_js.svg) -->
-![](images/contact_js.svg)
 
-<br>
-<br>
-<br>
+:::
+::::
 
+
+:::: {.columns}
+
+::: {.column width="30%"}
+**Dataset release**:
+:::
+
+::: {.column width="69%"}
+
+- Pl@ntNet-300K: [https://zenodo.org/record/5645731](https://zenodo.org/record/5645731)
+- Pl@ntNet SWE flora: [https://zenodo.org/records/10782465](https://zenodo.org/records/10782465)
+:::
+::::
+
+
+
+:::: {.columns}
+
+::: {.column width="30%"}
+**Code release**:
+:::
+
+::: {.column width="69%"}
+
+- Toolbox: [https://peerannot.github.io/](https://peerannot.github.io/)
+- Some benchmarks: [https://benchopt.github.io/](https://benchopt.github.io/)
+:::
+::::
+
+:::: {.columns}
+
+::: {.column width="30%"}
+**Future work**
+:::
+
+::: {.column width="69%"}
+
+- Handling label hierarchy
+- Human–computer interaction / performative learning / model collapse
+- Improve robustness to adversarial users
+- Leverage gamification for more quality labels [theplantgame.com](https://theplantgame.com)
+:::
+::::
 <!-------------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
