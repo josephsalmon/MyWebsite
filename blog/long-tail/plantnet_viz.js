@@ -42,7 +42,7 @@ export async function initializePlantNetViz(config = {}) {
     // Helper function to extract image hash from image path
     function getImageHash(imagePath) {
       if (!imagePath) return null;
-      // Extract filename from path like "tiny_plantnet300k/203/8af5c1790935598cd896b692523bcfafdb1f15f2.jpg"
+      // Extract filename from path like "tiny_plantnet300k_v2/203/8af5c1790935598cd896b692523bcfafdb1f15f2.jpg"
     const filename = imagePath.split('/').pop();
       // Remove the .jpg extension to get the hash
       return filename ? filename.replace('.jpg', '') : null;

@@ -1209,7 +1209,7 @@ Sample at genus level to preserve intra-genus ambiguity: use **hierarchical stru
       <!-- Image preview container -->
       <div id="image-preview-container" style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; flex: 1;">
         <div style="margin-bottom: 10px;">Species Preview</div>
-        <img id="preview-image" src="" style="max-width: 100%; width: 35vw; max-height: calc(100vh - 300px); min-height: 100px; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: contain;" />
+        <img id="preview-image" src="" style="width: 35vw; height: 30vh; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: cover;" />
         <div id="image-label" style="font-weight: bold; font-size: 8px; min-height: 3.5em; margin-top: 10px; text-align: center; width: 100%; line-height: 1.2;"></div>
       </div>
     </div>
@@ -1745,7 +1745,7 @@ $$
 ### Experiments on Pl@ntNet-300K: endangered species
 <hr>
 
-**{{< iconify mdi:bullseye-arrow >}} Goal:** handle at-risk species in Pl@ntNet-300K, weight by $\gamma \geq 1$ times more at-risk species:
+**{{< iconify mdi:bullseye-arrow >}} Goal:**  handle at-risk species in Pl@ntNet-300K,  weight by $\gamma \geq 1$ times more at-risk species:
 
 $$
 \omega(y) = \begin{cases}

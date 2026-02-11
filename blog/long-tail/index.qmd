@@ -187,28 +187,32 @@ More precisely we focus on the **Pl@ntNet-300K dataset** [@garcin2021pl], a repr
 The Pl@ntNet-300K dataset is available on [Zenodo](https://zenodo.org/records/5645731#.Yuehg3ZBxPY), with documentation and code provided on the [Pl@ntNet-300K GitHub repository](https://github.com/plantnet/PlantNet-300K). The dataset comprises approximately **300,000 images** spanning **over 1,000 plant species**.
 Here are a few sample images from the Pl@ntNet-300K dataset (cropped to a consistent size for visualization):
 
-<div style="max-width:950px; margin:12px auto 20px; display:grid; grid-template-columns:repeat(4,1fr); gap:12px; align-items:start;">
-  <figure style="margin:0;">
-    <img src="tiny_plantnet300k/1/9cf6b7997a95b2bab8d840e70397b98dc8321106.jpg" alt="Pelargonium capitatum" style="width:100%; height:165px; object-fit:cover; border-radius:6px; display:block;" />
-  <figcaption style="font-size:12px; margin-top:6px; text-align:center;"><em>Pelargonium capitatum</em> (L.) L'Hér.</figcaption>
+```{=html}
+<div id="sample-images-grid" style="max-width:950px; margin:12px auto 20px; display:grid; grid-template-columns:repeat(4,1fr); gap:12px; align-items:start;">
+  <figure style="margin:0; position:relative;">
+    <img src="tiny_plantnet300k/1/9cf6b7997a95b2bab8d840e70397b98dc8321106.jpg" alt="Plant species" style="width:100%; height:165px; object-fit:cover; border-radius:6px; display:block;" data-hash="9cf6b7997a95b2bab8d840e70397b98dc8321106" />
+    <figcaption style="font-size:12px; margin-top:6px; text-align:center; min-height:2.4em;"></figcaption>
   </figure>
 
-  <figure style="margin:0;">
-    <img src="tiny_plantnet300k/57/81141f286ca624ff8685f4a954af48764548a4ca.jpg" alt="Sedum litoreum" style="width:100%; height:165px; object-fit:cover; border-radius:6px; display:block;" />
-  <figcaption style="font-size:12px; margin-top:6px; text-align:center;"><em>Sedum litoreum</em> Guss.</figcaption>
+  <figure style="margin:0; position:relative;">
+    <img src="tiny_plantnet300k/57/81141f286ca624ff8685f4a954af48764548a4ca.jpg" alt="Plant species" style="width:100%; height:165px; object-fit:cover; border-radius:6px; display:block;" data-hash="81141f286ca624ff8685f4a954af48764548a4ca" />
+    <figcaption style="font-size:12px; margin-top:6px; text-align:center; min-height:2.4em;"></figcaption>
   </figure>
 
-  <figure style="margin:0;">
-    <img src="tiny_plantnet300k/710/738b2af661ef2102b8748844939f0034320fc2c2.jpg" alt="Daucus pusillus" style="width:100%; height:165px; object-fit:cover; border-radius:6px; display:block;" />
-  <figcaption style="font-size:12px; margin-top:6px; text-align:center;"><em>Daucus pusillus</em> Michx.</figcaption>
+  <figure style="margin:0; position:relative;">
+    <img src="tiny_plantnet300k/710/738b2af661ef2102b8748844939f0034320fc2c2.jpg" alt="Plant species" style="width:100%; height:165px; object-fit:cover; border-radius:6px; display:block;" data-hash="738b2af661ef2102b8748844939f0034320fc2c2" />
+    <figcaption style="font-size:12px; margin-top:6px; text-align:center; min-height:2.4em;"></figcaption>
   </figure>
 
-  <figure style="margin:0;">
-    <img src="tiny_plantnet300k/397/8d9e895a91786169a299ab25d3a34f417dc07e1b.jpg" alt="Geropogon hybridus (L.) Sch.Bip." style="width:100%; height:165px; object-fit:cover; border-radius:6px; display:block;" />
-  <figcaption style="font-size:12px; margin-top:6px; text-align:center;"><em>Geropogon hybridus</em> (L.) Sch.Bip. </figcaption>
+  <figure style="margin:0; position:relative;">
+    <img src="tiny_plantnet300k/397/8d9e895a91786169a299ab25d3a34f417dc07e1b.jpg" alt="Plant species" style="width:100%; height:165px; object-fit:cover; border-radius:6px; display:block;" data-hash="8d9e895a91786169a299ab25d3a34f417dc07e1b" />
+    <figcaption style="font-size:12px; margin-top:6px; text-align:center; min-height:2.4em;"></figcaption>
   </figure>
 
 </div>
+
+<script type="module" src="sample_images.js"></script>
+```
 
 The dataset exhibits a **highly imbalanced class distribution**: a few species are well-represented with numerous images, while the majority have only a few examples. This characteristic makes it an ideal benchmark for studying **long-tailed classification** problems, as illustrated in the interactive figure below.
 
@@ -263,7 +267,7 @@ The interactive visualization below lets you explore the species distribution in
       <!-- Image preview container -->
       <div id="image-preview-container" style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; flex: 1;">
         <div style="margin-bottom: 10px;">Species Preview</div>
-        <img id="preview-image" src="" style="max-width: 100%; height: auto; max-height: calc(100vh - 300px); min-height: 100px; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: contain;" />
+        <img id="preview-image" src="" style="width: 100%; height: 250px; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: cover;" />
         <div id="image-label" style="font-weight: bold; font-size: 13px; min-height: 3.5em; margin-top: 1px; text-align: center; width: 100%; line-height: 1.2;"></div>
       </div>
     </div
