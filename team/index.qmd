@@ -17,8 +17,11 @@ comments: false
 ---
 
 
-You want to join?
-I am always looking for outstanding and highly motivated people to work (as intern, Ph.D. student, post-doctorate or research engineer) on machine learning, optimization and statistics. More precisely, my team is are working on:
+You want to join to work with me?
+
+ am constantly seeking outstanding and highly motivated individuals (whether as interns, Ph.D. students, post-doctoral researchers, or research engineers) to collaborate on projects in machine learning, optimization, and statistics.
+
+Currently, my team focuses on the following areas:
 
 - citizen science and crowdsourcing
 - high dimensional / robust statistics, variable selection, sparsity
