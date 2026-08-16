@@ -55,7 +55,7 @@ landing_page_styles.css"> -->
             <h2>Machine learning & data science</h2>
             <p>I am a statistician and an applied mathematician, with a strong interest in machine learning, optimization and data science.
             <br>
-            Since Oct. 2024, I have been a senior researcher at <a href="https://www.inria.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Inria</span></a> (team <a href="https://team.inria.fr/iroko/"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Iroko</span></a>), working with the <a  href="https://plantnet.org/en/">Pl@nNet</a> team.
+            Since Oct. 2024, I have been a senior researcher at <a href="https://www.inria.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Inria</span></a> (team <a href="https://team.inria.fr/iroko/"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Iroko</span></a>), working within the <a  href="https://plantnet.org/en/">Pl@nNet</a> team.
             In terms of applications, I focus on <strong>citizen science</strong>, <strong>crowd-sourcing</strong> and <strong>high dimensional statistics</strong>. I am also in charge of the doctoral program "Statistics and Data Science" (<a href=https://edi2s.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>EDI2S</span></a> at <a href="https://www.umontpellier.fr/" target="_blank"><span style='text-decoration: underline;text-decoration-color: #f08f04ff;'>Université de Montpellier</span></a>). </p>
 
             <h2>Short bio </h2>
@@ -100,13 +100,14 @@ A full list of publications can be found
 :::{#news}
 ## News
 
+- **July. 2026**: Come and join us for [CAP/RFIAP](https://caprfiap2026.sciencesconf.org/), CAp (Conférence sur l'Apprentissage automatique) and RFIAP (Reconnaissance des Formes, Image, Apprentissage et Perception) conferences.
 - **Sept. 2024**: I've joined Inria as a senior researcher (Team: Iroko, Montpellier)
-- **Sept. 2023**: ANR VITE  (PI: B. Thirion, theme: variable importance / explainability) accepted.
+- **Sept. 2023**: ANR VITE accepted  (PI: B. Thirion; Theme: variable importance / explainability).
 - **April 2023**: [STATLEARN 2023](https://statlearn.sciencesconf.org/) in Montpellier
 - **Nov. 2022**: [https://ml4lifesciences.sciencesconf.org/](Machine Learning for life sciences)
-- **March 2022**: visitor at the Simons Institute for the Theory of Computing
+- **March 2022**: Visitor at the Simons Institute for the Theory of Computing
 - **July 2021**: **IUF** Nomination (junior member): [https://www.iufrance.fr/detail-de-lactualite/247.html](https://www.iufrance.fr/detail-de-lactualite/247.html)
-- **Nov. 2020**: Launching [ML-MTP Machine Learning in Montpellier, Theory & Practice](https://groupes.renater.fr/wiki/ml-mtp/index).
+- **Nov. 2020**: Launching [ML-MTP Machine Learning in Montpellier, Theory & Practice](https://isdm.umontpellier.fr/les-halles-de-lia/machine-learning-in-montpellier-theory-practice/).
 - **Dec. 2019**: The ANR AI chair proposal CaMeLOt (CooperAtive MachinE Learning and OpTimization) has been selected.
 - **May 2019** : Workshop in Montpellier [Graph signals : learning and optimization perspectives](https://graph-sig-2019.sciencesconf.org/)
 

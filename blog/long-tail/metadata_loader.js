@@ -110,11 +110,11 @@ export function getSpeciesName(hash, metadata) {
 export function createAuthorOverlay(authorName) {
   const overlay = document.createElement('div');
   overlay.className = 'img-author-overlay';
-  overlay.textContent = `© ${authorName}`;
+  overlay.innerHTML = `${authorName}<br>CC-BY-SA`;
   overlay.style.cssText = `
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 10px;
+    right: 10px;
     background: rgba(0,0,0,0.6);
     color: white;
     padding: 2px 6px;

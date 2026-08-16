@@ -691,8 +691,8 @@ export async function initializePlantNetViz(config = {}) {
           // Apply user-requested styles inline
           Object.assign(overlay.style, {
             position: 'absolute',
-            top: '0.75vw',
-            right: '0.5vw',
+            top: '1vw',
+            right: '0.75vw',
             background: 'rgba(0,0,0,0.5)',
             color: '#fff',
             padding: '1px 6px',
@@ -707,7 +707,7 @@ export async function initializePlantNetViz(config = {}) {
         }
 
         if (author) {
-          overlay.textContent = `© ${author}`;
+          overlay.innerHTML = `${author}<br>CC-BY-SA`;
           overlay.style.display = 'block';
         } else {
           overlay.style.display = 'none';

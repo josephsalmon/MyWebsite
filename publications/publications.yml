@@ -1,5 +1,26 @@
 - abstract: ''
   accessed: ''
+  author: <a href="http://perso.telecom-paristech.fr/%7Ecolin">I. Colin</a>, <a href="http://researchers.lille.inria.fr/abellet/">A.
+    Bellet</a>, <strong>J. Salmon</strong> and <a href="http://perso.telecom-paristech.fr/%7Eclemenco">S.
+    Clémençon</a>
+  container-title: TMLR
+  doi: ''
+  id: Colin_Bellet_Salmon_Clemencon25
+  issn: ''
+  issue: ''
+  issued: ''
+  page: ''
+  title: On Gossip Algorithms for Machine Learning with Pairwise Objectives
+  type: article
+  url: ''
+  volume: ''
+  journaltitle: TMLR
+  date: '2026'
+  path: https://openreview.net/forum?id=VxxpURovJF
+  code: ''
+  data: ''
+- abstract: ''
+  accessed: ''
   author: <a href="https://tiffanyding.github.io/">T. Ding</a>, <a href=" "https://jeanbaptistefermanian.github.io/"">J.-B.
     Fermanian</a> and <strong>J. Salmon</strong>
   container-title: ICLR
@@ -20,23 +41,25 @@
   data: ''
 - abstract: ''
   accessed: ''
-  author: <a href="http://perso.telecom-paristech.fr/%7Ecolin">I. Colin</a>, <a href="http://researchers.lille.inria.fr/abellet/">A.
-    Bellet</a>, <strong>J. Salmon</strong> and <a href="http://perso.telecom-paristech.fr/%7Eclemenco">S.
-    Clémençon</a>
-  container-title: ''
+  author: <a href="https://ilyassmoummad.github.io/">I. Moummad</a>, <a href="nan">R.
+    Bensaid</a>, <a href="https://www.ina.fr/institut-national-audiovisuel/equipe-recherche/kawtar-zaher">K.
+    Zaher</a>, <a href=" "https://amap-dev.cirad.fr/users/119"">H. Goëau</a>, <a href="https://sites.google.com/site/jclombardocv/">J.-C.
+    Lombardo</a>, <strong>J. Salmon</strong>, <a href="http://agents.cirad.fr/index.php/Pierre+BONNET">P.
+    Bonnet</a> and <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
+  container-title: ArXiv e-prints
   doi: ''
-  id: Colin_Bellet_Salmon_Clemencon25
+  id: Moummad_etal2026
   issn: ''
   issue: ''
   issued: ''
   page: ''
-  title: On Gossip Algorithms for Machine Learning with Pairwise Objectives
+  title: Energy-Efficient Plant Monitoring via Knowledge Distillation
   type: techreport
   url: ''
   volume: ''
-  journaltitle: ''
-  date: '2025'
-  path: ''
+  journaltitle: ArXiv e-prints
+  date: '2026'
+  path: https://arxiv.org/pdf/2604.27178.pdf
   code: ''
   data: ''
 - abstract: ''

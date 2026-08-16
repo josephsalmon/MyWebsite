@@ -37,8 +37,28 @@ async function initSampleImages() {
       
       // Update species name in figcaption if available
       if (speciesName && figcaption) {
-        figcaption.innerHTML = `<em>${speciesName}</em>`;
-        console.log(`[Sample Images] Updated figcaption with: ${speciesName}`);
+        // Split species name into taxonomic part (genus + species) and author part
+        // Match trailing parentheses like "Genus species (L.)"
+        const parenMatch = speciesName.match(/^(.*?)(\s*\(.*\))$/);
+        let formattedSpecies;
+        
+        if (parenMatch) {
+          // Has parentheses: italicize the part before, keep author normal
+          formattedSpecies = `<em>${parenMatch[1].trim()}</em>${parenMatch[2]}`;
+        } else {
+          // No parentheses: first two words are binomial (italicized), rest is author (normal)
+          const parts = speciesName.trim().split(/\s+/);
+          if (parts.length <= 2) {
+            formattedSpecies = `<em>${speciesName}</em>`;
+          } else {
+            const binomial = parts.slice(0, 2).join(' ');
+            const author = parts.slice(2).join(' ');
+            formattedSpecies = `<em>${binomial}</em> ${author}`;
+          }
+        }
+        
+        figcaption.innerHTML = formattedSpecies;
+        console.log(`[Sample Images] Updated figcaption with: ${formattedSpecies}`);
       }
       
       // Add author overlay if available

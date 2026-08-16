@@ -7,6 +7,7 @@
    - citizen sciences
    - crowdsourcing
    - conformal prediction
+   
 - title: "Conformal Prediction for Long-Tailed Classification"
   date: 2025-12-15
   image: posts/2025-12-15-ICSDS25/images/plantnet_class_distribution_iucn_status_with_images.svg
@@ -15,6 +16,7 @@
    - citizen sciences
    - crowdsourcing
    - conformal prediction
+
 - title: "Sciences participatives & apprentissage automatique pour identifier les plantes (Joffre)"
   date: 2025-11-06
   image: posts/2025-11-06-IA-Joffre/images/dinov2-PN.svg
@@ -23,6 +25,7 @@
    - citizen sciences
    - crowdsourcing
    - labeling
+
 - title: "IAUM: Sciences participatives & apprentissage automatique pour identifier les plantes"
   date: 2025-04-03
   image: posts/2025-04-03-IAUM/images/WMV_smiley.svg
@@ -31,6 +34,7 @@
    - citizen sciences
    - crowdsourcing
    - labeling
+
 - title: "Benchopt: open source discussions"
   date: 2025-03-10
   image: posts/2025-03-10_Aussois/images/benchopt-padded.svg
@@ -39,6 +43,7 @@
    - open source
    - optimization
    - labeling
+
 - title: "Sciences participatives & apprentissage automatique pour identifier les plantes"
   date: 2025-02-17
   image: posts/2025-02-17_slides_HDV/images/Campagne_don2.svg
@@ -47,6 +52,7 @@
    - citizen sciences
    - crowdsourcing
    - labeling
+
 - title: "Citizen science for plant identification: insights from Pl@ntnet"
   date: 2024-09-25
   image: posts/2024-09-25_slides_sierra/images/plantnet_schema_global_js.svg

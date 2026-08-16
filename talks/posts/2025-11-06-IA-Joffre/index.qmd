@@ -386,7 +386,7 @@ durham_map = create_city_map("Durham", zoom_start=4)
 
 
 
-### Maître de conférence, Télécom Paris (2013-2018)
+### Maître de conférences, Télécom Paris (2013-2018)
 <hr>
 
 :::: {.columns}
@@ -685,7 +685,7 @@ Une plateforme de **science citoyenne** utilisant l'apprentissage automatique po
 
 
 <!-------------------------------------------------------------------------- -->
-### Que faut-il pour entraîner un réseau de neurone?
+### Que faut-il pour entraîner un réseau de neurones?
 <hr>
 <br>
 
@@ -713,11 +713,11 @@ D'excellentes vidéos pour comprendre les réseaux de neurones:
 
 
 <!-------------------------------------------------------------------------- -->
-### Entraînement du réseau de neurone
+### Entraînement du réseau de neurones
 <hr>
 <br>
 
-Mathématiquement: on minimmise une mesure de l'erreur sur une base d'entraînement (image - espèce)
+Mathématiquement : on minimise une mesure de l'erreur sur une base d'entraînement (image - espèce)
 
 - Architecture: Dino-V2, finement calibré sur 10M d'images Pl@ntNet
 - Durée de l'entraînement : 5-6 jours sur "Jean Zay"
@@ -729,7 +729,7 @@ Mathématiquement: on minimmise une mesure de l'erreur sur une base d'entraînem
 
 
 <!-------------------------------------------------------------------------- -->
-### Mais les données d'où viennent-elles?
+### Mais les données, d'où viennent-elles?
 
 ::: {style="font-size: 150%;"}
 
@@ -739,9 +739,9 @@ Mathématiquement: on minimmise une mesure de l'erreur sur une base d'entraînem
 
 <br>
 
-**Question**: Mais comment obtenir ces données étiquetées?
+**Question** : Mais comment obtenir ces données étiquetées?
 
-**Réponse**: laissons les utilisateurs, experts ou non, étiqueter les images!
+**Réponse** : laissons les utilisateurs, experts ou non, étiqueter les images!
 
 <br>
 
@@ -819,7 +819,7 @@ Et on travaille à améliorer tout cela!
 
 ### Pl@ntNet agrégation d'étiquettes (EM algorithm) {.center style="text-align: center;"}
 
-**Schméma de pondération**: doner un poids aux utilisateurs en fonctions du nombre d'espèces reconnues
+**Schéma de pondération** : donner un poids aux utilisateurs en fonction du nombre d'espèces reconnues
 
 
 ::: {.r-stack}
@@ -997,7 +997,7 @@ Statisticien hongro-américain, ayant fui le nazisme, il a travaillé pour l'arm
 ### {{<iconify medical-icon:i-health-services>}} Biais de confirmation et pseudoscience
 <hr>
 
-**Question**: Est-ce que l'hydroxychloroquine est utile pour traiter le Covid-19?
+**Question** : Est-ce que l'hydroxychloroquine est utile pour traiter le Covid-19?
 
 ::: {.fragment fragment-index=1}
 
@@ -1012,7 +1012,7 @@ Statisticien hongro-américain, ayant fui le nazisme, il a travaillé pour l'arm
 </center>
 
 
-**Didier Raoult** (Dakar, 1952 - ??): Druitde, promotteur acharné d'un traitement inutile contre le covid-19 (et ce n'était pas l'eau de javel)
+**Didier Raoult** (Dakar, 1952 - ??) : Druide, promoteur acharné d'un traitement inutile contre le covid-19 (et ce n'était pas l'eau de javel)
 
 :::
 

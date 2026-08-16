@@ -17,6 +17,7 @@ format:
     pdf-max-pages-per-slide: 1
     view-distance: 100
     mobile-view-distance: 100
+    chalkboard: false
     include-in-header:
       - text: |
           <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
@@ -704,7 +705,7 @@ A **citizen science** platform using machine learning to help people identify pl
 
 ::: {.column width="29%"}
 <center>
-<img src="../../../blog/long-tail/GMM.png" width="78%" align="middle">
+<img src="images/set_prediction.png" width="53%" align="middle">
 </center>
 <br>
 :::
@@ -776,7 +777,7 @@ A **citizen science** platform using machine learning to help people identify pl
 
     <div style="height:75%; text-align: center; position: relative;">
         <img src="images/03. Angiosperm Tree of Life_RBG_Kew_36_ppi.jpg.webp" alt="Angiosperm Tree of Life" style="width: 100%; height: auto; max-height: 450px; object-fit: contain;">
-        <span class="img-author-overlay">© RBG Kew</span>
+        <span class="img-author-overlay">RBG Kew<br>CC-BY-SA</span>
         <div style="font-size: 0.75em; margin-top: 5px;">Angiosperm Tree of Life</div>
     </div>
 </div>  
@@ -801,43 +802,43 @@ A **citizen science** platform using machine learning to help people identify pl
 <div class="img-author-group-centered" style="gap:0.7em; align-items:stretch;">
   <div class="img-author-container" style="width:19%; min-width:120px;">
       <img src="images/66c06ee4e4fd35c5a58b4d0b97dffcb2053a41d3.jpg" alt="Guizotia abyssinica (L.f.) Cass." class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">© Benoît Janichon</span>
+      <span class="img-author-overlay">Benoît Janichon<br>CC-BY-SA</span>
       <span class="img-author-caption"><span style="font-style:italic">Guizotia abyssinica</span> (L.f.) Cass.</span>
   </div>
   <div class="img-author-container" style="width:19%; min-width:120px;">
       <img src="images/858de40efb7c3c934e320429634aaef273c16878.jpg" alt="Diascia rigescens E.Mey. ex Benth." class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">© Patrice SIROT</span>
+      <span class="img-author-overlay">Patrice SIROT<br>CC-BY-SA</span>
       <span class="img-author-caption"><span style="font-style:italic">Diascia rigescens</span> E.Mey. ex Benth.</span>
   </div>
   <div class="img-author-container" style="width:19%; min-width:120px;">
       <img src="images/6ad45f4e4d2454728e6e41847dc8267227fc9b0d.jpg" alt="Lapageria rosea Ruiz & Pav." class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">© Borquez Vicent</span>
+      <span class="img-author-overlay">Borquez Vicent<br>CC-BY-SA</span>
       <span class="img-author-caption"><span style="font-style:italic">Lapageria rosea</span> Ruiz & Pav.</span>
   </div>
   <div class="img-author-container" style="width:19%; min-width:120px;">
       <img src="images/5b4cd720ce747c8a53e09e0caa2dc43f12b62610.jpg" alt="Casuarina cunninghamiana Miq. LC" class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">© Наталья</span>
+      <span class="img-author-overlay">Наталья<br>CC-BY-SA</span>
       <span class="img-author-caption"><span style="font-style:italic">Casuarina cunninghamiana</span> Miq. LC</span>
   </div>
   <div class="img-author-container" style="width:19%; min-width:120px;">
       <img src="../2024-09-25_slides_sierra/images/6_b.jpg" alt="Guizotia abyssinica (L.f.) Cass." class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">© Annette Bejany</span>
+      <span class="img-author-overlay">Annette Bejany<br>CC-BY-SA</span>
       <span class="img-author-caption"><span style="font-style:italic">Guizotia abyssinica</span> (L.f.) Cass.</span>
   </div>
   <div class="img-author-container" style="width:19%; min-width:120px;">
       <img src="images/0231e8d9cb679d11e814a1f8c4227bd6cf7d2fe6.jpg" alt="Diascia rigescens E.Mey. ex Benth." class="img-author-img" style="width:100%;">
-      <span class="img-author-overlay">© A Lee</span>
+      <span class="img-author-overlay">A Lee<br>CC-BY-SA</span>
       <span class="img-author-caption"><span style="font-style:italic">Diascia rigescens</span> E.Mey. ex Benth.</span>
   </div>
     <div class="img-author-container" style="width:19%; min-width:120px;">
         <img src="images/ba4b0161aa17c364744ec58b69a9f77f26a4d8ce.jpg" alt="Lapageria rosea Ruiz & Pav.
 " class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">© Daniel Barthelemy</span>
+    <span class="img-author-overlay">Daniel Barthelemy<br>CC-BY-SA</span>
     <span class="img-author-caption"><span style="font-style:italic">Lapageria rosea</span> Ruiz & Pav.</span>
     </div>
     <div class="img-author-container" style="width:19%; min-width:120px;">
         <img src="images/fa8e288f400456e08994113b3217a4cd2e1238df.jpg" alt="Casuarina cunninghamiana Miq. LC" class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">© Campos Ignacio</span>
+    <span class="img-author-overlay">Campos Ignacio<br>CC-BY-SA</span>
     <span class="img-author-caption"><span style="font-style:italic">Casuarina cunninghamiana</span> Miq. LC</span>
     </div>
 </div>
@@ -859,42 +860,42 @@ A **citizen science** platform using machine learning to help people identify pl
 <div class="img-author-group-centered" style="gap:0.7em; align-items:stretch;">
   <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/12d7b180752393e86822c1fff68df8f8a19189fe.jpg" alt="Cirsium rivulare (Jacq.) All." class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">© stefano mazzotti</span>
+    <span class="img-author-overlay">stefano mazzotti<br>CC-BY-SA</span>
     <span class="img-author-caption"><span style="font-style:italic">Cirsium rivulare</span> (Jacq.) All.</span>
   </div>
   <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/565322614481c3092ce52239a62725f1992be393.jpg" alt="Chaerophyllum aromaticum L." class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">© buqa Jarmil</span>
+    <span class="img-author-overlay">buqa Jarmil<br>CC-BY-SA</span>
     <span class="img-author-caption"><span style="font-style:italic">Chaerophyllum aromaticum</span> L.</span>
   </div>
   <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/3f82867ba9d74fe1fd3af3093158634a666dd790.jpg" alt="Adenostyles leucophylla Rchb." class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">© Walter Reider</span>
+    <span class="img-author-overlay">Walter Reider<br>CC-BY-SA</span>
     <span class="img-author-caption"><span style="font-style:italic">Adenostyles leucophylla</span> Rchb.</span>
   </div>
   <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/7ebd92cd30be0d3476c79908347e4020ce359c61.jpg" alt="Petrosedum montanum (Songeon & E.P.Perrier) Grulich" class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">© furs</span>
+    <span class="img-author-overlay">furs<br>CC-BY-SA</span>
     <span class="img-author-caption"><span style="font-style:italic">Petrosedum montanum</span> (Songeon & E.P.Perrier) Grulich</span>
   </div>
   <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/47fad454bb29c34687cf1ab3ee6b456201ea0725.jpg" alt="Cirsium tuberosum (L.) All." class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">© Rene Weck</span>
+    <span class="img-author-overlay">Rene Weck<br>CC-BY-SA</span>
     <span class="img-author-caption"><span style="font-style:italic">Cirsium tuberosum</span> (L.) All.</span>
   </div>
   <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/ffc5f1b5aab703ea359922c92273ef86791f1662.jpg" alt="Chaerophyllum temulum L." class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">© Jcm Arthur</span>
+    <span class="img-author-overlay">Jcm Arthur<br>CC-BY-SA</span>
     <span class="img-author-caption"><span style="font-style:italic">Chaerophyllum temulum</span> L.</span>
   </div>
   <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/92e4cbe38e831d11526946389c2342db4499d436.jpg" alt="Adenostyles alpina (L.) Bluff & Fingerh." class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">© pierre Lamy</span>
+    <span class="img-author-overlay">pierre Lamy<br>CC-BY-SA</span>
     <span class="img-author-caption"><span style="font-style:italic">Adenostyles alpina</span> (L.) Bluff & Fingerh.</span>
   </div>
   <div class="img-author-container" style="width:19%; min-width:120px;">
     <img src="images/dc051dace6de6cbdfe5202a4b900290525bfee3e.jpg" alt="Petrosedum rupestre (L.) P.V.Heath" class="img-author-img" style="width:100%;">
-    <span class="img-author-overlay">© Wolfi 41</span>
+    <span class="img-author-overlay">Wolfi 41<br>CC-BY-SA</span>
     <span class="img-author-caption"><span style="font-style:italic">Petrosedum rupestre</span> (L.) P.V.Heath</span>
   </div>
 </div>
@@ -946,7 +947,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
         <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">25134 obs.</div>
         <div style="position:relative; width:100%;">
             <img src="images/Echium_vulgare_L_1012470528.svg" alt="Echium vulgare L." class="img-author-img">
-            <span class="img-author-overlay">© Llandrich anna</span>
+            <span class="img-author-overlay">Llandrich anna<br>CC-BY-SA</span>
         </div>
         <span class="img-author-caption"><span style="font-style:italic">Echium vulgare</span> L.</span>
     </div>
@@ -954,7 +955,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
         <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">24720 obs.</div>
         <div style="position:relative; width:100%;">
             <img src="images/Ranunculus_ficaria_L_1012578129.svg" alt="Ranunculus ficaria L." class="img-author-img">
-            <span class="img-author-overlay">© JYCO</span>
+            <span class="img-author-overlay">JYCO<br>CC-BY-SA</span>
         </div>
         <span class="img-author-caption"><span style="font-style:italic">Ranunculus ficaria</span> L.</span>
     </div>
@@ -962,7 +963,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
         <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">24103 obs.</div>
         <div style="position:relative; width:100%;">
             <img src="images/Prunus_spinosa_L_1023984740.svg" alt="Prunus spinosa L." class="img-author-img">
-            <span class="img-author-overlay">© fuerst.ernst</span>
+            <span class="img-author-overlay">fuerst.ernst<br>CC-BY-SA</span>
         </div>
         <span class="img-author-caption"><span style="font-style:italic">Prunus spinosa</span> L.</span>
     </div>
@@ -970,7 +971,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
         <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">23288 obs.</div>
         <div style="position:relative; width:100%;">
             <img src="images/Zea_mays_L_1020124455.svg" alt="Zea mays L." class="img-author-img">
-            <span class="img-author-overlay">© Uta Groger</span>
+            <span class="img-author-overlay">Uta Groger<br>CC-BY-SA</span>
         </div>
         <span class="img-author-caption"><span style="font-style:italic">Zea mays</span> L.</span>
     </div>
@@ -978,7 +979,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
         <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">23075 obs.</div>
         <div style="position:relative; width:100%;">
             <img src="images/Alliaria_petiolata_1013116480.svg" alt="Alliaria petiolata (M.Bieb.) Cavara &amp; Grande" class="img-author-img">
-            <span class="img-author-overlay">© Pascal Ollagnier</span>
+            <span class="img-author-overlay">Pascal Ollagnier<br>CC-BY-SA</span>
         </div>
         <span class="img-author-caption"><span style="font-style:italic">Alliaria petiolata</span> (M.Bieb.) Cavara &amp; Grande</span>
     </div>
@@ -1001,7 +1002,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
         <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">10753 obs.</div>
         <div style="position:relative; width:100%;">
             <img src="images/68ea71ff35a4ebf2c67011fcb54eba3a7671ea5e.jpeg" alt="Centaurea jacea L." class="img-author-img" style="width:100%;">
-            <span class="img-author-overlay">© Dieter Wagner</span>
+            <span class="img-author-overlay">Dieter Wagner<br>CC-BY-SA</span>
         </div>
         <span class="img-author-caption"><span style="font-style:italic">Centaurea jacea</span> L.</span>
     </div>
@@ -1009,7 +1010,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
         <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">6 obs.</div>
         <div style="position:relative; width:100%;">
             <img src="images/4fe3e22073f23ba342555f2003fbb80221d47de3.jpeg" alt="Cenchrus agrimonioides Trin." class="img-author-img" style="width:100%;">
-            <span class="img-author-overlay">© David Eickhoff − EOL</span>
+            <span class="img-author-overlay">David Eickhoff − EOL<br>CC-BY-SA </span>
         </div>
         <span class="img-author-caption"><span style="font-style:italic">Cenchrus agrimonioides</span> Trin.</span>
     </div>
@@ -1031,7 +1032,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
         <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">8376 obs.</div>
         <div style="position:relative; width:100%;">
             <img src="images/0daa10dc3118cfb826faedc4e87a2f4b034db1d1.jpeg" alt="Magnolia grandiflora L." class="img-author-img" style="width:100%;">
-            <span class="img-author-overlay">© Patrick Cartier</span>
+            <span class="img-author-overlay">Patrick Cartier<br>CC-BY-SA</span>
         </div>
         <span class="img-author-caption"><span style="font-style:italic">Magnolia grandiflora</span> L.</span>
     </div>
@@ -1042,7 +1043,7 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
         <div style="text-align:center; font-size:1.2em; color:#222; margin-bottom:6px; font-family: Nunito, Arial, sans-serif; font-weight:bold;">413 obs.</div>
         <div style="position:relative; width:100%;">
             <img src="images/942686a7353fb3a7f566b7369f48ec6ca56b4338.jpeg" alt="Moehringia trinervia (L.) Clairv." class="img-author-img" style="width:100%;">
-            <span class="img-author-overlay">© Maximilien Perrin</span>
+            <span class="img-author-overlay">Maximilien Perrin<br>CC-BY-SA</span>
         </div>
         <span class="img-author-caption"><span style="font-style:italic">Moehringia trinervia</span> (L.) Clairv.</span>
     </div>
@@ -1209,7 +1210,7 @@ Sample at genus level to preserve intra-genus ambiguity: use **hierarchical stru
       <!-- Image preview container -->
       <div id="image-preview-container" style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; flex: 1;">
         <div style="margin-bottom: 10px;">Species Preview</div>
-        <img id="preview-image" src="" style="width: 35vw; height: 30vh; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: cover;" />
+        <img id="preview-image" src="" style="width: 22vw; height: 30vh; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: cover;" />
         <div id="image-label" style="font-weight: bold; font-size: 8px; min-height: 3.5em; margin-top: 10px; text-align: center; width: 100%; line-height: 1.2;"></div>
       </div>
     </div>
@@ -1241,12 +1242,12 @@ Provide a real life scenario for supervised learning, with multi-class and long-
 
 ::: {.column }
 
-[**Caracteristics**]{.underline}:
+[**Characteristics**]{.underline}:
 
 <br>
 
 - **306,146** color images
-- Size : **32 GB**
+- Size: **32 GB**
 - Labels: **1 000+** species
 - Required **2 000 000** volunteers
 :::

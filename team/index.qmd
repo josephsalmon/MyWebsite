@@ -22,7 +22,7 @@ I am always looking for outstanding and highly motivated people to work (as inte
 
 - citizen science and crowdsourcing
 - high dimensional / robust statistics, variable selection, sparsity
-- optimization for machine learning (including federated learning, privacy, etc.)
+- uncertainty quantification for machine learning (including conformal prediction, e-values, etc.)
 
 The application process is light:
 
@@ -31,17 +31,18 @@ The application process is light:
 - At this stage an interview (possibly online) will be arranged to double-check your skills and profile compatibility.
 
 
-## Post-docs
-- [Jean-Baptiste Fermanian](https://jeanbaptistefermanian.github.io/) 2023-2024
+<!-- ## Post-docs -->
 
 ## Ph.D. Students
 - [Theo Larcher](https://fr.linkedin.com/in/th%C3%A9o-larcher-3405a5147/en):
 co-supervised by [Alexis Joly](http://www-sop.inria.fr/members/Alexis.Joly/wiki/pmwiki.php) 2024-2027?
-- [Antoine Simoes](https://fr.linkedin.com/in/antoine-simoes-4a2b67197): co-supervised by [Yohann de Castro](https://ydecastro.github.io/) 2022-2025?
+- [Alex Maleknia](https://scholar.google.com/citations?user=rnlL4KwAAAAJ&hl=en), co supervised by [Evgenii Chzhen](https://echzhen.com) 2025-2028?
 
 <!-- ## Engineers -->
 
 ## Alumni
+- [Jean-Baptiste Fermanian](https://jeanbaptistefermanian.github.io/) [Post-doc, 2024-25] (now CR Inrae)
+- [Jozef Tran](https://github.com/jzftran) [Engineer, 2025-26]
 - [Tanguy Lefort](https://tanglef.github.io/) [Ph.D. 2021-2024] co-supervised with [Benjamin Charlier](https://imag.umontpellier.fr/~charlier/index.php?page=index) and [Alexis Joly](http://www-sop.inria.fr/members/Alexis.Joly/wiki/pmwiki.php) (now post-doctorate at Inria Lille)
 - [Axel Dubar](https://github.com/axeldubarp) 2023-2024, now Ph.D. student at Univ. Montpellier.
 - [Camille Garcin](https://garcinc.github.io/Camille-Garcin/) [Ph.D. 2020-2023] co-supervised by [Alexis Joly](http://www-sop.inria.fr/members/Alexis.Joly/wiki/pmwiki.php) and [Maximilien Servajean](https://maximiliense.github.io/) (now post-doctorate at Inria Montpellier)

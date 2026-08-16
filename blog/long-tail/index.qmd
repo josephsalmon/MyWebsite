@@ -107,7 +107,7 @@ engine: knitr
 google-scholar: true
 biblatex: true
 date: "2025-10-20"
-image: GMM.png
+image: ../../../talks/posts/2026-01-29-slides_citizen_sciences/images/set_prediction.png
 date-format: "MMM D, YYYY"
 description: "Insights and visualization of conformal prediction in the context of long-tailed classification. Challenges from citizen sciences platforms like Pl@ntNet"
 
