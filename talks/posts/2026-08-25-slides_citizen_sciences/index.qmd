@@ -56,7 +56,7 @@ python -m ipykernel install --user --name quarto-prez --display-name "Python (qu
         display: inline-block;
         border-left: 6px solid rgb(0, 0, 0);
         margin: 0 10px;
-      height: 500px;
+      height: 410px;
         border-radius: 3px;
         overflow: hidden;
 
@@ -170,7 +170,7 @@ embed[src*=".svg"] tspan {
   grid-template-rows: 1fr 1fr auto;
   gap: 14px;
   width: 100%;
-  max-width: 1100px;
+  max-width: 980px;
   margin: 0 auto;
   align-items: stretch;
 }
@@ -179,7 +179,7 @@ embed[src*=".svg"] tspan {
 .stat-card {
   background: #f7f8f6;
   border-radius: 12px;
-  padding: 1.3rem 1.6rem;
+  padding: 1.0rem 1.15rem;
   text-align: center;
 }
 
@@ -243,7 +243,7 @@ embed[src*=".svg"] tspan {
 /* Typography */
 
 .stat-value {
-  font-size: 2em;
+  font-size: 1.6em;
   font-weight: 700;
   color: #047C90;
   line-height: 1.1;
@@ -265,7 +265,7 @@ embed[src*=".svg"] tspan {
 /* Source */
 
 .stats-source {
-  max-width: 1100px;
+  max-width: 980px;
   margin: 0.8rem auto 0;
   text-align: right;
   font-size: 0.65em;
@@ -366,6 +366,73 @@ embed[src*=".svg"] tspan {
     padding: 0px !important;
 }
 
+
+/* Biases overview */
+
+.biases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  max-width: 1050px;
+  margin: 2rem auto 1.5rem;
+}
+
+.bias-card {
+  background: #f7f8f6;
+  border-radius: 16px;
+  padding: 1.5rem 1.4rem 1.4rem;
+  min-height: 290px;
+  text-align: center;
+}
+
+.bias-icon {
+  font-size: 2rem;
+  color: #047C90;
+  margin-bottom: 0.7rem;
+}
+
+.bias-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #047C90;
+  margin-bottom: 0.8rem;
+}
+
+.bias-text {
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #555;
+  min-height: 3.5em;
+}
+
+.bias-examples {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+.bias-examples span {
+  background: white;
+  border-radius: 20px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.7rem;
+  color: #777;
+}
+
+
+@media (max-width: 800px) {
+  .biases-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bias-card {
+    min-height: auto;
+  }
+}
+
+
 </style>
 
 <!------------------------------------------------------------------------ -->
@@ -378,9 +445,13 @@ embed[src*=".svg"] tspan {
 
 <!-- <hr class="hr-teal"> -->
 
+<br>
+
 :::: {.columns}
 
 ::: {.column width="48% border-right:5px solid rgb(0, 0, 0);"}
+
+
 [Joseph Salmon]{.custom-subtitle2}
 
 [IMAG, Univ Montpellier, CNRS, Inria, Montpellier, France]{.custom-subtitle3}
@@ -401,6 +472,7 @@ embed[src*=".svg"] tspan {
 ::: {.column width="48%"}
 
 <div style="text-align: center;">
+
 
 [Consortium  Pl@ntnet]{.custom-subtitle2}
 
@@ -427,12 +499,21 @@ embed[src*=".svg"] tspan {
 
 ::::{.columns}
 
-::: {.column width="30%"}
-![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=106%}
-:::
+::: {.column width="50%"}
 
-::: {.column width="69%"}
-A **citizen science** platform using machine learning to help people identify plants with their mobile phones
+<div style="text-align: center;">
+
+
+![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=40%}
+
+</div>
+:::
+::: {.column width="10%"}
+:::
+::: {.column width="40%"}
+
+
+A machine learning-driven **citizen science** platform for mobile plant identification
 
 
 
@@ -499,238 +580,12 @@ A **citizen science** platform using machine learning to help people identify pl
 <img src="../2024-09-25_slides_sierra/images/plantnet_usage_rasterized.svg" width="95%" align="middle" >
 
 </div>
-<!------------------------------------------------------------------------
-
+<!------------------------------------------------------------------------ -->
 
 
 
 <!------------------------------------------------------------------------ -->
-### Geographic bias
-<hr>
-<!-- <div style="text-align: center;">
-  <iframe src="https://identify.plantnet.org/stats" width="850" height="700" style="border: none; display: inline-block;"></iframe>
-</div> -->
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css">
-<script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>
-<div style="text-align:center; max-width:1100px; margin:0 auto;">
-<div style="margin-bottom:10px; display:flex; justify-content:center; gap:6px;">
-<input type="text" id="citySearch" placeholder="Search a city (e.g. Lyon)" style="padding:6px 10px; width:280px; border:1px solid #ccc; border-radius:4px; font-size:14px;">
-<button id="citySearchBtn" style="padding:6px 14px; border:none; background:#4C7BE1; color:#fff; border-radius:4px; font-size:14px; cursor:pointer;">Go</button>
-<button id="resetViewBtn" title="Reset view" style="padding:6px 12px; border:1px solid #4C7BE1; background:#fff; color:#4C7BE1; border-radius:4px; font-size:14px; cursor:pointer;">⟲ Reset</button>
-</div>
-<div id="gbifMap" style="width:100%; height:504px;"></div>
-<div style="padding:8px 30px 14px; background:#f2f2f2; border-radius:0 0 6px 6px;">
-<div id="yearSlider"></div>
-</div>
-<div id="citySearchStatus" style="font-size:12px; color:#999; margin-top:4px; min-height:14px;"></div>
-</div>
-<style>
-#yearSlider {
-  --slider-scale: 1;
-  height: calc(5px * var(--slider-scale));
-  margin: calc(20px * var(--slider-scale)) calc(14px * var(--slider-scale));
-  background: #e2e2e2;
-  border: none;
-  border-radius: 3px;
-  box-shadow: none;
-}
-#yearSlider .noUi-connect {
-  background: #4C7BE1;
-}
-#yearSlider .noUi-handle {
-  box-sizing: border-box;
-  width: calc(24px * var(--slider-scale));
-  height: calc(24px * var(--slider-scale));
-  border-radius: 50%;
-  background: #4C7BE1;
-  border: calc(2.5px * var(--slider-scale)) solid #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.35);
-  top: calc(-10px * var(--slider-scale));
-  right: calc(-12px * var(--slider-scale));
-  cursor: grab;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-#yearSlider .noUi-handle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 3px 7px rgba(0,0,0,0.45);
-}
-#yearSlider .noUi-handle:active {
-  cursor: grabbing;
-  transform: scale(1.15);
-}
-#yearSlider .noUi-handle::before {
-  content: "";
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: calc(7px * var(--slider-scale));
-  height: calc(7px * var(--slider-scale));
-  background: #fff;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-#yearSlider .noUi-handle::after {
-  display: none;
-}
-#yearSlider .noUi-tooltip {
-  box-sizing: border-box;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(21px * var(--slider-scale));
-  padding: 0 calc(9px * var(--slider-scale));
-  line-height: 1;
-  font-size: calc(10.5px * var(--slider-scale));
-  font-weight: 700;
-  background: #4C7BE1;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  top: calc(22px * var(--slider-scale));
-  white-space: nowrap;
-}
-#resetViewBtn:hover {
-  background: #4C7BE1;
-  color: #fff;
-}
-</style>
-<script>
-(function() {
-  const publishingOrg = 'da86174a-a605-43a4-a5e8-53d484152cd3';
-  const minYear = 2000;
-  const maxYear = 2026;
-
-  const DEFAULT_CENTER = [10, 15];
-  const DEFAULT_ZOOM = 2;
-
-  function gbifTileUrl(year) {
-    return `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?style=classic-noborder.poly&bin=hex&hexPerTile=100&publishingOrg=${publishingOrg}&year=,${year}`;
-  }
-
-  const MERCATOR_LAT_LIMIT = 85.0511;
-  const southWest = L.latLng(-MERCATOR_LAT_LIMIT, -180);
-  const northEast = L.latLng(MERCATOR_LAT_LIMIT, 180);
-  const mercatorBounds = L.latLngBounds(southWest, northEast);
-
-  const map = L.map('gbifMap', {
-    center: DEFAULT_CENTER,
-    zoom: DEFAULT_ZOOM,
-    minZoom: 2,
-    maxBounds: mercatorBounds,
-    maxBoundsViscosity: 1.0,
-    worldCopyJump: false
-  });
-
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles © Esri, Maxar, Earthstar Geographics',
-    noWrap: true,
-    bounds: mercatorBounds
-  }).addTo(map);
-
-  let occurrenceLayer = L.tileLayer(gbifTileUrl(maxYear), {
-    attribution: 'Occurrence data © GBIF',
-    noWrap: true,
-    bounds: mercatorBounds
-  }).addTo(map);
-
-  const sliderEl = document.getElementById('yearSlider');
-
-  noUiSlider.create(sliderEl, {
-    start: [maxYear],
-    connect: [true, false],
-    range: { min: minYear, max: maxYear },
-    step: 1,
-    tooltips: true,
-    format: {
-      to: v => Math.round(v),
-      from: v => Number(v)
-    }
-  });
-
-  sliderEl.noUiSlider.on('update', function(values) {
-    const year = values[0];
-    map.removeLayer(occurrenceLayer);
-    occurrenceLayer = L.tileLayer(gbifTileUrl(year), {
-      attribution: 'Occurrence data © GBIF',
-      noWrap: true,
-      bounds: mercatorBounds
-    }).addTo(map);
-  });
-
-  function fixMapSize() {
-    map.invalidateSize();
-  }
-
-  if (window.Reveal) {
-    Reveal.on('slidechanged', fixMapSize);
-    Reveal.on('ready', fixMapSize);
-  }
-  setTimeout(fixMapSize, 300);
-  setTimeout(fixMapSize, 1000);
-
-  const searchInput = document.getElementById('citySearch');
-  const searchBtn = document.getElementById('citySearchBtn');
-  const statusEl = document.getElementById('citySearchStatus');
-  const resetBtn = document.getElementById('resetViewBtn');
-  let searchMarker = null;
-
-  async function searchCity() {
-    const query = searchInput.value.trim();
-    if (!query) return;
-
-    statusEl.textContent = 'Searching...';
-    try {
-      const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(query)}`;
-      const resp = await fetch(url, {
-        headers: { 'Accept': 'application/json' }
-      });
-      const results = await resp.json();
-
-      if (!results || results.length === 0) {
-        statusEl.textContent = `No location found for "${query}"`;
-        return;
-      }
-
-      const { lat, lon, display_name } = results[0];
-      map.setView([parseFloat(lat), parseFloat(lon)], 12);
-
-      if (searchMarker) map.removeLayer(searchMarker);
-      searchMarker = L.marker([parseFloat(lat), parseFloat(lon)]).addTo(map);
-
-      statusEl.textContent = display_name;
-    } catch (err) {
-      statusEl.textContent = 'Search failed — check your connection.';
-      console.error('Geocoding error:', err);
-    }
-  }
-
-  function resetView() {
-    map.setView(DEFAULT_CENTER, DEFAULT_ZOOM);
-    if (searchMarker) {
-      map.removeLayer(searchMarker);
-      searchMarker = null;
-    }
-    searchInput.value = '';
-    statusEl.textContent = '';
-  }
-
-  searchBtn.addEventListener('click', searchCity);
-  searchInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') searchCity();
-  });
-  resetBtn.addEventListener('click', resetView);
-})();
-</script>
-
-### Pl@ntNet : a citizen science dataset
+### Pl@ntNet : a digital commons project
 
 
 ```{python}
@@ -818,6 +673,14 @@ storage = display_float(data.get("storage", "N/A"))
 
 <hr>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css">
+<script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>
+
+
+<br>
+
 <div class="stats-layout">
 
 ::: {.stat-card .stat-users}
@@ -846,13 +709,13 @@ Accounts / users
 
 <div class="stat-label">
 
-Species with photos
+(WCVP) Species with photos
 
 </div>
 
 <div class="stat-detail">
 
-out of `{python} species`[^wcvp]
+out of `{python} species`
 
 </div>
 
@@ -904,7 +767,7 @@ images with species
 
 ::: {.stat-card .stat-tree}
 
-<img src="images/1538174846_tree_root.svg" alt="Tree with roots">
+<img src="images/1538174846_tree_root_simplified.svg" alt="Tree with roots">
 
 :::
 
@@ -933,7 +796,6 @@ Source: <a href="https://identify.plantnet.org/en/stats">Pl@ntNet stats</a>
 WCVP: *World Checklist of Vascular Plants* database.
 
 </div>
-
 
 
 <!------------------------------------------------------------------------ -->
@@ -1091,7 +953,11 @@ print('</div>')
 
 <center>
 <img src="images/PlantNet-overview-Janv-2026_en.svg" width="80%" >
+</center>
 
+. . .
+
+<center>
 
 **Note:** I am mostly innocent, I started working with the Pl@ntNet team in 2020
 
@@ -1103,26 +969,36 @@ print('</div>')
 ### {{< iconify eos-icons:science >}} Scientific challenges
 <hr>
 
-:::: {.columns style='display: flex !important'}
+:::: {.columns style='display: flex !important; gap: 2rem;'}
 
-::: {.column width="50%"}
+::: {.column width="50%" style="padding: 0.5rem;"}
 
-- Collaborative effort, involving:
-    - machine learners
-    - ecologist
-    - engineers
-    - amateurs
+**A multidisciplinary collaboration:**
+
+<div style="margin-left: 1em;">
+
+- Stat / ML researchers
+- Ecologists
+- Engineers
+- Citizen contributors
+
+</div>
 
 :::
 
+::: {.column width="50%" style="padding: 0.5rem;"}
 
-::: {.column width="50%" .fragment}
+**Addressing open challenges:**
 
-- Open problems:
-    - theoretical
-    - methodological
-    - computational (due to the size of the problems)
-    - interfacing many disciplines
+<div style="margin-left: 1em;">
+
+- Theoretical foundations
+- Methodological advances
+- Large-scale computational needs
+- Cross-disciplinary integration
+</div>
+
+
 :::
 ::::
 
@@ -1133,7 +1009,7 @@ print('</div>')
 <center>
 ![](images/liftarn_Uncle_Sam_pointing.svg){width=23%}
 
-**[We need you]{.underline}**: come and help us improve it!
+**[We need you]{.underline}**: come and help us improve it, one way or another!
 
 </center>
 
@@ -1394,7 +1270,227 @@ print('</div>')
 
 
 <!-------------------------------------------------------------------------- -->
-### {{<iconify gis:globe-earth-alt>}} Geographic bias
+
+
+### {{<iconify gis:globe-earth-alt>}} Geographic bias (Pl@ntNet observations)
+
+<hr>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css">
+<script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>
+<div style="text-align:center; max-width 980px; margin:0 auto;">
+<div style="margin-bottom:10px; display:flex; justify-content:center; gap:6px;">
+<input type="text" id="citySearch" placeholder="Search a city (e.g. Lyon)" style="padding:6px 10px; width:280px; border:1px solid #ccc; border-radius:4px; font-size:14px;">
+<button id="citySearchBtn" style="padding:6px 14px; border:none; background:#4C7BE1; color:#fff; border-radius:4px; font-size:14px; cursor:pointer;">Go</button>
+<button id="resetViewBtn" title="Reset view" style="padding:6px 12px; border:1px solid #4C7BE1; background:#fff; color:#4C7BE1; border-radius:4px; font-size:14px; cursor:pointer;">⟲ Reset</button>
+</div>
+<div id="gbifMap" style="width:100%; height:504px;"></div>
+<div style="padding:8px 30px 14px; background:#f2f2f2; border-radius:0 0 6px 6px;">
+<div id="yearSlider"></div>
+</div>
+<div id="citySearchStatus" style="font-size:12px; color:#999; margin-top:4px; min-height:14px;"></div>
+</div>
+<style>
+#yearSlider {
+  --slider-scale: 1;
+  height: calc(5px * var(--slider-scale));
+  margin: calc(20px * var(--slider-scale)) calc(14px * var(--slider-scale));
+  background: #e2e2e2;
+  border: none;
+  border-radius: 3px;
+  box-shadow: none;
+}
+#yearSlider .noUi-connect {
+  background: #4C7BE1;
+}
+#yearSlider .noUi-handle {
+  box-sizing: border-box;
+  width: calc(24px * var(--slider-scale));
+  height: calc(24px * var(--slider-scale));
+  border-radius: 50%;
+  background: #4C7BE1;
+  border: calc(2.5px * var(--slider-scale)) solid #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.35);
+  top: calc(-10px * var(--slider-scale));
+  right: calc(-12px * var(--slider-scale));
+  cursor: grab;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+#yearSlider .noUi-handle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 7px rgba(0,0,0,0.45);
+}
+#yearSlider .noUi-handle:active {
+  cursor: grabbing;
+  transform: scale(1.15);
+}
+#yearSlider .noUi-handle::before {
+  content: "";
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(7px * var(--slider-scale));
+  height: calc(7px * var(--slider-scale));
+  background: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+#yearSlider .noUi-handle::after {
+  display: none;
+}
+#yearSlider .noUi-tooltip {
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(21px * var(--slider-scale));
+  padding: 0 calc(9px * var(--slider-scale));
+  line-height: 1;
+  font-size: calc(10.5px * var(--slider-scale));
+  font-weight: 700;
+  background: #4C7BE1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  top: calc(22px * var(--slider-scale));
+  white-space: nowrap;
+}
+#resetViewBtn:hover {
+  background: #4C7BE1;
+  color: #fff;
+}
+</style>
+<script>
+(function() {
+  const publishingOrg = 'da86174a-a605-43a4-a5e8-53d484152cd3';
+  const minYear = 2000;
+  const maxYear = 2026;
+
+  const DEFAULT_CENTER = [10, 15];
+  const DEFAULT_ZOOM = 2;
+
+  function gbifTileUrl(year) {
+    return `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?style=classic-noborder.poly&bin=hex&hexPerTile=100&publishingOrg=${publishingOrg}&year=,${year}`;
+  }
+
+  // Latitude still clamped to standard Web Mercator limits (no undefined polar tiles).
+  // Longitude left unbounded so tiles can wrap horizontally and fill the container
+  // (removes the grey side gaps that appeared with a hard longitude limit).
+  const MERCATOR_LAT_LIMIT = 85.0511;
+  const southWest = L.latLng(-MERCATOR_LAT_LIMIT, -Infinity);
+  const northEast = L.latLng(MERCATOR_LAT_LIMIT, Infinity);
+  const mercatorBounds = L.latLngBounds(southWest, northEast);
+
+  const map = L.map('gbifMap', {
+    center: DEFAULT_CENTER,
+    zoom: DEFAULT_ZOOM,
+    minZoom: 2,
+    maxBounds: mercatorBounds,
+    maxBoundsViscosity: 1.0,
+    worldCopyJump: true
+  });
+
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles © Esri, Maxar, Earthstar Geographics'
+  }).addTo(map);
+
+  let occurrenceLayer = L.tileLayer(gbifTileUrl(maxYear), {
+    attribution: 'Occurrence data © GBIF'
+  }).addTo(map);
+
+  const sliderEl = document.getElementById('yearSlider');
+
+  noUiSlider.create(sliderEl, {
+    start: [maxYear],
+    connect: [true, false],
+    range: { min: minYear, max: maxYear },
+    step: 1,
+    tooltips: true,
+    format: {
+      to: v => Math.round(v),
+      from: v => Number(v)
+    }
+  });
+
+  sliderEl.noUiSlider.on('update', function(values) {
+    const year = values[0];
+    map.removeLayer(occurrenceLayer);
+    occurrenceLayer = L.tileLayer(gbifTileUrl(year)).addTo(map);
+  });
+
+  function fixMapSize() {
+    map.invalidateSize();
+  }
+
+  if (window.Reveal) {
+    Reveal.on('slidechanged', fixMapSize);
+    Reveal.on('ready', fixMapSize);
+  }
+  setTimeout(fixMapSize, 300);
+  setTimeout(fixMapSize, 1000);
+
+  const searchInput = document.getElementById('citySearch');
+  const searchBtn = document.getElementById('citySearchBtn');
+  const statusEl = document.getElementById('citySearchStatus');
+  const resetBtn = document.getElementById('resetViewBtn');
+  let searchMarker = null;
+
+  async function searchCity() {
+    const query = searchInput.value.trim();
+    if (!query) return;
+
+    statusEl.textContent = 'Searching...';
+    try {
+      const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(query)}`;
+      const resp = await fetch(url, {
+        headers: { 'Accept': 'application/json' }
+      });
+      const results = await resp.json();
+
+      if (!results || results.length === 0) {
+        statusEl.textContent = `No location found for "${query}"`;
+        return;
+      }
+
+      const { lat, lon, display_name } = results[0];
+      map.setView([parseFloat(lat), parseFloat(lon)], 12);
+
+      if (searchMarker) map.removeLayer(searchMarker);
+      searchMarker = L.marker([parseFloat(lat), parseFloat(lon)]).addTo(map);
+
+      statusEl.textContent = display_name;
+    } catch (err) {
+      statusEl.textContent = 'Search failed — check your connection.';
+      console.error('Geocoding error:', err);
+    }
+  }
+
+  function resetView() {
+    map.setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+    if (searchMarker) {
+      map.removeLayer(searchMarker);
+      searchMarker = null;
+    }
+    searchInput.value = '';
+    statusEl.textContent = '';
+  }
+
+  searchBtn.addEventListener('click', searchCity);
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') searchCity();
+  });
+  resetBtn.addEventListener('click', resetView);
+})();
+</script>
+
+<!-- ### {{<iconify gis:globe-earth-alt>}} Geographic bias
 
 
 <div style="display: flex; flex-direction: column;">
@@ -1403,7 +1499,7 @@ print('</div>')
 
 Spatial density of images collected by Pl@ntNet (13/04/2024)
 </center>
-</div>
+</div> -->
 <!-------------------------------------------------------------------------- -->
 
 
@@ -1532,7 +1628,74 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 
 
 <!-------------------------------------------------------------------------- -->
-### Many more biases ...
+### {{<iconify ri:filter-3-line>}} More biases ... shaping the dataset
+<hr>
+
+
+::: {.biases-grid}
+
+::: {.bias-card}
+
+{{<iconify ri:eye-line>}}
+
+#### Selection bias
+
+What gets photographed is not random.
+
+`Easy access` 
+
+ `Visible species` 
+
+ `Easy identification`
+
+:::
+
+::: {.bias-card}
+
+{{<iconify ri:calendar-line>}}
+
+#### Temporal bias
+
+What we see depends on **when** we look.
+
+`Season` 
+
+ `Flowering` 
+
+ `Plant appearance`
+
+:::
+
+::: {.bias-card}
+
+{{<iconify ri:focus-3-line>}}
+
+#### Subjective bias
+
+Observations can reflect observers own choices.
+
+`Personal preferences`
+ 
+`Rare species`
+
+ `Endangered species`
+
+:::
+
+:::
+
+
+<br>
+
+<center>
+<span style="font-size: 2.2em;"> {{<iconify ion:warning-outline>}}
+</span>
+
+ **<span style="font-size: 1.2em;"> more observations ≠ a more representative dataset</span>**
+</center>
+
+<!-------------------------------------------------------------------------- -->
+<!-- ### Many more biases ...
 <hr>
 
 <br>
@@ -1544,7 +1707,12 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
      - Rare species: **rare** or **endangered** species may be under-represented
 
 - Temporal bias / seasonal variation: **seasonal changes** in plant characteristics
-- ...
+- ... -->
+
+
+
+
+
 
 <!-------------------------------------------------------------------------- -->
 
@@ -1554,32 +1722,68 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 
 
 <!-------------------------------------------------------------------------- -->
-### {{<iconify gravity-ui:magnifier>}} A need for new benchmarks
+### {{<iconify gravity-ui:magnifier>}} "Frictionless Reproducibility" & new benchmarks
 <hr>
+
+::: {.columns}
+
+::: {.column width="63%"}
+
+
 <br>
+
 **Popular datasets limitations:**
 
-<div style="margin-left: 2em;">
+<div style="margin-left: 1em;">
 
 - structure of labels too simplistic (CIFAR-10, CIFAR-100)
 - tasks too easy to discriminate (MNIST)
-- too well-balanced, with same number of images per class (Imagenet)
-- contains duplicate, low-quality, or irrelevant images [@recht2019imagenet]
+- too well-balanced, same number of images per class (Imagenet)
+- duplicate, low-quality, irrelevant images [@recht2019imagenet]
 
 </div>
 
-**[Motivation]{.underline}**:
-<div style="margin-left: 2em;">
+:::
 
-Release a dataset **sharing similar features** as the Pl@ntNet dataset to foster research in plant identification
+::: {.column width="37%"}
 
-$\implies$ Pl@ntNet-300K [@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean_Lorieul_Salmon2021]
+<div style="position:relative; width:100%; height:350px;">
+
+::: {.fragment .fade-in-then-out}
+<img src="images/image_n_hist6750_paper_False_novotes.svg" style="position:absolute; top:0; left:0; width:100%; height:auto;">
+:::
+
+::: {.fragment .fade-in-then-out}
+<img src="images/image_n_hist8872_paper_False_novotes.svg" style="position:absolute; top:0; left:0; width:100%; height:auto;">
+:::
+
+::: {.fragment .fade-in-then-out}
+<img src="images/image_n_hist7455_paper_False_novotes.svg" style="position:absolute; top:0; left:0; width:100%; height:auto;">
+:::
+
+::: {.fragment}
+<img src="images/image_n_hist1353_paper_False_novotes.svg" style="position:absolute; top:0; left:0; width:100%; height:auto;">
+:::
+
+
 </div>
 
-<br>
+:::
+
+:::
+
+. . .
+
+
 <br>
 
-***"The collective behavior induced by frictionless research exchange is the emergent superpower driving many events that are so striking today."*** [@donoho2024data]
+**⤷ Pl@ntNet-300K:** A curated, shareable subset of Pl@ntNet, adhering to **FR-1: Datafication and Data Sharing** for frictionless reproducibility [@donoho2024data]:
+
+- **Advance plant identification research** with real-world biodiversity data
+- **Engage the ML community** with meaningful challenges beyond synthetic benchmarks
+
+
+<!-- ***"The collective behavior induced by frictionless research exchange is the emergent superpower driving many events that are so striking today."*** [@donoho2024data] -->
 <!------------------------------------------------------------------------ -->
 
 
@@ -1721,7 +1925,9 @@ Provide a real life scenario for supervised learning, with multi-class and long-
 
 ::: {.column }
 
+
 [**Characteristics**]{.underline}:
+
 
 <br>
 
@@ -1735,9 +1941,15 @@ Provide a real life scenario for supervised learning, with multi-class and long-
 ::: {.column width=55%}
 :::{.fragment}
 
-<br>
 
 <center>
+
+**Neurips (Datasets and Benchmarks track) paper**
+
+[@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean_Lorieul_Salmon2021]
+
+<br>
+
 **Zenodo, 1 click download**
 
 [https://zenodo.org/record/5645731](https://zenodo.org/record/5645731)
@@ -1759,12 +1971,20 @@ Provide a real life scenario for supervised learning, with multi-class and long-
 . . .
 
 <br>
+
 <center>
+<b>2026 Update: [Pl@ntNet-300K v2.0](https://zenodo.org/records/10419064) on Zenodo </b> 
+</center>
+
+
+
+
 <!-- ![](../2025-12-15-ICSDS25/images/plantnet_class_distribution_iucn_status_with_images.svg){width=100%} -->
 
 <!-- More details on my blog post:  [https://josephsalmon.eu/blog/long-tail/](https://josephsalmon.eu/blog/long-tail/) -->
 
-</center>
+
+
 <!-------------------------------------------------------------------------- -->
 
 
@@ -2244,165 +2464,6 @@ $$
 <script type="module" src="../../../blog/long-tail/plantnet_comparison_viz.js"></script>
 ```
 <!-------------------------------------------------------------------------- -->
-
-
-
-<!-------------------------------------------------------------------------- -->
-# Crowd-sourced data: <br> Votes, labels & aggregation {.section-background}
-<!-------------------------------------------------------------------------- -->
-
-
-
-### {{< iconify mdi:account-group >}} Joint work with
-<hr>
-
-<center>
-
-:::: {.columns}
-
-::: {.column width="34%"}
-
-<div style="text-align: center;">
-
-<img src="images/tanguy_lefort.jpeg" style="width: 300px; height: 300px; object-fit: cover; border-radius: 10px;">
-
-**Tanguy Lefort**
-
-Now at Seenovate
-
-</div>
-
-:::
-
-::: {.column width="22%"}
-
-<div style="text-align: center;">
-
-within
-
-![](../2024-09-25_slides_sierra/images/plantnet-logo-title.26755cd.svg){width=96%}
-
-</div>
-:::
-
-::: {.column width="34%"}
-
-<div style="text-align: center;">
-
-<img src="images/Benjamin_charlier.jpg" style="width: 300px; height: 300px; object-fit: cover; border-radius: 10px;">
-
-**Benjamin Charlier**
-
-Inrae
-
-</div>
-
-:::
-
-::::
-
-<br>
-<br>
-
-
-***"Cooperative learning of Pl@ntNet's Artificial Intelligence algorithm: <br> how does it work and how can we improve it?" ***
-
-
-T. Lefort et al.
-
-Methods in Ecology and Evolution, 2025
-
-</center>
-
-
-
-
-<!-------------------------------------------------------------------------- -->
-### {{<iconify fluent:vote-24-filled>}} Pl@ntNet online "votes"
-<hr>
-<center>
-![](../2024-09-25_slides_sierra/images/plantnet_online.png){width=50%}
-
-Link: [https://identify.plantnet.org/weurope/observations/1012500059](https://identify.plantnet.org/weurope/observations/1012500059)
-</center>
-<!-------------------------------------------------------------------------- -->
-
-
-<!-------------------------------------------------------------------------- -->
-### {{<iconify pajamas:labels>}} What about labels?
-<hr>
-
-<br>
-
-- Images from users... so are the labels!
-
-- But **users** can be wrong or **not experts**
-
-- **Several labels** can be available per image!
-<!-------------------------------------------------------------------------- -->
-
-
-
-
-<!-------------------------------------------------------------------------- -->
-### {{<iconify jam:write-f>}} Users can make corrections
-<hr>
-
-<center>
-![](../2024-09-25_slides_sierra/images/plantnet_corrected.png){width=50%}
-</center>
-
-<!-------------------------------------------------------------------------- -->
-
-
-
-<!-------------------------------------------------------------------------- -->
-### ... sometimes can't be trusted
-<hr>
-
-
-<center>
-::: {.r-stack}
-
-![](../2024-09-25_slides_sierra/images/vanessa_corrected.png){width=67%}
-
-![](../2024-09-25_slides_sierra/images/right_vanessa_corrected.png){.fragment width=67% fragment-index=1}
-
-:::
-
-
-Link: [https://identify.plantnet.org/weurope/observations/1012500059](https://identify.plantnet.org/weurope/observations/1012500059)
-
-</center>
-<!-------------------------------------------------------------------------- -->
-
-
-
-
-<!-------------------------------------------------------------------------- -->
-### Pl@ntNet label aggregation (EM algorithm) {.center style="text-align: center;"}
-<hr>
-
-
-**Weighting scheme**: weight user vote by its number of identified species
-
-
-::: {.r-stack}
-
-![](images/schema_plantnet_aggregation_js_0.svg){.fragment width=81% fragment-index=1}
-
-![](images/schema_plantnet_aggregation_js_1.svg){.fragment width=81% fragment-index=2}
-
-![](images/schema_plantnet_aggregation_js.svg){.fragment width=81% fragment-index=3}
-:::
-
-
-::: {.fragment}
-
-
-:::
-<!-------------------------------------------------------------------------- -->
-
 
 
 
