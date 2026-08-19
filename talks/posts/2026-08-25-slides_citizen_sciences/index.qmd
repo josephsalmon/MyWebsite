@@ -12,7 +12,8 @@ format:
     height: 720
     theme: local.scss
     slideNumber: true
-    jupyter: python3
+    # jupyter: python3
+    cache: false
     pdf-separate-fragments: false
     pdf-max-pages-per-slide: 1
     view-distance: 100
@@ -29,6 +30,17 @@ resources:
     - "*.html"
 
 ---
+
+
+<!-- 
+
+needed the following and the _environnement at root
+
+conda activate quarto-prez
+python -m ipykernel install --user --name quarto-prez --display-name "Python (quarto-prez)"
+
+ -->
+
 
 ::: {.hidden}
 {{
@@ -150,19 +162,155 @@ embed[src*=".svg"] tspan {
 }
 
 
-/* PDF print adjustments */
-@media print {
-    .reveal .slides section {
-        page-break-after: always !important;
-        overflow: visible !important;
-        height: 100% !important;
-    }
-    .reveal .slides {
-        width: 100% !important;
-        height: 100% !important;
-        zoom: 1 !important;
-        transform: none !important;
-    }
+/* Statistics */
+
+.stats-layout {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 1fr;
+  grid-template-rows: 1fr 1fr auto;
+  gap: 14px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+/* Statistics cards */
+
+.stat-card {
+  background: #f7f8f6;
+  border-radius: 12px;
+  padding: 1.3rem 1.6rem;
+  text-align: center;
+}
+
+/* Top-left */
+
+.stat-users {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+/* Bottom-left */
+
+.stat-queries {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+/* Top-right */
+
+.stat-species {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+/* Bottom-right */
+
+.stat-observations {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+/* Large central tree card */
+
+.stat-tree {
+  grid-column: 2;
+  grid-row: 1 / 3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1rem;
+}
+
+.stat-tree img {
+  display: block;
+  width: 95%;
+  max-width: 300px;
+  max-height: 52vh;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Storage */
+
+.stat-storage {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+
+/* Typography */
+
+.stat-value {
+  font-size: 2em;
+  font-weight: 700;
+  color: #047C90;
+  line-height: 1.1;
+}
+
+.stat-label {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #555;
+  margin-top: 0.4rem;
+}
+
+.stat-detail {
+  font-size: 0.7em;
+  color: #888;
+  margin-top: 0.15rem;
+}
+
+/* Source */
+
+.stats-source {
+  max-width: 1100px;
+  margin: 0.8rem auto 0;
+  text-align: right;
+  font-size: 0.65em;
+  color: #999;
+}
+
+/* Smaller screens */
+
+@media (max-width: 700px) {
+
+  .stats-layout {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+
+  .stat-tree {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  .stat-users {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .stat-species {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .stat-queries {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .stat-observations {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .stat-storage {
+    grid-column: 1 / -1;
+    grid-row: 4;
+  }
+
 }
 
 #filter-container > div,
@@ -357,11 +505,435 @@ A **citizen science** platform using machine learning to help people identify pl
 
 
 <!------------------------------------------------------------------------ -->
-###
-
-<div style="text-align: center;">
+### Geographic bias
+<hr>
+<!-- <div style="text-align: center;">
   <iframe src="https://identify.plantnet.org/stats" width="850" height="700" style="border: none; display: inline-block;"></iframe>
+</div> -->
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.css">
+<script src="https://cdn.jsdelivr.net/npm/nouislider@15.7.1/dist/nouislider.min.js"></script>
+<div style="text-align:center; max-width:1100px; margin:0 auto;">
+<div style="margin-bottom:10px; display:flex; justify-content:center; gap:6px;">
+<input type="text" id="citySearch" placeholder="Search a city (e.g. Lyon)" style="padding:6px 10px; width:280px; border:1px solid #ccc; border-radius:4px; font-size:14px;">
+<button id="citySearchBtn" style="padding:6px 14px; border:none; background:#4C7BE1; color:#fff; border-radius:4px; font-size:14px; cursor:pointer;">Go</button>
+<button id="resetViewBtn" title="Reset view" style="padding:6px 12px; border:1px solid #4C7BE1; background:#fff; color:#4C7BE1; border-radius:4px; font-size:14px; cursor:pointer;">⟲ Reset</button>
 </div>
+<div id="gbifMap" style="width:100%; height:504px;"></div>
+<div style="padding:8px 30px 14px; background:#f2f2f2; border-radius:0 0 6px 6px;">
+<div id="yearSlider"></div>
+</div>
+<div id="citySearchStatus" style="font-size:12px; color:#999; margin-top:4px; min-height:14px;"></div>
+</div>
+<style>
+#yearSlider {
+  --slider-scale: 1;
+  height: calc(5px * var(--slider-scale));
+  margin: calc(20px * var(--slider-scale)) calc(14px * var(--slider-scale));
+  background: #e2e2e2;
+  border: none;
+  border-radius: 3px;
+  box-shadow: none;
+}
+#yearSlider .noUi-connect {
+  background: #4C7BE1;
+}
+#yearSlider .noUi-handle {
+  box-sizing: border-box;
+  width: calc(24px * var(--slider-scale));
+  height: calc(24px * var(--slider-scale));
+  border-radius: 50%;
+  background: #4C7BE1;
+  border: calc(2.5px * var(--slider-scale)) solid #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.35);
+  top: calc(-10px * var(--slider-scale));
+  right: calc(-12px * var(--slider-scale));
+  cursor: grab;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+#yearSlider .noUi-handle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 3px 7px rgba(0,0,0,0.45);
+}
+#yearSlider .noUi-handle:active {
+  cursor: grabbing;
+  transform: scale(1.15);
+}
+#yearSlider .noUi-handle::before {
+  content: "";
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(7px * var(--slider-scale));
+  height: calc(7px * var(--slider-scale));
+  background: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+#yearSlider .noUi-handle::after {
+  display: none;
+}
+#yearSlider .noUi-tooltip {
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(21px * var(--slider-scale));
+  padding: 0 calc(9px * var(--slider-scale));
+  line-height: 1;
+  font-size: calc(10.5px * var(--slider-scale));
+  font-weight: 700;
+  background: #4C7BE1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  top: calc(22px * var(--slider-scale));
+  white-space: nowrap;
+}
+#resetViewBtn:hover {
+  background: #4C7BE1;
+  color: #fff;
+}
+</style>
+<script>
+(function() {
+  const publishingOrg = 'da86174a-a605-43a4-a5e8-53d484152cd3';
+  const minYear = 2000;
+  const maxYear = 2026;
+
+  const DEFAULT_CENTER = [10, 15];
+  const DEFAULT_ZOOM = 2;
+
+  function gbifTileUrl(year) {
+    return `https://api.gbif.org/v2/map/occurrence/density/{z}/{x}/{y}@2x.png?style=classic-noborder.poly&bin=hex&hexPerTile=100&publishingOrg=${publishingOrg}&year=,${year}`;
+  }
+
+  const MERCATOR_LAT_LIMIT = 85.0511;
+  const southWest = L.latLng(-MERCATOR_LAT_LIMIT, -180);
+  const northEast = L.latLng(MERCATOR_LAT_LIMIT, 180);
+  const mercatorBounds = L.latLngBounds(southWest, northEast);
+
+  const map = L.map('gbifMap', {
+    center: DEFAULT_CENTER,
+    zoom: DEFAULT_ZOOM,
+    minZoom: 2,
+    maxBounds: mercatorBounds,
+    maxBoundsViscosity: 1.0,
+    worldCopyJump: false
+  });
+
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles © Esri, Maxar, Earthstar Geographics',
+    noWrap: true,
+    bounds: mercatorBounds
+  }).addTo(map);
+
+  let occurrenceLayer = L.tileLayer(gbifTileUrl(maxYear), {
+    attribution: 'Occurrence data © GBIF',
+    noWrap: true,
+    bounds: mercatorBounds
+  }).addTo(map);
+
+  const sliderEl = document.getElementById('yearSlider');
+
+  noUiSlider.create(sliderEl, {
+    start: [maxYear],
+    connect: [true, false],
+    range: { min: minYear, max: maxYear },
+    step: 1,
+    tooltips: true,
+    format: {
+      to: v => Math.round(v),
+      from: v => Number(v)
+    }
+  });
+
+  sliderEl.noUiSlider.on('update', function(values) {
+    const year = values[0];
+    map.removeLayer(occurrenceLayer);
+    occurrenceLayer = L.tileLayer(gbifTileUrl(year), {
+      attribution: 'Occurrence data © GBIF',
+      noWrap: true,
+      bounds: mercatorBounds
+    }).addTo(map);
+  });
+
+  function fixMapSize() {
+    map.invalidateSize();
+  }
+
+  if (window.Reveal) {
+    Reveal.on('slidechanged', fixMapSize);
+    Reveal.on('ready', fixMapSize);
+  }
+  setTimeout(fixMapSize, 300);
+  setTimeout(fixMapSize, 1000);
+
+  const searchInput = document.getElementById('citySearch');
+  const searchBtn = document.getElementById('citySearchBtn');
+  const statusEl = document.getElementById('citySearchStatus');
+  const resetBtn = document.getElementById('resetViewBtn');
+  let searchMarker = null;
+
+  async function searchCity() {
+    const query = searchInput.value.trim();
+    if (!query) return;
+
+    statusEl.textContent = 'Searching...';
+    try {
+      const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(query)}`;
+      const resp = await fetch(url, {
+        headers: { 'Accept': 'application/json' }
+      });
+      const results = await resp.json();
+
+      if (!results || results.length === 0) {
+        statusEl.textContent = `No location found for "${query}"`;
+        return;
+      }
+
+      const { lat, lon, display_name } = results[0];
+      map.setView([parseFloat(lat), parseFloat(lon)], 12);
+
+      if (searchMarker) map.removeLayer(searchMarker);
+      searchMarker = L.marker([parseFloat(lat), parseFloat(lon)]).addTo(map);
+
+      statusEl.textContent = display_name;
+    } catch (err) {
+      statusEl.textContent = 'Search failed — check your connection.';
+      console.error('Geocoding error:', err);
+    }
+  }
+
+  function resetView() {
+    map.setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+    if (searchMarker) {
+      map.removeLayer(searchMarker);
+      searchMarker = null;
+    }
+    searchInput.value = '';
+    statusEl.textContent = '';
+  }
+
+  searchBtn.addEventListener('click', searchCity);
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') searchCity();
+  });
+  resetBtn.addEventListener('click', resetView);
+})();
+</script>
+
+### Pl@ntNet : a citizen science dataset
+
+
+```{python}
+
+import os
+import sys
+import argparse
+import requests
+from dotenv import load_dotenv
+
+
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (X11; Linux x86_64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0.0.0 Safari/537.36"
+    ),
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
+load_dotenv(".env")  # reads .env from the current working directory into os.environ
+
+def is_notebook():
+    try:
+        from IPython import get_ipython
+        return get_ipython() is not None
+    except Exception:
+        return False
+
+def get_url():
+    # In notebook environments, skip argparse entirely
+    if is_notebook():
+        url = os.environ.get("STATS_SOURCE_URL", "")
+        url = url.strip().strip('"').strip("'")
+        return url
+
+
+    # Normal CLI execution
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dotenv", action="store_true", help="Load .env before reading env var")
+    parser.add_argument("--url", help="Override: pass the URL directly on the command line")
+    args = parser.parse_args()
+
+    if args.dotenv:
+        try:
+            from dotenv import load_dotenv
+            load_dotenv()
+            print("[info] Loaded .env")
+        except ImportError:
+            print("[warn] python-dotenv not installed, skipping (`pip install python-dotenv`)")
+
+    url = args.url or os.environ.get("STATS_SOURCE_URL", "")
+    url = url.strip().strip('"').strip("'")
+    return url
+
+
+url = get_url()
+
+if not url:
+    print("[error] No URL found. Set STATS_SOURCE_URL env var, or use --url for a one-off test.")
+    sys.exit(1)
+
+try:
+    resp = requests.get(url, headers=HEADERS, timeout=10)
+    resp.raise_for_status()
+    data = resp.json()
+except Exception:
+    raise RuntimeError("Failed to fetch stats — check STATS_SOURCE_URL is set correctly")
+
+def fmt(n):
+    return f"{n:,}".replace(",", " ") if isinstance(n, int) else n
+
+def display_float(n):
+    return f"{int(n):,}" if isinstance(n, (int, float)) else n
+    
+species = fmt(data.get("species", "N/A"))
+illustrated = fmt(data.get("illustrated_species", "N/A"))
+users = fmt(data.get("users", "N/A"))
+queries = fmt(data.get("queries", "N/A"))
+observations = fmt(data.get("observations", "N/A"))
+storage = display_float(data.get("storage", "N/A"))
+
+```
+
+<hr>
+
+<div class="stats-layout">
+
+::: {.stat-card .stat-users}
+
+<div class="stat-value">
+
+**`{python} users`**
+
+</div>
+
+<div class="stat-label">
+
+Accounts / users
+
+</div>
+
+:::
+
+::: {.stat-card .stat-species}
+
+<div class="stat-value">
+
+**`{python} illustrated`**
+
+</div>
+
+<div class="stat-label">
+
+Species with photos
+
+</div>
+
+<div class="stat-detail">
+
+out of `{python} species`[^wcvp]
+
+</div>
+
+:::
+
+::: {.stat-card .stat-queries}
+
+<div class="stat-value">
+
+**`{python} queries`**
+
+</div>
+
+<div class="stat-label">
+
+Queries
+
+</div>
+
+<div class="stat-detail">
+
+images without species
+
+</div>
+
+:::
+
+::: {.stat-card .stat-observations}
+
+<div class="stat-value">
+
+**`{python} observations`**
+
+</div>
+
+<div class="stat-label">
+
+Observations
+
+</div>
+
+<div class="stat-detail">
+
+images with species
+
+</div>
+
+:::
+
+::: {.stat-card .stat-tree}
+
+<img src="images/1538174846_tree_root.svg" alt="Tree with roots">
+
+:::
+
+::: {.stat-card .stat-storage}
+
+<div class="stat-value">
+
+**`{python} storage`** TB
+
+</div>
+
+<div class="stat-label">
+
+Storage
+
+</div>
+
+:::
+
+</div>
+
+<div class="stats-source">
+
+Source: <a href="https://identify.plantnet.org/en/stats">Pl@ntNet stats</a>
+
+WCVP: *World Checklist of Vascular Plants* database.
+
+</div>
+
 
 
 <!------------------------------------------------------------------------ -->
@@ -412,176 +984,83 @@ A **citizen science** platform using machine learning to help people identify pl
     margin: 0 auto 1em auto;
 }
 </style>
-<div class="team-slide-container">
-
-<div class="team-member" id="AlexisJoly">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/Sans-titre.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Alexis Joly</strong><br>
-                            Primary investigator, INRIA<br>
-                            <a href="https://www.researchgate.net/profile/Alexis-Joly">ResearchGate</a>
-                        </p>
-</div>
-<div class="team-member" id="PierreBonnet">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/image-20221012-11-obdm4k.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Pierre Bonnet</strong><br>
-                            Primary investigator, CIRAD<br>
-                            <a href="https://www.researchgate.net/profile/Pierre-Bonnet-5">ResearchGate</a>
-                        </p>
-</div>
-<div class="team-member" id="HervéGoëau">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/photo_130.jpeg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Hervé Goëau</strong><br>
-                            Researcher, CIRAD<br>
-                            <a href="https://www.researchgate.net/profile/Herve-Goeau">ResearchGate</a>
-                        </p>
-</div>
-<div class="team-member" id="AntoineAffouard">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/1700494763648.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Antoine Affouard</strong><br>
-                            Backend &amp; Staff engineer, INRIA<br>
-                            <a href="https://www.linkedin.com/in/antoine-affouard-044b01a3/">LinkedIn</a>
-                        </p>
-</div>
-<div class="team-member" id="Jean-ChristopheLombardo">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/1562916381981.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Jean-Christophe Lombardo</strong><br>
-                            IA engineer, INRIA<br>
-                            <a href="https://www.linkedin.com/in/jeanchristophelombardo">LinkedIn</a>
-                        </p>
-</div>
-<div class="team-member" id="MathiasChouet">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/chouet_mathias_c4c.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Mathias Chouet</strong><br>
-                            Backend engineer, CIRAD<br>
-                            <a href="https://github.com/matcho">GitHub</a>
-                        </p>
-</div>
-<div class="team-member" id="HugoGresse">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/HTukpCAn_400x400-1.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Hugo Gresse</strong><br>
-                            Mobile engineer, INRIA<br>
-                            <a href="https://github.com/HugoGresse/">GitHub</a> | <a href="https://www.linkedin.com/in/hugogresse/">LinkedIn</a>
-                        </p>
-</div>
-<div class="team-member" id="ThomasPaillot">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/1633618903597.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Thomas Paillot</strong><br>
-                            Front engineer, INRIA<br>
-                            <a href="https://www.linkedin.com/in/thomaspaillot/">LinkedIn</a>
-                        </p>
-</div>
-<div class="team-member" id="RémiPalard">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/1668098526264.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Rémi Palard</strong><br>
-                            Geo &amp; Fullstack engineer, CIRAD<br>
-                            <a href="https://www.linkedin.com/in/remi-palard/">LinkedIn</a>
-                        </p>
-</div>
-<div class="team-member" id="VanessaHequet">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/11/vanessa.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Vanessa Hequet</strong><br>
-                            Botanist, IRD<br>
-                            <a href="https://www.linkedin.com/in/vanessa-hequet-1a091b180/">LinkedIn</a>
-                        </p>
-</div>
-<div class="team-member" id="MurielleSimo-Droissart">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2024/03/murielle_3-scaled.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Murielle Simo-Droissart</strong><br>
-                            Botanist, IRD<br>
-                            <a href="https://www.researchgate.net/profile/Murielle-Simo-Droissart">ResearchGate</a>
-                        </p>
-</div>
-<div class="team-member" id="ThéoSimoes">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2024/10/theo.simoes.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Théo Simoes</strong><br>
-                            Backend engineer, INRAE<br>
-                            <a href="https://www.linkedin.com/in/th%C3%A9o-simoes-311480157/">LinkedIn</a>
-                        </p>
-</div>
-<div class="team-member" id="Jean-MarcSadaillan">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2025/01/jean-marc_sadaillan.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Jean-Marc Sadaillan</strong><br>
-                            Project manager, INRAE<br>
-                            <a href="https://fr.linkedin.com/in/jean-marc-sadaillan/">LinkedIn</a>
-                        </p>
-</div>
-<div class="team-member" id="ChristopheBotella">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2025/05/44.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Christophe Botella</strong><br>
-                            Researcher, INRIA<br>
-                            <a href="https://www.researchgate.net/profile/Christophe-Botella?ev=hdr_xprf">ResearchGate</a>
-                        </p>
-</div>
-<div class="team-member" id="JosephSalmon">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2025/09/joseph_2018.png" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Joseph Salmon</strong><br>
-                            Researcher, INRIA<br>
-                            <a href="https://josephsalmon.eu/">Website</a>
-                        </p>
-</div>
-<div class="team-member" id="BenjaminBourel">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2025/09/IMG_20210524_111031_modifi.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Benjamin Bourel</strong><br>
-                            Researcher, INRIA<br>
-                            <a href="https://www-sop.inria.fr/members/Benjamin.Bourel/">Website</a>
-                        </p>
-</div>
-<div class="team-member" id="ThéoLarcher">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2023/12/photo_passe_partout1.jpeg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Théo Larcher</strong><br>
-                            PhD candidate, INRIA<br>
-                            <a href="https://www.linkedin.com/in/th%C3%A9o-larcher-3405a5147/">LinkedIn</a>
-                        </p>
-</div>
-<div class="team-member" id="GiulioMartellucci">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2026/01/1666560273150.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Giulio Martellucci</strong><br>
-                            PhD candidate, INRIA<br>
-                            <a href="https://www.linkedin.com/in/giulio-martellucci-a05232176/">LinkedIn</a>
-                        </p>
-</div>
-<div class="team-member" id="RaphaëlBenerradi">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2026/01/1645482074565.jpg" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Raphaël Benerradi</strong><br>
-                            PhD candidate, INRIA<br>
-                            <a href="https://www.linkedin.com/in/rapha%C3%ABl-benerradi-531a83196/">LinkedIn</a>
-                        </p>
-</div>
-<div class="team-member" id="IlyassMoummad">
-                        <img decoding="async" src="https://plantnet.org/wp-content/uploads/2026/01/Ilyass-Moummad.webp" style="border-radius: 100px;width: 85px; height:85px; object-fit: cover;">
-<p style="text-align: center;">
-                            <strong>Ilyass Moummad</strong><br>
-                            Post-doc, INRIA<br>
-                            <a href="https://ilyassmoummad.github.io/">Personal website</a> | <a href="https://scholar.google.com/citations?user=2hA2XZcAAAAJ&amp;hl=en">Google Scholar</a>
-                        </p>
-</div>
-
-</div>
 ```
-<!-------------------------------------------------------------------------- -->
 
+```{python}
+#| echo: false
+#| output: asis
+import requests, json, os
+from bs4 import BeautifulSoup
 
+CACHE_PATH = "team_cache.json"
+URL = "https://plantnet.org/team/"
+HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; quarto-slide-builder/1.0)"}
 
+def scrape_team():
+    resp = requests.get(URL, headers=HEADERS, timeout=10)
+    resp.raise_for_status()
+    soup = BeautifulSoup(resp.text, "html.parser")
 
+    members = []
+    for img in soup.select(".entry-content div[id] > img"):
+        div = img.parent
+        p = div.find("p")
+        if not p:
+            continue
+        strong = p.find("strong")
+        name = strong.get_text(strip=True) if strong else ""
+
+        role = ""
+        node = strong.next_sibling if strong else None
+        while node:
+            if getattr(node, "strip", None) and node.strip():
+                role = node.strip()
+                break
+            node = getattr(node, "next_sibling", None)
+
+        links = [{"label": a.get_text(strip=True), "href": a["href"]} for a in p.find_all("a")]
+
+        members.append({
+            "id": div.get("id", ""),
+            "name": name,
+            "role": role,
+            "img": img["src"],
+            "links": links,
+        })
+
+    if not members:
+        raise ValueError("No team members parsed — PlantNet markup may have changed.")
+    return members
+
+try:
+    team = scrape_team()
+    with open(CACHE_PATH, "w", encoding="utf-8") as f:
+        json.dump(team, f, ensure_ascii=False, indent=2)
+except Exception as e:
+    print(f"<!-- Live fetch failed ({e}), using cached team data -->")
+    if os.path.exists(CACHE_PATH):
+        with open(CACHE_PATH, encoding="utf-8") as f:
+            team = json.load(f)
+    else:
+        team = []
+
+# --- Render: every line flush-left, img self-closed ---
+print('<style>')
+print('.team-slide-container{display:flex;flex-wrap:wrap;justify-content:center;gap:1px 1px;font-size:40%;margin:0 auto;max-width:1200px;}')
+print('.team-member{display:flex;flex-direction:column;align-items:center;width:180px;margin-bottom:10px;}')
+print('.team-member img+p{margin-top:-2px !important;}')
+print('</style>')
+print('<div class="team-slide-container">')
+
+for m in team:
+    links_html = " | ".join(f'<a href="{l["href"]}">{l["label"]}</a>' for l in m["links"])
+    print(f'<div class="team-member" id="{m["id"]}">')
+    print(f'<img decoding="async" src="{m["img"]}" style="border-radius:100px;width:85px;height:85px;object-fit:cover;" />')
+    print(f'<p style="text-align:center;"><strong>{m["name"]}</strong><br/>{m["role"]}<br/>{links_html}</p>')
+    print('</div>')
+
+print('</div>')
+```
 
 <!-------------------------------------------------------------------------- -->
 
@@ -2033,3 +2512,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <!-------------------------------------------------------------------------- -->
+
+
