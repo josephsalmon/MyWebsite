@@ -1039,7 +1039,7 @@ print('</div>')
 ::: {.column width="29%"}
 
 <center>
-<img src="../2024-09-25_slides_sierra/images/sample_genus.svg" width="62%" align="middle">
+<img src="images/sample_genus.svg" width="62%" align="middle">
 </center>
 <br>
 :::
@@ -1684,14 +1684,16 @@ Observations can reflect observers own choices.
 
 :::
 
+<center>
+
+...
 
 <br>
 
-<center>
-<span style="font-size: 2.2em;"> {{<iconify ion:warning-outline>}}
+<span style="font-size: 2.2em;"> {{<iconify cuida:warning-outline>}}
+</span>  **<span style="font-size: 1.2em;"> more observations ≠ a more representative dataset</span>**
+<span style="font-size: 2.2em;"> {{<iconify cuida:warning-outline>}}
 </span>
-
- **<span style="font-size: 1.2em;"> more observations ≠ a more representative dataset</span>**
 </center>
 
 <!-------------------------------------------------------------------------- -->
@@ -1722,22 +1724,21 @@ Observations can reflect observers own choices.
 
 
 <!-------------------------------------------------------------------------- -->
-### {{<iconify gravity-ui:magnifier>}} "Frictionless Reproducibility" & new benchmarks
+### Datafication & data sharing
 <hr>
 
 ::: {.columns}
 
 ::: {.column width="63%"}
 
-
 <br>
 
-**Popular datasets limitations:**
+**Popular [labeled]{.underline} datasets limitations:**
 
 <div style="margin-left: 1em;">
 
 - structure of labels too simplistic (CIFAR-10, CIFAR-100)
-- tasks too easy to discriminate (MNIST)
+- tasks too easy to discriminate / low labels confusion (MNIST)
 - too well-balanced, same number of images per class (Imagenet)
 - duplicate, low-quality, irrelevant images [@recht2019imagenet]
 
@@ -1777,11 +1778,13 @@ Observations can reflect observers own choices.
 
 <br>
 
-**⤷ Pl@ntNet-300K:** A curated, shareable subset of Pl@ntNet, adhering to **FR-1: Datafication and Data Sharing** for frictionless reproducibility [@donoho2024data]:
+**<span style="display: inline-block; transform: rotate(-180deg);">{{<iconify fa:mail-reply >}}</span> Pl@ntNet-300K:**  a curated, shareable subset of Pl@ntNet for **[frictionless reproducibility]{.underline}** [@donoho2024data]
+
+<div style="margin-left: 1em;">
 
 - **Advance plant identification research** with real-world biodiversity data
 - **Engage the ML community** with meaningful challenges beyond synthetic benchmarks
-
+</div>
 
 <!-- ***"The collective behavior induced by frictionless research exchange is the emergent superpower driving many events that are so striking today."*** [@donoho2024data] -->
 <!------------------------------------------------------------------------ -->
@@ -1789,20 +1792,64 @@ Observations can reflect observers own choices.
 
 
 
+
+
 <!-------------------------------------------------------------------------- -->
 ### Construction of Pl@ntNet-300K {style="text-align: center;"}
 
+<br>
+
+<br>
+
+::: {.columns}
+
+::: {.column width=30%}
 
 <center>
-![](../2024-09-25_slides_sierra/images/sample_genus.svg){width=80%}
-
-Sample at genus level to preserve intra-genus ambiguity: use **hierarchical structure**
+![](images/k-southwestern-europe@2x.webp){width=90%}
 </center>
+
+:::
+
+::: {.column width=70%}
+
+<br>
+
+**[Constraints]{.underline}**:
+
+
+<div style="margin-left: 1em;">
+
+- Extract images from **South-Western Europe** (SWE): most covered regions
+- Provide 300 000 images
+- Shareable (size < **50Go** for Zenodo)
+- Need  **> 4 samples** per class for train/val/test split
+- Curated images / labels (well, really?)
+
+</div>
+
+:::
+
+:::
+
+
 <!-------------------------------------------------------------------------- -->
 
+```{python}
+#| echo: false
+import os
 
+required_files = [
+    "images/lorenz_full_plantnet.svg",
+    "images/lorenz_full_plantnet_cifar_imagenet.svg",
+    "images/lorenz_full_plantnet_subsamples.svg",
+    "images/lorenz_full_plantnet_subsamples_pn300k.svg",
+    "images/lorenz_pn300k.svg"
+]
 
-
+if not all(os.path.exists(f) for f in required_files):
+    exec(open('lorentz_curve.py').read())
+```
 
 <!-------------------------------------------------------------------------- -->
 ### {{<iconify icon-park-solid:chart-histogram-two>}} Species distribution, long tail & Lorenz curve
@@ -1810,45 +1857,151 @@ Sample at genus level to preserve intra-genus ambiguity: use **hierarchical stru
 
 :::: {.columns style='display: flex !important'}
 
-::: {.column width=82%}
+::: {.column width=88%}
 
 ::: {.r-stack}
-![](../2024-09-25_slides_sierra/images/lorentz_plantnet.svg){.fragment width=85% fragment-index=2}
+![](images/lorenz_full_plantnet.svg){.fragment width=97% fragment-index=1}
 
-![](../2024-09-25_slides_sierra/images/lorentz_plantnet300K.svg){.fragment width=85% fragment-index=3}
+![](images/lorenz_full_plantnet_cifar_imagenet.svg){.fragment width=97% fragment-index=2}
 
-![](../2024-09-25_slides_sierra/images/lorentz_with_Imagenet.svg){.fragment width=85% fragment-index=4}
+![](images/lorenz_full_plantnet_subsamples.svg){.fragment width=97% fragment-index=3}
 
-![](../2024-09-25_slides_sierra/images/lorentz_with_CIFAR_Imagenet.svg){.fragment width=85% fragment-index=5}
+:::
+:::{.fragment .fade-in-then-out fragment-index=1}
+
+<center>
+**80% species | 10% images** $\iff$ **20% species | 90% images**
+</center>
 
 :::
 
+
 :::
+
+
 
 ::: {.column style='text-align: center;'}
 
 <br>
 
-:::{.fragment fragment-index=1}
-- Earth: 400K+ species
-- Pl@ntNet: 80K+ species
-- Pl@ntNet-300K: 1K+ species
-:::
+<ul>
+  <li class="fragment" data-fragment-index="1">**Pl@ntNet (SWE)**: has a very long tail</li>
+  <li class="fragment" data-fragment-index="2">**CIFAR-100**: balanced</li>
+  <li class="fragment" data-fragment-index="2">**ImageNet**: (approx.) balanced</li>
+    <li class="fragment" data-fragment-index="3">**Pl@ntNet (SWE) - Rand**: subsampling images uniformly from  Pl@ntNet (SWE) distorts the distribution</li>
+</ul>
 
-:::{.fragment fragment-index=3}
-**[Note]{.underline}**: long tail preserved by genera subsampling
-:::
 :::
 
 ::::
 
-<br>
 
-:::{.fragment fragment-index=2}
+<!-------------------------------------------------------------------------- -->
+
+
+
+### Taxonomy detour
+
+<!-- 
+Domain: Eukaryota
+Kingdom: Plantae
+Phylum: Tracheophyta
+Class: Magnoliopsida
+Order: Asterales
+Family: Menyanthaceae
+Genus: Nymphoides
+Species: Nymphoides peltata (S.G.Gmel.) Kuntze
+
+
+ -->
+ 
+<div style="text-align: center;">
+
+![](images/Biological_classification_L_Pengo_vflip.svg){height=80%}
+
+
+
+<a href="https://commons.wikimedia.org/wiki/File:Biological_classification_L_Pengo_vflip.svg">Peter Halasz. (User:Pengo)</a>, Public domain, via Wikimedia Commons
+
+</div>
+
+
+<!-------------------------------------------------------------------------- -->
+### Hierarchical construction of Pl@ntNet-300K {style="text-align: center;"}
+
 
 <center>
-**80% of species | 11% of images** $\iff$ **20% of species | 89% of images**
+
+::: {.r-stack}
+
+![](images/sample_genus.svg){.fragment width=75% fragment-index=1}
+
+![](images/sample_genus_select.svg){.fragment width=75% fragment-index=2}
+
+![](images/sample_genus_all.svg){.fragment width=75% fragment-index=3}
+:::
+
+
+<ul>
+  <li class="fragment" data-fragment-index="1">Sample at genus level (10%) from all genera present in Pl@ntNet-300k</li>
+  <li class="fragment" data-fragment-index="3">Collect all images of such genera from Pl@ntNet (SWE)</li>
+</ul>
+
+
+
 </center>
+<!-------------------------------------------------------------------------- -->
+
+
+
+
+
+### {{<iconify icon-park-solid:chart-histogram-two>}} Species distribution, long tail & Lorenz curve
+<hr>
+
+:::: {.columns style='display: flex !important'}
+
+::: {.column width=88%}
+
+::: {.r-stack}
+![](images/lorenz_full_plantnet_pure.svg){.fragment width=97% fragment-index=1}
+
+![](images/lorenz_full_plantnet_subsamples_pure.svg){.fragment width=97% fragment-index=2}
+
+![](images/lorenz_full_plantnet_subsamples_pn300k.svg){.fragment width=97% fragment-index=3}
+
+:::
+:::{.fragment .fade-in-then-out fragment-index=1}
+
+:::
+
+
+:::
+
+
+
+::: {.column style='text-align: center;'}
+
+<br>
+
+<ul>
+  <li class="fragment" data-fragment-index="1">**Pl@ntNet (SWE)**: has a very long tail</li>
+   <li class="fragment" data-fragment-index="2">**Pl@ntNet (SWE) - Rand**: subsampling images uniformly from  Pl@ntNet (SWE) distorts the distribution</li>
+  <li class="fragment" data-fragment-index="3">**PlantNet-300K**: long tail preserved by genera subsampling
+</li>
+
+</ul>
+
+:::
+
+
+
+
+
+
+:::{.fragment fragment-index=3}
+:::
+
 
 :::
 <!-------------------------------------------------------------------------- -->
@@ -1856,7 +2009,7 @@ Sample at genus level to preserve intra-genus ambiguity: use **hierarchical stru
 
 
 <!-------------------------------------------------------------------------- -->
-### Pl@ntNet300K: Long tail visualization
+### Pl@ntNet-300K: Long tail visualization
 <hr>
 <br>
 
