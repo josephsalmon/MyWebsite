@@ -693,9 +693,17 @@ storage = display_float(data.get("storage", "N/A"))
 
 <div class="stat-label">
 
-Accounts / users
+Users with accounts
 
 </div>
+
+<div class="stat-detail">
+
+3X more users without accounts
+
+</div>
+
+
 
 :::
 
@@ -737,7 +745,7 @@ Queries
 
 <div class="stat-detail">
 
-images without species
+unlabeled images : without species
 
 </div>
 
@@ -759,7 +767,7 @@ Observations
 
 <div class="stat-detail">
 
-images with species
+labeled images: with species
 
 </div>
 
@@ -1076,7 +1084,7 @@ print('</div>')
 
 ::: {.column width="68%"}
 
-- **Learning & crowd-sourced data** [@Lefort_Charlier_Joly_Salmon22] and [@Lefort_etal24]: How to leverage multiple labels per image to improve the model? Need to **assert quality**: the workers, the images/labels, the model, etc.
+- **Learning & crowd-sourced data** [@Lefort_Charlier_Joly_Salmon22;@Lefort_etal24]: How to leverage multiple labels per image to improve the model? Need to **assert quality**: the workers, the images/labels, the model, etc.
 
 :::
 
@@ -1872,7 +1880,7 @@ if not all(os.path.exists(f) for f in required_files):
 :::{.fragment .fade-in-then-out fragment-index=1}
 
 <center>
-**80% species | 10% images** $\iff$ **20% species | 90% images**
+**80% species | 12% images** $\iff$ **20% species | 88% images**
 </center>
 
 :::
@@ -2476,8 +2484,9 @@ calibrate $t_{\alpha}^y$ **only on** $(X_i, Y_i)$ such that $Y_i = y$
 #plots2 .legend .bg {
   width: 700px !important;
 }
+
 #plots2 .legendtext {
-  font-size: 15px !important;
+  font-size: 12px !important;
   font-family: "Nunito", sans-serif !important;
 }
 </style>
@@ -2808,7 +2817,7 @@ $$
 
 
 
-Given user-chosen class weights $\omega(y)$ for $y \in \mathcal{Y}$ that sum to one, we can define the _$\omega$-weighted macro-coverage_ as
+For user-chosen class weights $\omega$  with $\omega(y)\geq 0$ and $\sum_{y \in \mathcal{Y}} \omega(y)=1$, define the _$\omega$-weighted macro-coverage_ :
 
 
 
@@ -2937,20 +2946,22 @@ $$
 
 <!-------------------------------------------------------------------------- -->
 ### Take home message
+
 <hr>
 
 
 :::: {.columns}
 
-::: {.column width="65%"}
-- Challenges in citizen science: many and varied (need more attention)
-- Crowdsourcing / Label uncertainty: helpful for **data curation**
-- Improved **data quality** $\implies$ **improved learning** performance
+::: {.column width="73%"}
+
+<br>
+
+- Challenges in citizen science: many, varied and needing more attention
 - Prediction: theory can guide the set to display
 :::
 
 
-::: {.column width="33%"}
+::: {.column width="27%"}
 
 ![](images/contact_js_short.svg)
 <!-- ![](https://raw.githubusercontent.com/josephsalmon/OrganizationFiles/master/inkscape/images/contact_js.svg) -->
@@ -2961,14 +2972,14 @@ $$
 
 :::: {.columns}
 
-::: {.column width="30%"}
+::: {.column width="24%"}
 **Dataset release**:
 :::
 
-::: {.column width="69%"}
+::: {.column width="76%"}
 
-- Pl@ntNet-300K: [https://zenodo.org/record/5645731](https://zenodo.org/record/5645731)
-- Pl@ntNet SWE flora: [https://zenodo.org/records/10782465](https://zenodo.org/records/10782465)
+- Pl@ntNet-300K-v2: [https://zenodo.org/records/10419064](https://zenodo.org/records/10419064)
+- Pl@ntNet-CrowdSWE: [https://zenodo.org/records/10782465](https://zenodo.org/records/10782465)
 :::
 ::::
 
@@ -2976,11 +2987,11 @@ $$
 
 :::: {.columns}
 
-::: {.column width="30%"}
+::: {.column width="24%"}
 **Code release**:
 :::
 
-::: {.column width="69%"}
+::: {.column width="76%"}
 
 - Toolbox: [https://peerannot.github.io/](https://peerannot.github.io/)
 - Some benchmarks: [https://benchopt.github.io/](https://benchopt.github.io/)
@@ -2989,16 +3000,16 @@ $$
 
 :::: {.columns}
 
-::: {.column width="30%"}
+::: {.column width="24%"}
 **Future work**
 :::
 
-::: {.column width="69%"}
+::: {.column width="76%"}
 
-- Handling label hierarchy
-- Human–computer interaction / performative learning / model collapse
-- Improve robustness to adversarial users
-- Leverage gamification for more quality labels [theplantgame.com](https://theplantgame.com)
+- Handling label **hierarchy**
+- Human–computer interaction / **performative learning** / model collapse
+- Improve robustness to **adversarial** users
+- Improve label **agregation**, leverage gamification  (*e.g.*, [theplantgame.com](https://theplantgame.com)), etc.
 :::
 ::::
 <!-------------------------------------------------------------------------- -->
