@@ -51,31 +51,33 @@ python -m ipykernel install --user --name quarto-prez --display-name "Python (qu
 }}
 :::
 
+
 <style>
+
 /* -------------------------------------------------------------------------- */
-/* Global typography, SVGs, references, image cards, statistics and bias UI */
+/* Global                                                                     */
 /* -------------------------------------------------------------------------- */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@200;300;400;500;600;700;800;900&family=Roboto+Mono:wght@300;400&family=Sanchez&display=swap');
 
-.vertical-line {
-  display: inline-block;
-  height: 410px;
-  margin: 0 10px;
-  border-left: 6px solid rgb(0, 0, 0);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
 svg {
-  font-family: 'Nunito Bold', 'Arial', sans-serif;
+  font-family: 'Nunito Bold', Arial, sans-serif;
 }
 
 object[data*=".svg"] text,
 object[data*=".svg"] tspan,
 embed[src*=".svg"] text,
 embed[src*=".svg"] tspan {
-  font-family: 'Nunito', Arial, sans-serif !important;
+  font-family: Nunito, Arial, sans-serif !important;
+}
+
+.vertical-line {
+  display: inline-block;
+  height: 410px;
+  margin: 0 10px;
+  border-left: 6px solid #000;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 #refs {
@@ -91,7 +93,11 @@ embed[src*=".svg"] tspan {
   overflow: visible !important;
 }
 
-/* Image cards */
+
+/* -------------------------------------------------------------------------- */
+/* Image cards                                                                */
+/* -------------------------------------------------------------------------- */
+
 .img-author-container {
   position: relative;
   display: flex;
@@ -104,12 +110,12 @@ embed[src*=".svg"] tspan {
 
 .img-author-img {
   display: block;
+  position: relative;
+  z-index: 1;
   width: 100% !important;
   object-fit: contain !important;
   background: transparent;
   border-radius: 8px;
-  position: relative;
-  z-index: 1;
 }
 
 .img-author-overlay,
@@ -121,13 +127,13 @@ embed[src*=".svg"] tspan {
   position: absolute;
   top: 15px;
   right: 35px;
+  z-index: 2;
   padding: 1px 6px;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   border-radius: 8px;
   font-size: 0.5em;
   font-weight: bold;
-  z-index: 2;
   pointer-events: none;
 }
 
@@ -145,7 +151,11 @@ embed[src*=".svg"] tspan {
   text-overflow: ellipsis;
 }
 
-/* Statistics */
+
+/* -------------------------------------------------------------------------- */
+/* Statistics                                                                 */
+/* -------------------------------------------------------------------------- */
+
 .stats-layout {
   display: grid;
   grid-template-columns: 1fr 0.5fr 1fr;
@@ -164,15 +174,14 @@ embed[src*=".svg"] tspan {
   text-align: center;
 }
 
-.stat-users { grid-column: 1; grid-row: 1; }
-.stat-queries { grid-column: 1; grid-row: 2; }
-.stat-species { grid-column: 3; grid-row: 1; }
-.stat-observations { grid-column: 3; grid-row: 2; }
-.stat-storage { grid-column: 1 / -1; grid-row: 3; }
+.stat-users        { grid-area: 1 / 1; }
+.stat-queries      { grid-area: 2 / 1; }
+.stat-species      { grid-area: 1 / 3; }
+.stat-observations { grid-area: 2 / 3; }
+.stat-storage      { grid-area: 3 / 1 / 4 / -1; }
 
 .stat-tree {
-  grid-column: 2;
-  grid-row: 1 / 3;
+  grid-area: 1 / 2 / 3 / 3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -221,74 +230,73 @@ embed[src*=".svg"] tspan {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
   }
-  .stat-tree { grid-column: 1 / -1; grid-row: 1; }
-  .stat-users { grid-column: 1; grid-row: 2; }
-  .stat-species { grid-column: 2; grid-row: 2; }
-  .stat-queries { grid-column: 1; grid-row: 3; }
-  .stat-observations { grid-column: 2; grid-row: 3; }
-  .stat-storage { grid-column: 1 / -1; grid-row: 4; }
+
+  .stat-tree         { grid-area: 1 / 1 / 2 / 3; }
+  .stat-users        { grid-area: 2 / 1; }
+  .stat-species      { grid-area: 2 / 2; }
+  .stat-queries      { grid-area: 3 / 1; }
+  .stat-observations { grid-area: 3 / 2; }
+  .stat-storage      { grid-area: 4 / 1 / 5 / 3; }
 }
 
-/* PlantNet interactive filter menus */
-#filter-container > div,
-#filter-container-2 > div {
+
+/* -------------------------------------------------------------------------- */
+/* PlantNet interactive filter menus                                          */
+/* -------------------------------------------------------------------------- */
+
+:is(#filter-container, #filter-container-2) > div {
   padding: 5px !important;
   max-width: 100% !important;
 }
 
-#filter-container > div > div:first-child,
-#filter-container-2 > div > div:first-child {
+:is(#filter-container, #filter-container-2) > div > div:first-child {
   margin-bottom: 2px !important;
   padding-bottom: 2px !important;
   font-size: 12px !important;
 }
 
-#filter-container > div > div:last-child,
-#filter-container-2 > div > div:last-child {
+:is(#filter-container, #filter-container-2) > div > div:last-child {
   gap: 5px !important;
   grid-template-columns: repeat(4, 1fr) !important;
 }
 
-#filter-container > div > div:last-child > div:nth-child(n+2),
-#filter-container-2 > div > div:last-child > div:nth-child(n+2) {
+:is(#filter-container, #filter-container-2) > div > div:last-child > div:nth-child(n + 2) {
   display: contents !important;
 }
 
-#filter-container div[role="heading"],
-#filter-container-2 div[role="heading"] {
+:is(#filter-container, #filter-container-2) div[role="heading"] {
   display: none !important;
 }
 
-#filter-container label,
-#filter-container-2 label {
+:is(#filter-container, #filter-container-2) label {
   margin-left: 4px !important;
   font-size: 10px !important;
 }
 
-#filter-container .status-color-box,
-#filter-container-2 .status-color-box {
+:is(#filter-container, #filter-container-2) .status-color-box {
   width: 10px !important;
   height: 10px !important;
   margin-right: 4px !important;
 }
 
-#filter-container input[type="checkbox"],
-#filter-container-2 input[type="checkbox"] {
+:is(#filter-container, #filter-container-2) input[type="checkbox"] {
   margin: 0 !important;
   transform: scale(0.7);
 }
 
-#filter-container > div > div:last-child > div:first-child label,
-#filter-container-2 > div > div:last-child > div:first-child label {
+:is(#filter-container, #filter-container-2) > div > div:last-child > div:first-child label {
   font-size: 11px !important;
 }
 
-#filter-container > div > div:last-child > div > div,
-#filter-container-2 > div > div:last-child > div > div {
+:is(#filter-container, #filter-container-2) > div > div:last-child > div > div {
   padding: 0 !important;
 }
 
-/* Biases overview */
+
+/* -------------------------------------------------------------------------- */
+/* Biases                                                                     */
+/* -------------------------------------------------------------------------- */
+
 .biases-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -342,11 +350,20 @@ embed[src*=".svg"] tspan {
 }
 
 @media (max-width: 800px) {
-  .biases-grid { grid-template-columns: 1fr; }
-  .bias-card { min-height: auto; }
+  .biases-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bias-card {
+    min-height: auto;
+  }
 }
 
-/* Image grid / team helpers */
+
+/* -------------------------------------------------------------------------- */
+/* Image grid / team                                                          */
+/* -------------------------------------------------------------------------- */
+
 .img-author-group-centered {
   display: flex;
   flex-wrap: wrap;
@@ -359,7 +376,6 @@ embed[src*=".svg"] tspan {
 
 .img-author-group-centered.img-4-per-row {
   gap: 3vw !important;
-  justify-content: center;
 }
 
 .img-author-group-centered.img-4-per-row .img-author-container {
@@ -373,8 +389,8 @@ embed[src*=".svg"] tspan {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1px;
-  margin: 0 auto;
   max-width: 1200px;
+  margin: 0 auto;
   font-size: 40%;
 }
 
@@ -386,7 +402,10 @@ embed[src*=".svg"] tspan {
   margin-bottom: 10px;
 }
 
-.team-member img + p { margin-top: -2px !important; }
+.team-member img + p {
+  margin-top: -2px !important;
+}
+
 </style>
 
 <!------------------------------------------------------------------------ -->
@@ -748,7 +767,8 @@ WCVP: *World Checklist of Vascular Plants* database.
 </div>
 
 
-<!------------------------------------------------------------------------ -->
+<!------------------------------<!-- <hr class="hr-teal"> -->
+------------------------------------------ -->
 ### {{< iconify streamline-ultimate:workflow-teamwork-user-high-five-bold >}} The current Pl@ntNet Team
 <!-- copy paste here the full list of plantnet pople -->
 ```{=html}
@@ -760,77 +780,115 @@ WCVP: *World Checklist of Vascular Plants* database.
 ```{python}
 #| echo: false
 #| output: asis
-import requests, json, os
+
+import json
+import os
+import requests
 from bs4 import BeautifulSoup
 
 CACHE_PATH = "team_cache.json"
 URL = "https://plantnet.org/team/"
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; quarto-slide-builder/1.0)"}
 
+
 def scrape_team():
     resp = requests.get(URL, headers=HEADERS, timeout=10)
     resp.raise_for_status()
     soup = BeautifulSoup(resp.text, "html.parser")
 
-    members = []
+    team = []
     for img in soup.select(".entry-content div[id] > img"):
         div = img.parent
         p = div.find("p")
         if not p:
             continue
-        strong = p.find("strong")
-        name = strong.get_text(strip=True) if strong else ""
+
+        name_tag = p.find("strong")
+        name = name_tag.get_text(strip=True) if name_tag else ""
 
         role = ""
-        node = strong.next_sibling if strong else None
-        while node:
-            if getattr(node, "strip", None) and node.strip():
-                role = node.strip()
-                break
-            node = getattr(node, "next_sibling", None)
+        if name_tag:
+            role = next(
+                (
+                    node.strip()
+                    for node in name_tag.next_siblings
+                    if isinstance(node, str) and node.strip()
+                ),
+                "",
+            )
 
-        links = [{"label": a.get_text(strip=True), "href": a["href"]} for a in p.find_all("a")]
-
-        members.append({
+        team.append({
             "id": div.get("id", ""),
             "name": name,
             "role": role,
             "img": img["src"],
-            "links": links,
+            "links": [
+                {"label": a.get_text(strip=True), "href": a["href"]}
+                for a in p.find_all("a")
+            ],
         })
 
-    if not members:
-        raise ValueError("No team members parsed — PlantNet markup may have changed.")
-    return members
+    if not team:
+        raise ValueError("No team members parsed.")
+    return team
+
 
 try:
     team = scrape_team()
     with open(CACHE_PATH, "w", encoding="utf-8") as f:
-        json.dump(team, f, ensure_ascii=False, indent=2)
+        json.dump(team, f, ensure_ascii=False)
 except Exception as e:
-    print(f"<!-- Live fetch failed ({e}), using cached team data -->")
-    if os.path.exists(CACHE_PATH):
+    print(f"<!-- Live fetch failed: {e} -->")
+    try:
         with open(CACHE_PATH, encoding="utf-8") as f:
             team = json.load(f)
-    else:
+    except (FileNotFoundError, json.JSONDecodeError):
         team = []
 
-# --- Render: every line flush-left, img self-closed ---
-print('<style>')
-print('.team-slide-container{display:flex;flex-wrap:wrap;justify-content:center;gap:1px 1px;font-size:40%;margin:0 auto;max-width:1200px;}')
-print('.team-member{display:flex;flex-direction:column;align-items:center;width:180px;margin-bottom:10px;}')
-print('.team-member img+p{margin-top:-2px !important;}')
-print('</style>')
-print('<div class="team-slide-container">')
+
+print("""
+<style>
+.team-slide-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1px;
+  font-size: 40%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+  margin-bottom: 10px;
+}
+
+.team-member img + p {
+  margin-top: -2px !important;
+}
+</style>
+<div class="team-slide-container">
+""")
 
 for m in team:
-    links_html = " | ".join(f'<a href="{l["href"]}">{l["label"]}</a>' for l in m["links"])
-    print(f'<div class="team-member" id="{m["id"]}">')
-    print(f'<img decoding="async" src="{m["img"]}" style="border-radius:100px;width:85px;height:85px;object-fit:cover;" />')
-    print(f'<p style="text-align:center;"><strong>{m["name"]}</strong><br/>{m["role"]}<br/>{links_html}</p>')
-    print('</div>')
+    links = " | ".join(
+        f'<a href="{x["href"]}">{x["label"]}</a>'
+        for x in m["links"]
+    )
+    print(
+        f'<div class="team-member" id="{m["id"]}">'
+        f'<img src="{m["img"]}" '
+        f'style="border-radius:100px;width:85px;height:85px;object-fit:cover;">'
+        f'<p style="text-align:center;">'
+        f'<strong>{m["name"]}</strong><br>'
+        f'{m["role"]}<br>{links}</p>'
+        f'</div>'
+    )
 
-print('</div>')
+print("</div>")
 ```
 
 <!-------------------------------------------------------------------------- -->
@@ -2759,5 +2817,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <!-------------------------------------------------------------------------- -->
-
-
