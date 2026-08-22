@@ -458,8 +458,16 @@ embed[src*=".svg"] tspan {
 ::::
 
 
+<!------------------------------------------------------------------------ --> 
+# {.section-background}
+
+<div style="display: flex; justify-content: space-between; font-size: 5rem; align-items: center; width: 100%; padding: 0 2rem;">Pl@ntNet insight<br><br><br><br><img src="images/plantnet_icone_square_white.svg" alt="Tree with roots" width="25%"></div>
+
+
 <!------------------------------------------------------------------------ -->
-# Pl@ntNet insights {.section-background}
+
+
+
 <!------------------------------------------------------------------------ -->
 
 
@@ -533,12 +541,59 @@ A machine learning-driven **citizen science** platform for mobile plant identifi
 <!------------------------------------------------------------------------ -->
 
 
+
+<!-------------------------------------------------------------------------- -->
+
+### {{< iconify fluent:people-community-20-filled >}} Pl@ntNet & Cooperative Learning
+
+::: {.r-stack}
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_0.svg){.fragment width=100% fragment-index=2}
+
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_1.svg){.fragment width=100% fragment-index=3}
+
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_2.svg){.fragment width=100% fragment-index=4}
+
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_3.svg){.fragment width=100% fragment-index=5}
+
+![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_4.svg){.fragment width=100% fragment-index=6}
+<!-- SVG fonts embedding trick -->
+<!-- https://lvngd.com/blog/how-embed-google-font-svg/ -->
+<!-- https://amio.github.io/embedded-google-fonts/ -->
+:::
 <!------------------------------------------------------------------------ -->
-### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet: usage
+
+
+<!------------------------------------------------------------------------ -->
+### {{< iconify vaadin:hourglass-start >}} Chronology of Pl@ntNet {.center }
 <hr>
 
-<br>
+<center>
+<img src="images/PlantNet-overview-August-2026_en.svg" width="70%" >
+</center>
+
+. . .
+
+<center>
+
+**Note:** I am mostly innocent, I started working with the Pl@ntNet team in 2020
+
+</center>
+<!------------------------------------------------------------------------ -->
+
+
+<!------------------------------------------------------------------------ -->
+### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet: Importance & usage
+<hr>
+
 <div style="text-align: center;">
+
+<img src="images/biomass.svg" width="20%" align="middle" >
+
+<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
+
+
+
+<br>
 
 <img src="../2024-09-25_slides_sierra/images/plantnet_usage_rasterized.svg" width="95%" align="middle" >
 
@@ -547,8 +602,282 @@ A machine learning-driven **citizen science** platform for mobile plant identifi
 
 
 <!------------------------------------------------------------------------ -->
-### Pl@ntNet : a digital commons project
+### {{< iconify eos-icons:science >}} Scientific challenges
+<hr>
 
+:::: {.columns style='display: flex !important; gap: 2rem;'}
+
+::: {.column width="10%" }
+:::
+
+::: {.column width="40%" style="padding: 0.5rem;"}
+
+**A multidisciplinary collaboration:**
+
+<div style="margin-left: 1em;">
+
+- Stat / ML researchers
+- Ecologists
+- Engineers
+- Citizen contributors
+
+</div>
+
+:::
+
+::: {.column width="10%" }
+:::
+
+::: {.column width="55%" style="padding: 0.5rem;"}
+
+**Addressing open challenges:**
+
+<div style="margin-left: 1em;">
+
+- Theoretical foundations
+- Methodological advances
+- Large-scale computational needs
+- Cross-disciplinary integration
+</div>
+
+:::
+
+::::
+
+. . .
+
+<center>
+![](images/liftarn_Uncle_Sam_pointing.svg){width=23%}
+
+**[We need you]{.underline}**: come and help us improve it, one way or another!
+
+</center>
+<!------------------------------------------------------------------------ -->
+
+
+<!-- ---------------------------------------------------------------------- -->
+### {{< iconify streamline-ultimate:workflow-teamwork-user-high-five-bold >}} The current Pl@ntNet Team
+```{=html}
+
+<div class="img-author-group-centered img-4-per-row">
+
+```
+
+```{python}
+#| echo: false
+#| output: asis
+
+import json
+import os
+import requests
+from bs4 import BeautifulSoup
+
+CACHE_PATH = "team_cache.json"
+URL = "https://plantnet.org/team/"
+HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; quarto-slide-builder/1.0)"}
+
+
+def scrape_team():
+    resp = requests.get(URL, headers=HEADERS, timeout=10)
+    resp.raise_for_status()
+    soup = BeautifulSoup(resp.text, "html.parser")
+
+    team = []
+    for img in soup.select(".entry-content div[id] > img"):
+        div = img.parent
+        p = div.find("p")
+        if not p:
+            continue
+
+        name_tag = p.find("strong")
+        name = name_tag.get_text(strip=True) if name_tag else ""
+
+        role = ""
+        if name_tag:
+            role = next(
+                (
+                    node.strip()
+                    for node in name_tag.next_siblings
+                    if isinstance(node, str) and node.strip()
+                ),
+                "",
+            )
+
+        team.append({
+            "id": div.get("id", ""),
+            "name": name,
+            "role": role,
+            "img": img["src"],
+            "links": [
+                {"label": a.get_text(strip=True), "href": a["href"]}
+                for a in p.find_all("a")
+            ],
+        })
+
+    if not team:
+        raise ValueError("No team members parsed.")
+    return team
+
+
+try:
+    team = scrape_team()
+    with open(CACHE_PATH, "w", encoding="utf-8") as f:
+        json.dump(team, f, ensure_ascii=False)
+except Exception as e:
+    print(f"<!-- Live fetch failed: {e} -->")
+    try:
+        with open(CACHE_PATH, encoding="utf-8") as f:
+            team = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        team = []
+
+
+print("""
+<style>
+.team-slide-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1px;
+  font-size: 40%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+  margin-bottom: 10px;
+}
+
+.team-member img + p {
+  margin-top: -2px !important;
+}
+</style>
+<div class="team-slide-container">
+""")
+
+for m in team:
+    links = " | ".join(
+        f'<a href="{x["href"]}">{x["label"]}</a>'
+        for x in m["links"]
+    )
+    print(
+        f'<div class="team-member" id="{m["id"]}">'
+        f'<img src="{m["img"]}" '
+        f'style="border-radius:100px;width:85px;height:85px;object-fit:cover;">'
+        f'<p style="text-align:center;">'
+        f'<strong>{m["name"]}</strong><br>'
+        f'{m["role"]}<br>{links}</p>'
+        f'</div>'
+    )
+
+print("</div>")
+```
+<!------------------------------------------------------------------------ -->
+
+
+
+<!------------------------------------------------------------------------ -->
+### {{<iconify bxs:user-detail>}} Some personal contributions
+<hr>
+
+<br>
+
+:::: {.columns }
+
+::: {.column width="68%"}
+
+- **Pl@ntNet-300K** [@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean_Lorieul_Salmon2021]: **Creation** and **release** of a large-scale dataset sharing the same property (Long Tail!) as Pl@ntNet; available for the community to improve learning systems
+
+:::
+
+::: {.column width="29%"}
+
+<center>
+<img src="images/sample_genus_all.svg" width="62%" align="middle">
+</center>
+<br>
+:::
+
+::::
+
+
+::: fragment
+
+:::: columns
+
+::: {.column width="68%"}
+
+- **Prediction uncertainty quantification** with long tail data [@Ding_Fermanian_Salmon25] : providing prediction sets with statistical guarantees with Conformal Prediction
+
+:::
+
+::: {.column width="29%"}
+<center>
+<img src="images/set_prediction.png" width="53%" align="middle">
+</center>
+<br>
+:::
+
+::::
+
+:::
+
+
+::: fragment
+
+:::: columns
+
+::: {.column width="68%"}
+
+- **Learning & crowd-sourced data** [@Lefort_Charlier_Joly_Salmon22;@Lefort_etal24]: How to leverage multiple labels per image to improve the model? Need to **assert quality**: the workers, the images/labels, the model, etc.
+
+:::
+
+::: {.column width="29%"}
+<center>
+<img src="../2024-09-25_slides_sierra/images/fullpipeline_small.svg" width="78%" align="middle">
+</center>
+<br>
+:::
+
+::::
+
+:::
+<!------------------------------------------------------------------------ -->
+
+
+<!------------------------------------------------------------------------ -->
+# {.section-background}
+
+
+<div style="display: flex; justify-content: space-between; font-size: 1.em; align-items: center; width: 100%; padding: 0 2rem;">Pl@ntNet,<br>challenging standard ML assumptions <img src="images/roots_icon.svg" alt="Tree with roots" width="25%"></div> 
+<!------------------------------------------------------------------------ -->
+
+
+<!------------------------------------------------------------------------ -->
+### Pl@ntNet: Supervised learning Mutliclass classification challenges
+
+- **massive size**: 
+    - huge amount of samples (images)
+    - huge amount of classes (species)
+
+- highly **structured** labels
+  - **hierarchical** label structure (tree of life)
+  - confusions labels
+
+- **biased** citizen-science dataset
+
+<!------------------------------------------------------------------------ -->
+
+
+
+
+<!------------------------------------------------------------------------ -->
+### Pl@ntNet : a digital commons project
 
 ```{python}
 
@@ -736,7 +1065,6 @@ labeled images: with species
 
 ::: {.stat-card .stat-tree}
 
-<img src="images/1538174846_tree_root_simplified.svg" alt="Tree with roots">
 
 :::
 
@@ -760,308 +1088,12 @@ Storage
 
 <div class="stats-source">
 
-Source: <a href="https://identify.plantnet.org/en/stats">Pl@ntNet stats</a>
+[Source]{.underline}: <a href="https://identify.plantnet.org/en/stats">Pl@ntNet stats</a>
 
 WCVP: *World Checklist of Vascular Plants* database.
-
 </div>
+<!-- ---------------------------------------------------------------------- -->
 
-
-<!------------------------------<!-- <hr class="hr-teal"> -->
------------------------------------------- -->
-### {{< iconify streamline-ultimate:workflow-teamwork-user-high-five-bold >}} The current Pl@ntNet Team
-<!-- copy paste here the full list of plantnet pople -->
-```{=html}
-
-<div class="img-author-group-centered img-4-per-row">
-
-```
-
-```{python}
-#| echo: false
-#| output: asis
-
-import json
-import os
-import requests
-from bs4 import BeautifulSoup
-
-CACHE_PATH = "team_cache.json"
-URL = "https://plantnet.org/team/"
-HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; quarto-slide-builder/1.0)"}
-
-
-def scrape_team():
-    resp = requests.get(URL, headers=HEADERS, timeout=10)
-    resp.raise_for_status()
-    soup = BeautifulSoup(resp.text, "html.parser")
-
-    team = []
-    for img in soup.select(".entry-content div[id] > img"):
-        div = img.parent
-        p = div.find("p")
-        if not p:
-            continue
-
-        name_tag = p.find("strong")
-        name = name_tag.get_text(strip=True) if name_tag else ""
-
-        role = ""
-        if name_tag:
-            role = next(
-                (
-                    node.strip()
-                    for node in name_tag.next_siblings
-                    if isinstance(node, str) and node.strip()
-                ),
-                "",
-            )
-
-        team.append({
-            "id": div.get("id", ""),
-            "name": name,
-            "role": role,
-            "img": img["src"],
-            "links": [
-                {"label": a.get_text(strip=True), "href": a["href"]}
-                for a in p.find_all("a")
-            ],
-        })
-
-    if not team:
-        raise ValueError("No team members parsed.")
-    return team
-
-
-try:
-    team = scrape_team()
-    with open(CACHE_PATH, "w", encoding="utf-8") as f:
-        json.dump(team, f, ensure_ascii=False)
-except Exception as e:
-    print(f"<!-- Live fetch failed: {e} -->")
-    try:
-        with open(CACHE_PATH, encoding="utf-8") as f:
-            team = json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        team = []
-
-
-print("""
-<style>
-.team-slide-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1px;
-  font-size: 40%;
-  margin: 0 auto;
-  max-width: 1200px;
-}
-
-.team-member {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 180px;
-  margin-bottom: 10px;
-}
-
-.team-member img + p {
-  margin-top: -2px !important;
-}
-</style>
-<div class="team-slide-container">
-""")
-
-for m in team:
-    links = " | ".join(
-        f'<a href="{x["href"]}">{x["label"]}</a>'
-        for x in m["links"]
-    )
-    print(
-        f'<div class="team-member" id="{m["id"]}">'
-        f'<img src="{m["img"]}" '
-        f'style="border-radius:100px;width:85px;height:85px;object-fit:cover;">'
-        f'<p style="text-align:center;">'
-        f'<strong>{m["name"]}</strong><br>'
-        f'{m["role"]}<br>{links}</p>'
-        f'</div>'
-    )
-
-print("</div>")
-```
-
-<!-------------------------------------------------------------------------- -->
-
-### {{< iconify fluent:people-community-20-filled >}} Pl@ntNet & Cooperative Learning
-
-::: {.r-stack}
-![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_0.svg){.fragment width=100% fragment-index=2}
-
-![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_1.svg){.fragment width=100% fragment-index=3}
-
-![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_2.svg){.fragment width=100% fragment-index=4}
-
-![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_3.svg){.fragment width=100% fragment-index=5}
-
-![](../2024-09-25_slides_sierra/images/plantnet_schema_global_js_4.svg){.fragment width=100% fragment-index=6}
-<!-- SVG fonts embedding trick -->
-<!-- https://lvngd.com/blog/how-embed-google-font-svg/ -->
-<!-- https://amio.github.io/embedded-google-fonts/ -->
-:::
-<!------------------------------------------------------------------------ -->
-
-
-<!------------------------------------------------------------------------ -->
-### {{< iconify vaadin:hourglass-start >}} Chronology of Pl@ntNet {.center }
-<hr>
-
-
-<center>
-<img src="images/PlantNet-overview-Janv-2026_en.svg" width="80%" >
-</center>
-
-. . .
-
-<center>
-
-**Note:** I am mostly innocent, I started working with the Pl@ntNet team in 2020
-
-</center>
-<!------------------------------------------------------------------------ -->
-
-
-<!------------------------------------------------------------------------ -->
-### {{< iconify eos-icons:science >}} Scientific challenges
-<hr>
-
-:::: {.columns style='display: flex !important; gap: 2rem;'}
-
-::: {.column width="50%" style="padding: 0.5rem;"}
-
-**A multidisciplinary collaboration:**
-
-<div style="margin-left: 1em;">
-
-- Stat / ML researchers
-- Ecologists
-- Engineers
-- Citizen contributors
-
-</div>
-
-:::
-
-::: {.column width="50%" style="padding: 0.5rem;"}
-
-**Addressing open challenges:**
-
-<div style="margin-left: 1em;">
-
-- Theoretical foundations
-- Methodological advances
-- Large-scale computational needs
-- Cross-disciplinary integration
-</div>
-
-
-:::
-::::
-
-
-. . .
-
-
-<center>
-![](images/liftarn_Uncle_Sam_pointing.svg){width=23%}
-
-**[We need you]{.underline}**: come and help us improve it, one way or another!
-
-</center>
-
-<!------------------------------------------------------------------------ -->
-
-
-<!------------------------------------------------------------------------ -->
-# Contributions {.section-background}
-<!------------------------------------------------------------------------ -->
-
-
-<!------------------------------------------------------------------------ -->
-### {{<iconify bxs:user-detail>}} Some personal contributions
-<hr>
-
-<br>
-
-:::: {.columns }
-
-::: {.column width="68%"}
-
-- **Pl@ntNet-300K** [@Garcin_Joly_Bonnet_Affouard_Lombardo_Chouet_Servajean_Lorieul_Salmon2021]: **Creation** and **release** of a large-scale dataset sharing the same property (Long Tail!) as Pl@ntNet; available for the community to improve learning systems
-
-:::
-
-::: {.column width="29%"}
-
-<center>
-<img src="images/sample_genus_all.svg" width="62%" align="middle">
-</center>
-<br>
-:::
-
-::::
-
-
-::: fragment
-
-:::: columns
-
-::: {.column width="68%"}
-
-- **Prediction uncertainty quantification** with long tail data [@Ding_Fermanian_Salmon25] : providing prediction sets with statistical guarantees with Conformal Prediction
-
-:::
-
-::: {.column width="29%"}
-<center>
-<img src="images/set_prediction.png" width="53%" align="middle">
-</center>
-<br>
-:::
-
-::::
-
-:::
-
-
-::: fragment
-
-:::: columns
-
-::: {.column width="68%"}
-
-- **Learning & crowd-sourced data** [@Lefort_Charlier_Joly_Salmon22;@Lefort_etal24]: How to leverage multiple labels per image to improve the model? Need to **assert quality**: the workers, the images/labels, the model, etc.
-
-:::
-
-::: {.column width="29%"}
-<center>
-<img src="../2024-09-25_slides_sierra/images/fullpipeline_small.svg" width="78%" align="middle">
-</center>
-<br>
-:::
-
-::::
-
-:::
-
-
-<!------------------------------------------------------------------------ -->
-
-
-<!------------------------------------------------------------------------ -->
-# Pl@ntNet data characteristics {.section-background}
-<!------------------------------------------------------------------------ -->
 
 
 <!------------------------------------------------------------------------ -->
@@ -1218,14 +1250,12 @@ print("</div>")
 <!-------------------------------------------------------------------------- -->
 
 
-<!-------------------------------------------------------------------------- -->
-## Sampling bias {.section-background-small}
-<!-------------------------------------------------------------------------- -->
+# {.section-background}
+
+<div style="display: flex; justify-content: space-between; font-size: 4rem; align-items: center; width: 100%; padding: 0 2rem;"> Bias in Citizen Science Data<br><br><br><br><br><br><img src="images/biais.svg" alt="Tree with roots" width="25%"></div>
 
 
 <!-------------------------------------------------------------------------- -->
-
-
 ### {{<iconify gis:globe-earth-alt>}} Geographic bias (Pl@ntNet observations)
 
 <hr>
@@ -1443,17 +1473,6 @@ print("</div>")
   resetBtn.addEventListener('click', resetView);
 })();
 </script>
-
-<!-- ### {{<iconify gis:globe-earth-alt>}} Geographic bias
-
-
-<div style="display: flex; flex-direction: column;">
-<center>
-<img src="../2024-09-25_slides_sierra/images/plantnet_bias_geographic04_04_2024.png" style="width:100%; border-radius: 15px;" alt="Spatial density of images collected by Pl@ntNet (13/04/2024)">
-
-Spatial density of images collected by Pl@ntNet (13/04/2024)
-</center>
-</div> -->
 <!-------------------------------------------------------------------------- -->
 
 
@@ -1662,7 +1681,11 @@ Observations can reflect observers own choices.
 <!-------------------------------------------------------------------------- -->
 
 <!-------------------------------------------------------------------------- -->
-## The Pl@ntNet-300K dataset {.section-background-small}
+
+# {.section-background}
+
+<div style="display: flex; justify-content: space-between; font-size: 4rem; align-items: center; width: 100%; padding: 0 2rem;">The Pl@ntNet-300K dataset<br><br><br><br><img src="images/1538174846_tree_root_simplified_white.svg" alt="Tree with roots" width="25%"></div>
+
 <!-------------------------------------------------------------------------- -->
 
 
@@ -2237,7 +2260,16 @@ Provide a real life scenario for supervised learning, with multi-class and long-
 
 
 <!-------------------------------------------------------------------------- -->
-# Prediction<br>&<br>uncertainty quantification {.section-background}
+
+# {.section-background}
+
+
+<center>
+<div style="font-size: 4rem; text-align: center; width: 100%; padding: 0 2rem;">
+Uncertainty quantification with long-tail<br><br>
+<img src="images/long_tail.svg" alt="Long tail plot" width="80%">
+</div>
+
 <!-------------------------------------------------------------------------- -->
 
 
