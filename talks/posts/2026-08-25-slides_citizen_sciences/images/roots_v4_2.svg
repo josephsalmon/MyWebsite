@@ -1,0 +1,2205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="270.60251mm"
+   height="99.858932mm"
+   viewBox="-71.8 -4 270.6025 99.858932"
+   version="1.1"
+   id="svg223"
+   sodipodi:docname="roots_v4_2.svg"
+   inkscape:version="1.4.4 (1:1.4.4+202605061432+dcaf3e7d9e)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs223">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect286"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,1.9594591,0,1 @ F,0,0,1,0,2.0050357,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect280"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,5.6906549,0,1 @ F,0,0,1,0,5.0199713,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect279"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,4.3394364,0,1 @ F,0,0,1,0,5.078,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect278"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,6.977,0,1 @ F,0,0,1,0,7.92724,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect277"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,4.3037867,0,1 @ F,0,1,1,0,5.458,0,1 @ F,0,0,1,0,5.458,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect276"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,1,1,0,0,0,1 @ F,0,1,1,0,0.59947929,0,1 @ F,0,1,1,0,0.59947929,0,1 @ F,0,0,1,0,0.59947929,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect275"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,2.7563885,0,1 @ F,0,0,1,0,2.7650962,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview223"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.61655335"
+     inkscape:cx="569.2938"
+     inkscape:cy="44.60279"
+     inkscape:window-width="1610"
+     inkscape:window-height="986"
+     inkscape:window-x="70"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg223" />
+  <g
+     id="g223"
+     transform="translate(25.785166,-1.6560654)">
+    <path
+       d="M 0,0 Q 4.14,10.35 0,20.7"
+       style="fill:none;stroke:#001919;stroke-width:2.8;stroke-linecap:round;stroke-opacity:0.92"
+       id="path1" />
+    <path
+       d="m 0,20.7 q -3.981,9.031 -0.635,18.316"
+       style="fill:none;stroke:#003232;stroke-width:2.8;stroke-linecap:round;stroke-opacity:0.92"
+       id="path2" />
+    <path
+       d="M -0.635,39.016 Q 1.39,46.528 -2.324,53.363"
+       style="fill:none;stroke:#004c4c;stroke-width:2.52;stroke-linecap:round;stroke-opacity:0.92"
+       id="path3" />
+    <path
+       d="M -2.324,53.363 Q -6.33,58.872 -5.431,65.624"
+       style="fill:none;stroke:#006666;stroke-width:2.268;stroke-linecap:round;stroke-opacity:0.92"
+       id="path4" />
+    <path
+       d="m -5.431,65.624 q 0.718,4.997 -2.209,9.111"
+       style="fill:none;stroke:#007f7f;stroke-width:2.041;stroke-linecap:round;stroke-opacity:0.92"
+       id="path5" />
+    <path
+       d="m -7.64,74.735 q -2.5,3.776 -1.706,8.234"
+       style="fill:none;stroke:#009999;stroke-width:1.837;stroke-linecap:round;stroke-opacity:0.92"
+       id="path6" />
+    <path
+       d="m -9.346,82.969 q 0.55,3.353 -1.364,6.16"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path7" />
+    <path
+       d="m -10.71,89.129 q -1.896,2.353 -1.647,5.364"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path8" />
+    <path
+       d="M 0,0 Q -6.641,3.39 -9.111,10.425"
+       style="fill:none;stroke:#001919;stroke-width:2.907;stroke-linecap:round;stroke-opacity:0.92"
+       id="path9" />
+    <path
+       d="m -9.111,10.425 q -2.705,5.915 -8.744,8.333"
+       style="fill:none;stroke:#003232;stroke-width:2.907;stroke-linecap:round;stroke-opacity:0.92"
+       id="path10" />
+    <path
+       d="m -17.855,18.758 q -1.513,5.222 -6.209,7.96"
+       style="fill:none;stroke:#004c4c;stroke-width:2.616;stroke-linecap:round;stroke-opacity:0.92"
+       id="path11" />
+    <path
+       d="m -24.064,26.718 q -1.436,4.611 -5.656,6.961"
+       style="fill:none;stroke:#006666;stroke-width:2.354;stroke-linecap:round;stroke-opacity:0.92"
+       id="path12" />
+    <path
+       d="m -29.72,33.679 q -1.514,3.622 -5.109,5.201"
+       style="fill:none;stroke:#007f7f;stroke-width:2.119;stroke-linecap:round;stroke-opacity:0.92"
+       id="path13" />
+    <path
+       d="m -34.829,38.88 q -3.132,0.988 -4.719,3.864"
+       style="fill:none;stroke:#009999;stroke-width:1.907;stroke-linecap:round;stroke-opacity:0.92"
+       id="path14" />
+    <path
+       d="m -39.548,42.744 q -2.702,0.513 -4.305,2.748"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.716;stroke-linecap:round;stroke-opacity:0.92"
+       id="path15" />
+    <path
+       d="m -43.853,45.492 q -2.16,0.425 -3.431,2.222"
+       style="fill:none;stroke:#00cccc;stroke-width:1.545;stroke-linecap:round;stroke-opacity:0.92"
+       id="path16" />
+    <path
+       d="M 0,0 Q 2.871,5.802 8.951,8.023"
+       style="fill:none;stroke:#001919;stroke-width:2.886;stroke-linecap:round;stroke-opacity:0.92"
+       id="path17" />
+    <path
+       d="m 8.951,8.023 q 4.646,1.333 7.092,5.503"
+       style="fill:none;stroke:#003232;stroke-width:2.886;stroke-linecap:round;stroke-opacity:0.92"
+       id="path18" />
+    <path
+       d="m 16.043,13.526 q 2.231,3.583 6.318,4.638"
+       style="fill:none;stroke:#004c4c;stroke-width:2.598;stroke-linecap:round;stroke-opacity:0.92"
+       id="path19" />
+    <path
+       d="m 22.361,18.164 q 2.729,1.666 3.557,4.755"
+       style="fill:none;stroke:#006666;stroke-width:2.338;stroke-linecap:round;stroke-opacity:0.92"
+       id="path20" />
+    <path
+       d="m 25.918,22.919 q 2.082,1.47 2.575,3.97"
+       style="fill:none;stroke:#007f7f;stroke-width:2.104;stroke-linecap:round;stroke-opacity:0.92"
+       id="path21" />
+    <path
+       d="m 28.493,26.889 q 0.291,2.018 1.893,3.278"
+       style="fill:none;stroke:#009999;stroke-width:1.894;stroke-linecap:round;stroke-opacity:0.92"
+       id="path22" />
+    <path
+       d="m 30.386,30.167 q 0.307,1.655 1.671,2.641"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.704;stroke-linecap:round;stroke-opacity:0.92"
+       id="path23" />
+    <path
+       d="m 32.057,32.808 q 1.172,0.721 1.523,2.052"
+       style="fill:none;stroke:#00cccc;stroke-width:1.534;stroke-linecap:round;stroke-opacity:0.92"
+       id="path24" />
+    <path
+       d="m 25.918,22.919 q 2.464,0.535 3.879,2.622"
+       style="fill:none;stroke:#007f7f;stroke-width:2.104;stroke-linecap:round;stroke-opacity:0.92"
+       id="path25" />
+    <path
+       d="m 29.797,25.541 q 2.219,0.472 3.5,2.344"
+       style="fill:none;stroke:#009999;stroke-width:1.894;stroke-linecap:round;stroke-opacity:0.92"
+       id="path26" />
+    <path
+       d="m 33.297,27.885 q 1.847,0.57 2.792,2.257"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.704;stroke-linecap:round;stroke-opacity:0.92"
+       id="path27" />
+    <path
+       d="m 36.089,30.142 q 0.8,1.435 2.368,1.922"
+       style="fill:none;stroke:#00cccc;stroke-width:1.534;stroke-linecap:round;stroke-opacity:0.92"
+       id="path28" />
+    <path
+       d="m 22.361,18.164 q 3.182,0.224 5.333,2.58"
+       style="fill:none;stroke:#006666;stroke-width:2.338;stroke-linecap:round;stroke-opacity:0.92"
+       id="path29" />
+    <path
+       d="m 27.694,20.744 q 1.162,2.127 3.47,2.865"
+       style="fill:none;stroke:#007f7f;stroke-width:2.104;stroke-linecap:round;stroke-opacity:0.92"
+       id="path30" />
+    <path
+       d="m 31.164,23.609 q 1.933,0.464 3.012,2.134"
+       style="fill:none;stroke:#009999;stroke-width:1.894;stroke-linecap:round;stroke-opacity:0.92"
+       id="path31" />
+    <path
+       d="m 34.176,25.743 q 1.041,1.232 2.645,1.406"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.704;stroke-linecap:round;stroke-opacity:0.92"
+       id="path32" />
+    <path
+       d="m 36.821,27.149 q 0.938,0.805 1.063,2.035"
+       style="fill:none;stroke:#00cccc;stroke-width:1.534;stroke-linecap:round;stroke-opacity:0.92"
+       id="path33" />
+    <path
+       d="m 36.821,27.149 q 0.966,0.983 2.343,1.029"
+       style="fill:none;stroke:#00cccc;stroke-width:1.534;stroke-linecap:round;stroke-opacity:0.92"
+       id="path34" />
+    <path
+       d="m 36.821,27.149 q 1.224,0.146 2.211,-0.593"
+       style="fill:none;stroke:#00cccc;stroke-width:1.534;stroke-linecap:round;stroke-opacity:0.92"
+       id="path35" />
+    <path
+       d="m 27.694,20.744 q 1.964,1.405 4.355,1.068"
+       style="fill:none;stroke:#007f7f;stroke-width:2.104;stroke-linecap:round;stroke-opacity:0.92"
+       id="path36" />
+    <path
+       d="m 32.049,21.812 q 1.635,0.977 3.493,0.557"
+       style="fill:none;stroke:#009999;stroke-width:1.894;stroke-linecap:round;stroke-opacity:0.92"
+       id="path37" />
+    <path
+       d="m 35.542,22.369 q 1.391,-0.504 2.746,0.09"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.704;stroke-linecap:round;stroke-opacity:0.92"
+       id="path38" />
+    <path
+       d="m 38.288,22.459 q 0.962,0.56 2.045,0.302"
+       style="fill:none;stroke:#00cccc;stroke-width:1.534;stroke-linecap:round;stroke-opacity:0.92"
+       id="path39" />
+    <path
+       d="M 0,0 Q -4.14,10.35 0,20.7"
+       style="fill:none;stroke:#001919;stroke-width:2.8;stroke-linecap:round;stroke-opacity:0.92"
+       id="path40" />
+    <path
+       d="m 0,20.7 q -4.469,7.275 -2.689,15.625"
+       style="fill:none;stroke:#003232;stroke-width:2.8;stroke-linecap:round;stroke-opacity:0.92"
+       id="path41" />
+    <path
+       d="m -2.689,36.325 q -5.026,4.699 -5.425,11.568"
+       style="fill:none;stroke:#004c4c;stroke-width:2.52;stroke-linecap:round;stroke-opacity:0.92"
+       id="path42" />
+    <path
+       d="m -8.114,47.893 q -1.783,5.562 -6.91,8.359"
+       style="fill:none;stroke:#006666;stroke-width:2.268;stroke-linecap:round;stroke-opacity:0.92"
+       id="path43" />
+    <path
+       d="m -15.024,56.252 q -4.111,2.391 -5.439,6.957"
+       style="fill:none;stroke:#007f7f;stroke-width:2.041;stroke-linecap:round;stroke-opacity:0.92"
+       id="path44" />
+    <path
+       d="m -20.463,63.209 q -3.496,-0.556 -6.412,1.452"
+       style="fill:none;stroke:#009999;stroke-width:1.837;stroke-linecap:round;stroke-opacity:0.92"
+       id="path45" />
+    <path
+       d="m -26.875,64.661 q -2.495,1.285 -5.189,0.495"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path46" />
+    <path
+       d="M -32.064,65.156 Q -34.231,64.772 -35.534,63"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path47" />
+    <path
+       d="m -32.064,65.156 q -1.951,1.128 -4.141,0.6"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path48" />
+    <path
+       d="m -32.064,65.156 q -0.847,2.342 -3.075,3.455"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path49" />
+    <path
+       d="m -20.463,63.209 q -1.222,4.081 -4.921,6.193"
+       style="fill:none;stroke:#009999;stroke-width:1.837;stroke-linecap:round;stroke-opacity:0.92"
+       id="path50" />
+    <path
+       d="m -25.384,69.402 q -0.848,3.495 -3.872,5.441"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path51" />
+    <path
+       d="m -29.256,74.843 q -2.255,1.833 -2.623,4.717"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path52" />
+    <path
+       d="m -20.463,63.209 q -1.306,3.318 0.036,6.621"
+       style="fill:none;stroke:#009999;stroke-width:1.837;stroke-linecap:round;stroke-opacity:0.92"
+       id="path53" />
+    <path
+       d="m -20.427,69.83 q -0.709,2.588 0.562,4.95"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path54" />
+    <path
+       d="m -19.865,74.78 q -0.645,2.179 0.39,4.202"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path55" />
+    <path
+       d="m -8.114,47.893 q 1.186,5.577 -1.802,10.434"
+       style="fill:none;stroke:#006666;stroke-width:2.268;stroke-linecap:round;stroke-opacity:0.92"
+       id="path56" />
+    <path
+       d="m -9.916,58.327 q -2.385,4.22 -1.203,8.92"
+       style="fill:none;stroke:#007f7f;stroke-width:2.041;stroke-linecap:round;stroke-opacity:0.92"
+       id="path57" />
+    <path
+       d="m -11.119,67.247 q 1.348,3.425 -0.037,6.834"
+       style="fill:none;stroke:#009999;stroke-width:1.837;stroke-linecap:round;stroke-opacity:0.92"
+       id="path58" />
+    <path
+       d="m -11.156,74.081 q -0.412,2.897 -2.708,4.71"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path59" />
+    <path
+       d="m -13.864,78.791 q -2.276,0.12 -3.841,1.776"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path60" />
+    <path
+       d="m -13.864,78.791 q -1.765,1.699 -1.872,4.147"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path61" />
+    <path
+       d="m -13.864,78.791 q 1.503,1.896 1.284,4.306"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path62" />
+    <path
+       d="m -11.156,74.081 q -0.776,3.067 0.777,5.822"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path63" />
+    <path
+       d="m -10.379,79.903 q -1.445,2.044 -1.082,4.521"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path64" />
+    <path
+       d="m -10.379,79.903 q -0.235,2.449 1.285,4.385"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path65" />
+    <path
+       d="m -11.156,74.081 q 2.719,1.16 3.888,3.875"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path66" />
+    <path
+       d="m -7.268,77.956 q 2.058,1.221 2.706,3.525"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path67" />
+    <path
+       d="m -2.689,36.325 q 2.574,6.135 0.206,12.353"
+       style="fill:none;stroke:#004c4c;stroke-width:2.52;stroke-linecap:round;stroke-opacity:0.92"
+       id="path68" />
+    <path
+       d="m -2.483,48.678 q 2.165,5.144 0.184,10.363"
+       style="fill:none;stroke:#006666;stroke-width:2.268;stroke-linecap:round;stroke-opacity:0.92"
+       id="path69" />
+    <path
+       d="m -2.299,59.041 q -1.163,4.376 1.013,8.346"
+       style="fill:none;stroke:#007f7f;stroke-width:2.041;stroke-linecap:round;stroke-opacity:0.92"
+       id="path70" />
+    <path
+       d="m -1.286,67.387 q -1.508,3.629 -0.097,7.297"
+       style="fill:none;stroke:#009999;stroke-width:1.837;stroke-linecap:round;stroke-opacity:0.92"
+       id="path71" />
+    <path
+       d="m -1.383,74.684 q -1.12,3.262 0.319,6.397"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path72" />
+    <path
+       d="m -1.064,81.081 q -0.592,2.521 0.717,4.754"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path73" />
+    <path
+       d="m -1.286,67.387 q 2.578,2.193 2.932,5.559"
+       style="fill:none;stroke:#009999;stroke-width:1.837;stroke-linecap:round;stroke-opacity:0.92"
+       id="path74" />
+    <path
+       d="m 1.646,72.946 q 2.186,1.776 2.544,4.57"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path75" />
+    <path
+       d="m 4.19,77.516 q 0.161,2.293 1.859,3.842"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path76" />
+    <path
+       d="m 0,20.7 q 5.561,7.163 4.648,16.186"
+       style="fill:none;stroke:#003232;stroke-width:2.8;stroke-linecap:round;stroke-opacity:0.92"
+       id="path77" />
+    <path
+       d="m 4.648,36.886 q 2.111,6.916 -1.13,13.379"
+       style="fill:none;stroke:#004c4c;stroke-width:2.52;stroke-linecap:round;stroke-opacity:0.92"
+       id="path78" />
+    <path
+       d="M 3.518,50.265 Q 4.78,56.563 1.349,61.994"
+       style="fill:none;stroke:#006666;stroke-width:2.268;stroke-linecap:round;stroke-opacity:0.92"
+       id="path79" />
+    <path
+       d="M 1.349,61.994 Q -1.192,67.121 0.504,72.587"
+       style="fill:none;stroke:#007f7f;stroke-width:2.041;stroke-linecap:round;stroke-opacity:0.92"
+       id="path80" />
+    <path
+       d="m 0.504,72.587 q 1.639,4.531 -0.3,8.943"
+       style="fill:none;stroke:#009999;stroke-width:1.837;stroke-linecap:round;stroke-opacity:0.92"
+       id="path81" />
+    <path
+       d="m 0.204,81.53 q -1.682,3.262 -0.651,6.784"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path82" />
+    <path
+       d="m -0.447,88.314 q 1.219,2.876 0.117,5.798"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path83" />
+    <path
+       d="m 4.648,36.886 q 0.207,7.956 5.843,13.574"
+       style="fill:none;stroke:#004c4c;stroke-width:2.52;stroke-linecap:round;stroke-opacity:0.92"
+       id="path84" />
+    <path
+       d="m 10.491,50.46 q 0.402,6.549 5.21,11.015"
+       style="fill:none;stroke:#006666;stroke-width:2.268;stroke-linecap:round;stroke-opacity:0.92"
+       id="path85" />
+    <path
+       d="m 15.701,61.475 q 3.005,4.218 2.272,9.345"
+       style="fill:none;stroke:#007f7f;stroke-width:2.041;stroke-linecap:round;stroke-opacity:0.92"
+       id="path86" />
+    <path
+       d="m 17.973,70.82 q -0.238,4.496 2.69,7.917"
+       style="fill:none;stroke:#009999;stroke-width:1.837;stroke-linecap:round;stroke-opacity:0.92"
+       id="path87" />
+    <path
+       d="m 20.663,78.737 q -2.671,2.877 -2.621,6.803"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path88" />
+    <path
+       d="m 18.042,85.54 q -2.495,1.762 -3.086,4.76"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path89" />
+    <path
+       d="m 18.042,85.54 q 0.726,3.291 -1.019,6.175"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path90" />
+    <path
+       d="m 20.663,78.737 q -0.057,3.397 2.245,5.897"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path91" />
+    <path
+       d="m 22.908,84.634 q -0.682,2.63 0.638,5.005"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path92" />
+    <path
+       d="m 22.908,84.634 q 0.644,2.931 3.132,4.609"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path93" />
+    <path
+       d="m 27.106,82.056 q -0.158,3.124 1.882,5.494"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path95" />
+    <path
+       d="m 15.701,61.475 q 1.521,5.306 6.281,8.099"
+       style="fill:none;stroke:#007f7f;stroke-width:2.041;stroke-linecap:round;stroke-opacity:0.92"
+       id="path98" />
+    <path
+       d="m 21.982,69.574 q 3.52,3.149 3.898,7.857"
+       style="fill:none;stroke:#009999;stroke-width:1.837;stroke-linecap:round;stroke-opacity:0.92"
+       id="path99" />
+    <path
+       d="m 25.88,77.431 q 2.014,3.485 1.068,7.398"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path100" />
+    <path
+       d="m 26.948,84.829 q -0.823,3.331 0.878,6.31"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path101" />
+    <path
+       d="m 25.88,77.431 q 3.301,2.348 4.072,6.325"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path102" />
+    <path
+       d="m 29.952,83.756 q 0.702,3.473 3.605,5.503"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path103" />
+    <path
+       d="m 21.982,69.574 q 2.16,3.551 6.173,4.632"
+       style="fill:none;stroke:#009999;stroke-width:1.837;stroke-linecap:round;stroke-opacity:0.92"
+       id="path104" />
+    <path
+       d="m 28.155,74.206 q 1.416,2.864 4.417,3.962"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path105" />
+    <path
+       d="m 32.572,78.168 q 0.834,2.652 3.268,3.997"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path106" />
+    <path
+       d="m 32.572,78.168 q 2.022,1.877 4.782,1.843"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path107" />
+    <path
+       d="m 28.155,74.206 q 2.749,1.981 6.107,1.52"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.653;stroke-linecap:round;stroke-opacity:0.92"
+       id="path108" />
+    <path
+       d="m 34.262,75.726 q 1.858,1.807 4.449,1.834"
+       style="fill:none;stroke:#00cccc;stroke-width:1.488;stroke-linecap:round;stroke-opacity:0.92"
+       id="path109" />
+    <path
+       d="M 0,0 Q -8.102,3.564 -11.511,11.731"
+       style="fill:none;stroke:#001919;stroke-width:3.154;stroke-linecap:round;stroke-opacity:0.92"
+       id="path110" />
+    <path
+       d="m -11.511,11.731 q -4.606,6.284 -12.275,7.658"
+       style="fill:none;stroke:#003232;stroke-width:3.154;stroke-linecap:round;stroke-opacity:0.92"
+       id="path111" />
+    <path
+       d="m -23.786,19.389 q -4.149,4.866 -10.509,5.528"
+       style="fill:none;stroke:#004c4c;stroke-width:2.839;stroke-linecap:round;stroke-opacity:0.92"
+       id="path112" />
+    <path
+       d="m -34.295,24.917 q -5.035,0.937 -8.035,5.088"
+       style="fill:none;stroke:#006666;stroke-width:2.555;stroke-linecap:round;stroke-opacity:0.92"
+       id="path113" />
+    <path
+       d="m -42.33,30.005 q -4.428,-0.302 -7.843,2.533"
+       style="fill:none;stroke:#007f7f;stroke-width:2.3;stroke-linecap:round;stroke-opacity:0.92"
+       id="path114" />
+    <path
+       d="m -50.173,32.538 q -3.826,-0.904 -7.219,1.08"
+       style="fill:none;stroke:#009999;stroke-width:2.07;stroke-linecap:round;stroke-opacity:0.92"
+       id="path115" />
+    <path
+       d="M -57.392,33.618 Q -60.216,32.3 -63.17,33.294"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path116" />
+    <path
+       d="m -63.17,33.294 q -2.132,-1.432 -4.663,-0.999"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path117" />
+    <path
+       d="m -63.17,33.294 q -2.408,-0.225 -4.306,1.272"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path118" />
+    <path
+       d="m -57.392,33.618 q -2.298,2.02 -5.355,1.897"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path119" />
+    <path
+       d="m -62.747,35.515 q -2.236,1.102 -4.616,0.357"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path120" />
+    <path
+       d="m -62.747,35.515 q -2.276,0.268 -3.739,2.032"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path121" />
+    <path
+       d="m -50.173,32.538 q -3.406,0.722 -5.374,3.593"
+       style="fill:none;stroke:#009999;stroke-width:2.07;stroke-linecap:round;stroke-opacity:0.92"
+       id="path122" />
+    <path
+       d="m -55.547,36.131 q -2.486,0.771 -3.755,3.044"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path123" />
+    <path
+       d="m -59.302,39.175 q -1.116,1.929 -3.254,2.557"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path124" />
+    <path
+       d="m -42.33,30.005 q -4.254,1.481 -6.313,5.488"
+       style="fill:none;stroke:#007f7f;stroke-width:2.3;stroke-linecap:round;stroke-opacity:0.92"
+       id="path125" />
+    <path
+       d="m -48.643,35.493 q -1.077,3.191 -4.058,4.759"
+       style="fill:none;stroke:#009999;stroke-width:2.07;stroke-linecap:round;stroke-opacity:0.92"
+       id="path126" />
+    <path
+       d="m -52.701,40.252 q -2.153,1.389 -2.754,3.88"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path127" />
+    <path
+       d="m -55.455,44.132 q -0.853,2.081 -2.906,2.999"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path128" />
+    <path
+       d="m -55.455,44.132 q -1.391,1.588 -1.302,3.697"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path129" />
+    <path
+       d="m -11.511,11.731 q -5.923,4.794 -6.906,12.35"
+       style="fill:none;stroke:#003232;stroke-width:3.154;stroke-linecap:round;stroke-opacity:0.92"
+       id="path130" />
+    <path
+       d="m -18.417,24.081 q -6.184,2.694 -8.804,8.909"
+       style="fill:none;stroke:#004c4c;stroke-width:2.839;stroke-linecap:round;stroke-opacity:0.92"
+       id="path131" />
+    <path
+       d="m -27.221,32.99 q -3.034,4.472 -8.315,5.618"
+       style="fill:none;stroke:#006666;stroke-width:2.555;stroke-linecap:round;stroke-opacity:0.92"
+       id="path132" />
+    <path
+       d="m -35.536,38.608 q -2.638,3.327 -6.844,3.917"
+       style="fill:none;stroke:#007f7f;stroke-width:2.3;stroke-linecap:round;stroke-opacity:0.92"
+       id="path133" />
+    <path
+       d="m -42.38,42.525 q -3.369,0.107 -5.735,2.507"
+       style="fill:none;stroke:#009999;stroke-width:2.07;stroke-linecap:round;stroke-opacity:0.92"
+       id="path134" />
+    <path
+       d="m -48.115,45.032 q -2.508,-0.748 -4.841,0.441"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path135" />
+    <path
+       d="m -52.956,45.473 q -1.881,-0.869 -3.842,-0.2"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path136" />
+    <path
+       d="m -52.956,45.473 q -2.266,0.032 -3.884,1.618"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path137" />
+    <path
+       d="m -48.115,45.032 q -1.778,2.27 -4.631,2.687"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path138" />
+    <path
+       d="m -52.746,47.719 q -1.875,-1.251 -4.096,-0.864"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path139" />
+    <path
+       d="m -52.746,47.719 q -1.612,2.009 -4.164,2.352"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path140" />
+    <path
+       d="m -52.746,47.719 q 0.107,2.315 -1.413,4.065"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path141" />
+    <path
+       d="m -27.221,32.99 q -0.688,5.202 -4.773,8.495"
+       style="fill:none;stroke:#006666;stroke-width:2.555;stroke-linecap:round;stroke-opacity:0.92"
+       id="path142" />
+    <path
+       d="m -31.994,41.485 q -3.351,2.898 -3.779,7.308"
+       style="fill:none;stroke:#007f7f;stroke-width:2.3;stroke-linecap:round;stroke-opacity:0.92"
+       id="path143" />
+    <path
+       d="m -35.773,48.793 q -1.033,3.57 -4.243,5.443"
+       style="fill:none;stroke:#009999;stroke-width:2.07;stroke-linecap:round;stroke-opacity:0.92"
+       id="path144" />
+    <path
+       d="m -40.016,54.236 q -2.676,1.134 -3.833,3.801"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path145" />
+    <path
+       d="m -43.849,58.037 q -2.18,0.614 -3.336,2.563"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path146" />
+    <path
+       d="m -43.849,58.037 q -1.899,1.677 -2.118,4.2"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path147" />
+    <path
+       d="m -35.773,48.793 q 0.804,3.8 -1.235,7.106"
+       style="fill:none;stroke:#009999;stroke-width:2.07;stroke-linecap:round;stroke-opacity:0.92"
+       id="path148" />
+    <path
+       d="m -37.008,55.899 q -1.376,2.595 -0.583,5.424"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path149" />
+    <path
+       d="m -37.591,61.323 q 0.52,2.516 -0.838,4.696"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path150" />
+    <path
+       d="m -18.417,24.081 q -4.059,5.394 -3.277,12.1"
+       style="fill:none;stroke:#004c4c;stroke-width:2.839;stroke-linecap:round;stroke-opacity:0.92"
+       id="path151" />
+    <path
+       d="m -21.694,36.181 q 0.629,5.12 -2.446,9.261"
+       style="fill:none;stroke:#006666;stroke-width:2.555;stroke-linecap:round;stroke-opacity:0.92"
+       id="path152" />
+    <path
+       d="m -24.14,45.442 q -3.262,2.688 -3.771,6.884"
+       style="fill:none;stroke:#007f7f;stroke-width:2.3;stroke-linecap:round;stroke-opacity:0.92"
+       id="path153" />
+    <path
+       d="m -27.911,52.326 q -2.301,2.526 -5.71,2.768"
+       style="fill:none;stroke:#009999;stroke-width:2.07;stroke-linecap:round;stroke-opacity:0.92"
+       id="path154" />
+    <path
+       d="m -33.621,55.094 q -2.668,0.348 -4.84,-1.24"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path155" />
+    <path
+       d="m -38.461,53.854 q -1.75,-1.016 -3.719,-0.545"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path156" />
+    <path
+       d="m -33.621,55.094 q -2.787,0.203 -4.665,2.273"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path157" />
+    <path
+       d="m -38.286,57.367 q -1.684,1.229 -3.751,0.957"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path158" />
+    <path
+       d="m -38.286,57.367 q -0.902,1.988 -2.926,2.806"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path159" />
+    <path
+       d="m -33.621,55.094 q -0.091,2.779 -2.073,4.73"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path160" />
+    <path
+       d="m -35.694,59.824 q -0.09,2.316 -1.753,3.931"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path161" />
+    <path
+       d="m -27.911,52.326 q -0.309,3.159 -2.712,5.233"
+       style="fill:none;stroke:#009999;stroke-width:2.07;stroke-linecap:round;stroke-opacity:0.92"
+       id="path162" />
+    <path
+       d="m -30.623,57.559 q -2.188,1.59 -2.676,4.25"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path163" />
+    <path
+       d="m -33.299,61.809 q -1.075,2.109 -3.307,2.894"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path164" />
+    <path
+       d="m -33.299,61.809 q -1.639,1.681 -1.666,4.03"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path165" />
+    <path
+       d="m -27.911,52.326 q 1.927,3.188 1.123,6.825"
+       style="fill:none;stroke:#009999;stroke-width:2.07;stroke-linecap:round;stroke-opacity:0.92"
+       id="path166" />
+    <path
+       d="m -26.788,59.151 q 1.195,2.823 0.113,5.692"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path167" />
+    <path
+       d="m -26.675,64.843 q -1.562,2.237 -1.15,4.934"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path168" />
+    <path
+       d="m -26.675,64.843 q 1.413,1.92 1.112,4.284"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path169" />
+    <path
+       d="m -24.14,45.442 q -1.538,3.508 -0.233,7.108"
+       style="fill:none;stroke:#007f7f;stroke-width:2.3;stroke-linecap:round;stroke-opacity:0.92"
+       id="path170" />
+    <path
+       d="m -24.373,52.55 q 1.168,3.041 -0.084,6.049"
+       style="fill:none;stroke:#009999;stroke-width:2.07;stroke-linecap:round;stroke-opacity:0.92"
+       id="path171" />
+    <path
+       d="m -24.457,58.599 q -0.6,2.356 -2.66,3.648"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path172" />
+    <path
+       d="m -27.117,62.247 q -1.66,0.818 -2.298,2.555"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path173" />
+    <path
+       d="m -27.117,62.247 q -1.314,1.631 -1.14,3.718"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path174" />
+    <path
+       d="m -24.457,58.599 q -1.03,2.495 -0.054,5.013"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path175" />
+    <path
+       d="m -24.511,63.612 q -0.662,2.175 0.36,4.206"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path176" />
+    <path
+       d="m -24.457,58.599 q 2.125,1.398 2.699,3.876"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.863;stroke-linecap:round;stroke-opacity:0.92"
+       id="path177" />
+    <path
+       d="m -21.758,62.475 q -0.256,2.105 1.01,3.805"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path178" />
+    <path
+       d="m -21.758,62.475 q 0.727,2.135 2.725,3.179"
+       style="fill:none;stroke:#00cccc;stroke-width:1.676;stroke-linecap:round;stroke-opacity:0.92"
+       id="path179" />
+    <path
+       d="M 0,0 Q 3.709,7.223 11.376,9.896"
+       style="fill:none;stroke:#001919;stroke-width:3.188;stroke-linecap:round;stroke-opacity:0.92"
+       id="path180" />
+    <path
+       d="m 11.376,9.896 q 2.933,5.513 8.859,7.483"
+       style="fill:none;stroke:#003232;stroke-width:3.188;stroke-linecap:round;stroke-opacity:0.92"
+       id="path181" />
+    <path
+       d="m 20.235,17.379 q 5.135,0.999 8.164,5.264"
+       style="fill:none;stroke:#004c4c;stroke-width:2.869;stroke-linecap:round;stroke-opacity:0.92"
+       id="path182" />
+    <path
+       d="m 28.399,22.643 q 3.398,1.868 4.57,5.563"
+       style="fill:none;stroke:#006666;stroke-width:2.582;stroke-linecap:round;stroke-opacity:0.92"
+       id="path183" />
+    <path
+       d="m 32.969,28.206 q 2.277,2.633 2.109,6.11"
+       style="fill:none;stroke:#007f7f;stroke-width:2.324;stroke-linecap:round;stroke-opacity:0.92"
+       id="path184" />
+    <path
+       d="m 35.078,34.316 q 0.204,2.634 -1.466,4.682"
+       style="fill:none;stroke:#009999;stroke-width:2.091;stroke-linecap:round;stroke-opacity:0.92"
+       id="path185" />
+    <path
+       d="m 33.612,38.998 q 0.347,2.276 -0.972,4.164"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path186" />
+    <path
+       d="m 32.64,43.162 q -1.012,1.688 -0.581,3.609"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path187" />
+    <path
+       d="m 35.078,34.316 q 0.185,2.88 2.305,4.839"
+       style="fill:none;stroke:#009999;stroke-width:2.091;stroke-linecap:round;stroke-opacity:0.92"
+       id="path188" />
+    <path
+       d="m 37.383,39.155 q 1.837,1.776 1.943,4.328"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path189" />
+    <path
+       d="m 39.326,43.483 q 1.743,1.268 2.131,3.388"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path190" />
+    <path
+       d="m 35.078,34.316 q 2.654,-0.006 4.579,1.82"
+       style="fill:none;stroke:#009999;stroke-width:2.091;stroke-linecap:round;stroke-opacity:0.92"
+       id="path191" />
+    <path
+       d="m 39.657,36.136 q 2.129,0.156 3.564,1.737"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path192" />
+    <path
+       d="m 43.221,37.873 q 0.934,1.377 2.56,1.729"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path193" />
+    <path
+       d="m 32.969,28.206 q 1.486,2.945 4.593,4.053"
+       style="fill:none;stroke:#007f7f;stroke-width:2.324;stroke-linecap:round;stroke-opacity:0.92"
+       id="path194" />
+    <path
+       d="m 37.562,32.259 q 1.8,2.281 1.53,5.174"
+       style="fill:none;stroke:#009999;stroke-width:2.091;stroke-linecap:round;stroke-opacity:0.92"
+       id="path195" />
+    <path
+       d="m 39.092,37.433 q 0.041,2.266 1.633,3.878"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path196" />
+    <path
+       d="m 40.725,41.311 q 1.45,1.227 1.654,3.114"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path197" />
+    <path
+       d="m 37.562,32.259 q 1.39,2.056 3.815,2.587"
+       style="fill:none;stroke:#009999;stroke-width:2.091;stroke-linecap:round;stroke-opacity:0.92"
+       id="path198" />
+    <path
+       d="m 41.377,34.846 q 0.883,1.766 2.74,2.436"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path199" />
+    <path
+       d="m 44.117,37.282 q 1.409,0.744 1.917,2.254"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path200" />
+    <path
+       d="m 37.562,32.259 q 2.374,0.706 4.581,-0.42"
+       style="fill:none;stroke:#009999;stroke-width:2.091;stroke-linecap:round;stroke-opacity:0.92"
+       id="path201" />
+    <path
+       d="m 42.143,31.839 q 1.828,1.193 3.975,0.797"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path202" />
+    <path
+       d="m 46.118,32.636 q 1.55,0.859 3.264,0.413"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path203" />
+    <path
+       d="m 42.143,31.839 q 1.685,-1.089 3.656,-0.715"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path204" />
+    <path
+       d="m 45.799,31.124 q 1.773,0.054 3.094,-1.129"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path205" />
+    <path
+       d="m 28.399,22.643 q 4.569,0.269 7.692,3.614"
+       style="fill:none;stroke:#006666;stroke-width:2.582;stroke-linecap:round;stroke-opacity:0.92"
+       id="path206" />
+    <path
+       d="m 36.091,26.257 q 1.831,3.536 5.596,4.833"
+       style="fill:none;stroke:#007f7f;stroke-width:2.324;stroke-linecap:round;stroke-opacity:0.92"
+       id="path207" />
+    <path
+       d="m 41.687,31.09 q 2.434,2.123 2.733,5.339"
+       style="fill:none;stroke:#009999;stroke-width:2.091;stroke-linecap:round;stroke-opacity:0.92"
+       id="path208" />
+    <path
+       d="m 44.42,36.429 q 1.627,1.85 1.529,4.313"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path209" />
+    <path
+       d="m 45.949,40.742 q 1.265,1.526 1.129,3.503"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path210" />
+    <path
+       d="m 41.687,31.09 q 1.864,2.64 5.034,3.266"
+       style="fill:none;stroke:#009999;stroke-width:2.091;stroke-linecap:round;stroke-opacity:0.92"
+       id="path211" />
+    <path
+       d="m 46.721,34.356 q 0.185,2.504 2.045,4.19"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path212" />
+    <path
+       d="m 48.766,38.546 q 0.067,1.877 1.41,3.189"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path213" />
+    <path
+       d="m 46.721,34.356 q 2.435,0.138 4.103,1.917"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path214" />
+    <path
+       d="m 50.824,36.273 q 1.917,0.384 3.04,1.984"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path215" />
+    <path
+       d="m 46.721,34.356 q 2.575,0.357 4.686,-1.159"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path216" />
+    <path
+       d="m 51.407,33.197 q 1.443,-1.299 3.384,-1.244"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path217" />
+    <path
+       d="m 36.091,26.257 q 3.839,-0.613 7.042,1.59"
+       style="fill:none;stroke:#007f7f;stroke-width:2.324;stroke-linecap:round;stroke-opacity:0.92"
+       id="path218" />
+    <path
+       d="m 43.133,27.847 q 2.47,2.341 5.873,2.332"
+       style="fill:none;stroke:#009999;stroke-width:2.091;stroke-linecap:round;stroke-opacity:0.92"
+       id="path219" />
+    <path
+       d="m 49.006,30.179 q 2.897,0.638 4.554,3.098"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path220" />
+    <path
+       d="m 53.56,33.277 q 1.077,2.129 3.325,2.928"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path221" />
+    <path
+       d="m 49.006,30.179 q 2.668,-0.581 5,0.838"
+       style="fill:none;stroke:#00b2b2;stroke-width:1.882;stroke-linecap:round;stroke-opacity:0.92"
+       id="path222" />
+    <path
+       d="m 54.006,31.017 q 2.228,-0.607 4.26,0.489"
+       style="fill:none;stroke:#00cccc;stroke-width:1.694;stroke-linecap:round;stroke-opacity:0.92"
+       id="path223" />
+  </g>
+  <switch
+     transform="matrix(0.19466862,0,0,0.19466862,-59.651601,92.910031)"
+     id="switch357"
+     style="font-weight:bold;font-size:20px;font-family:'Liberation Sans';text-anchor:middle;fill:#ffffff">
+    <text
+       systemLanguage="af"
+       id="text336"
+       style="fill:#ffffff"><tspan
+         id="tspan336"
+         style="fill:#ffffff">Spesie</tspan></text>
+    <text
+       systemLanguage="ban"
+       id="text337"
+       style="fill:#ffffff"><tspan
+         id="tspan337"
+         style="fill:#ffffff">Spésiés</tspan></text>
+    <text
+       systemLanguage="br"
+       id="text338"
+       style="fill:#ffffff"><tspan
+         id="tspan338"
+         style="fill:#ffffff">Spesad</tspan></text>
+    <text
+       systemLanguage="bs"
+       id="text339"
+       style="fill:#ffffff"><tspan
+         id="tspan339"
+         style="fill:#ffffff">Vrsta</tspan></text>
+    <text
+       systemLanguage="cs"
+       id="text340"
+       style="fill:#ffffff"><tspan
+         id="tspan340"
+         style="fill:#ffffff">druh</tspan></text>
+    <text
+       systemLanguage="de"
+       id="text341"
+       style="fill:#ffffff"><tspan
+         id="tspan341"
+         style="fill:#ffffff">Art</tspan></text>
+    <g
+       id="g259">
+      <path
+         d="m 129.35635,74.9659 h 9.94345 c 0.40465,0 0.73042,-0.32576 0.73042,-0.73041 v -2.2254 c 0,-0.40465 -0.32577,-0.73041 -0.73042,-0.73041 h -9.94345 c -0.40465,0 -0.73041,0.32576 -0.73041,0.73041 v 2.2254 c 0,0.40465 0.32576,0.73041 0.73041,0.73041 z"
+         fill="#ebae85"
+         id="path204-5"
+         style="fill:#00cccc;fill-opacity:1;stroke:#000000;stroke-width:0.184788"
+         transform="matrix(10.823208,0,0,10.823208,-1453.5506,-797.2232)" />
+      <text
+         systemLanguage="en"
+         id="text342"
+         style="font-size:26.7273px;fill:#ffffff"
+         y="1.3227894"><tspan
+           id="tspan342"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.7273px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';fill:#ffffff">Species</tspan></text>
+    </g>
+    <text
+       systemLanguage="es"
+       id="text343"
+       style="fill:#ffffff"><tspan
+         id="tspan343"
+         style="fill:#ffffff">Especie</tspan></text>
+    <text
+       systemLanguage="fr"
+       id="text344"
+       style="fill:#ffffff"><tspan
+         id="tspan344"
+         style="fill:#ffffff">Espèce</tspan></text>
+    <text
+       systemLanguage="gl"
+       id="text345"
+       style="fill:#ffffff"><tspan
+         id="tspan345"
+         style="fill:#ffffff">Especie</tspan></text>
+    <text
+       systemLanguage="ku"
+       id="text346"
+       style="fill:#ffffff"><tspan
+         id="tspan346"
+         style="fill:#ffffff">Cure</tspan></text>
+    <text
+       systemLanguage="la"
+       id="text347"
+       style="fill:#ffffff"><tspan
+         id="tspan347"
+         style="fill:#ffffff">Species</tspan></text>
+    <text
+       systemLanguage="my"
+       id="text348"
+       style="fill:#ffffff"><tspan
+         id="tspan348"
+         style="fill:#ffffff">မျိုးစိတ်</tspan></text>
+    <text
+       systemLanguage="si"
+       id="text349"
+       style="fill:#ffffff"><tspan
+         id="tspan349"
+         style="fill:#ffffff">විශේෂය</tspan></text>
+    <text
+       systemLanguage="sk"
+       id="text350"
+       style="fill:#ffffff"><tspan
+         id="tspan350"
+         style="fill:#ffffff">druh</tspan></text>
+    <text
+       systemLanguage="tl"
+       id="text351"
+       style="fill:#ffffff"><tspan
+         id="tspan351"
+         style="fill:#ffffff">Espesye</tspan></text>
+    <text
+       systemLanguage="uz"
+       id="text352"
+       style="fill:#ffffff"><tspan
+         id="tspan352"
+         style="fill:#ffffff">Tur</tspan></text>
+    <text
+       systemLanguage="xmf"
+       id="text353"
+       style="fill:#ffffff"><tspan
+         id="tspan353"
+         style="fill:#ffffff">გვარობა</tspan></text>
+    <text
+       id="text354"
+       systemLanguage="shn"
+       style="fill:#ffffff"><tspan
+         id="tspan354"
+         style="fill:#ffffff">ၾၼ်း</tspan></text>
+    <text
+       id="text355"
+       systemLanguage="id"
+       style="fill:#ffffff"><tspan
+         id="tspan355"
+         style="fill:#ffffff">Spesies</tspan></text>
+    <text
+       id="text356"
+       systemLanguage="tg"
+       style="fill:#ffffff"><tspan
+         id="tspan356"
+         style="fill:#ffffff">Намуд</tspan></text>
+    <text
+       id="text357"
+       style="fill:#ffffff"><tspan
+         id="tspan357"
+         style="fill:#ffffff">Species</tspan></text>
+  </switch>
+  <g
+     id="g260"
+     transform="matrix(2.1069389,0,0,2.1069389,-318.59424,-58.122486)">
+    <path
+       d="m 117.95685,66.82486 h 9.94345 c 0.40465,0 0.73042,-0.32576 0.73042,-0.73041 v -2.2254 c 0,-0.40465 -0.32577,-0.73041 -0.73042,-0.73041 h -9.94345 c -0.40465,0 -0.73041,0.32576 -0.73041,0.73041 v 2.2254 c 0,0.40465 0.32576,0.73041 0.73041,0.73041 z"
+       fill="#ffba77"
+       id="path7-2"
+       style="fill:#00a6a6;fill-opacity:1;stroke:#000000;stroke-width:0.184788" />
+    <path
+       d="m 117.95685,66.82486 h 9.94345 c 0.40465,0 0.73042,-0.32576 0.73042,-0.73041 v -2.2254 c 0,-0.40465 -0.32577,-0.73041 -0.73042,-0.73041 h -9.94345 c -0.40465,0 -0.73041,0.32576 -0.73041,0.73041 v 2.2254 c 0,0.40465 0.32576,0.73041 0.73041,0.73041 z"
+       fill="#ffba77"
+       id="path203-4"
+       style="fill:#00b2b2;fill-opacity:1;stroke:#000000;stroke-width:0.184788" />
+    <switch
+       transform="matrix(0.09239405,0,0,0.09239405,122.90512,65.85223)"
+       id="switch335"
+       style="font-weight:bold;font-size:20px;font-family:'Liberation Sans';text-anchor:middle;fill:#ffffff">
+      <text
+         systemLanguage="af"
+         id="text314"
+         style="fill:#ffffff"><tspan
+           id="tspan314"
+           style="fill:#ffffff">Genus</tspan></text>
+      <text
+         systemLanguage="ban"
+         id="text315"
+         style="fill:#ffffff"><tspan
+           id="tspan315"
+           style="fill:#ffffff">Génus</tspan></text>
+      <text
+         systemLanguage="br"
+         id="text316"
+         style="fill:#ffffff"><tspan
+           id="tspan316"
+           style="fill:#ffffff">Genad</tspan></text>
+      <text
+         systemLanguage="bs"
+         id="text317"
+         style="fill:#ffffff"><tspan
+           id="tspan317"
+           style="fill:#ffffff">Rod</tspan></text>
+      <text
+         systemLanguage="cs"
+         id="text318"
+         style="fill:#ffffff"><tspan
+           id="tspan318"
+           style="fill:#ffffff">rod</tspan></text>
+      <text
+         systemLanguage="de"
+         id="text319"
+         style="fill:#ffffff"><tspan
+           id="tspan319"
+           style="fill:#ffffff">Ordnung</tspan></text>
+      <text
+         systemLanguage="en"
+         id="text320"
+         style="font-size:26.7273px;fill:#ffffff"><tspan
+           id="tspan320"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.7273px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';fill:#ffffff">Genus</tspan></text>
+      <text
+         systemLanguage="es"
+         id="text321"
+         style="fill:#ffffff"><tspan
+           id="tspan321"
+           style="fill:#ffffff">Género</tspan></text>
+      <text
+         systemLanguage="fr"
+         id="text322"
+         style="fill:#ffffff"><tspan
+           id="tspan322"
+           style="fill:#ffffff">Genre</tspan></text>
+      <text
+         systemLanguage="gl"
+         id="text323"
+         style="fill:#ffffff"><tspan
+           id="tspan323"
+           style="fill:#ffffff">Xénero</tspan></text>
+      <text
+         systemLanguage="ku"
+         id="text324"
+         style="fill:#ffffff"><tspan
+           id="tspan324"
+           style="fill:#ffffff">Cins</tspan></text>
+      <text
+         systemLanguage="la"
+         id="text325"
+         style="fill:#ffffff"><tspan
+           id="tspan325"
+           style="fill:#ffffff">Genus</tspan></text>
+      <text
+         systemLanguage="my"
+         id="text326"
+         style="fill:#ffffff"><tspan
+           id="tspan326"
+           style="fill:#ffffff">မျိုးစု</tspan></text>
+      <text
+         systemLanguage="si"
+         id="text327"
+         style="fill:#ffffff"><tspan
+           id="tspan327"
+           style="fill:#ffffff">ගණය</tspan></text>
+      <text
+         systemLanguage="sk"
+         id="text328"
+         style="fill:#ffffff"><tspan
+           id="tspan328"
+           style="fill:#ffffff">rod</tspan></text>
+      <text
+         systemLanguage="tl"
+         id="text329"
+         style="fill:#ffffff"><tspan
+           id="tspan329"
+           style="fill:#ffffff">Genus</tspan></text>
+      <text
+         systemLanguage="uz"
+         id="text330"
+         style="fill:#ffffff"><tspan
+           id="tspan330"
+           style="fill:#ffffff">Urugʻ</tspan></text>
+      <text
+         systemLanguage="xmf"
+         id="text331"
+         style="fill:#ffffff"><tspan
+           id="tspan331"
+           style="fill:#ffffff">გვარი</tspan></text>
+      <text
+         id="text332"
+         systemLanguage="shn"
+         style="fill:#ffffff"><tspan
+           id="tspan332"
+           style="fill:#ffffff">ၸိူဝ်ႉ</tspan></text>
+      <text
+         id="text333"
+         systemLanguage="id"
+         style="fill:#ffffff"><tspan
+           id="tspan333"
+           style="fill:#ffffff">Genus</tspan></text>
+      <text
+         id="text334"
+         systemLanguage="tg"
+         style="fill:#ffffff"><tspan
+           id="tspan334"
+           style="fill:#ffffff">Авлод</tspan></text>
+      <text
+         id="text335"
+         style="fill:#ffffff"><tspan
+           id="tspan335"
+           style="fill:#ffffff">Genus</tspan></text>
+    </switch>
+  </g>
+  <g
+     id="g261"
+     transform="matrix(2.1069389,0,0,2.1069389,-304.24929,-55.772973)">
+    <path
+       d="m 111.14841,59.54398 h 9.94345 c 0.40465,0 0.73042,-0.32576 0.73042,-0.73041 v -2.22541 c 0,-0.40465 -0.32577,-0.73041 -0.73042,-0.73041 h -9.94345 c -0.40465,0 -0.73041,0.32576 -0.73041,0.73041 v 2.22541 c 0,0.40465 0.32576,0.73041 0.73041,0.73041 z"
+       fill="#fffd77"
+       id="path202-4"
+       style="fill:#009999;fill-opacity:1;stroke:#000000;stroke-width:0.184788" />
+    <switch
+       transform="matrix(0.09239405,0,0,0.09239405,116.04606,58.35897)"
+       id="switch313"
+       style="font-weight:bold;font-size:20px;font-family:'Liberation Sans';text-anchor:middle;fill:#ffffff">
+      <text
+         systemLanguage="af"
+         id="text292"
+         style="fill:#ffffff"><tspan
+           id="tspan292"
+           style="fill:#ffffff">Familie</tspan></text>
+      <text
+         systemLanguage="ban"
+         id="text293"
+         style="fill:#ffffff"><tspan
+           id="tspan293"
+           style="fill:#ffffff">Kaluwarga</tspan></text>
+      <text
+         systemLanguage="br"
+         id="text294"
+         style="fill:#ffffff"><tspan
+           id="tspan294"
+           style="fill:#ffffff">Kerentiad</tspan></text>
+      <text
+         systemLanguage="bs"
+         id="text295"
+         style="fill:#ffffff"><tspan
+           id="tspan295"
+           style="fill:#ffffff">Porodica</tspan></text>
+      <text
+         systemLanguage="cs"
+         id="text296"
+         style="fill:#ffffff"><tspan
+           id="tspan296"
+           style="fill:#ffffff">čeleď</tspan></text>
+      <text
+         systemLanguage="de"
+         id="text297"
+         style="fill:#ffffff"><tspan
+           id="tspan297"
+           style="fill:#ffffff">Gattung</tspan></text>
+      <text
+         systemLanguage="en"
+         id="text298"
+         style="font-size:26.7273px;fill:#ffffff"><tspan
+           id="tspan298"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.7273px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';fill:#ffffff">Family</tspan></text>
+      <text
+         systemLanguage="es"
+         id="text299"
+         style="fill:#ffffff"><tspan
+           id="tspan299"
+           style="fill:#ffffff">Familia</tspan></text>
+      <text
+         systemLanguage="fr"
+         id="text300"
+         style="fill:#ffffff"><tspan
+           id="tspan300"
+           style="fill:#ffffff">Famille</tspan></text>
+      <text
+         systemLanguage="gl"
+         id="text301"
+         style="fill:#ffffff"><tspan
+           id="tspan301"
+           style="fill:#ffffff">Familia</tspan></text>
+      <text
+         systemLanguage="ku"
+         id="text302"
+         style="fill:#ffffff"><tspan
+           id="tspan302"
+           style="fill:#ffffff">Famîle</tspan></text>
+      <text
+         systemLanguage="la"
+         id="text303"
+         style="fill:#ffffff"><tspan
+           id="tspan303"
+           style="fill:#ffffff">Familia</tspan></text>
+      <text
+         systemLanguage="my"
+         id="text304"
+         style="fill:#ffffff"><tspan
+           id="tspan304"
+           style="fill:#ffffff">မျိုးရင်း</tspan></text>
+      <text
+         systemLanguage="si"
+         id="text305"
+         style="fill:#ffffff"><tspan
+           id="tspan305"
+           style="fill:#ffffff">කුලය</tspan></text>
+      <text
+         systemLanguage="sk"
+         id="text306"
+         style="fill:#ffffff"><tspan
+           id="tspan306"
+           style="fill:#ffffff">čeľaď</tspan></text>
+      <text
+         systemLanguage="tl"
+         id="text307"
+         style="fill:#ffffff"><tspan
+           id="tspan307"
+           style="fill:#ffffff">Pamilya</tspan></text>
+      <text
+         systemLanguage="uz"
+         id="text308"
+         style="fill:#ffffff"><tspan
+           id="tspan308"
+           style="fill:#ffffff">Oila</tspan></text>
+      <text
+         systemLanguage="xmf"
+         id="text309"
+         style="fill:#ffffff"><tspan
+           id="tspan309"
+           style="fill:#ffffff">ფანია</tspan></text>
+      <text
+         id="text310"
+         systemLanguage="shn"
+         style="fill:#ffffff"><tspan
+           id="tspan310"
+           style="fill:#ffffff">ၶိူဝ်းႁိူၼ်း</tspan></text>
+      <text
+         id="text311"
+         systemLanguage="id"
+         style="fill:#ffffff"><tspan
+           id="tspan311"
+           style="fill:#ffffff">Famili</tspan></text>
+      <text
+         id="text312"
+         systemLanguage="tg"
+         style="fill:#ffffff"><tspan
+           id="tspan312"
+           style="fill:#ffffff">Оила</tspan></text>
+      <text
+         id="text313"
+         style="fill:#ffffff"><tspan
+           id="tspan313"
+           style="fill:#ffffff">Family</tspan></text>
+    </switch>
+  </g>
+  <g
+     id="g262"
+     transform="matrix(2.1069389,0,0,2.1069389,-292.09699,-54.021917)">
+    <path
+       d="m 105.38066,52.54713 h 9.94345 c 0.40465,0 0.73042,-0.32576 0.73042,-0.73041 v -2.2254 c 0,-0.40465 -0.32577,-0.73041 -0.73042,-0.73041 h -9.94345 c -0.40465,0 -0.73041,0.32576 -0.73041,0.73041 v 2.2254 c 0,0.40465 0.32576,0.73041 0.73041,0.73041 z"
+       fill="#beff77"
+       id="path201-3"
+       style="fill:#008080;fill-opacity:1;stroke:#000000;stroke-width:0.184788" />
+    <switch
+       transform="matrix(0.09239405,0,0,0.09239405,110.32374,51.5745)"
+       id="switch291"
+       style="font-weight:bold;font-size:20px;font-family:'Liberation Sans';text-anchor:middle;fill:#ffffff">
+      <text
+         systemLanguage="af"
+         id="text270"
+         style="fill:#ffffff"><tspan
+           id="tspan270"
+           style="fill:#ffffff">Orde</tspan></text>
+      <text
+         systemLanguage="ban"
+         id="text271"
+         style="fill:#ffffff"><tspan
+           id="tspan271"
+           style="fill:#ffffff">Ordo</tspan></text>
+      <text
+         systemLanguage="br"
+         id="text272"
+         style="fill:#ffffff"><tspan
+           id="tspan272"
+           style="fill:#ffffff">Urzhiad</tspan></text>
+      <text
+         systemLanguage="bs"
+         id="text273"
+         style="fill:#ffffff"><tspan
+           id="tspan273"
+           style="fill:#ffffff">Red</tspan></text>
+      <text
+         systemLanguage="cs"
+         id="text274"
+         style="fill:#ffffff"><tspan
+           id="tspan274"
+           style="fill:#ffffff">řád</tspan></text>
+      <text
+         systemLanguage="de"
+         id="text275"
+         style="fill:#ffffff"><tspan
+           id="tspan275"
+           style="fill:#ffffff">Familie</tspan></text>
+      <text
+         systemLanguage="en"
+         id="text276"
+         style="font-size:26.7273px;fill:#ffffff"><tspan
+           id="tspan276"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.7273px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';fill:#ffffff">Order</tspan></text>
+      <text
+         systemLanguage="es"
+         id="text277"
+         style="fill:#ffffff"><tspan
+           id="tspan277"
+           style="fill:#ffffff">Orden</tspan></text>
+      <text
+         systemLanguage="fr"
+         id="text278"
+         style="fill:#ffffff"><tspan
+           id="tspan278"
+           style="fill:#ffffff">Ordre</tspan></text>
+      <text
+         systemLanguage="gl"
+         id="text279"
+         style="fill:#ffffff"><tspan
+           id="tspan279"
+           style="fill:#ffffff">Orde</tspan></text>
+      <text
+         systemLanguage="ku"
+         id="text280"
+         style="fill:#ffffff"><tspan
+           id="tspan280"
+           style="fill:#ffffff">Kom</tspan></text>
+      <text
+         systemLanguage="la"
+         id="text281"
+         style="fill:#ffffff"><tspan
+           id="tspan281"
+           style="fill:#ffffff">Ordo</tspan></text>
+      <text
+         systemLanguage="my"
+         id="text282"
+         style="fill:#ffffff"><tspan
+           id="tspan282"
+           style="fill:#ffffff">မျိုးစဉ်</tspan></text>
+      <text
+         systemLanguage="si"
+         id="text283"
+         style="fill:#ffffff"><tspan
+           id="tspan283"
+           style="fill:#ffffff">ගෝත්‍රය</tspan></text>
+      <text
+         systemLanguage="sk"
+         id="text284"
+         style="fill:#ffffff"><tspan
+           id="tspan284"
+           style="fill:#ffffff">rad</tspan></text>
+      <text
+         systemLanguage="tl"
+         id="text285"
+         style="fill:#ffffff"><tspan
+           id="tspan285"
+           style="fill:#ffffff">Orden</tspan></text>
+      <text
+         systemLanguage="uz"
+         id="text286"
+         style="fill:#ffffff"><tspan
+           id="tspan286"
+           style="fill:#ffffff">Otryad</tspan></text>
+      <text
+         systemLanguage="xmf"
+         id="text287"
+         style="fill:#ffffff"><tspan
+           id="tspan287"
+           style="fill:#ffffff">რანწკი</tspan></text>
+      <text
+         id="text288"
+         systemLanguage="shn"
+         style="fill:#ffffff"><tspan
+           id="tspan288"
+           style="fill:#ffffff">ၶိူဝ်း</tspan></text>
+      <text
+         id="text289"
+         systemLanguage="id"
+         style="fill:#ffffff"><tspan
+           id="tspan289"
+           style="fill:#ffffff">Ordo</tspan></text>
+      <text
+         id="text290"
+         systemLanguage="tg"
+         style="fill:#ffffff"><tspan
+           id="tspan290"
+           style="fill:#ffffff">Тартиб</tspan></text>
+      <text
+         id="text291"
+         style="fill:#ffffff"><tspan
+           id="tspan291"
+           style="fill:#ffffff">Order</tspan></text>
+    </switch>
+  </g>
+  <g
+     id="g263"
+     transform="matrix(2.1069389,0,0,2.1069389,-273.90753,-55.885799)">
+    <path
+       d="m 96.74754,47.26602 h 9.94345 c 0.40465,0 0.73042,-0.32576 0.73042,-0.73041 v -2.2254 c 0,-0.40465 -0.32577,-0.73041 -0.73042,-0.73041 h -9.94345 c -0.40465,0 -0.73041,0.32576 -0.73041,0.73041 v 2.2254 c 0,0.40465 0.32576,0.73041 0.73041,0.73041 z"
+       fill="#7bff77"
+       id="path200-8"
+       style="fill:#006666;fill-opacity:1;stroke:#000000;stroke-width:0.184788" />
+    <switch
+       transform="matrix(0.09239405,0,0,0.09239405,101.69062,46.29339)"
+       id="switch269"
+       style="font-weight:bold;font-size:20px;font-family:'Liberation Sans';text-anchor:middle;fill:#ffffff">
+      <text
+         systemLanguage="af"
+         id="text248"
+         style="fill:#ffffff"><tspan
+           id="tspan248"
+           style="fill:#ffffff">Klas</tspan></text>
+      <text
+         systemLanguage="ban"
+         id="text249"
+         style="fill:#ffffff"><tspan
+           id="tspan249"
+           style="fill:#ffffff">Kelas</tspan></text>
+      <text
+         systemLanguage="br"
+         id="text250"
+         style="fill:#ffffff"><tspan
+           id="tspan250"
+           style="fill:#ffffff">Kevrennad</tspan></text>
+      <text
+         systemLanguage="bs"
+         id="text251"
+         style="fill:#ffffff"><tspan
+           id="tspan251"
+           style="fill:#ffffff">Klasa</tspan></text>
+      <text
+         systemLanguage="cs"
+         id="text252"
+         style="fill:#ffffff"><tspan
+           id="tspan252"
+           style="fill:#ffffff">třída</tspan></text>
+      <text
+         systemLanguage="de"
+         id="text253"
+         style="fill:#ffffff"><tspan
+           id="tspan253"
+           style="fill:#ffffff">Klasse</tspan></text>
+      <text
+         systemLanguage="en"
+         id="text254"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.7273px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';fill:#ffffff"><tspan
+           id="tspan254"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.7273px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';fill:#ffffff">Class</tspan></text>
+      <text
+         systemLanguage="es"
+         id="text255"
+         style="fill:#ffffff"><tspan
+           id="tspan255"
+           style="fill:#ffffff">Clase</tspan></text>
+      <text
+         systemLanguage="fr"
+         id="text256"
+         style="fill:#ffffff"><tspan
+           id="tspan256"
+           style="fill:#ffffff">Classe</tspan></text>
+      <text
+         systemLanguage="gl"
+         id="text257"
+         style="fill:#ffffff"><tspan
+           id="tspan257"
+           style="fill:#ffffff">Clase</tspan></text>
+      <text
+         systemLanguage="ku"
+         id="text258"
+         style="fill:#ffffff"><tspan
+           id="tspan258"
+           style="fill:#ffffff">Çîn</tspan></text>
+      <text
+         systemLanguage="la"
+         id="text259"
+         style="fill:#ffffff"><tspan
+           id="tspan259"
+           style="fill:#ffffff">Classis</tspan></text>
+      <text
+         systemLanguage="my"
+         id="text260"
+         style="fill:#ffffff"><tspan
+           id="tspan260"
+           style="fill:#ffffff">မျိုးပေါင်း</tspan></text>
+      <text
+         systemLanguage="si"
+         id="text261"
+         style="fill:#ffffff"><tspan
+           id="tspan261"
+           style="fill:#ffffff">වර්ගය</tspan></text>
+      <text
+         systemLanguage="sk"
+         id="text262"
+         style="fill:#ffffff"><tspan
+           id="tspan262"
+           style="fill:#ffffff">trieda</tspan></text>
+      <text
+         systemLanguage="tl"
+         id="text263"
+         style="fill:#ffffff"><tspan
+           id="tspan263"
+           style="fill:#ffffff">Klase</tspan></text>
+      <text
+         systemLanguage="uz"
+         id="text264"
+         style="fill:#ffffff"><tspan
+           id="tspan264"
+           style="fill:#ffffff">Sinf</tspan></text>
+      <text
+         systemLanguage="xmf"
+         id="text265"
+         style="fill:#ffffff"><tspan
+           id="tspan265"
+           style="fill:#ffffff">კლასი</tspan></text>
+      <text
+         id="text266"
+         systemLanguage="shn"
+         style="fill:#ffffff"><tspan
+           id="tspan266"
+           style="fill:#ffffff">ၸၼ်ႉ</tspan></text>
+      <text
+         id="text267"
+         systemLanguage="id"
+         style="fill:#ffffff"><tspan
+           id="tspan267"
+           style="fill:#ffffff">Kelas</tspan></text>
+      <text
+         id="text268"
+         systemLanguage="tg"
+         style="fill:#ffffff"><tspan
+           id="tspan268"
+           style="fill:#ffffff">Синф</tspan></text>
+      <text
+         id="text269"
+         style="fill:#ffffff"><tspan
+           id="tspan269"
+           style="fill:#ffffff">Class</tspan></text>
+    </switch>
+  </g>
+  <g
+     id="g264"
+     transform="matrix(2.1069389,0,0,2.1069389,-258.91523,-45.42236)">
+    <path
+       d="m 89.63185,36.13409 h 9.94345 c 0.40465,0 0.73042,-0.32576 0.73042,-0.73041 v -2.2254 c 0,-0.40465 -0.32577,-0.73041 -0.73042,-0.73041 h -9.94345 c -0.40465,0 -0.73041,0.32576 -0.73041,0.73041 v 2.2254 c 0,0.40465 0.32576,0.73041 0.73041,0.73041 z"
+       fill="#77ffb6"
+       id="path199-6"
+       style="fill:#004d4d;fill-opacity:1;stroke:#000000;stroke-width:0.184788" />
+    <switch
+       transform="matrix(0.09239405,0,0,0.09239405,94.57493,34.93921)"
+       id="switch247"
+       style="font-weight:bold;font-size:20px;font-family:'Liberation Sans';text-anchor:middle;fill:#ffffff">
+      <text
+         systemLanguage="af"
+         id="text226"
+         style="fill:#ffffff"><tspan
+           id="tspan226"
+           style="fill:#ffffff">Filum</tspan></text>
+      <text
+         systemLanguage="ban"
+         id="text227"
+         style="fill:#ffffff"><tspan
+           id="tspan227"
+           style="fill:#ffffff">Pilum</tspan></text>
+      <text
+         systemLanguage="br"
+         id="text228"
+         style="fill:#ffffff"><tspan
+           id="tspan228"
+           style="fill:#ffffff">Skourrad</tspan></text>
+      <text
+         systemLanguage="bs"
+         id="text229"
+         style="fill:#ffffff"><tspan
+           id="tspan229"
+           style="fill:#ffffff">Koljeno</tspan></text>
+      <text
+         systemLanguage="cs"
+         id="text230"
+         style="fill:#ffffff"><tspan
+           id="tspan230"
+           style="fill:#ffffff">kmen</tspan></text>
+      <text
+         systemLanguage="de"
+         id="text231"
+         style="fill:#ffffff"><tspan
+           id="tspan231"
+           style="fill:#ffffff">Stamm</tspan></text>
+      <text
+         systemLanguage="en"
+         id="text232"
+         style="font-size:26.7273px;fill:#ffffff"><tspan
+           id="tspan232"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.7273px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';fill:#ffffff">Phylum</tspan></text>
+      <text
+         systemLanguage="es"
+         id="text233"
+         style="fill:#ffffff"><tspan
+           id="tspan233"
+           style="fill:#ffffff">Filo</tspan></text>
+      <text
+         systemLanguage="fr"
+         id="text234"
+         style="fill:#ffffff"><tspan
+           id="tspan234"
+           style="fill:#ffffff">Division</tspan></text>
+      <text
+         systemLanguage="gl"
+         id="text235"
+         style="fill:#ffffff"><tspan
+           id="tspan235"
+           style="fill:#ffffff">Filo</tspan></text>
+      <text
+         systemLanguage="ku"
+         id="text236"
+         style="fill:#ffffff"><tspan
+           id="tspan236"
+           style="fill:#ffffff">Filûm</tspan></text>
+      <text
+         systemLanguage="la"
+         id="text237"
+         style="fill:#ffffff"><tspan
+           id="tspan237"
+           style="fill:#ffffff">Phylum</tspan></text>
+      <text
+         systemLanguage="my"
+         id="text238"
+         style="fill:#ffffff"><tspan
+           id="tspan238"
+           style="fill:#ffffff">မျိုးပေါင်းစု</tspan></text>
+      <text
+         systemLanguage="si"
+         id="text239"
+         style="fill:#ffffff"><tspan
+           id="tspan239"
+           style="fill:#ffffff">වංශය</tspan></text>
+      <text
+         systemLanguage="sk"
+         id="text240"
+         style="fill:#ffffff"><tspan
+           id="tspan240"
+           style="fill:#ffffff">kmeň</tspan></text>
+      <text
+         systemLanguage="tl"
+         id="text241"
+         style="fill:#ffffff"><tspan
+           id="tspan241"
+           style="fill:#ffffff">Phylum</tspan></text>
+      <text
+         systemLanguage="uz"
+         id="text242"
+         style="fill:#ffffff"><tspan
+           id="tspan242"
+           style="fill:#ffffff">Tip</tspan></text>
+      <text
+         systemLanguage="xmf"
+         id="text243"
+         style="fill:#ffffff"><tspan
+           id="tspan243"
+           style="fill:#ffffff">ტიპი</tspan></text>
+      <text
+         id="text244"
+         systemLanguage="shn"
+         style="fill:#ffffff"><tspan
+           id="tspan244"
+           style="fill:#ffffff">ထၢၼ်ႈ</tspan></text>
+      <text
+         id="text245"
+         systemLanguage="id"
+         style="fill:#ffffff"><tspan
+           id="tspan245"
+           style="fill:#ffffff">Filum</tspan></text>
+      <text
+         id="text246"
+         systemLanguage="tg"
+         style="fill:#ffffff"><tspan
+           id="tspan246"
+           style="fill:#ffffff">Шӯъба</tspan></text>
+      <text
+         id="text247"
+         style="fill:#ffffff"><tspan
+           id="tspan247"
+           style="fill:#ffffff">Phylum</tspan></text>
+    </switch>
+  </g>
+  <g
+     id="g265"
+     transform="matrix(2.1069389,0,0,2.1069389,-246.67144,-36.893892)">
+    <path
+       d="m 83.82068,25.92054 h 9.94345 c 0.40465,0 0.73042,-0.32576 0.73042,-0.73041 v -2.22541 c 0,-0.40464 -0.32577,-0.7304 -0.73042,-0.7304 h -9.94345 c -0.40465,0 -0.73041,0.32576 -0.73041,0.7304 v 2.22541 c 0,0.40465 0.32576,0.73041 0.73041,0.73041 z"
+       fill="#77fff9"
+       id="path2-0"
+       style="fill:#003333;fill-opacity:1;stroke:#000000;stroke-width:0.184788" />
+    <switch
+       transform="matrix(0.09239405,0,0,0.09239405,88.75461,24.73307)"
+       id="switch962"
+       style="font-weight:bold;font-size:20px;font-family:'Liberation Sans';text-anchor:middle;fill:#ffffff">
+      <text
+         systemLanguage="af"
+         id="text941"
+         style="fill:#ffffff"><tspan
+           id="tspan941"
+           style="fill:#ffffff">Domein</tspan></text>
+      <text
+         systemLanguage="ban"
+         id="text942"
+         style="fill:#ffffff"><tspan
+           id="tspan942"
+           style="fill:#ffffff">Domain</tspan></text>
+      <text
+         systemLanguage="br"
+         id="text943"
+         style="fill:#ffffff"><tspan
+           id="tspan943"
+           style="fill:#ffffff">Riezad</tspan></text>
+      <text
+         systemLanguage="bs"
+         id="text944"
+         style="fill:#ffffff"><tspan
+           id="tspan944"
+           style="fill:#ffffff">Domen</tspan></text>
+      <text
+         systemLanguage="cs"
+         id="text945"
+         style="fill:#ffffff"><tspan
+           id="tspan945"
+           style="fill:#ffffff">doména</tspan></text>
+      <text
+         systemLanguage="de"
+         id="text946"
+         style="fill:#ffffff"><tspan
+           id="tspan946"
+           style="fill:#ffffff">Domäne</tspan></text>
+      <text
+         systemLanguage="en"
+         id="text947"
+         style="font-size:26.7273px;fill:#ffffff"><tspan
+           id="tspan947"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.7273px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';fill:#ffffff">Kingdom</tspan></text>
+      <text
+         systemLanguage="es"
+         id="text948"
+         style="fill:#ffffff"><tspan
+           id="tspan948"
+           style="fill:#ffffff">Dominio</tspan></text>
+      <text
+         systemLanguage="fr"
+         id="text949"
+         style="fill:#ffffff"><tspan
+           id="tspan949"
+           style="fill:#ffffff">Domaine</tspan></text>
+      <text
+         systemLanguage="gl"
+         id="text950"
+         style="fill:#ffffff"><tspan
+           id="tspan950"
+           style="fill:#ffffff">Dominio</tspan></text>
+      <text
+         systemLanguage="ku"
+         id="text951"
+         style="fill:#ffffff"><tspan
+           id="tspan951"
+           style="fill:#ffffff">Sercîhan</tspan></text>
+      <text
+         systemLanguage="la"
+         id="text952"
+         style="fill:#ffffff"><tspan
+           id="tspan952"
+           style="fill:#ffffff">Regio</tspan></text>
+      <text
+         systemLanguage="my"
+         id="text953"
+         style="fill:#ffffff"><tspan
+           id="tspan953"
+           style="fill:#ffffff">နယ်ပယ်</tspan></text>
+      <text
+         systemLanguage="si"
+         id="text954"
+         style="fill:#ffffff"><tspan
+           id="tspan954"
+           style="fill:#ffffff">වසම</tspan></text>
+      <text
+         systemLanguage="sk"
+         id="text955"
+         style="fill:#ffffff"><tspan
+           id="tspan955"
+           style="fill:#ffffff">doména</tspan></text>
+      <text
+         systemLanguage="tl"
+         id="text956"
+         style="fill:#ffffff"><tspan
+           id="tspan956"
+           style="fill:#ffffff">Dominyo</tspan></text>
+      <text
+         systemLanguage="uz"
+         id="text957"
+         style="fill:#ffffff"><tspan
+           id="tspan957"
+           style="fill:#ffffff">Domen</tspan></text>
+      <text
+         systemLanguage="xmf"
+         id="text958"
+         style="fill:#ffffff"><tspan
+           id="tspan958"
+           style="fill:#ffffff">დომენი</tspan></text>
+      <text
+         id="text959"
+         systemLanguage="shn"
+         style="fill:#ffffff"><tspan
+           id="tspan959"
+           style="fill:#ffffff">တီႈပိုင်ႈယူႇ</tspan></text>
+      <text
+         id="text960"
+         systemLanguage="id"
+         style="fill:#ffffff"><tspan
+           id="tspan960"
+           style="fill:#ffffff">Domain</tspan></text>
+      <text
+         id="text961"
+         systemLanguage="tg"
+         style="fill:#ffffff"><tspan
+           id="tspan961"
+           style="fill:#ffffff">Олам</tspan></text>
+      <text
+         id="text962"
+         style="fill:#ffffff"><tspan
+           id="tspan962"
+           style="fill:#ffffff">Domain</tspan></text>
+    </switch>
+  </g>
+  <g
+     id="g266"
+     transform="matrix(2.1069389,0,0,2.1069389,-246.63636,-24.90819)">
+    <path
+       d="m 83.80405,14.06611 h 9.94345 c 0.40465,0 0.73041,-0.32576 0.73041,-0.73041 v -2.2254 c 0,-0.40465 -0.32576,-0.73041 -0.73041,-0.73041 h -9.94345 c -0.40465,0 -0.73041,0.32576 -0.73041,0.73041 v 2.2254 c 0,0.40465 0.32576,0.73041 0.73041,0.73041 z"
+       fill="#77c3ff"
+       id="path1-8"
+       style="fill:#001a1a;fill-opacity:1;stroke:#000000;stroke-width:0.184788" />
+    <switch
+       transform="matrix(0.09239405,0,0,0.09239405,88.75461,13.10089)"
+       id="switch77"
+       style="font-weight:bold;font-size:20px;font-family:'Liberation Sans';text-anchor:middle;fill:#ffffff">
+      <text
+         systemLanguage="af"
+         id="trsvg191"
+         style="fill:#ffffff"><tspan
+           id="trsvg20"
+           style="fill:#ffffff">Domein</tspan></text>
+      <text
+         systemLanguage="ban"
+         id="trsvg192"
+         style="fill:#ffffff"><tspan
+           id="trsvg21"
+           style="fill:#ffffff">Domain</tspan></text>
+      <text
+         systemLanguage="br"
+         id="trsvg193"
+         style="fill:#ffffff"><tspan
+           id="trsvg22"
+           style="fill:#ffffff">Riezad</tspan></text>
+      <text
+         systemLanguage="bs"
+         id="trsvg194"
+         style="fill:#ffffff"><tspan
+           id="trsvg23"
+           style="fill:#ffffff">Domen</tspan></text>
+      <text
+         systemLanguage="cs"
+         id="trsvg195"
+         style="fill:#ffffff"><tspan
+           id="trsvg24"
+           style="fill:#ffffff">doména</tspan></text>
+      <text
+         systemLanguage="de"
+         id="trsvg196"
+         style="fill:#ffffff"><tspan
+           id="trsvg25"
+           style="fill:#ffffff">Domäne</tspan></text>
+      <text
+         systemLanguage="en"
+         id="trsvg197"
+         style="font-size:26.7273px;fill:#ffffff"><tspan
+           id="trsvg26"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.7273px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';fill:#ffffff">Domain</tspan></text>
+      <text
+         systemLanguage="es"
+         id="trsvg198"
+         style="fill:#ffffff"><tspan
+           id="trsvg27"
+           style="fill:#ffffff">Dominio</tspan></text>
+      <text
+         systemLanguage="fr"
+         id="trsvg199"
+         style="fill:#ffffff"><tspan
+           id="trsvg28"
+           style="fill:#ffffff">Domaine</tspan></text>
+      <text
+         systemLanguage="gl"
+         id="trsvg200"
+         style="fill:#ffffff"><tspan
+           id="trsvg29"
+           style="fill:#ffffff">Dominio</tspan></text>
+      <text
+         systemLanguage="ku"
+         id="trsvg201"
+         style="fill:#ffffff"><tspan
+           id="trsvg30"
+           style="fill:#ffffff">Sercîhan</tspan></text>
+      <text
+         systemLanguage="la"
+         id="trsvg202"
+         style="fill:#ffffff"><tspan
+           id="trsvg31"
+           style="fill:#ffffff">Regio</tspan></text>
+      <text
+         systemLanguage="my"
+         id="trsvg203"
+         style="fill:#ffffff"><tspan
+           id="trsvg32"
+           style="fill:#ffffff">နယ်ပယ်</tspan></text>
+      <text
+         systemLanguage="si"
+         id="trsvg204"
+         style="fill:#ffffff"><tspan
+           id="trsvg33"
+           style="fill:#ffffff">වසම</tspan></text>
+      <text
+         systemLanguage="sk"
+         id="trsvg205"
+         style="fill:#ffffff"><tspan
+           id="trsvg34"
+           style="fill:#ffffff">doména</tspan></text>
+      <text
+         systemLanguage="tl"
+         id="trsvg206"
+         style="fill:#ffffff"><tspan
+           id="trsvg35"
+           style="fill:#ffffff">Dominyo</tspan></text>
+      <text
+         systemLanguage="uz"
+         id="trsvg207"
+         style="fill:#ffffff"><tspan
+           id="trsvg36"
+           style="fill:#ffffff">Domen</tspan></text>
+      <text
+         systemLanguage="xmf"
+         id="trsvg208"
+         style="fill:#ffffff"><tspan
+           id="trsvg37"
+           style="fill:#ffffff">დომენი</tspan></text>
+      <text
+         id="trsvg209-shn"
+         systemLanguage="shn"
+         style="fill:#ffffff"><tspan
+           id="trsvg38-shn"
+           style="fill:#ffffff">တီႈပိုင်ႈယူႇ</tspan></text>
+      <text
+         id="trsvg209-id"
+         systemLanguage="id"
+         style="fill:#ffffff"><tspan
+           id="trsvg38-id"
+           style="fill:#ffffff">Domain</tspan></text>
+      <text
+         id="trsvg209-tg"
+         systemLanguage="tg"
+         style="fill:#ffffff"><tspan
+           id="trsvg38-tg"
+           style="fill:#ffffff">Олам</tspan></text>
+      <text
+         id="trsvg209"
+         style="fill:#ffffff"><tspan
+           id="trsvg38"
+           style="fill:#ffffff">Domain</tspan></text>
+    </switch>
+  </g>
+</svg>

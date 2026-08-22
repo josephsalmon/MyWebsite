@@ -1039,7 +1039,7 @@ print('</div>')
 ::: {.column width="29%"}
 
 <center>
-<img src="images/sample_genus.svg" width="62%" align="middle">
+<img src="images/sample_genus_all.svg" width="62%" align="middle">
 </center>
 <br>
 :::
@@ -1642,9 +1642,9 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 
 What gets photographed is not random.
 
-`Easy access` 
+`Easy access`
 
- `Visible species` 
+ `Visible species`
 
  `Easy identification`
 
@@ -1658,9 +1658,9 @@ What gets photographed is not random.
 
 What we see depends on **when** we look.
 
-`Season` 
+`Season`
 
- `Flowering` 
+ `Flowering`
 
  `Plant appearance`
 
@@ -1675,7 +1675,7 @@ What we see depends on **when** we look.
 Observations can reflect observers own choices.
 
 `Personal preferences`
- 
+
 `Rare species`
 
  `Endangered species`
@@ -1686,7 +1686,7 @@ Observations can reflect observers own choices.
 
 <center>
 
-...
+<big>...</big>
 
 <br>
 
@@ -1902,19 +1902,23 @@ if not all(os.path.exists(f) for f in required_files):
 
 
 <!-------------------------------------------------------------------------- -->
-### Taxonomy detour
+### Taxonomy detour: the tree of life
 
+<br>
+<br>
 
-
+<center>
 ::: {.r-stack}
 
-![](images/roots_0_v2.svg){.fragment fragment-index=1 width="1400"}
+![](images/roots_v4_2.svg){.fragment fragment-index=1 width="1400"}
 
-![](images/roots_1_v2.svg){.fragment fragment-index=2 width="1400"}
+![](images/roots_v4_1.svg){.fragment fragment-index=2 width="1400"}
 
-![](images/roots_v2.svg){.fragment fragment-index=3 width="1400"} 
+![](images/roots_v4.svg){.fragment fragment-index=3 width="1400"} 
 
 :::
+
+</center>
 
 <!-------------------------------------------------------------------------- -->
 
@@ -2116,7 +2120,7 @@ Provide a real life scenario for supervised learning, with multi-class and long-
 ::: {.column }
 
 
-[**Characteristics**]{.underline}:
+[**Pl@ntNet-300K v1.0 characteristics**]{.underline}:
 
 
 <br>
@@ -2421,49 +2425,168 @@ calibrate $t_{\alpha}^y$ **only on** $(X_i, Y_i)$ such that $Y_i = y$
 
 
 <!-------------------------------------------------------------------------- -->
-
 ### Interactive optimal set visualization
 <hr>
 
 ```{=html}
-<div style="width:50%; margin: 0 auto;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 
-<div id="plots2" style="width:100%; max-width:800px; overflow-x:auto;"></div>
-<div id="alphaControl" style="display:flex; align-items:center; justify-content:center; gap:12px;">
-  <label for="alphaSlider"><span class="math inline">\(\alpha=\)</span> <span id="alphaValue">0.15</span></label>
-  <input type="range" id="alphaSlider" min="0.001" max="0.20" step="0.001" value="0.15">
-    </div>
+<style>
+/* Nunito for this visualization only */
+#plots2,
+#plots2 *,
+#alphaControl,
+#alphaControl * {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Plotly SVG text */
+#plots2 svg text {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Plotly axes, labels and legends */
+#plots2 .xtitle,
+#plots2 .ytitle,
+#plots2 .xtick text,
+#plots2 .ytick text,
+#plots2 .legendtext {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Slider */
+#alphaControl label {
+  font-family: "Nunito", sans-serif !important;
+  font-weight: 700;
+}
+
+#alphaControl input[type="range"] {
+  accent-color: #047C90;
+}
+
+#alphaValue {
+  font-weight: 700;
+  }
+
+#plots2 {
+  max-width: 900px !important;
+}
+#plots2 .legend .bg {
+  width: 700px !important;
+}
+#plots2 .legendtext {
+  font-size: 15px !important;
+  font-family: "Nunito", sans-serif !important;
+}
+</style>
+
+<div style="width:50%; margin:0 auto;">
+
+  <div id="plots2"
+       style="width:100%; max-width:800px; overflow-x:auto;">
+  </div>
+
+  <div id="alphaControl"
+       style="display:flex; align-items:center; justify-content:center; gap:12px;">
+
+    <label for="alphaSlider">
+      <span class="math inline">\(\alpha=\)</span>
+      <span id="alphaValue">0.15</span>
+    </label>
+
+    <input
+      type="range"
+      id="alphaSlider"
+      min="0.001"
+      max="0.20"
+      step="0.001"
+      value="0.15"
+    >
+
+  </div>
 </div>
 
-<script type="module" src="../../../../blog/long-tail/subplot_viz.js"></script>
+<script type="module"
+        src="../../../../blog/long-tail/subplot_viz.js">
+</script>
 ```
 <!-------------------------------------------------------------------------- -->
-
 
 
 ### Class conditional: useless for long-tail
 <hr>
 
-
-
 <br>
 <br>
-
-
 
 ```{=html}
-<div id="all-metrics-softmax-container-2" style="width: 100%; height: 450px; margin: 20px 0;">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* Override the visualization font from this slide */
+#all-metrics-softmax-container-2,
+#all-metrics-softmax-container-2 * {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Plotly SVG text */
+#all-metrics-softmax-container-2 svg text {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Plotly axis titles and tick labels */
+#all-metrics-softmax-container-2 .xtitle,
+#all-metrics-softmax-container-2 .ytitle,
+#all-metrics-softmax-container-2 .xtick text,
+#all-metrics-softmax-container-2 .ytick text,
+#all-metrics-softmax-container-2 .legendtext {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Bold elements */
+#all-metrics-softmax-container-2 .scale-btn,
+#all-metrics-softmax-container-2 .scale-label,
+#all-metrics-softmax-container-2 #image-label,
+#all-metrics-softmax-container-2 .legendtext,
+
+
+#all-metrics-softmax-container-2 .legend .bg {
+  width: 900px !important;
+}
+#all-metrics-softmax-container-2 .legendtext {
+  font-size: 12px !important;
+  font-family: "Nunito", sans-serif !important;
+}
+
+</style>
+
+<style>
+/* Fix legend cropping: wider container */
+#all-metrics-softmax-container-2 .legend .bg {
+  width: 390px !important;
+}
+#all-metrics-softmax-container-2 .legend .scrollbox {
+  width: 390px !important;
+}
+#all-metrics-softmax-container-2 .legendtext {
+  font-size: 11px !important;
+}
+
+</style>
+
+<div id="all-metrics-softmax-container-2"
+     style="width: 100%; height: 450px; margin: 20px 0;">
 </div>
 
-<script type="module" src="../../../blog/long-tail/all_metrics_softmax_viz_no_yellow.js"></script>
+<script type="module"
+        src="../../../blog/long-tail/all_metrics_softmax_viz_no_yellow.js">
+</script>
 ```
-
-
 <!-------------------------------------------------------------------------- -->
-
-
-
-
 
 
 <!-------------------------------------------------------------------------- -->
@@ -2528,12 +2651,67 @@ $$
 <hr>
 
 ```{=html}
-<div style="width:50%; margin: 0 auto;">
-    <div id="plots3" style="width:100%; max-width:800px; overflow-x:auto;"></div>
-    <div id="alphaControl2" style="display:flex; align-items:center; justify-content:center; gap:2px;">
-        <label for="alphaSlider2"><span class="math inline">\(\alpha\)</span>: <span id="alphaValue2">0.15</span></label>
-        <input type="range" id="alphaSlider2" min="0.001" max="0.20" step="0.001" value="0.15">
-    </div>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* Nunito for this visualization only */
+#plots3,
+#plots3 *,
+#alphaControl2,
+#alphaControl2 * {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Plotly SVG text */
+#plots3 svg text {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Plotly axes, labels and legends */
+#plots3 .xtitle,
+#plots3 .ytitle,
+#plots3 .xtick text,
+#plots3 .ytick text,
+#plots3 .legendtext {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Slider */
+#alphaControl2 label {
+  font-family: "Nunito", sans-serif !important;
+  font-weight: 700;
+}
+
+#alphaControl2 input[type="range"] {
+  accent-color: #047C90;
+}
+
+#alphaValue2 {
+  font-weight: 700;
+}
+#plots3 {
+  max-width: 900px !important;
+}
+#plots3 .legend .bg {
+  width: 700px !important;
+}
+#plots3 .legendtext {
+  font-size: 12px !important;
+  font-family: "Nunito", sans-serif !important;
+}
+</style>
+
+<div style="width:50%; margin:0 auto;">
+  <div id="plots3" style="width:100%; max-width:800px; overflow-x:auto;"></div>
+  <div id="alphaControl2" style="display:flex; align-items:center; justify-content:center; gap:12px;">
+    <label for="alphaSlider2">
+      <span class="math inline">\(\alpha=\)</span>
+      <span id="alphaValue2">0.15</span>
+    </label>
+    <input type="range" id="alphaSlider2" min="0.001" max="0.20" step="0.001" value="0.15">
+  </div>
 </div>
 <script type="module" src="../../../../blog/long-tail/subplot_viz_3.js"></script>
 ```
@@ -2557,6 +2735,62 @@ $$
 <br> -->
 
 ```{=html}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* Override the visualization font from this slide */
+#all-metrics-softmax-container,
+#all-metrics-softmax-container * {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Plotly SVG text */
+#all-metrics-softmax-container svg text {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Plotly axis titles and tick labels */
+#all-metrics-softmax-container .xtitle,
+#all-metrics-softmax-container .ytitle,
+#all-metrics-softmax-container .xtick text,
+#all-metrics-softmax-container .ytick text,
+#all-metrics-softmax-container .legendtext {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Bold elements */
+#all-metrics-softmax-container .scale-btn,
+#all-metrics-softmax-container .scale-label,
+#all-metrics-softmax-container #image-label,
+#all-metrics-softmax-container .legendtext,
+
+#all-metrics-softmax-container .legend .bg {
+  width: 900px !important;
+}
+#all-metrics-softmax-container .legendtext {
+  font-size: 18px !important;
+  font-family: "Nunito", sans-serif !important;
+}
+
+</style>
+
+<style>
+/* Fix legend cropping: wider container */
+#all-metrics-softmax-container .legend .bg {
+  width: 390px !important;
+}
+#all-metrics-softmax-container .legend .scrollbox {
+  width: 390px !important;
+}
+#all-metrics-softmax-container .legendtext {
+  font-size: 11px !important;
+}
+
+</style>
+
 <div id="all-metrics-softmax-container" style="width: 100%; height: 450px; margin: 20px 0;">
 </div>
 
@@ -2648,6 +2882,49 @@ $$
 
 
 ```{=html}
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* Override the visualization font from this slide */
+#plantnet-comparison-container,
+#plantnet-comparison-container * {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Plotly SVG text */
+#plantnet-comparison-container svg text {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* Plotly axis titles and tick labels */
+#plantnet-comparison-container .xtitle,
+#plantnet-comparison-container .ytitle,
+#plantnet-comparison-container .xtick text,
+#plantnet-comparison-container .ytick text,
+
+
+/* Bold elements */
+#plantnet-comparison-container .scale-btn,
+#plantnet-comparison-container .scale-label,
+#plantnet-comparison-container #image-label,
+#plantnet-comparison-container .legendtext,
+
+#plantnet-comparison-container .legend .bg {
+  width: 480px !important;
+}
+#plantnet-comparison-container .legendtext {
+  font-size: 11px !important;
+  font-family: "Nunito", sans-serif !important;
+}
+#plantnet-comparison-container .legend .scrollbox {
+  width: 480px !important;
+}
+</style>
+
 <div id="plantnet-comparison-container" style="width: 100%; height: 500px; margin: 20px 0;">
 </div>
 
