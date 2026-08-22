@@ -32,7 +32,7 @@ resources:
 ---
 
 
-<!-- 
+<!--
 
 needed the following and the _environnement at root
 
@@ -52,118 +52,100 @@ python -m ipykernel install --user --name quarto-prez --display-name "Python (qu
 :::
 
 <style>
-    .vertical-line{
-        display: inline-block;
-        border-left: 6px solid rgb(0, 0, 0);
-        margin: 0 10px;
-      height: 410px;
-        border-radius: 3px;
-        overflow: hidden;
+/* -------------------------------------------------------------------------- */
+/* Global typography, SVGs, references, image cards, statistics and bias UI */
+/* -------------------------------------------------------------------------- */
 
-}
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Nunito:wght@200;300;400;500;600;700;800;900&family=Roboto+Mono:wght@300;400&family=Sanchez&display=swap');
 
-/* Set default font for entire SVG */
+.vertical-line {
+  display: inline-block;
+  height: 410px;
+  margin: 0 10px;
+  border-left: 6px solid rgb(0, 0, 0);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
 svg {
-    font-family: 'Nunito Bold', 'Arial', sans-serif;
+  font-family: 'Nunito Bold', 'Arial', sans-serif;
 }
 
-/* Specific targeting for dinov2 SVG numbers */
-img[src*="dinov2-PN.svg"] + svg text,
-img[src*="dinov2-PN.svg"] + svg tspan {
-    font-family: 'Nunito', sans-serif !important;
-    font-weight: 800 !important;
-}
-
-/* Specific targeting for dinov2 SVG numbers - extra weight */
-svg text:contains("DinoV2"), 
-svg tspan:contains("DinoV2"),
-svg text:contains("224"), 
-svg tspan:contains("224"),
-svg text:contains("518") {
-    font-family: 'Nunito', Arial, sans-serif !important;
-    font-weight: 800 !important;
-}
-
-/* Force Nunito for any SVG that might be inline */
 object[data*=".svg"] text,
 object[data*=".svg"] tspan,
 embed[src*=".svg"] text,
 embed[src*=".svg"] tspan {
-    font-family: 'Nunito', Arial, sans-serif !important;
+  font-family: 'Nunito', Arial, sans-serif !important;
 }
 
-
-/* avoid scrolling bar and set refs content size */
 #refs {
-    font-size: 150% !important;
-    overflow: visible !important;
-    max-height: none !important;
-    height: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  font-size: 150% !important;
 }
+
+.reveal,
+.reveal .slides,
 .reveal .slides section {
-    overflow: visible !important;
-}
-.reveal .slides {
-    overflow: visible !important;
-}
-.reveal {
-    overflow: visible !important;
+  overflow: visible !important;
 }
 
-
+/* Image cards */
 .img-author-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-width: 180px;
-    box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 180px;
+  box-sizing: border-box;
 }
+
 .img-author-img {
-    display: block;
-    width: 100% !important;
-    object-fit: contain !important;
-    background: transparent;
-    border-radius: 8px;
-    position: relative;
-    z-index: 1;
-}
-.img-author-overlay {
-    position: absolute;
-    top: 15px;
-    right: 35px;
-    background: rgba(0,0,0,0.5);
-    color: #fff;
-    padding: 1px 6px;
-    border-radius: 8px;
-    font-size: 0.5em;
-    font-family: Nunito, Arial, sans-serif;
-    font-weight: bold;
-    z-index: 2;
-    pointer-events: none;
+  display: block;
+  width: 100% !important;
+  object-fit: contain !important;
+  background: transparent;
+  border-radius: 8px;
+  position: relative;
+  z-index: 1;
 }
 
-/* Make captions immune to long names and keep grid aligned */
+.img-author-overlay,
 .img-author-caption {
-     text-align: center;
-     font-size: 0.75em;
-     color: #222;
-     margin-top: 2px;
-     font-family: Nunito, Arial, sans-serif;
-     height: 2.6em; /* fixed height for one line */
-     line-height: 1.3em;
-     white-space: normal;
-     overflow: hidden;
-     text-overflow: ellipsis;
-     width: 100%;
-     display: block;
+  font-family: Nunito, Arial, sans-serif;
 }
 
+.img-author-overlay {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  padding: 1px 6px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.5em;
+  font-weight: bold;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.img-author-caption {
+  display: block;
+  width: 100%;
+  height: 2.6em;
+  margin-top: 2px;
+  text-align: center;
+  font-size: 0.75em;
+  line-height: 1.3em;
+  color: #222;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* Statistics */
-
 .stats-layout {
   display: grid;
   grid-template-columns: 1fr 0.5fr 1fr;
@@ -174,53 +156,26 @@ embed[src*=".svg"] tspan {
   margin: 0 auto;
   align-items: stretch;
 }
-/* Statistics cards */
 
 .stat-card {
+  padding: 1rem 1.15rem;
   background: #f7f8f6;
   border-radius: 12px;
-  padding: 1.0rem 1.15rem;
   text-align: center;
 }
 
-/* Top-left */
-
-.stat-users {
-  grid-column: 1;
-  grid-row: 1;
-}
-
-/* Bottom-left */
-
-.stat-queries {
-  grid-column: 1;
-  grid-row: 2;
-}
-
-/* Top-right */
-
-.stat-species {
-  grid-column: 3;
-  grid-row: 1;
-}
-
-/* Bottom-right */
-
-.stat-observations {
-  grid-column: 3;
-  grid-row: 2;
-}
-
-/* Large central tree card */
+.stat-users { grid-column: 1; grid-row: 1; }
+.stat-queries { grid-column: 1; grid-row: 2; }
+.stat-species { grid-column: 3; grid-row: 1; }
+.stat-observations { grid-column: 3; grid-row: 2; }
+.stat-storage { grid-column: 1 / -1; grid-row: 3; }
 
 .stat-tree {
   grid-column: 2;
   grid-row: 1 / 3;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   padding: 1rem;
 }
 
@@ -233,15 +188,6 @@ embed[src*=".svg"] tspan {
   margin: 0 auto;
 }
 
-/* Storage */
-
-.stat-storage {
-  grid-column: 1 / -1;
-  grid-row: 3;
-}
-
-/* Typography */
-
 .stat-value {
   font-size: 1.6em;
   font-weight: 700;
@@ -250,19 +196,17 @@ embed[src*=".svg"] tspan {
 }
 
 .stat-label {
+  margin-top: 0.4rem;
   font-size: 0.85em;
   font-weight: 600;
   color: #555;
-  margin-top: 0.4rem;
 }
 
 .stat-detail {
+  margin-top: 0.15rem;
   font-size: 0.7em;
   color: #888;
-  margin-top: 0.15rem;
 }
-
-/* Source */
 
 .stats-source {
   max-width: 980px;
@@ -272,103 +216,79 @@ embed[src*=".svg"] tspan {
   color: #999;
 }
 
-/* Smaller screens */
-
 @media (max-width: 700px) {
-
   .stats-layout {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
   }
-
-  .stat-tree {
-    grid-column: 1 / -1;
-    grid-row: 1;
-  }
-
-  .stat-users {
-    grid-column: 1;
-    grid-row: 2;
-  }
-
-  .stat-species {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .stat-queries {
-    grid-column: 1;
-    grid-row: 3;
-  }
-
-  .stat-observations {
-    grid-column: 2;
-    grid-row: 3;
-  }
-
-  .stat-storage {
-    grid-column: 1 / -1;
-    grid-row: 4;
-  }
-
+  .stat-tree { grid-column: 1 / -1; grid-row: 1; }
+  .stat-users { grid-column: 1; grid-row: 2; }
+  .stat-species { grid-column: 2; grid-row: 2; }
+  .stat-queries { grid-column: 1; grid-row: 3; }
+  .stat-observations { grid-column: 2; grid-row: 3; }
+  .stat-storage { grid-column: 1 / -1; grid-row: 4; }
 }
 
+/* PlantNet interactive filter menus */
 #filter-container > div,
-#filter-container-2 > div { /* legendBox */
-    padding: 5px !important;
-    max-width: 100% !important;
+#filter-container-2 > div {
+  padding: 5px !important;
+  max-width: 100% !important;
 }
+
 #filter-container > div > div:first-child,
-#filter-container-2 > div > div:first-child { /* legendTitle */
-    font-size: 12px !important;
-    margin-bottom: 2px !important;
-    padding-bottom: 2px !important;
+#filter-container-2 > div > div:first-child {
+  margin-bottom: 2px !important;
+  padding-bottom: 2px !important;
+  font-size: 12px !important;
 }
+
 #filter-container > div > div:last-child,
-#filter-container-2 > div > div:last-child { /* legendGrid */
-    gap: 5px !important;
-    grid-template-columns: repeat(4, 1fr) !important;
+#filter-container-2 > div > div:last-child {
+  gap: 5px !important;
+  grid-template-columns: repeat(4, 1fr) !important;
 }
-/* Flatten the column grouping divs to allow 4-column flow */
+
 #filter-container > div > div:last-child > div:nth-child(n+2),
 #filter-container-2 > div > div:last-child > div:nth-child(n+2) {
-    display: contents !important;
+  display: contents !important;
 }
-/* Hide the sub-headers (At Group, etc.) */
+
 #filter-container div[role="heading"],
 #filter-container-2 div[role="heading"] {
-    display: none !important;
+  display: none !important;
 }
+
 #filter-container label,
 #filter-container-2 label {
-    font-size: 10px !important;
-    margin-left: 4px !important;
+  margin-left: 4px !important;
+  font-size: 10px !important;
 }
+
 #filter-container .status-color-box,
 #filter-container-2 .status-color-box {
-    width: 10px !important;
-    height: 10px !important;
-    margin-right: 4px !important;
+  width: 10px !important;
+  height: 10px !important;
+  margin-right: 4px !important;
 }
+
 #filter-container input[type="checkbox"],
 #filter-container-2 input[type="checkbox"] {
-    transform: scale(0.7);
-    margin: 0 !important;
+  margin: 0 !important;
+  transform: scale(0.7);
 }
-/* Select All row */
+
 #filter-container > div > div:last-child > div:first-child label,
 #filter-container-2 > div > div:last-child > div:first-child label {
-    font-size: 11px !important;
+  font-size: 11px !important;
 }
-/* Reduce vertical padding on rows */
+
 #filter-container > div > div:last-child > div > div,
 #filter-container-2 > div > div:last-child > div > div {
-    padding: 0px !important;
+  padding: 0 !important;
 }
 
-
 /* Biases overview */
-
 .biases-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -378,31 +298,31 @@ embed[src*=".svg"] tspan {
 }
 
 .bias-card {
+  min-height: 290px;
+  padding: 1.5rem 1.4rem 1.4rem;
   background: #f7f8f6;
   border-radius: 16px;
-  padding: 1.5rem 1.4rem 1.4rem;
-  min-height: 290px;
   text-align: center;
 }
 
 .bias-icon {
+  margin-bottom: 0.7rem;
   font-size: 2rem;
   color: #047C90;
-  margin-bottom: 0.7rem;
 }
 
 .bias-title {
+  margin-bottom: 0.8rem;
   font-size: 1.2rem;
   font-weight: 700;
   color: #047C90;
-  margin-bottom: 0.8rem;
 }
 
 .bias-text {
+  min-height: 3.5em;
   font-size: 0.9rem;
   line-height: 1.4;
   color: #555;
-  min-height: 3.5em;
 }
 
 .bias-examples {
@@ -414,25 +334,59 @@ embed[src*=".svg"] tspan {
 }
 
 .bias-examples span {
+  padding: 0.3rem 0.65rem;
   background: white;
   border-radius: 20px;
-  padding: 0.3rem 0.65rem;
   font-size: 0.7rem;
   color: #777;
 }
 
-
 @media (max-width: 800px) {
-  .biases-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .bias-card {
-    min-height: auto;
-  }
+  .biases-grid { grid-template-columns: 1fr; }
+  .bias-card { min-height: auto; }
 }
 
+/* Image grid / team helpers */
+.img-author-group-centered {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.5em;
+  width: 100%;
+  margin: 0 auto 1em;
+}
 
+.img-author-group-centered.img-4-per-row {
+  gap: 3vw !important;
+  justify-content: center;
+}
+
+.img-author-group-centered.img-4-per-row .img-author-container {
+  width: 22vw !important;
+  min-width: 180px;
+  max-width: 24vw;
+}
+
+.team-slide-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1px;
+  margin: 0 auto;
+  max-width: 1200px;
+  font-size: 40%;
+}
+
+.team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+  margin-bottom: 10px;
+}
+
+.team-member img + p { margin-top: -2px !important; }
 </style>
 
 <!------------------------------------------------------------------------ -->
@@ -485,11 +439,9 @@ embed[src*=".svg"] tspan {
 ::::
 
 
-
 <!------------------------------------------------------------------------ -->
 # Pl@ntNet insights {.section-background}
 <!------------------------------------------------------------------------ -->
-
 
 
 <!------------------------------------------------------------------------- -->
@@ -516,7 +468,6 @@ embed[src*=".svg"] tspan {
 A machine learning-driven **citizen science** platform for mobile plant identification
 
 
-
 :::
 
 ::::
@@ -541,7 +492,6 @@ A machine learning-driven **citizen science** platform for mobile plant identifi
 :::
 
 
-
 ::: {.column width="15%"}
 
 
@@ -564,12 +514,6 @@ A machine learning-driven **citizen science** platform for mobile plant identifi
 <!------------------------------------------------------------------------ -->
 
 
-
-
-
-
-
-
 <!------------------------------------------------------------------------ -->
 ### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet: usage
 <hr>
@@ -581,7 +525,6 @@ A machine learning-driven **citizen science** platform for mobile plant identifi
 
 </div>
 <!------------------------------------------------------------------------ -->
-
 
 
 <!------------------------------------------------------------------------ -->
@@ -661,7 +604,7 @@ def fmt(n):
 
 def display_float(n):
     return f"{int(n):,}" if isinstance(n, (int, float)) else n
-    
+
 species = fmt(data.get("species", "N/A"))
 illustrated = fmt(data.get("illustrated_species", "N/A"))
 users = fmt(data.get("users", "N/A"))
@@ -702,7 +645,6 @@ Users with accounts
 3X more users without accounts
 
 </div>
-
 
 
 :::
@@ -810,50 +752,9 @@ WCVP: *World Checklist of Vascular Plants* database.
 ### {{< iconify streamline-ultimate:workflow-teamwork-user-high-five-bold >}} The current Pl@ntNet Team
 <!-- copy paste here the full list of plantnet pople -->
 ```{=html}
-<style>
-    /* Custom gap and width for 4 images per row */
-    .img-author-group-centered.img-4-per-row {
-        gap: 3vw 3vw !important;
-        justify-content: center;
-    }
-    .img-author-group-centered.img-4-per-row .img-author-container {
-        width: 22vw !important;
-        min-width: 180px;
-        max-width: 24vw;
-    }
-</style>
-<div class="img-author-group-centered img-4-per-row">
-<style>
-    .team-slide-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1px 1px;
-        font-size: 40%;
-        margin: 0 auto;
-        max-width: 1200px;
-    }
-    .team-member {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 180px;
-        margin-bottom: 10px;
-    }
-    .team-member img + p {
-        margin-top: -2px !important;
-    }
 
-.img-author-group-centered {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 0.5em 0.5em;
-    width: 100%;
-    margin: 0 auto 1em auto;
-}
-</style>
+<div class="img-author-group-centered img-4-per-row">
+
 ```
 
 ```{python}
@@ -953,7 +854,6 @@ print('</div>')
 <!------------------------------------------------------------------------ -->
 
 
-
 <!------------------------------------------------------------------------ -->
 ### {{< iconify vaadin:hourglass-start >}} Chronology of Pl@ntNet {.center }
 <hr>
@@ -1024,7 +924,6 @@ print('</div>')
 <!------------------------------------------------------------------------ -->
 
 
-
 <!------------------------------------------------------------------------ -->
 # Contributions {.section-background}
 <!------------------------------------------------------------------------ -->
@@ -1053,7 +952,6 @@ print('</div>')
 :::
 
 ::::
-
 
 
 ::: fragment
@@ -1103,13 +1001,9 @@ print('</div>')
 <!------------------------------------------------------------------------ -->
 
 
-
-
-
 <!------------------------------------------------------------------------ -->
 # Pl@ntNet data characteristics {.section-background}
 <!------------------------------------------------------------------------ -->
-
 
 
 <!------------------------------------------------------------------------ -->
@@ -1143,7 +1037,7 @@ print('</div>')
         <span class="img-author-overlay">RBG Kew<br>CC-BY-SA</span>
         <div style="font-size: 0.75em; margin-top: 5px;">Angiosperm Tree of Life</div>
     </div>
-</div>  
+</div>
 ```
 <br>
 
@@ -1153,8 +1047,6 @@ print('</div>')
 **[Consequences]{.underline}**: for supervised learning, the classes are **many** and **hierarchically structured**
 </center>
 <!------------------------------------------------------------------------ -->
-
-
 
 
 <!------------------------------------------------------------------------ -->
@@ -1214,8 +1106,6 @@ print('</div>')
 <!-------------------------------------------------------------------------- -->
 
 
-
-
 ### Inter-class ambiguity
 
 
@@ -1268,8 +1158,6 @@ print('</div>')
 **Based on pictures only, plant species are challenging to discriminate!**
 </center>
 <!-------------------------------------------------------------------------- -->
-
-
 
 
 <!-------------------------------------------------------------------------- -->
@@ -1511,8 +1399,6 @@ Spatial density of images collected by Pl@ntNet (13/04/2024)
 <!-------------------------------------------------------------------------- -->
 
 
-
-
 ### {{<iconify fluent:food-20-filled>}} Food bias
 <hr>
 
@@ -1571,9 +1457,6 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 <!----------------------------------------------------------------------- -->
 
 
-
-
-
 <!----------------------------------------------------------------------- -->
 ### {{<iconify ri:sparkling-2-line>}} Beauty bias
 <hr>
@@ -1600,8 +1483,6 @@ Top-5 most observed plant species in Pl@ntNet (13/04/2024):
 </div>
 ```
 <!----------------------------------------------------------------------- -->
-
-
 
 
 <!-------------------------------------------------------------------------- -->
@@ -1720,10 +1601,6 @@ Observations can reflect observers own choices.
 - ... -->
 
 
-
-
-
-
 <!-------------------------------------------------------------------------- -->
 
 <!-------------------------------------------------------------------------- -->
@@ -1798,10 +1675,6 @@ Observations can reflect observers own choices.
 <!------------------------------------------------------------------------ -->
 
 
-
-
-
-
 <!-------------------------------------------------------------------------- -->
 ### Construction of Pl@ntNet-300K
 
@@ -1810,7 +1683,6 @@ Observations can reflect observers own choices.
 <br>
 
 ::: {.columns}
-
 
 
 ::: {.column width=70%}
@@ -1889,7 +1761,6 @@ if not all(os.path.exists(f) for f in required_files):
 :::
 
 
-
 ::: {.column style='text-align: center;'}
 
 <br>
@@ -1922,7 +1793,7 @@ if not all(os.path.exists(f) for f in required_files):
 
 ![](images/roots_v4_1.svg){.fragment fragment-index=2 width="1400"}
 
-![](images/roots_v4.svg){.fragment fragment-index=3 width="1400"} 
+![](images/roots_v4.svg){.fragment fragment-index=3 width="1400"}
 
 :::
 
@@ -1931,11 +1802,10 @@ if not all(os.path.exists(f) for f in required_files):
 <!-------------------------------------------------------------------------- -->
 
 
-
-<!-- 
+<!--
 ### Taxonomy detour {style="text-align: center;"}
 
-<!-- 
+<!--
 Domain: Eukaryota
 Kingdom: Plantae
 Phylum: Tracheophyta
@@ -1947,10 +1817,9 @@ Species: Nymphoides peltata (S.G.Gmel.) Kuntze
 
 
  -->
- 
 
 
-<!-- 
+<!--
 <a href="https://commons.wikimedia.org/wiki/File:Biological_classification_L_Pengo_vflip.svg">Peter Halasz. (User:Pengo)</a>, Public domain, via Wikimedia Commons -->
 
 
@@ -1976,12 +1845,8 @@ Species: Nymphoides peltata (S.G.Gmel.) Kuntze
 </ul>
 
 
-
 </center>
 <!-------------------------------------------------------------------------- -->
-
-
-
 
 
 ### {{<iconify icon-park-solid:chart-histogram-two>}} Species distribution, long tail & Lorenz curve
@@ -2007,7 +1872,6 @@ Species: Nymphoides peltata (S.G.Gmel.) Kuntze
 :::
 
 
-
 ::: {.column style='text-align: center;'}
 
 <br>
@@ -2023,17 +1887,12 @@ Species: Nymphoides peltata (S.G.Gmel.) Kuntze
 :::
 
 
-
-
-
-
 :::{.fragment fragment-index=3}
 :::
 
 
 :::
 <!-------------------------------------------------------------------------- -->
-
 
 
 <!-------------------------------------------------------------------------- -->
@@ -2048,12 +1907,63 @@ Species: Nymphoides peltata (S.G.Gmel.) Kuntze
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* Interactive visualizations: shared Nunito/Plotly styling */
 #plantnet-viz,
-#plantnet-viz * {
-  font-family: 'Nunito', sans-serif !important;
+#plantnet-viz *,
+#plots2,
+#plots2 *,
+#alphaControl,
+#alphaControl *,
+#plots3,
+#plots3 *,
+#alphaControl2,
+#alphaControl2 *,
+#all-metrics-softmax-container-2,
+#all-metrics-softmax-container-2 *,
+#all-metrics-softmax-container,
+#all-metrics-softmax-container *,
+#plantnet-comparison-container,
+#plantnet-comparison-container * {
+  font-family: "Nunito", sans-serif !important;
 }
 
-/* Buttons, the image caption, and anything meant to stand out use bold */
+#plots2 svg text,
+#plots3 svg text,
+#all-metrics-softmax-container-2 svg text,
+#all-metrics-softmax-container svg text,
+#plantnet-comparison-container svg text {
+  font-family: "Nunito", sans-serif !important;
+}
+
+#plots2 .xtitle,
+#plots2 .ytitle,
+#plots2 .xtick text,
+#plots2 .ytick text,
+#plots2 .legendtext,
+#plots3 .xtitle,
+#plots3 .ytitle,
+#plots3 .xtick text,
+#plots3 .ytick text,
+#plots3 .legendtext,
+#all-metrics-softmax-container-2 .xtitle,
+#all-metrics-softmax-container-2 .ytitle,
+#all-metrics-softmax-container-2 .xtick text,
+#all-metrics-softmax-container-2 .ytick text,
+#all-metrics-softmax-container-2 .legendtext,
+#all-metrics-softmax-container .xtitle,
+#all-metrics-softmax-container .ytitle,
+#all-metrics-softmax-container .xtick text,
+#all-metrics-softmax-container .ytick text,
+#all-metrics-softmax-container .legendtext,
+#plantnet-comparison-container .xtitle,
+#plantnet-comparison-container .ytitle,
+#plantnet-comparison-container .xtick text,
+#plantnet-comparison-container .ytick text,
+#plantnet-comparison-container .legendtext {
+  font-family: "Nunito", sans-serif !important;
+}
+
+/* PlantNet interactive: bold controls/caption/legend axes */
 #plantnet-viz .scale-btn,
 #plantnet-viz .scale-label,
 #plantnet-viz #image-label,
@@ -2061,6 +1971,87 @@ Species: Nymphoides peltata (S.G.Gmel.) Kuntze
 #plantnet-viz #plotly-container .js-plotly-plot .xtitle,
 #plantnet-viz #plotly-container .js-plotly-plot .ytitle {
   font-weight: 700 !important;
+}
+
+/* Sliders */
+#alphaControl label,
+#alphaControl2 label {
+  font-family: "Nunito", sans-serif !important;
+  font-weight: 700;
+}
+
+#alphaControl input[type="range"],
+#alphaControl2 input[type="range"] {
+  accent-color: #047C90;
+}
+
+#alphaValue,
+#alphaValue2 {
+  font-weight: 700;
+}
+
+/* Plotly legend sizing */
+#plots2,
+#plots3 {
+  max-width: 900px !important;
+}
+
+#plots2 .legend .bg,
+#plots3 .legend .bg {
+  width: 700px !important;
+}
+
+#plots2 .legendtext,
+#plots3 .legendtext {
+  font-size: 12px !important;
+}
+
+/* Preserve the existing cascade of the metric visualizations:
+   the original malformed selector lists applied width: 900px to
+   these elements, while the later rules narrowed the legend box. */
+#all-metrics-softmax-container-2 .scale-btn,
+#all-metrics-softmax-container-2 .scale-label,
+#all-metrics-softmax-container-2 #image-label,
+#all-metrics-softmax-container-2 .legendtext,
+#all-metrics-softmax-container-2 .legend .bg,
+#all-metrics-softmax-container .scale-btn,
+#all-metrics-softmax-container .scale-label,
+#all-metrics-softmax-container #image-label,
+#all-metrics-softmax-container .legendtext,
+#all-metrics-softmax-container .legend .bg {
+  width: 900px !important;
+}
+
+#all-metrics-softmax-container-2 .legend .bg,
+#all-metrics-softmax-container-2 .legend .scrollbox,
+#all-metrics-softmax-container .legend .bg,
+#all-metrics-softmax-container .legend .scrollbox {
+  width: 390px !important;
+}
+
+#all-metrics-softmax-container-2 .legendtext,
+#all-metrics-softmax-container .legendtext {
+  font-size: 11px !important;
+}
+
+#plantnet-comparison-container .xtitle,
+#plantnet-comparison-container .ytitle,
+#plantnet-comparison-container .xtick text,
+#plantnet-comparison-container .ytick text,
+#plantnet-comparison-container .scale-btn,
+#plantnet-comparison-container .scale-label,
+#plantnet-comparison-container #image-label,
+#plantnet-comparison-container .legendtext,
+#plantnet-comparison-container .legend .bg {
+  width: 480px !important;
+}
+
+#plantnet-comparison-container .legendtext {
+  font-size: 11px !important;
+}
+
+#plantnet-comparison-container .legend .scrollbox {
+  width: 480px !important;
 }
 </style>
 
@@ -2175,10 +2166,8 @@ Provide a real life scenario for supervised learning, with multi-class and long-
 <br>
 
 <center>
-<b>2026 Update: [Pl@ntNet-300K v2.0](https://zenodo.org/records/10419064) on Zenodo </b> 
+<b>2026 Update: [Pl@ntNet-300K v2.0](https://zenodo.org/records/10419064) on Zenodo </b>
 </center>
-
-
 
 
 <!-- ![](../2025-12-15-ICSDS25/images/plantnet_class_distribution_iucn_status_with_images.svg){width=100%} -->
@@ -2186,17 +2175,12 @@ Provide a real life scenario for supervised learning, with multi-class and long-
 <!-- More details on my blog post:  [https://josephsalmon.eu/blog/long-tail/](https://josephsalmon.eu/blog/long-tail/) -->
 
 
-
 <!-------------------------------------------------------------------------- -->
-
-
-
 
 
 <!-------------------------------------------------------------------------- -->
 # Prediction<br>&<br>uncertainty quantification {.section-background}
 <!-------------------------------------------------------------------------- -->
-
 
 
 <!-------------------------------------------------------------------------- -->
@@ -2263,7 +2247,6 @@ ICLR 2026
 <!-------------------------------------------------------------------------- -->
 
 
-
 <!-------------------------------------------------------------------------- -->
 ### Pl@ntNet: set prediction (recommendation)
 <hr>
@@ -2286,8 +2269,6 @@ Elements to help guide the users
 :::
 ::::
 <!-------------------------------------------------------------------------- -->
-
-
 
 
 <!-------------------------------------------------------------------------- -->
@@ -2325,11 +2306,10 @@ $$
 . . .
 
 
-**Conformal prediction**: sets $t_{\alpha}$ as the $(1-\alpha)$ quantile of the scores on a calibration set 
+**Conformal prediction**: sets $t_{\alpha}$ as the $(1-\alpha)$ quantile of the scores on a calibration set
 
 
 <!-------------------------------------------------------------------------- -->
-
 
 
 <!-------------------------------------------------------------------------- -->
@@ -2429,9 +2409,6 @@ calibrate $t_{\alpha}^y$ **only on** $(X_i, Y_i)$ such that $Y_i = y$
 <!-------------------------------------------------------------------------- -->
 
 
-
-
-
 <!-------------------------------------------------------------------------- -->
 ### Interactive optimal set visualization
 <hr>
@@ -2441,55 +2418,7 @@ calibrate $t_{\alpha}^y$ **only on** $(X_i, Y_i)$ such that $Y_i = y$
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 
-<style>
-/* Nunito for this visualization only */
-#plots2,
-#plots2 *,
-#alphaControl,
-#alphaControl * {
-  font-family: "Nunito", sans-serif !important;
-}
 
-/* Plotly SVG text */
-#plots2 svg text {
-  font-family: "Nunito", sans-serif !important;
-}
-
-/* Plotly axes, labels and legends */
-#plots2 .xtitle,
-#plots2 .ytitle,
-#plots2 .xtick text,
-#plots2 .ytick text,
-#plots2 .legendtext {
-  font-family: "Nunito", sans-serif !important;
-}
-
-/* Slider */
-#alphaControl label {
-  font-family: "Nunito", sans-serif !important;
-  font-weight: 700;
-}
-
-#alphaControl input[type="range"] {
-  accent-color: #047C90;
-}
-
-#alphaValue {
-  font-weight: 700;
-  }
-
-#plots2 {
-  max-width: 900px !important;
-}
-#plots2 .legend .bg {
-  width: 700px !important;
-}
-
-#plots2 .legendtext {
-  font-size: 12px !important;
-  font-family: "Nunito", sans-serif !important;
-}
-</style>
 
 <div style="width:50%; margin:0 auto;">
 
@@ -2535,57 +2464,9 @@ calibrate $t_{\alpha}^y$ **only on** $(X_i, Y_i)$ such that $Y_i = y$
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 
-<style>
-/* Override the visualization font from this slide */
-#all-metrics-softmax-container-2,
-#all-metrics-softmax-container-2 * {
-  font-family: "Nunito", sans-serif !important;
-}
-
-/* Plotly SVG text */
-#all-metrics-softmax-container-2 svg text {
-  font-family: "Nunito", sans-serif !important;
-}
-
-/* Plotly axis titles and tick labels */
-#all-metrics-softmax-container-2 .xtitle,
-#all-metrics-softmax-container-2 .ytitle,
-#all-metrics-softmax-container-2 .xtick text,
-#all-metrics-softmax-container-2 .ytick text,
-#all-metrics-softmax-container-2 .legendtext {
-  font-family: "Nunito", sans-serif !important;
-}
-
-/* Bold elements */
-#all-metrics-softmax-container-2 .scale-btn,
-#all-metrics-softmax-container-2 .scale-label,
-#all-metrics-softmax-container-2 #image-label,
-#all-metrics-softmax-container-2 .legendtext,
 
 
-#all-metrics-softmax-container-2 .legend .bg {
-  width: 900px !important;
-}
-#all-metrics-softmax-container-2 .legendtext {
-  font-size: 12px !important;
-  font-family: "Nunito", sans-serif !important;
-}
 
-</style>
-
-<style>
-/* Fix legend cropping: wider container */
-#all-metrics-softmax-container-2 .legend .bg {
-  width: 390px !important;
-}
-#all-metrics-softmax-container-2 .legend .scrollbox {
-  width: 390px !important;
-}
-#all-metrics-softmax-container-2 .legendtext {
-  font-size: 11px !important;
-}
-
-</style>
 
 <div id="all-metrics-softmax-container-2"
      style="width: 100%; height: 450px; margin: 20px 0;">
@@ -2603,9 +2484,6 @@ calibrate $t_{\alpha}^y$ **only on** $(X_i, Y_i)$ such that $Y_i = y$
 <hr>
 
 **{{< iconify mdi:bullseye-arrow >}} Goal:** Average coverage across all classes (better for long-tail!)
-
-
-
 
 
 ::::{.columns}
@@ -2649,10 +2527,7 @@ $$
 {{< iconify mdi:arrow-right-bold >}} Introduce a new conformal score, **Prevalence Adjusted Softmax (PAS)** : $s(x,y) = \frac{\hat{p}(y|x)}{\hat{p}(y)}$
 
 :::
-
 <!-------------------------------------------------------------------------- -->
-
-
 
 
 <!-------------------------------------------------------------------------- -->
@@ -2664,53 +2539,7 @@ $$
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 
-<style>
-/* Nunito for this visualization only */
-#plots3,
-#plots3 *,
-#alphaControl2,
-#alphaControl2 * {
-  font-family: "Nunito", sans-serif !important;
-}
 
-/* Plotly SVG text */
-#plots3 svg text {
-  font-family: "Nunito", sans-serif !important;
-}
-
-/* Plotly axes, labels and legends */
-#plots3 .xtitle,
-#plots3 .ytitle,
-#plots3 .xtick text,
-#plots3 .ytick text,
-#plots3 .legendtext {
-  font-family: "Nunito", sans-serif !important;
-}
-
-/* Slider */
-#alphaControl2 label {
-  font-family: "Nunito", sans-serif !important;
-  font-weight: 700;
-}
-
-#alphaControl2 input[type="range"] {
-  accent-color: #047C90;
-}
-
-#alphaValue2 {
-  font-weight: 700;
-}
-#plots3 {
-  max-width: 900px !important;
-}
-#plots3 .legend .bg {
-  width: 700px !important;
-}
-#plots3 .legendtext {
-  font-size: 12px !important;
-  font-family: "Nunito", sans-serif !important;
-}
-</style>
 
 <div style="width:50%; margin:0 auto;">
   <div id="plots3" style="width:100%; max-width:800px; overflow-x:auto;"></div>
@@ -2727,21 +2556,11 @@ $$
 <!-------------------------------------------------------------------------- -->
 
 
-
-
-
-
 <!-------------------------------------------------------------------------- -->
 ### Experiments on Pl@ntNet-300K
 
 <hr>
 <br>
-
-<!-- ![](../../../blog/long-tail/images/ALL_metrics_plantnet_softmax_pareto_NO_LEGEND_js.svg){width=100%}
-
-![](../../../blog/long-tail/images/ALL_metrics_plantnet_softmax_pareto_LEGEND_ONLY_js.svg){width=100%}
-
-<br> -->
 
 ```{=html}
 
@@ -2749,56 +2568,9 @@ $$
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 
-<style>
-/* Override the visualization font from this slide */
-#all-metrics-softmax-container,
-#all-metrics-softmax-container * {
-  font-family: "Nunito", sans-serif !important;
-}
 
-/* Plotly SVG text */
-#all-metrics-softmax-container svg text {
-  font-family: "Nunito", sans-serif !important;
-}
 
-/* Plotly axis titles and tick labels */
-#all-metrics-softmax-container .xtitle,
-#all-metrics-softmax-container .ytitle,
-#all-metrics-softmax-container .xtick text,
-#all-metrics-softmax-container .ytick text,
-#all-metrics-softmax-container .legendtext {
-  font-family: "Nunito", sans-serif !important;
-}
 
-/* Bold elements */
-#all-metrics-softmax-container .scale-btn,
-#all-metrics-softmax-container .scale-label,
-#all-metrics-softmax-container #image-label,
-#all-metrics-softmax-container .legendtext,
-
-#all-metrics-softmax-container .legend .bg {
-  width: 900px !important;
-}
-#all-metrics-softmax-container .legendtext {
-  font-size: 18px !important;
-  font-family: "Nunito", sans-serif !important;
-}
-
-</style>
-
-<style>
-/* Fix legend cropping: wider container */
-#all-metrics-softmax-container .legend .bg {
-  width: 390px !important;
-}
-#all-metrics-softmax-container .legend .scrollbox {
-  width: 390px !important;
-}
-#all-metrics-softmax-container .legendtext {
-  font-size: 11px !important;
-}
-
-</style>
 
 <div id="all-metrics-softmax-container" style="width: 100%; height: 450px; margin: 20px 0;">
 </div>
@@ -2809,17 +2581,12 @@ $$
 <!-------------------------------------------------------------------------- -->
 
 
-
-
 <!-------------------------------------------------------------------------- -->
 ### Generalization : weighted Macro-Coverage
 <hr>
 
 
-
 For user-chosen class weights $\omega$  with $\omega(y)\geq 0$ and $\sum_{y \in \mathcal{Y}} \omega(y)=1$, define the _$\omega$-weighted macro-coverage_ :
-
-
 
 
 ::::{.columns}
@@ -2871,9 +2638,6 @@ $$
 <!-------------------------------------------------------------------------- -->
 
 
-
-
-
 <!-------------------------------------------------------------------------- -->
 ### Experiments on Pl@ntNet-300K: endangered species
 <hr>
@@ -2897,42 +2661,7 @@ $$
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
 
-<style>
-/* Override the visualization font from this slide */
-#plantnet-comparison-container,
-#plantnet-comparison-container * {
-  font-family: "Nunito", sans-serif !important;
-}
 
-/* Plotly SVG text */
-#plantnet-comparison-container svg text {
-  font-family: "Nunito", sans-serif !important;
-}
-
-/* Plotly axis titles and tick labels */
-#plantnet-comparison-container .xtitle,
-#plantnet-comparison-container .ytitle,
-#plantnet-comparison-container .xtick text,
-#plantnet-comparison-container .ytick text,
-
-
-/* Bold elements */
-#plantnet-comparison-container .scale-btn,
-#plantnet-comparison-container .scale-label,
-#plantnet-comparison-container #image-label,
-#plantnet-comparison-container .legendtext,
-
-#plantnet-comparison-container .legend .bg {
-  width: 480px !important;
-}
-#plantnet-comparison-container .legendtext {
-  font-size: 11px !important;
-  font-family: "Nunito", sans-serif !important;
-}
-#plantnet-comparison-container .legend .scrollbox {
-  width: 480px !important;
-}
-</style>
 
 <div id="plantnet-comparison-container" style="width: 100%; height: 500px; margin: 20px 0;">
 </div>
@@ -2940,8 +2669,6 @@ $$
 <script type="module" src="../../../blog/long-tail/plantnet_comparison_viz.js"></script>
 ```
 <!-------------------------------------------------------------------------- -->
-
-
 
 
 <!-------------------------------------------------------------------------- -->
@@ -2984,7 +2711,6 @@ $$
 ::::
 
 
-
 :::: {.columns}
 
 ::: {.column width="24%"}
@@ -3013,24 +2739,6 @@ $$
 :::
 ::::
 <!-------------------------------------------------------------------------- -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 # References {.section-background}
