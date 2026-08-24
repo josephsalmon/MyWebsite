@@ -190,11 +190,12 @@ embed[src*=".svg"] tspan {
 
 .stat-tree img {
   display: block;
-  width: 95%;
-  max-width: 300px;
-  max-height: 52vh;
+  width: 100%;
+  max-width: none;   /* was 300px — this was the actual bug */
   height: auto;
+  max-height: 100%;
   margin: 0 auto;
+  object-fit: contain;
 }
 
 .stat-value {
@@ -458,17 +459,90 @@ embed[src*=".svg"] tspan {
 ::::
 
 
+
+
+### {{< iconify hugeicons:chatting-01 >}} Plant importance
+<hr>
+
+
+
+::::{.columns}
+
+::: {.column width="46%"}
+<div style="text-align: center;">
+
+<img src="images/biomass.svg" width="50%" align="middle" >
+
+<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
+
+</div>
+:::
+
+
+::: {.column width="27%"}
+
+
+- Approvisionnement:<br> Nourriture, Médicaments ...  
+
+<div style="text-align: center;">
+
+<img src="images/biomass.svg" width="50%" align="middle" >
+
+<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
+
+</div>
+
+
+- Support:<br> Photosynthèse, formation sol, cycle eau, ...
+
+
+<div style="text-align: center;">
+
+<img src="images/biomass.svg" width="50%" align="middle" >
+
+<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
+
+</div>
+:::
+
+::: {.column width="27%"}
+
+<div style="text-align: center;">
+
+<img src="images/biomass.svg" width="50%" align="middle" >
+
+<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
+
+</div>
+
+- Régulation:<br> Pollinisation, Climat, ...
+
+<div style="text-align: center;">
+
+<img src="images/biomass.svg" width="50%" align="middle" >
+
+<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
+
+</div>
+
+
+- Culturels:<br> Lieux de promenade, émerveillement, ...
+
+
+:::
+
+::::
+<!------------------------------------------------------------------------ -->
+
+
 <!------------------------------------------------------------------------ --> 
 # {.section-background}
 
 <div style="display: flex; justify-content: space-between; font-size: 5rem; align-items: center; width: 100%; padding: 0 2rem;">Pl@ntNet insight<br><br><br><br><img src="images/plantnet_icone_square_white.svg" alt="Tree with roots" width="25%"></div>
 
-
 <!------------------------------------------------------------------------ -->
 
 
-
-<!------------------------------------------------------------------------ -->
 
 
 <!------------------------------------------------------------------------- -->
@@ -582,7 +656,7 @@ A machine learning-driven **citizen science** platform for mobile plant identifi
 
 
 <!------------------------------------------------------------------------ -->
-### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet: Importance & usage
+<!-- ### {{< iconify hugeicons:chatting-01 >}} Pl@ntNet: Importance & usage
 <hr>
 
 <div style="text-align: center;">
@@ -597,7 +671,7 @@ A machine learning-driven **citizen science** platform for mobile plant identifi
 
 <img src="../2024-09-25_slides_sierra/images/plantnet_usage_rasterized.svg" width="95%" align="middle" >
 
-</div>
+</div> -->
 <!------------------------------------------------------------------------ -->
 
 
@@ -811,7 +885,7 @@ print("</div>")
 
 ::: {.column width="68%"}
 
-- **Prediction uncertainty quantification** with long tail data [@Ding_Fermanian_Salmon25] : providing prediction sets with statistical guarantees with Conformal Prediction
+- **Prediction uncertainty quantification** <br> with long tail data [@Ding_Fermanian_Salmon25]: providing prediction sets with statistical guarantees with Conformal Prediction
 
 :::
 
@@ -854,7 +928,8 @@ print("</div>")
 # {.section-background}
 
 
-<div style="display: flex; justify-content: space-between; font-size: 1.em; align-items: center; width: 100%; padding: 0 2rem;">Pl@ntNet,<br>challenging standard ML assumptions <img src="images/roots_icon.svg" alt="Tree with roots" width="25%"></div> 
+
+<div style="display: flex; justify-content: space-between; font-size: 4rem; align-items: center; width: 100%; padding: 0 2rem;">Pl@ntNet,<br>challenging standard ML assumptions <img src="images/roots_icon.svg" alt="Tree with roots" width="25%"></div> 
 <!------------------------------------------------------------------------ -->
 
 
@@ -1065,6 +1140,10 @@ labeled images: with species
 
 ::: {.stat-card .stat-tree}
 
+<div style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+<img src="images/Diversity_of_plants_(Streptophyta)_version_2.png" alt="Diversity of plants" style="width: 100%; height: auto; max-height: 100%; object-fit: contain;">
+<span class="img-author-overlay" style="font-size: 0.6rem;top: 90%; right: 15px;">@ Rkitko (Wikimedia Commons)</span>
+</div>
 
 :::
 
@@ -1096,8 +1175,31 @@ WCVP: *World Checklist of Vascular Plants* database.
 
 
 
+<!-------------------------------------------------------------------------- -->
+### Structured labels: the tree of life
+
+<br>
+<br>
+
+<center>
+::: {.r-stack}
+
+![](images/roots_v4_2.svg){.fragment fragment-index=1 width="1400"}
+
+![](images/roots_v4_1.svg){.fragment fragment-index=2 width="1400"}
+
+![](images/roots_v4.svg){.fragment fragment-index=3 width="1400"}
+
+:::
+
+</center>
+
+<!-------------------------------------------------------------------------- -->
+
+
+
 <!------------------------------------------------------------------------ -->
-### {{<iconify roentgen:tree-with-leaf>}} Plants trivia
+<!-- ### {{<iconify roentgen:tree-with-leaf>}} Plants trivia
 <hr>
 <br>
 
@@ -1135,7 +1237,7 @@ WCVP: *World Checklist of Vascular Plants* database.
 
 <center>
 **[Consequences]{.underline}**: for supervised learning, the classes are **many** and **hierarchically structured**
-</center>
+</center> -->
 <!------------------------------------------------------------------------ -->
 
 
@@ -1861,26 +1963,6 @@ if not all(os.path.exists(f) for f in required_files):
 <!-------------------------------------------------------------------------- -->
 
 
-<!-------------------------------------------------------------------------- -->
-### Taxonomy detour: the tree of life
-
-<br>
-<br>
-
-<center>
-::: {.r-stack}
-
-![](images/roots_v4_2.svg){.fragment fragment-index=1 width="1400"}
-
-![](images/roots_v4_1.svg){.fragment fragment-index=2 width="1400"}
-
-![](images/roots_v4.svg){.fragment fragment-index=3 width="1400"}
-
-:::
-
-</center>
-
-<!-------------------------------------------------------------------------- -->
 
 
 <!--
@@ -2566,6 +2648,11 @@ calibrate $t_{\alpha}^y$ **only on** $(X_i, Y_i)$ such that $Y_i = y$
         src="../../../blog/long-tail/all_metrics_softmax_viz_no_yellow.js">
 </script>
 ```
+<center>
+FracBelow50%: proportion of classes with low coverage (below 50%)
+XXX supprimer le milieu.
+<center>
+
 <!-------------------------------------------------------------------------- -->
 
 

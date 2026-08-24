@@ -144,11 +144,11 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="1.3642229"
-     inkscape:cx="455.93721"
-     inkscape:cy="226.13606"
-     inkscape:window-width="1610"
-     inkscape:window-height="986"
+     inkscape:zoom="1.9293025"
+     inkscape:cx="460.78828"
+     inkscape:cy="216.91777"
+     inkscape:window-width="3370"
+     inkscape:window-height="1376"
      inkscape:window-x="70"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
@@ -163,7 +163,7 @@
      transform="translate(25.785166,-1.6560654)" />
   <path
      style="fill:none;stroke:#003333;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0.5, 1.5;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill"
-     d="m 0,20.7 h 10.333833 6.782564 a 4.3394364,4.3394364 135 0 0 4.339437,-4.339436 4.6299261,4.6299261 140.85392 0 1 5.078,-4.133564 h 43.862737"
+     d="m 0,20.7 h 10.333833 6.782565 a 4.3394364,4.3394364 135 0 0 4.339436,-4.339436 4.6299261,4.6299261 140.85392 0 1 5.078,-4.133564 h 43.862737"
      id="path601"
      sodipodi:nodetypes="ccccc"
      inkscape:original-d="M 0,20.7 H 10.333833 21.455834 V 12.227 H 70.396571"
@@ -171,7 +171,7 @@
      transform="translate(25.785166,-1.6560654)" />
   <path
      style="fill:none;stroke:#004d4d;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:0.5, 1.5;stroke-dashoffset:0;stroke-opacity:1;paint-order:markers stroke fill"
-     d="m 4.648,36.886 26.224416,0.239232 a 5.5942212,5.5942212 135.03306 0 0 5.645074,-5.638563 l -0.01047,-1.313628 a 5.0529391,5.0529391 134.35594 0 1 4.979443,-5.092669 l 10.370199,-0.150523 h 18.539904"
+     d="m 4.648,36.886 26.224416,0.239232 a 5.5942212,5.5942212 135.03306 0 0 5.645075,-5.638563 l -0.01047,-1.313628 a 5.0529392,5.0529392 134.35594 0 1 4.979444,-5.092669 l 10.370198,-0.150523 h 18.539904"
      id="path602"
      sodipodi:nodetypes="ccccc"
      inkscape:original-d="m 4.648,36.886 31.914834,0.291143 -0.09581,-12.023914 15.389641,-0.22338 h 18.539904"
@@ -1937,151 +1937,147 @@
            style="fill:#ffffff">Phylum</tspan></text>
     </switch>
   </g>
-  <g
-     id="g265"
-     transform="matrix(2.1069389,0,0,2.1069389,-246.67144,-36.893892)">
-    <path
-       d="m 83.82068,25.92054 h 9.94345 c 0.40465,0 0.73042,-0.32576 0.73042,-0.73041 v -2.22541 c 0,-0.40464 -0.32577,-0.7304 -0.73042,-0.7304 h -9.94345 c -0.40465,0 -0.73041,0.32576 -0.73041,0.7304 v 2.22541 c 0,0.40465 0.32576,0.73041 0.73041,0.73041 z"
-       fill="#77fff9"
-       id="path2-0"
-       style="fill:#003333;fill-opacity:1;stroke:#000000;stroke-width:0.184788" />
-    <switch
-       transform="matrix(0.09239405,0,0,0.09239405,88.75461,24.73307)"
-       id="switch962"
-       style="font-weight:bold;font-size:20px;font-family:'Liberation Sans';text-anchor:middle;fill:#ffffff">
-      <text
-         systemLanguage="af"
-         id="text941"
-         style="fill:#ffffff"><tspan
-           id="tspan941"
-           style="fill:#ffffff">Domein</tspan></text>
-      <text
-         systemLanguage="ban"
-         id="text942"
-         style="fill:#ffffff"><tspan
-           id="tspan942"
-           style="fill:#ffffff">Domain</tspan></text>
-      <text
-         systemLanguage="br"
-         id="text943"
-         style="fill:#ffffff"><tspan
-           id="tspan943"
-           style="fill:#ffffff">Riezad</tspan></text>
-      <text
-         systemLanguage="bs"
-         id="text944"
-         style="fill:#ffffff"><tspan
-           id="tspan944"
-           style="fill:#ffffff">Domen</tspan></text>
-      <text
-         systemLanguage="cs"
-         id="text945"
-         style="fill:#ffffff"><tspan
-           id="tspan945"
-           style="fill:#ffffff">doména</tspan></text>
-      <text
-         systemLanguage="de"
-         id="text946"
-         style="fill:#ffffff"><tspan
-           id="tspan946"
-           style="fill:#ffffff">Domäne</tspan></text>
-      <text
-         systemLanguage="en"
-         id="text947"
-         style="font-size:26.7273px;fill:#ffffff"><tspan
-           id="tspan947"
-           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.7273px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';fill:#ffffff">Kingdom</tspan></text>
-      <text
-         systemLanguage="es"
-         id="text948"
-         style="fill:#ffffff"><tspan
-           id="tspan948"
-           style="fill:#ffffff">Dominio</tspan></text>
-      <text
-         systemLanguage="fr"
-         id="text949"
-         style="fill:#ffffff"><tspan
-           id="tspan949"
-           style="fill:#ffffff">Domaine</tspan></text>
-      <text
-         systemLanguage="gl"
-         id="text950"
-         style="fill:#ffffff"><tspan
-           id="tspan950"
-           style="fill:#ffffff">Dominio</tspan></text>
-      <text
-         systemLanguage="ku"
-         id="text951"
-         style="fill:#ffffff"><tspan
-           id="tspan951"
-           style="fill:#ffffff">Sercîhan</tspan></text>
-      <text
-         systemLanguage="la"
-         id="text952"
-         style="fill:#ffffff"><tspan
-           id="tspan952"
-           style="fill:#ffffff">Regio</tspan></text>
-      <text
-         systemLanguage="my"
-         id="text953"
-         style="fill:#ffffff"><tspan
-           id="tspan953"
-           style="fill:#ffffff">နယ်ပယ်</tspan></text>
-      <text
-         systemLanguage="si"
-         id="text954"
-         style="fill:#ffffff"><tspan
-           id="tspan954"
-           style="fill:#ffffff">වසම</tspan></text>
-      <text
-         systemLanguage="sk"
-         id="text955"
-         style="fill:#ffffff"><tspan
-           id="tspan955"
-           style="fill:#ffffff">doména</tspan></text>
-      <text
-         systemLanguage="tl"
-         id="text956"
-         style="fill:#ffffff"><tspan
-           id="tspan956"
-           style="fill:#ffffff">Dominyo</tspan></text>
-      <text
-         systemLanguage="uz"
-         id="text957"
-         style="fill:#ffffff"><tspan
-           id="tspan957"
-           style="fill:#ffffff">Domen</tspan></text>
-      <text
-         systemLanguage="xmf"
-         id="text958"
-         style="fill:#ffffff"><tspan
-           id="tspan958"
-           style="fill:#ffffff">დომენი</tspan></text>
-      <text
-         id="text959"
-         systemLanguage="shn"
-         style="fill:#ffffff"><tspan
-           id="tspan959"
-           style="fill:#ffffff">တီႈပိုင်ႈယူႇ</tspan></text>
-      <text
-         id="text960"
-         systemLanguage="id"
-         style="fill:#ffffff"><tspan
-           id="tspan960"
-           style="fill:#ffffff">Domain</tspan></text>
-      <text
-         id="text961"
-         systemLanguage="tg"
-         style="fill:#ffffff"><tspan
-           id="tspan961"
-           style="fill:#ffffff">Олам</tspan></text>
-      <text
-         id="text962"
-         style="fill:#ffffff"><tspan
-           id="tspan962"
-           style="fill:#ffffff">Domain</tspan></text>
-    </switch>
-  </g>
+  <path
+     d="m -70.066389,17.719102 h 20.950242 c 0.852573,0 1.53895,-0.686356 1.53895,-1.538929 V 11.49137 c 0,-0.852552 -0.686377,-1.5389083 -1.53895,-1.5389083 h -20.950242 c -0.852573,0 -1.538929,0.6863563 -1.538929,1.5389083 v 4.688803 c 0,0.852573 0.686356,1.538929 1.538929,1.538929 z"
+     fill="#77fff9"
+     id="path2-0"
+     style="fill:#003333;fill-opacity:1;stroke:#000000;stroke-width:0.389337" />
+  <switch
+     transform="matrix(0.19466862,0,0,0.19466862,-59.808039,15.217175)"
+     id="switch962"
+     style="font-weight:bold;font-size:20px;font-family:'Liberation Sans';text-anchor:middle;fill:#ffffff">
+    <text
+       systemLanguage="af"
+       id="text941"
+       style="fill:#ffffff"><tspan
+         id="tspan941"
+         style="fill:#ffffff">Domein</tspan></text>
+    <text
+       systemLanguage="ban"
+       id="text942"
+       style="fill:#ffffff"><tspan
+         id="tspan942"
+         style="fill:#ffffff">Domain</tspan></text>
+    <text
+       systemLanguage="br"
+       id="text943"
+       style="fill:#ffffff"><tspan
+         id="tspan943"
+         style="fill:#ffffff">Riezad</tspan></text>
+    <text
+       systemLanguage="bs"
+       id="text944"
+       style="fill:#ffffff"><tspan
+         id="tspan944"
+         style="fill:#ffffff">Domen</tspan></text>
+    <text
+       systemLanguage="cs"
+       id="text945"
+       style="fill:#ffffff"><tspan
+         id="tspan945"
+         style="fill:#ffffff">doména</tspan></text>
+    <text
+       systemLanguage="de"
+       id="text946"
+       style="fill:#ffffff"><tspan
+         id="tspan946"
+         style="fill:#ffffff">Domäne</tspan></text>
+    <text
+       systemLanguage="en"
+       id="text947"
+       style="font-size:26.7273px;fill:#ffffff"><tspan
+         id="tspan947"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.7273px;font-family:Nunito;-inkscape-font-specification:'Nunito Bold';fill:#ffffff">Kingdom</tspan></text>
+    <text
+       systemLanguage="es"
+       id="text948"
+       style="fill:#ffffff"><tspan
+         id="tspan948"
+         style="fill:#ffffff">Dominio</tspan></text>
+    <text
+       systemLanguage="fr"
+       id="text949"
+       style="fill:#ffffff"><tspan
+         id="tspan949"
+         style="fill:#ffffff">Domaine</tspan></text>
+    <text
+       systemLanguage="gl"
+       id="text950"
+       style="fill:#ffffff"><tspan
+         id="tspan950"
+         style="fill:#ffffff">Dominio</tspan></text>
+    <text
+       systemLanguage="ku"
+       id="text951"
+       style="fill:#ffffff"><tspan
+         id="tspan951"
+         style="fill:#ffffff">Sercîhan</tspan></text>
+    <text
+       systemLanguage="la"
+       id="text952"
+       style="fill:#ffffff"><tspan
+         id="tspan952"
+         style="fill:#ffffff">Regio</tspan></text>
+    <text
+       systemLanguage="my"
+       id="text953"
+       style="fill:#ffffff"><tspan
+         id="tspan953"
+         style="fill:#ffffff">နယ်ပယ်</tspan></text>
+    <text
+       systemLanguage="si"
+       id="text954"
+       style="fill:#ffffff"><tspan
+         id="tspan954"
+         style="fill:#ffffff">වසම</tspan></text>
+    <text
+       systemLanguage="sk"
+       id="text955"
+       style="fill:#ffffff"><tspan
+         id="tspan955"
+         style="fill:#ffffff">doména</tspan></text>
+    <text
+       systemLanguage="tl"
+       id="text956"
+       style="fill:#ffffff"><tspan
+         id="tspan956"
+         style="fill:#ffffff">Dominyo</tspan></text>
+    <text
+       systemLanguage="uz"
+       id="text957"
+       style="fill:#ffffff"><tspan
+         id="tspan957"
+         style="fill:#ffffff">Domen</tspan></text>
+    <text
+       systemLanguage="xmf"
+       id="text958"
+       style="fill:#ffffff"><tspan
+         id="tspan958"
+         style="fill:#ffffff">დომენი</tspan></text>
+    <text
+       id="text959"
+       systemLanguage="shn"
+       style="fill:#ffffff"><tspan
+         id="tspan959"
+         style="fill:#ffffff">တီႈပိုင်ႈယူႇ</tspan></text>
+    <text
+       id="text960"
+       systemLanguage="id"
+       style="fill:#ffffff"><tspan
+         id="tspan960"
+         style="fill:#ffffff">Domain</tspan></text>
+    <text
+       id="text961"
+       systemLanguage="tg"
+       style="fill:#ffffff"><tspan
+         id="tspan961"
+         style="fill:#ffffff">Олам</tspan></text>
+    <text
+       id="text962"
+       style="fill:#ffffff"><tspan
+         id="tspan962"
+         style="fill:#ffffff">Domain</tspan></text>
+  </switch>
   <g
      id="g266"
      transform="matrix(2.1069389,0,0,2.1069389,-246.63636,-24.90819)">
