@@ -98,6 +98,7 @@ embed[src*=".svg"] tspan {
 /* Image cards                                                                */
 /* -------------------------------------------------------------------------- */
 
+
 .img-author-container {
   position: relative;
   display: flex;
@@ -150,7 +151,19 @@ embed[src*=".svg"] tspan {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+.image-credit {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  padding: 1px 6px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.5em;
+  font-weight: bold;
+  pointer-events: none;
+  font-family: Nunito, Arial, sans-serif;
+}
 
 /* -------------------------------------------------------------------------- */
 /* Statistics                                                                 */
@@ -461,77 +474,98 @@ embed[src*=".svg"] tspan {
 
 
 
-### {{< iconify hugeicons:chatting-01 >}} Plant importance
+### {{< iconify game-icons:palm-tree >}} {{< iconify game-icons:pine-tree >}} {{< iconify game-icons:fruit-tree >}} Plant importance
 <hr>
 
 
 
 ::::{.columns}
 
-::: {.column width="46%"}
+::: {.column width="50%"}
+
+
 <div style="text-align: center;">
 
-<img src="images/biomass.svg" width="50%" align="middle" >
+<div style="text-align: center; font-size:2rem">
 
-<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
+**The "weight" of plants on Earth**
 
 </div>
+
+<img src="images/biomass_tall.svg" width="50%" align="middle" >
+
+Biomass on earth  [@bar2018biomass]
+
+</div>
+
 :::
 
 
-::: {.column width="27%"}
+
+::: {.column width="50%"}
 
 
-- Approvisionnement:<br> Nourriture, Médicaments ...  
+<div style="text-align: center; font-size:2rem">
 
-<div style="text-align: center;">
-
-<img src="images/biomass.svg" width="50%" align="middle" >
-
-<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
+**The services they provide to us**
 
 </div>
 
+::::{.columns}
 
-- Support:<br> Photosynthèse, formation sol, cycle eau, ...
+::: {.column width="49%"}
 
+- Provisioning:<br> Food, Medicines ...
 
-<div style="text-align: center;">
-
-<img src="images/biomass.svg" width="50%" align="middle" >
-
-<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
-
+<div class="img-author-container" style="width:90%; min-width:120px;margin-left: auto;">
+  <img src="images/European_honey_bee_extracts_nectar_wide.jpg" alt="Honey bee" class="img-author-img" style="width:100%;">
+  <!-- <span class="img-author-overlay" style="font-size:.4rem">John Severns<br>Public domain</span> -->
 </div>
+
+
+
+
+- Supporting:<br> Photosynthesis, soil formation, water cycle, ...
+
+<div class="img-author-container" style="width:75%; min-width:120px;margin-left: auto;">
+  <img src="images/Grib_skov_wide.png" alt="Leaves on the ground, in a forest" class="img-author-img" style="width:100%;">
+  <!-- <span class="img-author-overlay" style="font-size:.4rem">Malene Thyssen<br>Public domain</span> -->
+</div>
+
+
+
+
 :::
 
-::: {.column width="27%"}
+::: {.column width="49%"}
 
-<div style="text-align: center;">
-
-<img src="images/biomass.svg" width="50%" align="middle" >
-
-<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
-
-</div>
-
-- Régulation:<br> Pollinisation, Climat, ...
-
-<div style="text-align: center;">
-
-<img src="images/biomass.svg" width="50%" align="middle" >
-
-<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
-
+<div class="img-author-container" style="width:19%; min-width:120px;margin-right: auto;">
+  <img src="images/Prunus_spinosa_L_1023984740.svg" alt="Prunus spinosa L." class="img-author-img" style="width:100%;">
+  <!-- <span class="img-author-overlay" style="font-size:0.4rem">fuerst.ernst<br>CC-BY-SA</span> -->
 </div>
 
 
-- Culturels:<br> Lieux de promenade, émerveillement, ...
 
+
+- Regulating:<br> Pollination, Climate, ...
+
+<div class="img-author-container" style="width:19%; min-width:120px;margin-right: auto;">
+  <img src="images/Gmelina_leaves_forest_floor.jpeg" alt="Leaves on the ground, in a forest" class="img-author-img" style="width:100%;">
+  <!-- <span class="img-author-overlay" style="font-size:.4rem">Poyt448 Peter Woodard<br>Public domain</span> -->
+</div>
+
+
+- Cultural:<br> Places for recreation, wonder, ...
+
+:::
+
+
+::::
 
 :::
 
 ::::
+
 <!------------------------------------------------------------------------ -->
 
 
@@ -579,7 +613,7 @@ A machine learning-driven **citizen science** platform for mobile plant identifi
 
 <div style="text-align: center;">
 
-<img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="55%" align="middle">
+<img src="../2024-09-25_slides_sierra/images/plantnet_app.jpg" width="55%" align="middle" style="border-radius:5%">
 
 - **Birth**: Montpellier,  2009
 - **Website**: [https://plantnet.org/](https://plantnet.org/)
@@ -663,7 +697,6 @@ A machine learning-driven **citizen science** platform for mobile plant identifi
 
 <img src="images/biomass.svg" width="20%" align="middle" >
 
-<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
 
 
 
@@ -1211,7 +1244,6 @@ WCVP: *World Checklist of Vascular Plants* database.
 ```
 
 
-<div style="font-size: 0.75em; margin-top: 5px; text-align: center;">Biomass on earth [@bar2018biomass]</div>
 
 
 ```{=html}
@@ -2295,6 +2327,7 @@ Provide a real life scenario for supervised learning, with multi-class and long-
 
 
 ::: {.column width=55%}
+
 :::{.fragment}
 
 
