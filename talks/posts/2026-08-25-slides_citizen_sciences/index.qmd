@@ -2707,7 +2707,7 @@ FracBelow50%: proportion of classes with low coverage (below 50%)
 ::: {.column width="70%"}
 
 $$
-\text{MacroCoverage} = \frac{1}{|\mathcal{Y}|} \sum_{y \in \mathcal{Y}} \mathbb{P}\big( y \in \mathcal{C}(X) \, | \, Y = y \big)
+\text{MacroCoverage} = \frac{1}{|\mathcal{Y}|} \sum_{y \in \mathcal{Y}} \mathbb{P}\big( Y \in \mathcal{C}(X) \, | \, Y = y \big)
 $$
 
 ::: {.fragment}
