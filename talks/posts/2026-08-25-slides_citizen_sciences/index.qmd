@@ -376,6 +376,47 @@ embed[src*=".svg"] tspan {
 }
 
 
+/* Classification challenges overview */
+
+.challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  max-width: 1050px;
+  margin: 2rem auto 1.5rem;
+}
+
+.challenge-card {
+  background: #f7f8f6;
+  border-radius: 16px;
+  padding: 1.5rem 1.4rem 1.4rem;
+  text-align: left
+}
+
+.challenge-icon {
+  font-size: 3.5rem;
+  color: #047C90;
+  margin-bottom: 0.7rem;
+}
+
+.challenge-card h4 {
+  color: #047C90;
+  font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+}
+
+.challenge-card p {
+  font-size: 0.85em;
+  line-height: 1.4;
+  color: #555;
+}
+
+@media (max-width: 800px) {
+  .challenges-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* -------------------------------------------------------------------------- */
 /* Image grid / team                                                          */
 /* -------------------------------------------------------------------------- */
@@ -517,7 +558,7 @@ Biomass on earth  [@bar2018biomass]
 
 ::: {.column width="49%"}
 
-- Provisioning:<br> Food, Medicines ...
+- [Provisioning]{.underline}: Food, Medicines ...
 
 <div class="img-author-container" style="width:90%; min-width:120px;margin-left: auto;">
   <img src="images/European_honey_bee_extracts_nectar_wide.jpg" alt="Honey bee" class="img-author-img" style="width:95%;">
@@ -527,7 +568,7 @@ Biomass on earth  [@bar2018biomass]
 
 
 
-- Supporting:<br> Photosynthesis, soil formation, water cycle, ...
+- [Supporting]{.underline}: Photosynthesis, soil formation, water cycle, ...
 
 <div class="img-author-container" style="width:75%; min-width:120px;margin-left: auto;">
   <img src="images/Grib_skov_wide.png" alt="Leaves on the ground, in a forest" class="img-author-img" style="width:75%%;">
@@ -542,15 +583,15 @@ Biomass on earth  [@bar2018biomass]
 
 ::: {.column width="49%"}
 
-<div class="img-author-container" style="width:19%; min-width:120px;margin-right: auto;">
-  <img src="images/Prunus_spinosa_L_1023984740.svg" alt="Prunus spinosa L." class="img-author-img" style="width:19%%;">
-      <span class="img-author-overlay" style="font-size: 0.6rem;top: 15%; right: 5%;">fuerst.ernst<br>CC-BY-SA</span>
+<div class="img-author-container" style="width:60%; min-width:120px;margin-right: auto;">
+  <img src="images/a651d2e4e24c278ec1ac96d7e567f712cd67659b.jpeg" alt="Leaves on the ground, in a forest" class="img-author-img" style="width:60%;">
+    <span class="img-author-overlay" style="font-size: 0.6rem;top: 15%; right: 5%;"> Lynette Schimming − EOL <br>CC-BY-NC</span>
 </div>
 
 
 
 
-- Regulating:<br> Pollination, Climate, ...
+- [Regulating]{.underline}: Pollination, Climate, ...
 
 <div class="img-author-container" style="width:19%; min-width:120px;margin-right: auto;">
   <img src="images/Gmelina_leaves_forest_floor.jpeg" alt="Leaves on the ground, in a forest" class="img-author-img" style="width:19%;">
@@ -558,7 +599,7 @@ Biomass on earth  [@bar2018biomass]
 </div>
 
 
-- Cultural:<br> Places for recreation, wonder, ...
+- [Cultural]{.underline}:  Places for recreation, wonder, ...
 
 :::
 
@@ -970,18 +1011,50 @@ print("</div>")
 
 
 <!------------------------------------------------------------------------ -->
-### Pl@ntNet: Supervised learning Mutliclass classification challenges
+### {{<iconify mdi:puzzle-outline>}} Pl@ntNet classification challenges
+<hr>
 
-- **massive size**: 
-    - huge amount of samples (images)
-    - huge amount of classes (species)
 
-- highly **structured** labels
-  - **hierarchical** label structure (tree of life)
-  - confusions labels
+<br><br>
+<center>
+Multi-class supervised learning pushed to the limit:
+</center>
+<br><br>
 
-- **biased** citizen-science dataset
+::: {.challenges-grid}
 
+::: {.challenge-card}
+
+<div class="challenge-icon">{{<iconify tabler:stack-2>}}</div>
+
+#### Massive scale
+
+Millions of images across thousands of species (classes)
+
+:::
+
+::: {.challenge-card}
+
+<div class="challenge-icon">{{<iconify tabler:binary-tree>}}</div>
+
+
+#### Structured labels
+
+A hierarchical taxonomy, with visually similar species prone to confusion
+
+:::
+
+::: {.challenge-card}
+
+<div class="challenge-icon">{{<iconify mdi:scale-balance>}}</div>
+
+#### Biased data
+
+A citizen-science dataset, unevenly sampled across species and regions
+
+:::
+
+:::
 <!------------------------------------------------------------------------ -->
 
 
@@ -1176,9 +1249,11 @@ labeled images: with species
 
 ::: {.stat-card .stat-tree}
 
+
+
 <div style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
 <img src="images/Diversity_of_plants_(Streptophyta)_version_2.png" alt="Diversity of plants" style="width: 100%; height: auto; max-height: 100%; object-fit: contain;">
-<span class="img-author-overlay" style="font-size: 0.6rem;top: 90%; right: 15px;">@ Rkitko (Wikimedia Commons)</span>
+<span class="img-author-overlay" style="font-size: 0.6rem; top: 90%; left: 50%; transform: translateX(-50%); text-align: center; padding: 6px 20px; display: inline-block; min-width: 100px;"> Rkitko <br> (Wikimedia Commons)</span>
 </div>
 
 :::
@@ -1913,12 +1988,15 @@ Observations can reflect observers own choices.
 <div style="margin-left: 1em;">
 
 - Extract images from **South-Western Europe** (SWE): most covered regions
-- Provide 300 000 images
-- Shareable (size < **50Go** for Zenodo)
-- Need  **> 4 samples** per class for train/val/test split
+- Provide approx. 300 000 images
+- Shareable on Zenodo (size < **50Go**)
+- Need  **more than 4 samples** per class for train/val/test split
 - Curated images / labels (well, really?)
 
 </div>
+
+@Krizhevsky09: "*Furthermore, we personally verified every label submitted by the labelers*", on CIFAR10 & CIFAR100 paper  
+
 
 :::
 
@@ -2500,7 +2578,7 @@ $$
 $$
 
 
-{{< iconify mdi:arrow-right-bold >}} **In classification**: a common conformal score is $s(x,y) = \hat{p}(y|x)$ (*e.g.,* softmax score from a classifier fitted on a train/validation set).
+{{< iconify mdi:arrow-right-bold >}} **In classification**: a common conformal score is $s(x,y) = \hat{p}(y|x)$ (*e.g.,* softmax scores).
 
 <br>
 <br>
@@ -2508,6 +2586,7 @@ $$
 . . .
 
 **{{< iconify mdi:swap-horizontal >}} Key assumption:** The data calibration $(X_i, Y_i)$ are **exchangeable** with the tested points.
+
 <br>
 <br>
 
@@ -2528,7 +2607,7 @@ $$
 
 ::: {.column width="48%"}
 
-**Marginal coverage** targets:
+**Marginal (or standard) coverage** targets:
 
 $$\mathbb{P}\big[ Y \in \mathcal{C}_{\alpha}(X) \big ] \geq 1 - \alpha.$$
 
@@ -2620,6 +2699,9 @@ calibrate $t_{\alpha}^y$ **only on** $(X_i, Y_i)$ such that $Y_i = y$
 <!-------------------------------------------------------------------------- -->
 ### Interactive optimal set visualization
 <hr>
+
+
+<!-- XXX: inverser l'ordre + naming wrong. -->
 
 ```{=html}
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2896,7 +2978,7 @@ $$
 <br>
 
 - Challenges in citizen science: many, varied and needing more attention
-- Prediction: theory can guide the set to display
+- Prediction: theory can guide which prediction set to display
 :::
 
 
