@@ -28,6 +28,8 @@ cite-method: citeproc
 link-citations: true
 resources:
     - "*.html"
+    - "*.js"
+    - "*.csv"
 
 ---
 
@@ -518,8 +520,8 @@ Biomass on earth  [@bar2018biomass]
 - Provisioning:<br> Food, Medicines ...
 
 <div class="img-author-container" style="width:90%; min-width:120px;margin-left: auto;">
-  <img src="images/European_honey_bee_extracts_nectar_wide.jpg" alt="Honey bee" class="img-author-img" style="width:100%;">
-  <!-- <span class="img-author-overlay" style="font-size:.4rem">John Severns<br>Public domain</span> -->
+  <img src="images/European_honey_bee_extracts_nectar_wide.jpg" alt="Honey bee" class="img-author-img" style="width:95%;">
+  <span class="img-author-overlay" style="font-size: 0.6rem;top: 15%; right: 5%;">John Severns<br>Public domain</span>
 </div>
 
 
@@ -528,7 +530,8 @@ Biomass on earth  [@bar2018biomass]
 - Supporting:<br> Photosynthesis, soil formation, water cycle, ...
 
 <div class="img-author-container" style="width:75%; min-width:120px;margin-left: auto;">
-  <img src="images/Grib_skov_wide.png" alt="Leaves on the ground, in a forest" class="img-author-img" style="width:100%;">
+  <img src="images/Grib_skov_wide.png" alt="Leaves on the ground, in a forest" class="img-author-img" style="width:75%%;">
+    <span class="img-author-overlay" style="font-size: 0.6rem;top: 15%; right: 5%;">Malene Thyssen<br>Public domain</span>
   <!-- <span class="img-author-overlay" style="font-size:.4rem">Malene Thyssen<br>Public domain</span> -->
 </div>
 
@@ -540,8 +543,8 @@ Biomass on earth  [@bar2018biomass]
 ::: {.column width="49%"}
 
 <div class="img-author-container" style="width:19%; min-width:120px;margin-right: auto;">
-  <img src="images/Prunus_spinosa_L_1023984740.svg" alt="Prunus spinosa L." class="img-author-img" style="width:100%;">
-  <!-- <span class="img-author-overlay" style="font-size:0.4rem">fuerst.ernst<br>CC-BY-SA</span> -->
+  <img src="images/Prunus_spinosa_L_1023984740.svg" alt="Prunus spinosa L." class="img-author-img" style="width:19%%;">
+      <span class="img-author-overlay" style="font-size: 0.6rem;top: 15%; right: 5%;">fuerst.ernst<br>CC-BY-SA</span>
 </div>
 
 
@@ -550,8 +553,8 @@ Biomass on earth  [@bar2018biomass]
 - Regulating:<br> Pollination, Climate, ...
 
 <div class="img-author-container" style="width:19%; min-width:120px;margin-right: auto;">
-  <img src="images/Gmelina_leaves_forest_floor.jpeg" alt="Leaves on the ground, in a forest" class="img-author-img" style="width:100%;">
-  <!-- <span class="img-author-overlay" style="font-size:.4rem">Poyt448 Peter Woodard<br>Public domain</span> -->
+  <img src="images/Gmelina_leaves_forest_floor.jpeg" alt="Leaves on the ground, in a forest" class="img-author-img" style="width:19%;">
+  <span class="img-author-overlay" style="font-size: 0.6rem;top: 15%; right: 5%;">fuerst.ernst<br>CC-BY-SA</span>
 </div>
 
 
@@ -2678,12 +2681,11 @@ calibrate $t_{\alpha}^y$ **only on** $(X_i, Y_i)$ such that $Y_i = y$
 </div>
 
 <script type="module"
-        src="../../../blog/long-tail/all_metrics_softmax_viz_no_yellow.js">
+        src="all_metrics_softmax_viz_no_yellow.js">
 </script>
 ```
 <center>
 FracBelow50%: proportion of classes with low coverage (below 50%)
-XXX supprimer le milieu.
 <center>
 
 <!-------------------------------------------------------------------------- -->
@@ -2785,7 +2787,7 @@ $$
 <div id="all-metrics-softmax-container" style="width: 100%; height: 450px; margin: 20px 0;">
 </div>
 
-<script type="module" src="../../../blog/long-tail/all_metrics_softmax_viz.js"></script>
+<script type="module" src="all_metrics_softmax_viz.js"></script>
 ```
 
 <!-------------------------------------------------------------------------- -->
