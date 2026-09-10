@@ -1,0 +1,978 @@
+---
+title: "ROC Curve and test"
+author:
+  - name: Joseph Salmon
+    url: https://josephsalmon.eu/
+    orcid: 0000-0002-3181-0634
+
+date: "2026-09-07"
+description: "We Will, We Will ROC You"
+categories: [Statistics, evaluation, risk, precision, recall, ]
+image: "../../Courses/images/screenshot_roc_curves.png"
+draft: false
+reference-location: document
+fig-cap-location: bottom
+bibliography: references.bib
+appendix-cite-as: bibtex
+resources:
+  - "roc_data.json"
+  - "synthetic_roc_data.json"
+  - "roc_data_imbalanced.json"
+  - "*.js"
+filters:
+  - pseudocode
+jupyter: python3
+format:
+  html:
+    table-striped: true
+    from: markdown+emoji
+    html-math-method: mathjax
+    code-tools: true
+    include-in-header:
+      - text: |
+          <script src="https://josephsalmon.eu/blog/proof-toggle.js"></script>
+          <script>window.backupDefineForPlotly = window.define; window.define = undefined;</script>
+          <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+          <script>window.define = window.backupDefineForPlotly; window.backupDefineForPlotly = undefined;</script>
+
+---
+
+::: {.content-visible when-format="html"}
+::: {.hidden}
+{{
+\usepackage{amssymb, amsmath, amsthm}
+\usepackage{stmaryrd}
+\DeclareMathOperator*{\argmin}{arg\,min} % thin space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{arg\,max} % thin space, limits underneath in displays
+\DeclareMathOperator{\diag}{diag}
+}}
+:::
+:::
+
+
+# Introduction and data used
+
+We illustrate in this post the notion of **ROC curves** using data from a head-to-head benchmark evaluation of five SARS-CoV-2 serological assays [@ainsworth2020performance].
+
+The underlying study compared the Abbott, DiaSorin, Oxford, Roche, and Siemens
+assays using a common set of well-characterized samples.
+We follow @ainsworth2020performance and we have used
+
+- **976 pre-pandemic samples** as the known-negative reference group; and
+- **536 laboratory-confirmed SARS-CoV-2-positive samples** collected at least 20 days after symptom onset.
+
+The dataset (`supplementary_dataset2.csv`) can be downloaded [here](https://figshare.com/articles/dataset/Dataset_Head-to-head_benchmark_evaluation_of_the_sensitivity_and_specificity_of_five_immunoassays_for_SARS-CoV-2_serology_on_1500_samples/12622172?backTo=%2Fcollections%2FHead-to-head_benchmark_evaluation_of_the_sensitivity_and_specificity_of_five_immunoassays_for_SARS-CoV-2_serology_on_1500_samples%2F5046032&file=23736068) and the supplementary material of the associated paper describes the preprocessing we have also followed.
+
+## A statistical testing point of view
+A diagnostic test can be framed as a classical **statistical hypothesis test**. In this medical context, we consider the null hypothesis
+$$
+\mathcal{H}_0: \text{``you are healthy''} \quad \text{(until proved otherwise)},
+$$
+against the alternative:
+
+$$
+\mathcal{H}_1: \text{``you are sick''} \quad \text{(here, infected by Covid-19)}.
+$$
+
+The presumption of health plays the same role as the *presumption of innocence* in a courtroom: we only reject $\mathcal{H}_0$ (*i.e.,* declare someone positive) when the evidence (here the assay result) is strong enough. Let $Y \in \{0,1\}$ denote the true health status, with $Y=0$ under $\mathcal{H}_0$ (healthy) and $Y=1$ under $\mathcal{H}_1$ (sick). In practice, declaring someone positive means the measured antibody level, modeled by a random variable $X$, must cross an assay-specific diagnostic threshold (cut-off) $t$. The resulting decision rule, our estimate of $Y$ at threshold $t$, is written $\hat{Y}_t$:
+
+$$
+\hat{Y}_t = \hat{Y}_t(X) = \mathbb{1}\{X \geq t\}=
+\begin{cases}
+1, & X \geq t \quad \text{(predicted sick)},\\
+0, & X < t \quad \text{(predicted healthy)}.
+\end{cases}
+$$
+
+As in any hypothesis test, two types of errors can occur: rejecting $\mathcal{H}_0$ when it is in fact true (**Type I error**), or failing to reject it when it is in fact false (**Type II error**). In terms of $Y$ and $\hat{Y}_t$:
+
+$$
+\begin{align*}
+\mathbb{P}(\text{Type I error}) & = \mathbb{P}(\hat{Y}_t=1 \mid Y=0) = \mathbb{P}(X \geq t \mid Y=0),\\
+\mathbb{P}(\text{Type II error}) & = \mathbb{P}(\hat{Y}_t=0 \mid Y=1) = \mathbb{P}(X < t \mid Y=1).
+\end{align*}
+$$
+
+In words: a Type I error is a **false positive** (the test flags a healthy person), while a Type II error is a **false negative** (the test misses a sick person). The threshold $t$ controls the trade-off between the two: lowering $t$ catches more true cases but triggers more false alarms, and vice versa. **ROC** and **precision/recall curves**, introduced below, are the tools used to visualize this trade-off as $t$ varies.
+
+## Naming and key quantities
+
+Naming follows the classical terminology (see *e.g.,* the [Wikipedia article on ROC curves](https://en.wikipedia.org/wiki/Receiver_operating_characteristic)). Given a fixed threshold, each sample falls into exactly one of four categories:
+
+- **True Positive**: sick and correctly declared positive
+$$\displaystyle\mathrm{TP} = \sum_{i=1}^n \mathbb{1}\{Y_i=1,\ \hat{Y}_{t,i}=1\}$$ 
+- **True Negative**: healthy and correctly declared negative
+  $$\displaystyle\mathrm{TN} = \sum_{i=1}^n \mathbb{1}\{Y_i=0,\ \hat{Y}_{t,i}=0\}$$
+- **False Positive**  (Type I error): healthy but wrongly declared positive
+    $$\displaystyle\mathrm{FP} = \sum_{i=1}^n \mathbb{1}\{Y_i=0,\ \hat{Y}_{t,i}=1\}$$
+- **False Negative** (Type II error): sick but wrongly declared negative
+ $$\displaystyle\mathrm{FN} = \sum_{i=1}^n \mathbb{1}\{Y_i=1,\ \hat{Y}_{t,i}=0\}$$ 
+
+
+From the true status $Y$, we define two population sizes:
+
+- $\mathrm{P} = \sum_{i=1}^n \mathbb{1}\{Y_i = 1\} = \mathrm{TP} + \mathrm{FN}$: total number of sick individuals in the study (**true positives**),
+- $\mathrm{N} = \sum_{i=1}^n \mathbb{1}\{Y_i = 0\} = \mathrm{TN} + \mathrm{FP}$: total number of healthy individuals in the study (**true negatives**),
+
+and, similarly, from the predicted status $\hat{Y}_t$:
+
+- $\hat{\mathrm{P}}_t = \sum_{i=1}^n \mathbb{1}\{\hat{Y}_{t,i} = 1\} = \mathrm{TP} + \mathrm{FP}$: total number of individuals predicted sick at threshold $t$ (**predicted positive**),
+- $\hat{\mathrm{N}}_t = \sum_{i=1}^n \mathbb{1}\{\hat{Y}_{t,i} = 0\} = \mathrm{TN} + \mathrm{FN}$: total number of individuals predicted healthy at threshold $t$ (**predicted negative**).
+
+![](images/tests.svg){fig-alt="Illustration of TP, TN, FP, FN counts on a Covid-19 test example"}
+
+[Note]{.underline}: we will reuse the same color code below, with red for $\mathrm{N}$, blue for $\mathrm{P}$, crosses for a negative test result, and dots for a positive test result.
+
+We also define the following rates, used throughout this post:
+
+- $\mathrm{TPR} = \dfrac{\mathrm{TP}}{\mathrm{P}} = \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=1\right)$ (**True Positive Rate**, a.k.a. **sensitivity** or **recall**): among sick people, the proportion correctly detected,
+- $\mathrm{TNR} = \dfrac{\mathrm{TN}}{\mathrm{N}} = \mathbb{P}\!\left(\hat{Y}_t=0 \mid Y=0\right)$ (**True Negative Rate**, a.k.a. **specificity**): among healthy people, the proportion correctly cleared,
+- $\mathrm{FPR} = 1 - \mathrm{TNR} = \dfrac{\mathrm{FP}}{\mathrm{N}} = \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=0\right)$ (**False Positive Rate**): among healthy people, the proportion wrongly flagged — this is exactly the Type I error probability,
+- $\mathrm{Precision} = \dfrac{\mathrm{TP}}{\hat{\mathrm{P}}_t} = \mathbb{P}\!\left(Y=1 \mid \hat{Y}_t=1\right)$: among people declared positive, the proportion actually sick.
+
+
+The dataset consists of nn observations, denoted as $\{(Y_i, X_i)\}_{i=1,\dots, n}$, where $Y_i$ represents the true health status of individual $i$.
+
+
+
+### The ROC curve function
+
+
+For a given threshold $t$, one would like to compute the pair:
+
+$$
+\left(\mathrm{FPR}(t), \mathrm{TPR}(t)\right)
+= \left(
+\mathbb{P}\!\left(T_t(X)=1 \mid Y=0\right),
+\mathbb{P}\!\left(T_t(X)=1 \mid Y=1\right)
+\right).
+$$
+
+The **ROC curve** is the parametric curve obtained as $t$ varies:
+
+$$
+\{(\mathrm{FPR}(t), \mathrm{TPR}(t)) : t \in \mathbb{R}\}.
+$$
+
+In practice, the estimation is performed using empirical counterparts. For each threshold $t$, we compute:
+
+$$
+\widehat{\mathrm{FPR}}(t) = \frac{1}{\mathrm{N}} \sum_{i: Y_i=0} \mathbb{1}\{X_i \geq t\}, \quad
+\widehat{\mathrm{TPR}}(t) = \frac{1}{\mathrm{P}} \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\}.
+$$
+
+
+Extreme cases include the following:
+
+
+####  Ideal case: perfect separation
+
+
+
+#### **Random guessing: definition and proof**
+
+Random guessing corresponds to the situation where the test statistic $X^{\textrm{obs}}$ **does not carry any information** about the true status $T^{\textrm{true}}$. Formally, this means the conditional distributions are identical:
+
+$$
+X^{\textrm{obs}} \mid T^{\textrm{true}} = 0 \quad \stackrel{d}{=} \quad X^{\textrm{obs}} \mid T^{\textrm{true}} = 1.
+$$
+
+
+
+#### **Proof that FPR(t) = TPR(t) for all t**
+
+By definition of the rates:
+
+$$
+\begin{aligned}
+\mathrm{FPR}(t) &= \mathbb{P}(T_t(X^{\textrm{obs}}) = 1 \mid T^{\textrm{true}} = 0) = \mathbb{P}(X^{\textrm{obs}} \geq t \mid T^{\textrm{true}} = 0), \\
+\mathrm{TPR}(t) &= \mathbb{P}(T_t(X^{\textrm{obs}}) = 1 \mid T^{\textrm{true}} = 1) = \mathbb{P}(X^{\textrm{obs}} \geq t \mid T^{\textrm{true}} = 1).
+\end{aligned}
+$$
+
+Under random guessing, the two conditional distributions are equal, so for every $t$:
+
+$$
+\mathbb{P}(X^{\textrm{obs}} \geq t \mid T^{\textrm{true}} = 0) = \mathbb{P}(X^{\textrm{obs}} \geq t \mid T^{\textrm{true}} = 1).
+$$
+
+Hence $\mathrm{FPR}(t) = \mathrm{TPR}(t)$ for all $t$, and the ROC curve is the diagonal line from $(0,0)$ to $(1,1)$.
+
+
+```{python}
+import json
+import numpy as np
+from sklearn.metrics import roc_curve, auc as sklearn_auc
+
+np.random.seed(42)
+n_pos = n_neg = 500
+
+def compute_roc(pos, neg):
+    y_true = np.array([1]*len(pos) + [0]*len(neg))
+    y_score = np.concatenate([pos, neg])  # <-- FIX: concatenate, not add
+    fpr, tpr, _ = roc_curve(y_true, y_score)
+    roc_auc = sklearn_auc(fpr, tpr)
+    return fpr.tolist(), tpr.tolist(), roc_auc
+
+x_pos = (-0.1 + np.random.uniform(size=n_pos) * 0.2).tolist()
+x_neg = (0.4 + np.random.uniform(size=n_neg) * 0.2).tolist()
+
+scenarios = {}
+
+# Uniform: both classes U[1, 2]
+pos_unif = np.random.uniform(1, 2, n_pos)
+neg_unif = np.random.uniform(1, 2, n_neg)
+fpr, tpr, auc_val = compute_roc(pos_unif, neg_unif)
+scenarios["uniform"] = {
+    "name": "uniform samples (both classes random drawn over [1,2])",
+    "pos": pos_unif.tolist(),
+    "neg": neg_unif.tolist(),
+    "roc_fpr": fpr,
+    "roc_tpr": tpr,
+    "auc": auc_val,
+    "ylims": [0.9, 2.1],
+    "threshold_init": 1.5,
+    "threshold_reco": None
+}
+
+# Gaussian: μ₀=0, μ₁=1
+pos_gauss = np.random.normal(1, 1, n_pos)
+neg_gauss = np.random.normal(0, 1, n_neg)
+fpr, tpr, auc_val = compute_roc(pos_gauss, neg_gauss)
+scenarios["gaussian"] = {
+    "name": "gaussian samples with μ₀=0 and μ₁=1",
+    "pos": pos_gauss.tolist(),
+    "neg": neg_gauss.tolist(),
+    "roc_fpr": fpr,
+    "roc_tpr": tpr,
+    "auc": auc_val,
+    "ylims": [min(pos_gauss.min(), neg_gauss.min()) - 0.5,
+              max(pos_gauss.max(), neg_gauss.max()) + 0.5],
+    "threshold_init": 0.5,
+    "threshold_reco": None
+}
+
+# Ideal: perfect separation
+pos_ideal = np.ones(n_pos)
+neg_ideal = np.zeros(n_neg)
+fpr, tpr, auc_val = compute_roc(pos_ideal, neg_ideal)
+scenarios["ideal"] = {
+    "name": "ideal: all samples are 0 from class 0 and 1 from class 1",
+    "pos": pos_ideal.tolist(),
+    "neg": neg_ideal.tolist(),
+    "roc_fpr": fpr,
+    "roc_tpr": tpr,
+    "auc": auc_val,
+    "ylims": [-0.1, 1.1],
+    "threshold_init": 0.5,
+    "threshold_reco": None
+}
+
+data = {
+    "assays": scenarios,
+    "colors": {"pos": "#e41a1c", "neg": "#377eb8"},
+    "x_pos": x_pos,
+    "x_neg": x_neg,
+    "n_pos": n_pos,
+    "n_neg": n_neg,
+    "default_assay": "gaussian"
+}
+
+with open("synthetic_roc_data.json", "w") as f:
+    json.dump(data, f, indent=2)
+```
+
+
+```{=html}
+<div id="roc-interactive"
+     class="roc-interactive"
+     data-json="synthetic_roc_data.json"
+     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+
+  <div style="display:flex; flex-direction:column; justify-content:center; min-width:130px; flex:0 0 130px; border:1px solid rgba(0,0,0,0.15); border-radius:8px; padding:8px; font-size:9.5px; background:rgba(0,0,0,0.02);">
+
+    <div style="margin-bottom:5px; font-weight:600; font-size:9.5px;">
+      Scenario (click)
+    </div>
+
+    <div class="roc-assay-radios"
+         style="font-size:9.5px; line-height:1.25; display:flex; flex-direction:column; gap:3px;">
+    </div>
+
+    <hr style="margin:8px 0; border-color:rgba(0,0,0,0.1);">
+
+    <div style="margin-bottom:4px; font-weight:600; font-size:9.5px;">
+      Threshold
+    </div>
+
+    <input type="range"
+           class="roc-threshold"
+           min="0"
+           max="1"
+           step="0.001"
+           value="0.5"
+           style="width:100%;">
+
+    <div class="roc-threshold-value"
+         style="margin-top:4px; text-align:center; font-size:9px; color:#555;">
+    </div>
+
+  </div>
+
+  <div class="roc-plot"
+       style="flex:1 1 auto; min-width:520px; max-width:1050px; display:flex; align-items:center;">
+  </div>
+
+</div>
+```
+
+
+The Python code is provided below to compute a ROC curve.
+
+```{python}
+def roc(thresholds, y_true, score):
+    # Extracted from https://stackoverflow.com/questions/25009284/how-to-plot-roc-curve-in-python
+    fpr = []  # false positive rate
+    tpr = []  # true positive rate
+
+    # get number of positive and negative examples in the dataset
+    P = sum(y_true)
+    N = len(y_true) - P
+
+    # iterate through all thresholds and determine fraction of true positives
+    # and false positives found at this threshold
+    for thresh in thresholds:
+        FP = 0
+        TP = 0
+        for i in range(len(score)):
+            if score[i] > thresh:
+                if y_true[i] == True:
+                    TP += 1
+                else:
+                    FP += 1
+        fpr.append(FP / float(N))
+        tpr.append(TP / float(P))
+    return tpr, fpr
+```
+
+
+#### Area Under the ROC Curve (AUC)
+
+The **Area Under the ROC Curve (AUC)** is a scalar summary of the classifier’s discriminative power across all thresholds. Because the ROC curve plots the true positive rate against the false positive rate for every possible decision boundary, its area ​quantifies the probability that a randomly chosen positive instance is ranked higher than a randomly chosen negative instance. Often the AUC is used to measure overall performance: the larger the AUC, the better the assay discriminates between the two classes.
+
+
+
+
+:::: {#thm-roc-monotonicity} 
+# Monotonicity of ROC curves
+Let $\mathcal{D} = \{(X_i, Y_i)\}_{i=1}^n$ be a dataset with binary labels $Y_i \in \{0,1\}$ and measured features $X_i \in \mathbb{R}$, and let $\hat{Y}_{t,i} = \mathbb{1}\{X_i \geq t\}$ be the decision at threshold $t$, as defined above.
+
+For any two thresholds $t_1, t_2 \in \mathbb{R}$ such that $t_1 < t_2$, the ROC curve satisfies:
+
+$$
+\mathrm{TPR}(t_1) \geq \mathrm{TPR}(t_2) \quad \text{and} \quad \mathrm{FPR}(t_1) \geq \mathrm{FPR}(t_2),
+$$
+::::
+
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('thm-roc-monotonicity')"}
+[▶]{#proof-arrow-thm-roc-monotonicity .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-roc-monotonicity .proof-content}
+**Setup**: For a threshold $t$, let $S_t = \{i \in [n] \mid \hat{Y}_{t,i} = 1\} = \{i \in [n] \mid X_i \geq t\}$ denote the samples declared positive. Recall from above that
+
+$$
+\mathrm{TP}(t) = \sum_{i \in S_t} \mathbb{1}\{Y_i = 1\}, \quad \mathrm{FP}(t) = \sum_{i \in S_t} \mathbb{1}\{Y_i = 0\},
+$$
+
+so that $\mathrm{TPR}(t) = \mathrm{TP}(t)/\mathrm{P}$ and $\mathrm{FPR}(t) = \mathrm{FP}(t)/\mathrm{N}$, with $\mathrm{P}$ and $\mathrm{N}$ as defined above — constants that do not depend on $t$.
+
+**Monotonicity argument**: For $t_1 < t_2$, we have $S_{t_1} \supseteq S_{t_2}$, since $X_i \geq t_1$ whenever $X_i \geq t_2$. Consequently:
+$$
+\mathrm{TP}(t_1) \geq \mathrm{TP}(t_2) \quad \text{and} \quad \mathrm{FP}(t_1) \geq \mathrm{FP}(t_2).
+$$
+Dividing by the threshold-independent constants $\mathrm{P}$ and $\mathrm{N}$ preserves these inequalities:
+$$
+\mathrm{TPR}(t_1) \geq \mathrm{TPR}(t_2) \quad \text{and} \quad \mathrm{FPR}(t_1) \geq \mathrm{FPR}(t_2).
+$$
+
+
+:::
+::::
+
+
+
+
+
+#### Uniformly random case
+
+
+#### Gaussian case
+For two Gaussian classes with unit variance, means $\mu_0$ (negative class) and $\mu_1$ (positive class, assume $\mu_1 > \mu_0$), and classifier $T_t(X)=\mathbb{1}\{X \geq t\}$, the ROC curve is **explicitly known** and has a simple parametric form.
+
+
+**Parametric Equations**
+Let $\Delta = \mu_1 - \mu_0 > 0$ be the mean difference. For each threshold $t \in \mathbb{R}$:
+
+$$
+\begin{aligned}
+\mathrm{FPR}(t) &= 1 - \Phi(t - \mu_0), \\
+\mathrm{TPR}(t) &= 1 - \Phi(t - \mu_1).
+\end{aligned}
+$$
+
+Eliminating $t$ gives the **explicit ROC curve**:
+
+$$
+\boxed{\text{TPR} = \Phi\Big(\Phi^{-1}(\text{FPR}) + \Delta\Big)}
+$$
+
+**Key Properties**
+
+1. **Shape**: The curve is **smooth, concave**, and always lies above the diagonal (no classification is worse than random).
+2. **Endpoints**: Passes through $(0,0)$ and $(1,1)$.
+3. **Symmetry**: If you swap $\mu_0$ and $\mu_1$, the curve is reflected across the diagonal (TPR ↔ TNR).
+
+---
+
+### **Area Under the Curve (AUC)**
+The AUC has a closed form:
+
+$$
+\boxed{\text{AUC} = \Phi\left(\frac{\Delta}{\sqrt{2}}\right)}
+$$
+
+- When $\Delta = 0$ (identical distributions): $\text{AUC} = \Phi(0) = 0.5$ (random guessing).
+- When $\Delta \to \infty$: $\text{AUC} \to 1$ (perfect separation).
+
+
+- The **only parameter** shaping the ROC is the Mahalanobis distance $\Delta/\sigma$ (here $\sigma=1$).
+- The curve is **independent of the individual means** $\mu_0$, $\mu_1$; only their **difference** $\Delta$ matters.
+- For any $\Delta$, the ROC is a **binormal curve**—a standard model in signal detection theory.
+
+
+
+
+### The Precision/Recall curve function
+
+
+The **Precision-Recall curve** is the parametric curve obtained as the threshold $t$ varies:
+
+$$
+\{(\mathrm{Recall}(t), \mathrm{Precision}(t)) : t \in \mathbb{R}\},
+$$
+and remember that $\mathrm{Recall}(t) = \mathrm{TPR}(t)$.
+
+
+In practice, the estimation is performed using empirical counterparts. For each threshold $t$, we compute:
+
+$$
+\widehat{\mathrm{TPR}}(t) = \frac{1}{\mathrm{P}} \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\}.
+$$
+
+$$
+\widehat{\mathrm{Precision}}(t) = \frac{\sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\}}{\sum_{i=1}^n \mathbb{1}\{X_i \geq t\}} = \frac{\mathrm{TP}(t)}{\mathrm{TP}(t) + \mathrm{FP}(t)},
+$$
+
+where:
+
+- $\mathrm{TP}(t) = \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\}$,
+- $\mathrm{FP}(t) = \sum_{i: Y_i=0} \mathbb{1}\{X_i \geq t\}$.
+
+The Python code to compute this curve is provided below.
+
+```{python}
+def precision_recall(thresholds, y_true, score):
+    precision = []
+    recall = []
+
+    P = sum(y_true)
+
+    for thresh in thresholds:
+        FP = 0
+        TP = 0
+        for i in range(len(score)):
+            if score[i] > thresh:
+                if y_true[i] == True:
+                    TP += 1
+                else:
+                    FP += 1
+        recall.append(TP / float(P))
+        precision.append(TP / float(TP + FP) if (TP + FP) > 0 else 1.0)
+    return precision, recall
+```
+
+
+
+
+
+
+## Data Preprocessing
+
+The dataset (`supplementary_dataset2.csv`) contains the sample-level results used in the benchmark study. It includes assay measurements along with sample-collection information and timing variables such as days since symptom onset.
+
+The primary cohort is defined by the paper as laboratory-confirmed SARS-CoV-2 infection with a specimen collected **at least 20 days after symptom onset**, de-duplicated by participant so that only the latest qualifying sample per person is retained.
+
+The primary benchmark cohort is constructed in three steps:
+
+1. Select the study populations used in the primary analysis;
+2. Apply the study-specific eligibility criteria and retain the latest qualifying sample per participant;
+3. Clean assay measurements and retain samples with complete results across all five assays.
+
+
+For our Covid-19 study, the dataset hence comprises $n = 1512$ observations. Among these, we identified:
+
+- $\mathrm{P} = 536$ (**true positives**),
+- $\mathrm{N} = 976$ (**true negatives**).
+
+
+
+The details of the pre-processing step are implemented in the following code environment.
+
+
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib
+
+name = "Set1"
+
+cmap = matplotlib.colormaps[name]  # type: matplotlib.colors.ListedColormap
+colors = cmap.colors  # type: list
+
+raw_df = pd.read_csv(
+    "supplementary_dataset2.csv",
+    comment="#",
+    na_values=["n/a", "NA", "NaN"],
+)
+
+non_sars_cov2 = raw_df[
+    ~raw_df["samplecollection"].eq("obb_negatives")
+    & raw_df["diseaseseverity"].str.contains(
+        "MERS|coronavirus|respiratory|convalescent|seasonal|other",
+        case=False,
+        na=False
+    )
+]
+raw_df = raw_df.drop(non_sars_cov2.index).copy()
+
+# THEN define covid_status
+raw_df["covid_status"] = np.where(
+    raw_df["samplecollection"].eq("obb_negatives"),
+    "Negative",
+    "Positive"
+)
+
+raw_df.head()
+
+assay_cols = [
+    "abbott_result",
+    "diasorin_result",
+    "oxford_result",
+    "roche_result",
+    "siemens_result",
+]
+
+def assay_to_numeric(x):
+    if pd.isna(x):
+        return np.nan
+
+    x = str(x).strip()
+
+    try:
+        if x.startswith("<"):
+            # e.g., <3.80  → 1.90
+            value = float(x[1:].strip())
+            return value / 2
+
+        elif x.startswith(">"):
+            # e.g.,  >10.00 → 10.00
+            value = float(x[1:].strip())
+            return value
+
+        else:
+            return float(x)
+
+    except ValueError:
+        return np.nan
+
+# Study populations used in the primary benchmark
+df = raw_df[
+    raw_df["samplecollection"].isin(
+        ["obb_negatives", "oxford_positives", "porton_nhsbt_positives"]
+    )
+].copy()
+
+df["covid_status"] = np.where(
+    df["samplecollection"].eq("obb_negatives"),
+    "Negative",
+    "Positive",
+)
+
+df["dayssincesymptoms"] = pd.to_numeric(
+    df["dayssincesymptoms"], errors="coerce"
+)
+
+# Eligibility:
+# - all pre-pandemic Oxford Biobank samples are negative references;
+# - Oxford positives require >=20 days since symptom onset;
+# - NHSBT positives are known to be >=28 days post symptom onset.
+eligible_df = df[
+    df["covid_status"].eq("Negative")
+    | df["samplecollection"].eq("porton_nhsbt_positives")
+    | (
+        df["samplecollection"].eq("oxford_positives")
+        & df["dayssincesymptoms"].ge(20)
+    )
+].copy()
+
+# print("Eligible cohort before de-duplication:")
+# print(eligible_df["covid_status"].value_counts())
+
+# print("\nEligible positive cohorts:")
+# print(
+#     eligible_df.loc[
+#         eligible_df["covid_status"].eq("Positive"),
+#         "samplecollection",
+#     ].value_counts()
+# )
+
+# ------------------------------------------------------------
+# Keep the latest qualifying sample per participant
+# ------------------------------------------------------------
+
+eligible_df["participant_id"] = eligible_df["participantnum"].astype("string")
+
+# Missing participant IDs must remain distinct
+missing = eligible_df["participant_id"].isna()
+eligible_df.loc[missing, "participant_id"] = (
+    "missing_" + eligible_df.index[missing].astype(str)
+)
+
+# NHSBT samples are known to be >=28 days post symptom onset
+eligible_df["sort_days"] = eligible_df["dayssincesymptoms"].fillna(28)
+
+benchmark_df = (
+    eligible_df
+    .sort_values(
+        ["participant_id", "sort_days"],
+        ascending=[True, False],
+    )
+    .drop_duplicates("participant_id", keep="first")
+    .drop(columns=["participant_id", "sort_days"])
+    .copy()
+)
+
+# print("\nAfter de-duplication:")
+# print(benchmark_df["covid_status"].value_counts())
+
+# ------------------------------------------------------------
+# Assay-specific numeric cleaning
+# ------------------------------------------------------------
+
+for col in assay_cols:
+    benchmark_df[col] = benchmark_df[col].map(assay_to_numeric)
+
+# Values used for log-scale plotting issues around zero:
+benchmark_df["abbott_result"] = benchmark_df["abbott_result"].replace(
+    0, 0.005
+)
+
+
+# The study's primary head-to-head analysis requires a valid result
+# on all five assays simultaneously.
+pcr_df = benchmark_df.dropna(subset=assay_cols).copy()
+
+df_reality_neg = pcr_df[
+    pcr_df["covid_status"].eq("Negative")
+]
+
+df_reality_pos = pcr_df[
+    pcr_df["covid_status"].eq("Positive")
+]
+
+# print(
+#     f"\nPrimary benchmark cohort: "
+#     f"{len(df_reality_neg)} negative / "
+#     f"{len(df_reality_pos)} positive"
+# )
+
+# ------------------------------------------------------------
+# Per-assay counts
+# ------------------------------------------------------------
+
+dict_results_inv = {
+    "abbott_result": "Abbott",
+    "diasorin_result": "DiaSorin",
+    "oxford_result": "Oxford",
+    "roche_result": "Roche",
+    "siemens_result": "Siemens",
+}
+
+dict_results = {
+    label: col for col, label in dict_results_inv.items()
+}
+
+dict_threshold = {
+    "abbott_result": 1.4,
+    "diasorin_result": 15.0,
+    "oxford_result": "Oxford",
+    "roche_result": 1.0,
+    "siemens_result": 1.0,
+}
+
+assay_counts = []
+
+for col, label in dict_results_inv.items():
+    usable = pcr_df[col].notna()
+
+    assay_counts.append(
+        {
+            "Assay": label,
+            "Negative": int(
+                (
+                    usable
+                    & pcr_df["covid_status"].eq("Negative")
+                ).sum()
+            ),
+            "Positive": int(
+                (
+                    usable
+                    & pcr_df["covid_status"].eq("Positive")
+                ).sum()
+            ),
+            "Total": int(usable.sum()),
+        }
+    )
+
+pd.DataFrame(assay_counts)
+
+# ------------------------------------------------------------
+# Complete-case cohort = primary Table S1 cohort
+# ------------------------------------------------------------
+
+complete_case_df = benchmark_df.dropna(
+    subset=assay_cols
+).copy()
+
+pcr_df = complete_case_df
+
+df_reality_neg = pcr_df[
+    pcr_df["covid_status"].eq("Negative")
+]
+
+df_reality_pos = pcr_df[
+    pcr_df["covid_status"].eq("Positive")
+]
+
+print("\nComplete-case cohort:")
+print(pcr_df["covid_status"].value_counts())
+
+print("\nComplete-case cohort by sample collection:")
+print(
+    pcr_df
+    .groupby(["covid_status", "samplecollection"])
+    .size()
+)
+
+n_neg = len(df_reality_neg)
+n_pos = len(df_reality_pos)
+
+print(
+    f"\nComplete-case benchmark cohort: "
+    f"{n_neg} negative / {n_pos} positive"
+)
+
+positive_samples = pcr_df[
+    pcr_df["covid_status"].eq("Positive")
+].sort_values(
+    by=assay_cols,
+    ascending=True,
+)
+
+# print(
+#     positive_samples[
+#         ["participantnum", "samplecollection", "diseaseseverity"]
+#     ].head(10)
+# )
+```
+
+
+
+
+
+## Exporting data for the interactive figure
+
+Since the interactive figure below runs client-side (via Plotly.js) rather than through a live Python kernel, we export the pre-computed sample values, jitter offsets, colors and ROC curves to a small JSON file that the JavaScript will load.
+
+```{python}
+#| output: false
+import json
+import matplotlib.colors as mcolors
+
+
+def export_roc_pr_data(df, dict_results_inv, dict_threshold, colors,
+                        seed=123, jitter=0.3, n_thresh=200):
+    """Compute ROC/PR curves using assay-specific non-missing observations."""
+    rng = np.random.RandomState(seed)
+
+    df_pos_all = df[df["covid_status"].eq("Positive")]
+    df_neg_all = df[df["covid_status"].eq("Negative")]
+
+    x_pos_arr = (jitter * (rng.rand(len(df_pos_all)) - 0.5)).tolist()
+    x_neg_arr = (0.6 + jitter * (rng.rand(len(df_neg_all)) - 0.5)).tolist()
+
+    assays = {}
+
+    for key, label in dict_results_inv.items():
+        usable = df[key].notna()
+        dfa = df.loc[usable].copy()
+
+        y_true = dfa["covid_status"].eq("Positive").values
+        score = dfa[key].astype(float).values
+
+        df_pos = dfa[dfa["covid_status"].eq("Positive")]
+        df_neg = dfa[dfa["covid_status"].eq("Negative")]
+
+        pos_vals = df_pos[key].astype(float).tolist()
+        neg_vals = df_neg[key].astype(float).tolist()
+
+        positive_scores = score[score > 0]
+        lower = float(positive_scores.min()) / 2 if len(positive_scores) else 1e-6
+        upper = float(score.max()) * 2 if score.max() > 0 else 1.0
+        ylims_i = [max(lower, 1e-12), upper]
+
+        thr = dict_threshold[key]
+        thr_reco = float(thr) if isinstance(thr, (float, int)) else None
+
+        thresholds = np.logspace(
+            np.log10(ylims_i[0]),
+            np.log10(ylims_i[1]),
+            num=n_thresh,
+        )
+
+        tpr_i, fpr_i = roc(thresholds, y_true, score)
+        prec_i, rec_i = precision_recall(thresholds, y_true, score)
+
+        order = np.argsort(fpr_i)
+        auc_i = float(
+            np.trapz(np.array(tpr_i)[order], np.array(fpr_i)[order])
+        )
+
+        order_pr = np.argsort(rec_i)
+        ap_i = float(
+            np.trapz(
+                np.array(prec_i)[order_pr],
+                np.array(rec_i)[order_pr],
+            )
+        )
+
+        assays[label] = {
+            "key": key,
+            "pos": pos_vals,
+            "neg": neg_vals,
+            "ylims": ylims_i,
+            "threshold_init": float(np.median(score)),
+            "threshold_reco": thr_reco,
+            "roc_fpr": fpr_i,
+            "roc_tpr": tpr_i,
+            "auc": auc_i,
+            "pr_precision": prec_i,
+            "pr_recall": rec_i,
+            "ap": ap_i,
+            "n_pos": int(len(df_pos)),
+            "n_neg": int(len(df_neg)),
+        }
+
+    assays = dict(
+        sorted(assays.items(), key=lambda kv: kv[1]["auc"], reverse=True)
+    )
+
+    return {
+        "x_pos": x_pos_arr,
+        "x_neg": x_neg_arr,
+        "colors": {
+            "pos": mcolors.to_hex(colors[1]),
+            "neg": mcolors.to_hex(colors[0]),
+        },
+        "assays": assays,
+        "default_assay": "Roche" if "Roche" in assays else next(iter(assays)),
+        "n_pos": int(len(df_pos_all)),
+        "n_neg": int(len(df_neg_all)),
+    }
+
+
+def subsample_positives(df, frac_pos=0.1, seed=123):
+    """Keep every negative sample; keep only a `frac_pos` fraction of positives."""
+    pos = df[df['covid_status'] == 'Positive']
+    neg = df[df['covid_status'] == 'Negative']
+    n_keep = max(1, int(round(len(pos) * frac_pos)))
+    pos_sub = pos.sample(n=n_keep, random_state=seed)
+    return pd.concat([pos_sub, neg], ignore_index=True)
+
+
+# Full-data export (unchanged behaviour, now via the shared function)
+data_full = export_roc_pr_data(pcr_df, dict_results_inv, dict_threshold, colors, seed=123)
+with open('roc_data.json', 'w') as f:
+    json.dump(data_full, f)
+
+# Teaching example: deliberately create a much rarer positive class.
+pcr_df_imbalanced = subsample_positives(pcr_df, frac_pos=0.05, seed=123)
+data_imbalanced = export_roc_pr_data(pcr_df_imbalanced, dict_results_inv, dict_threshold, colors, seed=123)
+with open('roc_data_imbalanced.json', 'w') as f:
+    json.dump(data_imbalanced, f)
+```
+
+## Interactive exploration: assay results, ROC curve and precision/recall curve
+
+The widget below lets you select one or more assays (the first checked one is the **primary** assay, driving the threshold slider) and move the classification **threshold** (log scale): the left panel shows individual sample results split by true status *for the primary assay only*, the middle panel overlays the ROC curves of all selected assays, and the right panel overlays the corresponding precision/recall curves (AP stands for **Average Precision**, i.e. the area under the precision/recall curve). The dashed grey line / grey cross indicate the manufacturer's recommended threshold, when available. This figure runs entirely client-side (Plotly.js), so it stays interactive on the static site.
+
+```{=html}
+<div id="roc-interactive" class="roc-interactive" data-json="roc_data.json" style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family: 'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+  <div style="display:flex; flex-direction:column; justify-content:center; min-width:130px; flex:0 0 130px; border:1px solid rgba(0,0,0,0.15); border-radius:8px; padding:8px; font-size:9.5px; background:rgba(0,0,0,0.02);">
+    <div style="margin-bottom:5px; font-weight:600; font-size:9.5px;">Assays (click)</div>
+    <div class="roc-assay-radios" style="font-size:9.5px; line-height:1.25; display:flex; flex-direction:column; gap:3px;"></div>
+    <hr style="margin:8px 0; border-color:rgba(0,0,0,0.1);">
+    <div style="margin-bottom:4px; font-weight:600; font-size:9.5px;">Threshold</div>
+    <input type="range" class="roc-threshold" min="0" max="1" step="0.001" value="0.5" style="width:100%;">
+    <div class="roc-threshold-value" style="margin-top:4px; text-align:center; font-size:9px; color:#555;"></div>
+  </div>
+  <div class="roc-plot" style="flex:1 1 auto; min-width:520px; max-width:1050px; display:flex; align-items:center;"></div>
+</div>
+```
+
+Now the same assays, the same thresholds, the same ROC/PR machinery — but with only 5% of the positive samples kept (negatives untouched). Watch a given assay's **ROC curve barely move** while its **precision/recall curve** (and AP) drops noticeably: exactly the effect the [ray-slope argument](#) above predicts, since shrinking $P$ raises $N/P$ and pushes precision down at every recall level for the same underlying ray slopes.
+
+```{=html}
+<div id="roc-interactive-imbalanced" class="roc-interactive" data-json="roc_data_imbalanced.json" style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family: 'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+  <div style="display:flex; flex-direction:column; justify-content:center; min-width:130px; flex:0 0 130px; border:1px solid rgba(0,0,0,0.15); border-radius:8px; padding:8px; font-size:9.5px; background:rgba(0,0,0,0.02);">
+    <div style="margin-bottom:5px; font-weight:600; font-size:9.5px;">Assays (click)</div>
+    <div class="roc-assay-radios" style="font-size:9.5px; line-height:1.25; display:flex; flex-direction:column; gap:3px;"></div>
+    <hr style="margin:8px 0; border-color:rgba(0,0,0,0.1);">
+    <div style="margin-bottom:4px; font-weight:600; font-size:9.5px;">Threshold</div>
+    <input type="range" class="roc-threshold" min="0" max="1" step="0.001" value="0.5" style="width:100%;">
+    <div class="roc-threshold-value" style="margin-top:4px; text-align:center; font-size:9px; color:#555;"></div>
+  </div>
+  <div class="roc-plot" style="flex:1 1 auto; min-width:520px; max-width:1050px; display:flex; align-items:center;"></div>
+</div>
+
+<script type="module" src="roc_interactive.js"></script>
+```
+
+
+
+
+## {{< fa link title="link" >}} References
+
+::: {#refs}
+:::
+
+
+## Credit, sources and data
+
+- Original study article (Lancet): <https://doi.org/10.1016/S1473-3099(20)30634-4>
+- Dataset (Figshare): <https://figshare.com/articles/dataset/Dataset_Head-to-head_benchmark_evaluation_of_the_sensitivity_and_specificity_of_five_immunoassays_for_SARS-CoV-2_serology_on_1500_samples/12622172>
+- Direct download: <https://ndownloader.figshare.com/files/23736068>
