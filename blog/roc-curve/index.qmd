@@ -64,12 +64,12 @@ We follow @ainsworth2020performance and we have used
 The dataset (`supplementary_dataset2.csv`) can be downloaded [here](https://figshare.com/articles/dataset/Dataset_Head-to-head_benchmark_evaluation_of_the_sensitivity_and_specificity_of_five_immunoassays_for_SARS-CoV-2_serology_on_1500_samples/12622172?backTo=%2Fcollections%2FHead-to-head_benchmark_evaluation_of_the_sensitivity_and_specificity_of_five_immunoassays_for_SARS-CoV-2_serology_on_1500_samples%2F5046032&file=23736068) and the supplementary material of the associated paper describes the preprocessing we have also followed.
 
 ## A statistical testing point of view
+
 A diagnostic test can be framed as a classical **statistical hypothesis test**. In this medical context, we consider the null hypothesis
 $$
 \mathcal{H}_0: \text{``you are healthy''} \quad \text{(until proved otherwise)},
 $$
 against the alternative:
-
 $$
 \mathcal{H}_1: \text{``you are sick''} \quad \text{(here, infected by Covid-19)}.
 $$
@@ -84,12 +84,22 @@ $$
 \end{cases}
 $$
 
-As in any hypothesis test, two types of errors can occur: rejecting $\mathcal{H}_0$ when it is in fact true (**Type I error**), or failing to reject it when it is in fact false (**Type II error**). In terms of $Y$ and $\hat{Y}_t$:
+It is convenient to isolate the two conditional laws of $X$ given the health status. Under $\mathcal H_0$, $X$ follows $\mathcal L(X\mid Y=0)$; under $\mathcal H_1$, it follows $\mathcal L(X\mid Y=1)$. We write
+$$
+X_0 \sim \mathcal L(X\mid Y=0), \qquad X_1 \sim \mathcal L(X\mid Y=1)
+$$
+for two independent random variables with these laws. This turns any probability conditional on $Y$ into an ordinary, unconditional probability: for every threshold $t$,
+$$
+\mathbb P(X \ge t \mid Y=0) = \mathbb P(X_0\ge t), \qquad \mathbb P(X \ge t \mid Y=1) = \mathbb P(X_1\ge t),
+$$
+and we use the right-hand sides from here on, since they involve a single random variable rather than a conditional statement.
+
+As in any hypothesis test, two types of errors can occur: rejecting $\mathcal{H}_0$ when it is in fact true (**Type I error**), or failing to reject it when it is in fact false (**Type II error**). In terms of $X_0$ and $X_1$:
 
 $$
 \begin{align*}
-\mathbb{P}(\text{Type I error}) & = \mathbb{P}(\hat{Y}_t=1 \mid Y=0) = \mathbb{P}(X \geq t \mid Y=0),\\
-\mathbb{P}(\text{Type II error}) & = \mathbb{P}(\hat{Y}_t=0 \mid Y=1) = \mathbb{P}(X < t \mid Y=1).
+\mathbb{P}(\text{Type I error}) & = \mathbb{P}(\hat{Y}_t=1 \mid Y=0) = \mathbb{P}(X \geq t \mid Y=0) = \mathbb P(X_0\ge t),\\
+\mathbb{P}(\text{Type II error}) & = \mathbb{P}(\hat{Y}_t=0 \mid Y=1) = \mathbb{P}(X < t \mid Y=1) = \mathbb P(X_1 < t).
 \end{align*}
 $$
 
@@ -108,7 +118,6 @@ $$\displaystyle\mathrm{TP} = \sum_{i=1}^n \mathbb{1}\{Y_i=1,\ \hat{Y}_{t,i}=1\}$
 - **False Negative** (Type II error): sick but wrongly declared negative
  $$\displaystyle\mathrm{FN} = \sum_{i=1}^n \mathbb{1}\{Y_i=1,\ \hat{Y}_{t,i}=0\}$$ 
 
-
 From the true status $Y$, we define two population sizes:
 
 - $\mathrm{P} = \sum_{i=1}^n \mathbb{1}\{Y_i = 1\} = \mathrm{TP} + \mathrm{FN}$: total number of sick individuals in the study (**true positives**),
@@ -125,209 +134,526 @@ and, similarly, from the predicted status $\hat{Y}_t$:
 
 We also define the following rates, used throughout this post:
 
-- $\mathrm{TPR} = \dfrac{\mathrm{TP}}{\mathrm{P}} = \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=1\right)$ (**True Positive Rate**, a.k.a. **sensitivity** or **recall**): among sick people, the proportion correctly detected,
-- $\mathrm{TNR} = \dfrac{\mathrm{TN}}{\mathrm{N}} = \mathbb{P}\!\left(\hat{Y}_t=0 \mid Y=0\right)$ (**True Negative Rate**, a.k.a. **specificity**): among healthy people, the proportion correctly cleared,
-- $\mathrm{FPR} = 1 - \mathrm{TNR} = \dfrac{\mathrm{FP}}{\mathrm{N}} = \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=0\right)$ (**False Positive Rate**): among healthy people, the proportion wrongly flagged — this is exactly the Type I error probability,
-- $\mathrm{Precision} = \dfrac{\mathrm{TP}}{\hat{\mathrm{P}}_t} = \mathbb{P}\!\left(Y=1 \mid \hat{Y}_t=1\right)$: among people declared positive, the proportion actually sick.
+- $\mathrm{TPR} = \dfrac{\mathrm{TP}}{\mathrm{P}} = \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=1\right) = \mathbb P(X_1\ge t)$ (**True Positive Rate**, a.k.a. **sensitivity** or **recall**): among sick people, the proportion correctly detected,
+- $\mathrm{TNR} = \dfrac{\mathrm{TN}}{\mathrm{N}} = \mathbb{P}\!\left(\hat{Y}_t=0 \mid Y=0\right) = \mathbb P(X_0< t)$ (**True Negative Rate**, a.k.a. **specificity**): among healthy people, the proportion correctly cleared,
+- $\mathrm{FPR} = 1 - \mathrm{TNR} = \dfrac{\mathrm{FP}}{\mathrm{N}} = \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=0\right) = \mathbb P(X_0\ge t)$ (**False Positive Rate**): among healthy people, the proportion wrongly flagged — this is exactly the Type I error probability,
+- $\mathrm{Precision} = \dfrac{\mathrm{TP}}{\hat{\mathrm{P}}_t} = \mathbb{P}\!\left(Y=1 \mid \hat{Y}_t=1\right)$: among people declared positive, the proportion actually sick. Unlike the three rates above, precision also depends on the class proportions $\mathbb P(Y=0),\mathbb P(Y=1)$ (the disease prevalence), and so cannot be written purely in terms of $X_0$ and $X_1$.
 
+The dataset consists of $n$ observations, denoted $\{(Y_i, X_i)\}_{i=1,\dots,n}$, where $Y_i$ represents the true health status of individual $i$.
 
-The dataset consists of nn observations, denoted as $\{(Y_i, X_i)\}_{i=1,\dots, n}$, where $Y_i$ represents the true health status of individual $i$.
-
-
-
-### The ROC curve function
-
+## The ROC curve function
 
 For a given threshold $t$, one would like to compute the pair:
 
 $$
+\begin{align}
 \left(\mathrm{FPR}(t), \mathrm{TPR}(t)\right)
-= \left(
-\mathbb{P}\!\left(T_t(X)=1 \mid Y=0\right),
-\mathbb{P}\!\left(T_t(X)=1 \mid Y=1\right)
-\right).
+& = \left(
+\mathbb{P}\!\left(\hat{Y}_t =1 \mid Y=0\right),
+\mathbb{P}\!\left(\hat{Y}_t =1 \mid Y=1\right)
+\right)\\
+& = \bigl(\mathbb P(X_0\ge t),\ \mathbb P(X_1\ge t)\bigr).
+\end{align}
 $$
 
 The **ROC curve** is the parametric curve obtained as $t$ varies:
-
 $$
 \{(\mathrm{FPR}(t), \mathrm{TPR}(t)) : t \in \mathbb{R}\}.
 $$
 
 In practice, the estimation is performed using empirical counterparts. For each threshold $t$, we compute:
-
 $$
 \widehat{\mathrm{FPR}}(t) = \frac{1}{\mathrm{N}} \sum_{i: Y_i=0} \mathbb{1}\{X_i \geq t\}, \quad
 \widehat{\mathrm{TPR}}(t) = \frac{1}{\mathrm{P}} \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\}.
 $$
 
+### Properties
 
-Extreme cases include the following:
+:::: {#lem-roc-endpoints}
 
+# ROC endpoints
 
-####  Ideal case: perfect separation
-
-
-
-#### **Random guessing: definition and proof**
-
-Random guessing corresponds to the situation where the test statistic $X^{\textrm{obs}}$ **does not carry any information** about the true status $T^{\textrm{true}}$. Formally, this means the conditional distributions are identical:
+Assume that $X_0$ and $X_1$ are almost surely finite. Then, for the threshold rule $\hat Y_t(X)=\mathbb 1\{X\ge t\}$, the ROC curve has the limiting endpoints:
 
 $$
-X^{\textrm{obs}} \mid T^{\textrm{true}} = 0 \quad \stackrel{d}{=} \quad X^{\textrm{obs}} \mid T^{\textrm{true}} = 1.
+\boxed{
+\lim_{t\to+\infty}
+\bigl(\mathrm{FPR}(t),\mathrm{TPR}(t)\bigr)
+=(0,0)
+}
+$$
+and
+$$
+\boxed{
+\lim_{t\to-\infty}
+\bigl(\mathrm{FPR}(t),\mathrm{TPR}(t)\bigr)
+=(1,1).
+}
 $$
 
+::::
 
+:::: {.proof-container}
 
-#### **Proof that FPR(t) = TPR(t) for all t**
+::: {.proof-header onclick="toggleProof('lem-roc-endpoints')"}
 
-By definition of the rates:
+[▶]{#proof-arrow-lem-roc-endpoints .proof-arrow} [Proof]{.proof-title}
 
+:::
+
+::: {#proof-content-lem-roc-endpoints .proof-content}
+
+**Step 1: Limit as $t\to+\infty$**
+
+By definition,
+$$
+\mathrm{FPR}(t)
+=
+\mathbb P(X_0\ge t),
+\qquad
+\mathrm{TPR}(t)
+=
+\mathbb P(X_1\ge t).
+$$
+
+Since $X_0$ and $X_1$ are almost surely finite,
+$$
+\lim_{t\to+\infty}
+\mathbb P(X_y\ge t)=0,
+\qquad y\in\{0,1\}.
+$$
+
+Therefore,
+$$
+\lim_{t\to+\infty}\mathrm{FPR}(t)=0,
+\qquad
+\lim_{t\to+\infty}\mathrm{TPR}(t)=0,
+$$
+and hence
+$$
+\boxed{
+\lim_{t\to+\infty}
+\bigl(\mathrm{FPR}(t),\mathrm{TPR}(t)\bigr)
+=(0,0).
+}
+$$
+
+**Step 2: Limit as $t\to-\infty$**
+
+Similarly,
+$$
+\mathbb P(X_y\ge t)\longrightarrow 1
+\qquad\text{as }t\to-\infty,
+\qquad y\in\{0,1\},
+$$
+because $X_0$ and $X_1$ are almost surely finite.
+
+Thus,
+$$
+\lim_{t\to-\infty}\mathrm{FPR}(t)=1,
+\qquad
+\lim_{t\to-\infty}\mathrm{TPR}(t)=1,
+$$
+and therefore
+$$
+\boxed{
+\lim_{t\to-\infty}
+\bigl(\mathrm{FPR}(t),\mathrm{TPR}(t)\bigr)
+=(1,1).
+}
+$$
+
+:::
+
+::::
+
+:::: {#thm-roc-monotonicity}
+# Monotonicity of ROC curves
+
+For the threshold rule $\hat Y_t(X)=\mathbb 1\{X\ge t\}$, both $\mathrm{TPR}(\cdot)$ and $\mathrm{FPR}(\cdot)$ are non-increasing in the threshold: for any $t_1,t_2\in\mathbb R$ with $t_1<t_2$,
+
+$$
+\mathrm{TPR}(t_1) \geq \mathrm{TPR}(t_2) \quad \text{and} \quad \mathrm{FPR}(t_1) \geq \mathrm{FPR}(t_2).
+$$
+::::
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('thm-roc-monotonicity')"}
+[▶]{#proof-arrow-thm-roc-monotonicity .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-roc-monotonicity .proof-content}
+
+Recall that $\mathrm{TPR}(t)=\mathbb P(X_1\ge t)$ and $\mathrm{FPR}(t)=\mathbb P(X_0\ge t)$.
+
+Fix $t_1<t_2$. Then $X\ge t_2$ implies $X\ge t_1$, i.e., the event $\{X\ge t_2\}$ is contained in $\{X\ge t_1\}$; this holds whether $X$ is replaced by $X_0$ or $X_1$. By monotonicity of probability,
+$$
+\mathbb P(X_1\ge t_2) \le \mathbb P(X_1\ge t_1)
+\qquad\text{and}\qquad
+\mathbb P(X_0\ge t_2) \le \mathbb P(X_0\ge t_1),
+$$
+that is,
+$$
+\mathrm{TPR}(t_1) \geq \mathrm{TPR}(t_2) \quad \text{and} \quad \mathrm{FPR}(t_1) \geq \mathrm{FPR}(t_2).
+$$
+
+:::
+::::
+
+### Ideal case: perfect separation
+
+The ideal case occurs when the measured antibody level $X$ **perfectly separates** the two health-status classes. In other words, there exists a threshold $t^\star\in\mathbb{R}$ such that individuals with $Y=0$ are always classified as healthy, while individuals with $Y=1$ are always classified as sick.
+
+:::: {#thm-perfect-separation}
+
+# ROC curve under perfect separation
+
+Suppose that there exists a threshold $t^\star\in\mathbb{R}$ such that, for $\hat{Y}_t = \hat{Y}_t(X) = \mathbb{1}\{X \geq t\}$,
+
+$$
+\mathbb P(X_0\ge t^\star)=0,
+\qquad
+\mathbb P(X_1\ge t^\star)=1,
+$$
+
+i.e., healthy individuals always score below $t^\star$, and sick individuals always score at or above $t^\star$. Then,
+
+$$
+\boxed{
+\mathrm{FPR}(t^\star)=0,
+\qquad
+\mathrm{TPR}(t^\star)=1,
+}
+$$
+
+and consequently the ROC curve passes through the upper-left corner $(0,1)$, in addition to the two universal endpoints $(0,0)$ and $(1,1)$ established above.
+
+::::
+
+:::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('thm-perfect-separation')"}
+
+[▶]{#proof-arrow-thm-perfect-separation .proof-arrow} [Proof]{.proof-title}
+
+:::
+
+::: {#proof-content-thm-perfect-separation .proof-content}
+
+By definition, $\mathrm{FPR}(t^\star)=\mathbb P(X_0\ge t^\star)$, which is $0$ by the perfect-separation assumption:
+
+$$
+\boxed{
+\mathrm{FPR}(t^\star)=0.
+}
+$$
+
+Similarly, $\mathrm{TPR}(t^\star)=\mathbb P(X_1\ge t^\star)$, which is $1$ by assumption:
+
+$$
+\boxed{
+\mathrm{TPR}(t^\star)=1.
+}
+$$
+
+Thus the threshold $t^\star$ yields the ROC operating point $\left(\mathrm{FPR}(t^\star),\mathrm{TPR}(t^\star)\right) = (0,1)$: the upper-left corner of the ROC space, representing perfect discrimination.
+
+:::
+
+::::
+
+### Random guessing example
+
+Random guessing corresponds to the situation in which the measured antibody level $X$ carries **no information** about the true health status $Y$. Formally, the conditional distributions of $X$ are identical under the two health statuses, i.e., $X_0$ and $X_1$ have the same law:
+$$
+X_0 \ \stackrel{d}{=}\ X_1.
+$$
+
+In other words, knowing whether an individual is healthy ($Y=0$) or sick ($Y=1$) does not change the distribution of the measured antibody level.
+
+:::: {#thm-random-guessing}
+
+# ROC curve under random guessing
+
+Suppose that
+$$
+X_0 \ \stackrel{d}{=}\ X_1,
+$$
+and consider the threshold decision rule
+$$
+\hat{Y}_t(X)
+=
+\mathbb{1}\{X\geq t\},
+\qquad t\in\mathbb{R}.
+$$
+
+Then, for every threshold $t\in\mathbb{R}$,
+$$
+\boxed{
+\mathrm{FPR}(t)=\mathrm{TPR}(t)
+}.
+$$
+
+Consequently, the ROC curve is included in the diagonal line
+$$
+\boxed{
+\mathrm{TPR}=\mathrm{FPR}.
+}
+$$
+
+::::
+
+:::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('thm-random-guessing')"}
+
+[▶]{#proof-arrow-thm-random-guessing .proof-arrow} [Proof]{.proof-title}
+
+:::
+
+::: {#proof-content-thm-random-guessing .proof-content}
+
+Two random variables equal in distribution assign the same probability to every event, so $X_0\stackrel{d}{=}X_1$ gives, for every threshold $t\in\mathbb R$,
+$$
+\mathbb P(X_0\ge t) = \mathbb P(X_1\ge t).
+$$
+
+Since $\mathrm{FPR}(t)=\mathbb P(X_0\ge t)$ and $\mathrm{TPR}(t)=\mathbb P(X_1\ge t)$, this is exactly
+$$
+\boxed{
+\mathrm{FPR}(t)
+=
+\mathrm{TPR}(t)
+\quad\text{for all }t\in\mathbb{R}.
+}
+$$
+
+Thus, as the threshold $t$ varies, every point $\left(\mathrm{FPR}(t),\mathrm{TPR}(t)\right)$ lies on the diagonal $\mathrm{TPR}=\mathrm{FPR}$.
+
+:::
+
+::::
+
+### Gaussian case
+
+:::: {#thm-gaussian-roc}
+
+# ROC curve for two Gaussian health-status classes
+
+Consider two health-status classes with unit variance:
+$$
+X_0
+\sim \mathcal{N}(\mu_0,1),
+\qquad
+X_1
+\sim \mathcal{N}(\mu_1,1),
+$$
+where $\mu_1>\mu_0$, and consider the threshold decision rule $\hat{Y}_t(X) = \mathbb{1}\{X\geq t\}$, $t\in\mathbb{R}$.
+Let $\Delta=\mu_1-\mu_0>0$ denote the separation between the means.
+Then, the theoretical ROC curve has the following closed-form expression:
+
+$$
+\boxed{
+\mathrm{TPR}
+=
+\Phi\left(
+\Phi^{-1}(\mathrm{FPR})+\Delta
+\right)
+},
+$$
+
+where $\Phi$ denotes the cumulative distribution function (CDF) of the standard normal distribution $\mathcal{N}(0,1)$, defined by
+
+$$
+\Phi(x)
+=
+\mathbb{P}(Z\leq x)
+=
+\frac{1}{\sqrt{2\pi}}
+\int_{-\infty}^{x}e^{-u^2/2}\,du,
+\qquad
+Z\sim\mathcal{N}(0,1).
+$$
+
+::::
+
+:::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('thm-gaussian-roc')"}
+
+[▶]{#proof-arrow-thm-gaussian-roc .proof-arrow} [Proof]{.proof-title}
+
+:::
+
+::: {#proof-content-thm-gaussian-roc .proof-content}
+
+**Step 1: Compute the false-positive and true-positive rates**
+
+By definition,
+$$
+\mathrm{FPR}(t)
+=
+\mathbb{P}(X_0\ge t).
+$$
+
+Since $X_0\sim\mathcal{N}(\mu_0,1)$, standardizing gives $X_0-\mu_0\sim\mathcal{N}(0,1)$, so
 $$
 \begin{aligned}
-\mathrm{FPR}(t) &= \mathbb{P}(T_t(X^{\textrm{obs}}) = 1 \mid T^{\textrm{true}} = 0) = \mathbb{P}(X^{\textrm{obs}} \geq t \mid T^{\textrm{true}} = 0), \\
-\mathrm{TPR}(t) &= \mathbb{P}(T_t(X^{\textrm{obs}}) = 1 \mid T^{\textrm{true}} = 1) = \mathbb{P}(X^{\textrm{obs}} \geq t \mid T^{\textrm{true}} = 1).
+\mathrm{FPR}(t)
+&=
+\mathbb{P}\left(
+X_0-\mu_0
+\geq
+t-\mu_0
+\right)\\
+&=
+1-\Phi(t-\mu_0).
 \end{aligned}
 $$
 
-Under random guessing, the two conditional distributions are equal, so for every $t$:
-
+Thus,
 $$
-\mathbb{P}(X^{\textrm{obs}} \geq t \mid T^{\textrm{true}} = 0) = \mathbb{P}(X^{\textrm{obs}} \geq t \mid T^{\textrm{true}} = 1).
+\boxed{
+\mathrm{FPR}(t)
+=
+1-\Phi(t-\mu_0)
+}.
 $$
 
-Hence $\mathrm{FPR}(t) = \mathrm{TPR}(t)$ for all $t$, and the ROC curve is the diagonal line from $(0,0)$ to $(1,1)$.
+Similarly,
+$$
+\mathrm{TPR}(t)
+=
+\mathbb{P}(X_1\ge t).
+$$
+
+Since $X_1\sim\mathcal{N}(\mu_1,1)$, standardizing gives $X_1-\mu_1\sim\mathcal{N}(0,1)$, so
+$$
+\begin{aligned}
+\mathrm{TPR}(t)
+&=
+\mathbb{P}\left(
+X_1-\mu_1
+\geq
+t-\mu_1
+\right)\\
+&=
+1-\Phi(t-\mu_1).
+\end{aligned}
+$$
+
+Thus,
+$$
+\boxed{
+\mathrm{TPR}(t)
+=
+1-\Phi(t-\mu_1)
+}.
+$$
+
+**Step 2: Eliminate the threshold**
+
+We now express $\mathrm{TPR}$ directly as a function of $\mathrm{FPR}$.
+
+Starting from
+$$
+\mathrm{FPR}(t)
+=
+1-\Phi(t-\mu_0),
+$$
+and using the symmetry of the standard normal distribution,
+$$
+1-\Phi(x)=\Phi(-x),
+$$
+we obtain
+$$
+\mathrm{FPR}(t)
+=
+\Phi(\mu_0-t).
+$$
+
+Applying the inverse CDF $\Phi^{-1}$ gives
+$$
+\Phi^{-1}(\mathrm{FPR}(t))
+=
+\mu_0-t.
+$$
+
+Therefore,
+$$
+t-\mu_0
+=
+-\Phi^{-1}(\mathrm{FPR}(t)).
+$$
+
+Since $\Delta=\mu_1-\mu_0$, we have
+$$
+\begin{aligned}
+t-\mu_1
+&=
+(t-\mu_0)-(\mu_1-\mu_0)\\
+&=
+-\Phi^{-1}(\mathrm{FPR}(t))-\Delta.
+\end{aligned}
+$$
+
+Substituting this expression into the formula for $\mathrm{TPR}$ gives
+$$
+\begin{aligned}
+\mathrm{TPR}(t)
+&=
+1-\Phi(t-\mu_1)\\
+&=
+1-\Phi\left(
+-\Phi^{-1}(\mathrm{FPR}(t))-\Delta
+\right).
+\end{aligned}
+$$
+
+Using the symmetry relation $1-\Phi(-x)=\Phi(x)$, we obtain
+$$
+\mathrm{TPR}(t)
+=
+\Phi\left(
+\Phi^{-1}(\mathrm{FPR}(t))+\Delta
+\right).
+$$
+
+Therefore,
+$$
+\boxed{
+\mathrm{TPR}(t)
+=
+\Phi\left(
+\Phi^{-1}(\mathrm{FPR}(t))+\Delta
+\right)
+}.
+$$
+
+This proves the stated closed-form expression for the theoretical ROC curve.
+
+:::
+
+::::
+
+**Interpretation**
+
+The quantity $\Delta \triangleq \mu_1-\mu_0$ measures the separation between the distributions of $X_0$ and $X_1$ and controls the difficulty of discriminating between the two cases.
+
+* If $\Delta=0$, then $\mu_1=\mu_0$, so $X_0$ and $X_1$ share the same law $\mathcal N(\mu_0,1)$: the two cases are indistinguishable, since
+  $$
+  X_0
+  \stackrel{d}{=}
+  X_1.
+  $$
+  The ROC curve consequently reduces to the diagonal line, *i.e.,* the random-guessing case described above.
+
+* As $\Delta$ increases, the distributions of $X_0$ and $X_1$ become increasingly separated. The ROC curve therefore moves progressively above the diagonal, indicating improved discrimination between healthy ($Y=0$) and sick ($Y=1$) individuals. In the limiting case $\Delta\to\infty$, the two distributions become perfectly separated, and the ROC curve approaches the ideal ROC curve of the perfect-separation case, passing through the corner $(0,1)$.
 
 
-```{python}
-import json
-import numpy as np
-from sklearn.metrics import roc_curve, auc as sklearn_auc
+#### ROC curve visualization
 
-np.random.seed(42)
-n_pos = n_neg = 500
-
-def compute_roc(pos, neg):
-    y_true = np.array([1]*len(pos) + [0]*len(neg))
-    y_score = np.concatenate([pos, neg])  # <-- FIX: concatenate, not add
-    fpr, tpr, _ = roc_curve(y_true, y_score)
-    roc_auc = sklearn_auc(fpr, tpr)
-    return fpr.tolist(), tpr.tolist(), roc_auc
-
-x_pos = (-0.1 + np.random.uniform(size=n_pos) * 0.2).tolist()
-x_neg = (0.4 + np.random.uniform(size=n_neg) * 0.2).tolist()
-
-scenarios = {}
-
-# Uniform: both classes U[1, 2]
-pos_unif = np.random.uniform(1, 2, n_pos)
-neg_unif = np.random.uniform(1, 2, n_neg)
-fpr, tpr, auc_val = compute_roc(pos_unif, neg_unif)
-scenarios["uniform"] = {
-    "name": "uniform samples (both classes random drawn over [1,2])",
-    "pos": pos_unif.tolist(),
-    "neg": neg_unif.tolist(),
-    "roc_fpr": fpr,
-    "roc_tpr": tpr,
-    "auc": auc_val,
-    "ylims": [0.9, 2.1],
-    "threshold_init": 1.5,
-    "threshold_reco": None
-}
-
-# Gaussian: μ₀=0, μ₁=1
-pos_gauss = np.random.normal(1, 1, n_pos)
-neg_gauss = np.random.normal(0, 1, n_neg)
-fpr, tpr, auc_val = compute_roc(pos_gauss, neg_gauss)
-scenarios["gaussian"] = {
-    "name": "gaussian samples with μ₀=0 and μ₁=1",
-    "pos": pos_gauss.tolist(),
-    "neg": neg_gauss.tolist(),
-    "roc_fpr": fpr,
-    "roc_tpr": tpr,
-    "auc": auc_val,
-    "ylims": [min(pos_gauss.min(), neg_gauss.min()) - 0.5,
-              max(pos_gauss.max(), neg_gauss.max()) + 0.5],
-    "threshold_init": 0.5,
-    "threshold_reco": None
-}
-
-# Ideal: perfect separation
-pos_ideal = np.ones(n_pos)
-neg_ideal = np.zeros(n_neg)
-fpr, tpr, auc_val = compute_roc(pos_ideal, neg_ideal)
-scenarios["ideal"] = {
-    "name": "ideal: all samples are 0 from class 0 and 1 from class 1",
-    "pos": pos_ideal.tolist(),
-    "neg": neg_ideal.tolist(),
-    "roc_fpr": fpr,
-    "roc_tpr": tpr,
-    "auc": auc_val,
-    "ylims": [-0.1, 1.1],
-    "threshold_init": 0.5,
-    "threshold_reco": None
-}
-
-data = {
-    "assays": scenarios,
-    "colors": {"pos": "#e41a1c", "neg": "#377eb8"},
-    "x_pos": x_pos,
-    "x_neg": x_neg,
-    "n_pos": n_pos,
-    "n_neg": n_neg,
-    "default_assay": "gaussian"
-}
-
-with open("synthetic_roc_data.json", "w") as f:
-    json.dump(data, f, indent=2)
-```
-
-
-```{=html}
-<div id="roc-interactive"
-     class="roc-interactive"
-     data-json="synthetic_roc_data.json"
-     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
-
-  <div style="display:flex; flex-direction:column; justify-content:center; min-width:130px; flex:0 0 130px; border:1px solid rgba(0,0,0,0.15); border-radius:8px; padding:8px; font-size:9.5px; background:rgba(0,0,0,0.02);">
-
-    <div style="margin-bottom:5px; font-weight:600; font-size:9.5px;">
-      Scenario (click)
-    </div>
-
-    <div class="roc-assay-radios"
-         style="font-size:9.5px; line-height:1.25; display:flex; flex-direction:column; gap:3px;">
-    </div>
-
-    <hr style="margin:8px 0; border-color:rgba(0,0,0,0.1);">
-
-    <div style="margin-bottom:4px; font-weight:600; font-size:9.5px;">
-      Threshold
-    </div>
-
-    <input type="range"
-           class="roc-threshold"
-           min="0"
-           max="1"
-           step="0.001"
-           value="0.5"
-           style="width:100%;">
-
-    <div class="roc-threshold-value"
-         style="margin-top:4px; text-align:center; font-size:9px; color:#555;">
-    </div>
-
-  </div>
-
-  <div class="roc-plot"
-       style="flex:1 1 auto; min-width:520px; max-width:1050px; display:flex; align-items:center;">
-  </div>
-
-</div>
-```
-
-
-The Python code is provided below to compute a ROC curve.
+The Python code is provided below to compute ROC curves for the three standard methods describe above.
 
 ```{python}
 def roc(thresholds, y_true, score):
@@ -355,131 +681,429 @@ def roc(thresholds, y_true, score):
     return tpr, fpr
 ```
 
+```{python}
+#| echo: false
+import json
+import numpy as np
+from sklearn.metrics import roc_curve, auc as sklearn_auc
+from scipy.stats import norm
+
+np.random.seed(42)
+n_pos = n_neg = 500
+
+def compute_roc(pos, neg):
+    y_true = np.array([1]*len(pos) + [0]*len(neg))
+    y_score = np.concatenate([pos, neg])  # <-- FIX: concatenate, not add
+    fpr, tpr, _ = roc_curve(y_true, y_score)
+    roc_auc = sklearn_auc(fpr, tpr)
+    return fpr.tolist(), tpr.tolist(), roc_auc
+
+# Theoretical (population-level) ROC curves, to overlay as a dashed
+# reference against the finite-sample (n=500) empirical curve above.
+def theoretical_roc_random(num=200):
+    # Both classes share a distribution -> FPR(t) = TPR(t) for every t.
+    pts = np.linspace(0, 1, num)
+    return pts.tolist(), pts.tolist()
+
+def theoretical_roc_ideal():
+    # Perfect separation -> right angle through (0,1).
+    return [0.0, 0.0, 1.0], [0.0, 1.0, 1.0]
+
+def theoretical_roc_gaussian(mu0, mu1, sigma=1.0, num=200):
+    # Equal-variance binormal model: TPR = Phi(Phi^{-1}(FPR) + d),
+    # d = (mu1 - mu0) / sigma (see the "Gaussian case" section above).
+    d = (mu1 - mu0) / sigma
+    fpr_mid = np.linspace(1e-4, 1 - 1e-4, num)  # avoid +/-inf at 0/1
+    tpr_mid = norm.cdf(norm.ppf(fpr_mid) + d)
+    fpr = np.concatenate([[0.0], fpr_mid, [1.0]])
+    tpr = np.concatenate([[0.0], tpr_mid, [1.0]])
+    return fpr.tolist(), tpr.tolist()
+
+x_pos = (-0.1 + np.random.uniform(size=n_pos) * 0.2).tolist()
+x_neg = (0.4 + np.random.uniform(size=n_neg) * 0.2).tolist()
+
+scenarios = {}
+
+# Random guessing: both classes drawn from the same U[1, 2] distribution,
+# so the two conditional distributions coincide (see the proof above) and
+# the ROC curve is the diagonal.
+pos_unif = np.random.uniform(1, 2, n_pos)
+neg_unif = np.random.uniform(1, 2, n_neg)
+fpr, tpr, auc_val = compute_roc(pos_unif, neg_unif)
+fpr_th, tpr_th = theoretical_roc_random()
+scenarios["random"] = {
+    "name": "random guessing: both classes drawn from the same Uniform[1,2] distribution",
+    "pos": pos_unif.tolist(),
+    "neg": neg_unif.tolist(),
+    "roc_fpr": fpr,
+    "roc_tpr": tpr,
+    "roc_fpr_theory": fpr_th,
+    "roc_tpr_theory": tpr_th,
+    "auc": auc_val,
+    "ylims": [0.9, 2.1],
+    "threshold_init": 1.5,
+    "threshold_reco": None
+}
+
+# Gaussian: μ₀=0, μ₁=1
+pos_gauss = np.random.normal(1, 1, n_pos)
+neg_gauss = np.random.normal(0, 1, n_neg)
+fpr, tpr, auc_val = compute_roc(pos_gauss, neg_gauss)
+fpr_th, tpr_th = theoretical_roc_gaussian(mu0=0, mu1=1, sigma=1.0)
+scenarios["gaussian"] = {
+    "name": "gaussian samples with μ₀=0 and μ₁=1",
+    "pos": pos_gauss.tolist(),
+    "neg": neg_gauss.tolist(),
+    "roc_fpr": fpr,
+    "roc_tpr": tpr,
+    "roc_fpr_theory": fpr_th,
+    "roc_tpr_theory": tpr_th,
+    "auc": auc_val,
+    "ylims": [min(pos_gauss.min(), neg_gauss.min()) - 0.5,
+              max(pos_gauss.max(), neg_gauss.max()) + 0.5],
+    "threshold_init": 0.5,
+    "threshold_reco": None
+}
+
+# Ideal: perfect separation
+pos_ideal = np.ones(n_pos)
+neg_ideal = np.zeros(n_neg)
+fpr, tpr, auc_val = compute_roc(pos_ideal, neg_ideal)
+fpr_th, tpr_th = theoretical_roc_ideal()
+scenarios["ideal"] = {
+    "name": "ideal: all samples are 0 from class 0 and 1 from class 1",
+    "pos": pos_ideal.tolist(),
+    "neg": neg_ideal.tolist(),
+    "roc_fpr": fpr,
+    "roc_tpr": tpr,
+    "roc_fpr_theory": fpr_th,
+    "roc_tpr_theory": tpr_th,
+    "auc": auc_val,
+    "ylims": [-0.1, 1.1],
+    "threshold_init": 0.5,
+    "threshold_reco": None
+}
+
+data = {
+    "assays": scenarios,
+    "colors": {"pos": "#e41a1c", "neg": "#377eb8"},
+    "x_pos": x_pos,
+    "x_neg": x_neg,
+    "n_pos": n_pos,
+    "n_neg": n_neg,
+    "default_assay": "gaussian",
+    # Synthetic values can be negative or zero (gaussian, ideal), which is
+    # not representable on a log axis; real assay data keeps the default
+    # log scale (this field is simply absent from roc_data*.json).
+    "y_scale": "linear",
+    "title_prefix": "Signal: ",
+}
+
+with open("synthetic_roc_data.json", "w") as f:
+    json.dump(data, f, indent=2)
+```
+
+
+```{=html}
+<div id="roc-interactive-synthetic"
+     class="roc-interactive"
+     data-json="synthetic_roc_data.json"
+     data-show-pr="false"
+     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+
+  <div style="display:flex; flex-direction:column; justify-content:center;
+              min-width:130px; flex:0 0 130px;
+              border:1px solid rgba(0,0,0,0.15);
+              border-radius:8px; padding:8px; font-size:9.5px;
+              background:rgba(0,0,0,0.02);">
+
+    <div style="margin-bottom:5px; font-weight:600; font-size:9.5px;">
+      Signal
+    </div>
+
+    <div class="roc-assay-radios"
+         style="font-size:9.5px; line-height:1.25;
+                display:flex; flex-direction:column; gap:3px;">
+    </div>
+
+    <hr style="margin:8px 0; border-color:rgba(0,0,0,0.1);">
+
+    <div style="margin-bottom:4px; font-weight:600; font-size:9.5px;">
+      Threshold
+    </div>
+
+    <input type="range"
+           class="roc-threshold"
+           min="0"
+           max="1"
+           step="0.001"
+           value="0.5"
+           style="width:100%;">
+
+    <div class="roc-threshold-value"
+         style="margin-top:4px; text-align:center;
+                font-size:9px; color:#555;">
+    </div>
+  </div>
+
+  <div class="roc-plot"
+       style="flex:1 1 auto; min-width:520px; max-width:1050px;
+              display:flex; align-items:center;">
+  </div>
+
+</div>
+```
+
+
+
 
 #### Area Under the ROC Curve (AUC)
 
 The **Area Under the ROC Curve (AUC)** is a scalar summary of the classifier’s discriminative power across all thresholds. Because the ROC curve plots the true positive rate against the false positive rate for every possible decision boundary, its area ​quantifies the probability that a randomly chosen positive instance is ranked higher than a randomly chosen negative instance. Often the AUC is used to measure overall performance: the larger the AUC, the better the assay discriminates between the two classes.
 
 
+:::: {#thm-randomized-roc}
 
+# Randomized ROC curve
 
-:::: {#thm-roc-monotonicity} 
-# Monotonicity of ROC curves
-Let $\mathcal{D} = \{(X_i, Y_i)\}_{i=1}^n$ be a dataset with binary labels $Y_i \in \{0,1\}$ and measured features $X_i \in \mathbb{R}$, and let $\hat{Y}_{t,i} = \mathbb{1}\{X_i \geq t\}$ be the decision at threshold $t$, as defined above.
-
-For any two thresholds $t_1, t_2 \in \mathbb{R}$ such that $t_1 < t_2$, the ROC curve satisfies:
-
+Let $X_0$ and $X_1$ be independent, distributed as the conditional laws of $X$ given $Y=0$ and $Y=1$, respectively:
 $$
-\mathrm{TPR}(t_1) \geq \mathrm{TPR}(t_2) \quad \text{and} \quad \mathrm{FPR}(t_1) \geq \mathrm{FPR}(t_2),
+X_0 \sim \mathcal L(X\mid Y=0), \qquad X_1 \sim \mathcal L(X\mid Y=1).
 $$
+As conditional laws of a real random variable $X$, both $X_0$ and $X_1$ are almost surely finite.
+
+For $s\in[0,1]$, define
+$$
+t(s) := \sup\{t\in\mathbb R : \mathbb P(X_0\ge t)\ge s\} \ \in\ \mathbb R\cup\{\pm\infty\},
+$$
+and
+$$
+\lambda(s) :=
+\begin{cases}
+\dfrac{s-\mathbb P(X_0>t(s))}{\mathbb P(X_0=t(s))}, & \mathbb P(X_0=t(s))>0,\\[6pt]
+0, & \mathbb P(X_0=t(s))=0.
+\end{cases}
+$$
+
+Define the randomized decision rule
+$$
+\phi_s(x) = \mathbf 1\{x>t(s)\} + \lambda(s)\mathbf 1\{x=t(s)\}.
+$$
+
+Then $\lambda(s)\in[0,1]$ is well defined for every $s\in[0,1]$, and
+$$
+\operatorname{FPR}(\phi_s) := \mathbb E[\phi_s(X_0)] = s,
+$$
+so the (randomized) ROC curve $\operatorname{ROC}(s):=\operatorname{TPR}(\phi_s)=\mathbb E[\phi_s(X_1)]$, $s\in[0,1]$, is well defined for any laws of $X_0$ and $X_1$.
+
+Moreover, at every atom $c$ of $X_0$ (i.e., $\mathbb P(X_0=c)>0$), $\operatorname{ROC}$ is affine on the interval
+$$
+\bigl(\mathbb P(X_0>c),\ \mathbb P(X_0\ge c)\bigr],
+$$
+of length $p_c$, with slope $\mathbb P(X_1=c)/P(X_0=c)$.
+
+Finally,
+$$
+\boxed{
+\operatorname{AUC} := \int_0^1\operatorname{ROC}(s)\,ds = \mathbb P(X_1>X_0) + \tfrac12\mathbb P(X_1=X_0).
+}
+$$
+
 ::::
-
-
 :::: {.proof-container}
-::: {.proof-header onclick="toggleProof('thm-roc-monotonicity')"}
-[▶]{#proof-arrow-thm-roc-monotonicity .proof-arrow} [Proof]{.proof-title}
+
+::: {.proof-header onclick="toggleProof('thm-randomized-roc')"}
+[▶]{#proof-arrow-thm-randomized-roc .proof-arrow} [Proof]{.proof-title}
 :::
 
-::: {#proof-content-thm-roc-monotonicity .proof-content}
-**Setup**: For a threshold $t$, let $S_t = \{i \in [n] \mid \hat{Y}_{t,i} = 1\} = \{i \in [n] \mid X_i \geq t\}$ denote the samples declared positive. Recall from above that
-
+::: {#proof-content-thm-randomized-roc .proof-content}
+Throughout, write $G_0(t):=\mathbb P(X_0\ge t)$ for the survival function of $X_0$, and $G_0(x+):=\lim_{u\downarrow x}G_0(u)$ for its right limit at any $x\in\mathbb R$. As a survival function, $G_0$ is non-increasing, and it is left-continuous, $G_0(x)=\lim_{u\uparrow x}G_0(u)$, since $\{X_0\ge u_n\}\downarrow\{X_0\ge x\}$ along any $u_n\uparrow x$; likewise $\{X_0\ge u_n\}\uparrow\{X_0>x\}$ along any $u_n\downarrow x$ gives
 $$
-\mathrm{TP}(t) = \sum_{i \in S_t} \mathbb{1}\{Y_i = 1\}, \quad \mathrm{FP}(t) = \sum_{i \in S_t} \mathbb{1}\{Y_i = 0\},
+G_0(x+)=\mathbb P(X_0>x), \qquad\text{so}\qquad P(X_0=x):=G_0(x)-G_0(x+)=\mathbb P(X_0=x)
 $$
-
-so that $\mathrm{TPR}(t) = \mathrm{TP}(t)/\mathrm{P}$ and $\mathrm{FPR}(t) = \mathrm{FP}(t)/\mathrm{N}$, with $\mathrm{P}$ and $\mathrm{N}$ as defined above — constants that do not depend on $t$.
-
-**Monotonicity argument**: For $t_1 < t_2$, we have $S_{t_1} \supseteq S_{t_2}$, since $X_i \geq t_1$ whenever $X_i \geq t_2$. Consequently:
+is exactly the atomic mass of $X_0$ at $x$. Since $X_0$ is a.s. finite, continuity of measure applied to the nested events $\{X_0\ge t\}$ as $t\to\mp\infty$ also gives
 $$
-\mathrm{TP}(t_1) \geq \mathrm{TP}(t_2) \quad \text{and} \quad \mathrm{FP}(t_1) \geq \mathrm{FP}(t_2).
-$$
-Dividing by the threshold-independent constants $\mathrm{P}$ and $\mathrm{N}$ preserves these inequalities:
-$$
-\mathrm{TPR}(t_1) \geq \mathrm{TPR}(t_2) \quad \text{and} \quad \mathrm{FPR}(t_1) \geq \mathrm{FPR}(t_2).
+\lim_{t\to-\infty}G_0(t)=1, \qquad \lim_{t\to\infty}G_0(t)=0.
 $$
 
+**Step 1 (existence of $t(s)$).** Call $L\subseteq\mathbb R$ a *lower set* if $t\in L,\,u\le t\Rightarrow u\in L$. Fix $s\in(0,1)$ and set $A_s:=\{t:G_0(t)\ge s\}$. Since $G_0$ is non-increasing, $A_s$ is a lower set; since $G_0\to1>s$ as $t\to-\infty$ and $G_0\to0<s$ as $t\to\infty$, $A_s$ is nonempty and bounded above, so
+$$
+t(s):=\sup A_s\ \in\ \mathbb R
+$$
+is well defined. In fact $A_s=(-\infty,t(s)]$: any $t<t(s)$ is not an upper bound of $A_s$, hence lies in $A_s$ by the lower-set property; and $t(s)\in A_s$ by left-continuity of $G_0$ along $t_n\uparrow t(s)$, $t_n\in A_s$.
+
+For the endpoints $s\in\{0,1\}$, the same set $A_s=\{t:G_0(t)\ge s\}$ is used, with the convention $\sup\emptyset=-\infty$: since $G_0\le1$ everywhere, $A_0=\mathbb R$ and $t(0)=+\infty$; and $A_1=\{t:G_0(t)=1\}$, which is a (possibly empty) lower set, giving $t(1)\in\mathbb R\cup\{-\infty\}$ with $A_1=(-\infty,t(1)]$ by the same argument (or $A_1=\emptyset$, $t(1)=-\infty$, if $G_0(t)<1$ for every $t$).
+
+**Step 2 (level sets, and the defining inequality).** For $x\in\mathbb R$,
+$$
+t(s)=x \quad\Longleftrightarrow\quad G_0(x+) < s \le G_0(x). \tag{$\dagger$}
+$$
+
+*Proof.* By Step 1, $t(s)=x$ iff $x\in A_s$ and no $y>x$ lies in $A_s$, i.e.,
+$$
+G_0(x)\ge s \qquad\text{and}\qquad G_0(y)<s\ \ \forall y>x.
+$$
+Since $G_0$ is non-increasing, $\sup_{y>x}G_0(y)=G_0(x+)$, so the second condition is equivalent to $s>G_0(x+)$; this proves $(\dagger)$.
+
+Taking $x=t(s)$ in $(\dagger)$ yields both the defining inequality and the atom size at the threshold:
+$$
+\begin{cases}
+G_0(t(s)+) \ \le\ s\ \le\ G_0(t(s)), \\
+G_0(t(s))-G_0(t(s)+) = \mathbb P(X_0=t(s)). \tag{$\ast$}
+\end{cases}
+$$
+
+
+**Step 3 ($\phi_s$ attains $\operatorname{FPR}(\phi_s)=s$ exactly).** By $(\ast)$,
+$$
+0\ \le\ s-G_0(t(s)+)\ \le\ P(X_0=t(s)),
+$$
+so whenever $P(X_0=t(s))>0$, $\lambda(s)=\dfrac{s-G_0(t(s)+)}{P(X_0=t(s))}\in[0,1]$ . If instead $P(X_0=t(s))=0$, the two bounds coincide and force $s=G_0(t(s)+)$; the definition sets $\lambda(s):=0$ in this case, and its value has no impact since it multiplies the null event $\{X_0=t(s)\}$. In either case,
+$$
+\operatorname{FPR}(\phi_s) = \mathbb E[\phi_s(X_0)] = G_0(t(s)+) + \lambda(s)\,P(X_0=t(s)) = s.
+$$
+
+
+**Step 4 (affine property of ROC).** Fix $c$ with $P(X_0=c)>0$, and let $s\in(G_0(c+),G_0(c)]$. By $(\dagger)$, $t(s)=c$ throughout this interval, so substituting $t(s)=c$ into the definition of $\lambda$, legitimate since $P(X_0=t(s))=P(X_0=c)>0$ there, gives
+$$
+\lambda(s) = \frac{s-G_0(c+)}{P(X_0=c)},
+$$
+a linear, increasing function of $s$, running from $0$ at $s=G_0(c+)$ to $1$ at $s=G_0(c)$. Hence
+$$
+\operatorname{ROC}(s) = \mathbb E[\phi_s(X_1)] = \mathbb P(X_1>c) + \lambda(s)\,\mathbb P(X_1=c)
+$$
+is affine in $s$ on $(G_0(c+),G_0(c)]$, an interval of length $P(X_0=c)$, with slope $\mathbb P(X_1=c)/P(X_0=c)$.
+
+**Step 5 (AUC).** Since $t(\cdot)$ is non-increasing (its sublevel sets $A_s$ are nested in $s$, by Step 1) and $\lambda(\cdot)$ is Borel where defined, $(s,x)\mapsto\phi_s(x)$ is jointly measurable, $[0,1]$-valued, so Tonelli's theorem gives
+$$
+\operatorname{AUC} = \int_0^1 \mathbb E[\phi_s(X_1)]\,ds = \mathbb E\!\left[\int_0^1 \phi_s(X_1)\,ds\right].
+$$
+
+Fix $x\in\mathbb R$. By $(\dagger)$, up to the single (Lebesgue-null) point $G(x+)$, the interval $[0,1]$ splits into three sets, according to the position of $t(s)$ relative to $x$:
+$$
+\begin{align*}
+\{s:t(s)>x\} &= [0,G(x+)], & \operatorname{Leb}\bigl(\{s:t(s)>x\}\bigr) &= \mathbb P(X_0>x), \\
+\{s:t(s)=x\} &= (G(x+),G(x)], & \operatorname{Leb}\bigl(\{s:t(s)=x\}\bigr) &= \mathbb P(X_0=x), \\
+\{s:t(s)<x\} &= (G(x),1], & \operatorname{Leb}\bigl(\{s:t(s)<x\}\bigr) &= \mathbb P(X_0<x).
+\end{align*}
+$$
+
+On each of these three sets, $\phi_s(x)=\mathbf 1\{x>t(s)\}+\lambda(s)\mathbf 1\{x=t(s)\}$ takes a simple form:
+$$
+\phi_s(x) =
+\begin{cases}
+0, & t(s)>x,\\
+\lambda(s), & t(s)=x,\\
+1, & t(s)<x.
+\end{cases}
+$$
+Hence $\int_0^1\phi_s(x)\,ds$ splits into three integrals, one over each set:
+$$
+\int_0^1\phi_s(x)\,ds
+= \underbrace{\int_{\{t(s)>x\}} 0\,ds}_{=\,0}
+\ +\ \underbrace{\int_{\{t(s)=x\}} \lambda(s)\,ds}_{=:I(x)}
+\ +\ \underbrace{\int_{\{t(s)<x\}} 1\,ds}_{=\,\mathbb P(X_0<x)}.
+$$
+
+It remains to compute $I(x)=\int_{(G(x+),G(x)]} \lambda(s)\,ds$, by splitting on whether $x$ is an atom of $X_0$:
+
+- If $P(X_0=x)=0$: the domain of integration is Lebesgue-null, so $I(x)=0=\tfrac12\,P(X_0=x)$.
+- If $P(X_0=x)>0$: by Step 4 (with $c=x$), $\lambda(s)$ runs linearly from $0$ to $1$ as $s$ ranges over $(G(x+),G(x)]$. The average of a function running linearly between $0$ and $1$ over an interval is $\tfrac12$ (the midpoint of its range), so $I(x)=P(X_0=x)\cdot\tfrac12$.
+
+Either way, $I(x)=\tfrac12\,P(X_0=x)$, and therefore
+$$
+\int_0^1 \phi_s(x)\,ds = \mathbb P(X_0<x) + \tfrac12\,P(X_0=x) = \mathbb P(X_0<x) + \tfrac12\,\mathbb P(X_0=x).
+$$
+
+Substituting $x=X_1$, taking expectations, and using the tower property,
+$$
+\operatorname{AUC} = \mathbb P(X_0<X_1) + \tfrac12\mathbb P(X_0=X_1) = \mathbb P(X_1>X_0) + \tfrac12\mathbb P(X_1=X_0).
+$$
 
 :::
+
 ::::
 
-
-
-
-
-#### Uniformly random case
-
-
-#### Gaussian case
-For two Gaussian classes with unit variance, means $\mu_0$ (negative class) and $\mu_1$ (positive class, assume $\mu_1 > \mu_0$), and classifier $T_t(X)=\mathbb{1}\{X \geq t\}$, the ROC curve is **explicitly known** and has a simple parametric form.
-
-
-**Parametric Equations**
-Let $\Delta = \mu_1 - \mu_0 > 0$ be the mean difference. For each threshold $t \in \mathbb{R}$:
-
-$$
-\begin{aligned}
-\mathrm{FPR}(t) &= 1 - \Phi(t - \mu_0), \\
-\mathrm{TPR}(t) &= 1 - \Phi(t - \mu_1).
-\end{aligned}
-$$
-
-Eliminating $t$ gives the **explicit ROC curve**:
-
-$$
-\boxed{\text{TPR} = \Phi\Big(\Phi^{-1}(\text{FPR}) + \Delta\Big)}
-$$
-
-**Key Properties**
-
-1. **Shape**: The curve is **smooth, concave**, and always lies above the diagonal (no classification is worse than random).
-2. **Endpoints**: Passes through $(0,0)$ and $(1,1)$.
-3. **Symmetry**: If you swap $\mu_0$ and $\mu_1$, the curve is reflected across the diagonal (TPR ↔ TNR).
-
----
-
-### **Area Under the Curve (AUC)**
-The AUC has a closed form:
-
-$$
-\boxed{\text{AUC} = \Phi\left(\frac{\Delta}{\sqrt{2}}\right)}
-$$
-
-- When $\Delta = 0$ (identical distributions): $\text{AUC} = \Phi(0) = 0.5$ (random guessing).
-- When $\Delta \to \infty$: $\text{AUC} \to 1$ (perfect separation).
-
-
-- The **only parameter** shaping the ROC is the Mahalanobis distance $\Delta/\sigma$ (here $\sigma=1$).
-- The curve is **independent of the individual means** $\mu_0$, $\mu_1$; only their **difference** $\Delta$ matters.
-- For any $\Delta$, the ROC is a **binormal curve**—a standard model in signal detection theory.
-
-
-
-
-### The Precision/Recall curve function
-
+## The Precision/Recall curve function
 
 The **Precision-Recall curve** is the parametric curve obtained as the threshold $t$ varies:
 
 $$
 \{(\mathrm{Recall}(t), \mathrm{Precision}(t)) : t \in \mathbb{R}\},
 $$
-and remember that $\mathrm{Recall}(t) = \mathrm{TPR}(t)$.
 
+where $\mathrm{Recall}(t) = \mathrm{TPR}(t) = \mathbb P(X_1\ge t)$, as defined above. Precision, however, cannot be written purely in terms of $X_0$ and $X_1$: unlike $\mathrm{TPR}(t)$ and $\mathrm{FPR}(t)$, which are conditional on $Y$, precision conditions on the *prediction*,
+$$
+\mathrm{Precision}(t) = \mathbb P(Y=1 \mid X\ge t),
+$$
+so it also depends on how frequently $Y=1$ occurs to begin with. We write $\pi := \mathbb P(Y=1)$ for this **prevalence** (the proportion of sick individuals in the population of interest), so that $1-\pi=\mathbb P(Y=0)$.
 
 In practice, the estimation is performed using empirical counterparts. For each threshold $t$, we compute:
 
 $$
-\widehat{\mathrm{TPR}}(t) = \frac{1}{\mathrm{P}} \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\}.
+\widehat{\mathrm{TPR}}(t) = \frac{1}{\mathrm{P}} \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\},
+\qquad
+\widehat{\mathrm{Precision}}(t) = \frac{\mathrm{TP}(t)}{\mathrm{TP}(t) + \mathrm{FP}(t)},
 $$
 
+where $\mathrm{TP}(t) = \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\}$ and $\mathrm{FP}(t) = \sum_{i: Y_i=0} \mathbb{1}\{X_i \geq t\}$, as before.
+
+### Precision as a function of TPR, FPR, and prevalence
+
+Since $\mathrm{TPR}(\cdot)$ and $\mathrm{FPR}(\cdot)$ do not depend on $\pi$, it is useful to isolate exactly how $\pi$ enters $\mathrm{Precision}(\cdot)$: this both explains the shape of the Precision-Recall curve and warns against comparing precision values across studies with different prevalence (a point directly relevant here, since our 976 pre-pandemic negatives and 536 confirmed positives reflect the *design* of the benchmark study, not the prevalence of Covid-19 in any real population).
+
+:::: {#thm-precision-formula}
+
+# Precision in terms of TPR, FPR and prevalence
+
+For every threshold $t\in\mathbb R$ such that $\mathbb P(X\ge t)>0$,
+
 $$
-\widehat{\mathrm{Precision}}(t) = \frac{\sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\}}{\sum_{i=1}^n \mathbb{1}\{X_i \geq t\}} = \frac{\mathrm{TP}(t)}{\mathrm{TP}(t) + \mathrm{FP}(t)},
+\boxed{
+\mathrm{Precision}(t) = \frac{\pi\,\mathrm{TPR}(t)}{\pi\,\mathrm{TPR}(t) + (1-\pi)\,\mathrm{FPR}(t)}.
+}
 $$
 
-where:
+::::
 
-- $\mathrm{TP}(t) = \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\}$,
-- $\mathrm{FP}(t) = \sum_{i: Y_i=0} \mathbb{1}\{X_i \geq t\}$.
+:::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('thm-precision-formula')"}
+[▶]{#proof-arrow-thm-precision-formula .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-precision-formula .proof-content}
+
+By definition and the law of total probability, conditioning on $Y$,
+$$
+\begin{align}
+\mathbb P(X\ge t)
+& = \mathbb P(X\ge t\mid Y=1)\,\mathbb P(Y=1) + \mathbb P(X\ge t\mid Y=0)\,\mathbb P(Y=0)\\
+& = \pi\,\mathrm{TPR}(t) + (1-\pi)\,\mathrm{FPR}(t).
+\end{align}
+$$
+Also,
+$$
+\mathbb P(Y=1, X\ge t) = \mathbb P(X\ge t\mid Y=1)\,\mathbb P(Y=1) = \pi\,\mathrm{TPR}(t).
+$$
+Since $\mathrm{Precision}(t)=\mathbb P(Y=1\mid X\ge t)=\dfrac{\mathbb P(Y=1,X\ge t)}{\mathbb P(X\ge t)}$, substituting both expressions gives
+$$
+\mathrm{Precision}(t) = \frac{\pi\,\mathrm{TPR}(t)}{\pi\,\mathrm{TPR}(t) + (1-\pi)\,\mathrm{FPR}(t)}.
+$$
+
+:::
+
+::::
+
+**Consequences.**
+
+- *Baseline of the Precision-Recall curve.* Combining @thm-precision-formula with @lem-roc-endpoints, as $t\to-\infty$ both $\mathrm{TPR}(t)$ and $\mathrm{FPR}(t)$ tend to $1$, so
+  $$
+  \lim_{t\to-\infty}\mathrm{Precision}(t) = \frac{\pi\cdot1}{\pi\cdot1+(1-\pi)\cdot1} = \pi.
+  $$
+  This is the Precision-Recall analogue of the ROC diagonal: a threshold so low that it predicts everyone positive achieves $\mathrm{Recall}=1$ at $\mathrm{Precision}=\pi$, the prevalence. More generally, a classifier that carries no information (@thm-random-guessing, $X_0\stackrel{d}{=}X_1$) has $\mathrm{TPR}(t)=\mathrm{FPR}(t)$ for every $t$, so @thm-precision-formula gives $\mathrm{Precision}(t)=\pi$ for every $t$: the **random-guessing Precision-Recall curve is the horizontal line at height $\pi$**, not the diagonal — this is the key qualitative difference from the ROC curve, whose random-guessing baseline does not depend on $\pi$.
+
+- *Precision, unlike TPR/FPR, is prevalence-dependent.* Because $\mathrm{TPR}(t)$ and $\mathrm{FPR}(t)$ only involve the conditional laws $X_0,X_1$, the ROC curve is unaffected by how the study sampled negatives and positives. Precision is not: for a fixed pair
 
 The Python code to compute this curve is provided below.
 
@@ -505,6 +1129,463 @@ def precision_recall(thresholds, y_true, score):
 ```
 
 
+### Precision-Recall curve under random guessing
+
+We return to the random-guessing setting of @thm-random-guessing, $X_0\stackrel{d}{=}X_1$, and combine it with @thm-precision-formula to obtain the Precision-Recall curve at a fixed prevalence $\pi=\mathbb P(Y=1)$.
+
+:::: {#thm-random-pr}
+
+# Precision-Recall curve under random guessing
+
+Suppose that
+$$
+X_0 \ \stackrel{d}{=}\ X_1,
+$$
+and fix a prevalence $\pi\in(0,1)$. Then, for every threshold $t\in\mathbb R$ with $\mathbb P(X_0\ge t)>0$,
+$$
+\boxed{
+\mathrm{Precision}(t) = \pi.
+}
+$$
+Consequently, the Precision-Recall curve is included in the horizontal line
+$$
+\boxed{
+\mathrm{Precision} = \pi.
+}
+$$
+
+::::
+
+:::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('thm-random-pr')"}
+[▶]{#proof-arrow-thm-random-pr .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-random-pr .proof-content}
+
+By @thm-random-guessing, $X_0\stackrel{d}{=}X_1$ gives
+$$
+\mathrm{FPR}(t)=\mathrm{TPR}(t) \qquad\text{for every } t\in\mathbb R.
+$$
+Plugging $\mathrm{FPR}(t)=\mathrm{TPR}(t)$ into @thm-precision-formula, valid whenever $\mathbb P(X_0\ge t)=\mathbb P(X\ge t)>0$,
+$$
+\begin{align*}
+\mathrm{Precision}(t) 
+& = \frac{\pi\,\mathrm{TPR}(t)}{\pi\,\mathrm{TPR}(t) + (1-\pi)\,\mathrm{FPR}(t)}\\
+& = \frac{\pi\,\mathrm{TPR}(t)}{\pi\,\mathrm{TPR}(t) + (1-\pi)\,\mathrm{TPR}(t)}\\
+& = \pi,
+\end{align*}
+$$
+where the last simplification uses $\mathrm{TPR}(t)>0$ (equivalent to $\mathbb P(X_0\ge t)>0$ under $\mathrm{FPR}(t)=\mathrm{TPR}(t)$), so the common factor cancels.
+
+Thus, as the threshold $t$ varies over the range where this ratio is defined, every point $\left(\mathrm{Recall}(t),\mathrm{Precision}(t)\right)=\bigl(\mathrm{TPR}(t),\pi\bigr)$ lies on the horizontal line $\mathrm{Precision}=\pi$.
+
+:::
+
+::::
+
+**Interpretation.**
+
+- *Contrast with the ROC diagonal.* Under random guessing, the ROC curve lies on the diagonal $\mathrm{TPR}=\mathrm{FPR}$ (@thm-random-guessing) — a line whose position does not depend on the prevalence $\pi$, since $\mathrm{TPR}(t)$ and $\mathrm{FPR}(t)$ are both defined purely from the conditional laws $X_0,X_1$. The Precision-Recall analogue is instead a *horizontal* line at height $\pi$: unlike the ROC diagonal, its position moves up or down with the prevalence, which is exactly the prevalence-dependence of precision already noted after @thm-precision-formula.
+
+
+- *A baseline for judging real classifiers.* Just as the ROC diagonal is the reference against which discriminative power is judged, the flat line at $\pi$ is the reference for the Precision-Recall curve: any classifier carrying real information about $Y$ must have $\mathrm{Precision}(t)>\pi$ over at least part of the recall range, and the vertical gap between an assay's Precision-Recall curve and this baseline reflects how much the assay's score changes the odds of $Y=1$ relative to the prevalence alone.
+
+
+### Gaussian case
+
+We return to the equal-variance Gaussian model of @thm-gaussian-roc,
+$$
+X_0\sim\mathcal N(\mu_0,1), \qquad X_1\sim\mathcal N(\mu_1,1), \qquad \Delta=\mu_1-\mu_0>0,
+$$
+and combine it with @thm-precision-formula to obtain a closed form for the Precision-Recall curve, at a fixed prevalence $\pi=\mathbb P(Y=1)$.
+
+:::: {#thm-gaussian-pr}
+
+# Precision-Recall curve for two Gaussian 
+
+Under the model above, with prevalence $\pi\in(0,1)$, the theoretical Precision-Recall curve has the closed-form expression
+$$
+\boxed{
+\mathrm{Precision}(r) = \frac{\pi\, r}{\pi\, r + (1-\pi)\,\Phi\!\bigl(\Phi^{-1}(r)-\Delta\bigr)}
+}, \qquad r=\mathrm{Recall}(t)\in(0,1),
+$$
+with limiting endpoints
+$$
+\boxed{
+\lim_{r\to0^+}\mathrm{Precision}(r) = 1
+}
+\qquad\text{and}\qquad
+\boxed{
+\mathrm{Precision}(1) = \pi.
+}
+$$
+
+::::
+
+:::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('thm-gaussian-pr')"}
+[▶]{#proof-arrow-thm-gaussian-pr .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-gaussian-pr .proof-content}
+
+**Step 1: Precision as a function of $t$.** By @thm-gaussian-roc, $\mathrm{FPR}(t)=1-\Phi(t-\mu_0)$ and $\mathrm{TPR}(t)=1-\Phi(t-\mu_1)$; since $\mathrm{Recall}(t)=\mathrm{TPR}(t)$, @thm-precision-formula gives
+$$
+\mathrm{Precision}(t) = \frac{\pi\bigl(1-\Phi(t-\mu_1)\bigr)}{\pi\bigl(1-\Phi(t-\mu_1)\bigr) + (1-\pi)\bigl(1-\Phi(t-\mu_0)\bigr)}.
+$$
+
+**Step 2: Eliminate the threshold.** The boxed identity of @thm-gaussian-roc, $\mathrm{TPR}=\Phi\bigl(\Phi^{-1}(\mathrm{FPR})+\Delta\bigr)$, holds for every threshold $t$. Since $\Phi:\mathbb R\to(0,1)$ is a strictly increasing bijection, it may be inverted on both sides:
+$$
+\mathrm{TPR}=\Phi\bigl(\Phi^{-1}(\mathrm{FPR})+\Delta\bigr)
+\quad\Longleftrightarrow\quad
+\Phi^{-1}(\mathrm{TPR}) = \Phi^{-1}(\mathrm{FPR})+\Delta
+\quad\Longleftrightarrow\quad
+\mathrm{FPR}=\Phi\bigl(\Phi^{-1}(\mathrm{TPR})-\Delta\bigr).
+$$
+Writing $r:=\mathrm{TPR}(t)=\mathrm{Recall}(t)$, this becomes $\mathrm{FPR}(t)=\Phi\bigl(\Phi^{-1}(r)-\Delta\bigr)$, which depends on $t$ only through $r$. Substituting into Step 1 eliminates $t$ entirely:
+$$
+\mathrm{Precision}(r) = \frac{\pi\, r}{\pi\, r + (1-\pi)\,\Phi\!\bigl(\Phi^{-1}(r)-\Delta\bigr)}, \qquad r\in(0,1).
+$$
+
+**Step 3: Endpoint at $r=1$.** This is the threshold $t\to-\infty$: $\Phi^{-1}(1)=+\infty$, so $\Phi\bigl(\Phi^{-1}(1)-\Delta\bigr)=\Phi(+\infty)=1$, and the formula gives directly
+$$
+\mathrm{Precision}(1) = \frac{\pi\cdot1}{\pi\cdot1+(1-\pi)\cdot1} = \pi,
+$$
+matching the general baseline $\lim_{t\to-\infty}\mathrm{Precision}(t)=\pi$ established earlier from @lem-roc-endpoints and @thm-precision-formula.
+
+**Step 4: Endpoint at $r\to0^+$.** This is the threshold $t\to+\infty$, where the formula is $0/0$ and must be handled as a limit. Write $\varphi(x):=\frac1{\sqrt{2\pi}}e^{-x^2/2}$ for the standard normal density. As $t\to\infty$, both $\mathrm{TPR}(t)=1-\Phi(t-\mu_1)$ and $\mathrm{FPR}(t)=1-\Phi(t-\mu_0)$ vanish, but not at the same rate: by the standard Gaussian tail (Mills' ratio) asymptotic $1-\Phi(x)\sim \varphi(x)/x$ as $x\to\infty$,
+$$
+\frac{\mathrm{FPR}(t)}{\mathrm{TPR}(t)} \sim \frac{\varphi(t-\mu_0)/(t-\mu_0)}{\varphi(t-\mu_1)/(t-\mu_1)} = \frac{\varphi(t-\mu_0)}{\varphi(t-\mu_1)}\cdot\frac{t-\mu_1}{t-\mu_0}.
+$$
+The second factor $\to1$. For the first, using $\varphi(a)/\varphi(b)=\exp\{-(a^2-b^2)/2\}$ with $a=t-\mu_0$, $b=t-\mu_1$,
+$$
+a^2-b^2=(a-b)(a+b) = \Delta\,(2t-\mu_0-\mu_1) \ \longrightarrow\ +\infty \quad\text{as } t\to\infty,
+$$
+since $\Delta>0$. Hence $\varphi(t-\mu_0)/\varphi(t-\mu_1)=\exp\{-(a^2-b^2)/2\}\to0$, so $\mathrm{FPR}(t)/\mathrm{TPR}(t)\to0$, i.e. $\mathrm{FPR}(t)=o\bigl(\mathrm{TPR}(t)\bigr)$. Dividing numerator and denominator of $\mathrm{Precision}(t)$ by $\mathrm{TPR}(t)$,
+$$
+\mathrm{Precision}(t) = \frac{\pi}{\pi + (1-\pi)\,\mathrm{FPR}(t)/\mathrm{TPR}(t)} \ \longrightarrow\ \frac{\pi}{\pi+0} = 1
+\qquad\text{as } t\to\infty,\ \text{i.e. as } r\to0^+.
+$$
+
+:::
+
+::::
+
+**Interpretation.**
+
+- *Recovering the random-guessing baseline.* If $\Delta=0$ (i.e. $\mu_0=\mu_1$), then $\Phi^{-1}(r)-\Delta=\Phi^{-1}(r)$, so $\Phi\bigl(\Phi^{-1}(r)-\Delta\bigr)=r$ for every $r$, and the formula collapses to $\mathrm{Precision}(r)=\pi r/(\pi r+(1-\pi)r)=\pi$ for all $r\in(0,1)$ — the flat line at height $\pi$ identified in @thm-random-guessing's Precision-Recall analogue, as it must, since $\Delta=0$ means $X_0\stackrel{d}{=}X_1$.
+
+- *Approaching the ideal curve as $\Delta\to\infty$.* For any fixed $r\in(0,1)$, $\Phi^{-1}(r)$ is a fixed finite number, so letting $\Delta\to\infty$ sends $\Phi^{-1}(r)-\Delta\to-\infty$ and hence $\Phi\bigl(\Phi^{-1}(r)-\Delta\bigr)\to0$, giving $\mathrm{Precision}(r)\to1$ for every $r\in(0,1)$ — while $\mathrm{Precision}(1)=\pi$ always, regardless of $\Delta$. In the limit, the curve is flat at $1$ except for a drop to $\pi$ exactly at $r=1$: this is precisely the perfect-separation Precision-Recall curve used for the `"ideal"` scenario in the interactive widget above.
+
+- *Finite $\Delta$: a curve between these two extremes.* For intermediate $\Delta>0$, $\mathrm{Precision}(r)$ decreases from its limiting value $1$ at $r=0^+$ down to $\pi$ at $r=1$, with the exact shape controlled by $\Delta$ and $\pi$ through the boxed formula — larger $\Delta$ (better class separation) pushes the curve upward and closer to the ideal step shape, while $\pi$ sets the height of the unavoidable endpoint at $r=1$.
+
+
+#### Precision-Recall curve visualization
+
+The Python code is provided below to compute Precision-Recall curves for the three standard scenarios described above. It mirrors the `roc()` function, but tracks precision instead of the false-positive rate — following the $\ge$ threshold convention used throughout this post ($\hat Y_t = \mathbb 1\{X\ge t\}$):
+
+```{python}
+def precision_recall(thresholds, y_true, score):
+    precision = []  # TP / (TP + FP)
+    recall = []     # TP / P  (= TPR)
+
+    P = sum(y_true)
+
+    for thresh in thresholds:
+        TP = 0
+        FP = 0
+        for i in range(len(score)):
+            if score[i] >= thresh:
+                if y_true[i] == True:
+                    TP += 1
+                else:
+                    FP += 1
+        recall.append(TP / float(P))
+        # By convention, precision is set to 1 when no sample is predicted
+        # positive (TP + FP = 0), matching sklearn's behavior at the
+        # recall = 0 endpoint.
+        precision.append(TP / float(TP + FP) if (TP + FP) > 0 else 1.0)
+
+    return precision, recall
+```
+
+```{python}
+#| echo: false
+import json
+import numpy as np
+from sklearn.metrics import (
+    roc_curve, auc as sklearn_auc,
+    precision_recall_curve, average_precision_score,
+)
+from scipy.stats import norm
+
+np.random.seed(42)
+n_pos = n_neg = 500
+
+# Numerical guard for Phi^{-1} at the extremes (Phi^{-1}(0) = -inf,
+# Phi^{-1}(1) = +inf); shared by every theoretical curve below.
+EPS = 1e-4
+
+
+# ---------------------------------------------------------------------
+# Empirical curves (finite-sample, n = 500), for overlay against theory.
+# ---------------------------------------------------------------------
+
+def compute_roc(pos, neg):
+    y_true = np.array([1] * len(pos) + [0] * len(neg))
+    y_score = np.concatenate([pos, neg])
+    fpr, tpr, _ = roc_curve(y_true, y_score)
+    roc_auc = sklearn_auc(fpr, tpr)
+    return fpr.tolist(), tpr.tolist(), roc_auc
+
+
+def compute_pr(pos, neg):
+    y_true = np.array([1] * len(pos) + [0] * len(neg))
+    y_score = np.concatenate([pos, neg])
+    precision, recall, _ = precision_recall_curve(y_true, y_score)
+    ap = average_precision_score(y_true, y_score)
+    return recall.tolist(), precision.tolist(), ap
+
+
+# ---------------------------------------------------------------------
+# Theoretical (population-level) ROC curves.
+# ---------------------------------------------------------------------
+
+def theoretical_roc_random(num=200):
+    """@thm-random-guessing: X0 =d= X1 gives FPR(t) = TPR(t) for every t,
+    so the ROC curve is the diagonal."""
+    pts = np.linspace(0.0, 1.0, num)
+    return pts.tolist(), pts.tolist()
+
+
+def theoretical_roc_ideal():
+    """Perfect separation: right angle through (0, 1)."""
+    return [0.0, 0.0, 1.0], [0.0, 1.0, 1.0]
+
+
+def theoretical_roc_gaussian(mu0, mu1, sigma=1.0, num=200):
+    """@thm-gaussian-roc: equal-variance binormal model,
+    TPR = Phi(Phi^{-1}(FPR) + Delta), Delta = (mu1 - mu0) / sigma."""
+    delta = (mu1 - mu0) / sigma
+    fpr_mid = np.linspace(EPS, 1 - EPS, num)
+    tpr_mid = norm.cdf(norm.ppf(fpr_mid) + delta)
+    fpr = np.concatenate([[0.0], fpr_mid, [1.0]])
+    tpr = np.concatenate([[0.0], tpr_mid, [1.0]])
+    return fpr.tolist(), tpr.tolist()
+
+
+# ---------------------------------------------------------------------
+# Theoretical (population-level) Precision-Recall curves, from the
+# closed-form theorems (each a direct function of recall r, at fixed
+# prevalence pi).
+# ---------------------------------------------------------------------
+
+def theoretical_pr_random(pi, num=200):
+    """@thm-random-pr: under X0 =d= X1, Precision(t) = pi for every
+    threshold t with TPR(t) > 0 — the PR analogue of the ROC diagonal,
+    but (unlike the diagonal) its height depends on the prevalence pi."""
+    recall = np.linspace(0.0, 1.0, num)
+    precision = np.full(num, pi)
+    return recall.tolist(), precision.tolist()
+
+
+def theoretical_pr_gaussian(mu0, mu1, pi, sigma=1.0, num=200):
+    """@thm-gaussian-pr: closed-form Precision-Recall curve for the
+    equal-variance binormal model, as a function of recall r alone:
+
+        Precision(r) = pi*r / (pi*r + (1-pi)*Phi(Phi^{-1}(r) - Delta)),
+        Delta = (mu1 - mu0) / sigma,
+
+    with limiting endpoints Precision(r -> 0+) = 1 and Precision(1) = pi
+    (proof Steps 3-4). The r=0 endpoint is a removable 0/0 singularity
+    in the formula above, so it is set explicitly rather than evaluated
+    numerically."""
+    delta = (mu1 - mu0) / sigma
+    r_mid = np.linspace(EPS, 1 - EPS, num)
+    fpr_mid = norm.cdf(norm.ppf(r_mid) - delta)
+    precision_mid = pi * r_mid / (pi * r_mid + (1 - pi) * fpr_mid)
+    precision_mid = np.clip(precision_mid, 0.0, 1.0)
+    recall = np.concatenate([[0.0], r_mid, [1.0]])
+    precision = np.concatenate([[1.0], precision_mid, [pi]])
+    return recall.tolist(), precision.tolist()
+
+
+def theoretical_pr_ideal(pi):
+    """Perfect separation, as the Delta -> infinity limit of
+    @thm-gaussian-pr: precision stays at 1 while recall rises from 0 to
+    1, then drops to the baseline pi exactly at recall = 1."""
+    return [0.0, 1.0, 1.0], [1.0, 1.0, pi]
+
+
+# ---------------------------------------------------------------------
+# Scenarios
+# ---------------------------------------------------------------------
+
+x_pos = (-0.1 + np.random.uniform(size=n_pos) * 0.2).tolist()
+x_neg = (0.4 + np.random.uniform(size=n_neg) * 0.2).tolist()
+
+scenarios = {}
+
+# All three synthetic scenarios use n_pos = n_neg = 500, so the sample
+# (and assumed population) prevalence is pi = 0.5 throughout. This is
+# the value the theoretical PR baselines below are computed at; per the
+# "Consequences" discussion above, changing the prevalence would shift
+# these curves (unlike the ROC curves, which do not depend on pi).
+pi = n_pos / (n_pos + n_neg)
+
+# Random guessing: both classes drawn from the same U[1, 2] distribution,
+# so the two conditional distributions coincide (@thm-random-guessing)
+# and the ROC curve is the diagonal, while the PR curve is flat at pi.
+pos_unif = np.random.uniform(1, 2, n_pos)
+neg_unif = np.random.uniform(1, 2, n_neg)
+fpr, tpr, auc_val = compute_roc(pos_unif, neg_unif)
+recall, precision, ap_val = compute_pr(pos_unif, neg_unif)
+fpr_th, tpr_th = theoretical_roc_random()
+recall_th, precision_th = theoretical_pr_random(pi)
+scenarios["random"] = {
+    "name": "random guessing: both classes drawn from the same Uniform[1,2] distribution",
+    "pos": pos_unif.tolist(),
+    "neg": neg_unif.tolist(),
+    "roc_fpr": fpr,
+    "roc_tpr": tpr,
+    "roc_fpr_theory": fpr_th,
+    "roc_tpr_theory": tpr_th,
+    "auc": auc_val,
+    "pr_recall": recall,
+    "pr_precision": precision,
+    "pr_recall_theory": recall_th,
+    "pr_precision_theory": precision_th,
+    "ap": ap_val,
+    "prevalence": pi,
+    "ylims": [0.9, 2.1],
+    "threshold_init": 1.5,
+    "threshold_reco": None,
+}
+
+# Gaussian: μ₀=0, μ₁=1
+pos_gauss = np.random.normal(1, 1, n_pos)
+neg_gauss = np.random.normal(0, 1, n_neg)
+fpr, tpr, auc_val = compute_roc(pos_gauss, neg_gauss)
+recall, precision, ap_val = compute_pr(pos_gauss, neg_gauss)
+fpr_th, tpr_th = theoretical_roc_gaussian(mu0=0, mu1=1, sigma=1.0)
+recall_th, precision_th = theoretical_pr_gaussian(mu0=0, mu1=1, pi=pi, sigma=1.0)
+scenarios["gaussian"] = {
+    "name": "gaussian samples with μ₀=0 and μ₁=1",
+    "pos": pos_gauss.tolist(),
+    "neg": neg_gauss.tolist(),
+    "roc_fpr": fpr,
+    "roc_tpr": tpr,
+    "roc_fpr_theory": fpr_th,
+    "roc_tpr_theory": tpr_th,
+    "auc": auc_val,
+    "pr_recall": recall,
+    "pr_precision": precision,
+    "pr_recall_theory": recall_th,
+    "pr_precision_theory": precision_th,
+    "ap": ap_val,
+    "prevalence": pi,
+    "ylims": [min(pos_gauss.min(), neg_gauss.min()) - 0.5,
+              max(pos_gauss.max(), neg_gauss.max()) + 0.5],
+    "threshold_init": 0.5,
+    "threshold_reco": None,
+}
+
+# Ideal: perfect separation
+pos_ideal = np.ones(n_pos)
+neg_ideal = np.zeros(n_neg)
+fpr, tpr, auc_val = compute_roc(pos_ideal, neg_ideal)
+recall, precision, ap_val = compute_pr(pos_ideal, neg_ideal)
+fpr_th, tpr_th = theoretical_roc_ideal()
+recall_th, precision_th = theoretical_pr_ideal(pi)
+scenarios["ideal"] = {
+    "name": "ideal: all samples are 0 from class 0 and 1 from class 1",
+    "pos": pos_ideal.tolist(),
+    "neg": neg_ideal.tolist(),
+    "roc_fpr": fpr,
+    "roc_tpr": tpr,
+    "roc_fpr_theory": fpr_th,
+    "roc_tpr_theory": tpr_th,
+    "auc": auc_val,
+    "pr_recall": recall,
+    "pr_precision": precision,
+    "pr_recall_theory": recall_th,
+    "pr_precision_theory": precision_th,
+    "ap": ap_val,
+    "prevalence": pi,
+    "ylims": [-0.1, 1.1],
+    "threshold_init": 0.5,
+    "threshold_reco": None,
+}
+
+data = {
+    "assays": scenarios,
+    "colors": {"pos": "#e41a1c", "neg": "#377eb8"},
+    "x_pos": x_pos,
+    "x_neg": x_neg,
+    "n_pos": n_pos,
+    "n_neg": n_neg,
+    "default_assay": "gaussian",
+    "y_scale": "linear",
+    "title_prefix": "Signal: ",
+}
+
+with open("synthetic_roc_data.json", "w") as f:
+    json.dump(data, f, indent=2)
+```
+
+```{=html}
+<div id="pr-interactive-synthetic"
+     class="roc-interactive"
+     data-json="synthetic_roc_data.json"
+     data-show-roc="false"
+     data-show-pr="true"
+     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+
+  <div style="display:flex; flex-direction:column; justify-content:center;
+              min-width:130px; flex:0 0 130px;
+              border:1px solid rgba(0,0,0,0.15);
+              border-radius:8px; padding:8px; font-size:9.5px;
+              background:rgba(0,0,0,0.02);">
+
+    <div style="margin-bottom:5px; font-weight:600; font-size:9.5px;">
+      Signal
+    </div>
+
+    <div class="roc-assay-radios"
+         style="font-size:9.5px; line-height:1.25;
+                display:flex; flex-direction:column; gap:3px;">
+    </div>
+
+    <hr style="margin:8px 0; border-color:rgba(0,0,0,0.1);">
+
+    <div style="margin-bottom:4px; font-weight:600; font-size:9.5px;">
+      Threshold
+    </div>
+
+    <input type="range"
+           class="roc-threshold"
+           min="0"
+           max="1"
+           step="0.001"
+           value="0.5"
+           style="width:100%;">
+
+    <div class="roc-threshold-value"
+         style="margin-top:4px; text-align:center;
+                font-size:9px; color:#555;">
+    </div>
+  </div>
+
+  <div class="roc-plot"
+       style="flex:1 1 auto; min-width:520px; max-width:1050px;
+              display:flex; align-items:center;">
+  </div>
+
+</div>
+```
 
 
 
@@ -899,7 +1980,7 @@ def export_roc_pr_data(df, dict_results_inv, dict_threshold, colors,
             "neg": mcolors.to_hex(colors[0]),
         },
         "assays": assays,
-        "default_assay": "Roche" if "Roche" in assays else next(iter(assays)),
+        "default_assay": "DiaSorin" if "Roche" in assays else next(iter(assays)),
         "n_pos": int(len(df_pos_all)),
         "n_neg": int(len(df_neg_all)),
     }
@@ -928,19 +2009,54 @@ with open('roc_data_imbalanced.json', 'w') as f:
 
 ## Interactive exploration: assay results, ROC curve and precision/recall curve
 
-The widget below lets you select one or more assays (the first checked one is the **primary** assay, driving the threshold slider) and move the classification **threshold** (log scale): the left panel shows individual sample results split by true status *for the primary assay only*, the middle panel overlays the ROC curves of all selected assays, and the right panel overlays the corresponding precision/recall curves (AP stands for **Average Precision**, i.e. the area under the precision/recall curve). The dashed grey line / grey cross indicate the manufacturer's recommended threshold, when available. This figure runs entirely client-side (Plotly.js), so it stays interactive on the static site.
+The widget below lets you select one or more assays (the first checked one is the **primary** assay, driving the threshold slider) and move the classification **threshold** (log scale): the left panel shows individual sample results split by true status *for the primary assay only*, the middle panel overlays the ROC curves of all selected assays, and the right panel overlays the corresponding precision/recall curves (AP stands for **Average Precision**, i.e., the area under the precision/recall curve). The dashed grey line / grey cross indicate the manufacturer's recommended threshold (Reco. point), when available. 
 
 ```{=html}
-<div id="roc-interactive" class="roc-interactive" data-json="roc_data.json" style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family: 'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
-  <div style="display:flex; flex-direction:column; justify-content:center; min-width:130px; flex:0 0 130px; border:1px solid rgba(0,0,0,0.15); border-radius:8px; padding:8px; font-size:9.5px; background:rgba(0,0,0,0.02);">
-    <div style="margin-bottom:5px; font-weight:600; font-size:9.5px;">Assays (click)</div>
-    <div class="roc-assay-radios" style="font-size:9.5px; line-height:1.25; display:flex; flex-direction:column; gap:3px;"></div>
+<div id="roc-interactive"
+     class="roc-interactive"
+     data-json="roc_data.json"
+     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+
+  <div style="display:flex; flex-direction:column; justify-content:center;
+              min-width:130px; flex:0 0 130px;
+              border:1px solid rgba(0,0,0,0.15);
+              border-radius:8px; padding:8px; font-size:9.5px;
+              background:rgba(0,0,0,0.02);">
+
+    <div style="margin-bottom:5px; font-weight:600; font-size:9.5px;">
+      Assay
+    </div>
+
+    <div class="roc-assay-radios"
+         style="font-size:9.5px; line-height:1.25;
+                display:flex; flex-direction:column; gap:3px;">
+    </div>
+
     <hr style="margin:8px 0; border-color:rgba(0,0,0,0.1);">
-    <div style="margin-bottom:4px; font-weight:600; font-size:9.5px;">Threshold</div>
-    <input type="range" class="roc-threshold" min="0" max="1" step="0.001" value="0.5" style="width:100%;">
-    <div class="roc-threshold-value" style="margin-top:4px; text-align:center; font-size:9px; color:#555;"></div>
+
+    <div style="margin-bottom:4px; font-weight:600; font-size:9.5px;">
+      Threshold
+    </div>
+
+    <input type="range"
+           class="roc-threshold"
+           min="0"
+           max="1"
+           step="0.001"
+           value="0.5"
+           style="width:100%;">
+
+    <div class="roc-threshold-value"
+         style="margin-top:4px; text-align:center;
+                font-size:9px; color:#555;">
+    </div>
   </div>
-  <div class="roc-plot" style="flex:1 1 auto; min-width:520px; max-width:1050px; display:flex; align-items:center;"></div>
+
+  <div class="roc-plot"
+       style="flex:1 1 auto; min-width:520px; max-width:1050px;
+              display:flex; align-items:center;">
+  </div>
+
 </div>
 ```
 
@@ -972,7 +2088,7 @@ Now the same assays, the same thresholds, the same ROC/PR machinery — but with
 
 
 ## Credit, sources and data
-
+- Paper of interest: [@fawcett2006introduction]
 - Original study article (Lancet): <https://doi.org/10.1016/S1473-3099(20)30634-4>
 - Dataset (Figshare): <https://figshare.com/articles/dataset/Dataset_Head-to-head_benchmark_evaluation_of_the_sensitivity_and_specificity_of_five_immunoassays_for_SARS-CoV-2_serology_on_1500_samples/12622172>
 - Direct download: <https://ndownloader.figshare.com/files/23736068>
