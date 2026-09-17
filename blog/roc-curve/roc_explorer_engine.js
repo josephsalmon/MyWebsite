@@ -64,6 +64,12 @@ export async function initRocExplorerWidget(container, model) {
   model.paramSliders.forEach(({ key, value }) => { params[key] = value; });
   params.t = model.initialT;
 
+  // Distribution selection (set by the radio buttons in
+  // gaussian_roc_interactive.js via the container dataset).
+  if (container.dataset.distribution) {
+    params.distribution = container.dataset.distribution;
+  }
+
   // --- Build the control panel -------------------------------------
 
   const sliderEls = {};
@@ -158,13 +164,6 @@ export async function initRocExplorerWidget(container, model) {
   legendRow.style.gap = '10px';
   legendRow.style.marginTop = '8px';
   legendRow.style.fontSize = '9px';
-  legendRow.innerHTML = `
-    <span style="display:flex; align-items:center; gap:3px;">
-      <span style="width:8px; height:8px; border-radius:50%; background:${COLOR_X1}; display:inline-block;"></span>X₁ (sick)
-    </span>
-    <span style="display:flex; align-items:center; gap:3px;">
-      <span style="width:8px; height:8px; border-radius:50%; background:${COLOR_X0}; display:inline-block;"></span>X₀ (healthy)
-    </span>`;
   controlsDiv.appendChild(legendRow);
 
   // --- Threshold-range maintenance ----------------------------------
@@ -330,5 +329,12 @@ export async function initRocExplorerWidget(container, model) {
     render();
   });
 
+  container.addEventListener('roc-distribution-change', (evt) => {
+  params.distribution = evt.detail.distribution;
+  refreshThresholdRange();
+  updateThresholdLabel();
   render();
+});
+
+render();
 }

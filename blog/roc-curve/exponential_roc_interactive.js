@@ -7,7 +7,10 @@ import {
 const exponentialRocModel = {
   controlsSelector: '.exponential-roc-controls',
   plotSelector: '.exponential-roc-plot',
-  paramSliders: exponentialParamSliders,
+  paramSliders: [
+    ...exponentialParamSliders,
+    { key: 'pi', label: 'π (prevalence)', min: 0.05, max: 0.95, step: 0.05, value: 0.5 },
+  ],
   initialT: 1.0,
   computeYDomain: exponentialYDomain,
   pdf0: exponentialPdf0,
@@ -15,7 +18,7 @@ const exponentialRocModel = {
   metricFn: exponentialAuc,
   titleFn(p, auc) {
     const theta = p.lambda1 / p.lambda0;
-    return `Exponential model  —  θ = λ₁/λ₀ = ${theta.toFixed(2)}  →  AUC = ${auc.toFixed(3)}`;
+    return `Exponential model  —  θ = λ₁/λ₀ = ${theta.toFixed(2)}`;
   },
   curve: {
     point: (t, p) => ({ x: exponentialFpr(t, p), y: exponentialTpr(t, p) }),

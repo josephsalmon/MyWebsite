@@ -51,11 +51,11 @@ format:
 :::
 
 
-# Introduction and data used
+## Introduction and data used
 
-We illustrate in this post the notion of **ROC curves** using data from a head-to-head benchmark evaluation of five SARS-CoV-2 serological assays [@ainsworth2020performance].
+We illustrate in this post the notion of **ROC curves** and **Precision-Recall curves** using both simple distributions (Gaussian or Exponential) and data from a head-to-head benchmark evaluation of five SARS-CoV-2 serological assays [@ainsworth2020performance].
 
-The underlying study compared the Abbott, DiaSorin, Oxford, Roche, and Siemens
+For the empirical part, the underlying study compared the Abbott, DiaSorin, Oxford, Roche, and Siemens
 assays using a common set of well-characterized samples.
 We follow @ainsworth2020performance and we have used
 
@@ -108,7 +108,10 @@ In words: a Type I error is a **false positive** (the test flags a healthy perso
 
 ## Naming and key quantities
 
-Naming follows the classical terminology (see *e.g.,* the [Wikipedia article on ROC curves](https://en.wikipedia.org/wiki/Receiver_operating_characteristic)). Given a fixed threshold, each sample falls into exactly one of four categories:
+The dataset consists of $n$ observations, denoted $\{(Y_i, X_i)\}_{i=1,\dots,n}$, where $Y_i$ represents the true health status of individual $i$.
+
+
+Naming follows the classical terminology (see *e.g.,* the [Wikipedia article on ROC curves](https://en.wikipedia.org/wiki/Receiver_operating_characteristic)). Given a fixed threshold, each sample falls into exactly one of the four categories below:
 
 - **True Positive**: sick and correctly declared positive
 $$\displaystyle\mathrm{TP} = \sum_{i=1}^n \mathbb{1}\{Y_i=1,\ \hat{Y}_{t,i}=1\}$$ 
@@ -140,8 +143,6 @@ We also define the following rates, used throughout this post:
 - $\mathrm{FPR} = 1 - \mathrm{TNR} = \dfrac{\mathrm{FP}}{\mathrm{N}} = \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=0\right) = \mathbb P(X_0\ge t)$ (**False Positive Rate**): among healthy people, the proportion wrongly flagged — this is exactly the Type I error probability,
 - $\mathrm{Precision} = \dfrac{\mathrm{TP}}{\hat{\mathrm{P}}_t} = \mathbb{P}\!\left(Y=1 \mid \hat{Y}_t=1\right)$: among people declared positive, the proportion actually sick. Unlike the three rates above, precision also depends on the class proportions $\mathbb P(Y=0),\mathbb P(Y=1)$ (the disease prevalence), and so cannot be written purely in terms of $X_0$ and $X_1$.
 
-The dataset consists of $n$ observations, denoted $\{(Y_i, X_i)\}_{i=1,\dots,n}$, where $Y_i$ represents the true health status of individual $i$.
-
 ## The ROC curve function
 
 For a given threshold $t$, one would like to compute the pair:
@@ -157,18 +158,23 @@ $$
 \end{align}
 $$
 
-The **ROC curve** is the parametric curve obtained as $t$ varies:
+The **ROC curve** is the parametric curve obtained as $t$ varies
 $$
 \{(\mathrm{FPR}(t), \mathrm{TPR}(t)) : t \in \mathbb{R}\}.
 $$
 
-In practice, the estimation is performed using empirical counterparts. For each threshold $t$, we compute:
+The first property is that the ROC curve is including in $[0, 1] \times [0, 1]$ as the ROC curve has component defined as probabilities.
+
+In practice, the estimation is performed using empirical counterparts (usually on a test set).
+For each threshold $t$, we compute:
 $$
 \widehat{\mathrm{FPR}}(t) = \frac{1}{\mathrm{N}} \sum_{i: Y_i=0} \mathbb{1}\{X_i \geq t\}, \quad
 \widehat{\mathrm{TPR}}(t) = \frac{1}{\mathrm{P}} \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\}.
 $$
 
 ### Properties
+
+The first property is that any ROC curve has limit $(0, 0)$  when $t$ goes to $+\infty$ and $(1, 1)$ when t goes to $-\infty$.
 
 :::: {#lem-roc-endpoints}
 
@@ -268,6 +274,9 @@ $$
 
 ::::
 
+The second proporty is that the ROC curve is non-decreasing. This is a major difference with the Precision-Recall curve we present below.
+
+
 :::: {#thm-roc-monotonicity}
 # Monotonicity of ROC curves
 
@@ -287,7 +296,7 @@ $$
 
 Recall that $\mathrm{TPR}(t)=\mathbb P(X_1\ge t)$ and $\mathrm{FPR}(t)=\mathbb P(X_0\ge t)$.
 
-Fix $t_1<t_2$. Then $X\ge t_2$ implies $X\ge t_1$, i.e., the event $\{X\ge t_2\}$ is contained in $\{X\ge t_1\}$; this holds whether $X$ is replaced by $X_0$ or $X_1$. By monotonicity of probability,
+Fix $t_1<t_2$. Then $X\ge t_2$ implies $X\ge t_1$,*i.e.,*the event $\{X\ge t_2\}$ is contained in $\{X\ge t_1\}$; this holds whether $X$ is replaced by $X_0$ or $X_1$. By monotonicity of probability,
 $$
 \mathbb P(X_1\ge t_2) \le \mathbb P(X_1\ge t_1)
 \qquad\text{and}\qquad
@@ -314,10 +323,10 @@ Suppose that there exists a threshold $t^\star\in\mathbb{R}$ such that, for $\ha
 $$
 \mathbb P(X_0\ge t^\star)=0,
 \qquad
-\mathbb P(X_1\ge t^\star)=1,
+\mathbb P(X_1\ge t^\star)=1.
 $$
 
-i.e., healthy individuals always score below $t^\star$, and sick individuals always score at or above $t^\star$. Then,
+Then,
 
 $$
 \boxed{
@@ -361,12 +370,11 @@ Thus the threshold $t^\star$ yields the ROC operating point $\left(\mathrm{FPR}(
 
 :::
 
+::::
 
+### Uninformative case: random guessing
 
-
-### Random guessing example
-
-Random guessing corresponds to the situation in which the measured antibody level $X$ carries **no information** about the true health status $Y$. Formally, the conditional distributions of $X$ are identical under the two health statuses, i.e., $X_0$ and $X_1$ have the same law:
+Random guessing corresponds to the situation in which the measured antibody level $X$ carries **no information** about the true health status $Y$. Formally, the conditional distributions of $X$ are identical under the two health statuses,*i.e.,*$X_0$ and $X_1$ have the same law:
 $$
 X_0 \ \stackrel{d}{=}\ X_1.
 $$
@@ -396,12 +404,7 @@ $$
 }.
 $$
 
-Consequently, the ROC curve is included in the diagonal line
-$$
-\boxed{
-\mathrm{TPR}=\mathrm{FPR}.
-}
-$$
+Consequently, the ROC curve is included in the diagonal line.
 
 ::::
 
@@ -430,13 +433,14 @@ $$
 }
 $$
 
-Thus, as the threshold $t$ varies, every point $\left(\mathrm{FPR}(t),\mathrm{TPR}(t)\right)$ lies on the diagonal $\mathrm{TPR}=\mathrm{FPR}$.
+Thus, as the threshold $t$ varies, every point $\left(\mathrm{FPR}(t),\mathrm{TPR}(t)\right)$ lies on the diagonal.
 
 :::
 
 ::::
 
 ### Gaussian case
+
 
 :::: {#thm-gaussian-roc}
 
@@ -453,16 +457,19 @@ $$
 where $\mu_1>\mu_0$ and $\sigma_0,\sigma_1>0$, and consider the threshold decision rule $\hat{Y}_t(X) = \mathbb{1}\{X\geq t\}$, $t\in\mathbb{R}$.
 Let
 $$
-\Delta = \frac{\mu_1-\mu_0}{\sigma_1} \ >\ 0, \qquad b = \frac{\sigma_0}{\sigma_1} \ >\ 0
+\Delta = \frac{\mu_1-\mu_0}{\sigma_1} \ >\ 0, \qquad \rho = \frac{\sigma_0}{\sigma_1} \ >\ 0
 $$
 denote, respectively, the standardized separation between the means and the ratio of the standard deviations. Then, the theoretical ROC curve has the following closed-form expression:
 
+For every threshold $t\in\mathbb{R}$,
+
 $$
 \boxed{
-\mathrm{TPR}
+\mathrm{TPR}(t)
 =
-\Phi\left(
-\Delta + b\,\Phi^{-1}(\mathrm{FPR})
+\Phi
+\left(
+\Delta + \rho \,\Phi^{-1} \circ \mathrm{FPR}(t)
 \right)
 },
 $$
@@ -579,7 +586,7 @@ $$
 
 Applying the inverse CDF $\Phi^{-1}$ gives
 $$
-\Phi^{-1}(\mathrm{FPR}(t))
+\Phi^{-1} \circ \mathrm{FPR}(t)
 =
 \frac{\mu_0-t}{\sigma_0}.
 $$
@@ -588,26 +595,28 @@ Therefore,
 $$
 t-\mu_0
 =
--\sigma_0\,\Phi^{-1}(\mathrm{FPR}(t)).
+-\sigma_0\,\Phi^{-1} \circ \mathrm{FPR}(t).
 $$
 
 Hence
 $$
-\begin{aligned}
+\begin{align*}
 t-\mu_1
-&=
+& =
 (t-\mu_0)-(\mu_1-\mu_0)\\
-&=
--\sigma_0\,\Phi^{-1}(\mathrm{FPR}(t))-(\mu_1-\mu_0),
-\end{aligned}
+& =
+-\sigma_0\,\Phi^{-1} \circ \mathrm{FPR}(t)-(\mu_1-\mu_0),
+\end{align*}
 $$
 and dividing by $\sigma_1$,
 $$
+\begin{align*}
 \frac{t-\mu_1}{\sigma_1}
-=
--\frac{\sigma_0}{\sigma_1}\,\Phi^{-1}(\mathrm{FPR}(t))-\frac{\mu_1-\mu_0}{\sigma_1}
-=
--b\,\Phi^{-1}(\mathrm{FPR}(t))-\Delta.
+& =
+-\frac{\sigma_0}{\sigma_1}\,\Phi^{-1} \circ \mathrm{FPR}(t)-\frac{\mu_1-\mu_0}{\sigma_1}\\
+& =
+-\rho\,\Phi^{-1} \circ \mathrm{FPR}(t)-\Delta.
+\end{align*}
 $$
 
 Substituting this expression into the formula for $\mathrm{TPR}$ gives
@@ -618,7 +627,7 @@ $$
 1-\Phi\!\left(\frac{t-\mu_1}{\sigma_1}\right)\\
 &=
 1-\Phi\left(
--b\,\Phi^{-1}(\mathrm{FPR}(t))-\Delta
+-\rho \,\Phi^{-1} \circ \mathrm{FPR}(t)-\Delta
 \right).
 \end{aligned}
 $$
@@ -628,34 +637,447 @@ $$
 \mathrm{TPR}(t)
 =
 \Phi\left(
-\Delta + b\,\Phi^{-1}(\mathrm{FPR}(t))
-\right).
+\Delta + \rho \,\Phi^{-1} \circ \mathrm{FPR}(t)\right).
 $$
 
-Therefore,
-$$
-\boxed{
-\mathrm{TPR}(t)
-=
-\Phi\left(
-\Delta + b\,\Phi^{-1}(\mathrm{FPR}(t))
-\right)
-}.
-$$
-
-This proves the stated closed-form expression for the theoretical ROC curve.
 
 :::
 
 ::::
 
+
+
+### Table
+
+| $F$ (law of $Z$) | $\mathrm{TPR}(t)$ as a function of $\mathrm{FPR}(t)$ | Symmetric |
+|---|---|---|
+| **Gaussian** $\Phi$ | $\displaystyle \Phi\bigl(\Delta+\rho\,\Phi^{-1}(\mathrm{FPR})\bigr)$ | True |
+| **Cauchy** | $\displaystyle \frac12+\frac1\pi\arctan\Bigl(\Delta+\rho\tan\bigl(\pi(\mathrm{FPR}-\tfrac12)\bigr)\Bigr)$ | True |
+| **Logistic** | $\displaystyle \frac{e^{\Delta}\,\mathrm{FPR}^{\rho}}{e^{\Delta}\,\mathrm{FPR}^{\rho}+(1-\mathrm{FPR})^{\rho}}$ | True |
+| **Uniform** $(-\tfrac{1}{2},\tfrac{1}{2})$ | $\displaystyle \operatorname{clip}\left(\Delta+\frac{1-\rho}{2} +\rho\,\mathrm{FPR}, 0,1 \right)$,| True |
+| **Gumbel** | $\displaystyle 1-\exp\Bigl(-e^\Delta \bigl(-\ln(1-\mathrm{FPR})\bigr)^\rho\Bigr)$,| False |
+
+where throughout $Z_0,Z_1$ are i.i.d. with common continuous CDF $F$, $X_0=\sigma_0Z_0+\mu_0$, $X_1=\sigma_1Z_1+\mu_1$ are independent, $\Delta=(\mu_1-\mu_0)/\sigma_1$, $\rho=\sigma_0/\sigma_1$, and
+
+$$
+\operatorname{clip}(x,0,1):=\max(0,\min(1,x)).
+$$
+
+### A general lemma: location-scale ROC
+
+:::: {#lem-location-scale-roc}
+
+## Location-scale ROC curve
+
+Let $Z_0,Z_1$ be i.i.d. real-valued random variables with common CDF $F$, continuous and strictly increasing on $\{z\in\mathbb R:0<F(z)<1\}$, so that $F^{-1}:(0,1)\to\mathbb R$ is well defined. Fix $\mu_0,\mu_1\in\mathbb R$, $\sigma_0,\sigma_1>0$, and let $X_0:=\sigma_0Z_0+\mu_0$, $X_1:=\sigma_1Z_1+\mu_1$ be independent. Writing $\Delta:=(\mu_1-\mu_0)/\sigma_1$, $\rho:=\sigma_0/\sigma_1$, for every $t$ with $\mathrm{FPR}(t)\in(0,1)$,
+
+$$
+\boxed{
+\mathrm{TPR}(t)
+=
+1-F\Bigl(
+\rho\,F^{-1}\bigl(1-\mathrm{FPR}(t)\bigr)-\Delta
+\Bigr).
+}
+\tag{$\star$}
+$$
+
+::::
+
+:::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('lem-location-scale-roc')"}
+
+[▶]{#proof-arrow-lem-location-scale-roc .proof-arrow} [Proof]{.proof-title}
+
+:::
+
+::: {#proof-content-lem-location-scale-roc .proof-content}
+
+By definition,
+
+$$
+\mathrm{FPR}(t)
+=
+\mathbb P(X_0\ge t)
+=
+\mathbb P\!\left(
+Z_0\ge\frac{t-\mu_0}{\sigma_0}
+\right)
+=
+1-F\!\left(\frac{t-\mu_0}{\sigma_0}\right).
+$$
+
+Whenever $\mathrm{FPR}(t)\in(0,1)$, i.e. $1-\mathrm{FPR}(t)\in(0,1)$, $F^{-1}$ is well defined there and
+
+$$
+\frac{t-\mu_0}{\sigma_0}
+=
+F^{-1}\bigl(1-\mathrm{FPR}(t)\bigr).
+$$
+
+Likewise,
+
+$$
+\mathrm{TPR}(t)
+=
+1-F\!\left(\frac{t-\mu_1}{\sigma_1}\right),
+$$
+
+and
+
+$$
+\frac{t-\mu_1}{\sigma_1}
+=
+\frac{t-\mu_0}{\sigma_1}
+-
+\frac{\mu_1-\mu_0}{\sigma_1}
+=
+\frac{\sigma_0}{\sigma_1}
+\cdot
+\frac{t-\mu_0}{\sigma_0}
+-
+\Delta
+=
+\rho\,F^{-1}\bigl(1-\mathrm{FPR}(t)\bigr)-\Delta.
+$$
+
+Substituting this expression gives $(\star)$.
+
+The outer $F$ requires no monotonicity beyond its ordinary CDF definition, since it is applied to a real number rather than inverted. $\blacksquare$
+
+:::
+
+::::
+
+### Theorem: symmetric location-scale ROC
+
+:::: {#thm-symmetric-roc}
+
+## Symmetric location-scale ROC curve
+
+Under the hypotheses of @lem-location-scale-roc, suppose in addition that $F$ is symmetric:
+
+$$
+F(-x)=1-F(x)
+\qquad\text{for every }x\in\mathbb R.
+$$
+
+Then for every $\mathrm{FPR}\in(0,1)$,
+
+$$
+\boxed{
+\mathrm{TPR}
+=
+F\bigl(\Delta+\rho\,F^{-1}(\mathrm{FPR})\bigr).
+}
+$$
+
+::::
+
+:::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('thm-symmetric-roc')"}
+
+[▶]{#proof-arrow-thm-symmetric-roc .proof-arrow} [Proof]{.proof-title}
+
+:::
+
+::: {#proof-content-thm-symmetric-roc .proof-content}
+
+Fix $\mathrm{FPR}\in(0,1)$ and let
+
+$$
+x:=F^{-1}(\mathrm{FPR}),
+$$
+
+so that $F(x)=\mathrm{FPR}$. By symmetry,
+
+$$
+F(-x)=1-F(x)=1-\mathrm{FPR}.
+$$
+
+Since $1-\mathrm{FPR}\in(0,1)$ as well, uniqueness of $F^{-1}$ on $(0,1)$ gives
+
+$$
+F^{-1}(1-\mathrm{FPR})
+=
+-x
+=
+-F^{-1}(\mathrm{FPR}).
+$$
+
+Substituting into $(\star)$ from @lem-location-scale-roc,
+
+$$
+\begin{aligned}
+\mathrm{TPR}
+&=
+1-F\Bigl(
+-\rho\,F^{-1}(\mathrm{FPR})-\Delta
+\Bigr)\\
+&=
+1-\Bigl(
+1-F\bigl(
+\rho\,F^{-1}(\mathrm{FPR})+\Delta
+\bigr)
+\Bigr)\\
+&=
+F\bigl(
+\Delta+\rho\,F^{-1}(\mathrm{FPR})
+\bigr),
+\end{aligned}
+$$
+
+where the middle step uses symmetry once more, at the point $-\rho F^{-1}(\mathrm{FPR})-\Delta$.
+
+:::
+
+::::
+
+### Applications: the symmetric rows
+
+Each of the following is an immediate instance of @thm-symmetric-roc: verify that $F$ is symmetric, write down $F^{-1}$, and substitute.
+
+**Gaussian.** $F=\Phi$ satisfies
+
+$$
+\Phi(-x)=1-\Phi(x)
+$$
+
+by construction. Substituting gives
+
+$$
+\mathrm{TPR}
+=
+\Phi\bigl(
+\Delta+\rho\,\Phi^{-1}(\mathrm{FPR})
+\bigr),
+$$
+
+which is @thm-gaussian-roc.
+
+**Cauchy.** The standard Cauchy CDF is
+
+$$
+F(x)=\frac12+\frac1\pi\arctan x.
+$$
+
+Since $\arctan$ is odd,
+
+$$
+F(-x)
+=
+\frac12-\frac1\pi\arctan x
+=
+1-F(x).
+$$
+
+Solving
+
+$$
+\frac12+\frac1\pi\arctan(F^{-1}(p))=p
+$$
+
+gives
+
+$$
+F^{-1}(p)
+=
+\tan\bigl(\pi(p-\tfrac12)\bigr).
+$$
+
+Substituting gives the Cauchy entry in the table.
+
+**Logistic.** The logistic CDF is
+
+$$
+F(x)=\frac{1}{1+e^{-x}}.
+$$
+
+It satisfies
+
+$$
+F(-x)
+=
+\frac{1}{1+e^x}
+=
+\frac{e^{-x}}{1+e^{-x}}
+=
+1-F(x),
+$$
+
+and
+
+$$
+F^{-1}(p)
+=
+\ln\frac{p}{1-p}.
+$$
+
+Therefore,
+
+$$
+\begin{aligned}
+\mathrm{TPR}
+&=
+F\Bigl(
+\Delta+\rho\ln\frac{\mathrm{FPR}}{1-\mathrm{FPR}}
+\Bigr)\\
+&=
+\frac{1}{
+1+e^{-\Delta}
+\left(
+\frac{1-\mathrm{FPR}}{\mathrm{FPR}}
+\right)^\rho
+}.
+\end{aligned}
+$$
+
+Multiplying numerator and denominator by $e^\Delta\mathrm{FPR}^\rho$ gives the table entry.
+
+
+
+**Uniform $[-1/2,1/2]$.** The CDF is
+
+$$
+F(z)=
+\begin{cases}
+0, & z<-\frac12,\\
+z+\frac12, & -\frac12\le z\le\frac12,\\
+1, & z>\frac12.
+\end{cases}
+$$
+
+This extended $F$ is symmetric on all of $\mathbb R$, and on $(0,1)$,
+
+$$
+F^{-1}(p)=p-\frac12.
+$$
+
+The theorem therefore gives
+
+$$
+\mathrm{TPR}
+=
+F(u),
+\qquad
+u:=\Delta+\rho\left(\mathrm{FPR}-\frac12\right).
+$$
+
+Since the argument $u$ need not lie in $[-1/2,1/2]$, the outer CDF is explicitly
+
+$$
+\begin{aligned}
+\mathrm{TPR}
+&=
+\operatorname{clip}\left(
+u+\frac12,0,1
+\right)\\
+&=
+\operatorname{clip}\left(
+\Delta+\frac{1-\rho}{2}
++\rho\,\mathrm{FPR},
+0,1
+\right),
+\end{aligned}
+$$
+
+which is the table entry.
+
+
+### The remaining row: Gumbel (not symmetric)
+
+The Gumbel-max CDF is
+
+$$
+F(x)=\exp(-e^{-x}).
+$$
+
+It does not satisfy the symmetry condition, since in general
+
+$$
+F(-x)
+=
+\exp(-e^x)
+\ne
+1-F(x).
+$$
+
+Thus @thm-symmetric-roc does **not** apply, and the Gumbel formula must instead be obtained directly from @lem-location-scale-roc.
+
+Its inverse is
+
+$$
+F^{-1}(p)
+=
+-\ln(-\ln p).
+$$
+
+Substituting into $(\star)$ gives
+
+$$
+\mathrm{TPR}(t)
+=
+1-F\Bigl(
+\rho\bigl(-\ln(-\ln(1-\mathrm{FPR}))\bigr)-\Delta
+\Bigr).
+$$
+
+Let
+
+$$
+w:=-\ln(1-\mathrm{FPR})>0.
+$$
+
+Then the argument of $F$ is $-\rho\ln w-\Delta$, and
+
+$$
+F(-\rho\ln w-\Delta)
+=
+\exp\Bigl(
+-e^{\rho\ln w+\Delta}
+\Bigr)
+=
+\exp\bigl(
+-e^\Delta w^\rho
+\bigr).
+$$
+
+Hence
+
+$$
+\boxed{
+\mathrm{TPR}(\mathrm{FPR})
+=
+1-\exp\Bigl(
+-e^\Delta
+\bigl(-\ln(1-\mathrm{FPR})\bigr)^\rho
+\Bigr).
+}
+$$
+
+This is the Gumbel entry in the table.
+
+This is precisely why the “Symmetric” column matters operationally, not merely descriptively: applying @thm-symmetric-roc's shortcut and computing
+
+$$
+F\bigl(
+\Delta+\rho F^{-1}(\mathrm{FPR})
+\bigr)
+$$
+
+would give the wrong curve for the Gumbel distribution, because $F(-x)\ne1-F(x)$ in general.
+
+
+
 **Interpretation**
 
 The quantity $\Delta = (\mu_1-\mu_0)/\sigma_1$ measures the separation between the distributions of $X_0$ and $X_1$, standardized by the scale $\sigma_1$ of the sick population, while $b=\sigma_0/\sigma_1$ compares the spread of the two classes. Together they control both the difficulty and the *shape* of the discrimination problem.
 
-* **Equal variances ($\sigma_0=\sigma_1=\sigma$).** Then $b=1$ and $\Delta=(\mu_1-\mu_0)/\sigma$ reduces to the usual mean-separation index, recovering the symmetric binormal model $\mathrm{TPR}=\Phi(\Phi^{-1}(\mathrm{FPR})+\Delta)$: a concave ROC curve, symmetric about the anti-diagonal $\mathrm{TPR}+\mathrm{FPR}=1$.
+* **Equal variances ($\sigma_0=\sigma_1=\sigma$).** Then $\rho = 1$ and $\Delta = (\mu_1-\mu_0) / \sigma$ reduces to the usual mean-separation index, recovering the symmetric binormal model $\mathrm{TPR}=\Phi(\Phi^{-1}(\mathrm{FPR})+\Delta)$: a concave ROC curve, symmetric about the anti-diagonal $\mathrm{TPR}+\mathrm{FPR}=1$.
 
-* **If $\Delta=0$** (i.e. $\mu_1=\mu_0$) **and $b=1$** (i.e. $\sigma_0=\sigma_1$), then $X_0$ and $X_1$ share the same law $\mathcal N(\mu_0,\sigma_0^2)$: the two cases are indistinguishable, since
+* **If $\Delta=0$** (*i.e.,* $\mu_1=\mu_0$) **and $\rho = 1$** (*i.e.,* $\sigma_0=\sigma_1$), then $X_0$ and $X_1$ share the same law $\mathcal N(\mu_0,\sigma_0^2)$: the two cases are indistinguishable, since
   $$
   X_0
   \stackrel{d}{=}
@@ -663,19 +1085,27 @@ The quantity $\Delta = (\mu_1-\mu_0)/\sigma_1$ measures the separation between t
   $$
   The ROC curve consequently reduces to the diagonal line, *i.e.,* the random-guessing case described above. Note that $\Delta=0$ alone is not sufficient for this when $\sigma_0\ne\sigma_1$: equal means with unequal variances still yield a (non-degenerate, S-shaped) ROC curve, since the two classes remain distinguishable through their spread.
 
-* **Unequal variances ($\sigma_0\ne\sigma_1$).** The curve $\mathrm{TPR}=\Phi(\Delta+b\,\Phi^{-1}(\mathrm{FPR}))$ is no longer symmetric about the anti-diagonal, and need not be concave everywhere: if $\sigma_1>\sigma_0$ (i.e. $b<1$, the sick population more dispersed than the healthy one), the curve can dip back toward the diagonal near one corner before rising again — a non-concave, S-shaped ROC curve that is a useful cautionary example, since real assay data sometimes exhibits exactly this pattern.
+* **Unequal variances ($\sigma_0\ne\sigma_1$).** The curve $\mathrm{TPR}=\Phi(\Delta + \rho\,\Phi^{-1}(\mathrm{FPR}))$ is no longer symmetric about the anti-diagonal, and need not be concave everywhere: if $\sigma_1>\sigma_0$ (*i.e.,* $\rho<1$, the sick population more dispersed than the healthy one), the curve can dip back toward the diagonal near one corner before rising again — a non-concave, S-shaped ROC curve that is a useful cautionary example, since real assay data sometimes exhibits exactly this pattern.
 
-* As $\Delta$ increases (for fixed $b$), the distributions of $X_0$ and $X_1$ become increasingly separated in location, and the ROC curve moves progressively above the diagonal, indicating improved discrimination between healthy ($Y=0$) and sick ($Y=1$) individuals. In the limiting case $\Delta\to\infty$, the two distributions become perfectly separated, and the ROC curve approaches the ideal ROC curve of the perfect-separation case, passing through the corner $(0,1)$.
+* As $\Delta$ increases (for fixed a $\rho$), the distributions of $X_0$ and $X_1$ become increasingly separated in location, and the ROC curve moves progressively above the diagonal, indicating improved discrimination between healthy ($Y=0$) and sick ($Y=1$) individuals. In the limiting case $\Delta\to\infty$, the two distributions become perfectly separated, and the ROC curve approaches the ideal ROC curve of the perfect-separation case, passing through the corner $(0,1)$.
 
 
-::::
+**Visualization**
+
+The widget below lets you explore @thm-gaussian-roc interactively. Use the sliders on the left to set $\mu_0,\sigma_0$ (healthy class) and $\mu_1,\sigma_1$ (sick class), and drag the **Threshold** slider to move $t$.
+
+- The **middle panel** shows the two population densities plotted vertically: $X_1$ (sick) on the left in blue, $X_0$ (healthy) on the right in red. The horizontal black line marks the current threshold $t$; the darker-shaded region of each density is $\{X\le t\}$ (the portion of that class predicted *negative* under the rule $\hat Y_t=\mathbb 1\{X\ge t\}$) while the lighter region above the line is predicted *positive*.
+- The **right panel** shows the theoretical ROC curve for the current $(\mu_0,\sigma_0,\mu_1,\sigma_1)$, with the dashed diagonal as the random-guessing reference (@thm-random-guessing) and a marker at the operating point $(\mathrm{FPR}(t),\mathrm{TPR}(t))$ corresponding to the threshold you've selected, so you can see exactly which point on the curve a given threshold produces, and watch the curve itself deform as you change the means, standard deviations, or their ratio $\rho=\sigma_0/\sigma_1$.
+
+The title above the plot reports the current $\Delta=(\mu_1-\mu_0)/\sigma_1$, $\rho = \sigma_0/\sigma_1$, and the resulting AUC.
+
 
 ```{=html}
 <div id="gaussian-roc-interactive"
      class="gaussian-roc-interactive"
      style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
-  <div class="gaussian-controls"
+  <div class="gaussian-roc-controls"
        style="display:flex; flex-direction:column; justify-content:center;
               min-width:150px; flex:0 0 150px;
               border:1px solid rgba(0,0,0,0.15);
@@ -683,7 +1113,7 @@ The quantity $\Delta = (\mu_1-\mu_0)/\sigma_1$ measures the separation between t
               background:rgba(0,0,0,0.02);">
   </div>
 
-  <div class="gaussian-plot"
+  <div class="gaussian-roc-plot"
        style="flex:1 1 auto; min-width:520px; max-width:1050px;
               display:flex; align-items:center;">
   </div>
@@ -692,7 +1122,6 @@ The quantity $\Delta = (\mu_1-\mu_0)/\sigma_1$ measures the separation between t
 
 <script type="module" src="gaussian_roc_interactive.js"></script>
 ```
-
 ### Exponential case
 
 For assays whose measured level $X$ is inherently nonnegative (e.g. a viral load, a reaction time, a concentration), an exponential model is often a more natural first choice than a Gaussian one. We consider it here as it also gives a genuinely different ROC shape from the sigmoidal one seen in the Gaussian case — a plain power law.
@@ -760,7 +1189,7 @@ $$
 & = \mathrm{FPR}(t)^{\theta}.
 \end{align*}
 $$
-Writing $s=\mathrm{FPR}(t)$, this is $\mathrm{TPR}=s^\theta$ for $s\in(0,1]$; extending to $s=0$ by continuity (both sides $\to0$ as $t\to\infty$, i.e., $s\to0^+$) gives the boxed identity for all $s\in[0,1]$.
+Writing $s=\mathrm{FPR}(t)$, this is $\mathrm{TPR}=s^\theta$ for $s\in(0,1]$; extending to $s=0$ by continuity (both sides $\to0$ as $t\to\infty$,*i.e.,*$s\to0^+$) gives the boxed identity for all $s\in[0,1]$.
 
 **Step 3: AUC.** Since $\theta>0$, $s\mapsto s^\theta$ is continuous on $[0,1]$, so
 $$
@@ -778,7 +1207,7 @@ $$
 **Interpretation.**
 
 - *A concave power law* Since $\theta\in(0,1)$, $s\mapsto s^\theta$ is strictly concave on $[0,1]$ — consistent with the general fact that a monotone likelihood ratio (here $f_1(x)/f_0(x) = \theta\, e^{(\lambda_0-\lambda_1)x}$, increasing in $x$ since $\lambda_0>\lambda_1$) forces a concave ROC curve — but its shape is qualitatively different from the Gaussian case's $\Phi(\Phi^{-1}(\cdot)+\Delta)$: no inflection point, and it touches the diagonal only at the corners $(0,0)$ and $(1,1)$.
-- *Recovering random guessing.* If $\lambda_0=\lambda_1$ (equivalently $\theta=1$), then $X_0\stackrel{d}{=}X_1$ and the formula collapses to $\mathrm{TPR}=\mathrm{FPR}$, the diagonal of @thm-random-guessing, with $\mathrm{AUC}=1/2$ — as it must, by @lem-roc-endpoints and @thm-roc-monotonicity.
+- *Recovering random guessing.* If $\lambda_0=\lambda_1$ (equivalently $\theta=1$), then $X_0\stackrel{d}{=}X_1$ and the formula collapses to $\mathrm{TPR}=\mathrm{FPR}$, the diagonal of @thm-random-guessing, with $\mathrm{AUC}=1/2$ (in accordance with @lem-roc-endpoints and @thm-roc-monotonicity).
 - *Approaching perfect separation.* As $\theta\to0^+$ (i.e., $\lambda_1\ll\lambda_0$, the sick class has a much larger mean than the healthy class), $s^\theta\to1$ for every fixed $s\in(0,1]$, so the curve approaches the step function through $(0,1)$: the perfect-separation case of @thm-perfect-separation, with $\mathrm{AUC}\to1$.
 
 
@@ -789,7 +1218,7 @@ $$
      class="exponential-roc-interactive"
      style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
-  <div class="exponential-controls"
+  <div class="exponential-roc-controls"
        style="display:flex; flex-direction:column; justify-content:center;
               min-width:150px; flex:0 0 150px;
               border:1px solid rgba(0,0,0,0.15);
@@ -797,7 +1226,7 @@ $$
               background:rgba(0,0,0,0.02);">
   </div>
 
-  <div class="exponential-plot"
+  <div class="exponential-roc-plot"
        style="flex:1 1 auto; min-width:520px; max-width:1050px;
               display:flex; align-items:center;">
   </div>
@@ -806,8 +1235,6 @@ $$
 
 <script type="module" src="exponential_roc_interactive.js"></script>
 ```
-
-
 
 
 
@@ -1401,7 +1828,7 @@ We return to the general Gaussian model of @thm-gaussian-roc,
 $$
 X_0\sim\mathcal N(\mu_0,\sigma_0^2), \qquad X_1\sim\mathcal N(\mu_1,\sigma_1^2), \qquad \mu_1>\mu_0,\ \sigma_0,\sigma_1>0,
 $$
-with standardized separation $\Delta=(\mu_1-\mu_0)/\sigma_1>0$ and scale ratio $b=\sigma_0/\sigma_1>0$, and combine it with @thm-precision-formula to obtain a closed form for the Precision-Recall curve, at a fixed prevalence $\pi=\mathbb P(Y=1)$.
+with standardized separation $\Delta=(\mu_1-\mu_0)/\sigma_1>0$ and scale ratio $\rho=\sigma_0/\sigma_1>0$, and combine it with @thm-precision-formula to obtain a closed form for the Precision-Recall curve, at a fixed prevalence $\pi=\mathbb P(Y=1)$.
 
 :::: {#thm-gaussian-pr}
 
@@ -1410,7 +1837,7 @@ with standardized separation $\Delta=(\mu_1-\mu_0)/\sigma_1>0$ and scale ratio $
 Under the model above, with prevalence $\pi\in(0,1)$, the theoretical Precision-Recall curve has the closed-form expression
 $$
 \boxed{
-\mathrm{Precision}(r) = \frac{\pi\, r}{\pi\, r + (1-\pi)\,\Phi\!\left(\dfrac{\Phi^{-1}(r)-\Delta}{b}\right)}
+\mathrm{Precision}(r) = \frac{\pi\, r}{\pi\, r + (1-\pi)\,\Phi\!\left(\dfrac{\Phi^{-1}(r)-\Delta}{\rho}\right)}
 }, \qquad r=\mathrm{Recall}(t)\in(0,1),
 $$
 with limiting endpoint at $r=1$
@@ -1418,15 +1845,15 @@ $$
 \boxed{
 \mathrm{Precision}(1) = \pi
 }
-\qquad\text{(independent of }\Delta,b\text{)},
+\qquad\text{(independent of }\Delta,\rho \text{)},
 $$
 while the endpoint at $r\to0^+$ depends on how the two scales $\sigma_0,\sigma_1$ compare:
 $$
 \boxed{
-\lim_{r\to0^+}\mathrm{Precision}(r) =
+\lim_{r \to 0^+}\mathrm{Precision}(r) =
 \begin{cases}
-1, & \sigma_0\le\sigma_1 \quad(\text{i.e. } b\le1),\\[4pt]
-0, & \sigma_0>\sigma_1 \quad(\text{i.e. } b>1).
+1, & \sigma_0\le\sigma_1 \quad(\text{i.e., } \rho\le1),\\[4pt]
+0, & \sigma_0>\sigma_1 \quad(\text{i.e., } \rho>1).
 \end{cases}
 }
 $$
@@ -1446,20 +1873,20 @@ $$
 \mathrm{Precision}(t) = \frac{\pi\Bigl(1-\Phi\bigl(\frac{t-\mu_1}{\sigma_1}\bigr)\Bigr)}{\pi\Bigl(1-\Phi\bigl(\frac{t-\mu_1}{\sigma_1}\bigr)\Bigr) + (1-\pi)\Bigl(1-\Phi\bigl(\frac{t-\mu_0}{\sigma_0}\bigr)\Bigr)}.
 $$
 
-**Step 2: Eliminate the threshold.** The boxed identity of @thm-gaussian-roc, $\mathrm{TPR}=\Phi\bigl(\Delta+b\,\Phi^{-1}(\mathrm{FPR})\bigr)$, holds for every threshold $t$. Since $\Phi:\mathbb R\to(0,1)$ is a strictly increasing bijection, it may be inverted on both sides:
+**Step 2: Eliminate the threshold.** The boxed identity of @thm-gaussian-roc, $\mathrm{TPR}=\Phi\bigl(\Delta+\rho \,\Phi^{-1}(\mathrm{FPR})\bigr)$, holds for every threshold $t$. Since $\Phi:\mathbb R\to(0,1)$ is a strictly increasing bijection, it may be inverted on both sides:
 $$
-\mathrm{TPR}=\Phi\bigl(\Delta+b\,\Phi^{-1}(\mathrm{FPR})\bigr)
+\mathrm{TPR}=\Phi\bigl(\Delta + \rho\,\Phi^{-1}(\mathrm{FPR})\bigr)
 \quad\Longleftrightarrow\quad
-\Phi^{-1}(\mathrm{TPR}) = \Delta+b\,\Phi^{-1}(\mathrm{FPR})
+\Phi^{-1}(\mathrm{TPR}) = \Delta + \rho\,\Phi^{-1}(\mathrm{FPR})
 \quad\Longleftrightarrow\quad
-\mathrm{FPR}=\Phi\!\left(\frac{\Phi^{-1}(\mathrm{TPR})-\Delta}{b}\right).
+\mathrm{FPR}=\Phi\!\left(\frac{\Phi^{-1}(\mathrm{TPR})-\Delta}{\rho}\right).
 $$
-Writing $r:=\mathrm{TPR}(t)=\mathrm{Recall}(t)$, this becomes $\mathrm{FPR}(t)=\Phi\!\left(\frac{\Phi^{-1}(r)-\Delta}{b}\right)$, which depends on $t$ only through $r$. Substituting into Step 1 eliminates $t$ entirely:
+Writing $r:=\mathrm{TPR}(t)=\mathrm{Recall}(t)$, this becomes $\mathrm{FPR}(t)=\Phi\!\left(\frac{\Phi^{-1}(r)-\Delta}{\rho}\right)$, which depends on $t$ only through $r$. Substituting into Step 1 eliminates $t$ entirely:
 $$
-\mathrm{Precision}(r) = \frac{\pi\, r}{\pi\, r + (1-\pi)\,\Phi\!\left(\dfrac{\Phi^{-1}(r)-\Delta}{b}\right)}, \qquad r\in(0,1).
+\mathrm{Precision}(r) = \frac{\pi\, r}{\pi\, r + (1-\pi)\,\Phi\!\left(\dfrac{\Phi^{-1}(r)-\Delta}{\rho}\right)}, \qquad r\in(0,1).
 $$
 
-**Step 3: Endpoint at $r=1$.** This is the threshold $t\to-\infty$: $\Phi^{-1}(1)=+\infty$, and since $b>0$, $\frac{\Phi^{-1}(1)-\Delta}{b}=+\infty$, so $\Phi\!\left(\frac{\Phi^{-1}(1)-\Delta}{b}\right)=\Phi(+\infty)=1$. The formula gives directly
+**Step 3: Endpoint at $r=1$.** This is the threshold $t\to-\infty$: $\Phi^{-1}(1)=+\infty$, and since $b>0$, $\frac{\Phi^{-1}(1)-\Delta}{\rho}=+\infty$, so $\Phi\!\left(\frac{\Phi^{-1}(1)-\Delta}{\rho}\right)=\Phi(+\infty)=1$. The formula gives directly
 $$
 \mathrm{Precision}(1) = \frac{\pi\cdot1}{\pi\cdot1+(1-\pi)\cdot1} = \pi,
 $$
@@ -1516,9 +1943,9 @@ $$
 
 * **$\sigma_0>\sigma_1$ (healthy population *more* dispersed than the sick one).** The $r\to0^+$ endpoint drops to $\mathbf 0$: at extremely high thresholds, the heavier right tail of the (more dispersed) healthy class eventually contributes *more* false positives than the sick class contributes true positives, so precision degrades to zero rather than improving to perfect precision as recall shrinks. This is a genuinely new phenomenon relative to the equal-variance case, and mirrors the non-concave, S-shaped ROC curve noted in @thm-gaussian-roc's interpretation for this same regime — both are manifestations of the healthy population's heavier tail dominating at extreme thresholds.
 
-* **Recovering the random-guessing baseline.** If $\Delta=0$ and $b=1$ (i.e. $\mu_0=\mu_1$ and $\sigma_0=\sigma_1$), then $\Phi\!\left(\frac{\Phi^{-1}(r)-\Delta}{b}\right)=\Phi(\Phi^{-1}(r))=r$ for every $r$, and the formula collapses to $\mathrm{Precision}(r)=\pi r/(\pi r+(1-\pi)r)=\pi$ for all $r\in(0,1)$ — the flat line at height $\pi$ identified in @thm-random-pr, as it must, since this is exactly $X_0\stackrel{d}{=}X_1$.
+* **Recovering the random-guessing baseline.** If $\Delta=0$ and $b=1$ (i.e. $\mu_0=\mu_1$ and $\sigma_0=\sigma_1$), then $\Phi\!\left(\frac{\Phi^{-1}(r)-\Delta}{\rho}\right)=\Phi(\Phi^{-1}(r))=r$ for every $r$, and the formula collapses to $\mathrm{Precision}(r)=\pi r/(\pi r+(1-\pi)r)=\pi$ for all $r\in(0,1)$ — the flat line at height $\pi$ identified in @thm-random-pr, as it must, since this is exactly $X_0\stackrel{d}{=}X_1$.
 
-* **Approaching the ideal curve as $\Delta\to\infty$ (fixed $b$).** For any fixed $r\in(0,1)$, letting $\Delta\to\infty$ sends $\frac{\Phi^{-1}(r)-\Delta}{b}\to-\infty$ and hence $\Phi\!\left(\frac{\Phi^{-1}(r)-\Delta}{b}\right)\to0$, giving $\mathrm{Precision}(r)\to1$ for every $r\in(0,1)$ — while $\mathrm{Precision}(1)=\pi$ always. In the limit, the curve is flat at $1$ except for a drop to $\pi$ exactly at $r=1$: the same perfect-separation Precision-Recall curve as in the equal-variance case, now reached along any fixed scale ratio $b$.
+* **Approaching the ideal curve as $\Delta\to\infty$ (fixed $b$).** For any fixed $r\in(0,1)$, letting $\Delta\to\infty$ sends $\frac{\Phi^{-1}(r)-\Delta}{\rho}\to-\infty$ and hence $\Phi\!\left(\frac{\Phi^{-1}(r)-\Delta}{\rho}\right)\to0$, giving $\mathrm{Precision}(r)\to1$ for every $r\in(0,1)$ — while $\mathrm{Precision}(1)=\pi$ always. In the limit, the curve is flat at $1$ except for a drop to $\pi$ exactly at $r=1$: the same perfect-separation Precision-Recall curve as in the equal-variance case, now reached along any fixed scale ratio $b$.
 
 
 ```{=html}
@@ -2442,7 +2869,7 @@ with open('roc_data_imbalanced.json', 'w') as f:
 
 ### Interactive exploration: assay results, ROC curve and precision/recall curve
 
-The widget below lets you select one or more assays (the first checked one is the **primary** assay, driving the threshold slider) and move the classification **threshold** (log scale): the left panel shows individual sample results split by true status *for the primary assay only*, the middle panel overlays the ROC curves of all selected assays, and the right panel overlays the corresponding precision/recall curves (AP stands for **Average Precision**, i.e., the area under the precision/recall curve). The dashed grey line / grey cross indicate the manufacturer's recommended threshold (Reco. point), when available. 
+The widget below lets you select one or more assays (the first checked one is the **primary** assay, driving the threshold slider) and move the classification **threshold** (log scale): the left panel shows individual sample results split by true status *for the primary assay only*, the middle panel overlays the ROC curves of all selected assays, and the right panel overlays the corresponding precision/recall curves (AP stands for **Average Precision**,*i.e.,*the area under the precision/recall curve). The dashed grey line / grey cross indicate the manufacturer's recommended threshold (Reco. point), when available. 
 
 ```{=html}
 <div id="roc-interactive"
