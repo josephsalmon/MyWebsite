@@ -56,8 +56,7 @@ export async function initRocWidget(container, jsonPath) {
   const FONT_FAMILY = 'Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
 
   // Qualitative palette used to distinguish overlaid assay curves.
-  const PALETTE = ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3',
-    '#ff7f00', '#a65628', '#f781bf'];
+  const PALETTE = ['#000000ff','#ff7f00', '#693775ff', '#4daf4a', '#c4769fff', '#8b8c8dff', '#377eb8',  ];
   const assayColor = {};
   assayNames.forEach((name, i) => { assayColor[name] = PALETTE[i % PALETTE.length]; });
 
