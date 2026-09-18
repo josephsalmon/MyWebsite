@@ -7,12 +7,13 @@
 // Delta = (mu1 - mu0) / sigma1
 // rho   = sigma0 / sigma1
 //
-// The five standardized distributions are:
+// The six standardized distributions are:
 //   Gaussian
 //   Cauchy
 //   Logistic
 //   Uniform [-1/2, 1/2]
 //   Gumbel (max)
+//   Exponential
 // ------------------------------------------------------------
 
 
@@ -116,6 +117,17 @@ function gumbelPdf(z) {
 }
 
 
+// ---------- Exponential(1) ----------
+
+function exponentialCdf(z) {
+  return z >= 0 ? 1 - Math.exp(-z) : 0;
+}
+
+function exponentialPdf(z) {
+  return z >= 0 ? Math.exp(-z) : 0;
+}
+
+
 // ============================================================
 // Distribution registry
 // ============================================================
@@ -154,6 +166,13 @@ export const distributions = {
     symmetric: false,
     cdf: gumbelCdf,
     pdf: gumbelPdf,
+  },
+
+  exponential: {
+    label: 'Exponential',
+    symmetric: false,
+    cdf: exponentialCdf,
+    pdf: exponentialPdf,
   },
 };
 
@@ -265,6 +284,12 @@ export function distributionTpr(t, p) {
 //
 // The Gumbel case is evaluated directly from the general
 // location-scale expression.
+//
+// The Exponential case uses the closed form
+//
+//   TPR = min( e^Delta * FPR^rho, 1 )
+//
+// (table entry).
 // ============================================================
 
 export function distributionRocFromFpr(fpr, p) {
@@ -275,6 +300,14 @@ export function distributionRocFromFpr(fpr, p) {
 
   // Keep the argument away from exactly 0 and 1.
   const x = Math.min(1 - 1e-12, Math.max(1e-12, fpr));
+
+  // ----------------------------------------------------------
+  // Exponential: TPR = min(e^Delta * FPR^rho, 1)
+  // ----------------------------------------------------------
+
+  if (p.distribution === 'exponential') {
+    return Math.min(Math.exp(Delta) * Math.pow(x, rho), 1);
+  }
 
   // ----------------------------------------------------------
   // Symmetric distributions
@@ -328,6 +361,9 @@ export function inverseCdf(p, distribution) {
 
     case 'gumbel':
       return -Math.log(-Math.log(x));
+
+    case 'exponential':
+      return -Math.log(1 - x);
 
     default:
       return normalInverse(x);
@@ -455,6 +491,18 @@ export function distributionYDomain(p) {
         ),
       ];
 
+    case 'exponential':
+      return [
+        Math.min(
+          p.mu0 - 0.5 * p.sigma0,
+          p.mu1 - 0.5 * p.sigma1
+        ),
+        Math.max(
+          p.mu0 + 5 * p.sigma0,
+          p.mu1 + 5 * p.sigma1
+        ),
+      ];
+
     case 'gaussian':
     default:
       return [
@@ -475,7 +523,7 @@ export function distributionYDomain(p) {
 // AUC
 //
 // Numerically integrate the theoretical ROC curve.
-// This works uniformly for all five distributions.
+// This works uniformly for all six distributions.
 // ============================================================
 
 export function distributionAuc(p) {
@@ -537,6 +585,7 @@ export function addDistributionSelector(container, controlsSelector) {
     ['logistic', 'Logistic'],
     ['uniform', 'Uniform [-1/2, 1/2]'],
     ['gumbel', 'Gumbel (max)'],
+    ['exponential', 'Exponential'],
   ];
 
   names.forEach(([value, label], i) => {
