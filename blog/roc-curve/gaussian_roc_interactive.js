@@ -55,21 +55,12 @@ const locationScaleRocModel = {
   },
 
   titleFn(p, auc) {
-
     const Delta = (p.mu1 - p.mu0) / p.sigma1;
     const rho = p.sigma0 / p.sigma1;
-
     const dist = distributions[p.distribution || 'gaussian'];
 
-    // Kept short and on one line (no "model", no spaces around "="):
-    // a long, wrapped title otherwise gets clipped against the top of
-    // the plot's reserved title margin.
-    return (
-      `${dist.label}  —  ` +
-      // `Δ=${Delta.toFixed(2)}, ρ=${rho.toFixed(2)}, AUC=${auc.toFixed(3)}`
-      `Δ=${Delta.toFixed(2)}, ρ=${rho.toFixed(2)}`
-
-    );
+    // Single-line title with minimal spacing to prevent clipping
+    return `${dist.label} — Δ=${Delta.toFixed(2)}, ρ=${rho.toFixed(2)}`;
   },
 
   curve: {

@@ -1,16 +1,4 @@
-// Single-panel ROC plot: fixed Gaussian model (mu0=0, sigma0=1, mu1=1,
-// sigma1=1), with reference curves for perfect / random / "always wrong"
-// classification, the Gaussian ROC curve itself, and its symmetrized
-// (reversed-test) curve. A single threshold slider drives two markers:
-// the operating point (FPR(t), TPR(t)) and its reflection through
-// (0.5, 0.5), which is exactly the operating point of the reversed
-// decision rule {X < t} instead of {X >= t}, since
-//   FPR_rev(t) = P(X0 < t) = 1 - FPR(t),  TPR_rev(t) = 1 - TPR(t).
-//
-// Self-contained: only needs the standard normal CDF, so it does not
-// import from gaussian_distribution.js (avoids any export-name drift
-// between files).
-
+// Single-panel ROC plot: fixed Gaussian model (mu0=0, sigma0=1, mu1=1, sigma1=1)
 const FONT_FAMILY = 'Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
 
 function erf(x) {
@@ -22,24 +10,49 @@ function erf(x) {
   const y = 1 - (((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t) * Math.exp(-z * z);
   return sign * y;
 }
-function Phi(x) { return 0.5 * (1 + erf(x / Math.SQRT2)); }
 
-// Fixed model parameters for this figure (mu0=0, sigma0=1, mu1=1, sigma1=1).
-function fprAt(t) { return 1 - Phi(t); }        // FPR(t) = 1 - Phi((t-mu0)/sigma0)
-function tprAt(t) { return 1 - Phi(t - 1); }    // TPR(t) = 1 - Phi((t-mu1)/sigma1)
+function Phi(x) {
+  return 0.5 * (1 + erf(x / Math.SQRT2));
+}
+
+function fprAt(t) {
+  return 1 - Phi(t);
+}
+
+function tprAt(t) {
+  return 1 - Phi((t - 1)/2);
+}
 
 function rocPoint(t) {
   return { fpr: fprAt(t), tpr: tprAt(t) };
 }
 
-function rocCurve(tMin, tMax, num = 400) {
-  const fpr = [], tpr = [];
+function reversedTestRocPoint(t) {
+  const pt = rocPoint(t);
+  return { fpr: 1 - pt.fpr, tpr: 1 - pt.tpr };
+}
+
+function classInversionRocPoint(t) {
+  const pt = rocPoint(t);
+  return { fpr: pt.tpr, tpr: pt.fpr };
+}
+
+function classInversionReversedRocPoint(t) {
+  const pt = rocPoint(t);
+  return { fpr: 1 - pt.tpr, tpr: 1 - pt.fpr };
+}
+
+function rocCurve(pointFn, tMin, tMax, num = 400) {
+  const fpr = [];
+  const tpr = [];
+
   for (let i = 0; i <= num; i++) {
     const t = tMin + (tMax - tMin) * i / num;
-    const pt = rocPoint(t);
+    const pt = pointFn(t);
     fpr.push(pt.fpr);
     tpr.push(pt.tpr);
   }
+
   const idx = fpr.map((_, i) => i).sort((a, b) => fpr[a] - fpr[b]);
   return { x: idx.map(i => fpr[i]), y: idx.map(i => tpr[i]) };
 }
@@ -48,126 +61,202 @@ export async function initGaussianSymmetricRocWidget(container) {
   const controlsDiv = container.querySelector('.gaussian-symmetric-roc-controls');
   const plotDiv = container.querySelector('.gaussian-symmetric-roc-plot');
 
-  // --- Control panel: a single threshold slider, same layout/format as
-  // the threshold control in the other widgets in this series. ----------
+  // Threshold control
+  const tMin = -4;
+  const tMax = 5;
 
-  const tMin = -4, tMax = 5; // covers +/- 4-5 sd around both means
+  const thresholdLabel = document.createElement('div');
+  thresholdLabel.textContent = 'Threshold';
+  thresholdLabel.style.fontFamily = FONT_FAMILY;
+  thresholdLabel.style.fontWeight = '600';
+  thresholdLabel.style.fontSize = '9.5px';
+  thresholdLabel.style.marginBottom = '4px';
+  controlsDiv.appendChild(thresholdLabel);
 
-  const label = document.createElement('div');
-  label.textContent = 'Threshold';
-  label.style.fontFamily = FONT_FAMILY;
-  label.style.fontWeight = '600';
-  label.style.fontSize = '9.5px';
-  label.style.marginBottom = '4px';
-  controlsDiv.appendChild(label);
+  const thresholdSlider = document.createElement('input');
+  thresholdSlider.type = 'range';
+  thresholdSlider.min = tMin;
+  thresholdSlider.max = tMax;
+  thresholdSlider.step = (tMax - tMin) / 500;
+  thresholdSlider.value = 0.5;
+  thresholdSlider.style.width = '100%';
+  controlsDiv.appendChild(thresholdSlider);
 
-  const slider = document.createElement('input');
-  slider.type = 'range';
-  slider.min = tMin;
-  slider.max = tMax;
-  slider.step = (tMax - tMin) / 500;
-  slider.value = 0.5;
-  slider.style.width = '100%';
-  controlsDiv.appendChild(slider);
+  const thresholdValueLabel = document.createElement('div');
+  thresholdValueLabel.style.marginTop = '4px';
+  thresholdValueLabel.style.textAlign = 'center';
+  thresholdValueLabel.style.fontFamily = FONT_FAMILY;
+  thresholdValueLabel.style.fontSize = '9px';
+  thresholdValueLabel.style.color = '#555';
+  controlsDiv.appendChild(thresholdValueLabel);
 
-  const valueLabel = document.createElement('div');
-  valueLabel.style.marginTop = '4px';
-  valueLabel.style.textAlign = 'center';
-  valueLabel.style.fontFamily = FONT_FAMILY;
-  valueLabel.style.fontSize = '9px';
-  valueLabel.style.color = '#555';
-  controlsDiv.appendChild(valueLabel);
-
-  function updateValueLabel() {
-    valueLabel.textContent = 'Threshold = ' + parseFloat(slider.value).toPrecision(3);
+  function updateThresholdValueLabel() {
+    thresholdValueLabel.textContent = 'Threshold = ' + parseFloat(thresholdSlider.value).toPrecision(3);
   }
-  updateValueLabel();
+  updateThresholdValueLabel();
 
-  // Small legend explaining the two markers.
+  // Prevalence slider (doesn't affect ROC curve)
+  const prevalenceLabel = document.createElement('div');
+  prevalenceLabel.textContent = 'Prevalence (π)';
+  prevalenceLabel.style.fontFamily = FONT_FAMILY;
+  prevalenceLabel.style.fontWeight = '600';
+  prevalenceLabel.style.fontSize = '9.5px';
+  prevalenceLabel.style.margin = '8px 0 4px 0';
+  controlsDiv.appendChild(prevalenceLabel);
+
+  const prevalenceSlider = document.createElement('input');
+  prevalenceSlider.type = 'range';
+  prevalenceSlider.min = 0.01;
+  prevalenceSlider.max = 0.99;
+  prevalenceSlider.step = 0.01;
+  prevalenceSlider.value = 0.5;
+  prevalenceSlider.style.width = '100%';
+  controlsDiv.appendChild(prevalenceSlider);
+
+  const prevalenceValueLabel = document.createElement('div');
+  prevalenceValueLabel.style.marginTop = '4px';
+  prevalenceValueLabel.style.textAlign = 'center';
+  prevalenceValueLabel.style.fontFamily = FONT_FAMILY;
+  prevalenceValueLabel.style.fontSize = '9px';
+  prevalenceValueLabel.style.color = '#555';
+  controlsDiv.appendChild(prevalenceValueLabel);
+
+  function updatePrevalenceValueLabel() {
+    prevalenceValueLabel.textContent = 'π = ' + parseFloat(prevalenceSlider.value).toFixed(2);
+  }
+  updatePrevalenceValueLabel();
+
+  // Legend with two columns
   const legendRow = document.createElement('div');
   legendRow.style.marginTop = '10px';
   legendRow.style.fontFamily = FONT_FAMILY;
   legendRow.style.fontSize = '8.5px';
   legendRow.style.color = '#555';
   legendRow.style.lineHeight = '1.5';
+  legendRow.style.display = 'grid';
+  legendRow.style.gridTemplateColumns = '1fr';
+  legendRow.style.gap = '4px 8px';
+
   legendRow.innerHTML = `
-    <div style="display:flex; align-items:center; gap:4px; margin-bottom:2px;">
+    <div style="display:flex; align-items:center; gap:4px;">
       <span style="width:8px; height:8px; border-radius:50%; background:white; border:2px solid black; display:inline-block;"></span>
-      operating point
+      ROC curve
     </div>
     <div style="display:flex; align-items:center; gap:4px;">
       <span style="width:8px; height:8px; border-radius:50%; background:white; border:2px solid #999; display:inline-block;"></span>
-      reversed test
-    </div>`;
+      Reversed rule
+    </div>
+    <div style="display:flex; align-items:center; gap:4px;">
+      <span style="width:8px; height:8px; border-radius:50%; background:white; border:2px solid #777; display:inline-block;"></span>
+      Class inversion
+    </div>
+    <div style="display:flex; align-items:center; gap:4px;">
+      <span style="width:8px; height:8px; border-radius:50%; background:white; border:2px solid #555; display:inline-block;"></span>
+      Class inv. + reversed
+    </div>
+    <div style="display:flex; align-items:center; gap:4px;">
+      <span style="width:8px; height:8px; border-radius:50%; background:white; border:2px solid #cccccc; display:inline-block;"></span>
+      Perfect
+    </div>
+    <div style="display:flex; align-items:center; gap:4px;">
+      <span style="width:8px; height:8px; border:1px solid #cccccc; display:inline-block;"></span>
+      Random
+    </div>
+    <div style="display:flex; align-items:center; gap:4px;">
+      <span style="width:8px; height:8px; border:1px dashed #cccccc; display:inline-block;"></span>
+      Always wrong
+    </div>
+  `;
   controlsDiv.appendChild(legendRow);
 
-  // --- Reference curves (computed once — they don't depend on the
-  // threshold): perfect / random / "always wrong" classification, all
-  // kept visually secondary (light gray) so the Gaussian ROC curve reads
-  // as the main subject of the plot without being named as such. --------
-
+  // Pre-compute curves
   const perfectCurve = { x: [0, 0, 1], y: [0, 1, 1] };
   const randomCurve = { x: [0, 1], y: [0, 1] };
   const wrongCurve = { x: [0, 1, 1], y: [0, 0, 1] };
-  const gaussianCurveFull = rocCurve(tMin, tMax);
-  // Symmetrized (reversed-test) curve: ROC'(s) = 1 - ROC(1-s), i.e. the
-  // point reflection of the Gaussian curve through (0.5, 0.5).
-  const symmetrizedCurve = {
-    x: gaussianCurveFull.x.map(v => 1 - v).reverse(),
-    y: gaussianCurveFull.y.map(v => 1 - v).reverse(),
-  };
+  const gaussianCurve = rocCurve(rocPoint, tMin, tMax);
+  const reversedTestCurve = rocCurve(reversedTestRocPoint, tMin, tMax);
+  const classInversionCurve = rocCurve(classInversionRocPoint, tMin, tMax);
+  const classInversionReversedCurve = rocCurve(classInversionReversedRocPoint, tMin, tMax);
 
   function buildTraces(t) {
     const pt = rocPoint(t);
-    const ptRev = { fpr: 1 - pt.fpr, tpr: 1 - pt.tpr };
+    const ptRev = reversedTestRocPoint(t);
+    const ptClass = classInversionRocPoint(t);
+    const ptBoth = classInversionReversedRocPoint(t);
 
     return [
-      // Reference curves — light gray, kept visually secondary.
+
+      // Main ROC curve
       {
-        x: perfectCurve.x, y: perfectCurve.y, mode: 'lines',
-        name: 'Perfect classification',
-        line: { color: '#cccccc', width: 2.5 },
-        showlegend: true,
+        x: gaussianCurve.x, y: gaussianCurve.y,
+        mode: 'lines', name: 'ROC curve',
+        line: { color: '#000000', width: 2.5 },
+        showlegend: true
+      },
+
+      // Transformed curves
+      {
+        x: reversedTestCurve.x, y: reversedTestCurve.y,
+        mode: 'lines', name: 'Reversed rule',
+        line: { color: '#999999', width: 1.5, dash: 'dash' },
+        showlegend: true
       },
       {
-        x: randomCurve.x, y: randomCurve.y, mode: 'lines',
-        name: 'Random classification',
-        line: { color: '#cccccc', width: 2.5, dash: 'dash' },
-        showlegend: true,
+        x: classInversionCurve.x, y: classInversionCurve.y,
+        mode: 'lines', name: 'Class inversion',
+        line: { color: '#777777', width: 1.5, dash: 'dot' },
+        showlegend: true
       },
       {
-        x: wrongCurve.x, y: wrongCurve.y, mode: 'lines',
-        name: 'Always-wrong classification',
-        line: { color: '#cccccc', width: 2.5, dash: 'dot' },
-        showlegend: true,
+        x: classInversionReversedCurve.x, y: classInversionReversedCurve.y,
+        mode: 'lines', name: 'Class inv. + reversed',
+        line: { color: '#555555', width: 1.5, dash: 'dashdot' },
+        showlegend: true
       },
-      // Symmetrized (reversed-test) curve — a step down in emphasis from
-      // the main curve, but still visible since its point is interactive.
+
+      // Only show markers for the main transformations
       {
-        x: symmetrizedCurve.x, y: symmetrizedCurve.y, mode: 'lines',
-        name: 'Reversed test',
-        line: { color: '#999999', width: 2.5, dash: 'dashdot' },
-        showlegend: true,
-      },
-      // Main Gaussian ROC curve — black, solid, standard width: the
-      // visually dominant element of the figure.
-      {
-        x: gaussianCurveFull.x, y: gaussianCurveFull.y, mode: 'lines',
-        name: 'ROC curve',
-        line: { color: '#000000', width: 3.5 },
-        showlegend: true,
-      },
-      // Operating point on the main curve.
-      {
-        x: [pt.fpr], y: [pt.tpr], mode: 'markers', name: 'Operating point',
+        x: [pt.fpr], y: [pt.tpr],
+        mode: 'markers',
         marker: { color: 'white', size: 12, symbol: 'circle', line: { color: 'black', width: 2 } },
-        showlegend: false,
+        showlegend: false
       },
-      // Symmetric point (reversed test), reflected through (0.5, 0.5).
       {
-        x: [ptRev.fpr], y: [ptRev.tpr], mode: 'markers', name: 'Reversed test point',
+        x: [ptRev.fpr], y: [ptRev.tpr],
+        mode: 'markers',
         marker: { color: 'white', size: 10, symbol: 'circle', line: { color: '#999999', width: 2 } },
-        showlegend: false,
+        showlegend: false
+      },
+      {
+        x: [ptClass.fpr], y: [ptClass.tpr],
+        mode: 'markers',
+        marker: { color: 'white', size: 10, symbol: 'circle', line: { color: '#777777', width: 2 } },
+        showlegend: false
+      },
+      {
+        x: [ptBoth.fpr], y: [ptBoth.tpr],
+        mode: 'markers',
+        marker: { color: 'white', size: 10, symbol: 'circle', line: { color: '#555555', width: 2 } },
+        showlegend: false
+      },
+            // Reference curves
+      {
+        x: perfectCurve.x, y: perfectCurve.y,
+        mode: 'lines', name: 'Perfect',
+        line: { color: '#cccccc', width: 1.5 },
+        showlegend: true
+      },
+      {
+        x: randomCurve.x, y: randomCurve.y,
+        mode: 'lines', name: 'Random',
+        line: { color: '#cccccc', width: 1.5, dash: 'dash' },
+        showlegend: true
+      },
+      {
+        x: wrongCurve.x, y: wrongCurve.y,
+        mode: 'lines', name: 'Always wrong',
+        line: { color: '#cccccc', width: 1.5, dash: 'dot' },
+        showlegend: true
       },
     ];
   }
@@ -176,38 +265,57 @@ export async function initGaussianSymmetricRocWidget(container) {
     return {
       font: { family: FONT_FAMILY, size: 12, color: '#333' },
       xaxis: {
-        range: [-0.05, 1.05], title: { text: 'False Positive Rate', font: { size: 12 } },
+        range: [-0.05, 1.05],
+        title: { text: 'False Positive Rate', font: { size: 12 } }
       },
       yaxis: {
-        range: [-0.05, 1.05], scaleanchor: 'x', scaleratio: 1,
-        title: { text: 'True Positive Rate', font: { size: 12 } },
+        range: [-0.05, 1.05],
+        scaleanchor: 'x',
+        scaleratio: 1,
+        title: { text: 'True Positive Rate', font: { size: 12 } }
       },
       margin: { l: 60, r: 20, t: 60, b: 55, pad: 4 },
       legend: {
-        orientation: 'h', y: 1.15, yanchor: 'bottom', x: 0.5, xanchor: 'center',
-        font: { size: 9.5, family: FONT_FAMILY },
+        orientation: 'h',
+        y: 1.15,
+        yanchor: 'bottom',
+        x: 0.5,
+        xanchor: 'center',
+        font: { size: 9.5, family: FONT_FAMILY }
       },
       width: 440,
       height: 480,
       autosize: false,
       paper_bgcolor: 'rgba(0,0,0,0)',
-      plot_bgcolor: 'rgba(0,0,0,0)',
+      plot_bgcolor: 'rgba(0,0,0,0)'
     };
   }
 
   function render() {
-    const t = parseFloat(slider.value);
-    Plotly.react(plotDiv, buildTraces(t), layout(), { responsive: false, displayModeBar: false });
+    const t = parseFloat(thresholdSlider.value);
+    Plotly.react(
+      plotDiv,
+      buildTraces(t),
+      layout(),
+      { responsive: false, displayModeBar: false }
+    );
   }
 
-  slider.addEventListener('input', () => {
-    updateValueLabel();
+  thresholdSlider.addEventListener('input', () => {
+    updateThresholdValueLabel();
+    render();
+  });
+
+  prevalenceSlider.addEventListener('input', () => {
+    updatePrevalenceValueLabel();
     render();
   });
 
   render();
 }
 
-document.querySelectorAll('.gaussian-symmetric-roc-interactive').forEach((container) => {
-  initGaussianSymmetricRocWidget(container);
-});
+document
+  .querySelectorAll('.gaussian-symmetric-roc-interactive')
+  .forEach((container) => {
+    initGaussianSymmetricRocWidget(container);
+  });
