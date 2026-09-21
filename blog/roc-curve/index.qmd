@@ -250,7 +250,6 @@ $$
 :::
 ::::
 
----
 
 ### Extreme cases
 
@@ -288,7 +287,7 @@ Thus, the threshold $t^\star$ yields the operating point $(0,1)$, representing p
 
 ---
 
-#### Flawed classifier
+#### Always wrong classifier
 
 :::: {#cor-perfect-anti-separation}
 
@@ -320,9 +319,9 @@ Thus, the threshold $t^\star$ yields the operating point $(1,0)$, representing p
 :::
 ::::
 
----
 
-#### Uninformative classifier
+
+#### Random classifier
 
 :::: {#thm-random-guessing}
 
@@ -394,23 +393,16 @@ $$
 :::
 ::::
 
----
 
-## Invariance under strictly monotone transformations
+## Invariance under strictly increasing transformations
 
-A strictly monotone bijective transformation does not introduce new ROC geometry.
-If $g$ is strictly increasing, the ROC curve of $g(X)$ is identical to that of $X$, with only the threshold parametrization transformed via $t \mapsto g^{-1}(t)$.
-If $g$ is strictly decreasing, the ordering of thresholds is reversed, and the ROC curve of $g(X)$ is the central symmetry (point reflection) of the ROC curve of $X$ about $(\tfrac{1}{2}, \tfrac{1}{2})$. This corresponds to the flip of the ROC operating points:
-
-$$
-(\mathrm{FPR}, \mathrm{TPR}) \mapsto (1 - \mathrm{FPR}, 1 - \mathrm{TPR}).
-$$
+A strictly increasing bijective transformation does not introduce new ROC geometry. If $g$ is strictly increasing, the ROC curve of $g(X)$ is identical to that of $X$, with only the threshold parametrization transformed via $t \mapsto g^{-1}(t)$.
 
 :::: {#thm-roc-bijective-transform}
 
-### ROC operating points under a bijective transformation
+### Invariance of ROC curves under increasing transformations
 
-Let $X$ be a real-valued diagnostic marker, and assume that the conditional distributions of $X$ given $Y=0$ and $Y=1$ are **continuous**. For a threshold $t \in \mathbb{R}$, define
+Let $X$ be a real-valued random variable, and assume that the conditional distributions of $X$ given $Y=0$ and $Y=1$ are **continuous**. For a threshold $t \in \mathbb{R}$, define
 
 $$
 \mathrm{FPR}_X(t) = \mathbb{P}(X \ge t \mid Y = 0), \quad \mathrm{TPR}_X(t) = \mathbb{P}(X \ge t \mid Y = 1).
@@ -418,19 +410,9 @@ $$
 
 Let $g: \mathbb{R} \to \mathbb{R}$ be a strictly monotone bijection. Then the operating characteristics of $g(X)$ are:
 
-- If $g$ is **strictly increasing**,
-
 $$
 \boxed{
 \mathrm{FPR}_{g(X)}(t) = \mathrm{FPR}_X(g^{-1}(t)), \quad \mathrm{TPR}_{g(X)}(t) = \mathrm{TPR}_X(g^{-1}(t)).
-}
-$$
-
-- If $g$ is **strictly decreasing**,
-
-$$
-\boxed{
-\mathrm{FPR}_{g(X)}(t) = 1 - \mathrm{FPR}_X(g^{-1}(t)), \quad \mathrm{TPR}_{g(X)}(t) = 1 - \mathrm{TPR}_X(g^{-1}(t)).
 }
 $$
 
@@ -443,7 +425,7 @@ $$
 
 ::: {#proof-content-thm-roc-bijective-transform .proof-content}
 
-Since $g$ is a strictly monotone bijection, so is $g^{-1}$. By assumption, the conditional law of $X$ given $Y = y$ has no atoms, so
+Since $g$ is a strictly increasing bijection, so is $g^{-1}$. By assumption, the conditional law of $X$ given $Y = y$ has no atoms, so
 
 $$
 \mathbb{P}(X = s \mid Y = y) = 0 \quad \text{for all } s \in \mathbb{R}, \, y \in \{0, 1\}.
@@ -454,8 +436,6 @@ Consequently, for every $s \in \mathbb{R}$ and $y \in \{0, 1\}$,
 $$
 \mathbb{P}(X \ge s \mid Y = y) = \mathbb{P}(X > s \mid Y = y), \quad \mathbb{P}(X \le s \mid Y = y) = 1 - \mathbb{P}(X \ge s \mid Y = y).
 $$
-
-#### Step 1: Increasing transformation
 
 If $g$ is strictly increasing, then $g^{-1}$ is also strictly increasing. The events $\{g(X) \ge t\}$ and $\{X \ge g^{-1}(t)\}$ coincide:
 
@@ -477,148 +457,258 @@ $$
 
 Thus, the ROC curve of $g(X)$ is identical to that of $X$. As $t$ ranges over $\mathbb{R}$, so does $g^{-1}(t)$, and the map $t \mapsto g^{-1}(t)$ is an order-preserving bijection of thresholds.
 
-#### Step 2: Decreasing transformation
-
-If $g$ is strictly decreasing, then $g^{-1}$ is also strictly decreasing. The events satisfy
-
-$$
-g(X) \ge t \iff X \le g^{-1}(t).
-$$
-
-Thus, for $y \in \{0, 1\}$,
-
-$$
-\mathbb{P}(g(X) \ge t \mid Y = y) = \mathbb{P}(X \le g^{-1}(t) \mid Y = y).
-$$
-
-By continuity of the conditional distributions,
-
-$$
-\mathbb{P}(X \le g^{-1}(t) \mid Y = y) = 1 - \mathbb{P}(X \ge g^{-1}(t) \mid Y = y),
-$$
-
-so
-
-$$
-\mathrm{FPR}_{g(X)}(t) = 1 - \mathrm{FPR}_X(g^{-1}(t)), \quad \mathrm{TPR}_{g(X)}(t) = 1 - \mathrm{TPR}_X(g^{-1}(t)).
-$$
-
-As $t$ ranges over $\mathbb{R}$, the point $(\mathrm{FPR}_X(g^{-1}(t)), \mathrm{TPR}_X(g^{-1}(t)))$ traces the full ROC curve of $X$. Therefore, the ROC curve of $g(X)$ is the image of that of $X$ under the point reflection
-
-$$
-(\mathrm{FPR}, \mathrm{TPR}) \mapsto (1 - \mathrm{FPR}, 1 - \mathrm{TPR}).
-$$
-
 :::
-
 ::::
 
 
+## Invariances and symmetries of ROC Curves
+
+### Simple ROC Curve Symmetries
+
+::: {style="font-size:90%; margin: 1em 0;"}
+   Transformation | FPR' | TPR' | Geometric Interpretation |
+ |----------------|------|------|-------------------------|
+ | **Threshold Reversal** (Use $X < t$ instead of $X \geq t$) | $1 - \text{FPR}$ | $1 - \text{TPR}$ | Central symmetry about $(0.5, 0.5)$ |
+ | **Class Label Swap** (Swap $Y=0$ and $Y=1$) | $\text{TPR}$ | $\text{FPR}$ | Reflection across main diagonal |
+ | **Both** (Reverse threshold + swap labels) | $1 - \text{TPR}$ | $1 - \text{FPR}$ | Reflection across anti-diagonal $y=1-x$ |
+: Simple transformations of ROC operating points {#tbl-roc-transformations .striped .hover}
+:::
+
+These transformations preserve the fundamental shape of the ROC curve while moving the operating point. Note that unlike Precision-Recall curves, **the ROC curve is completely unaffected by class prevalence** - a property you can verify with the prevalence slider in the interactive visualization below.
 
 
 
-## Inversion of the classes and reversal of the thresholding rule
+## Symmetry properties of ROC curves
 
-The ROC curve also has a natural symmetry when the roles of the two
-classes are exchanged and the direction of the thresholding rule is
-reversed.
+The ROC curve exhibits several important symmetries under transformations
+of the decision problem. These transformations act directly on the
+$(\mathrm{FPR},\mathrm{TPR})$ coordinates, moving each operating point
+to a corresponding point on a transformed ROC curve. Unlike
+Precision-Recall curves, the ROC curve is completely unaffected by class
+prevalence.
 
-For the original marker $X$, suppose that large values indicate the
-positive class $Y=1$, so that the ROC operating characteristics are
-defined using the upper-tail rule $\{X \ge t\}$.
-
-Now exchange the class labels,
+Throughout this section, assume that $X\mid Y=0$ and $X\mid Y=1$ are
+atomless:
 
 $$
-Y^\star = 1-Y,
+\mathbb P(X=t\mid Y=y)=0
+\qquad
+\text{for every }t\in\mathbb R,\ y\in\{0,1\}.
 $$
 
-so that the original negative class becomes the new positive class,
-and reverse the thresholding rule by declaring a subject positive when
+For the upper-tail decision rule
 
 $$
-X \le t.
+\hat Y_t=\mathbb 1\{X\geq t\},
 $$
 
-The resulting ROC operating point is obtained from the original ROC
-point by reflection through the anti-diagonal:
+define
+
+$$
+\mathrm{TPR}^+(t)
+:=
+\mathbb P(X\geq t\mid Y=1),
+\qquad
+\mathrm{FPR}^+(t)
+:=
+\mathbb P(X\geq t\mid Y=0).
+$$
+
+The atomlessness assumption implies
+
+$$
+\mathbb P(X<t\mid Y=y)
+=
+1-\mathbb P(X\geq t\mid Y=y),
+$$
+
+which will be used whenever the thresholding direction is reversed.
+
+### Threshold reversal
+
+::: {#thm-roc-threshold-reversal}
+
+# Central symmetry
+
+Keeping the class labels unchanged and reversing the thresholding rule to
+
+$$
+\hat Y_t^\star=\mathbb 1\{X<t\},
+$$
+
+sends the ROC operating point as
 
 $$
 \boxed{
-(\mathrm{FPR},\mathrm{TPR})
+(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))
 \longmapsto
-(1-\mathrm{TPR},\,1-\mathrm{FPR}).
+(1-\mathrm{FPR}^+(t),\,1-\mathrm{TPR}^+(t)).
 }
 $$
 
-Thus, unlike a decreasing transformation of the marker, which produces
-central point symmetry about $(\tfrac12,\tfrac12)$, simultaneous class
-inversion and reversal of the thresholding direction produce an
-anti-diagonal symmetry.
+This is a **reflection through the point $(0.5,0.5)$**: the ROC curve
+under threshold reversal is the central reflection of the original ROC
+curve about $(0.5,0.5)$.
+
+:::
+
+::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('thm-roc-threshold-reversal')"}
+
+[▶]{#proof-arrow-thm-roc-threshold-reversal .proof-arrow} [Proof]{.proof-title}
+
+:::
+
+::: {#proof-content-thm-roc-threshold-reversal .proof-content}
+
+Under the reversed rule $\hat Y_t^\star=\mathbb 1\{X<t\}$, the false
+positive rate is
+
+$$
+\mathbb P(X<t\mid Y=0)
+=
+1-\mathbb P(X\geq t\mid Y=0)
+=
+1-\mathrm{FPR}^+(t),
+$$
+
+and the true positive rate is
+
+$$
+\mathbb P(X<t\mid Y=1)
+=
+1-\mathbb P(X\geq t\mid Y=1)
+=
+1-\mathrm{TPR}^+(t).
+$$
+
+Thus each point
+$(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))$
+maps to
+
+$$
+(1-\mathrm{FPR}^+(t),\,1-\mathrm{TPR}^+(t)),
+$$
+
+producing a central reflection about $(0.5,0.5)$.
+
+:::
+
+:::
+
+
+### Class label swap
+
+Keeping the upper-tail thresholding rule unchanged but swapping the
+class labels,
+
+$$
+Y^\star=1-Y,
+\qquad
+\hat Y_t^\star=\mathbb 1\{X\geq t\},
+$$
+
+sends the ROC operating point as
+
+$$
+\boxed{
+(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))
+\longmapsto
+(\mathrm{TPR}^+(t),\,\mathrm{FPR}^+(t)).
+}
+$$
+
+::: {#thm-roc-class-swap}
+
+# Main-diagonal symmetry
+
+Under class-label swapping with the thresholding rule unchanged, the ROC
+curve is the reflection of the original curve about the main diagonal
+$y=x$.
+
+:::
+
+::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('thm-roc-class-swap')"}
+
+[▶]{#proof-arrow-thm-roc-class-swap .proof-arrow} [Proof]{.proof-title}
+
+:::
+
+::: {#proof-content-thm-roc-class-swap .proof-content}
+
+Since $Y^\star=1-Y$,
+
+$$
+Y^\star=0\iff Y=1,
+\qquad
+Y^\star=1\iff Y=0.
+$$
+
+Therefore, under the unchanged rule $\hat Y_t^\star=\mathbb 1\{X\geq t\}$,
+
+$$
+\mathbb P(X\geq t\mid Y^\star=0)
+=
+\mathbb P(X\geq t\mid Y=1)
+=
+\mathrm{TPR}^+(t),
+$$
+
+while
+
+$$
+\mathbb P(X\geq t\mid Y^\star=1)
+=
+\mathbb P(X\geq t\mid Y=0)
+=
+\mathrm{FPR}^+(t).
+$$
+
+Thus each point
+$(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))$
+maps to
+
+$$
+(\mathrm{TPR}^+(t),\,\mathrm{FPR}^+(t)),
+$$
+
+producing a reflection about the main diagonal $y=x$.
+
+:::
+
+:::
+
+
+### Class label swap with threshold reversal
+
+Swapping the class labels and reversing the thresholding rule,
+
+$$
+Y^\star=1-Y,
+\qquad
+\hat Y_t^\star=\mathbb 1\{X\leq t\},
+$$
+
+sends the ROC operating point as
+
+$$
+\boxed{
+(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))
+\longmapsto
+(1-\mathrm{TPR}^+(t),\,1-\mathrm{FPR}^+(t)).
+}
+$$
 
 ::: {#thm-roc-class-inversion}
 
-### ROC symmetry under class inversion and reversed thresholding
+# Anti-diagonal symmetry
 
-Let $X$ be a real-valued diagnostic marker, and assume that the
-conditional distributions of $X$ given $Y=0$ and $Y=1$ are continuous.
-For the original classification problem, define
-
-$$
-\mathrm{FPR}_X(t)
-=
-\mathbb{P}(X \ge t \mid Y=0),
-\qquad
-\mathrm{TPR}_X(t)
-=
-\mathbb{P}(X \ge t \mid Y=1).
-$$
-
-Now define the inverted class label
-
-$$
-Y^\star = 1-Y,
-$$
-
-and use the reversed thresholding rule $\{X \le t\}$, so that the new
-positive class is $Y^\star=1$.
-
-Define the corresponding false- and true-positive rates by
-
-$$
-\mathrm{FPR}_X^\star(t)
-=
-\mathbb{P}(X \le t \mid Y^\star=0),
-\qquad
-\mathrm{TPR}_X^\star(t)
-=
-\mathbb{P}(X \le t \mid Y^\star=1).
-$$
-
-Then
-
-$$
-\boxed{
-\mathrm{FPR}_X^\star(t)
-=
-1-\mathrm{TPR}_X(t),
-\qquad
-\mathrm{TPR}_X^\star(t)
-=
-1-\mathrm{FPR}_X(t).
-}
-$$
-
-Consequently, the ROC curve of the inverted problem is the reflection
-of the original ROC curve through the anti-diagonal $y=1-x$:
-
-$$
-\boxed{
-(\mathrm{FPR},\mathrm{TPR})
-\longmapsto
-(1-\mathrm{TPR},\,1-\mathrm{FPR}).
-}
-$$
+Under simultaneous class-label swapping and threshold reversal, the ROC
+curve is the reflection of the original curve about the anti-diagonal
+$y=1-x$.
 
 :::
 
@@ -626,93 +716,89 @@ $$
 
 ::: {.proof-header onclick="toggleProof('thm-roc-class-inversion')"}
 
-[▶]{#proof-arrow-thm-roc-class-inversion .proof-arrow} **Proof**
+[▶]{#proof-arrow-thm-roc-class-inversion .proof-arrow} [Proof]{.proof-title}
 
 :::
 
 ::: {#proof-content-thm-roc-class-inversion .proof-content}
 
-Since $Y^\star=1-Y$, the new negative and positive classes satisfy
+Since $Y^\star=1-Y$,
 
 $$
-Y^\star=0 \iff Y=1,
+Y^\star=0\iff Y=1,
 \qquad
-Y^\star=1 \iff Y=0.
+Y^\star=1\iff Y=0.
 $$
 
-Thus, under the reversed thresholding rule $\{X\le t\}$,
+Under the reversed rule $\hat Y_t^\star=\mathbb 1\{X\leq t\}$, the false
+positive rate is
 
 $$
-\mathrm{FPR}_X^\star(t)
+\mathbb P(X\leq t\mid Y^\star=0)
 =
-\mathbb{P}(X\le t\mid Y^\star=0)
+\mathbb P(X\leq t\mid Y=1)
 =
-\mathbb{P}(X\le t\mid Y=1).
-$$
-
-By continuity of the conditional distribution of $X$ given $Y=1$,
-
-$$
-\mathbb{P}(X\le t\mid Y=1)
+\mathbb P(X<t\mid Y=1)
 =
-1-\mathbb{P}(X\ge t\mid Y=1).
+1-\mathrm{TPR}^+(t),
 $$
 
-Therefore,
+and the true positive rate is
 
 $$
-\mathrm{FPR}_X^\star(t)
+\mathbb P(X\leq t\mid Y^\star=1)
 =
-1-\mathrm{TPR}_X(t).
-$$
-
-Similarly,
-
-$$
-\mathrm{TPR}_X^\star(t)
+\mathbb P(X\leq t\mid Y=0)
 =
-\mathbb{P}(X\le t\mid Y^\star=1)
+\mathbb P(X<t\mid Y=0)
 =
-\mathbb{P}(X\le t\mid Y=0).
+1-\mathrm{FPR}^+(t).
 $$
 
-Again, by continuity,
+Here atomlessness gives
+$\mathbb P(X\leq t\mid Y=y)=\mathbb P(X<t\mid Y=y)$, while
+$\{X<t\}=\{X\geq t\}^c$ gives the final equalities.
+
+Thus each point
+$(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))$
+maps to
 
 $$
-\mathbb{P}(X\le t\mid Y=0)
-=
-1-\mathbb{P}(X\ge t\mid Y=0),
+(1-\mathrm{TPR}^+(t),\,1-\mathrm{FPR}^+(t)),
 $$
 
-and hence
-
-$$
-\mathrm{TPR}_X^\star(t)
-=
-1-\mathrm{FPR}_X(t).
-$$
-
-Therefore every original ROC operating point
-
-$$
-(\mathrm{FPR}_X(t),\mathrm{TPR}_X(t))
-$$
-
-is transformed into
-
-$$
-(\mathrm{FPR}_X^\star(t),\mathrm{TPR}_X^\star(t))
-=
-(1-\mathrm{TPR}_X(t),1-\mathrm{FPR}_X(t)).
-$$
-
-This is precisely reflection through the anti-diagonal $y=1-x$.
-
-Moreover, as $t$ ranges over $\mathbb{R}$, the transformed operating
-points trace the entire reflected ROC curve.
+producing a reflection about the anti-diagonal $y=1-x$.
 
 :::
+
 :::
+
+**Remark.** The three transformations therefore generate the three
+nontrivial symmetries of the ROC operating point:
+
+$$
+\begin{aligned}
+\text{threshold reversal:}
+&\qquad
+(f,r)\longmapsto(1-f,1-r),\\
+\text{class-label swap:}
+&\qquad
+(f,r)\longmapsto(r,f),\\
+\text{both:}
+&\qquad
+(f,r)\longmapsto(1-r,1-f).
+\end{aligned}
+$$
+
+These correspond, respectively, to central symmetry about $(0.5,0.5)$,
+reflection about the main diagonal $y=x$, and reflection about the
+anti-diagonal $y=1-x$.
+
+
+**Interactive ROC Curve Exploration**
+
+This visualization demonstrates the properties of ROC curves for a Gaussian model ($X|Y=0 \sim \mathcal{N}(0,1)$, $X|Y=1 \sim \mathcal{N}(1,2^2)$). Use the **Threshold** slider to move along the ROC curve and see how the operating point changes. The **Prevalence** slider shows that the ROC curve remains unchanged regardless of class imbalance—a fundamental property of ROC analysis. The plot also illustrates geometric transformations: reversed decision rules and class inversions.
+
 
 
 
@@ -742,7 +828,6 @@ points trace the entire reflected ROC curve.
 ```
 
 
-**Note**: An important point is that the ROC-curve is not impacted by the class prevalance. Check by yourself by changing the slider above.
 
 
 ---

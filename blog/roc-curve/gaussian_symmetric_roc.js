@@ -144,15 +144,15 @@ export async function initGaussianSymmetricRocWidget(container) {
     </div>
     <div style="display:flex; align-items:center; gap:4px;">
       <span style="width:8px; height:8px; border-radius:50%; background:white; border:2px solid #999; display:inline-block;"></span>
-      Reversed rule
+      Threshold Reversal
     </div>
     <div style="display:flex; align-items:center; gap:4px;">
       <span style="width:8px; height:8px; border-radius:50%; background:white; border:2px solid #777; display:inline-block;"></span>
-      Class inversion
+      Class label swap
     </div>
     <div style="display:flex; align-items:center; gap:4px;">
       <span style="width:8px; height:8px; border-radius:50%; background:white; border:2px solid #555; display:inline-block;"></span>
-      Class inv. + reversed
+      Class label swap + threshold reversal
     </div>
     <div style="display:flex; align-items:center; gap:4px;">
       <span style="width:8px; height:8px; border-radius:50%; background:white; border:2px solid #cccccc; display:inline-block;"></span>
