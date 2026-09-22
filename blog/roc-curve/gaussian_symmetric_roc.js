@@ -2,18 +2,21 @@
 const FONT_FAMILY = 'Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
 
 const COLORS = {
-  roc: '#000000ff',
-  thresholdReversal: '#D55E00',
-  classSwap: '#009E73',
-  classSwapReversal: '#CC79A7',
+  // Primary ROC curves (Original)
+  roc: '#000000ff',          // Blue (more visible than pure black)
+  thresholdReversal: '#1f77b4',  // Orange (distinct from blue)
+  classSwap: '#1f77b4',    // Green (distinct from orange)
+  classSwapReversal: '#1f77b4', // Red (distinct from green)
 
-  perfect: '#0072B2',
-  random: '#525252ff',
-  wrong: '#fd0101ff',
+  // Reference curves (Extreme cases)
+  perfect: '#9467bd',      // Purple (visually distinct)
+  random: '#8c564b',      // Brown (neutral, less prominent)
+  wrong: '#e377c2',       // Pink (high contrast)
 
-  grid: '#E6E6E6',
-  text: '#333333',
-  secondaryText: '#666666',
+  // UI elements
+  grid: '#E6E6E6',        // Light gray (unchanged)
+  text: '#333333',        // Dark gray (unchanged)
+  secondaryText: '#666666', // Medium gray (unchanged)
 };
 
 function erf(x) {
@@ -160,39 +163,50 @@ export async function initGaussianSymmetricRocWidget(container) {
   const classInversionReversedCurve = rocCurve(classInversionReversedRocPoint, tMin, tMax);
 
   function buildTraces(t) {
-    const traces = [
-      ...curveAndPoint(gaussianCurve, rocPoint(t),
-        { color: COLORS.roc, width: 2.5, name: 'ROC curve', legend: 'legend', markerSize: 12 }),
-      ...curveAndPoint(reversedTestCurve, reversedTestRocPoint(t),
-        { color: COLORS.thresholdReversal, width: 1.5, name: 'Threshold reversal', legend: 'legend2' }),
-      ...curveAndPoint(classInversionCurve, classInversionRocPoint(t),
-        { color: COLORS.classSwap, width: 1.5, name: 'Class label swap', legend: 'legend2' }),
-      ...curveAndPoint(classInversionReversedCurve, classInversionReversedRocPoint(t),
-        { color: COLORS.roc, width: 1.5, name: 'Class swap + threshold rev.', legend: 'legend2' }),
-    ];
+  // In buildTraces(t):
+const traces = [
+  // Original ROC curve (solid, thick line)
+  ...curveAndPoint(gaussianCurve, rocPoint(t),
+    { color: COLORS.roc, width: 2.5, dash: 'solid', name: 'ROC curve', legend: 'legend1', markerSize: 12 }),
 
-    // Extreme-case reference curves (no markers, right-column legend)
-    [
-      [perfectCurve, 'dot', 'Perfect', COLORS.perfect],
-      [randomCurve, 'dash', 'Random', COLORS.random],
-      [wrongCurve, 'dot', 'Always wrong', COLORS.wrong],
-    ].forEach(([curve, dash, name, color]) => {
+  // Transformations (dashed/dotted, medium width)
+  ...curveAndPoint(reversedTestCurve, reversedTestRocPoint(t),
+    { color: COLORS.thresholdReversal, width: 2, dash: 'dot', name: 'Threshold reversal', legend: 'legend2' }),
+  ...curveAndPoint(classInversionCurve, classInversionRocPoint(t),
+    { color: COLORS.classSwap, width: 2, dash: 'dash', name: 'Class label swap', legend: 'legend2' }),
+  ...curveAndPoint(classInversionReversedCurve, classInversionReversedRocPoint(t),
+    { color: COLORS.classSwapReversal, width: 2, dash: 'longdash', name: 'Class swap + threshold rev.', legend: 'legend2' }),
 
-      traces.push({
-        x: curve.x,
-        y: curve.y,
-        mode: 'lines',
-        name,
-        legend: 'legend3',
-        line: {
-          color,
-          width: 1.4,
-          dash
-        },
-        showlegend: true,
-      });
+  // Extreme cases (thin, distinct dashes)
+  {
+    x: perfectCurve.x,
+    y: perfectCurve.y,
+    mode: 'lines',
+    name: 'Perfect',
+    legend: 'legend3',
+    showlegend: true,
+    line: { color: COLORS.perfect, width: 1.5, dash: 'dot' }
+  },
+  {
+    x: randomCurve.x,
+    y: randomCurve.y,
+    mode: 'lines',
+    name: 'Random',
+    legend: 'legend3',
+    showlegend: true,
+    line: { color: COLORS.random, width: 1.5, dash: 'dash' }
+  },
+  {
+    x: wrongCurve.x,
+    y: wrongCurve.y,
+    mode: 'lines',
+    name: 'Always wrong',
+    legend: 'legend3',
+    showlegend: true,
+    line: { color: COLORS.wrong, width: 1.5, dash: 'longdashdot' }
+  }
+];
 
-    });
     return traces;
   }
 
