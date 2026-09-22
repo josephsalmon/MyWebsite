@@ -178,6 +178,8 @@ where $N$ and $P$ are the numbers of negative and positive samples, respectively
 
 ---
 
+
+
 ### Properties
 
 #### Endpoints
@@ -210,46 +212,24 @@ $$
 ::: {.proof-header onclick="toggleProof('lem-roc-endpoints')"}
 [▶]{#proof-arrow-lem-roc-endpoints .proof-arrow} [Proof]{.proof-title}
 :::
-
 ::: {#proof-content-lem-roc-endpoints .proof-content}
 
-**Step 1: Limit as $t\to+\infty$**
-
-By definition,
+**Step 1: limit as $t\to+\infty$.** By definition,
 $$
 \mathrm{FPR}(t) = \mathbb P(X_0\ge t), \qquad \mathrm{TPR}(t) = \mathbb P(X_1\ge t).
 $$
-Since $X_0$ and $X_1$ are almost surely finite,
-$$
-\lim_{t\to+\infty} \mathbb P(X_y\ge t)=0, \qquad y\in\{0,1\}.
-$$
-Thus,
-$$
-\lim_{t\to+\infty}\mathrm{FPR}(t)=0, \qquad \lim_{t\to+\infty}\mathrm{TPR}(t)=0,
-$$
-and therefore
+Since $X_0$ and $X_1$ are almost surely finite, $\mathbb P(X_y\ge t)\to0$ as $t\to+\infty$ for $y\in\{0,1\}$, giving
 $$
 \boxed{\lim_{t\to+\infty} \bigl(\mathrm{FPR}(t),\mathrm{TPR}(t)\bigr) = (0,0).}
 $$
 
-**Step 2: Limit as $t\to-\infty$**
-
-Similarly,
-$$
-\mathbb P(X_y\ge t)\longrightarrow 1 \quad \text{as } t\to-\infty, \qquad y\in\{0,1\},
-$$
-since $X_0$ and $X_1$ are almost surely finite. Hence,
-$$
-\lim_{t\to-\infty}\mathrm{FPR}(t)=1, \qquad \lim_{t\to-\infty}\mathrm{TPR}(t)=1,
-$$
-and therefore
+**Step 2: limit as $t\to-\infty$.** Similarly, $\mathbb P(X_y\ge t)\to1$ as $t\to-\infty$ for $y\in\{0,1\}$, giving
 $$
 \boxed{\lim_{t\to-\infty} \bigl(\mathrm{FPR}(t),\mathrm{TPR}(t)\bigr) = (1,1).}
 $$
 
 :::
 ::::
-
 
 ### Extreme cases
 
@@ -275,19 +255,14 @@ and the ROC curve passes through the upper-left corner $(0,1)$, in addition to t
 ::: {.proof-header onclick="toggleProof('thm-perfect-separation')"}
 [▶]{#proof-arrow-thm-perfect-separation .proof-arrow} [Proof]{.proof-title}
 :::
-
 ::: {#proof-content-thm-perfect-separation .proof-content}
-By definition:
-$$
-\mathrm{FPR}(t^\star) = \mathbb P(X_0 \ge t^\star) = 0, \quad \mathrm{TPR}(t^\star) = \mathbb P(X_1 \ge t^\star) = 1.
-$$
-Thus, the threshold $t^\star$ yields the operating point $(0,1)$, representing perfect discrimination.
+By definition, $\mathrm{FPR}(t^\star) = \mathbb P(X_0 \ge t^\star) = 0$ and $\mathrm{TPR}(t^\star) = \mathbb P(X_1 \ge t^\star) = 1$. Thus the threshold $t^\star$ yields the operating point $(0,1)$, representing perfect discrimination.
 :::
 ::::
 
 ---
 
-#### Always wrong classifier
+#### Always-wrong classifier
 
 :::: {#cor-perfect-anti-separation}
 
@@ -309,17 +284,12 @@ and the ROC curve passes through the lower-right corner $(1,0)$, in addition to 
 ::: {.proof-header onclick="toggleProof('cor-perfect-anti-separation')"}
 [▶]{#proof-arrow-cor-perfect-anti-separation .proof-arrow} [Proof]{.proof-title}
 :::
-
 ::: {#proof-content-cor-perfect-anti-separation .proof-content}
-By definition:
-$$
-\mathrm{FPR}(t^\star) = \mathbb P(X_0 \ge t^\star) = 1, \quad \mathrm{TPR}(t^\star) = \mathbb P(X_1 \ge t^\star) = 0.
-$$
-Thus, the threshold $t^\star$ yields the operating point $(1,0)$, representing perfectly inverted discrimination.
+By definition, $\mathrm{FPR}(t^\star) = \mathbb P(X_0 \ge t^\star) = 1$ and $\mathrm{TPR}(t^\star) = \mathbb P(X_1 \ge t^\star) = 0$. Thus the threshold $t^\star$ yields the operating point $(1,0)$, representing perfectly inverted discrimination.
 :::
 ::::
 
-
+---
 
 #### Random classifier
 
@@ -331,7 +301,7 @@ Suppose $X_0 \stackrel{d}{=} X_1$, and consider the threshold rule $\hat{Y}_t(X)
 $$
 \boxed{\mathrm{FPR}(t) = \mathrm{TPR}(t).}
 $$
-Consequently, the ROC curve lies on the diagonal line $u = v$ of the unit square.
+Consequently, the ROC curve lies on the diagonal line $u=v$ of the unit square.
 
 ::::
 
@@ -339,28 +309,20 @@ Consequently, the ROC curve lies on the diagonal line $u = v$ of the unit square
 ::: {.proof-header onclick="toggleProof('thm-random-guessing')"}
 [▶]{#proof-arrow-thm-random-guessing .proof-arrow} [Proof]{.proof-title}
 :::
-
 ::: {#proof-content-thm-random-guessing .proof-content}
-Since $X_0 \stackrel{d}{=} X_1$, we have $\mathbb P(X_0 \ge t) = \mathbb P(X_1 \ge t)$ for every $t \in \mathbb{R}$. Thus,
-$$
-\mathrm{FPR}(t) = \mathrm{TPR}(t) \quad \text{for all } t \in \mathbb{R},
-$$
-and the ROC curve coincides with the diagonal.
+Since $X_0 \stackrel{d}{=} X_1$, $\mathbb P(X_0 \ge t) = \mathbb P(X_1 \ge t)$ for every $t \in \mathbb{R}$, so $\mathrm{FPR}(t) = \mathrm{TPR}(t)$ for all $t$, and the ROC curve coincides with the diagonal.
 :::
 ::::
 
+### Monotonicity of ROC curves
 
-
-## Basic properties of ROC curves
-
-A fundamental property of ROC curves is their **monotonicity**, which distinguishes them from other performance curves such as Precision-Recall curves.
+A fundamental property of ROC curves, one that distinguishes them from Precision-Recall curves, is their **monotonicity**.
 
 :::: {#thm-roc-monotonicity}
 
-### Monotonicity of ROC curves
+# Monotonicity of ROC curves
 
-For the threshold rule $\hat{Y}_t(X) = \mathbb{1}\{X \ge t\}$, both $\mathrm{TPR}(\cdot)$ and $\mathrm{FPR}(\cdot)$ are non-increasing in the threshold. Specifically, for any $t_1, t_2 \in \mathbb{R}$ with $t_1 < t_2$,
-
+For the threshold rule $\hat{Y}_t(X) = \mathbb{1}\{X \ge t\}$, both $\mathrm{TPR}(\cdot)$ and $\mathrm{FPR}(\cdot)$ are non-increasing in the threshold: for any $t_1, t_2 \in \mathbb{R}$ with $t_1 < t_2$,
 $$
 \mathrm{TPR}(t_1) \geq \mathrm{TPR}(t_2) \quad \text{and} \quad \mathrm{FPR}(t_1) \geq \mathrm{FPR}(t_2).
 $$
@@ -369,50 +331,29 @@ $$
 
 :::: {.proof-container}
 ::: {.proof-header onclick="toggleProof('thm-roc-monotonicity')"}
-[▶]{#proof-arrow-thm-roc-monotonicity .proof-arrow} **Proof**
+[▶]{#proof-arrow-thm-roc-monotonicity .proof-arrow} [Proof]{.proof-title}
 :::
-
 ::: {#proof-content-thm-roc-monotonicity .proof-content}
-
-Recall that $\mathrm{TPR}(t) = \mathbb{P}(X_1 \ge t)$ and $\mathrm{FPR}(t) = \mathbb{P}(X_0 \ge t)$.
-
-Fix $t_1 < t_2$. Then the event $\{X \ge t_2\}$ is contained in $\{X \ge t_1\}$, as $X \ge t_2$ implies $X \ge t_1$. This holds for both $X_0$ and $X_1$. By the monotonicity of probability measures,
-
+Recall $\mathrm{TPR}(t) = \mathbb{P}(X_1 \ge t)$ and $\mathrm{FPR}(t) = \mathbb{P}(X_0 \ge t)$. Fix $t_1<t_2$: since $X\ge t_2$ implies $X\ge t_1$, the event $\{X\ge t_2\}$ is contained in $\{X\ge t_1\}$ for both $X_0$ and $X_1$. By monotonicity of probability measures,
 $$
-\mathbb{P}(X_1 \ge t_2) \le \mathbb{P}(X_1 \ge t_1)
-\qquad \text{and} \qquad
-\mathbb{P}(X_0 \ge t_2) \le \mathbb{P}(X_0 \ge t_1),
+\mathbb{P}(X_1 \ge t_2) \le \mathbb{P}(X_1 \ge t_1) \qquad\text{and}\qquad \mathbb{P}(X_0 \ge t_2) \le \mathbb{P}(X_0 \ge t_1),
 $$
-
-which implies
-
-$$
-\mathrm{TPR}(t_1) \geq \mathrm{TPR}(t_2) \quad \text{and} \quad \mathrm{FPR}(t_1) \geq \mathrm{FPR}(t_2).
-$$
-
+i.e. $\mathrm{TPR}(t_1) \geq \mathrm{TPR}(t_2)$ and $\mathrm{FPR}(t_1) \geq \mathrm{FPR}(t_2)$.
 :::
 ::::
 
+### Invariance under strictly increasing transformations
 
-## Invariance under strictly increasing transformations
-
-A strictly increasing bijective transformation does not introduce new ROC geometry. If $g$ is strictly increasing, the ROC curve of $g(X)$ is identical to that of $X$, with only the threshold parametrization transformed via $t \mapsto g^{-1}(t)$.
+A strictly increasing bijection does not introduce new ROC geometry: the ROC curve of $g(X)$ is identical to that of $X$, with only the threshold parametrization transformed via $t\mapsto g^{-1}(t)$.
 
 :::: {#thm-roc-bijective-transform}
 
-### Invariance of ROC curves under increasing transformations
+# Invariance of ROC curves under increasing transformations
 
-Let $X$ be a real-valued random variable, and assume that the conditional distributions of $X$ given $Y=0$ and $Y=1$ are **continuous**. For a threshold $t \in \mathbb{R}$, define
-
-$$
-\mathrm{FPR}_X(t) = \mathbb{P}(X \ge t \mid Y = 0), \quad \mathrm{TPR}_X(t) = \mathbb{P}(X \ge t \mid Y = 1).
-$$
-
-Let $g: \mathbb{R} \to \mathbb{R}$ be a strictly monotone bijection. Then the operating characteristics of $g(X)$ are:
-
+Let $X$ be a real-valued random variable, with $X\mid Y=0$ and $X\mid Y=1$ atomless, and let $g:\mathbb R\to\mathbb R$ be a strictly increasing bijection. Writing $\mathrm{FPR}_X(t)=\mathbb P(X\ge t\mid Y=0)$, $\mathrm{TPR}_X(t)=\mathbb P(X\ge t\mid Y=1)$, the operating characteristics of $g(X)$ are
 $$
 \boxed{
-\mathrm{FPR}_{g(X)}(t) = \mathrm{FPR}_X(g^{-1}(t)), \quad \mathrm{TPR}_{g(X)}(t) = \mathrm{TPR}_X(g^{-1}(t)).
+\mathrm{FPR}_{g(X)}(t) = \mathrm{FPR}_X(g^{-1}(t)), \qquad \mathrm{TPR}_{g(X)}(t) = \mathrm{TPR}_X(g^{-1}(t)).
 }
 $$
 
@@ -420,386 +361,141 @@ $$
 
 :::: {.proof-container}
 ::: {.proof-header onclick="toggleProof('thm-roc-bijective-transform')"}
-[▶]{#proof-arrow-thm-roc-bijective-transform .proof-arrow} **Proof**
+[▶]{#proof-arrow-thm-roc-bijective-transform .proof-arrow} [Proof]{.proof-title}
 :::
-
 ::: {#proof-content-thm-roc-bijective-transform .proof-content}
-
-Since $g$ is a strictly increasing bijection, so is $g^{-1}$. By assumption, the conditional law of $X$ given $Y = y$ has no atoms, so
-
+Since $g$ is a strictly increasing bijection, so is $g^{-1}$, and the events $\{g(X)\ge t\}$ and $\{X\ge g^{-1}(t)\}$ coincide: $g(X)\ge t \iff X\ge g^{-1}(t)$. Hence, for $y\in\{0,1\}$,
 $$
-\mathbb{P}(X = s \mid Y = y) = 0 \quad \text{for all } s \in \mathbb{R}, \, y \in \{0, 1\}.
+\mathbb P(g(X)\ge t\mid Y=y) = \mathbb P(X\ge g^{-1}(t)\mid Y=y),
 $$
-
-Consequently, for every $s \in \mathbb{R}$ and $y \in \{0, 1\}$,
-
-$$
-\mathbb{P}(X \ge s \mid Y = y) = \mathbb{P}(X > s \mid Y = y), \quad \mathbb{P}(X \le s \mid Y = y) = 1 - \mathbb{P}(X \ge s \mid Y = y).
-$$
-
-If $g$ is strictly increasing, then $g^{-1}$ is also strictly increasing. The events $\{g(X) \ge t\}$ and $\{X \ge g^{-1}(t)\}$ coincide:
-
-$$
-g(X) \ge t \iff X \ge g^{-1}(t).
-$$
-
-Thus, for $y \in \{0, 1\}$,
-
-$$
-\mathbb{P}(g(X) \ge t \mid Y = y) = \mathbb{P}(X \ge g^{-1}(t) \mid Y = y).
-$$
-
-Specializing to $y = 0$ and $y = 1$ gives
-
-$$
-\mathrm{FPR}_{g(X)}(t) = \mathrm{FPR}_X(g^{-1}(t)), \quad \mathrm{TPR}_{g(X)}(t) = \mathrm{TPR}_X(g^{-1}(t)).
-$$
-
-Thus, the ROC curve of $g(X)$ is identical to that of $X$. As $t$ ranges over $\mathbb{R}$, so does $g^{-1}(t)$, and the map $t \mapsto g^{-1}(t)$ is an order-preserving bijection of thresholds.
-
+which, specializing to $y=0$ and $y=1$, is exactly the boxed identity. As $t$ ranges over $\mathbb R$, so does $g^{-1}(t)$, and $t\mapsto g^{-1}(t)$ is an order-preserving reparametrization of thresholds — so the ROC curve of $g(X)$ is identical to that of $X$, only traced by a relabeled threshold.
 :::
 ::::
 
+## Symmetries of ROC curves
 
-## Invariances and symmetries of ROC Curves
+The ROC curve exhibits three nontrivial symmetries, generated by reversing the decision rule and/or swapping the class labels. Each acts as an exact affine reflection of the $(\mathrm{FPR},\mathrm{TPR})$ square, mostly because **the ROC curve is completely unaffected by class prevalence**.
 
-### Simple ROC Curve Symmetries
-
-::: {style="font-size:90%; margin: 1em 0;"}
-   Transformation | FPR' | TPR' | Geometric Interpretation |
- |----------------|------|------|-------------------------|
- | **Threshold Reversal** (Use $X < t$ instead of $X \geq t$) | $1 - \text{FPR}$ | $1 - \text{TPR}$ | Central symmetry about $(0.5, 0.5)$ |
- | **Class Label Swap** (Swap $Y=0$ and $Y=1$) | $\text{TPR}$ | $\text{FPR}$ | Reflection across main diagonal |
- | **Both** (Reverse threshold + swap labels) | $1 - \text{TPR}$ | $1 - \text{FPR}$ | Reflection across anti-diagonal $y=1-x$ |
-: Simple transformations of ROC operating points {#tbl-roc-transformations .striped .hover}
-:::
-
-These transformations preserve the fundamental shape of the ROC curve while moving the operating point. Note that unlike Precision-Recall curves, **the ROC curve is completely unaffected by class prevalence** - a property you can verify with the prevalence slider in the interactive visualization below.
-
-
-
-## Symmetry properties of ROC curves
-
-The ROC curve exhibits several important symmetries under transformations
-of the decision problem. These transformations act directly on the
-$(\mathrm{FPR},\mathrm{TPR})$ coordinates, moving each operating point
-to a corresponding point on a transformed ROC curve. Unlike
-Precision-Recall curves, the ROC curve is completely unaffected by class
-prevalence.
-
-Throughout this section, assume that $X\mid Y=0$ and $X\mid Y=1$ are
-atomless:
-
+For simplicity and throughout this section, assume $X\mid Y=0$ and $X\mid Y=1$ are atomless, *i.e.*,
 $$
-\mathbb P(X=t\mid Y=y)=0
-\qquad
-\text{for every }t\in\mathbb R,\ y\in\{0,1\}.
+\mathbb P(X=t\mid Y=y)=0 \qquad \text{for every } t\in\mathbb R,\ y\in\{0,1\}.
 $$
-
-For the upper-tail decision rule
-
+This guarantees $\mathbb P(X\le t\mid Y=y)=\mathbb P(X<t\mid Y=y)$ exactly, for every threshold and class. For the upper-tail rule $\hat Y_t=\mathbb 1\{X\ge t\}$, write
 $$
-\hat Y_t=\mathbb 1\{X\geq t\},
+\mathrm{TPR}^+(t):=\mathbb P(X\ge t\mid Y=1), \qquad \mathrm{FPR}^+(t):=\mathbb P(X\ge t\mid Y=0).
 $$
-
-define
-
-$$
-\mathrm{TPR}^+(t)
-:=
-\mathbb P(X\geq t\mid Y=1),
-\qquad
-\mathrm{FPR}^+(t)
-:=
-\mathbb P(X\geq t\mid Y=0).
-$$
-
-The atomlessness assumption implies
-
-$$
-\mathbb P(X<t\mid Y=y)
-=
-1-\mathbb P(X\geq t\mid Y=y),
-$$
-
-which will be used whenever the thresholding direction is reversed.
+Atomlessness also gives $\mathbb P(X<t\mid Y=y)=1-\mathbb P(X\ge t\mid Y=y)$ for every $y$, used below whenever the rule is reversed.
 
 ### Threshold reversal
 
-::: {#thm-roc-threshold-reversal}
+Keeping the class labels unchanged and reversing the rule to $\hat Y_t^\star=\mathbb 1\{X<t\}$ sends the operating point as
+$$
+\boxed{
+(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t)) \longmapsto (1-\mathrm{FPR}^+(t),\,1-\mathrm{TPR}^+(t)).
+}
+$$
+
+:::: {#thm-roc-threshold-reversal}
 
 # Central symmetry
 
-Keeping the class labels unchanged and reversing the thresholding rule to
+The ROC curve under threshold reversal (class labels fixed) is the central reflection of the original ROC curve about $(0.5,0.5)$.
 
-$$
-\hat Y_t^\star=\mathbb 1\{X<t\},
-$$
+::::
 
-sends the ROC operating point as
-
-$$
-\boxed{
-(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))
-\longmapsto
-(1-\mathrm{FPR}^+(t),\,1-\mathrm{TPR}^+(t)).
-}
-$$
-
-This is a **reflection through the point $(0.5,0.5)$**: the ROC curve
-under threshold reversal is the central reflection of the original ROC
-curve about $(0.5,0.5)$.
-
-:::
-
-::: {.proof-container}
-
+:::: {.proof-container}
 ::: {.proof-header onclick="toggleProof('thm-roc-threshold-reversal')"}
-
 [▶]{#proof-arrow-thm-roc-threshold-reversal .proof-arrow} [Proof]{.proof-title}
-
 :::
-
 ::: {#proof-content-thm-roc-threshold-reversal .proof-content}
-
-Under the reversed rule $\hat Y_t^\star=\mathbb 1\{X<t\}$, the false
-positive rate is
-
+Under the reversed rule $\hat Y_t^\star=\mathbb 1\{X<t\}$,
 $$
-\mathbb P(X<t\mid Y=0)
-=
-1-\mathbb P(X\geq t\mid Y=0)
-=
-1-\mathrm{FPR}^+(t),
+\mathbb P(X<t\mid Y=0) = 1-\mathbb P(X\ge t\mid Y=0) = 1-\mathrm{FPR}^+(t), \qquad \mathbb P(X<t\mid Y=1) = 1-\mathrm{TPR}^+(t).
 $$
-
-and the true positive rate is
-
-$$
-\mathbb P(X<t\mid Y=1)
-=
-1-\mathbb P(X\geq t\mid Y=1)
-=
-1-\mathrm{TPR}^+(t).
-$$
-
-Thus each point
-$(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))$
-maps to
-
-$$
-(1-\mathrm{FPR}^+(t),\,1-\mathrm{TPR}^+(t)),
-$$
-
-producing a central reflection about $(0.5,0.5)$.
-
+Thus $(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))\mapsto(1-\mathrm{FPR}^+(t),\,1-\mathrm{TPR}^+(t))$, a central reflection about $(0.5,0.5)$.
 :::
-
-:::
-
+::::
 
 ### Class label swap
 
-Keeping the upper-tail thresholding rule unchanged but swapping the
-class labels,
-
-$$
-Y^\star=1-Y,
-\qquad
-\hat Y_t^\star=\mathbb 1\{X\geq t\},
-$$
-
-sends the ROC operating point as
-
+Keeping the rule unchanged but swapping the labels, $Y^\star=1-Y$, $\hat Y_t^\star=\mathbb 1\{X\ge t\}$, sends the operating point as
 $$
 \boxed{
-(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))
-\longmapsto
-(\mathrm{TPR}^+(t),\,\mathrm{FPR}^+(t)).
+(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t)) \longmapsto (\mathrm{TPR}^+(t),\,\mathrm{FPR}^+(t)).
 }
 $$
 
-::: {#thm-roc-class-swap}
+:::: {#thm-roc-class-swap}
 
 # Main-diagonal symmetry
 
-Under class-label swapping with the thresholding rule unchanged, the ROC
-curve is the reflection of the original curve about the main diagonal
-$y=x$.
+Under class-label swapping with the rule unchanged, the ROC curve is the reflection of the original curve about the main diagonal $y=x$.
 
-:::
+::::
 
-::: {.proof-container}
-
+:::: {.proof-container}
 ::: {.proof-header onclick="toggleProof('thm-roc-class-swap')"}
-
 [▶]{#proof-arrow-thm-roc-class-swap .proof-arrow} [Proof]{.proof-title}
-
 :::
-
 ::: {#proof-content-thm-roc-class-swap .proof-content}
-
-Since $Y^\star=1-Y$,
-
+Since $Y^\star=1-Y$, $\{Y^\star=0\}=\{Y=1\}$ and $\{Y^\star=1\}=\{Y=0\}$. Under the unchanged rule,
 $$
-Y^\star=0\iff Y=1,
-\qquad
-Y^\star=1\iff Y=0.
+\mathbb P(X\ge t\mid Y^\star=0) = \mathbb P(X\ge t\mid Y=1) = \mathrm{TPR}^+(t), \qquad \mathbb P(X\ge t\mid Y^\star=1) = \mathrm{FPR}^+(t).
 $$
-
-Therefore, under the unchanged rule $\hat Y_t^\star=\mathbb 1\{X\geq t\}$,
-
-$$
-\mathbb P(X\geq t\mid Y^\star=0)
-=
-\mathbb P(X\geq t\mid Y=1)
-=
-\mathrm{TPR}^+(t),
-$$
-
-while
-
-$$
-\mathbb P(X\geq t\mid Y^\star=1)
-=
-\mathbb P(X\geq t\mid Y=0)
-=
-\mathrm{FPR}^+(t).
-$$
-
-Thus each point
-$(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))$
-maps to
-
-$$
-(\mathrm{TPR}^+(t),\,\mathrm{FPR}^+(t)),
-$$
-
-producing a reflection about the main diagonal $y=x$.
-
+Thus $(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))\mapsto(\mathrm{TPR}^+(t),\,\mathrm{FPR}^+(t))$, a reflection about $y=x$.
 :::
-
-:::
-
+::::
 
 ### Class label swap with threshold reversal
 
-Swapping the class labels and reversing the thresholding rule,
-
-$$
-Y^\star=1-Y,
-\qquad
-\hat Y_t^\star=\mathbb 1\{X\leq t\},
-$$
-
-sends the ROC operating point as
-
+Swapping the labels **and** reversing the rule, $Y^\star=1-Y$, $\hat Y_t^\star=\mathbb 1\{X\le t\}$, sends the operating point as
 $$
 \boxed{
-(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))
-\longmapsto
-(1-\mathrm{TPR}^+(t),\,1-\mathrm{FPR}^+(t)).
+(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t)) \longmapsto (1-\mathrm{TPR}^+(t),\,1-\mathrm{FPR}^+(t)).
 }
 $$
 
-::: {#thm-roc-class-inversion}
+:::: {#thm-roc-class-inversion}
 
 # Anti-diagonal symmetry
 
-Under simultaneous class-label swapping and threshold reversal, the ROC
-curve is the reflection of the original curve about the anti-diagonal
-$y=1-x$.
+Under simultaneous class-label swapping and threshold reversal, the ROC curve is the reflection of the original curve about the anti-diagonal $y=1-x$.
 
-:::
+::::
 
-::: {.proof-container}
-
+:::: {.proof-container}
 ::: {.proof-header onclick="toggleProof('thm-roc-class-inversion')"}
-
 [▶]{#proof-arrow-thm-roc-class-inversion .proof-arrow} [Proof]{.proof-title}
-
 :::
-
 ::: {#proof-content-thm-roc-class-inversion .proof-content}
-
-Since $Y^\star=1-Y$,
-
+As above, $\{Y^\star=0\}=\{Y=1\}$, $\{Y^\star=1\}=\{Y=0\}$. Under the reversed rule $\hat Y_t^\star=\mathbb 1\{X\le t\}$, atomlessness gives $\mathbb P(X\le t\mid Y=y)=\mathbb P(X<t\mid Y=y)$, and $\{X<t\}=\{X\ge t\}^c$ gives
 $$
-Y^\star=0\iff Y=1,
-\qquad
-Y^\star=1\iff Y=0.
+\mathbb P(X\le t\mid Y^\star=0) = \mathbb P(X<t\mid Y=1) = 1-\mathrm{TPR}^+(t), \qquad \mathbb P(X\le t\mid Y^\star=1) = 1-\mathrm{FPR}^+(t).
 $$
+Thus $(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))\mapsto(1-\mathrm{TPR}^+(t),\,1-\mathrm{FPR}^+(t))$, a reflection about $y=1-x$.
+:::
+::::
 
-Under the reversed rule $\hat Y_t^\star=\mathbb 1\{X\leq t\}$, the false
-positive rate is
+### Summary
 
-$$
-\mathbb P(X\leq t\mid Y^\star=0)
-=
-\mathbb P(X\leq t\mid Y=1)
-=
-\mathbb P(X<t\mid Y=1)
-=
-1-\mathrm{TPR}^+(t),
-$$
+::: {style="font-size:90%; margin: 1em 0;"}
+| Transformation | FPR$'$ | TPR$'$ | Geometric interpretation |
+|---|---|---|---|
+| Threshold reversal ($X<t$ instead of $X\ge t$) | $1-\mathrm{FPR}$ | $1-\mathrm{TPR}$ | Central symmetry about $(0.5,0.5)$ |
+| Class label swap ($Y=0\leftrightarrow Y=1$) | $\mathrm{TPR}$ | $\mathrm{FPR}$ | Reflection across the main diagonal |
+| Both (reverse rule + swap labels) | $1-\mathrm{TPR}$ | $1-\mathrm{FPR}$ | Reflection across the anti-diagonal $y=1-x$ |
 
-and the true positive rate is
-
-$$
-\mathbb P(X\leq t\mid Y^\star=1)
-=
-\mathbb P(X\leq t\mid Y=0)
-=
-\mathbb P(X<t\mid Y=0)
-=
-1-\mathrm{FPR}^+(t).
-$$
-
-Here atomlessness gives
-$\mathbb P(X\leq t\mid Y=y)=\mathbb P(X<t\mid Y=y)$, while
-$\{X<t\}=\{X\geq t\}^c$ gives the final equalities.
-
-Thus each point
-$(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))$
-maps to
-
-$$
-(1-\mathrm{TPR}^+(t),\,1-\mathrm{FPR}^+(t)),
-$$
-
-producing a reflection about the anti-diagonal $y=1-x$.
-
+: Simple transformations of the ROC operating point {#tbl-roc-transformations .striped .hover}
 :::
 
-:::
-
-**Remark.** The three transformations therefore generate the three
-nontrivial symmetries of the ROC operating point:
-
-$$
-\begin{aligned}
-\text{threshold reversal:}
-&\qquad
-(f,r)\longmapsto(1-f,1-r),\\
-\text{class-label swap:}
-&\qquad
-(f,r)\longmapsto(r,f),\\
-\text{both:}
-&\qquad
-(f,r)\longmapsto(1-r,1-f).
-\end{aligned}
-$$
-
-These correspond, respectively, to central symmetry about $(0.5,0.5)$,
-reflection about the main diagonal $y=x$, and reflection about the
-anti-diagonal $y=1-x$.
+These three transformations, together with the identity, generate every symmetry of the ROC square and preserve the curve's overall shape while relocating the operating point. As noted above, none of them depends on the class prevalence $\pi_1=\mathbb P(Y=1)$.
+You can verify directly this property with the prevalence slider in the interactive visualization below (which fails for the corresponding Precision-Recall transforms discussed below).
 
 
-**Interactive ROC Curve Exploration**
 
-This visualization demonstrates the properties of ROC curves for a Gaussian model ($X|Y=0 \sim \mathcal{N}(0,1)$, $X|Y=1 \sim \mathcal{N}(1,2^2)$). Use the **Threshold** slider to move along the ROC curve and see how the operating point changes. The **Prevalence** slider shows that the ROC curve remains unchanged regardless of class imbalance—a fundamental property of ROC analysis. The plot also illustrates geometric transformations: reversed decision rules and class inversions.
+**Interpretation.** This is not a coincidence specific to these three transforms: it restates, in this language, the fact used throughout this post that ROC curves and AUC never involve the prevalence $\pi_1$ at all — Precision is the quantity that depends on $\pi_1$ (@thm-precision-formula), while $\mathrm{FPR}^+,\mathrm{TPR}^+$, and hence AUC, do not. So relabeling which class is "positive" and/or reversing the rule can move the operating point and reflect the *curve* — but it cannot move the *area under it*. This is the ROC-space counterpart of the Precision-Recall fact from earlier that class inversion flips Precision exactly to $1-\mathrm{Precision}$ (@cor-class-inversion-precision-flip): there the transform's effect was visible and prevalence-dependent; here, on the ROC/AUC side, the same underlying operations leave the summary statistic untouched entirely.
 
-
+**Interactive ROC curve exploration.** The visualization below illustrates these properties for a Gaussian model ($X\mid Y=0\sim\mathcal N(0,1)$, $X\mid Y=1\sim\mathcal N(1,2^2)$). Use the **Threshold** slider to move along the ROC curve and watch the operating point change; the **Prevalence** slider confirms that the ROC curve itself is unaffected by class imbalance, however that slider is moved. The plot also shows the reversed-rule and class-inverted curves described above.
 
 
 ```{=html}
@@ -1482,6 +1178,39 @@ $$
 :::
 ::::
 
+
+:::: {#thm-auc-class-inversion}
+
+# AUC under threshold reversal and class inversion
+
+Assume $X\mid Y=0$ and $X\mid Y=1$ are atomless and almost surely finite. Write $\operatorname{AUC}^\star$ for the AUC of the transformed problem in each case below. Then:
+
+- under threshold reversal alone, $\boxed{\operatorname{AUC}^\star = 1-\operatorname{AUC}}$;
+- under class label swap alone, $\boxed{\operatorname{AUC}^\star = 1-\operatorname{AUC}}$;
+- under both together (the anti-diagonal transform), $\boxed{\operatorname{AUC}^\star = \operatorname{AUC}}$, leaving the AUC unchanged.
+
+::::
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('thm-auc-class-inversion')"}
+[▶]{#proof-arrow-thm-auc-class-inversion .proof-arrow} [Proof]{.proof-title}
+:::
+::: {#proof-content-thm-auc-class-inversion .proof-content}
+
+Write $u:=\mathrm{FPR}^+(t)$, $f(u):=\mathrm{TPR}^+(t)$, so $\operatorname{AUC}=\int_0^1 f(u)\,du$, with $f$ non-decreasing (@thm-roc-monotonicity), $f(0)=0$, $f(1)=1$ (@lem-roc-endpoints). Let $R:=\{(x,y):0\le x\le1,\,0\le y\le f(x)\}$, of area $\operatorname{AUC}$.
+
+**Threshold reversal.** The transformed curve is $g(x'):=1-f(1-x')$. Reflecting $R$ through $(0.5,0.5)$ sends $(x,y)\mapsto(1-x,1-y)$, and $0\le y\le f(x)$ becomes $1-f(1-x')\le y'\le1$, the region **above** $g$, of area $1-\operatorname{AUC}^\star$. Since central reflection preserves area, $1-\operatorname{AUC}^\star=\operatorname{AUC}$, *i.e.*, $\operatorname{AUC}^\star=1-\operatorname{AUC}$.
+
+**Class label swap.** The transformed curve is $g:=f^{-1}$ (generalized inverse). Reflecting $R$ across $y=x$ sends $(x,y)\mapsto(y,x)$, and $0\le x\le f(y)$ becomes, by monotonicity of $f$, $y\ge f^{-1}(x)=g(x)$, the same region above $g$, of area $1-\operatorname{AUC}^\star$. Reflection across a line preserves area, so once more $\operatorname{AUC}^\star=1-\operatorname{AUC}$.
+
+**Both together.** The two transforms commute at the level of the operating point, so applying one after the other composes the two identities just derived: $\operatorname{AUC}\mapsto1-\operatorname{AUC}\mapsto1-(1-\operatorname{AUC})=\operatorname{AUC}$.
+
+:::
+::::
+
+**Interpretation.** Only the composite (anti-diagonal) transform preserves AUC exactly; the two individual transforms each send $A\mapsto1-A$. This is intuitive : reversing the rule alone, or swapping the labels alone, each turns a good classifier into a bad one for the *new* problem (a classifier that correctly separates $X_0$ from $X_1$ under the original labeling is simply mislabeling everything once only one of the two conventions is flipped).
+On the other hand, flipping *both* conventions together restores consistency, since relabeling "positive" to mean "low score" and simultaneously testing for "low score" recovers a description of the exact same underlying discrimination ability.
+The fixed point of $A\mapsto1-A$ at $A=\tfrac12$ (random guessing) is the one case where all three transforms leave AUC unchanged, since $1-\tfrac12=\tfrac12$.
 
 
 ## The Precision/Recall curve function
