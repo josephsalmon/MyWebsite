@@ -53,7 +53,7 @@ format:
 
 ## Introduction and data used
 
-We illustrate in this post the notion of **ROC curves** and **Precision-Recall curves** using both simple distributions (Gaussian or Exponential) and data from a head-to-head benchmark evaluation of five SARS-CoV-2 serological assays [@ainsworth2020performance].
+We illustrate in this post the notion of **ROC curves** and **Precision-Recall curves** using both simple distributions (like Gaussian or uniform) but also data from a head-to-head benchmark evaluation of five SARS-CoV-2 serological assays [@ainsworth2020performance].
 
 For the empirical part, the underlying study compared the Abbott, DiaSorin, Oxford, Roche, and Siemens
 assays using a common set of well-characterized samples.
@@ -80,8 +80,8 @@ The presumption of health plays the same role as the *presumption of innocence* 
 $$
 \hat{Y}_t = \hat{Y}_t(X) = \mathbb{1}\{X \geq t\}=
 \begin{cases}
-1, & X \geq t \quad \text{(predicted sick)},\\
-0, & X < t \quad \text{(predicted healthy)}.
+1, & X \geq t,\\
+0, & X < t .
 \end{cases}
 $$
 
@@ -91,7 +91,13 @@ X_0 \sim \mathcal L(X\mid Y=0), \qquad X_1 \sim \mathcal L(X\mid Y=1)
 $$
 for two independent random variables with these laws. This turns any probability conditional on $Y$ into an ordinary, unconditional probability: for every threshold $t$,
 $$
-\mathbb P(X \ge t \mid Y=0) = \mathbb P(X_0\ge t), \qquad \mathbb P(X \ge t \mid Y=1) = \mathbb P(X_1\ge t),
+\begin{align*}
+\mathbb P(X \ge t \mid Y=0) 
+& = \mathbb P(X_0\ge t),
+\\
+\mathbb P(X \ge t \mid Y=1) 
+& = \mathbb P(X_1\ge t),
+\end{align*}
 $$
 and we use the right-hand sides from here on, since they involve a single random variable rather than a conditional statement.
 
@@ -99,8 +105,8 @@ As in any hypothesis test, two types of errors can occur: rejecting $\mathcal{H}
 
 $$
 \begin{align*}
-\mathbb{P}(\text{Type I error}) & = \mathbb{P}(\hat{Y}_t=1 \mid Y=0) = \mathbb{P}(X \geq t \mid Y=0) = \mathbb P(X_0\ge t),\\
-\mathbb{P}(\text{Type II error}) & = \mathbb{P}(\hat{Y}_t=0 \mid Y=1) = \mathbb{P}(X < t \mid Y=1) = \mathbb P(X_1 < t).
+\mathbb{P}(\text{Type I error}) & = \mathbb{P}(\hat{Y}_t=1 \mid Y=0) = \mathbb P(X_0\ge t),\\
+\mathbb{P}(\text{Type II error}) & = \mathbb{P}(\hat{Y}_t=0 \mid Y=1) = \mathbb P(X_1 < t).
 \end{align*}
 $$
 
@@ -114,13 +120,16 @@ The dataset consists of $n$ observations, denoted $\{(Y_i, X_i)\}_{i=1,\dots,n}$
 Naming follows the classical terminology (see *e.g.,* the [Wikipedia article on ROC curves](https://en.wikipedia.org/wiki/Receiver_operating_characteristic)). Given a fixed threshold, each sample falls into exactly one of the four categories below:
 
 - **True Positive**: sick and correctly declared positive
-$$\displaystyle\mathrm{TP} = \sum_{i=1}^n \mathbb{1}\{Y_i=1,\ \hat{Y}_{t,i}=1\}$$ 
+$$\displaystyle\mathrm{TP} = \sum_{i=1}^n \mathbb{1}\{Y_i=1,\ \hat{Y}_{t,i}=1\}$$
+
 - **True Negative**: healthy and correctly declared negative
-  $$\displaystyle\mathrm{TN} = \sum_{i=1}^n \mathbb{1}\{Y_i=0,\ \hat{Y}_{t,i}=0\}$$
+$$\displaystyle\mathrm{TN} = \sum_{i=1}^n \mathbb{1}\{Y_i=0,\ \hat{Y}_{t,i}=0\}$$
+
 - **False Positive**  (Type I error): healthy but wrongly declared positive
-    $$\displaystyle\mathrm{FP} = \sum_{i=1}^n \mathbb{1}\{Y_i=0,\ \hat{Y}_{t,i}=1\}$$
+$$\displaystyle\mathrm{FP} = \sum_{i=1}^n \mathbb{1}\{Y_i=0,\ \hat{Y}_{t,i}=1\}$$
+
 - **False Negative** (Type II error): sick but wrongly declared negative
- $$\displaystyle\mathrm{FN} = \sum_{i=1}^n \mathbb{1}\{Y_i=1,\ \hat{Y}_{t,i}=0\}$$ 
+$$\displaystyle\mathrm{FN} = \sum_{i=1}^n \mathbb{1}\{Y_i=1,\ \hat{Y}_{t,i}=0\}$$ 
 
 From the true status $Y$, we define two population sizes:
 
@@ -136,47 +145,68 @@ and, similarly, from the predicted status $\hat{Y}_t$:
 
 [Note]{.underline}: we will reuse the same color code below, with red for $\mathrm{N}$, blue for $\mathrm{P}$, crosses for a negative test result, and dots for a positive test result.
 
-We also define the following rates, used throughout this post.
-Let $\pi_1 = \mathbb{P}(Y=1)$ and $\pi_0 = \mathbb{P}(Y=0)$ denote the class probabilities, with $\pi_0 + \pi_1 = 1$.
-We refer to $\pi_1$ as the **prevalence** of the disease in the population.
 
+We also define the following rates, used throughout this post. Let $\pi_1:=\mathbb P(Y=1)$ and $\pi_0:=\mathbb P(Y=0)=1-\pi_1$ denote the class probabilities; we refer to $\pi_1$ as the **prevalence** of the disease in the population.
 
-- $\mathrm{TPR} = \dfrac{\mathrm{TP}}{\mathrm{P}} = \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=1\right) = \mathbb P(X_1\ge t)$ (**True Positive Rate**, a.k.a. **sensitivity** or **recall**): among sick people, the proportion correctly detected,
-- $\mathrm{TNR} = \dfrac{\mathrm{TN}}{\mathrm{N}} = \mathbb{P}\!\left(\hat{Y}_t=0 \mid Y=0\right) = \mathbb P(X_0< t)$ (**True Negative Rate**, a.k.a. **specificity**): among healthy people, the proportion correctly cleared,
-- $\mathrm{FPR} = 1 - \mathrm{TNR} = \dfrac{\mathrm{FP}}{\mathrm{N}} = \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=0\right) = \mathbb P(X_0\ge t)$ (**False Positive Rate**): among healthy people, the proportion wrongly flagged — this is exactly the Type I error probability,
-- $\mathrm{Precision} = \dfrac{\mathrm{TP}}{\hat{\mathrm{P}}_t} = \mathbb{P}\!\left(Y=1 \mid \hat{Y}_t=1\right)$: among people declared positive, the proportion actually sick. Unlike the three rates above, precision also depends on the class proportions $\mathbb P(Y=0),\mathbb P(Y=1)$ (the disease prevalence), and so cannot be written purely in terms of $X_0$ and $X_1$.
+**The true rates.** These are probabilities of the underlying random variables — population quantities, not counts:
+
+- $\mathrm{TPR}(t) := \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=1\right) = \mathbb P(X_1\ge t)$ (**True Positive Rate**, a.k.a. **sensitivity** or **recall**): among sick people, the proportion correctly detected,
+- $\mathrm{TNR}(t) := \mathbb{P}\!\left(\hat{Y}_t=0 \mid Y=0\right) = \mathbb P(X_0< t)$ (**True Negative Rate**, a.k.a. **specificity**): among healthy people, the proportion correctly cleared,
+- $\mathrm{FPR}(t) := \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=0\right) = \mathbb P(X_0\ge t)$ (**False Positive Rate**): among healthy people, the proportion wrongly flagged, exactly the Type I error probability,
+- $\mathrm{Precision}(t) := \mathbb{P}\!\left(Y=1 \mid \hat{Y}_t=1\right)$: among people declared positive, the proportion actually sick.
+
+The first three depend only on the conditional laws $X_0,X_1$. Precision does not: it also depends on the class probabilities $\pi_0,\pi_1$, and so, unlike the other three, cannot be written purely in terms of $X_0$ and $X_1$ (its exact form is given in @thm-precision-formula below).
+
+**Estimators.** In practice $t$, $\pi_1$, and the laws of $X_0,X_1$ are unknown, and each rate above is estimated from a labeled sample $(X_i,Y_i)_{i=1}^n$. With the notation defined earlier, the naive (plug-in) estimator of each rate simply replaces the expectation defining it by the corresponding empirical mean over the sample:
+$$
+\begin{align*}
+\widehat{\mathrm{TPR}}(t) & =\frac{\mathrm{TP}(t)}{\mathrm P}, \\
+\widehat{\mathrm{TNR}}(t) & =\frac{\mathrm{TN}(t)}{\mathrm N}, \\
+\widehat{\mathrm{FPR}}(t) & =\frac{\mathrm{FP}(t)}{\mathrm N}, \\
+\widehat{\mathrm{Precision}}(t) & =\frac{\mathrm{TP}(t)}{\hat{\mathrm P}_t}.\\
+\end{align*}
+$$
 
 ## The ROC curve function
 
-For a given threshold $t$, the ROC operating point is defined as:
+The **receiver operating characteristic** (ROC) curve traces its origins to signal detection theory, developed during **World War II** to enhance the precision of radar and sonar systems in distinguishing enemy signals from noise.
+This framework, initially designed for military applications, laid the groundwork for quantifying the trade-off between detecting true threats and minimizing false alarms.
+Over time, ROC analysis evolved into a universal tool for evaluating classification performance across fields like medicine, machine learning, and beyond.
+
+
+
+:::: {#def-roc}
+
+## ROC curve
+
+For the threshold rule $\hat{Y}_t = \mathbb{1}\{X \geq t\}$ and a threshold $t \in \mathbb{R}$, the **ROC operating point** is defined as:
 
 $$
-\begin{align}
+\begin{align*}
 \left(\mathrm{FPR}(t), \mathrm{TPR}(t)\right)
-& = \left(
-\mathbb{P}\!\left(\hat{Y}_t =1 \mid Y=0\right),
-\mathbb{P}\!\left(\hat{Y}_t =1 \mid Y=1\right)
-\right)\\
-& = \bigl(\mathbb P(X_0\ge t),\ \mathbb P(X_1\ge t)\bigr).
-\end{align}
+& = (
+\mathbb{P}(\hat{Y}_t = 1 \! \mid \! Y=0),
+\mathbb{P}(\hat{Y}_t = 1 \! \mid \! Y=1)
+)\\
+& = \bigl(\mathbb P(X_0\ge t),\ \mathbb P(X_1\ge t)\bigr),
+\end{align*}
 $$
 
-The **ROC curve** is the parametric curve obtained as $t$ varies over $\mathbb{R}$:
+where $X_0$ and $X_1$ denote random variables distributed as the conditional laws of $X$ given $Y=0$ and $Y=1$, respectively.
+
+The **ROC curve** is the parametric curve traced by the operating point as $t$ varies over $\mathbb{R}$:
 
 $$
+\mathcal{C}_{\mathrm{ROC}}
+=
 \{(\mathrm{FPR}(t), \mathrm{TPR}(t)) : t \in \mathbb{R}\}.
 $$
 
-Since FPR and TPR are probabilities, the ROC curve is contained in the unit square $[0,1] \times [0,1]$.
+::::
 
-In practice, estimation is performed using empirical counterparts. For each threshold $t$, we compute:
-$$
-\widehat{\mathrm{FPR}}(t) = \frac{1}{N} \sum_{i: Y_i=0} \mathbb{1}\{X_i \geq t\}, \quad
-\widehat{\mathrm{TPR}}(t) = \frac{1}{P} \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\},
-$$
-where $N$ and $P$ are the numbers of negative and positive samples, respectively.
 
----
+
+**Note**: Since FPR and TPR are probabilities, the ROC curve is contained in the unit square $[0,1] \times [0,1]$.
 
 
 
@@ -231,9 +261,9 @@ $$
 :::
 ::::
 
-### Extreme cases
+#### Extreme cases
 
-#### Perfect classifier
+##### Perfect classifier
 
 :::: {#thm-perfect-separation}
 
@@ -260,9 +290,8 @@ By definition, $\mathrm{FPR}(t^\star) = \mathbb P(X_0 \ge t^\star) = 0$ and $\ma
 :::
 ::::
 
----
 
-#### Always-wrong classifier
+##### Always-wrong classifier
 
 :::: {#cor-perfect-anti-separation}
 
@@ -289,9 +318,8 @@ By definition, $\mathrm{FPR}(t^\star) = \mathbb P(X_0 \ge t^\star) = 1$ and $\ma
 :::
 ::::
 
----
 
-#### Random classifier
+##### Random classifier
 
 :::: {#thm-random-guessing}
 
@@ -314,7 +342,7 @@ Since $X_0 \stackrel{d}{=} X_1$, $\mathbb P(X_0 \ge t) = \mathbb P(X_1 \ge t)$ f
 :::
 ::::
 
-### Monotonicity of ROC curves
+#### Monotonicity of ROC curves
 
 A fundamental property of ROC curves, one that distinguishes them from Precision-Recall curves, is their **monotonicity**.
 
@@ -342,7 +370,7 @@ i.e. $\mathrm{TPR}(t_1) \geq \mathrm{TPR}(t_2)$ and $\mathrm{FPR}(t_1) \geq \mat
 :::
 ::::
 
-### Invariance under strictly increasing transformations
+##### Invariance under strictly increasing transformations
 
 A strictly increasing bijection does not introduce new ROC geometry: the ROC curve of $g(X)$ is identical to that of $X$, with only the threshold parametrization transformed via $t\mapsto g^{-1}(t)$.
 
@@ -350,10 +378,21 @@ A strictly increasing bijection does not introduce new ROC geometry: the ROC cur
 
 # Invariance of ROC curves under increasing transformations
 
-Let $X$ be a real-valued random variable, with $X\mid Y=0$ and $X\mid Y=1$ atomless, and let $g:\mathbb R\to\mathbb R$ be a strictly increasing bijection. Writing $\mathrm{FPR}_X(t)=\mathbb P(X\ge t\mid Y=0)$, $\mathrm{TPR}_X(t)=\mathbb P(X\ge t\mid Y=1)$, the operating characteristics of $g(X)$ are
+Let $X$ be a real-valued random variable, with $X\mid Y=0$ and $X\mid Y=1$ atomless, and let $g:\mathbb R\to\mathbb R$ be a strictly increasing bijection.
+Writing 
+
+$$
+\begin{align*}
+\mathrm{FPR}_X(t)=\mathbb P(X\ge t\mid Y=0),\\ \mathrm{TPR}_X(t)=\mathbb P(X\ge t\mid Y=1),
+\end{align*}
+$$
+the operating characteristics of $g(X)$ are
 $$
 \boxed{
-\mathrm{FPR}_{g(X)}(t) = \mathrm{FPR}_X(g^{-1}(t)), \qquad \mathrm{TPR}_{g(X)}(t) = \mathrm{TPR}_X(g^{-1}(t)).
+\begin{aligned}
+\mathrm{FPR}_{g(X)}(t) &= \mathrm{FPR}_X(g^{-1}(t)), \\
+\mathrm{TPR}_{g(X)}(t) &= \mathrm{TPR}_X(g^{-1}(t)).
+\end{aligned}
 }
 $$
 
@@ -372,7 +411,7 @@ which, specializing to $y=0$ and $y=1$, is exactly the boxed identity. As $t$ ra
 :::
 ::::
 
-## Symmetries of ROC curves
+#### Symmetries of ROC curves
 
 The ROC curve exhibits three nontrivial symmetries, generated by reversing the decision rule and/or swapping the class labels. Each acts as an exact affine reflection of the $(\mathrm{FPR},\mathrm{TPR})$ square, mostly because **the ROC curve is completely unaffected by class prevalence**.
 
@@ -386,7 +425,7 @@ $$
 $$
 Atomlessness also gives $\mathbb P(X<t\mid Y=y)=1-\mathbb P(X\ge t\mid Y=y)$ for every $y$, used below whenever the rule is reversed.
 
-### Threshold reversal
+#### Threshold reversal
 
 Keeping the class labels unchanged and reversing the rule to $\hat Y_t^\star=\mathbb 1\{X<t\}$ sends the operating point as
 $$
@@ -416,7 +455,7 @@ Thus $(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))\mapsto(1-\mathrm{FPR}^+(t),\,1-\math
 :::
 ::::
 
-### Class label swap
+##### Class label swap
 
 Keeping the rule unchanged but swapping the labels, $Y^\star=1-Y$, $\hat Y_t^\star=\mathbb 1\{X\ge t\}$, sends the operating point as
 $$
@@ -446,7 +485,7 @@ Thus $(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))\mapsto(\mathrm{TPR}^+(t),\,\mathrm{F
 :::
 ::::
 
-### Class label swap with threshold reversal
+##### Class label swap with threshold reversal
 
 Swapping the labels **and** reversing the rule, $Y^\star=1-Y$, $\hat Y_t^\star=\mathbb 1\{X\le t\}$, sends the operating point as
 $$
@@ -458,7 +497,7 @@ $$
 :::: {#thm-roc-class-inversion}
 
 # Anti-diagonal symmetry
-
+>
 Under simultaneous class-label swapping and threshold reversal, the ROC curve is the reflection of the original curve about the anti-diagonal $y=1-x$.
 
 ::::
@@ -476,7 +515,7 @@ Thus $(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))\mapsto(1-\mathrm{TPR}^+(t),\,1-\math
 :::
 ::::
 
-### Summary
+##### Summary and visualization
 
 ::: {style="font-size:90%; margin: 1em 0;"}
 | Transformation | FPR$'$ | TPR$'$ | Geometric interpretation |
@@ -494,34 +533,34 @@ You can verify this directly with the interactive below
 
 **Interactive ROC curve exploration.** The visualization below illustrates these properties for a Gaussian model $X\mid Y=0\sim\mathcal N(0,1)$, $X\mid Y=1\sim\mathcal N(1,2^2)$. Use the **Threshold ($\pi$)** slider to move along the ROC curve and watch the operating point change; the **Prevalence** slider confirms that the ROC curve itself is unaffected by class imbalance, however that slider is moved. The plot also shows the reversed-rule and class-inverted curves described above.
 
-
 ```{=html}
-<div id="gaussian-symmetric-roc-interactive"
-     class="gaussian-symmetric-roc-interactive"
-     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap;
-            max-width:100%; overflow-x:auto; width:fit-content; margin:0 auto;
-            font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+<div class="roc-scale-wrapper" style="width:100%; max-width:700px; margin:0 auto; overflow:hidden; position:relative;">
 
-  <div class="gaussian-symmetric-roc-controls"
-       style="display:flex; flex-direction:column; justify-content:center;
-              min-width:150px; flex:0 0 150px;
-              border:1px solid rgba(0,0,0,0.15);
-              border-radius:8px; padding:8px; font-size:9.5px;
-              background:rgba(0,0,0,0.02);">
-  </div>
+  <div id="gaussian-symmetric-roc-interactive"
+       class="gaussian-symmetric-roc-interactive"
+       style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap;
+              width:690px;
+              font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
-  <div class="gaussian-symmetric-roc-plot"
-       style="flex:0 0 auto;
-              display:flex; align-items:center; justify-content:center;">
+    <div class="gaussian-symmetric-roc-controls"
+         style="display:flex; flex-direction:column; justify-content:center;
+                min-width:150px; flex:0 0 150px;
+                border:1px solid rgba(0,0,0,0.15);
+                border-radius:8px; padding:8px; font-size:9.5px;
+                background:rgba(0,0,0,0.02);">
+    </div>
+
+    <div class="gaussian-symmetric-roc-plot"
+         style="flex:0 0 auto;
+                display:flex; align-items:center; justify-content:center;">
+    </div>
+
   </div>
 
 </div>
 
 <script type="module" src="gaussian_symmetric_roc.js"></script>
 ```
-
-
-
 
 ---
 
@@ -540,18 +579,19 @@ where $\sigma_0 > 0$ and $\sigma_1 > 0$ are the scale parameters, and $\mu_0, \m
 - $\Delta = (\mu_1 - \mu_0) / \sigma_1$ (standardized separation)
 - $\rho = \sigma_0 / \sigma_1 > 0$ (scale ratio)
 - $\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-u^2/2} \, du$ (standard Gaussian CDF)
-- $\operatorname{clip}(x, 0, 1) = \max(0, \min(1, x))$ (clipping function)
+- $[x]_0^1 = \max(0, \min(1, x))$ (clipping function)
+- $(x)_+= \max(0,x)$
 
 
 ::: {style="font-size:90%; margin: 1em 0;"}
    Law of $Z$ | CDF $F(z)$ | $\mathrm{TPR}(\mathrm{FPR})$ | Symmetric |
  |------------|-------------|------------------------|:---------:|
  | **Gaussian** | $\Phi(z)$ | $\Phi\bigl(\Delta + \rho \Phi^{-1}(\mathrm{FPR})\bigr)$ | ✓ |
- | **Cauchy** | $\tfrac{1}{2} + \tfrac{1}{\pi} \arctan z$ | $\tfrac{1}{2} + \tfrac{1}{\pi} \arctan\Bigl(\Delta + \rho \tan\bigl(\pi(\mathrm{FPR} - \tfrac{1}{2})\bigr)\Bigr)$ | ✓ |
+ |**Cauchy** | $\tfrac{1}{2} + \tfrac{\tan^{-1}z}{\pi}$ | $\tfrac{1}{2} + \tfrac{\tan^{-1}(\Delta + \rho\, \tan(\pi(\mathrm{FPR} - \tfrac{1}{2})\bigr)\bigr)}{\pi}$ | ✓ |
  | **Logistic** | $\dfrac{1}{1 + e^{-z}}$ | $\dfrac{e^{\Delta} \mathrm{FPR}^{\rho}}{e^{\Delta} \mathrm{FPR}^{\rho} + (1 - \mathrm{FPR})^{\rho}}$ | ✓ |
- | **Uniform** $(-\tfrac{1}{2}, \tfrac{1}{2})$ | $\operatorname{clip}\bigl(z + \tfrac{1}{2}, 0, 1\bigr)$ | $\operatorname{clip}\bigl(\Delta + \tfrac{1 - \rho}{2} + \rho \mathrm{FPR}, 0, 1\bigr)$ | ✓ |
- | **Gumbel** | $\exp\bigl(-e^{-z}\bigr)$ | $1 - \exp\Bigl(-e^{\Delta} \bigl(-\ln(1 - \mathrm{FPR})\bigr)^\rho \Bigr)$ | ✗ |
- | **Exponential** | $(1 - e^{-z}) \mathbb{1}\{z \ge 0\}$ | $\min\bigl(e^{\Delta} \mathrm{FPR}^{\rho}, 1\bigr)$ | ✗ |
+ | **Uniform** $(-\tfrac{1}{2}, \tfrac{1}{2})$ | $\bigl[z + \tfrac{1}{2}\bigl]_0^1$ | $\bigl[\Delta + \tfrac{1 - \rho}{2} + \rho \mathrm{FPR}\bigl]_0^1$ | ✓ |
+ | **Gumbel** | $\exp\bigl(-e^{-z}\bigr)$ | $1 - \tfrac{1}{\exp\Bigl(e^{\Delta} \bigl(-\ln(1 - \mathrm{FPR})\bigr)^\rho \Bigr)}$ | ✗ |
+ | **Exp.** | $(1 - e^{-z})_+$ | $\min\bigl(e^{\Delta} \mathrm{FPR}^{\rho}, 1\bigr)$ | ✗ |
 
 : ROC curves for common distributions {#tbl-distributions .striped .hover}
 :::
@@ -637,11 +677,11 @@ $$
 =
 \mathbb P(X_0\ge t)
 =
-\mathbb P\!\left(
+\mathbb P\left(
 Z_0\ge\frac{t-\mu_0}{\sigma_0}
 \right)
 =
-1-F\!\left(\frac{t-\mu_0}{\sigma_0}\right).
+1-F\left(\frac{t-\mu_0}{\sigma_0}\right).
 $$
 
 Whenever $\mathrm{FPR}(t)\in(0,1)$, i.e. $1-\mathrm{FPR}(t)\in(0,1)$, $F^{-1}$ is well defined there and
@@ -784,10 +824,10 @@ $$
 \mathrm{TPR}=\Phi\bigl(\Delta+\rho\,\Phi^{-1}(\mathrm{FPR})\bigr).
 $$
 
-**Cauchy.** The standard Cauchy CDF is $F(x)=\tfrac12+\tfrac1\pi\arctan x$. Since $\arctan$ is odd, $F(-x)=\tfrac12-\tfrac1\pi\arctan x=1-F(x)$.
+**Cauchy.** The standard Cauchy CDF is $F(x)=\tfrac12+\tfrac1\pi\tan^{-1} x$. Since $\tan^{-1}$ is odd, $F(-x)=\tfrac12-\tfrac1\pi\tan^{-1} x=1-F(x)$.
 Solving 
 $$
-\tfrac12+\tfrac1\pi\arctan(F^{-1}(p))=p
+\tfrac12+\tfrac1\pi\tan^{-1}(F^{-1}(p))=p
 $$ gives
 $$
 F^{-1}(p)=\tan\bigl(\pi(p-\tfrac12)\bigr).
@@ -802,11 +842,11 @@ Multiplying numerator and denominator by $e^\Delta\mathrm{FPR}^\rho$ gives the t
 
 **Uniform $(-\tfrac12,\tfrac12)$.** The CDF is
 $$
-F(z)=\operatorname{clip}\bigl(z+\tfrac12,0,1\bigr),
+F(z)=\bigl[z+\tfrac12\bigr]_{0}^{1},
 $$
 symmetric on all of $\mathbb R$, with $F^{-1}(p)=p-\tfrac12$ on $(0,1)$. The theorem gives $\mathrm{TPR}=F(u)$, $u:=\Delta+\rho\bigl(\mathrm{FPR}-\tfrac12\bigr)$, and since $u$ need not lie in $[-\tfrac12,\tfrac12]$,
 $$
-\mathrm{TPR}=\operatorname{clip}\bigl(u+\tfrac12,0,1\bigr)=\operatorname{clip}\Bigl(\Delta+\tfrac{1-\rho}{2}+\rho\,\mathrm{FPR},\,0,1\Bigr).
+\mathrm{TPR}=\bigl[u+\tfrac12,\bigr]_{0}^{1}=\Bigl[\Delta+\tfrac{1-\rho}{2}+\rho\,\mathrm{FPR},\Bigr]_{0}^{1}.
 $$
 
 ### The remaining rows: Gumbel and Exponential (not symmetric)
@@ -852,7 +892,7 @@ Now we illustrate the empirical counterpart, when one samples elements from the 
 ```{=html}
 <div id="sampling-roc-interactive"
      class="sampling-roc-interactive"
-     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; width:900px; overflow:visible; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
   <div class="sampling-roc-controls"
        style="display:flex; flex-direction:column; justify-content:center;
