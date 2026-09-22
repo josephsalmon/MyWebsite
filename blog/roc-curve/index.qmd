@@ -481,21 +481,18 @@ Thus $(\mathrm{FPR}^+(t),\mathrm{TPR}^+(t))\mapsto(1-\mathrm{TPR}^+(t),\,1-\math
 ::: {style="font-size:90%; margin: 1em 0;"}
 | Transformation | FPR$'$ | TPR$'$ | Geometric interpretation |
 |---|---|---|---|
-| Threshold reversal ($X<t$ instead of $X\ge t$) | $1-\mathrm{FPR}$ | $1-\mathrm{TPR}$ | Central symmetry about $(0.5,0.5)$ |
-| Class label swap ($Y=0\leftrightarrow Y=1$) | $\mathrm{TPR}$ | $\mathrm{FPR}$ | Reflection across the main diagonal |
+| Threshold reversal: $X<t \leftrightarrow X\ge t$ | $1-\mathrm{FPR}$ | $1-\mathrm{TPR}$ | Central symmetry about $(0.5,0.5)$ |
+| Class label swap: $Y=0\leftrightarrow Y=1$ | $\mathrm{TPR}$ | $\mathrm{FPR}$ | Reflection across the main diagonal |
 | Both (reverse rule + swap labels) | $1-\mathrm{TPR}$ | $1-\mathrm{FPR}$ | Reflection across the anti-diagonal $y=1-x$ |
 
 : Simple transformations of the ROC operating point {#tbl-roc-transformations .striped .hover}
 :::
 
-These three transformations, together with the identity, generate every symmetry of the ROC square and preserve the curve's overall shape while relocating the operating point. As noted above, none of them depends on the class prevalence $\pi_1=\mathbb P(Y=1)$.
-You can verify directly this property with the prevalence slider in the interactive visualization below (which fails for the corresponding Precision-Recall transforms discussed below).
+These three transformations, together with the identity, preserve the curve's overall shape. As noted above, none of them depends on the class prevalence $\pi_1=\mathbb P(Y=1)$.
+You can verify this directly with the interactive below
 
 
-
-**Interpretation.** This is not a coincidence specific to these three transforms: it restates, in this language, the fact used throughout this post that ROC curves and AUC never involve the prevalence $\pi_1$ at all — Precision is the quantity that depends on $\pi_1$ (@thm-precision-formula), while $\mathrm{FPR}^+,\mathrm{TPR}^+$, and hence AUC, do not. So relabeling which class is "positive" and/or reversing the rule can move the operating point and reflect the *curve* — but it cannot move the *area under it*. This is the ROC-space counterpart of the Precision-Recall fact from earlier that class inversion flips Precision exactly to $1-\mathrm{Precision}$ (@cor-class-inversion-precision-flip): there the transform's effect was visible and prevalence-dependent; here, on the ROC/AUC side, the same underlying operations leave the summary statistic untouched entirely.
-
-**Interactive ROC curve exploration.** The visualization below illustrates these properties for a Gaussian model ($X\mid Y=0\sim\mathcal N(0,1)$, $X\mid Y=1\sim\mathcal N(1,2^2)$). Use the **Threshold** slider to move along the ROC curve and watch the operating point change; the **Prevalence** slider confirms that the ROC curve itself is unaffected by class imbalance, however that slider is moved. The plot also shows the reversed-rule and class-inverted curves described above.
+**Interactive ROC curve exploration.** The visualization below illustrates these properties for a Gaussian model $X\mid Y=0\sim\mathcal N(0,1)$, $X\mid Y=1\sim\mathcal N(1,2^2)$. Use the **Threshold ($\pi$)** slider to move along the ROC curve and watch the operating point change; the **Prevalence** slider confirms that the ROC curve itself is unaffected by class imbalance, however that slider is moved. The plot also shows the reversed-rule and class-inverted curves described above.
 
 
 ```{=html}
