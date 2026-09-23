@@ -534,27 +534,23 @@ You can verify this directly with the interactive below
 **Interactive ROC curve exploration.** The visualization below illustrates these properties for a Gaussian model $X\mid Y=0\sim\mathcal N(0,1)$, $X\mid Y=1\sim\mathcal N(1,2^2)$. Use the **Threshold ($\pi$)** slider to move along the ROC curve and watch the operating point change; the **Prevalence** slider confirms that the ROC curve itself is unaffected by class imbalance, however that slider is moved. The plot also shows the reversed-rule and class-inverted curves described above.
 
 ```{=html}
-<div class="roc-scale-wrapper" style="width:100%; max-width:700px; margin:0 auto; overflow:hidden; position:relative;">
+<div id="gaussian-symmetric-roc-interactive"
+     class="gaussian-symmetric-roc-interactive"
+     style="display:flex; gap:10px; align-items:stretch; flex-wrap:wrap;
+            width:100%; max-width:700px; margin:0 auto; overflow-x:auto;
+            font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
-  <div id="gaussian-symmetric-roc-interactive"
-       class="gaussian-symmetric-roc-interactive"
-       style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap;
-              width:690px;
-              font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+  <div class="gaussian-symmetric-roc-controls"
+       style="display:flex; flex-direction:column; justify-content:center;
+              min-width:150px; flex:0 0 150px;
+              border:1px solid rgba(0,0,0,0.15);
+              border-radius:8px; padding:8px; font-size:9.5px;
+              background:rgba(0,0,0,0.02);">
+  </div>
 
-    <div class="gaussian-symmetric-roc-controls"
-         style="display:flex; flex-direction:column; justify-content:center;
-                min-width:150px; flex:0 0 150px;
-                border:1px solid rgba(0,0,0,0.15);
-                border-radius:8px; padding:8px; font-size:9.5px;
-                background:rgba(0,0,0,0.02);">
-    </div>
-
-    <div class="gaussian-symmetric-roc-plot"
-         style="flex:0 0 auto;
-                display:flex; align-items:center; justify-content:center;">
-    </div>
-
+  <div class="gaussian-symmetric-roc-plot"
+       style="flex:1 1 340px; min-width:340px;
+              display:flex; align-items:center; justify-content:center;">
   </div>
 
 </div>

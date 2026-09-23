@@ -163,142 +163,340 @@ export async function initGaussianSymmetricRocWidget(container) {
   const classInversionReversedCurve = rocCurve(classInversionReversedRocPoint, tMin, tMax);
 
   function buildTraces(t) {
-  // In buildTraces(t):
-const traces = [
-  // Original ROC curve (solid, thick line)
-  ...curveAndPoint(gaussianCurve, rocPoint(t),
-    { color: COLORS.roc, width: 2.5, dash: 'solid', name: 'ROC curve', legend: 'legend1', markerSize: 12 }),
+    const traces = [
+      // Original ROC curve (solid, thick line)
+      // NOTE: legend key must match a name actually declared in layout()
+      // ('legend'), not 'legend1' — using an undeclared legend name was
+      // silently falling back to Plotly's default legend position,
+      // which then overlapped the three positioned columns below.
+      ...curveAndPoint(gaussianCurve, rocPoint(t),
+        { color: COLORS.roc, width: 2.5, dash: 'solid', name: 'ROC curve', legend: 'legend', markerSize: 12 }),
 
-  // Transformations (dashed/dotted, medium width)
-  ...curveAndPoint(reversedTestCurve, reversedTestRocPoint(t),
-    { color: COLORS.thresholdReversal, width: 2, dash: 'dot', name: 'Threshold reversal', legend: 'legend2' }),
-  ...curveAndPoint(classInversionCurve, classInversionRocPoint(t),
-    { color: COLORS.classSwap, width: 2, dash: 'dash', name: 'Class label swap', legend: 'legend2' }),
-  ...curveAndPoint(classInversionReversedCurve, classInversionReversedRocPoint(t),
-    { color: COLORS.classSwapReversal, width: 2, dash: 'longdash', name: 'Class swap + threshold rev.', legend: 'legend2' }),
+      // Transformations (dashed/dotted, medium width)
+      ...curveAndPoint(reversedTestCurve, reversedTestRocPoint(t),
+        { color: COLORS.thresholdReversal, width: 2, dash: 'dot', name: 'Threshold reversal', legend: 'legend2' }),
+      ...curveAndPoint(classInversionCurve, classInversionRocPoint(t),
+        { color: COLORS.classSwap, width: 2, dash: 'dash', name: 'Class label swap', legend: 'legend2' }),
+      ...curveAndPoint(classInversionReversedCurve, classInversionReversedRocPoint(t),
+        { color: COLORS.classSwapReversal, width: 2, dash: 'longdash', name: 'Class swap + threshold rev.', legend: 'legend2' }),
 
-  // Extreme cases (thin, distinct dashes)
-  {
-    x: perfectCurve.x,
-    y: perfectCurve.y,
-    mode: 'lines',
-    name: 'Perfect',
-    legend: 'legend3',
-    showlegend: true,
-    line: { color: COLORS.perfect, width: 1.5, dash: 'dot' }
-  },
-  {
-    x: randomCurve.x,
-    y: randomCurve.y,
-    mode: 'lines',
-    name: 'Random',
-    legend: 'legend3',
-    showlegend: true,
-    line: { color: COLORS.random, width: 1.5, dash: 'dash' }
-  },
-  {
-    x: wrongCurve.x,
-    y: wrongCurve.y,
-    mode: 'lines',
-    name: 'Always wrong',
-    legend: 'legend3',
-    showlegend: true,
-    line: { color: COLORS.wrong, width: 1.5, dash: 'longdashdot' }
-  }
-];
+      // Extreme cases (thin, distinct dashes)
+      {
+        x: perfectCurve.x,
+        y: perfectCurve.y,
+        mode: 'lines',
+        name: 'Perfect',
+        legend: 'legend3',
+        showlegend: true,
+        line: { color: COLORS.perfect, width: 1.5, dash: 'dot' }
+      },
+      {
+        x: randomCurve.x,
+        y: randomCurve.y,
+        mode: 'lines',
+        name: 'Random',
+        legend: 'legend3',
+        showlegend: true,
+        line: { color: COLORS.random, width: 1.5, dash: 'dash' }
+      },
+      {
+        x: wrongCurve.x,
+        y: wrongCurve.y,
+        mode: 'lines',
+        name: 'Always wrong',
+        legend: 'legend3',
+        showlegend: true,
+        line: { color: COLORS.wrong, width: 1.5, dash: 'longdashdot' }
+      }
+    ];
 
     return traces;
   }
 
-  function legendColumn(x, xanchor, title) {
-    return {
-      orientation: 'v', y: 1.26, yanchor: 'top', x, xanchor, valign: 'top',
-      font: { size: 9, family: FONT_FAMILY }, borderwidth: 0, itemwidth: 20,
-      title: { text: title, font: { size: 9.5, family: FONT_FAMILY, color: '#333', weight: 'bold' }, side: 'top' },
-    };
-  }
+  // x, xanchor spread further apart (0.02 / 0.36 / 0.72) and given more
+  // room per column (itemwidth raised) to stop entries from one column
+  // visually running into the next.
+function legendColumn(y, title) {
 
-  function gridShapes(ticks, boxMin, boxMax) {
-  const shapes = [];
-  ticks.forEach((v) => {
-    // vertical line at x = v
-    shapes.push({
-      type: 'line', xref: 'x', yref: 'y',
-      x0: v, x1: v, y0: boxMin, y1: boxMax,
-      line: { color: '#e5e5e5', width: 1 },
-      layer: 'below',
-    });
-    // horizontal line at y = v
-    shapes.push({
-      type: 'line', xref: 'x', yref: 'y',
-      x0: boxMin, x1: boxMax, y0: v, y1: v,
-      line: { color: '#e5e5e5', width: 1 },
-      layer: 'below',
-    });
-  });
-  return shapes;
+  return {
+
+    orientation: 'v',
+
+    y,
+
+    yanchor: 'top',
+
+    x: 1.02,
+
+    xanchor: 'left',
+
+    valign: 'top',
+
+    font: {
+      size: 8.5,
+      family: FONT_FAMILY
+    },
+
+    borderwidth: 0,
+
+    itemwidth: 30,
+
+    title: {
+      text: title,
+
+      font: {
+        size: 9.5,
+        family: FONT_FAMILY,
+        color: '#333',
+        weight: 'bold'
+      },
+
+      side: 'top'
+    },
+
+  };
 }
 
- function layout() {
-    const ticks = [0, 0.2, 0.4, 0.6, 0.8, 1];
-    return {
-      font: { family: FONT_FAMILY, size: 12, color: '#333' },
-      xaxis: {
-        range: [-0.04, 1.04],
-        autorange: false,
-        showline: false,
-        linecolor: '#999',
-        zeroline: false,
-        linewidth: 1,
-        ticklen: 0,
-        tickvals: ticks,
-        showgrid: false,
-        title: { text: 'False Positive Rate', font: { size: 12 }, standoff: 10 },
-      },
-      yaxis: {
-        range: [-0.04, 1.04],
-        autorange: false,
-        scaleanchor: 'x',
-        scaleratio: 1,
-        showline: false,
-        zeroline: false,
-        linecolor: '#999',
-        linewidth: 1,
-        ticklen: 0,
-        showgrid: false,
-        tickmode: 'array',
-        tickvals: ticks,
-        ticklabelposition: 'inside',
-        ticklabelstandoff: 2,
-        title: {
-          text: 'True Positive Rate',
-          font: { size: 12 },
-          standoff: 10
-        },
-      },
-      shapes: gridShapes(ticks, 0, 1),
-      margin: { l: 60, r: 60, t: 70, b: 50, pad: 2 },  // Increased top margin
-      legend: legendColumn(0.0, 'left', 'Original'),
-      legend2: legendColumn(0.25, 'left', 'Transformations'),
-      legend3: legendColumn(.70, 'left', 'Extreme cases'),
-      width: 530,
-      height: 520,
-      autosize: false,
-      paper_bgcolor: 'rgba(0,0,0,0)',
-      plot_bgcolor: 'rgba(0,0,0,0)',
-    };
+  function gridShapes(ticks, boxMin, boxMax) {
+    const shapes = [];
+    ticks.forEach((v) => {
+      // vertical line at x = v
+      shapes.push({
+        type: 'line', xref: 'x', yref: 'y',
+        x0: v, x1: v, y0: boxMin, y1: boxMax,
+        line: { color: '#e5e5e5', width: 1 },
+        layer: 'below',
+      });
+      // horizontal line at y = v
+      shapes.push({
+        type: 'line', xref: 'x', yref: 'y',
+        x0: boxMin, x1: boxMax, y0: v, y1: v,
+        line: { color: '#e5e5e5', width: 1 },
+        layer: 'below',
+      });
+    });
+    return shapes;
   }
 
+  // --- Responsive sizing, following subplot_viz.js's pattern: measure
+  // the plot div's actual width, derive height from a fixed aspect
+  // ratio, and re-render (not CSS-scale) on resize. -----------------
+
+// --- Responsive sizing -------------------------------------------------
+// The ROC plotting region is square. The legends live to the right,
+// so the overall figure is wider than it is tall.
+
+const NATURAL_WIDTH = 600;
+const NATURAL_HEIGHT = 390;
+const MIN_WIDTH = 360;
+
+function computePlotSize() {
+
+  const measured =
+    plotDiv.getBoundingClientRect().width;
+
+  const available =
+    measured > 0
+      ? measured
+      : NATURAL_WIDTH;
+
+  const width =
+    Math.max(
+      MIN_WIDTH,
+      Math.min(
+        NATURAL_WIDTH,
+        Math.round(available)
+      )
+    );
+
+  // Keep the overall widget compact. The ROC axes themselves remain
+  // square through scaleanchor/scaleratio.
+  const height = NATURAL_HEIGHT;
+
+  return {
+    width,
+    height,
+  };
+}
+
+function layout() {
+
+  const ticks = [
+    0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1
+  ];
+
+  const {
+    width,
+    height
+  } = computePlotSize();
+
+  const tickCommon = {
+
+    ticks: 'outside',
+
+    ticklen: 4,
+
+    tickcolor: '#999',
+
+    tickfont: {
+      size: 10,
+      family: FONT_FAMILY,
+      color: '#333'
+    },
+
+  };
+
+  return {
+
+    font: {
+      family: FONT_FAMILY,
+      size: 12,
+      color: '#333'
+    },
+
+    xaxis: {
+
+      range: [
+        -0.04,
+        1.04
+      ],
+
+      autorange: false,
+
+      showline: false,
+
+      linecolor: '#999',
+
+      zeroline: false,
+
+      linewidth: 1,
+
+      tickvals: ticks,
+
+      showgrid: false,
+
+      ...tickCommon,
+
+      title: {
+        text: 'False Positive Rate',
+        font: {
+          size: 12
+        },
+        standoff: 8
+      },
+
+    },
+
+    yaxis: {
+
+      range: [
+        -0.04,
+        1.04
+      ],
+
+      autorange: false,
+
+      scaleanchor: 'x',
+
+      scaleratio: 1,
+
+      showline: false,
+
+      zeroline: false,
+
+      linecolor: '#999',
+
+      linewidth: 1,
+
+      showgrid: false,
+
+      tickmode: 'array',
+
+      tickvals: ticks,
+
+      ...tickCommon,
+
+      title: {
+        text: 'True Positive Rate',
+        font: {
+          size: 12
+        },
+        standoff: 8
+      },
+
+    },
+
+    shapes:
+      gridShapes(
+        ticks,
+        0,
+        1
+      ),
+
+    // Much tighter vertical margins.
+    margin: {
+      l: 55,
+      r: 175,
+      t: 15,
+      b: 45,
+      pad: 0
+    },
+
+    legend:
+      legendColumn(
+        0.98,
+        'Original'
+      ),
+
+    legend2:
+      legendColumn(
+        0.78,
+        'Transformations'
+      ),
+
+    legend3:
+      legendColumn(
+        0.50,
+        'Extreme cases'
+      ),
+
+    width,
+
+    height,
+
+    autosize: false,
+
+    paper_bgcolor:
+      'rgba(0,0,0,0)',
+
+    plot_bgcolor:
+      'rgba(0,0,0,0)',
+
+  };
+}
 
   function render() {
     const t = parseFloat(thresholdSlider.value);
-    Plotly.react(plotDiv, buildTraces(t), layout(), { responsive: false, displayModeBar: false });
+    Plotly.react(plotDiv, buildTraces(t), layout(), { responsive: true, displayModeBar: false });
   }
 
   thresholdSlider.addEventListener('input', () => { updateThresholdValueLabel(); render(); });
   prevalenceSlider.addEventListener('input', () => { updatePrevalenceValueLabel(); render(); });
 
   render();
+
+  // Re-render (recomputing layout width/height) whenever the plot div's
+  // own box changes size — the direct analogue of subplot_viz.js's
+  // `window.addEventListener('resize', drawPlot)`, but scoped to this
+  // widget's own element via ResizeObserver, so multiple independent
+  // widgets on one page don't interfere with each other.
+  const ro = new ResizeObserver(() => render());
+  ro.observe(plotDiv.parentElement);
 }
 
 document
