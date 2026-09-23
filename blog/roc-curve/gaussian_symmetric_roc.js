@@ -97,11 +97,11 @@ function addSlider(parent, { min, max, step, value }) {
 }
 
 // One curve + its operating-point marker, sharing a color/legend entry.
-function curveAndPoint(curve, pt, { color, width, dash, name, legend, markerSize = 10 }) {
+function curveAndPoint(curve, pt, { color, width, dash, name, legend, legendgroup, legendrank, markerSize = 10 }) {
   return [
-    { x: curve.x, y: curve.y, mode: 'lines', name, legend,
+    { x: curve.x, y: curve.y, mode: 'lines', name, legend, legendgroup, legendrank,
       line: { color, width, dash }, showlegend: true },
-    { x: [pt.fpr], y: [pt.tpr], mode: 'markers', legend,
+    { x: [pt.fpr], y: [pt.tpr], mode: 'markers', legend, legendgroup, legendrank,
       marker: { color: 'white', size: markerSize, symbol: 'circle', line: { color, width: 2 } },
       showlegend: false },
   ];
@@ -162,323 +162,323 @@ export async function initGaussianSymmetricRocWidget(container) {
   const classInversionCurve = rocCurve(classInversionRocPoint, tMin, tMax);
   const classInversionReversedCurve = rocCurve(classInversionReversedRocPoint, tMin, tMax);
 
-  function buildTraces(t) {
-    const traces = [
-      // Original ROC curve (solid, thick line)
-      // NOTE: legend key must match a name actually declared in layout()
-      // ('legend'), not 'legend1' — using an undeclared legend name was
-      // silently falling back to Plotly's default legend position,
-      // which then overlapped the three positioned columns below.
-      ...curveAndPoint(gaussianCurve, rocPoint(t),
-        { color: COLORS.roc, width: 2.5, dash: 'solid', name: 'ROC curve', legend: 'legend', markerSize: 12 }),
-
-      // Transformations (dashed/dotted, medium width)
-      ...curveAndPoint(reversedTestCurve, reversedTestRocPoint(t),
-        { color: COLORS.thresholdReversal, width: 2, dash: 'dot', name: 'Threshold reversal', legend: 'legend2' }),
-      ...curveAndPoint(classInversionCurve, classInversionRocPoint(t),
-        { color: COLORS.classSwap, width: 2, dash: 'dash', name: 'Class label swap', legend: 'legend2' }),
-      ...curveAndPoint(classInversionReversedCurve, classInversionReversedRocPoint(t),
-        { color: COLORS.classSwapReversal, width: 2, dash: 'longdash', name: 'Class swap + threshold rev.', legend: 'legend2' }),
-
-      // Extreme cases (thin, distinct dashes)
-      {
-        x: perfectCurve.x,
-        y: perfectCurve.y,
-        mode: 'lines',
-        name: 'Perfect',
-        legend: 'legend3',
-        showlegend: true,
-        line: { color: COLORS.perfect, width: 1.5, dash: 'dot' }
-      },
-      {
-        x: randomCurve.x,
-        y: randomCurve.y,
-        mode: 'lines',
-        name: 'Random',
-        legend: 'legend3',
-        showlegend: true,
-        line: { color: COLORS.random, width: 1.5, dash: 'dash' }
-      },
-      {
-        x: wrongCurve.x,
-        y: wrongCurve.y,
-        mode: 'lines',
-        name: 'Always wrong',
-        legend: 'legend3',
-        showlegend: true,
-        line: { color: COLORS.wrong, width: 1.5, dash: 'longdashdot' }
-      }
-    ];
-
-    return traces;
+  // Scale factor derived from how far the current responsive width has
+  // shrunk relative to the widget's natural size — used to keep marker
+  // sizes (and, if desired, line widths) proportional as the figure
+  // scales down, instead of staying visually fixed while everything
+  // else shrinks around them.
+  function currentScale() {
+    const { width } = computePlotSize();
+    return width / NATURAL_WIDTH;
   }
 
-  // x, xanchor spread further apart (0.02 / 0.36 / 0.72) and given more
-  // room per column (itemwidth raised) to stop entries from one column
-  // visually running into the next.
-function legendColumn(y, title) {
+  function buildTraces(t) {
+
+  const scale = currentScale();
+
+  const scaleMarker = (size) =>
+    Math.max(4, size * scale);
+
+  const traces = [
+
+    // ===============================================================
+    // ORIGINAL — heading
+    // ===============================================================
+
+    {
+      x: [null],
+      y: [null],
+      mode: 'lines',
+      name: '<b>Original</b>',
+      legend: 'legend',
+      legendgroup: 'original',
+      legendrank: 100,
+      showlegend: true,
+      line: { width: 0 },
+      hoverinfo: 'skip',
+    },
+
+    // Original ROC
+    ...curveAndPoint(
+      gaussianCurve,
+      rocPoint(t),
+      {
+        color: COLORS.roc,
+        width: 2.5,
+        dash: 'solid',
+        name: 'ROC curve',
+        legend: 'legend',
+        legendgroup: 'original',
+        legendrank: 101,
+        markerSize: scaleMarker(16),
+      }
+    ),
+
+
+    // ===============================================================
+    // TRANSFORMATIONS — heading
+    // ===============================================================
+
+    {
+      x: [null],
+      y: [null],
+      mode: 'lines',
+      name: '<b>Transformations</b>',
+      legend: 'legend',
+      legendgroup: 'transformations',
+      legendrank: 200,
+      showlegend: true,
+      line: { width: 0 },
+      hoverinfo: 'skip',
+    },
+
+    // Threshold reversal
+    ...curveAndPoint(
+      reversedTestCurve,
+      reversedTestRocPoint(t),
+      {
+        color: COLORS.thresholdReversal,
+        width: 2,
+        dash: 'dot',
+        name: 'Threshold reversal',
+        legend: 'legend',
+        legendgroup: 'transformations',
+        legendrank: 201,
+        markerSize: scaleMarker(10),
+      }
+    ),
+
+    // Class label swap
+    ...curveAndPoint(
+      classInversionCurve,
+      classInversionRocPoint(t),
+      {
+        color: COLORS.classSwap,
+        width: 2,
+        dash: 'dash',
+        name: 'Class label swap',
+        legend: 'legend',
+        legendgroup: 'transformations',
+        legendrank: 202,
+        markerSize: scaleMarker(10),
+      }
+    ),
+
+    // Class swap + threshold reversal
+    ...curveAndPoint(
+      classInversionReversedCurve,
+      classInversionReversedRocPoint(t),
+      {
+        color: COLORS.classSwapReversal,
+        width: 2,
+        dash: 'longdash',
+        name: 'Class swap + threshold rev.',
+        legend: 'legend',
+        legendgroup: 'transformations',
+        legendrank: 203,
+        markerSize: scaleMarker(10),
+      }
+    ),
+
+
+    // ===============================================================
+    // EXTREME CASES — heading
+    // ===============================================================
+
+    {
+      x: [null],
+      y: [null],
+      mode: 'lines',
+      name: '<b>Extreme cases</b>',
+      legend: 'legend',
+      legendgroup: 'extreme',
+      legendrank: 300,
+      showlegend: true,
+      line: { width: 0 },
+      hoverinfo: 'skip',
+    },
+
+    // Perfect
+    {
+      x: perfectCurve.x,
+      y: perfectCurve.y,
+      mode: 'lines',
+      name: 'Perfect',
+      legend: 'legend',
+      legendgroup: 'extreme',
+      legendrank: 301,
+      showlegend: true,
+      line: {
+        color: COLORS.perfect,
+        width: 1.5,
+        dash: 'dot',
+      },
+    },
+
+    // Random
+    {
+      x: randomCurve.x,
+      y: randomCurve.y,
+      mode: 'lines',
+      name: 'Random',
+      legend: 'legend',
+      legendgroup: 'extreme',
+      legendrank: 302,
+      showlegend: true,
+      line: {
+        color: COLORS.random,
+        width: 1.5,
+        dash: 'dash',
+      },
+    },
+
+    // Always wrong
+    {
+      x: wrongCurve.x,
+      y: wrongCurve.y,
+      mode: 'lines',
+      name: 'Always wrong',
+      legend: 'legend',
+      legendgroup: 'extreme',
+      legendrank: 303,
+      showlegend: true,
+      line: {
+        color: COLORS.wrong,
+        width: 1.5,
+        dash: 'longdashdot',
+      },
+    },
+
+  ];
+
+  return traces;
+}
+
+
+// -------------------------------------------------------------------
+// One legend, with three explicitly grouped sections.
+// -------------------------------------------------------------------
+
+function legendLayout() {
 
   return {
 
     orientation: 'v',
 
-    y,
-
+    y: 0.98,
     yanchor: 'top',
 
     x: 1.02,
-
     xanchor: 'left',
 
     valign: 'top',
 
     font: {
       size: 8.5,
-      family: FONT_FAMILY
+      family: FONT_FAMILY,
     },
 
     borderwidth: 0,
 
     itemwidth: 30,
 
-    title: {
-      text: title,
-
-      font: {
-        size: 9.5,
-        family: FONT_FAMILY,
-        color: '#333',
-        weight: 'bold'
-      },
-
-      side: 'top'
-    },
-
+    // Important: use rank ordering, not grouped ordering.
+    traceorder: 'normal',
   };
 }
 
-  function gridShapes(ticks, boxMin, boxMax) {
-    const shapes = [];
-    ticks.forEach((v) => {
-      // vertical line at x = v
-      shapes.push({
-        type: 'line', xref: 'x', yref: 'y',
-        x0: v, x1: v, y0: boxMin, y1: boxMax,
-        line: { color: '#e5e5e5', width: 1 },
-        layer: 'below',
-      });
-      // horizontal line at y = v
-      shapes.push({
-        type: 'line', xref: 'x', yref: 'y',
-        x0: boxMin, x1: boxMax, y0: v, y1: v,
-        line: { color: '#e5e5e5', width: 1 },
-        layer: 'below',
-      });
-    });
-    return shapes;
+  // function gridShapes(ticks, boxMin, boxMax) {
+  //   const shapes = [];
+  //   ticks.forEach((v) => {
+  //     // vertical line at x = v
+  //     shapes.push({
+  //       type: 'line', xref: 'x', yref: 'y',
+  //       x0: v, x1: v, y0: boxMin, y1: boxMax,
+  //       line: { color: '#e5e5e5', width: 1 },
+  //       layer: 'below',
+  //     });
+  //     // horizontal line at y = v
+  //     shapes.push({
+  //       type: 'line', xref: 'x', yref: 'y',
+  //       x0: boxMin, x1: boxMax, y0: v, y1: v,
+  //       line: { color: '#e5e5e5', width: 1 },
+  //       layer: 'below',
+  //     });
+  //   });
+  //   return shapes;
+  // }
+
+  // --- Responsive sizing --------------------------------------------
+  // The ROC axes are square (scaleanchor/scaleratio). To keep ticks and
+  // their labels sitting cleanly against the axis at every width — issue
+  // (4) — the PIXEL plotting box must itself be square: (width-l-r) must
+  // equal (height-t-b) exactly. Previously height was a fixed constant
+  // independent of the (responsive) width, so that equality broke as
+  // soon as width shrank, forcing Plotly's scale-lock to silently shrink
+  // one axis's domain to compensate — which visibly displaces the axis
+  // (and its ticks) away from where the margins would suggest it should
+  // sit. Fix: derive height FROM width and the margins, so the square
+  // constraint holds by construction at every size, and the axis/ticks
+  // never need to be nudged to compensate.
+
+  const MARGIN_L = 55;
+  const MARGIN_R = 175;   // reserved for the three legend columns
+  const MARGIN_T = 20;
+  const MARGIN_B = 45;
+
+  const NATURAL_WIDTH = 600;
+  const MIN_WIDTH = 360;
+  const MIN_PLOT_SIDE = 160; // floor on the square plotting area itself
+
+  function computePlotSize() {
+    const measured = plotDiv.getBoundingClientRect().width;
+    const available = measured > 0 ? measured : NATURAL_WIDTH;
+    const width = Math.max(MIN_WIDTH, Math.min(NATURAL_WIDTH, Math.round(available)));
+
+    const plotSide = Math.max(MIN_PLOT_SIDE, width - MARGIN_L - MARGIN_R);
+    const height = plotSide + MARGIN_T + MARGIN_B;
+
+    return { width, height };
   }
 
-  // --- Responsive sizing, following subplot_viz.js's pattern: measure
-  // the plot div's actual width, derive height from a fixed aspect
-  // ratio, and re-render (not CSS-scale) on resize. -----------------
+  function layout() {
+    const ticks = [0, 0.2, 0.4, 0.6, 0.8, 1];
+    const { width, height } = computePlotSize();
 
-// --- Responsive sizing -------------------------------------------------
-// The ROC plotting region is square. The legends live to the right,
-// so the overall figure is wider than it is tall.
-
-const NATURAL_WIDTH = 600;
-const NATURAL_HEIGHT = 390;
-const MIN_WIDTH = 360;
-
-function computePlotSize() {
-
-  const measured =
-    plotDiv.getBoundingClientRect().width;
-
-  const available =
-    measured > 0
-      ? measured
-      : NATURAL_WIDTH;
-
-  const width =
-    Math.max(
-      MIN_WIDTH,
-      Math.min(
-        NATURAL_WIDTH,
-        Math.round(available)
-      )
-    );
-
-  // Keep the overall widget compact. The ROC axes themselves remain
-  // square through scaleanchor/scaleratio.
-  const height = NATURAL_HEIGHT;
-
-  return {
-    width,
-    height,
-  };
-}
-
-function layout() {
-
-  const ticks = [
-    0,
-    0.2,
-    0.4,
-    0.6,
-    0.8,
-    1
-  ];
-
-  const {
-    width,
-    height
-  } = computePlotSize();
-
-  const tickCommon = {
-
-    ticks: 'outside',
-
-    ticklen: 4,
-
-    tickcolor: '#999',
-
-    tickfont: {
-      size: 10,
-      family: FONT_FAMILY,
-      color: '#333'
-    },
-
-  };
-
-  return {
-
-    font: {
-      family: FONT_FAMILY,
-      size: 12,
-      color: '#333'
-    },
-
-    xaxis: {
-
-      range: [
-        -0.04,
-        1.04
-      ],
-
-      autorange: false,
-
-      showline: false,
-
-      linecolor: '#999',
-
-      zeroline: false,
-
-      linewidth: 1,
-
-      tickvals: ticks,
-
-      showgrid: false,
-
-      ...tickCommon,
-
-      title: {
-        text: 'False Positive Rate',
-        font: {
-          size: 12
-        },
-        standoff: 8
+    return {
+      font: { family: FONT_FAMILY, size: 12, color: '#333' },
+      xaxis: {
+        range: [-0.04, 1.04],
+        autorange: false,
+        tickvals: ticks,
+        showline: false,
+        zeroline: false,
+        gridcolor: '#e5e5e5',
+        gridwidth: 1,
+        title: { text: 'False Positive Rate', font: { size: 12 }, standoff: 8 },
       },
-
-    },
-
-    yaxis: {
-
-      range: [
-        -0.04,
-        1.04
-      ],
-
-      autorange: false,
-
-      scaleanchor: 'x',
-
-      scaleratio: 1,
-
-      showline: false,
-
-      zeroline: false,
-
-      linecolor: '#999',
-
-      linewidth: 1,
-
-      showgrid: false,
-
-      tickmode: 'array',
-
-      tickvals: ticks,
-
-      ...tickCommon,
-
-      title: {
-        text: 'True Positive Rate',
-        font: {
-          size: 12
-        },
-        standoff: 8
+      yaxis: {
+        range: [-0.04, 1.04],
+        autorange: false,
+        scaleanchor: 'x',
+        scaleratio: 1,
+        tickvals: ticks,
+        showline: false,
+        zeroline: false,
+        gridcolor: '#e5e5e5',
+        gridwidth: 1,
+        title: { text: 'True Positive Rate', font: { size: 12 }, standoff: 8 },
       },
+      margin: { l: MARGIN_L, r: MARGIN_R, t: MARGIN_T, b: MARGIN_B, pad: 0 },
 
-    },
-
-    shapes:
-      gridShapes(
-        ticks,
-        0,
-        1
-      ),
-
-    // Much tighter vertical margins.
-    margin: {
-      l: 55,
-      r: 175,
-      t: 15,
-      b: 45,
-      pad: 0
-    },
-
-    legend:
-      legendColumn(
-        0.98,
-        'Original'
-      ),
-
-    legend2:
-      legendColumn(
-        0.78,
-        'Transformations'
-      ),
-
-    legend3:
-      legendColumn(
-        0.50,
-        'Extreme cases'
-      ),
-
-    width,
-
-    height,
-
-    autosize: false,
-
-    paper_bgcolor:
-      'rgba(0,0,0,0)',
-
-    plot_bgcolor:
-      'rgba(0,0,0,0)',
-
-  };
-}
+      legend: legendLayout(),
+      width,
+      height,
+      autosize: false,
+      paper_bgcolor: 'rgba(0,0,0,0)',
+      plot_bgcolor: 'rgba(0,0,0,0)',
+    };
+  }
 
   function render() {
     const t = parseFloat(thresholdSlider.value);
