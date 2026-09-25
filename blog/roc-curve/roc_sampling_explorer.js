@@ -142,9 +142,9 @@ export async function initRocSamplingWidget(container) {
     labelRow.style.display = 'flex';
     labelRow.style.justifyContent = 'space-between';
     labelRow.style.fontFamily = FONT_FAMILY;
-    labelRow.style.fontSize = '9.5px';
     labelRow.style.marginBottom = '2px';
-
+    labelRow.style.fontSize = '9px';      // was 9.5px
+  
     const labelText = document.createElement('span');
     labelText.textContent = label;
     labelText.style.fontWeight = '600';
@@ -296,6 +296,9 @@ export async function initRocSamplingWidget(container) {
   function buildScatterTraces(samples) {
     const { x0, x1, j0, j1 } = samples;
     const t = params.t;
+    const ms = Math.max(3, 6 * currentScale());   // sample points
+    const wms = Math.max(3, 6 * currentScale());  // miss crosses
+    
 
     function splitAndBuild(values, jitters, sign, color, label, correctIfAbove) {
       const correct = { x: [], y: [] };
@@ -342,47 +345,97 @@ export async function initRocSamplingWidget(container) {
     return { x: idx.map((i) => xs[i]), y: idx.map((i) => ys[i]) };
   }
 
-  function buildRocTraces(p, yDomain, samples) {
+   function buildRocTraces(p, yDomain, samples) {
     const theoCurve = rocCurveTheoretical(p, yDomain);
     const theoPoint = { fpr: distributionFpr(p.t, p), tpr: distributionTpr(p.t, p) };
     const empCurve = empiricalRocCurve(samples.x0, samples.x1);
     const empPoint = empiricalPoint(samples.x0, samples.x1, p.t);
+    const scale = currentScale();
 
     return [
       // Diagonal reference — light gray.
       { x: [0, 1], y: [0, 1], mode: 'lines', name: 'Random guessing',
         line: { color: 'gray', width: 1.5, dash: 'dash' },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: false },
-      // Empirical ROC — thin, light gray: less visible than the theoretical curve.
+      // Empirical ROC — thin, light gray.
       { x: empCurve.x, y: empCurve.y, mode: 'lines', name: 'Empirical ROC',
         line: { color: '#bbbbbb', width: 1.5 },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: true },
       { x: [empPoint.fpr], y: [empPoint.tpr], mode: 'markers', name: 'Empirical point',
-        marker: { color: '#eeeeee', size: 8, symbol: 'circle', line: { color: '#bbbbbb', width: 1.5 } },
+        marker: { color: '#eeeeee', size: Math.max(4, 8 * scale),
+                  symbol: 'circle', line: { color: '#bbbbbb', width: 1.5 } },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: false },
-      // Theoretical ROC — solid black: the main curve.
+      // Theoretical ROC — solid black.
       { x: theoCurve.x, y: theoCurve.y, mode: 'lines', name: 'ROC curve',
         line: { color: '#000000', width: 2.5 },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y },
       { x: [theoPoint.fpr], y: [theoPoint.tpr], mode: 'markers', name: 'Operating point',
-        marker: { color: 'white', size: 12, symbol: 'circle', line: { color: 'black', width: 2 } },
+        marker: { color: 'white', size: Math.max(6, 12 * scale),
+                  symbol: 'circle', line: { color: 'black', width: 2 } },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: false },
-    ];
+    ];                                                          // ← array closed
   }
 
   // --- Layout -----------------------------------------------------------
+  // --- Layout -----------------------------------------------------------
+
+  // Responsive sizing: same recipe as roc_explorer_engine.js.
+  // The ROC subplot is square (scaleanchor), so its pixel box must be
+  // square by construction: the ROC panel spans rocWidthFrac of the
+  // plot area, so plotAreaH = plotAreaW * rocWidthFrac and height
+  // derives from width. The top band hosts title + legend (never the
+  // x-labels), and the inter-panel gap is wide enough for the "TPR"
+  // ylabel at every width.
+
+  const MARGIN_L = 60;
+  const MARGIN_R = 20;
+  const MARGIN_T = 78;    // title (top) + legend (below it)
+  const MARGIN_B = 55;
+
+  const NATURAL_WIDTH = 780;
+  const MIN_WIDTH = 380;
+
+  // Panel domains: 20% gap so "TPR" never reaches the scatter panel.
+  const SCATTER_DOMAIN = [0, 0.40];
+  const ROC_DOMAIN = [0.60, 1];
+  const ROC_WIDTH_FRAC = 0.40;   // must equal ROC_DOMAIN[1] - ROC_DOMAIN[0]
+
+  function computePlotSize() {
+    const measured = plotDiv.getBoundingClientRect().width;
+    const available = measured > 0 ? measured : NATURAL_WIDTH;
+    const width = Math.max(MIN_WIDTH, Math.min(NATURAL_WIDTH, Math.round(available)));
+
+    const plotAreaW = width - MARGIN_L - MARGIN_R;
+    const plotAreaH = plotAreaW * ROC_WIDTH_FRAC;  // square ROC subplot
+    const height = Math.round(plotAreaH + MARGIN_T + MARGIN_B);
+
+    return { width, height };
+  }
+
+  const currentScale = () => computePlotSize().width / NATURAL_WIDTH;
 
   function layoutFor(p, yDomain, auc) {
     const dist = distributions[p.distribution || 'gaussian'];
     const Delta = (p.mu1 - p.mu0) / p.sigma1;
     const rho = p.sigma0 / p.sigma1;
+
+    const { width, height } = computePlotSize();
+    const scale = width / NATURAL_WIDTH;
+
+    // Paper-fraction where the top of the axes sits — the legend is
+    // placed just above it, inside the top-margin band, below the title.
+    const axesTopFrac = (height - MARGIN_T) / height;
+
     return {
       font: { family: FONT_FAMILY, size: 12, color: '#333' },
       grid: { rows: 1, columns: 2, pattern: 'independent' },
+
+      // --- Sample distribution panel --------------------------------
       xaxis: {
-        domain: [0, 0.45], range: [-1.3, 1.3],
+        domain: SCATTER_DOMAIN, range: [-1.3, 1.3],
         zeroline: true, zerolinecolor: 'rgba(0,0,0,0.3)', showticklabels: false,
-        title: { text: 'X₁ samples ← | → X₀ samples', font: { size: 11 } },
+        title: { text: 'X₁ samples ← | → X₀ samples',
+                 font: { size: Math.max(9.5, 11 * scale) } },
       },
       yaxis: {
         domain: [0, 1], range: yDomain,
@@ -390,27 +443,42 @@ export async function initRocSamplingWidget(container) {
         gridcolor: '#eee', gridwidth: 1, showgrid: true,
         title: { text: 'Assay value (X)', font: { size: 12 } },
       },
+
+      // --- ROC panel -------------------------------------------------
       [AXIS_ROC.x.replace('x', 'xaxis')]: {
-        domain: [0.55, 1], range: [-0.05, 1.05],
+        domain: ROC_DOMAIN, range: [-0.05, 1.05],
         title: { text: 'FPR', font: { size: 12 } },
       },
       [AXIS_ROC.y.replace('y', 'yaxis')]: {
-        range: [-0.05, 1.05], scaleanchor: AXIS_ROC.x, scaleratio: 1,
-        title: { text: 'TPR', font: { size: 12 } },
+        range: [-0.05, 1.05],
+        scaleanchor: AXIS_ROC.x, scaleratio: 1,
+        // standoff centers the "TPR" label in the 20% gap: it can
+        // never overlap the scatter panel.
+        title: { text: 'TPR', font: { size: 12 }, standoff: 12 },
       },
-      margin: { l: 60, r: 20, t: 110, b: 55, pad: 4 },
+
+      // --- Title: pinned to the very top of the figure ---------------
       title: {
-        // text: `${dist.label}  —  Δ=${Delta.toFixed(2)}, ρ=${rho.toFixed(2)}, AUC=${auc.toFixed(3)}`,
-        text: `${dist.label}  —  Δ=${Delta.toFixed(2)}, ρ=${rho.toFixed(2)}`,
-        font: { size: 18, family: FONT_FAMILY, color: '#111' },
-        x: 0.5, xanchor: 'center', y: 1, yanchor: 'top', pad: { t: 0, b: 20 },
+        text: `${dist.label} — Δ=${Delta.toFixed(2)}, ρ=${rho.toFixed(2)}`,
+        y: 1, yanchor: 'top', yref: 'container',
+        x: 0.5, xanchor: 'center',
+        font: { size: Math.max(11, 16 * scale), family: FONT_FAMILY, color: '#111' },
+        pad: { t: 0, b: 0 },
       },
+
+      // --- Legend: in the top-margin band, between title and axes ----
       legend: {
-        orientation: 'h', y: 1.08, yanchor: 'bottom', x: 0.5, xanchor: 'center',
-        font: { size: 10, family: FONT_FAMILY },
+        orientation: 'h',
+        y: axesTopFrac + 0.02,
+        yanchor: 'bottom',
+        x: 0.5, xanchor: 'center',
+        font: { size: Math.max(8.5, 10 * scale), family: FONT_FAMILY },
+        traceorder: 'normal',
       },
-      height: 440,
-      autosize: true,
+
+      margin: { l: MARGIN_L, r: MARGIN_R, t: MARGIN_T, b: MARGIN_B, pad: 4 },
+      width, height,
+      autosize: false,
       paper_bgcolor: 'rgba(0,0,0,0)',
       plot_bgcolor: 'rgba(0,0,0,0)',
     };
@@ -469,7 +537,15 @@ export async function initRocSamplingWidget(container) {
   });
 
   render();
+
+  // Re-render (recomputing width/height/markers) whenever the plot
+  // div's box changes — scoped to this widget, so several widgets on
+  // one page don't interfere with each other.
+  const ro = new ResizeObserver(() => render());
+  ro.observe(plotDiv.parentElement);
+  container._samplingRocResizeObserver = ro;
 }
+
 
 document.querySelectorAll('.sampling-roc-interactive').forEach((container) => {
   initRocSamplingWidget(container);

@@ -68,7 +68,7 @@ export async function initRocExplorerWidget(container, model) {
   // gaussian_roc_interactive.js via the container dataset).
   if (container.dataset.distribution) {
     params.distribution = container.dataset.distribution;
-  }
+}
 
   // --- Build the control panel -------------------------------------
 
@@ -83,13 +83,15 @@ export async function initRocExplorerWidget(container, model) {
     labelRow.style.display = 'flex';
     labelRow.style.justifyContent = 'space-between';
     labelRow.style.fontFamily = FONT_FAMILY;
-    labelRow.style.fontSize = '9.5px';
+    labelRow.style.fontSize = '9px';
     labelRow.style.marginBottom = '2px';
 
     const labelText = document.createElement('span');
     labelText.textContent = label;
     labelText.style.fontWeight = '600';
-
+    labelText.style.whiteSpace = 'normal';
+    labelText.style.lineHeight = '1.2';
+    
     const valueText = document.createElement('span');
     valueText.textContent = formatFn(value);
     valueText.style.color = '#555';
@@ -131,7 +133,7 @@ export async function initRocExplorerWidget(container, model) {
   thresholdLabel.textContent = 'Threshold';
   thresholdLabel.style.fontFamily = FONT_FAMILY;
   thresholdLabel.style.fontWeight = '600';
-  thresholdLabel.style.fontSize = '9.5px';
+  thresholdLabel.style.fontSize = '9px';
   thresholdLabel.style.marginBottom = '4px';
   controlsDiv.appendChild(thresholdLabel);
 
@@ -148,7 +150,7 @@ export async function initRocExplorerWidget(container, model) {
   thresholdValueLabel.style.marginTop = '4px';
   thresholdValueLabel.style.textAlign = 'center';
   thresholdValueLabel.style.fontFamily = FONT_FAMILY;
-  thresholdValueLabel.style.fontSize = '9px';
+  thresholdValueLabel.style.fontSize = '8.5px';
   thresholdValueLabel.style.color = '#555';
   controlsDiv.appendChild(thresholdValueLabel);
 
@@ -163,7 +165,7 @@ export async function initRocExplorerWidget(container, model) {
   legendRow.style.display = 'flex';
   legendRow.style.gap = '10px';
   legendRow.style.marginTop = '8px';
-  legendRow.style.fontSize = '9px';
+  legendRow.style.fontSize = '8.5px';
   controlsDiv.appendChild(legendRow);
 
   // --- Threshold-range maintenance ----------------------------------
@@ -255,21 +257,68 @@ export async function initRocExplorerWidget(container, model) {
     });
     traces.push({
       x: [currentPoint.x], y: [currentPoint.y], mode: 'markers', name: 'Operating point',
-      marker: { color: 'white', size: 12, symbol: 'circle', line: { color: 'black', width: 2 } },
+      marker: {
+        color: 'white',
+        size: Math.max(6, 12 * (computePlotSize().width / NATURAL_WIDTH)),
+        symbol: 'circle', line: { color: 'black', width: 2 },
+      },
       xaxis: AXIS_CURVE.x, yaxis: AXIS_CURVE.y, showlegend: false,
     });
     return traces;
   }
 
   // --- Layout -----------------------------------------------------
+  // --- Responsive sizing --------------------------------------------
+  // Same philosophy as gaussian_symmetric_roc.js: the curve subplot is
+  // square (scaleanchor), so its pixel box must be square by
+  // construction. The curve panel occupies x-domain [0.55, 1], i.e. 45%
+  // of the plot area width; the PDF panel shares the full height. So:
+  //   plotAreaW * 0.45  ==  plotAreaH   ->  height derives from width.
+  // Width is measured from the plot div (flex-grown), clamped between
+  // MIN_WIDTH and NATURAL_WIDTH; the title band is tight so no dead
+  // space appears above the title on narrow screens.
 
-  function layoutFor(p, yDomain, maxDensity) {
+  const MARGIN_L = 60;
+  const MARGIN_R = 20;
+  const MARGIN_T = 78;    // room for title (top) + legend (below it), was 45
+  const MARGIN_B = 55;
+
+  const NATURAL_WIDTH = 780;
+  const MIN_WIDTH = 380;
+
+  function computePlotSize() {
+    const measured = plotDiv.getBoundingClientRect().width;
+    const available = measured > 0 ? measured : NATURAL_WIDTH;
+    const width = Math.max(MIN_WIDTH, Math.min(NATURAL_WIDTH, Math.round(available)));
+
+    const plotAreaW = width - MARGIN_L - MARGIN_R;
+    const plotAreaH = plotAreaW * 0.40;      // matches x2 domain [0.60, 1]
+    const height = Math.round(plotAreaH + MARGIN_T + MARGIN_B);
+
+    return { width, height };
+  }
+
+  // Scale factor relative to natural size — keeps the operating-point
+  // marker proportional as the figure shrinks.
+  function currentScale() {
+    const { width } = computePlotSize();
+    return width / NATURAL_WIDTH;
+  }
+
+ function layoutFor(p, yDomain, maxDensity) {
     const metric = model.metricFn(p);
+    const { width, height } = computePlotSize();
+    const scale = width / NATURAL_WIDTH;
+
+    // Paper-fraction where the top of the axes sits:
+    // everything above (height - MARGIN_T) is the top-margin band.
+    const axesTopFrac = (height - MARGIN_T) / height;
+
     return {
       font: { family: FONT_FAMILY, size: 12, color: '#333' },
       grid: { rows: 1, columns: 2, pattern: 'independent' },
-      xaxis: {
-        domain: [0, 0.45], range: [-maxDensity * 1.15, maxDensity * 1.15],
+            xaxis: {                                    // PDF panel
+        domain: [0, 0.40], range: [-maxDensity * 1.15, maxDensity * 1.15],
         zeroline: true, zerolinecolor: 'rgba(0,0,0,0.3)', showticklabels: false,
         title: { text: model.xAxisPdfLabel || 'X₁ density ← | → X₀ density', font: { size: 11 } },
       },
@@ -279,31 +328,39 @@ export async function initRocExplorerWidget(container, model) {
         gridcolor: '#eee', gridwidth: 1, showgrid: true,
         title: { text: 'Assay value (X)', font: { size: 12 } },
       },
-      [AXIS_CURVE.x.replace('x', 'xaxis')]: {
-        domain: [0.55, 1], range: [-0.05, 1.05],
+      [AXIS_CURVE.x.replace('x', 'xaxis')]: {     // curve panel
+        domain: [0.60, 1], range: [-0.05, 1.05],
         title: { text: model.curve.xAxisTitle, font: { size: 12 } },
       },
-      [AXIS_CURVE.y.replace('y', 'yaxis')]: {
+      [AXIS_CURVE.y.replace('y', 'yaxis')]: {     // the "TPR" side
         range: [-0.05, 1.05], scaleanchor: AXIS_CURVE.x, scaleratio: 1,
-        title: { text: model.curve.yAxisTitle, font: { size: 12 } },
+        // standoff pushes the title away from the axis line;
+        // combined with the 20% gap it can never reach the PDF panel.
+        title: { text: model.curve.yAxisTitle, font: { size: 12 }, standoff: 12 },
       },
-      margin: { l: 60, r: 20, t: 110, b: 55, pad: 4 },
+      margin: { l: MARGIN_L, r: MARGIN_R, t: MARGIN_T, b: MARGIN_B, pad: 4 },
       title: {
         text: model.titleFn(p, metric),
-        font: { size: 18, family: FONT_FAMILY, color: '#111' },
-        x: 0.5, xanchor: 'center', y: 1, yanchor: 'top', pad: { t: 0, b: 20 },
+        y: 1, yanchor: 'top', yref: 'container',
+        x: 0.5, xanchor: 'center',
+        font: { size: Math.max(11, 16 * scale), family: FONT_FAMILY, color: '#111' },
+        pad: { t: 0, b: 0 },
       },
       legend: {
-        orientation: 'h', y: 1.08, yanchor: 'bottom', x: 0.5, xanchor: 'center',
+        orientation: 'h',
+        // Paper coords: just above the axes top (= inside the margin band),
+        // hence safely below the title and far from the x-labels.
+        y: axesTopFrac * 1.50,
+        yanchor: 'bottom',
+        x: 0.5, xanchor: 'center',
         font: { size: 10, family: FONT_FAMILY },
       },
-      height: 440,
-      autosize: true,
+      width, height,
+      autosize: false,
       paper_bgcolor: 'rgba(0,0,0,0)',
       plot_bgcolor: 'rgba(0,0,0,0)',
     };
   }
-
   // --- Render -------------------------------------------------------
 
   function render() {
@@ -336,5 +393,12 @@ export async function initRocExplorerWidget(container, model) {
   render();
 });
 
-render();
+  render();
+
+  // Re-render (recomputing width/height/markers) whenever the plot
+  // div's box changes — scoped to this widget's own element, so
+  // several widgets on one page don't interfere with each other.
+  const ro = new ResizeObserver(() => render());
+  ro.observe(plotDiv.parentElement);
+  container._rocExplorerResizeObserver = ro;
 }

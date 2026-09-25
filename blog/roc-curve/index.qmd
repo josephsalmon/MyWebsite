@@ -564,7 +564,9 @@ You can verify this directly with the interactive below
 
 
 
-Below we summarize the ROC curves for classic location-scale distributions, along with the exponential case. Throughout, we assume that $Z_0, Z_1$ are independent and identically distributed with a common continuous CDF $F$. We define the location-scale variables as:
+Below we summarize the ROC curves for classic location-scale distributions, along with the exponential case.
+Throughout, we assume that $Z_0, Z_1$ are independent and identically distributed with a common continuous CDF $F$.
+We define the location-scale variables as:
 
 $$
 X_0 = \sigma_0 Z_0 + \mu_0, \quad X_1 = \sigma_1 Z_1 + \mu_1,
@@ -609,27 +611,27 @@ The title above the plot reports the current $\Delta=(\mu_1-\mu_0)/\sigma_1$, $\
 ```{=html}
 <div id="gaussian-roc-interactive"
      class="gaussian-roc-interactive"
-     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap;
+            width:100%; max-width:895px; margin:0 auto;
+            font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
   <div class="gaussian-roc-controls"
        style="display:flex; flex-direction:column; justify-content:center;
-              min-width:150px; flex:0 0 150px;
-              border:1px solid rgba(0,0,0,0.15);
-              border-radius:8px; padding:8px; font-size:9.5px;
-              background:rgba(0,0,0,0.02);">
+                min-width:115px; flex:0 0 105px;
+                border:1px solid rgba(0,0,0,0.15);
+                border-radius:8px; padding:6px; font-size:9px;
+                background:rgba(0,0,0,0.02);">
   </div>
 
   <div class="gaussian-roc-plot"
-       style="flex:1 1 auto; min-width:520px; max-width:1050px;
-              display:flex; align-items:center;">
+       style="flex:1 1 auto; min-width:0;
+              display:flex; align-items:center; justify-content:center;">
   </div>
 
 </div>
 
 <script type="module" src="gaussian_roc_interactive.js"></script>
 ```
-
-
 
 ### ROC curve for location-scale family
 
@@ -888,19 +890,21 @@ Now we illustrate the empirical counterpart, when one samples elements from the 
 ```{=html}
 <div id="sampling-roc-interactive"
      class="sampling-roc-interactive"
-     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; width:900px; overflow:visible; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+     style="display:flex; gap:10px; align-items\:stretch; flex-wrap\:nowrap;
+            width:100%; max-width:895px; margin:0 auto;
+            font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
   <div class="sampling-roc-controls"
-       style="display:flex; flex-direction:column; justify-content:center;
-              min-width:150px; flex:0 0 150px;
-              border:1px solid rgba(0,0,0,0.15);
-              border-radius:8px; padding:8px; font-size:9.5px;
-              background:rgba(0,0,0,0.02);">
+       style="display\:flex; flex-direction\:column; justify-content\:center;
+                min-width:120px; flex:0 0 105px;
+                border:1px solid rgba(0,0,0,0.15);
+                border-radius:8px; padding:6px; font-size:9px;
+                background\:rgba(0,0,0,0.02);">
   </div>
 
   <div class="sampling-roc-plot"
-       style="flex:1 1 auto; min-width:520px; max-width:1050px;
-              display:flex; align-items:center;">
+       style="flex:1 1 auto; min-width:0;
+              display\:flex; align-items\:center; justify-content\:center;">
   </div>
 
 </div>
