@@ -896,7 +896,7 @@ Now we illustrate the empirical counterpart, when one samples elements from the 
 
   <div class="sampling-roc-controls"
        style="display\:flex; flex-direction\:column; justify-content\:center;
-                min-width:120px; flex:0 0 105px;
+                min-width:150px; flex:0 0 150px;
                 border:1px solid rgba(0,0,0,0.15);
                 border-radius:8px; padding:6px; font-size:9px;
                 background\:rgba(0,0,0,0.02);">
@@ -941,7 +941,7 @@ def roc(thresholds, y_true, score):
     return tpr, fpr
 ```
 
-
+**Note**: the jittering on  the x-axis for the scatter plots is not meaningful but only here for visualization.
 
 
 ### Area Under the ROC Curve (AUC)
@@ -2079,7 +2079,7 @@ So the matrix recipe is correct and does save re-derivation, but a naive point-b
 
   <div class="gaussian-symmetric-pr-controls"
        style="display:flex; flex-direction:column; justify-content:flex-start;
-              min-width:150px; flex:0 0 150px; position:sticky; top:10px;
+              min-width:200px; flex:0 0 150px; 20sition:sticky; top:10px;
               border:1px solid rgba(0,0,0,0.15);
               border-radius:8px; padding:8px; font-size:9.5px;
               background:rgba(0,0,0,0.02);">
@@ -2327,7 +2327,7 @@ Thus, the PR curve of $g(X)$ is identical to that of $X$. As $t$ ranges over $\m
 
   <div class="gaussian-symmetric-pr-controls"
        style="display:flex; flex-direction:column; justify-content:center;
-              min-width:150px; flex:0 0 150px;
+              min-width:200px; flex:0 0 200px;
               border:1px solid rgba(0,0,0,0.15);
               border-radius:8px; padding:8px; font-size:9.5px;
               background:rgba(0,0,0,0.02);">
@@ -2487,7 +2487,7 @@ $$
 
   <div class="gaussian-pr-controls"
        style="display:flex; flex-direction:column; justify-content:center;
-              min-width:150px; flex:0 0 150px;
+              min-width:170px; flex:0 0 170px;
               border:1px solid rgba(0,0,0,0.15);
               border-radius:8px; padding:8px; font-size:9.5px;
               background:rgba(0,0,0,0.02);">
@@ -2582,7 +2582,7 @@ $$
 
   <div class="exponential-pr-controls"
        style="display:flex; flex-direction:column; justify-content:center;
-              min-width:150px; flex:0 0 150px;
+              min-width:200px; flex:0 0 200px;
               border:1px solid rgba(0,0,0,0.15);
               border-radius:8px; padding:8px; font-size:9.5px;
               background:rgba(0,0,0,0.02);">
@@ -3060,7 +3060,7 @@ The widget below lets you select one or more assays (the first checked one is th
      style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
   <div style="display:flex; flex-direction:column; justify-content:center;
-              min-width:130px; flex:0 0 130px;
+              min-width:170px; flex:0 0 170px;
               border:1px solid rgba(0,0,0,0.15);
               border-radius:8px; padding:8px; font-size:9.5px;
               background:rgba(0,0,0,0.02);">
@@ -3106,7 +3106,7 @@ Now the same assays, the same thresholds, the same ROC/PR machinery — but with
 
 ```{=html}
 <div id="roc-interactive-imbalanced" class="roc-interactive" data-json="roc_data_imbalanced.json" style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family: 'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
-  <div style="display:flex; flex-direction:column; justify-content:center; min-width:130px; flex:0 0 130px; border:1px solid rgba(0,0,0,0.15); border-radius:8px; padding:8px; font-size:9.5px; background:rgba(0,0,0,0.02);">
+  <div style="display:flex; flex-direction:column; justify-content:center; min-width:170px; flex:0 0 170px; border:1px solid rgba(0,0,0,0.15); border-radius:8px; padding:8px; font-size:9.5px; background:rgba(0,0,0,0.02);">
     <div style="margin-bottom:5px; font-weight:600; font-size:9.5px;">Assays (click)</div>
     <div class="roc-assay-radios" style="font-size:9.5px; line-height:1.25; display:flex; flex-direction:column; gap:3px;"></div>
     <hr style="margin:8px 0; border-color:rgba(0,0,0,0.1);">

@@ -143,7 +143,7 @@ export async function initRocSamplingWidget(container) {
     labelRow.style.justifyContent = 'space-between';
     labelRow.style.fontFamily = FONT_FAMILY;
     labelRow.style.marginBottom = '2px';
-    labelRow.style.fontSize = '9px';      // was 9.5px
+    labelRow.style.fontSize = '9.77px';      // was 9.5px
   
     const labelText = document.createElement('span');
     labelText.textContent = label;
@@ -195,7 +195,7 @@ export async function initRocSamplingWidget(container) {
 
   const prevalenceLabel = document.createElement('div');
   prevalenceLabel.style.fontFamily = FONT_FAMILY;
-  prevalenceLabel.style.fontSize = '8.5px';
+  prevalenceLabel.style.fontSize = '9.77px';
   prevalenceLabel.style.color = '#777';
   prevalenceLabel.style.marginTop = '2px';
   prevalenceLabel.style.marginBottom = '6px';
@@ -219,7 +219,7 @@ export async function initRocSamplingWidget(container) {
   thresholdLabel.textContent = 'Threshold';
   thresholdLabel.style.fontFamily = FONT_FAMILY;
   thresholdLabel.style.fontWeight = '600';
-  thresholdLabel.style.fontSize = '9.5px';
+  thresholdLabel.style.fontSize = '9.77px';
   thresholdLabel.style.marginBottom = '4px';
   controlsDiv.appendChild(thresholdLabel);
 
@@ -236,7 +236,7 @@ export async function initRocSamplingWidget(container) {
   thresholdValueLabel.style.marginTop = '4px';
   thresholdValueLabel.style.textAlign = 'center';
   thresholdValueLabel.style.fontFamily = FONT_FAMILY;
-  thresholdValueLabel.style.fontSize = '9px';
+  thresholdValueLabel.style.fontSize = '9.77px';
   thresholdValueLabel.style.color = '#555';
   controlsDiv.appendChild(thresholdValueLabel);
 
@@ -244,20 +244,6 @@ export async function initRocSamplingWidget(container) {
     thresholdValueLabel.textContent = 'Threshold = ' + params.t.toPrecision(3);
   }
   updateThresholdLabel();
-
-  const legendRow = document.createElement('div');
-  legendRow.style.display = 'flex';
-  legendRow.style.gap = '10px';
-  legendRow.style.marginTop = '8px';
-  legendRow.style.fontSize = '9px';
-  legendRow.innerHTML = `
-    <span style="display:flex; align-items:center; gap:3px;">
-      <span style="width:8px; height:8px; border-radius:50%; background:${COLOR_X1}; display:inline-block;"></span>X₁ (sick)
-    </span>
-    <span style="display:flex; align-items:center; gap:3px;">
-      <span style="width:8px; height:8px; border-radius:50%; background:${COLOR_X0}; display:inline-block;"></span>X₀ (healthy)
-    </span>`;
-  controlsDiv.appendChild(legendRow);
 
   // --- Sample generation (depends on distribution, n0, n1) ------------
 
@@ -312,19 +298,17 @@ export async function initRocSamplingWidget(container) {
       }
       return [
         { x: correct.x, y: correct.y, mode: 'markers',
-          name: `${label} — correct`, showlegend: false,
-          marker: { color, size: 6, line: { color: 'black', width: 0.5 } } },
+          name: label, showlegend: true,
+          marker: { color, size: ms, line: { color: 'black', width: 0.5 } } },
         { x: wrong.x, y: wrong.y, mode: 'markers',
           name: `${label} — miss`, showlegend: false,
-          marker: { color, size: 6, symbol: 'x' } },
+          marker: { color, size: wms, symbol: 'x' } },
       ];
     }
 
-    // X1 (sick): "correct" means predicted positive, i.e. x >= t (a TP).
-    // X0 (healthy): "correct" means predicted negative, i.e. x < t (a TN).
     const traces = [
-      ...splitAndBuild(x1, j1, -1, COLOR_X1, 'X₁', true),
-      ...splitAndBuild(x0, j0, +1, COLOR_X0, 'X₀', false),
+      ...splitAndBuild(x1, j1, -1, COLOR_X1, 'X₁ (sick)', true),
+      ...splitAndBuild(x0, j0, +1, COLOR_X0, 'X₀ (healthy)', false),
       { x: [-1.15, 1.15], y: [t, t], mode: 'lines', name: 'Threshold',
         line: { color: 'black', width: 2 }, showlegend: true },
     ];
@@ -396,9 +380,12 @@ export async function initRocSamplingWidget(container) {
   const MIN_WIDTH = 380;
 
   // Panel domains: 20% gap so "TPR" never reaches the scatter panel.
-  const SCATTER_DOMAIN = [0, 0.40];
-  const ROC_DOMAIN = [0.60, 1];
-  const ROC_WIDTH_FRAC = 0.40;   // must equal ROC_DOMAIN[1] - ROC_DOMAIN[0]
+  // Panel split: scatter panel narrower so the square ROC panel gets
+  // most of the width. The 14% gap holds the "TPR" axis title — same
+  // split as roc_explorer_engine.js.
+  const SCATTER_DOMAIN = [0, 0.30];
+  const ROC_DOMAIN = [0.44, 1];
+  const ROC_WIDTH_FRAC = ROC_DOMAIN[1] - ROC_DOMAIN[0]; // 0.56
 
   function computePlotSize() {
     const measured = plotDiv.getBoundingClientRect().width;
@@ -435,7 +422,7 @@ export async function initRocSamplingWidget(container) {
         domain: SCATTER_DOMAIN, range: [-1.3, 1.3],
         zeroline: true, zerolinecolor: 'rgba(0,0,0,0.3)', showticklabels: false,
         title: { text: 'X₁ samples ← | → X₀ samples',
-                 font: { size: Math.max(9.5, 11 * scale) } },
+                 font: { size: Math.max(12, 11 * scale) } },
       },
       yaxis: {
         domain: [0, 1], range: yDomain,
@@ -469,10 +456,10 @@ export async function initRocSamplingWidget(container) {
       // --- Legend: in the top-margin band, between title and axes ----
       legend: {
         orientation: 'h',
-        y: axesTopFrac + 0.02,
+        y: axesTopFrac + 0.25,
         yanchor: 'bottom',
         x: 0.5, xanchor: 'center',
-        font: { size: Math.max(8.5, 10 * scale), family: FONT_FAMILY },
+        font: { size: Math.max(9.77, 10 * scale), family: FONT_FAMILY },
         traceorder: 'normal',
       },
 

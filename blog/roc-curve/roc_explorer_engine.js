@@ -267,24 +267,28 @@ export async function initRocExplorerWidget(container, model) {
     return traces;
   }
 
-  // --- Layout -----------------------------------------------------
-  // --- Responsive sizing --------------------------------------------
-  // Same philosophy as gaussian_symmetric_roc.js: the curve subplot is
-  // square (scaleanchor), so its pixel box must be square by
-  // construction. The curve panel occupies x-domain [0.55, 1], i.e. 45%
-  // of the plot area width; the PDF panel shares the full height. So:
-  //   plotAreaW * 0.45  ==  plotAreaH   ->  height derives from width.
-  // Width is measured from the plot div (flex-grown), clamped between
-  // MIN_WIDTH and NATURAL_WIDTH; the title band is tight so no dead
-  // space appears above the title on narrow screens.
+  // --- Layout 
+  
+
+    // --- Responsive sizing --------------------------------------------
+  // The curve (ROC) subplot is square (scaleanchor), so its pixel box
+  // must be square by construction: the curve panel spans
+  // CURVE_WIDTH_FRAC of the plot area, hence
+  //   plotAreaH = plotAreaW * CURVE_WIDTH_FRAC  ->  height from width.
 
   const MARGIN_L = 60;
   const MARGIN_R = 20;
-  const MARGIN_T = 78;    // room for title (top) + legend (below it), was 45
+  const MARGIN_T = 78;    // title (top) + legend (below it)
   const MARGIN_B = 55;
 
   const NATURAL_WIDTH = 780;
   const MIN_WIDTH = 380;
+
+  // Panel split: PDF panel narrower so the square ROC panel gets most
+  // of the width. The 12% gap holds the "TPR" axis title.
+  const PDF_DOMAIN = [0, 0.30];
+  const CURVE_DOMAIN = [0.44, 1];
+  const CURVE_WIDTH_FRAC = CURVE_DOMAIN[1] - CURVE_DOMAIN[0]; // 0.58
 
   function computePlotSize() {
     const measured = plotDiv.getBoundingClientRect().width;
@@ -292,7 +296,7 @@ export async function initRocExplorerWidget(container, model) {
     const width = Math.max(MIN_WIDTH, Math.min(NATURAL_WIDTH, Math.round(available)));
 
     const plotAreaW = width - MARGIN_L - MARGIN_R;
-    const plotAreaH = plotAreaW * 0.40;      // matches x2 domain [0.60, 1]
+    const plotAreaH = plotAreaW * CURVE_WIDTH_FRAC;
     const height = Math.round(plotAreaH + MARGIN_T + MARGIN_B);
 
     return { width, height };
@@ -305,20 +309,21 @@ export async function initRocExplorerWidget(container, model) {
     return width / NATURAL_WIDTH;
   }
 
- function layoutFor(p, yDomain, maxDensity) {
+  function layoutFor(p, yDomain, maxDensity) {
     const metric = model.metricFn(p);
     const { width, height } = computePlotSize();
     const scale = width / NATURAL_WIDTH;
 
-    // Paper-fraction where the top of the axes sits:
-    // everything above (height - MARGIN_T) is the top-margin band.
+    // Paper-fraction where the top of the axes sits: the legend goes
+    // just above it (inside the top-margin band), below the title.
     const axesTopFrac = (height - MARGIN_T) / height;
 
     return {
       font: { family: FONT_FAMILY, size: 12, color: '#333' },
       grid: { rows: 1, columns: 2, pattern: 'independent' },
-            xaxis: {                                    // PDF panel
-        domain: [0, 0.40], range: [-maxDensity * 1.15, maxDensity * 1.15],
+
+      xaxis: {                                    // PDF panel
+        domain: PDF_DOMAIN, range: [-maxDensity * 1.15, maxDensity * 1.15],
         zeroline: true, zerolinecolor: 'rgba(0,0,0,0.3)', showticklabels: false,
         title: { text: model.xAxisPdfLabel || 'X₁ density ← | → X₀ density', font: { size: 11 } },
       },
@@ -329,13 +334,11 @@ export async function initRocExplorerWidget(container, model) {
         title: { text: 'Assay value (X)', font: { size: 12 } },
       },
       [AXIS_CURVE.x.replace('x', 'xaxis')]: {     // curve panel
-        domain: [0.60, 1], range: [-0.05, 1.05],
+        domain: CURVE_DOMAIN, range: [-0.05, 1.05],
         title: { text: model.curve.xAxisTitle, font: { size: 12 } },
       },
       [AXIS_CURVE.y.replace('y', 'yaxis')]: {     // the "TPR" side
         range: [-0.05, 1.05], scaleanchor: AXIS_CURVE.x, scaleratio: 1,
-        // standoff pushes the title away from the axis line;
-        // combined with the 20% gap it can never reach the PDF panel.
         title: { text: model.curve.yAxisTitle, font: { size: 12 }, standoff: 12 },
       },
       margin: { l: MARGIN_L, r: MARGIN_R, t: MARGIN_T, b: MARGIN_B, pad: 4 },
@@ -348,12 +351,12 @@ export async function initRocExplorerWidget(container, model) {
       },
       legend: {
         orientation: 'h',
-        // Paper coords: just above the axes top (= inside the margin band),
-        // hence safely below the title and far from the x-labels.
-        y: axesTopFrac * 1.50,
+        // Paper coords: OFFSET above the axes top (add, not multiply!),
+        // inside the top-margin band, below the title, above the axes.
+        y: axesTopFrac + 0.25,
         yanchor: 'bottom',
         x: 0.5, xanchor: 'center',
-        font: { size: 10, family: FONT_FAMILY },
+        font: { size: Math.max(8.5, 10 * scale), family: FONT_FAMILY },
       },
       width, height,
       autosize: false,
@@ -361,6 +364,8 @@ export async function initRocExplorerWidget(container, model) {
       plot_bgcolor: 'rgba(0,0,0,0)',
     };
   }
+
+  
   // --- Render -------------------------------------------------------
 
   function render() {
