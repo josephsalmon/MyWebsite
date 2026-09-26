@@ -267,10 +267,8 @@ export async function initRocExplorerWidget(container, model) {
     return traces;
   }
 
-  // --- Layout 
-  
-
-    // --- Responsive sizing --------------------------------------------
+  // --- Layout -----------------------------------------------------
+  // --- Responsive sizing --------------------------------------------
   // The curve (ROC) subplot is square (scaleanchor), so its pixel box
   // must be square by construction: the curve panel spans
   // CURVE_WIDTH_FRAC of the plot area, hence
@@ -284,11 +282,23 @@ export async function initRocExplorerWidget(container, model) {
   const NATURAL_WIDTH = 780;
   const MIN_WIDTH = 380;
 
-  // Panel split: PDF panel narrower so the square ROC panel gets most
-  // of the width. The 12% gap holds the "TPR" axis title.
-  const PDF_DOMAIN = [0, 0.30];
-  const CURVE_DOMAIN = [0.44, 1];
-  const CURVE_WIDTH_FRAC = CURVE_DOMAIN[1] - CURVE_DOMAIN[0]; // 0.58
+  // Pixel budget the inter-panel gap must always hold, left of the
+  // curve panel's axis line: y2 tick labels (~14px) + "TPR" title
+  // (~16px) + standoff (12px), at natural size.
+  const GAP_PX = 46;
+  const CURVE_WIDTH_FRAC = 0.56;   // what the curve panel keeps
+
+  // Panel domains: the gap is max(46px, 14%) so "TPR" never overlaps
+  // the PDF panel even at the narrowest widths.
+  function panelDomains(width) {
+    const plotAreaW = width - MARGIN_L - MARGIN_R;
+    const gapFrac = Math.max(GAP_PX / plotAreaW, 0.14);
+    const pdfFrac = 1 - gapFrac - CURVE_WIDTH_FRAC;
+    return {
+      pdf: [0, pdfFrac],
+      curve: [1 - CURVE_WIDTH_FRAC, 1],
+    };
+  }
 
   function computePlotSize() {
     const measured = plotDiv.getBoundingClientRect().width;
@@ -313,6 +323,7 @@ export async function initRocExplorerWidget(container, model) {
     const metric = model.metricFn(p);
     const { width, height } = computePlotSize();
     const scale = width / NATURAL_WIDTH;
+    const { pdf: pdfDomain, curve: curveDomain } = panelDomains(width);
 
     // Paper-fraction where the top of the axes sits: the legend goes
     // just above it (inside the top-margin band), below the title.
@@ -323,7 +334,7 @@ export async function initRocExplorerWidget(container, model) {
       grid: { rows: 1, columns: 2, pattern: 'independent' },
 
       xaxis: {                                    // PDF panel
-        domain: PDF_DOMAIN, range: [-maxDensity * 1.15, maxDensity * 1.15],
+        domain: pdfDomain, range: [-maxDensity * 1.15, maxDensity * 1.15],
         zeroline: true, zerolinecolor: 'rgba(0,0,0,0.3)', showticklabels: false,
         title: { text: model.xAxisPdfLabel || 'X₁ density ← | → X₀ density', font: { size: 11 } },
       },
@@ -334,12 +345,16 @@ export async function initRocExplorerWidget(container, model) {
         title: { text: 'Assay value (X)', font: { size: 12 } },
       },
       [AXIS_CURVE.x.replace('x', 'xaxis')]: {     // curve panel
-        domain: CURVE_DOMAIN, range: [-0.05, 1.05],
+        domain: curveDomain, range: [-0.05, 1.05],
         title: { text: model.curve.xAxisTitle, font: { size: 12 } },
       },
       [AXIS_CURVE.y.replace('y', 'yaxis')]: {     // the "TPR" side
         range: [-0.05, 1.05], scaleanchor: AXIS_CURVE.x, scaleratio: 1,
-        title: { text: model.curve.yAxisTitle, font: { size: 12 }, standoff: 12 },
+        // Scaled title font + reduced standoff at narrow widths keeps
+        // "TPR" inside even the 46px floor gap.
+        title: { text: model.curve.yAxisTitle,
+                 font: { size: Math.max(9, 12 * scale) },
+                 standoff: Math.max(8, 12 * scale) },
       },
       margin: { l: MARGIN_L, r: MARGIN_R, t: MARGIN_T, b: MARGIN_B, pad: 4 },
       title: {
@@ -347,12 +362,12 @@ export async function initRocExplorerWidget(container, model) {
         y: 1, yanchor: 'top', yref: 'container',
         x: 0.5, xanchor: 'center',
         font: { size: Math.max(11, 16 * scale), family: FONT_FAMILY, color: '#111' },
-        pad: { t: 0, b: 0 },
+        pad: { t: 6, b: 0 },
       },
       legend: {
         orientation: 'h',
-        // Paper coords: OFFSET above the axes top (add, not multiply!),
-        // inside the top-margin band, below the title, above the axes.
+        // Paper coords: small OFFSET above the axes top (add, not
+        // multiply!) — inside the top-margin band, below the title.
         y: axesTopFrac + 0.25,
         yanchor: 'bottom',
         x: 0.5, xanchor: 'center',
@@ -365,14 +380,15 @@ export async function initRocExplorerWidget(container, model) {
     };
   }
 
-  
   // --- Render -------------------------------------------------------
 
   function render() {
     const { traces: pdfTraces, maxDensity, yDomain } = buildPdfTraces(params);
     const traces = pdfTraces.concat(buildCurveTraces(params, yDomain));
     const layout = layoutFor(params, yDomain, maxDensity);
-    Plotly.react(plotDiv, traces, layout, { responsive: true, displayModeBar: false });
+    // NOTE: no `responsive: true` — Plotly's auto-resize would fight
+    // our explicit width/height and loop with the ResizeObserver.
+    Plotly.react(plotDiv, traces, layout, { displayModeBar: false });
   }
 
   // --- Wiring ---------------------------------------------------------
@@ -392,18 +408,25 @@ export async function initRocExplorerWidget(container, model) {
   });
 
   container.addEventListener('roc-distribution-change', (evt) => {
-  params.distribution = evt.detail.distribution;
-  refreshThresholdRange();
-  updateThresholdLabel();
-  render();
-});
+    params.distribution = evt.detail.distribution;
+    refreshThresholdRange();
+    updateThresholdLabel();
+    render();
+  });
 
   render();
 
-  // Re-render (recomputing width/height/markers) whenever the plot
-  // div's box changes — scoped to this widget's own element, so
-  // several widgets on one page don't interfere with each other.
-  const ro = new ResizeObserver(() => render());
+  // Re-render when the container width changes. Observe the PARENT
+  // (which tracks the page width — the plot div itself is sized by
+  // Plotly and only changes after a render), and guard on width so
+  // our own height-changing renders don't re-trigger the observer.
+  let lastWidth = null;
+  const ro = new ResizeObserver((entries) => {
+    const w = Math.round(entries[0].contentRect.width);
+    if (w === lastWidth) return;
+    lastWidth = w;
+    render();
+  });
   ro.observe(plotDiv.parentElement);
   container._rocExplorerResizeObserver = ro;
 }

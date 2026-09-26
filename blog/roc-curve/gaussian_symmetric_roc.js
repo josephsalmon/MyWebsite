@@ -359,6 +359,89 @@ export async function initGaussianSymmetricRocWidget(container) {
 // One legend, with three explicitly grouped sections.
 // -------------------------------------------------------------------
 
+function compactLegendInterlineSpacing() {
+
+  const items = plotDiv.querySelectorAll('.legend .traces');
+
+  // Expected order:
+  // 0  Original
+  // 1  ROC curve
+  // 2  Transformations
+  // 3  Threshold reversal
+  // 4  Class label swap
+  // 5  Class swap + threshold rev.
+  // 6  Extreme cases
+  // 7  Perfect
+  // 8  Random
+  // 9  Always wrong
+
+  if (items.length < 10) return;
+
+  const transforms = Array.from(items).map(item => {
+    const transform = item.getAttribute('transform') || '';
+    const match = transform.match(
+      /translate\(\s*([-\d.]+)[,\s]+([-\d.]+)\s*\)/
+    );
+
+    if (!match) return null;
+
+    return {
+      item,
+      x: parseFloat(match[1]),
+      y: parseFloat(match[2]),
+    };
+  });
+
+  if (transforms.some(v => v === null)) return;
+
+  // Use the normal Plotly spacing as the reference gap.
+  const normalGap = transforms[1].y - transforms[0].y;
+
+  // 30% reduction inside blocks.
+  const compactGap = normalGap * 0.70;
+
+  // Gap between consecutive legend items.
+  //
+  // 1.00 = normal Plotly spacing
+  // 0.70 = 30% reduced spacing
+  //
+  // The block boundaries remain at the normal spacing.
+const gapFactor = [
+  .800, // Original → ROC curve
+  .800, // ROC curve → Transformations
+  .800, // Transformations → Threshold reversal
+
+  0.630, // Threshold reversal → Class label swap
+  0.630, // Class label swap → Class swap + threshold rev.
+
+  .800, // Class swap + threshold rev. → Extreme cases
+  .800, // Extreme cases → Perfect
+
+  0.630, // Perfect → Random
+  0.630, // Random → Always wrong
+];
+
+  let y = transforms[0].y;
+
+  transforms[0].item.setAttribute(
+    'transform',
+    `translate(${transforms[0].x},${y})`
+  );
+
+  for (let i = 1; i < transforms.length; i++) {
+
+    const gap = normalGap * gapFactor[i - 1];
+
+    y += gap;
+
+    transforms[i].item.setAttribute(
+      'transform',
+      `translate(${transforms[i].x},${y})`
+    );
+  }
+}
+
+
 function legendLayout() {
 
   return {
@@ -374,19 +457,17 @@ function legendLayout() {
     valign: 'top',
 
     font: {
-      size: 8.5,
+      size: 10,
       family: FONT_FAMILY,
     },
 
     borderwidth: 0,
 
-    itemwidth: 30,
+    itemwidth: 28,
 
-    // Important: use rank ordering, not grouped ordering.
     traceorder: 'normal',
   };
 }
-
   // function gridShapes(ticks, boxMin, boxMax) {
   //   const shapes = [];
   //   ticks.forEach((v) => {
@@ -428,7 +509,7 @@ function legendLayout() {
 
   const NATURAL_WIDTH = 600;
   const MIN_WIDTH = 360;
-  const MIN_PLOT_SIDE = 160; // floor on the square plotting area itself
+  const MIN_PLOT_SIDE = 200; // floor on the square plotting area itself
 
   function computePlotSize() {
     const measured = plotDiv.getBoundingClientRect().width;
@@ -480,23 +561,39 @@ function legendLayout() {
     };
   }
 
-  function render() {
+  let rendering = false, pending = false;
+  async function render() {
+    if (rendering) { pending = true; return; }
+    rendering = true;
     const t = parseFloat(thresholdSlider.value);
-    Plotly.react(plotDiv, buildTraces(t), layout(), { responsive: true, displayModeBar: false });
+    await Plotly.react(plotDiv, buildTraces(t), layout(), { displayModeBar: false });
+    compactLegendInterlineSpacing();
+    rendering = false;
+    if (pending) { pending = false; render(); }
   }
 
   thresholdSlider.addEventListener('input', () => { updateThresholdValueLabel(); render(); });
   prevalenceSlider.addEventListener('input', () => { updatePrevalenceValueLabel(); render(); });
 
-  render();
+  render();   // initial
+  requestAnimationFrame(() => {
+    const w = Math.round(plotDiv.parentElement.getBoundingClientRect().width);
+    if (w !== lastWidth && w > 0) { lastWidth = w; render(); }
+  });
 
   // Re-render (recomputing layout width/height) whenever the plot div's
   // own box changes size — the direct analogue of subplot_viz.js's
   // `window.addEventListener('resize', drawPlot)`, but scoped to this
   // widget's own element via ResizeObserver, so multiple independent
   // widgets on one page don't interfere with each other.
-  const ro = new ResizeObserver(() => render());
-  ro.observe(plotDiv.parentElement);
+  let lastWidth = null;
+  const ro = new ResizeObserver((entries) => {
+    const w = Math.round(entries[0].contentRect.width);
+    if (w === lastWidth) return;   // ignore height-only changes from our own renders
+    lastWidth = w;
+    render();
+  });
+  ro.observe(plotDiv.parentElement);   // parent shrinks with the page; div doesn't
 }
 
 document

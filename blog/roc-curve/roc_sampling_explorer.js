@@ -213,38 +213,44 @@ export async function initRocSamplingWidget(container) {
   controlsDiv.appendChild(hr2);
 
   // Threshold slider — own dedicated layout (matches the other widgets).
-  const [yMin0, yMax0] = distributionYDomain(params);
+// Threshold slider — label and value on the same line
+const [yMin0, yMax0] = distributionYDomain(params);
 
-  const thresholdLabel = document.createElement('div');
-  thresholdLabel.textContent = 'Threshold';
-  thresholdLabel.style.fontFamily = FONT_FAMILY;
-  thresholdLabel.style.fontWeight = '600';
-  thresholdLabel.style.fontSize = '9.77px';
-  thresholdLabel.style.marginBottom = '4px';
-  controlsDiv.appendChild(thresholdLabel);
+const thresholdRow = document.createElement('div');
+thresholdRow.style.marginBottom = '7px';
+controlsDiv.appendChild(thresholdRow);
 
-  const thresholdSlider = document.createElement('input');
-  thresholdSlider.type = 'range';
-  thresholdSlider.min = yMin0;
-  thresholdSlider.max = yMax0;
-  thresholdSlider.step = (yMax0 - yMin0) / 500;
-  thresholdSlider.value = params.t;
-  thresholdSlider.style.width = '100%';
-  controlsDiv.appendChild(thresholdSlider);
+const thresholdLabelRow = document.createElement('div');
+thresholdLabelRow.style.display = 'flex';
+thresholdLabelRow.style.justifyContent = 'space-between';
+thresholdLabelRow.style.fontFamily = FONT_FAMILY;
+thresholdLabelRow.style.marginBottom = '2px';
+thresholdLabelRow.style.fontSize = '9.77px';
+thresholdRow.appendChild(thresholdLabelRow);
 
-  const thresholdValueLabel = document.createElement('div');
-  thresholdValueLabel.style.marginTop = '4px';
-  thresholdValueLabel.style.textAlign = 'center';
-  thresholdValueLabel.style.fontFamily = FONT_FAMILY;
-  thresholdValueLabel.style.fontSize = '9.77px';
-  thresholdValueLabel.style.color = '#555';
-  controlsDiv.appendChild(thresholdValueLabel);
+const thresholdLabel = document.createElement('span');
+thresholdLabel.textContent = 'Threshold';
+thresholdLabel.style.fontWeight = '600';
+thresholdLabelRow.appendChild(thresholdLabel);
 
-  function updateThresholdLabel() {
-    thresholdValueLabel.textContent = 'Threshold = ' + params.t.toPrecision(3);
-  }
-  updateThresholdLabel();
+const thresholdValueLabel = document.createElement('span');
+thresholdValueLabel.textContent = 'Threshold = ' + params.t.toPrecision(3);
+thresholdValueLabel.style.color = '#555';
+thresholdLabelRow.appendChild(thresholdValueLabel);
 
+const thresholdSlider = document.createElement('input');
+thresholdSlider.type = 'range';
+thresholdSlider.min = yMin0;
+thresholdSlider.max = yMax0;
+thresholdSlider.step = (yMax0 - yMin0) / 500;
+thresholdSlider.value = params.t;
+thresholdSlider.style.width = '100%';
+thresholdRow.appendChild(thresholdSlider);
+
+function updateThresholdLabel() {
+  thresholdValueLabel.textContent =  params.t.toPrecision(3);
+}
+updateThresholdLabel();
   // --- Sample generation (depends on distribution, n0, n1) ------------
 
   let x0Full = [], x1Full = []; // standardized (z) samples, length MAX_N
@@ -371,105 +377,116 @@ export async function initRocSamplingWidget(container) {
   // x-labels), and the inter-panel gap is wide enough for the "TPR"
   // ylabel at every width.
 
-  const MARGIN_L = 60;
-  const MARGIN_R = 20;
-  const MARGIN_T = 78;    // title (top) + legend (below it)
-  const MARGIN_B = 55;
+// --- Responsive sizing ---
+const MARGIN_L = 60;
+const MARGIN_R = 20;
+const MARGIN_T = 78;    // title (top) + legend (below it)
+const MARGIN_B = 55;
 
-  const NATURAL_WIDTH = 780;
-  const MIN_WIDTH = 380;
+const NATURAL_WIDTH = 780;
+const MIN_WIDTH = 380;
 
-  // Panel domains: 20% gap so "TPR" never reaches the scatter panel.
-  // Panel split: scatter panel narrower so the square ROC panel gets
-  // most of the width. The 14% gap holds the "TPR" axis title — same
-  // split as roc_explorer_engine.js.
-  const SCATTER_DOMAIN = [0, 0.30];
-  const ROC_DOMAIN = [0.44, 1];
-  const ROC_WIDTH_FRAC = ROC_DOMAIN[1] - ROC_DOMAIN[0]; // 0.56
+// Minimum pixel gap to prevent "TPR" label overlap
+const MIN_GAP_PX = 46;  // Minimum gap in pixels for the "TPR" label
+const ROC_WIDTH_FRAC = 0.56;  // ROC panel width fraction (56% of plot area)
 
-  function computePlotSize() {
-    const measured = plotDiv.getBoundingClientRect().width;
-    const available = measured > 0 ? measured : NATURAL_WIDTH;
-    const width = Math.max(MIN_WIDTH, Math.min(NATURAL_WIDTH, Math.round(available)));
+// Dynamically compute panel domains to ensure the gap is wide enough
+function panelDomains(width) {
+  const plotAreaW = width - MARGIN_L - MARGIN_R;
+  // Minimum gap fraction: MIN_GAP_PX / plotAreaW
+  const minGapFrac = MIN_GAP_PX / plotAreaW;
+  // Ensure the gap is at least minGapFrac (e.g., 20% or MIN_GAP_PX, whichever is larger)
+  const gapFrac = Math.max(minGapFrac, 0.20);  // 20% minimum gap
+  // Scatter panel takes the remaining space after the gap and ROC panel
+  const scatterFrac = 1 - gapFrac - ROC_WIDTH_FRAC;
+  return {
+    scatter: [0, scatterFrac],
+    roc: [1 - ROC_WIDTH_FRAC, 1],
+    gapFrac,  // For debugging (optional)
+  };
+}
 
-    const plotAreaW = width - MARGIN_L - MARGIN_R;
-    const plotAreaH = plotAreaW * ROC_WIDTH_FRAC;  // square ROC subplot
-    const height = Math.round(plotAreaH + MARGIN_T + MARGIN_B);
+function computePlotSize() {
+  const measured = plotDiv.getBoundingClientRect().width;
+  const available = measured > 0 ? measured : NATURAL_WIDTH;
+  const width = Math.max(MIN_WIDTH, Math.min(NATURAL_WIDTH, Math.round(available)));
 
-    return { width, height };
-  }
+  // Compute panel domains
+  const { scatter: scatterDomain, roc: rocDomain } = panelDomains(width);
 
-  const currentScale = () => computePlotSize().width / NATURAL_WIDTH;
+  // Ensure the ROC panel is square
+  const plotAreaW = width - MARGIN_L - MARGIN_R;
+  const plotAreaH = plotAreaW * ROC_WIDTH_FRAC;  // Square ROC subplot
+  const height = Math.round(plotAreaH + MARGIN_T + MARGIN_B);
 
-  function layoutFor(p, yDomain, auc) {
-    const dist = distributions[p.distribution || 'gaussian'];
-    const Delta = (p.mu1 - p.mu0) / p.sigma1;
-    const rho = p.sigma0 / p.sigma1;
+  return { width, height, scatterDomain, rocDomain };
+}
 
-    const { width, height } = computePlotSize();
-    const scale = width / NATURAL_WIDTH;
+const currentScale = () => computePlotSize().width / NATURAL_WIDTH;
 
-    // Paper-fraction where the top of the axes sits — the legend is
-    // placed just above it, inside the top-margin band, below the title.
-    const axesTopFrac = (height - MARGIN_T) / height;
+function layoutFor(p, yDomain, auc) {
+  const dist = distributions[p.distribution || 'gaussian'];
+  const Delta = (p.mu1 - p.mu0) / p.sigma1;
+  const rho = p.sigma0 / p.sigma1;
 
-    return {
-      font: { family: FONT_FAMILY, size: 12, color: '#333' },
-      grid: { rows: 1, columns: 2, pattern: 'independent' },
+  const { width, height, scatterDomain, rocDomain } = computePlotSize();
+  const scale = width / NATURAL_WIDTH;
+  const axesTopFrac = (height - MARGIN_T) / height;
 
-      // --- Sample distribution panel --------------------------------
-      xaxis: {
-        domain: SCATTER_DOMAIN, range: [-1.3, 1.3],
-        zeroline: true, zerolinecolor: 'rgba(0,0,0,0.3)', showticklabels: false,
-        title: { text: 'X₁ samples ← | → X₀ samples',
-                 font: { size: Math.max(12, 11 * scale) } },
-      },
-      yaxis: {
-        domain: [0, 1], range: yDomain,
-        zerolinecolor: '#eee', zerolinewidth: 1,
-        gridcolor: '#eee', gridwidth: 1, showgrid: true,
-        title: { text: 'Assay value (X)', font: { size: 12 } },
-      },
+  return {
+    font: { family: FONT_FAMILY, size: 12, color: '#333' },
+    grid: { rows: 1, columns: 2, pattern: 'independent' },
 
-      // --- ROC panel -------------------------------------------------
-      [AXIS_ROC.x.replace('x', 'xaxis')]: {
-        domain: ROC_DOMAIN, range: [-0.05, 1.05],
-        title: { text: 'FPR', font: { size: 12 } },
-      },
-      [AXIS_ROC.y.replace('y', 'yaxis')]: {
-        range: [-0.05, 1.05],
-        scaleanchor: AXIS_ROC.x, scaleratio: 1,
-        // standoff centers the "TPR" label in the 20% gap: it can
-        // never overlap the scatter panel.
-        title: { text: 'TPR', font: { size: 12 }, standoff: 12 },
-      },
+    // --- Sample distribution panel ---
+    xaxis: {
+      domain: scatterDomain, range: [-1.3, 1.3],
+      zeroline: true, zerolinecolor: 'rgba(0,0,0,0.3)', showticklabels: false,
+      title: { text: 'X₁ samples ← | → X₀ samples', font: { size: Math.max(12, 11 * scale) } },
+    },
+    yaxis: {
+      domain: [0, 1], range: yDomain,
+      zerolinecolor: '#eee', zerolinewidth: 1,
+      gridcolor: '#eee', gridwidth: 1, showgrid: true,
+      title: { text: 'Assay value (X)', font: { size: 12 } },
+    },
 
-      // --- Title: pinned to the very top of the figure ---------------
-      title: {
-        text: `${dist.label} — Δ=${Delta.toFixed(2)}, ρ=${rho.toFixed(2)}`,
-        y: 1, yanchor: 'top', yref: 'container',
-        x: 0.5, xanchor: 'center',
-        font: { size: Math.max(11, 16 * scale), family: FONT_FAMILY, color: '#111' },
-        pad: { t: 0, b: 0 },
-      },
+    // --- ROC panel ---
+    [AXIS_ROC.x.replace('x', 'xaxis')]: {
+      domain: rocDomain, range: [-0.05, 1.05],
+      title: { text: 'FPR', font: { size: 12 } },
+    },
+    [AXIS_ROC.y.replace('y', 'yaxis')]: {
+      range: [-0.05, 1.05],
+      scaleanchor: AXIS_ROC.x, scaleratio: 1,
+      title: { text: 'TPR', font: { size: 12 }, standoff: 12 },
+    },
 
-      // --- Legend: in the top-margin band, between title and axes ----
-      legend: {
-        orientation: 'h',
-        y: axesTopFrac + 0.25,
-        yanchor: 'bottom',
-        x: 0.5, xanchor: 'center',
-        font: { size: Math.max(9.77, 10 * scale), family: FONT_FAMILY },
-        traceorder: 'normal',
-      },
+    // --- Title ---
+    title: {
+      text: `${dist.label} — Δ=${Delta.toFixed(2)}, ρ=${rho.toFixed(2)}`,
+      y: 1, yanchor: 'top', yref: 'container',
+      x: 0.5, xanchor: 'center',
+      font: { size: Math.max(11, 16 * scale), family: FONT_FAMILY, color: '#111' },
+      pad: { t: 6, b: 0 },
+    },
 
-      margin: { l: MARGIN_L, r: MARGIN_R, t: MARGIN_T, b: MARGIN_B, pad: 4 },
-      width, height,
-      autosize: false,
-      paper_bgcolor: 'rgba(0,0,0,0)',
-      plot_bgcolor: 'rgba(0,0,0,0)',
-    };
-  }
+    // --- Legend ---
+    legend: {
+      orientation: 'h',
+      y: axesTopFrac + 0.25,
+      yanchor: 'bottom',
+      x: 0.5, xanchor: 'center',
+      font: { size: Math.max(9.77, 10 * scale), family: FONT_FAMILY },
+      traceorder: 'normal',
+    },
+
+    margin: { l: MARGIN_L, r: MARGIN_R, t: MARGIN_T, b: MARGIN_B, pad: 4 },
+    width, height,
+    autosize: false,
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+  };
+}
 
   // --- Render -------------------------------------------------------------
 
