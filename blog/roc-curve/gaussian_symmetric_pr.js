@@ -248,9 +248,39 @@ function prCurve(pointFn, prevalence, tMin, tMax, num = 400) {
     .map((_, i) => i)
     .sort((a, b) => recall[a] - recall[b]);
 
+  const x = idx.map(i => recall[i]);
+  const y = idx.map(i => precision[i]);
+
+  // Universal endpoint (recall = 1, precision = prevalence), reached as
+  // t -> -infinity. Over a finite threshold range the curve may stop just
+  // short of it, so always append it explicitly.
+  x.push(1);
+  y.push(prevalence);
+
+  return { x, y };
+}
+
+
+// -------------------------------------------------------------------
+// Marker for the universal endpoint (1, pi)
+// -------------------------------------------------------------------
+
+function endpointMarker({ color, prevalence, legend, legendgroup, legendrank, size = 7 }) {
   return {
-    x: idx.map(i => recall[i]),
-    y: idx.map(i => precision[i]),
+    x: [1],
+    y: [prevalence],
+    mode: 'markers',
+    legend,
+    legendgroup,
+    legendrank,
+    marker: {
+      color,
+      size,
+      symbol: 'circle',
+      line: { color: 'white', width: 1 },
+    },
+    showlegend: false,
+    hovertemplate: 'Recall = 1<br>Precision = \u03c0 = %{y:.2f}<extra></extra>',
   };
 }
 
@@ -327,6 +357,8 @@ function curveAndPoint(
     legend,
     legendrank,
     markerSize = 10,
+    prevalence,
+    endpointSize = 7,
   }
 ) {
 
@@ -372,6 +404,15 @@ function curveAndPoint(
 
       showlegend: false,
     },
+
+    endpointMarker({
+      color,
+      prevalence,
+      legend,
+      legendgroup,
+      legendrank,
+      size: endpointSize,
+    }),
 
   ];
 }
@@ -613,6 +654,36 @@ export async function initGaussianSymmetricPrWidget(container) {
       buildCurves(prevalence);
 
 
+    // Always-wrong PR curve (computed up front).
+    //
+    // For t <= t_dagger: FPR = 1 and recall r sweeps [0, 1], so
+    //
+    //   precision(r) = pi r / (pi r + pi0),   r in [0, 1],
+    //
+    // a smooth arc from (0, 0) to (1, pi). For t >= t_dagger the whole
+    // half-line collapses to the single point (0, 0), which is the arc's
+    // starting point.
+    const wrongRecall = [];
+    const wrongPrecision = [];
+
+    for (let i = 0; i <= 400; i++) {
+
+      const r = i / 400;
+
+      const denominator =
+        prevalence * r +
+        (1 - prevalence);
+
+      const p =
+        denominator > 0
+          ? (prevalence * r) / denominator
+          : 0;
+
+      wrongRecall.push(r);
+      wrongPrecision.push(p);
+    }
+
+
     const traces = [
 
       // =============================================================
@@ -656,6 +727,9 @@ export async function initGaussianSymmetricPrWidget(container) {
 
           markerSize:
             scaleMarker(16),
+
+          prevalence,
+          endpointSize: scaleMarker(7),
         }
       ),
 
@@ -704,6 +778,9 @@ export async function initGaussianSymmetricPrWidget(container) {
 
           markerSize:
             scaleMarker(10),
+
+          prevalence,
+          endpointSize: scaleMarker(7),
         }
       ),
 
@@ -727,6 +804,9 @@ export async function initGaussianSymmetricPrWidget(container) {
 
           markerSize:
             scaleMarker(10),
+
+          prevalence,
+          endpointSize: scaleMarker(7),
         }
       ),
 
@@ -750,6 +830,9 @@ export async function initGaussianSymmetricPrWidget(container) {
 
           markerSize:
             scaleMarker(10),
+
+          prevalence,
+          endpointSize: scaleMarker(7),
         }
       ),
 
@@ -782,8 +865,9 @@ export async function initGaussianSymmetricPrWidget(container) {
       // Perfect classifier:
       // precision = 1 throughout the informative part of the curve.
       {
-        x: [0, 1],
-        y: [1, 1],
+        // Flat at 1, then a vertical drop at recall 1 down to (1, pi).
+        x: [0, 1, 1],
+        y: [1, 1, prevalence],
 
         mode: 'lines',
 
@@ -801,6 +885,15 @@ export async function initGaussianSymmetricPrWidget(container) {
           dash: 'dot',
         },
       },
+
+      endpointMarker({
+        color: COLORS.perfect,
+        prevalence,
+        legend: 'legend',
+        legendgroup: 'curve-Perfect',
+        legendrank: 301,
+        size: scaleMarker(7),
+      }),
 
 
       // Random classifier:
@@ -826,21 +919,21 @@ export async function initGaussianSymmetricPrWidget(container) {
         },
       },
 
+      endpointMarker({
+        color: COLORS.random,
+        prevalence,
+        legend: 'legend',
+        legendgroup: 'curve-Random',
+        legendrank: 302,
+        size: scaleMarker(7),
+      }),
 
-      // Perfectly wrong ranking.
-      //
-      // Parameterize the ROC anti-diagonal:
-      // FPR = 1 - TPR.
-      //
-      // The corresponding PR curve for the positive class is
-      //
-      // precision =
-      //   π r / [π r + (1-π)(1-r)],
-      //
-      // where r is recall.
+
+      // Always-wrong classifier:
+      // the point (0, 0) plus the arc pi r / (pi r + pi0) up to (1, pi).
       {
-        x: [],
-        y: [],
+        x: wrongRecall,
+        y: wrongPrecision,
 
         mode: 'lines',
 
@@ -859,40 +952,16 @@ export async function initGaussianSymmetricPrWidget(container) {
         },
       },
 
+      endpointMarker({
+        color: COLORS.wrong,
+        prevalence,
+        legend: 'legend',
+        legendgroup: 'curve-Always wrong',
+        legendrank: 303,
+        size: scaleMarker(7),
+      }),
+
     ];
-
-
-    // ---------------------------------------------------------------
-    // Generate the perfectly-wrong PR curve.
-    // ---------------------------------------------------------------
-
-    const wrongRecall = [];
-    const wrongPrecision = [];
-
-    for (let i = 0; i <= 400; i++) {
-
-      const r = i / 400;
-
-      const denominator =
-        prevalence * r +
-        (1 - prevalence) * (1 - r);
-
-      const p =
-        denominator > 0
-          ? (prevalence * r) / denominator
-          : 0;
-
-      wrongRecall.push(r);
-      wrongPrecision.push(p);
-    }
-
-
-    // The last trace is the "Always wrong" curve.
-    traces[traces.length - 1].x =
-      wrongRecall;
-
-    traces[traces.length - 1].y =
-      wrongPrecision;
 
 
     return traces;

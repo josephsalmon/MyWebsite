@@ -1363,9 +1363,10 @@ and also $\mathbb P(Y=1, X\ge t) = \mathbb P(X\ge t\mid Y=1)\,\pi_1 = \pi_1\,\ma
 
 **Consequences.**
 
-- *Baseline of the Precision-Recall curve.* As $t\to-\infty$, $\mathrm{TPR}(t),\mathrm{FPR}(t)\to1$ (@lem-roc-endpoints), so $\mathrm{Precision}(t)\to\pi_1$: a threshold predicting everyone positive reaches $\mathrm{Recall}=1$ at $\mathrm{Precision}=\pi_1$, the PR analogue of the ROC diagonal's endpoint. More generally, for random guessing ($X_0\stackrel d=X_1$, @thm-random-guessing) $\mathrm{TPR}(t)=\mathrm{FPR}(t)$ for every $t$, so $\mathrm{Precision}(t)=\pi_1$ everywhere: the **random-guessing baseline is the horizontal line at height $\pi_1$**, not the diagonal — the key qualitative difference from ROC, whose baseline doesn't depend on prevalence at all.
+- *Baseline of the Precision-Recall curve.* As $t\to-\infty$, $\mathrm{TPR}(t),\mathrm{FPR}(t)\to1$ (@lem-roc-endpoints), so $\mathrm{Precision}(t)\to\pi_1$: a threshold predicting everyone positive reaches $\mathrm{Recall}=1$ at $\mathrm{Precision}=\pi_1$, the PR analogue of the ROC diagonal's endpoint. More generally, for random guessing ($X_0\stackrel d=X_1$, @thm-random-guessing) $\mathrm{TPR}(t)=\mathrm{FPR}(t)$ for every $t$, so $\mathrm{Precision}(t)=\pi_1$ everywhere: the **random-guessing baseline is the horizontal line at height $\pi_1$**, not the diagonal. 
+This is the key qualitative difference from ROC curve, whose baseline doesn't depend on prevalence at all.
 
-- *Precision, unlike TPR/FPR, is prevalence-dependent.* $\mathrm{TPR}(t)$ and $\mathrm{FPR}(t)$ involve only the conditional laws $X_0,X_1$, so the ROC curve is unaffected by how a study sampled its negatives and positives. Precision is not: for a fixed pair $(\mathrm{TPR}(t),\mathrm{FPR}(t))$ — i.e. a classifier of unchanged discriminative power at that threshold — $\mathrm{Precision}(t)$ still moves with $\pi_1$, since it appears explicitly in the formula. This is exactly the caveat from the introduction: this benchmark's $\pi_1=536/(536+976)\approx0.35$ reflects the *study's* sampling ratio, not any real-world Covid-19 prevalence, so its reported precision values are specific to that design and would shift under a different sampling ratio — even though $\mathrm{TPR}(t)$, $\mathrm{FPR}(t)$, and hence the ROC curve, would not.
+- *Precision, unlike TPR/FPR, is prevalence-dependent.* $\mathrm{TPR}(t)$ and $\mathrm{FPR}(t)$ involve only the conditional laws $X_0,X_1$, so the ROC curve is unaffected by how a study sampled its negatives and positives. Precision is not: for a fixed pair $(\mathrm{TPR}(t),\mathrm{FPR}(t))$, $\mathrm{Precision}(t)$ moves with $\pi_1$, since it appears explicitly in the formula. This is exactly the caveat from the introduction: this benchmark's $\pi_1=536/(536+976)\approx0.35$ reflects the *study's* sampling ratio, not any real-world Covid-19 prevalence, so its reported precision values are specific to that design and would shift under a different sampling ratio (even though $\mathrm{TPR}(t)$, $\mathrm{FPR}(t)$, and hence the ROC curve, would not).
 
 The Python code to compute this curve is provided below.
 ```{python}
@@ -1486,7 +1487,7 @@ Then,
 $$
 \boxed{\mathrm{Recall}(t^\star) = 1, \qquad \mathrm{Precision}(t^\star) = 1,}
 $$
-and in fact $\mathrm{Precision}(t)\equiv1$ for **every** $t\ge t^\star$: the PR curve is flat at $\mathrm{Precision}=1$ across the whole range $\mathrm{Recall}\in[0,1]$, and only drops — vertically, at $\mathrm{Recall}=1$ — to the universal endpoint $\mathrm{Precision}=\pi_1$ as $t\to-\infty$. In particular the curve passes through $(1,1)$, $(0,1)$, and $(1,\pi_1)$.
+Moreover, $\mathrm{Precision}(t)\equiv1$ for **every** $t\ge t^\star$: the PR curve is flat at $\mathrm{Precision}=1$ across the whole range $\mathrm{Recall}\in[0,1]$, and only drops vertically at $\mathrm{Recall}=1$, to the (universal) endpoint $\mathrm{Precision}=\pi_1$ as $t\to-\infty$. In particular the curve passes through $(1,1)$, $(0,1)$, and $(1,\pi_1)$.
 
 ::::
 
@@ -1512,9 +1513,10 @@ Consequently, for any $t\ge t^\star$ with $\mathrm{TPR}(t)>0$,
 $$
 \mathrm{Precision}(t) = \frac{\pi_1\,\mathrm{TPR}(t)}{\pi_1\,\mathrm{TPR}(t) + \pi_0\cdot0} = 1.
 $$
-In the case that $\mathrm{TPR}(t)=0$, $\mathrm{Precision}(t):=1$ by the standing convention. Either way, $\mathrm{Precision}(t)\equiv1$ for every $t\ge t^\star$.
+In the case that $\mathrm{TPR}(t)=0$, $\mathrm{Precision}(t):=1$ by the standing convention. Either way, $\mathrm{Precision}(t)\equiv1$ for every $t\ge t^\star$. 
 
-**The endpoints.** As $t$ ranges over $[t^\star,\infty)$, $\mathrm{Recall}(t)=\mathrm{TPR}(t)$ decreases from $1$ (at $t^\star$) to $0$ (as $t\to\infty$, by @lem-roc-endpoints), tracing the flat segment $\{(\mathrm{Recall},1):\mathrm{Recall}\in[0,1]\}$ — in particular passing through $(0,1)$. As $t\to-\infty$, $\mathrm{TPR}(t)\to1$ and $\mathrm{FPR}(t)\to1$ (again @lem-roc-endpoints), giving $\mathrm{Precision}(t)\to\dfrac{\pi_1}{\pi_1+\pi_0}=\pi_1$: the universal endpoint $(1,\pi_1)$ (this last fact holds for *any* model, independent of the perfect-separation hypothesis — see @thm-precision-formula). Together, these trace the full curve: flat at $1$ across $\mathrm{Recall}\in[0,1]$, then a vertical drop at $\mathrm{Recall}=1$ down to $\pi_1$.
+
+**The endpoints.** As $t$ ranges over $[t^\star,\infty)$, $\mathrm{Recall}(t)=\mathrm{TPR}(t)$ decreases from $1$ (at $t^\star$) to $0$ (as $t\to\infty$, by @lem-roc-endpoints), tracing the flat segment $\{(\mathrm{Recall},1):\mathrm{Recall}\in[0,1]\}$. As $t\to-\infty$, $\mathrm{TPR}(t)\to1$ and $\mathrm{FPR}(t)\to1$ (again @lem-roc-endpoints), giving $\mathrm{Precision}(t)\to\dfrac{\pi_1}{\pi_1+\pi_0}=\pi_1$: the universal endpoint $(1,\pi_1)$ (this holds for *any* model, see @thm-precision-formula).
 :::
 
 ::::
@@ -1532,15 +1534,13 @@ Suppose there exists $t^\dagger \in \mathbb{R}$ such that, for $\hat{Y}_t = \mat
 $$
 \mathbb{P}(X_0 \ge t^\dagger) = 1, \qquad \mathbb{P}(X_1 \ge t^\dagger) = 0
 $$
-(the same hypothesis as @thm-always-wrong-pr: every healthy sample scores $\ge t^\dagger$, every sick sample scores $<t^\dagger$ — completely reversed ranking). Then $(\mathrm{Recall}(t),\mathrm{Precision}(t))$ traces exactly two pieces as $t$ ranges over $\mathbb R$:
+Then $(\mathrm{Recall}(t),\mathrm{Precision}(t))$ traces exactly two pieces as $t$ ranges over $\mathbb R$:
 
 - for $t\ge t^\dagger$: $\mathrm{Recall}(t)\equiv0$, $\mathrm{Precision}(t)\equiv0$ — this entire half-line **collapses to the single point $(0,0)$**;
 - for $t\le t^\dagger$: $\mathrm{FPR}(t)\equiv1$, and $r:=\mathrm{Recall}(t)$ sweeps $[0,1]$ continuously as $t\to-\infty$, tracing
 $$
 \boxed{\mathrm{Precision}(r) = \frac{\pi_1\,r}{\pi_1\,r + \pi_0}, \qquad r\in[0,1].}
 $$
-
-In particular this is **not** the right-angle staircase you'd get by mirroring the ROC path $(0,0)\to(1,0)\to(1,1)$ point-by-point — it is the point $(0,0)$ together with a smooth arc to $(1,\pi_1)$.
 
 ::::
 
@@ -1562,9 +1562,7 @@ As $t$ decreases from $t^\dagger$ to $-\infty$, $r=\mathrm{TPR}(t)$ increases fr
 :::
 ::::
 
-This differs from the ROC picture because $\mathrm{FPR}$ keeps moving throughout branch 1 there — tracing $(0,0)\to(1,0)$ before $\mathrm{TPR}$ traces $(1,0)\to(1,1)$, a genuine staircase — whereas on PR axes that movement is invisible, collapsing branch 1 to a point; and branch 2, a straight line in ROC space, becomes curved here since $\mathrm{Precision}$ is a nonlinear (Möbius) function of $\mathrm{TPR}$ at fixed $\mathrm{FPR}$, not an affine one. Nothing is ambiguous — both branches follow directly from the hypothesis — but mirroring the ROC staircase point-by-point would miss this.
 
----
 
 #### Random
 
