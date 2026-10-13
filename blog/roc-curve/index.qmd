@@ -537,6 +537,9 @@ You can verify this directly with the interactive below
 
 **Interactive ROC curve exploration.** The visualization below illustrates these properties for a Gaussian model $X\mid Y=0\sim\mathcal N(0,1)$, $X\mid Y=1\sim\mathcal N(1,2^2)$. Use the **Threshold ($\pi$)** slider to move along the ROC curve and watch the operating point change; the **Prevalence** slider confirms that the ROC curve itself is unaffected by class imbalance, however that slider is moved. The plot also shows the reversed-rule and class-inverted curves described above.
 
+
+::: {#fig-gaussian-symmetric-roc}
+
 ```{=html}
 <div id="gaussian-symmetric-roc-interactive"
      class="gaussian-symmetric-roc-interactive"
@@ -562,7 +565,8 @@ You can verify this directly with the interactive below
 <script type="module" src="gaussian_symmetric_roc.js"></script>
 ```
 
-
+**ROC curve under symmetry transformations**
+:::
 
 ## ROC curve zoology for classic distributions
 
@@ -613,6 +617,7 @@ Use the sliders on the left to set $\mu_0,\sigma_0$ (healthy class) and $\mu_1,\
 The title above the plot reports the current $\Delta=(\mu_1-\mu_0)/\sigma_1$, $\rho = \sigma_0/\sigma_1$.
 
 
+::: {#fig-gaussian-roc-interactive}
 
 ```{=html}
 <div id="gaussian-roc-interactive"
@@ -638,6 +643,12 @@ The title above the plot reports the current $\Delta=(\mu_1-\mu_0)/\sigma_1$, $\
 
 <script type="module" src="gaussian_roc_interactive.js"></script>
 ```
+
+**ROC curve for classic distributions**
+
+:::
+
+[Note]{.underline}: Visually, you the TPR is the ratio of the light blue area over the full blue area on the left, while the FPR is the ratio of the light red area over the full red area (right).
 
 ### ROC curve for location-scale family
 
@@ -896,6 +907,8 @@ $\Delta=(\mu_1-\mu_0)/\sigma_1$ measures the (scale-standardized) separation bet
 
 Now we illustrate the empirical counterpart, when one samples elements from the distributions but without access to the true densities.
 
+::: {#fig-gaussian-roc-interactive-samples}
+
 
 ```{=html}
 <div id="sampling-roc-interactive"
@@ -922,6 +935,9 @@ Now we illustrate the empirical counterpart, when one samples elements from the 
 <script type="module" src="roc_sampling_explorer.js"></script>
 ```
 
+**Empirical counterpart of ROC curve for classic distributions.**
+
+:::
 
 ```{python}
 #| echo: false
@@ -1013,9 +1029,9 @@ $$
 :::
 
 ::: {#proof-content-thm-randomized-roc .proof-content}
-Throughout, write $G_0(t):=\mathbb P(X_0\ge t)$ for the survival function of $X_0$, and $G_0(x+):=\lim_{u\downarrow x}G_0(u)$ for its right limit at any $x\in\mathbb R$. As a survival function, $G_0$ is non-increasing, and it is left-continuous, $G_0(x)=\lim_{u\uparrow x}G_0(u)$, since $\{X_0\ge u_n\}\downarrow\{X_0\ge x\}$ along any $u_n\uparrow x$; likewise $\{X_0\ge u_n\}\uparrow\{X_0>x\}$ along any $u_n\downarrow x$ gives
+Throughout, write $G_0(t):=\mathbb P(X_0\ge t)$ for the survival function of $X_0$, and $G_0(x+):=\lim_{u\downarrow x}G_0(u)$ for its right limit at any $x\in\mathbb R$. As a survival function, $G_0$ is non-increasing, and it is left-continuous, $G_0(x)=\lim_{u\uparrow x}G_0(u)$, since $\{X_0\ge u_n\}\downarrow\{X_0\ge x\}$ along any $u_n\uparrow x$; likewise $\{X_0\ge u_n\}\uparrow\{X_0>x\}$ along any $u_n\downarrow x$ gives $G_0(x+)=\mathbb P(X_0>x)$, so
 $$
-G_0(x+)=\mathbb P(X_0>x), \qquad\text{so}\qquad P(X_0=x):=G_0(x)-G_0(x+)=\mathbb P(X_0=x)
+P(X_0=x):=G_0(x)-G_0(x+)=\mathbb P(X_0=x)
 $$
 is exactly the atomic mass of $X_0$ at $x$. Since $X_0$ is a.s. finite, continuity of measure applied to the nested events $\{X_0\ge t\}$ as $t\to\mp\infty$ also gives
 $$
@@ -1156,6 +1172,9 @@ $$
 ::::
 
 
+This probabilistic reading of the AUC (the chance that a randomly drawn positive case outscores a randomly drawn negative case) is not just a theoretical curiosity: it is directly *estimable* from data, since it is itself a probability that can be approximated by counting concordant pairs in a finite sample.
+Replacing $X_0,X_1$ by two independent samples and $\mathbb P(X_1>X_0)$ by the corresponding sample proportion gives exactly the classical **Mann-Whitney $U$ statistic** from nonparametric statistics, providing the empirical, plug-in counterpart to @cor-continuous-auc.
+
 
 
 
@@ -1226,6 +1245,14 @@ $$
 ::::
 
 
+
+Class label swap, threshold reversal or both (reverse rule + swap labels) preserve the ROC curve's overall shape.
+
+A natural next question is how these geometric symmetries affect the curve's AUC.
+The following theorem works out exactly what happens in each case.
+
+
+
 :::: {#thm-auc-class-inversion}
 
 # AUC under threshold reversal and class inversion
@@ -1255,9 +1282,9 @@ Write $u:=\mathrm{FPR}^+(t)$, $f(u):=\mathrm{TPR}^+(t)$, so $\operatorname{AUC}=
 :::
 ::::
 
-**Interpretation.** Only the composite (anti-diagonal) transform preserves AUC exactly; the two individual transforms each send $A\mapsto1-A$. This is intuitive : reversing the rule alone, or swapping the labels alone, each turns a good classifier into a bad one for the *new* problem (a classifier that correctly separates $X_0$ from $X_1$ under the original labeling is simply mislabeling everything once only one of the two conventions is flipped).
-On the other hand, flipping *both* conventions together restores consistency, since relabeling "positive" to mean "low score" and simultaneously testing for "low score" recovers a description of the exact same underlying discrimination ability.
-The fixed point of $A\mapsto1-A$ at $A=\tfrac12$ (random guessing) is the one case where all three transforms leave AUC unchanged, since $1-\tfrac12=\tfrac12$.
+**Interpretation.** Only the composite (anti-diagonal) transform preserves AUC exactly; the two individual transforms each send $A\mapsto1-A$. This is intuitive: reversing the rule alone, or swapping the labels alone, each turns a good classifier into a bad one for the *new* problem (a classifier that correctly separates $X_0$ from $X_1$ under the original labeling is simply mislabeling everything once only one of the two conventions is flipped). On the other hand, flipping *both* conventions together restores consistency, since relabeling "positive" to mean "low score" and simultaneously testing for "low score" recovers a description of the exact same underlying discrimination ability. The fixed point of $A\mapsto1-A$ at $A=\tfrac12$ (random guessing) is the one case where all three transforms leave AUC unchanged, since $1-\tfrac12=\tfrac12$.
+
+You can verify this directly with the interactive above, see @fig-gaussian-symmetric-roc: the "ROC curve" and "Class swap + threshold rev." curves in the plot share the same AUC, while "Threshold reversal" and "Class label swap" alone each trace out the complementary area.
 
 
 ## The Precision/Recall curve function
@@ -1272,27 +1299,40 @@ where $\mathrm{Recall}(t) = \mathrm{TPR}(t) = \mathbb P(X_1\ge t)$, as defined a
 $$
 \mathrm{Precision}(t) = \mathbb P(Y=1 \mid X\ge t),
 $$
-so it also depends on how frequently $Y=1$ occurs to begin with. We write $\pi := \mathbb P(Y=1)$ for this **prevalence** (the proportion of sick individuals in the population of interest), so that $1-\pi=\mathbb P(Y=0)$.
+so it also depends on how frequently $Y=1$ occurs to begin with. We write $\pi_!:= \mathbb P(Y=1)$ for this **prevalence** (the proportion of sick individuals in the population of interest), so that $1-\pi_1=\mathbb P(Y=0):=\pi_0$.
 
 In practice, the estimation is performed using empirical counterparts. For each threshold $t$, we compute:
 
 $$
-\widehat{\mathrm{TPR}}(t) = \frac{1}{\mathrm{P}} \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\},
-\qquad
-\widehat{\mathrm{Precision}}(t) = \frac{\mathrm{TP}(t)}{\mathrm{TP}(t) + \mathrm{FP}(t)},
+\begin{align*}
+\widehat{\mathrm{TPR}}(t)
+& = \frac{1}{\mathrm{P}} \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\},
+\\
+\widehat{\mathrm{Precision}}(t)
+& = \frac{\mathrm{TP}(t)}{\mathrm{TP}(t) + \mathrm{FP}(t)},
+\end{align*}
 $$
-
-where $\mathrm{TP}(t) = \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\}$ and $\mathrm{FP}(t) = \sum_{i: Y_i=0} \mathbb{1}\{X_i \geq t\}$, as before.
+where we remind that
+$$
+\begin{align*}
+\mathrm{TP}(t) 
+& = \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\},
+\\
+\mathrm{FP}(t)
+& = \sum_{i: Y_i=0} \mathbb{1}\{X_i \geq t\}
+\end{align*}
+$$
 
 ### Precision as a function of TPR, FPR, and prevalence
 
-Since $\mathrm{TPR}(\cdot)$ and $\mathrm{FPR}(\cdot)$ depend only on $X_0,X_1$, not on $\pi_1$, it is worth isolating exactly how $\pi_1$ enters $\mathrm{Precision}(\cdot)$: this explains the shape of the Precision-Recall curve, and warns against comparing precision values across studies with different prevalence — directly relevant here, since our 976 pre-pandemic negatives and 536 confirmed positives reflect the *design* of the benchmark study, not the prevalence of Covid-19 in any real population.
+Since $\mathrm{TPR}(\cdot)$ and $\mathrm{FPR}(\cdot)$ depend only on $X_0,X_1$, not on $\pi_1$, it is worth isolating exactly how $\pi_1$ enters $\mathrm{Precision}(\cdot)$: this explains the shape of the Precision-Recall curve, and warns against comparing precision values across studies with different prevalence.
+This relevant in our Covid-19 example, since our 976 pre-pandemic negatives and 536 confirmed positives reflect the *design* of the benchmark study, not the prevalence of Covid-19 in any real population.
 
 :::: {#thm-precision-formula}
 
 # Precision in terms of TPR, FPR and prevalence
 
-Write $\pi_1:=\mathbb P(Y=1)$, $\pi_0:=\mathbb P(Y=0)=1-\pi_1$. For every $t\in\mathbb R$ with $\mathbb P(X\ge t)>0$,
+Writing $\pi_1:=\mathbb P(Y=1)$ and $\pi_0:=\mathbb P(Y=0)$, then for every $t\in\mathbb R$ with $\mathbb P(X\ge t)>0$, the precision reads:
 $$
 \boxed{
 \mathrm{Precision}(t) = \frac{\pi_1\,\mathrm{TPR}(t)}{\pi_1\,\mathrm{TPR}(t) + \pi_0\,\mathrm{FPR}(t)}.
@@ -1390,7 +1430,10 @@ $$
 
 By definition,
 $$
-\mathrm{Recall}(t) = \mathbb{P}(X_1 \ge t), \qquad \mathrm{Precision}(t) = \frac{\pi_1 \mathbb{P}(X_1 \ge t)}{\pi_1 \mathbb{P}(X_1 \ge t) + \pi_0 \mathbb{P}(X_0 \ge t)}.
+\mathrm{Recall}(t) =
+\mathbb{P}(X_1 \ge t), \qquad
+\mathrm{Precision}(t) =
+\frac{\pi_1 \mathbb{P}(X_1 \ge t)}{\pi_1 \mathbb{P}(X_1 \ge t) + \pi_0 \mathbb{P}(X_0 \ge t)}.
 $$
 Since $X_0$ and $X_1$ are almost surely finite,
 $$
@@ -1423,14 +1466,13 @@ $$
 :::
 ::::
 
----
 
 
-## Extreme Cases
+### Extreme Cases
 
 Throughout, recall the convention $\mathrm{Precision}(t):=1$ whenever $\mathbb P(X\ge t)=0$ for both classes simultaneously (nothing is predicted positive, so the ratio $0/0$ is resolved by this standing convention).
 
-### Perfect Classifier
+#### Perfect Classifier
 
 :::: {#thm-perfect-pr-separation}
 
@@ -1456,27 +1498,29 @@ and in fact $\mathrm{Precision}(t)\equiv1$ for **every** $t\ge t^\star$: the PR 
 ::: {#proof-content-thm-perfect-pr-separation .proof-content}
 **The point at $t^\star$.** By definition,
 $$
-\mathrm{Recall}(t^\star) = \mathbb{P}(X_1 \ge t^\star) = 1, \quad \mathrm{Precision}(t^\star) = \frac{\pi_1 \cdot 1}{\pi_1 \cdot 1 + \pi_0 \cdot 0} = 1.
+\mathrm{Recall}(t^\star) = 
+\mathbb{P}(X_1 \ge t^\star) = 1, \quad 
+\mathrm{Precision}(t^\star) = 
+\frac{\pi_1 \cdot 1}{\pi_1 \cdot 1 + \pi_0 \cdot 0} = 1.
 $$
 
 **The flat segment.** By @thm-roc-monotonicity, $\mathrm{FPR}(t)=\mathbb P(X_0\ge t)$ is non-increasing in $t$. Since $\mathrm{FPR}(t^\star)=0$ and $\mathrm{FPR}\ge0$ always, monotonicity gives $\mathrm{FPR}(t)\le\mathrm{FPR}(t^\star)=0$ for every $t\ge t^\star$, so
 $$
-\mathrm{FPR}(t)\equiv0 \qquad\text{for all } t\ge t^\star.
+\mathrm{FPR}(t) = 0 \qquad\text{for all } t\ge t^\star.
 $$
 Consequently, for any $t\ge t^\star$ with $\mathrm{TPR}(t)>0$,
 $$
-\mathrm{Precision}(t) = \frac{\pi_1\,\mathrm{TPR}(t)}{\pi_1\,\mathrm{TPR}(t) + \pi_0\cdot0} = 1,
+\mathrm{Precision}(t) = \frac{\pi_1\,\mathrm{TPR}(t)}{\pi_1\,\mathrm{TPR}(t) + \pi_0\cdot0} = 1.
 $$
-and when $\mathrm{TPR}(t)=0$ too (which occurs for $t$ large enough, by @lem-roc-endpoints since $X_1$ is a.s. finite), $\mathrm{Precision}(t):=1$ by the standing convention. Either way, $\mathrm{Precision}(t)\equiv1$ for every $t\ge t^\star$.
+In the case that $\mathrm{TPR}(t)=0$, $\mathrm{Precision}(t):=1$ by the standing convention. Either way, $\mathrm{Precision}(t)\equiv1$ for every $t\ge t^\star$.
 
 **The endpoints.** As $t$ ranges over $[t^\star,\infty)$, $\mathrm{Recall}(t)=\mathrm{TPR}(t)$ decreases from $1$ (at $t^\star$) to $0$ (as $t\to\infty$, by @lem-roc-endpoints), tracing the flat segment $\{(\mathrm{Recall},1):\mathrm{Recall}\in[0,1]\}$ — in particular passing through $(0,1)$. As $t\to-\infty$, $\mathrm{TPR}(t)\to1$ and $\mathrm{FPR}(t)\to1$ (again @lem-roc-endpoints), giving $\mathrm{Precision}(t)\to\dfrac{\pi_1}{\pi_1+\pi_0}=\pi_1$: the universal endpoint $(1,\pi_1)$ (this last fact holds for *any* model, independent of the perfect-separation hypothesis — see @thm-precision-formula). Together, these trace the full curve: flat at $1$ across $\mathrm{Recall}\in[0,1]$, then a vertical drop at $\mathrm{Recall}=1$ down to $\pi_1$.
 :::
 
 ::::
 
----
 
-## Always-Wrong Classifier
+#### Always-Wrong Classifier
 
 @thm-always-wrong-pr pins down the PR curve only for $t\ge t^\star$ (a single point, via monotonicity of $\mathrm{TPR}$). The same hypothesis, applied to $\mathrm{FPR}$ instead, determines the remaining branch $t\le t^\star$ as well.
 
@@ -1522,7 +1566,7 @@ This differs from the ROC picture because $\mathrm{FPR}$ keeps moving throughout
 
 ---
 
-## Uninformative Classifier
+#### Random
 
 :::: {#thm-random-pr}
 
@@ -1547,7 +1591,7 @@ Since $X_0 \stackrel{d}{=} X_1$, $\mathbb{P}(X_0 \ge t) = \mathbb{P}(X_1 \ge t) 
 $$
 \mathrm{Precision}(t) = \frac{\pi_1\,p(t)}{\pi_1\,p(t) + \pi_0\,p(t)} = \pi_1,
 $$
-$p(t)$ cancelling since it is common and strictly positive. The caveat $p(t)>0$ is needed only because at $p(t)=0$ both counts vanish and the convention sets $\mathrm{Precision}:=1$ instead — matching $\pi_1$ only when $\pi_1=1$.
+$p(t)$ cancelling since it strictly positive. The caveat $p(t)>0$ is needed only because at $p(t)=0$ both counts vanish and the convention sets $\mathrm{Precision}:=1$ instead (matching $\pi_1$ only when $\pi_1=1$).
 
 :::
 ::::
@@ -1556,559 +1600,29 @@ $p(t)$ cancelling since it is common and strictly positive. The caveat $p(t)>0$ 
 
 
 
-# Precision-Recall curve under rule reversal and class inversion
 
 
 
-
-
-Write $\pi_1=\mathbb P(Y=1)$, $\pi_0=1-\pi_1$, and abbreviate $F:=\mathrm{FPR}(t)$, $T:=\mathrm{TPR}(t)$ at a given threshold $t$. Recall from @thm-precision-formula the **reading map**
-$$
-\Psi_{\pi_1}(F,T) := \left(T,\ \frac{\pi_1 T}{\pi_1 T + \pi_0 F}\right) = \bigl(\mathrm{Recall},\mathrm{Precision}\bigr),
-$$
-which sends an ROC-space point at prevalence $\pi_1$ to its PR-space image. Recall the two generating operations on the underlying decision problem (see the "Reversed test" / "Class inversion + reversed threshold" widget above), acting on ROC-space points as affine involutions:
-$$
-\rho(F,T) := (1-F,\,1-T) \quad\text{[reversed rule, same classes]}, \qquad
-\delta(F,T) := (T,\,F) \quad\text{[class inversion, same rule]},
-$$
-with $\rho^2=\delta^2=\mathrm{id}$ and $\rho\delta=\delta\rho$, the anti-diagonal reflection. Reversing the rule leaves the class labels — hence $\pi_1$ — unchanged; inverting the classes replaces $\pi_1$ by $\pi_0$.
-
-
-
-For any $(r,p)\in(0,1)^2$ on the curve $\Psi_{\pi_1}(F,T)$, define the **implied FPR**
-
-$$
-\phi_{\pi_1}(r,p) := \frac{\pi_1\,r\,(1-p)}{\pi_0\,p}
-$$
-(the value of $F$ that a reading of $(r,p)$ at prevalence $\pi_1$ must have come from). Then the three nontrivial symmetries act on the PR curve as follows.
-
-
-
-**Reversed rule** ($\rho$, prevalence unchanged):
-$$
-\boxed{
-(r,p) \ \longmapsto\ \left(1-r,\ \frac{\pi_1\,p\,(1-r)}{p-\pi_1 r}\right).
-}
-$$
-
-**Class inversion** ($\delta$, prevalence $\pi_1\to\pi_0$):
-$$
-\boxed{
-(r,p) \ \longmapsto\ \bigl(\phi_{\pi_1}(r,p),\ 1-p\bigr).
-}
-$$
-
-**Class inversion + reversed rule** ($\rho\delta$, prevalence $\pi_1\to\pi_0$): writing $N:=\pi_0\,p-\pi_1\,r\,(1-p)$,
-$$
-\boxed{
-(r,p) \ \longmapsto\ \left(1-\frac{N}{\pi_0\,p},\ \frac{N}{p-\pi_1 r}\right).
-}
-$$
-
-
-
-
-
-
-## Symmetry under class inversion and reversal of the thresholding rule
-
-In the Precision-Recall setting, the analogue of the ROC
-anti-diagonal symmetry is obtained by simultaneously exchanging the
-roles of the two classes and reversing the thresholding direction.
-
-Let $\pi_1=\mathbb{P}(Y=1)$ and $\pi_0=\mathbb{P}(Y=0)=1-\pi_1$.
-For the original problem, suppose that large values of $X$ indicate
-the positive class, and use the upper-tail rule $\{X\ge t\}$. Define
-
-$$
-\mathrm{Recall}_+(t)
-=
-\mathbb{P}(X\ge t\mid Y=1)
-$$
-
-and
-
-$$
-\mathrm{Precision}_+(t)
-=
-\mathbb{P}(Y=1\mid X\ge t).
-$$
-
-Now invert the class labels,
-
-$$
-Y^\star=1-Y,
-$$
-
-and reverse the thresholding rule, declaring an observation positive
-when
-
-$$
-X\le t.
-$$
-
-The new positive class is therefore the original negative class.
-Its recall and precision are
-
-$$
-\mathrm{Recall}_-(t)
-=
-\mathbb{P}(X\le t\mid Y=0)
-$$
-
-and
-
-$$
-\mathrm{Precision}_-(t)
-=
-\mathbb{P}(Y=0\mid X\le t).
-$$
-
-Under continuity, these quantities satisfy
-
-$$
-\boxed{
-\mathrm{Recall}_-(t)
-=
-1-\mathrm{FPR}_+(t)
-}
-$$
-
-and
-
-$$
-\boxed{
-\mathrm{Precision}_-(t)
-=
-\frac{\pi_0[1-\mathrm{FPR}_+(t)]}
-{\pi_0[1-\mathrm{FPR}_+(t)]
-+\pi_1[1-\mathrm{TPR}_+(t)]}.
-}
-$$
-
-Thus the class-inverted, reversed-threshold PR curve is not obtained
-by a reflection of the original $(\mathrm{Recall},\mathrm{Precision})$
-curve. Rather, it is the **negative-class PR curve** associated with the
-original marker.
-
-:::: {#thm-pr-class-inversion}
-
-### PR symmetry under class inversion and reversed thresholding
-
-Let $X$ be a real-valued diagnostic marker, and assume that the
-conditional distributions of $X$ given $Y=0$ and $Y=1$ are continuous.
-Let
-
-$$
-\pi_1=\mathbb{P}(Y=1),
-\qquad
-\pi_0=\mathbb{P}(Y=0).
-$$
-
-For the upper-tail rule $\{X\ge t\}$, define
-
-$$
-\mathrm{TPR}_X(t)
-=
-\mathbb{P}(X\ge t\mid Y=1),
-$$
-
-$$
-\mathrm{FPR}_X(t)
-=
-\mathbb{P}(X\ge t\mid Y=0),
-$$
-
-and
-
-$$
-\mathrm{Precision}_+(t)
-=
-\frac{\pi_1\mathrm{TPR}_X(t)}
-{\pi_1\mathrm{TPR}_X(t)+\pi_0\mathrm{FPR}_X(t)}.
-$$
-
-Now let
-
-$$
-Y^\star=1-Y
-$$
-
-and use the lower-tail rule $\{X\le t\}$. Define
-
-$$
-\mathrm{Recall}_-(t)
-=
-\mathbb{P}(X\le t\mid Y=0)
-$$
-
-and
-
-$$
-\mathrm{Precision}_-(t)
-=
-\mathbb{P}(Y=0\mid X\le t).
-$$
-
-Then
-
-$$
-\boxed{
-\mathrm{Recall}_-(t)
-=
-1-\mathrm{FPR}_X(t)
-}
-$$
-
-and
-
-$$
-\boxed{
-\mathrm{Precision}_-(t)
-=
-\frac{\pi_0[1-\mathrm{FPR}_X(t)]}
-{\pi_0[1-\mathrm{FPR}_X(t)]
-+\pi_1[1-\mathrm{TPR}_X(t)]}.
-}
-$$
-
-Equivalently, if
-
-$$
-r=\mathrm{TPR}_X(t),
-\qquad
-f=\mathrm{FPR}_X(t),
-$$
-
-then the original positive-class PR point is
-
-$$
-(r,p)
-=
-\left(
-r,
-\frac{\pi_1r}{\pi_1r+\pi_0f}
-\right),
-$$
-
-whereas the class-inverted, reversed-threshold PR point is
-
-$$
-\boxed{
-(r_-,p_-)
-=
-\left(
-1-f,
-\frac{\pi_0(1-f)}
-{\pi_0(1-f)+\pi_1(1-r)}
-\right).
-}
-$$
-
-Thus the transformation is naturally expressed in terms of the
-underlying $(\mathrm{TPR},\mathrm{FPR})$ coordinates rather than as a
-geometric reflection in the $(\mathrm{Recall},\mathrm{Precision})$
-plane.
-
-::::
-
-:::: {.proof-container}
-
-::: {.proof-header onclick="toggleProof('thm-pr-class-inversion')"}
-
-[▶]{#proof-arrow-thm-pr-class-inversion .proof-arrow} **Proof**
-
-:::
-
-::: {#proof-content-thm-pr-class-inversion .proof-content}
-
-Since $Y^\star=1-Y$,
-
-$$
-Y^\star=1 \iff Y=0,
-\qquad
-Y^\star=0 \iff Y=1.
-$$
-
-Under the reversed thresholding rule $\{X\le t\}$, the recall for the
-new positive class is therefore
-
-$$
-\mathrm{Recall}_-(t)
-=
-\mathbb{P}(X\le t\mid Y=0).
-$$
-
-By continuity,
-
-$$
-\mathbb{P}(X\le t\mid Y=0)
-=
-1-\mathbb{P}(X\ge t\mid Y=0),
-$$
-
-and hence
-
-$$
-\mathrm{Recall}_-(t)
-=
-1-\mathrm{FPR}_X(t).
-$$
-
-For precision, Bayes' rule gives
-
-$$
-\mathrm{Precision}_-(t)
-=
-\frac{
-\pi_0\mathbb{P}(X\le t\mid Y=0)
-}{
-\pi_0\mathbb{P}(X\le t\mid Y=0)
-+
-\pi_1\mathbb{P}(X\le t\mid Y=1)
-}.
-$$
-
-Using continuity again,
-
-$$
-\mathbb{P}(X\le t\mid Y=0)
-=
-1-\mathrm{FPR}_X(t)
-$$
-
-and
-
-$$
-\mathbb{P}(X\le t\mid Y=1)
-=
-1-\mathrm{TPR}_X(t).
-$$
-
-Therefore,
-
-$$
-\mathrm{Precision}_-(t)
-=
-\frac{
-\pi_0[1-\mathrm{FPR}_X(t)]
-}{
-\pi_0[1-\mathrm{FPR}_X(t)]
-+
-\pi_1[1-\mathrm{TPR}_X(t)]
-}.
-$$
-
-This proves the stated transformation.
-
-Unlike the ROC case, the transformation cannot in general be written
-as a fixed affine transformation of $(\mathrm{Recall},\mathrm{Precision})$.
-Precision depends simultaneously on the class prevalence and on both
-class-conditional operating rates.
-
-The natural symmetry is therefore a **duality between the positive-
-and negative-class PR curves**: exchanging the class labels and
-reversing the thresholding direction converts one class's PR problem
-into the other's.
-
-:::
-
-::::
-
-
-
-
-
-
-
-
-
-
-
-### A matrix (Möbius) representation via the odds of evidence
-
-The formula in @thm-reversed-rule-pr looks like an arbitrary fractional-linear expression in $p$. It is not arbitrary: it is the *image*, under the precision-reading map itself, of something genuinely simple. The right auxiliary variable is
-$$
-q(t) := \frac{\mathrm{FPR}(t)}{\mathrm{TPR}(t)} = \frac{1}{\mathrm{LR}^+(t)}
-$$
-(the reciprocal of the likelihood ratio from the earlier odds remark).
-
-:::: {#lem-reading-map-mobius}
-
-# The reading map is a Möbius transform of $q$
-
-At fixed prevalence $\pi_1$,
-$$
-p = M_{\pi_1}(q) := \frac{\pi_1}{\pi_1+\pi_0\,q},
-$$
-a Möbius transformation of $q$ represented by the matrix
-$$
-\mathbf M_{\pi_1} := \begin{pmatrix}0 & \pi_1\\ \pi_0 & \pi_1\end{pmatrix} \in \mathrm{GL}_2(\mathbb R), \qquad \det\mathbf M_{\pi_1}=-\pi_0\pi_1\ne0.
-$$
-Its inverse Möbius transform recovers $q$ — and hence $\mathrm{LR}^+(t)=1/q$ — from a measured precision $p$ (at known prevalence $\pi_1$):
-$$
-\boxed{
-q = M_{\pi_1}^{-1}(p) = \frac{\pi_0}{\pi_1}\cdot\frac{p}{1-p}
-}
-\qquad\Longleftrightarrow\qquad
-\mathrm{LR}^+(t) = \frac{\pi_1}{\pi_0}\cdot\frac{1-p}{p}.
-$$
-
-::::
-
-:::: {.proof-container}
-::: {.proof-header onclick="toggleProof('lem-reading-map-mobius')"}
-[▶]{#proof-arrow-lem-reading-map-mobius .proof-arrow} [Proof]{.proof-title}
-:::
-
-::: {#proof-content-lem-reading-map-mobius .proof-content}
-Dividing $p=\dfrac{\pi_1T}{\pi_1T+\pi_0F}$ through by $T$ gives $p=\dfrac{\pi_1}{\pi_1+\pi_0(F/T)}=M_{\pi_1}(q)$, matching the matrix $\mathbf M_{\pi_1}$ acting projectively as $q\mapsto\dfrac{0\cdot q+\pi_1}{\pi_0 q+\pi_1}$. Since $\det\mathbf M_{\pi_1}=0\cdot\pi_1-\pi_1\pi_0=-\pi_0\pi_1\ne0$ for $\pi_1\in(0,1)$, $\mathbf M_{\pi_1}$ is invertible, with adjugate-scaled inverse $\mathbf M_{\pi_1}^{-1}\propto\begin{pmatrix}\pi_1&-\pi_1\\-\pi_0&0\end{pmatrix}$, giving $q=\dfrac{\pi_1p-\pi_1}{-\pi_0p}=\dfrac{\pi_1(1-p)}{\pi_0p}$... rearranged, $q=\dfrac{\pi_0}{\pi_1}\cdot\dfrac{p}{1-p}$. (Both forms are the same up to which side you solve for; substitute back into $M_{\pi_1}$ to confirm $M_{\pi_1}(M_{\pi_1}^{-1}(p))=p$ identically.)
-:::
-
-::::
-
-This *is* the odds-ratio remark from before, now derived as a one-line matrix inversion rather than a separate algebraic manipulation — $\mathbf M_{\pi_1}^{-1}$ **is** the "reading off the likelihood ratio from precision" operation.
-
-:::: {#lem-reversed-rule-affine-in-q}
-
-# The reversed rule is affine in $q$
-
-At fixed recall $r$, the reversed rule acts on $q$ by the **affine** map
-$$
-q \ \longmapsto\ q'(r,q) := \frac{1-rq}{1-r} = \frac{1}{1-r}-\frac{r}{1-r}\,q, \qquad r\ne1,
-$$
-represented by the matrix
-$$
-\mathbf B(r) := \begin{pmatrix}-r & 1\\ 0 & 1-r\end{pmatrix}, \qquad \det\mathbf B(r)=-r(1-r).
-$$
-
-::::
-
-:::: {.proof-container}
-::: {.proof-header onclick="toggleProof('lem-reversed-rule-affine-in-q')"}
-[▶]{#proof-arrow-lem-reversed-rule-affine-in-q .proof-arrow} [Proof]{.proof-title}
-:::
-
-::: {#proof-content-lem-reversed-rule-affine-in-q .proof-content}
-With $r=T$, $q=F/T$ so $F=rq$: $\rho(F,T)=(1-F,1-T)=(1-rq,\,1-r)$, so the new ratio is $q'=\dfrac{1-rq}{1-r}$, matching $\mathbf B(r)$ acting as $q\mapsto\dfrac{-rq+1}{0\cdot q+(1-r)}$. This has zero entry in the bottom-left — it is genuinely **affine**, the simplest nontrivial subgroup of the Möbius group (upper-triangular matrices), not merely Möbius.
-:::
-
-::::
-
-**Why the $p$-space formula looks messy: it is a conjugate.** The reversed-rule transform of @thm-reversed-rule-pr is exactly the composite $\mathbf M_{\pi_1}\circ\mathbf B(r)\circ\mathbf M_{\pi_1}^{-1}$ — read: convert precision back to $q$ ($\mathbf M_{\pi_1}^{-1}$), apply the *simple, affine* reversed-rule action there ($\mathbf B(r)$), then convert back to precision ($\mathbf M_{\pi_1}$). Composition of Möbius maps corresponds to matrix multiplication, so this conjugation is computed directly:
-$$
-\mathbf M_{\pi_1}\,\mathbf B(r)\,\mathbf M_{\pi_1}^{-1} \ \propto\ \begin{pmatrix}\pi_1(1-r) & 0 \\ 1 & -\pi_1r\end{pmatrix} \quad\Longrightarrow\quad p'=\frac{\pi_1(1-r)\,p}{p-\pi_1r},
-$$
-recovering @thm-reversed-rule-pr **without repeating the earlier algebra** — the formula's shape (a Möbius map with a zero upper-right entry) is inherited entirely from $\mathbf B(r)$'s upper-triangular form, conjugated by the fixed reading matrix $\mathbf M_{\pi_1}$. This conjugation viewpoint also gives the inverse transform for free: since $\mathbf B(r)^{-1}\propto\begin{pmatrix}1-r&-1\\0&-r\end{pmatrix}$, the inverse reversed-rule map (recovering the original $(r,p)$ from the reversed one) is $\mathbf M_{\pi_1}\,\mathbf B(r)^{-1}\,\mathbf M_{\pi_1}^{-1}$, with no fresh derivation needed — a genuine "inversion representation" of the transform.
-
-:::: {#lem-class-inversion-q}
-
-# Class inversion is a reciprocal in $q$
-
-Class inversion $\delta$ acts on $q$ by the involution
-$$
-q \ \longmapsto\ \frac1q, \qquad \mathbf J := \begin{pmatrix}0&1\\1&0\end{pmatrix},
-$$
-independently of $r$ (which itself updates as $r':=F=rq$), and sends the prevalence $\pi_1\mapsto\pi_0$.
-
-::::
-
-:::: {.proof-container}
-::: {.proof-header onclick="toggleProof('lem-class-inversion-q')"}
-[▶]{#proof-arrow-lem-class-inversion-q .proof-arrow} [Proof]{.proof-title}
-:::
-
-::: {#proof-content-lem-class-inversion-q .proof-content}
-$\delta(F,T)=(T,F)$, so the new ratio is $q':=F'/T'=T/F=1/q$, and $r':=T'=F=rq$ (using $F=rq$).
-:::
-
-::::
-
-:::: {#thm-precision-flip-identity}
-
-# The class-inversion identity
-
-For every $q>0$ and $\pi\in(0,1)$,
-$$
-\boxed{M_{\pi}(q) + M_{1-\pi}(1/q) = 1.}
-$$
-Consequently, since class inversion sends $\pi_1\mapsto\pi_0=1-\pi_1$ and $q\mapsto1/q$ (@lem-class-inversion-q), the new precision is $p'=M_{\pi_0}(1/q)=1-M_{\pi_1}(q)=1-p$ — @cor-class-inversion-precision-flip, now a one-line consequence of a Möbius identity rather than a separate computation.
-
-::::
-
-:::: {.proof-container}
-::: {.proof-header onclick="toggleProof('thm-precision-flip-identity')"}
-[▶]{#proof-arrow-thm-precision-flip-identity .proof-arrow} [Proof]{.proof-title}
-:::
-
-::: {#proof-content-thm-precision-flip-identity .proof-content}
-$$
-M_\pi(q)+M_{1-\pi}(1/q) = \frac{\pi}{\pi+(1-\pi)q} + \frac{1-\pi}{(1-\pi)+\pi/q} = \frac{\pi}{\pi+(1-\pi)q} + \frac{(1-\pi)q}{(1-\pi)q+\pi} = \frac{\pi+(1-\pi)q}{\pi+(1-\pi)q} = 1,
-$$
-multiplying the second fraction's numerator and denominator by $q$ in the middle step.
-:::
-
-::::
-
-**Summary of the representation.** Working directly in $(r,p)$-space, the three symmetries of @thm-pr-symmetries appear as unrelated, ad hoc Möbius formulas. Passing through the reading map's matrix $\mathbf M_{\pi_1}$ into $q$-space reveals a much simpler picture: reversed rule is *affine* ($\mathbf B(r)$, upper-triangular), class inversion is the *elementary involution* $q\mapsto1/q$ (matrix $\mathbf J$), and their composition is the corresponding matrix product $\mathbf B\mathbf J$ — the full Klein four-group structure of $\{\mathrm{id},\rho,\delta,\rho\delta\}$ acts on $q$-space by a genuinely small, transparent set of matrices, and every $p$-space formula is simply that action *conjugated* by $\mathbf M_{\pi_1}$. Inverting any of the PR-space transforms therefore never requires re-deriving algebra from scratch: conjugate the corresponding inverse matrix in $q$-space back through $\mathbf M_{\pi_1}$.
-
-
-
-
-
-### Practical curve transformation via $q$-space
-
-The payoff of @lem-reading-map-mobius–@lem-class-inversion-q is computational, not just structural: given an existing PR curve $\{(r,p)\}$ at prevalence $\pi_1$, you can produce any of the three transformed curves by a **fixed, closed-form substitution at each point** — no re-derivation, no re-solving @thm-precision-formula from the raw $(\mathrm{FPR},\mathrm{TPR})$ data (which may not even be available if you only have $(r,p)$ pairs, e.g. from a paper's reported PR curve).
-
-**The recipe, in three steps, for any point $(r,p)$ on the original curve:**
-
-1. **Read off $q$**: $q = M_{\pi_1}^{-1}(p) = \dfrac{\pi_0}{\pi_1}\cdot\dfrac{p}{1-p}$ (@lem-reading-map-mobius). This needs $\pi_1$ but *not* the original $(\mathrm{FPR},\mathrm{TPR})$ pair.
-2. **Apply the group element** in $q$-space: $\mathbf B(r)$ for reversed rule, $\mathbf J$ for class inversion, $\mathbf B(r)\mathbf J$ (or $\mathbf J\mathbf B(r')$, taking care of the order — see the caveat below) for both.
-3. **Read precision back off**: $p' = M_{\pi_1'}(q')$, using whichever prevalence applies to the transformed problem ($\pi_1$ unchanged for reversed rule, $\pi_0$ for class inversion).
-
-Concretely, for the pure **reversed-rule** case this recipe reduces to exactly the boxed formula of @thm-reversed-rule-pr — so in practice you would just use that closed form directly rather than the three-step detour, *unless* you want the class-inversion or composite transform too, in which case reusing the same $q$ makes the second transform free.
-
-**Where this genuinely saves work: iterating or composing.** If you want the curve under reversed rule *and* the curve under class inversion *and* the curve under both, from a single source curve, step 1 is shared across all three — compute $q(r,p)$ once per point, then apply $\mathbf B(r)$, $\mathbf J$, and $\mathbf B(r)\mathbf J$ (three cheap matrix applications) rather than re-deriving three separate boxed formulas from three separate applications of @thm-precision-formula. This is the concrete sense in which "everything is Möbius, conjugated by $\mathbf M_{\pi_1}$" pays for itself: one shared change of variables, then group-theoretic bookkeeping.
-
-**The one real subtlety: the recall coordinate itself moves.** Since $r':=\mathrm{Recall}$ of the transformed rule is *not* $r$ (it's $1-r$ for reversed rule, or $rq=\mathrm{FPR}$ of the original for class inversion), applying the recipe to a discretized curve — a finite list of $(r_i,p_i)$ pairs, e.g. read off a plot or a numerically-swept sample — produces a set of $(r_i',p_i')$ pairs whose $r_i'$ are **no longer evenly spaced or sorted** in the same order as the $r_i$ were. Concretely:
-
-- Reversed rule: $r_i'=1-r_i$, so an ascending-$r$ list becomes descending — just reverse the array order after transforming, exactly as done inside `reversedTestPrPoint` in the JS widget above (the array reversal there is not cosmetic; it's this exact fact).
-- Class inversion: $r_i'=\phi_{\pi_1}(r_i,p_i)=$ the *original point's implied FPR* — generally **not monotonic** in $i$ even if $r_i$ was, since it depends on both $r_i$ and $p_i$. A transformed curve built this way needs an explicit re-sort by $r_i'$ before plotting as a function, exactly the `idx.map(...).sort(...)` pattern already used in the widget's `rocCurve`/`prCurve` builders.
-
-So the matrix recipe is correct and does save re-derivation, but a naive point-by-point transform-then-plot will silently produce a jagged or backwards-looking curve unless the resulting points are re-sorted by their new $r'$ coordinate first — worth stating explicitly, since it's exactly the kind of bug that would show up as a visually broken (self-intersecting or zigzagging) transformed PR curve despite every individual point being computed correctly.
-
-**When it does *not* help: you already have $(\mathrm{FPR},\mathrm{TPR})$.** If the source data is the *underlying* ROC pairs rather than a reported PR curve, transforming directly in $(F,T)$-space via $\rho,\delta$ (plain coordinate swaps/complements — no division, no $q$) and only then applying $\Psi_{\pi_1'}$ once at the end is strictly simpler than routing through $q$-space at all; the $q$-space machinery earns its keep specifically when the *only* data available is already-computed $(r,p)$ precision-recall pairs, e.g. from a paper, a leaderboard, or a black-box scikit-learn `precision_recall_curve()` output with the raw scores discarded — which is a common real situation.
-
-
-
+::: {#fig-gaussian-symmetric-pr}
 
 ```{=html}
 <div id="gaussian-symmetric-pr-interactive"
      class="gaussian-symmetric-pr-interactive"
-     style="display:flex; gap:10px; align-items:flex-start; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+     style="display:flex; gap:10px; align-items:stretch; flex-wrap:wrap;
+            width:100%; max-width:700px; margin:0 auto; overflow-x:auto;
+            font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
   <div class="gaussian-symmetric-pr-controls"
-       style="display:flex; flex-direction:column; justify-content:flex-start;
-              min-width:200px; flex:0 0 150px; 20sition:sticky; top:10px;
+       style="display:flex; flex-direction:column; justify-content:center;
+              min-width:150px; flex:0 0 150px;
               border:1px solid rgba(0,0,0,0.15);
               border-radius:8px; padding:8px; font-size:9.5px;
               background:rgba(0,0,0,0.02);">
   </div>
 
-  <div style="display:flex; flex-direction:column; gap:20px; align-items:center;">
-
-    <div class="gaussian-symmetric-pr-plot"
-         style="flex:0 0 auto;"></div>
-
-    <div class="gaussian-symmetric-pr-plot-q"
-         style="flex:0 0 auto;"></div>
-
-    <div class="gaussian-symmetric-pr-plot-roc"
-         style="flex:0 0 auto;"></div>
-
-    <div class="gaussian-symmetric-pr-plot-zw"
-         style="flex:0 0 auto;"></div>
-
+  <div class="gaussian-symmetric-pr-plot"
+       style="flex:1 1 340px; min-width:340px;
+              display:flex; align-items:center; justify-content:center;">
   </div>
 
 </div>
@@ -2116,6 +1630,9 @@ So the matrix recipe is correct and does save re-derivation, but a naive point-b
 <script type="module" src="gaussian_symmetric_pr.js"></script>
 ```
 
+**PR curve under symmetry transformations**
+
+:::
 
 
 
@@ -2464,7 +1981,7 @@ Dividing numerator and denominator of $\mathrm{Precision}(t)$ by $\mathrm{TPR}(t
 $$
 \mathrm{Precision}(t) = \frac{\pi}{\pi + (1-\pi)\,\mathrm{FPR}(t)/\mathrm{TPR}(t)},
 $$
-so, letting $t\to\infty$ (i.e. $r\to0^+$),
+so, letting $t\to\infty$ (i.e., $r\to0^+$),
 $$
 \lim_{r\to0^+}\mathrm{Precision}(r) =
 \begin{cases}
@@ -2490,28 +2007,6 @@ $$
 * **Approaching the ideal curve as $\Delta\to\infty$ (fixed $b$).** For any fixed $r\in(0,1)$, letting $\Delta\to\infty$ sends $\frac{\Phi^{-1}(r)-\Delta}{\rho}\to-\infty$ and hence $\Phi\!\left(\frac{\Phi^{-1}(r)-\Delta}{\rho}\right)\to0$, giving $\mathrm{Precision}(r)\to1$ for every $r\in(0,1)$ — while $\mathrm{Precision}(1)=\pi$ always. In the limit, the curve is flat at $1$ except for a drop to $\pi$ exactly at $r=1$: the same perfect-separation Precision-Recall curve as in the equal-variance case, now reached along any fixed scale ratio $b$.
 
 
-```{=html}
-<div id="gaussian-pr-interactive"
-     class="gaussian-pr-interactive"
-     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
-
-  <div class="gaussian-pr-controls"
-       style="display:flex; flex-direction:column; justify-content:center;
-              min-width:170px; flex:0 0 170px;
-              border:1px solid rgba(0,0,0,0.15);
-              border-radius:8px; padding:8px; font-size:9.5px;
-              background:rgba(0,0,0,0.02);">
-  </div>
-
-  <div class="gaussian-pr-plot"
-       style="flex:1 1 auto; min-width:520px; max-width:1050px;
-              display:flex; align-items:center;">
-  </div>
-
-</div>
-
-<script type="module" src="gaussian_pr_interactive.js"></script>
-```
 
 
 ### Precision-Recall curve for the exponential case

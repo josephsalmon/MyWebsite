@@ -184,7 +184,7 @@ export const distributions = {
 export const distributionParamSliders = [
   {
     key: 'mu0',
-    label: 'μ₀ (healthy location)',
+    label: 'μ₀ : healthy loc.',
     min: -3,
     max: 3,
     step: 0.1,
@@ -193,7 +193,7 @@ export const distributionParamSliders = [
 
   {
     key: 'sigma0',
-    label: 'σ₀ (healthy scale)',
+    label: 'σ₀ : healthy scale',
     min: 0.2,
     max: 3,
     step: 0.1,
@@ -202,7 +202,7 @@ export const distributionParamSliders = [
 
   {
     key: 'mu1',
-    label: 'μ₁ (sick location)',
+    label: 'μ₁ : sick loc.',
     min: -6,
     max: 6,
     step: 0.1,
@@ -211,7 +211,7 @@ export const distributionParamSliders = [
 
   {
     key: 'sigma1',
-    label: 'σ₁ (sick scale)',
+    label: 'σ₁ : sick scale',
     min: 0.2,
     max: 3,
     step: 0.1,

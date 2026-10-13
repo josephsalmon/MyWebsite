@@ -1,327 +1,385 @@
-// Four-panel plot (STACKED VERTICALLY): Gaussian model (mu0=0,
-// sigma0=1, mu1=1, sigma1=2), prevalence fixed at pi=0.2.
+// Single-panel PR plot: fixed Gaussian model
+// X | Y=0 ~ N(0,1)
+// X | Y=1 ~ N(1,4)
 //
-// PANEL 1 (PR): Precision-Recall — reference curves for perfect /
-// random / "always wrong" classification, the Gaussian PR curve
-// itself, its "reversed test" curve, and its "class inversion +
-// reversed threshold" curve.
-//
-// PANEL 2 (q): the same three curves in "q-space", q(t) = FPR(t)/TPR(t)
-// = 1/LR+(t), on a LINEAR axis (see the note below on why log scale was
-// dropped).
-//
-// PANEL 3 (ROC): the same operating points and curves in plain ROC
-// space (FPR, TPR) — see @thm-three-transforms-final. This is where
-// reversed rule and class inversion act as simple, literal reflections.
-//
-// PANEL 4 (z, x_w): the SAME six curves as panel 1 (perfect / random /
-// always-wrong / reversed test / class inversion + reversed threshold /
-// main PR curve), reparametrized through
-//   z  := logit(Precision) = log(Precision/(1-Precision)),
-//   x_w := -log(Recall)
-// instead of (Recall, Precision) directly — see @lem-precision-sigmoid.
-// Each curve's (recall, precision) pairs are transformed pointwise;
-// nothing new is computed beyond the panel-1 curves themselves.
-//
-// NOTE ON THE q-PANEL SCALE: a log axis makes the class-inversion
-// reciprocal q -> 1/q into an exact mirror reflection about q=1 (since
-// log(1/q) = -log(q)) — genuinely the right scale for THAT symmetry.
-// But the reversed-rule transform is only affine in q at FIXED recall r
-// (@lem-reversed-rule-affine-in-q) — a pointwise fact, not a whole-curve
-// one, since r itself varies along the curve — and log-scaling further
-// warps that pointwise relationship into something curved. Since this
-// panel is meant to illustrate q-space generically rather than favor
-// one symmetry, it now uses a LINEAR axis, with the divergent tail of
-// the class-inversion curve (unbounded as t -> -infinity here, since
-// sigma1 != sigma0) clipped to a fixed window instead.
-//
-// Distribution (mu0, sigma0, mu1, sigma1) and prevalence (PI) are fixed
-// constants here — only the threshold varies.
-//
-// Self-contained: only needs the standard normal CDF.
+// The prevalence π affects precision, but not recall.
 
 const FONT_FAMILY = 'Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
 
-// Fixed prevalence for this figure.
-const PI = 0.2;
+const COLORS = {
+  // Primary PR curves
+  roc: '#000000ff',
+  thresholdReversal: '#1f77b4',
+  classSwap: '#1f77b4',
+  classSwapReversal: '#1f77b4',
 
-// Guard against 0/0 (and against log(0)) when TPR(t) or FPR(t)
-// underflow to (numerically) zero at extreme thresholds.
-const EPS = 1e-9;
+  // Reference curves
+  perfect: '#9467bd',
+  random: '#8c564b',
+  wrong: '#e377c2',
 
-// Display window for the q-panel (linear). Chosen to comfortably
-// contain the main and reversed-test curves' full range, while clipping
-// the divergent tail of the class-inversion curve.
-const Q_CLAMP_MIN = 0;
-const Q_CLAMP_MAX = 6;
+  // UI elements
+  grid: '#E6E6E6',
+  text: '#333333',
+  secondaryText: '#666666',
+};
+
 
 function erf(x) {
-
   const sign = x < 0 ? -1 : 1;
-
   const z = Math.abs(x);
 
-  const a1 = 0.254829592, a2 = -0.284496736, a3 = 1.421413741,
-        a4 = -1.453152027, a5 = 1.061405429, p = 0.3275911;
+  const a1 = 0.254829592;
+  const a2 = -0.284496736;
+  const a3 = 1.421413741;
+  const a4 = -1.453152027;
+  const a5 = 1.061405429;
+  const p = 0.3275911;
 
   const t = 1 / (1 + p * z);
 
-  const y = 1 - (((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t)
-                * Math.exp(-z * z);
+  const y =
+    1 -
+    (((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t) *
+      Math.exp(-z * z);
 
   return sign * y;
-
 }
+
 
 function Phi(x) {
   return 0.5 * (1 + erf(x / Math.SQRT2));
 }
 
-// Fixed Gaussian model for this figure:
-// X | Y=0 ~ N(0, 1^2)
-// X | Y=1 ~ N(1, 2^2)
+
+// -------------------------------------------------------------------
+// Gaussian model
+// -------------------------------------------------------------------
 
 function fprAt(t) {
-
-  // FPR(t) = P(X0 >= t) = 1 - Phi((t-mu0)/sigma0) = 1 - Phi(t)
-
   return 1 - Phi(t);
-
 }
 
 function tprAt(t) {
-
-  // TPR(t) = P(X1 >= t) = 1 - Phi((t-mu1)/sigma1) = 1 - Phi((t-1)/2)
-
   return 1 - Phi((t - 1) / 2);
-
 }
 
-// Precision(t) = pi*TPR / (pi*TPR + (1-pi)*FPR), per @thm-precision-formula.
-
-function precisionOf(tpr, fpr, pi) {
-
-  const num = pi * tpr;
-  const den = num + (1 - pi) * fpr;
-
-  return den > 0 ? num / den : 1;
-
-}
-
-// q(t) := FPR(t)/TPR(t) = 1/LR+(t), per @lem-reading-map-mobius.
-
-function qOf(tpr, fpr) {
-  return tpr > EPS ? fpr / tpr : NaN;
-}
-
-function clampQForDisplay(q) {
-  if (!Number.isFinite(q) || q < 0) return NaN;
-  return Math.min(Math.max(q, Q_CLAMP_MIN), Q_CLAMP_MAX);
-}
-
-// Clamp a probability away from exactly 0 or 1, so log(.) and
-// logit(.) stay finite. Used only by the (z, x_w) panel.
-
-function clamp01(p) {
-  return Math.min(Math.max(p, EPS), 1 - EPS);
-}
-
-function logit(p) {
-  const pc = clamp01(p);
-  return Math.log(pc / (1 - pc));
-}
-
-// --- Raw (fpr, tpr) points for all three scenarios ------------------
 
 function rocPoint(t) {
-
-  return { fpr: fprAt(t), tpr: tprAt(t) };
-
+  return {
+    fpr: fprAt(t),
+    tpr: tprAt(t),
+  };
 }
 
-function reversedTestRocPoint(t) {
+
+// -------------------------------------------------------------------
+// PR transformations
+// -------------------------------------------------------------------
+
+// Original upper-tail classifier.
+//
+// Recall = TPR
+//
+// Precision = P(Y=1 | X >= t)
+//           = π TPR / [π TPR + (1-π) FPR]
+function prPoint(t, prevalence) {
 
   const pt = rocPoint(t);
 
-  return { fpr: 1 - pt.fpr, tpr: 1 - pt.tpr };
+  const pi = prevalence;
+  const pi0 = 1 - pi;
 
+  const denominator =
+    pi * pt.tpr +
+    pi0 * pt.fpr;
+
+  const precision =
+    denominator > 0
+      ? (pi * pt.tpr) / denominator
+      : pi;
+
+  return {
+    recall: pt.tpr,
+    precision,
+  };
 }
 
-function classInvertedRocPoint(t) {
+
+// -------------------------------------------------------------------
+// Threshold reversal
+// -------------------------------------------------------------------
+//
+// The classes stay unchanged, but the positive prediction becomes
+// X < t.
+//
+// Recall = 1 - TPR
+//
+// Precision = P(Y=1 | X < t)
+//           = π(1-TPR)
+//             / [π(1-TPR) + (1-π)(1-FPR)]
+//
+function reversedTestPrPoint(t, prevalence) {
 
   const pt = rocPoint(t);
 
-  return { fpr: 1 - pt.tpr, tpr: 1 - pt.fpr };
+  const pi = prevalence;
+  const pi0 = 1 - pi;
 
-}
+  const recall = 1 - pt.tpr;
 
-// --- (recall, precision) points -------------------------------------
+  const denominator =
+    pi * (1 - pt.tpr) +
+    pi0 * (1 - pt.fpr);
 
-function prPoint(t) {
-
-  const fpr = fprAt(t);
-  const tpr = tprAt(t);
-
-  return {
-    recall: tpr,
-    precision: precisionOf(tpr, fpr, PI)
-  };
-
-}
-
-function reversedTestPrPoint(t) {
-
-  const fprRev = 1 - fprAt(t);
-  const tprRev = 1 - tprAt(t);
+  const precision =
+    denominator > 0
+      ? (pi * (1 - pt.tpr)) / denominator
+      : pi;
 
   return {
-    recall: tprRev,
-    precision: precisionOf(tprRev, fprRev, PI)
+    recall,
+    precision,
   };
-
 }
 
-function classInvertedPrPoint(t) {
 
-  const fprInv = 1 - tprAt(t);
-  const tprInv = 1 - fprAt(t);
+// -------------------------------------------------------------------
+// Class-label swap
+// -------------------------------------------------------------------
+//
+// New positive class = original Y=0.
+//
+// The upper-tail rule is unchanged.
+//
+// Recall* = FPR
+//
+// Precision* = P(Y=0 | X >= t)
+//            = (1-π) FPR
+//              / [(1-π)FPR + π TPR]
+//
+function classInversionPrPoint(t, prevalence) {
+
+  const pt = rocPoint(t);
+
+  const pi = prevalence;
+  const pi0 = 1 - pi;
+
+  const recall = pt.fpr;
+
+  const denominator =
+    pi0 * pt.fpr +
+    pi * pt.tpr;
+
+  const precision =
+    denominator > 0
+      ? (pi0 * pt.fpr) / denominator
+      : pi0;
 
   return {
-    recall: tprInv,
-    precision: precisionOf(tprInv, fprInv, 1 - PI)
+    recall,
+    precision,
   };
-
 }
 
-// --- (recall, q) points ------------------------------------------------
 
-function qPoint(t) {
+// -------------------------------------------------------------------
+// Class-label swap + threshold reversal
+// -------------------------------------------------------------------
+//
+// New positive class = original Y=0.
+//
+// The lower-tail rule is used.
+//
+// Recall* = 1 - FPR
+//
+// Precision* = P(Y=0 | X < t)
+//            = (1-π)(1-FPR)
+//              / [(1-π)(1-FPR) + π(1-TPR)]
+//
+function classInversionReversedPrPoint(t, prevalence) {
 
-  const fpr = fprAt(t);
-  const tpr = tprAt(t);
+  const pt = rocPoint(t);
 
-  return { recall: tpr, q: qOf(tpr, fpr) };
+  const pi = prevalence;
+  const pi0 = 1 - pi;
 
+  const recall = 1 - pt.fpr;
+
+  const denominator =
+    pi0 * (1 - pt.fpr) +
+    pi * (1 - pt.tpr);
+
+  const precision =
+    denominator > 0
+      ? (pi0 * (1 - pt.fpr)) / denominator
+      : pi0;
+
+  return {
+    recall,
+    precision,
+  };
 }
 
-function reversedTestQPoint(t) {
 
-  const fprRev = 1 - fprAt(t);
-  const tprRev = 1 - tprAt(t);
+// -------------------------------------------------------------------
+// Generate a PR curve
+// -------------------------------------------------------------------
 
-  return { recall: tprRev, q: qOf(tprRev, fprRev) };
+function prCurve(pointFn, prevalence, tMin, tMax, num = 400) {
 
-}
-
-function classInvertedQPoint(t) {
-
-  const fprInv = 1 - tprAt(t);
-  const tprInv = 1 - fprAt(t);
-
-  return { recall: tprInv, q: qOf(tprInv, fprInv) };
-
-}
-
-// --- Curve sweeps ---------------------------------------------------------
-
-function sweepCurve(pointFn, tMin, tMax, xKey, yKey, num = 400) {
-
-  const xs = [], ys = [];
+  const recall = [];
+  const precision = [];
 
   for (let i = 0; i <= num; i++) {
 
-    const t = tMin + (tMax - tMin) * i / num;
+    const t =
+      tMin +
+      (tMax - tMin) * i / num;
 
-    const pt = pointFn(t);
+    const pt = pointFn(t, prevalence);
 
-    xs.push(pt[xKey]);
-    ys.push(pt[yKey]);
-
+    recall.push(pt.recall);
+    precision.push(pt.precision);
   }
 
-  const idx = xs.map((_, i) => i).sort((a, b) => xs[a] - xs[b]);
+  // Sort by recall so that Plotly draws the curve from left to right.
+  const idx = recall
+    .map((_, i) => i)
+    .sort((a, b) => recall[a] - recall[b]);
 
   return {
-    x: idx.map(i => xs[i]),
-    y: idx.map(i => ys[i])
+    x: idx.map(i => recall[i]),
+    y: idx.map(i => precision[i]),
   };
-
 }
 
-function prCurve(pointFn, tMin, tMax, num = 400) {
-  return sweepCurve(pointFn, tMin, tMax, 'recall', 'precision', num);
+
+// -------------------------------------------------------------------
+// Small DOM helpers
+// -------------------------------------------------------------------
+
+function addLabel(parent, text, { top = false } = {}) {
+
+  const el = document.createElement('div');
+
+  el.textContent = text;
+
+  el.style.fontFamily = FONT_FAMILY;
+  el.style.fontWeight = '600';
+  el.style.fontSize = '9.5px';
+  el.style.margin =
+    top ? '8px 0 4px 0' : '0 0 4px 0';
+
+  parent.appendChild(el);
+
+  return el;
 }
 
-function qCurve(pointFn, tMin, tMax, num = 400) {
 
-  const raw = sweepCurve(pointFn, tMin, tMax, 'recall', 'q', num);
+function addSlider(parent, { min, max, step, value }) {
 
-  return { x: raw.x, y: raw.y.map(clampQForDisplay) };
+  const slider = document.createElement('input');
 
-}
+  Object.assign(slider, {
+    type: 'range',
+    min,
+    max,
+    step,
+    value,
+  });
 
-function rocCurveOf(pointFn, tMin, tMax, num = 400) {
-  return sweepCurve(pointFn, tMin, tMax, 'fpr', 'tpr', num);
-}
+  slider.style.width = '100%';
 
-// Reparametrize an existing (recall, precision) curve — any {x,y} pair
-// of equal-length arrays — into (z, x_w) = (logit(precision), -log(recall)).
-// Re-sorted by the new x (z), since the map recall -> -log(recall) is
-// decreasing while precision -> logit(precision) is increasing, so the
-// original recall-ascending order does not carry over.
+  parent.appendChild(slider);
 
-function toZW(curveXY) {
+  const valueLabel = document.createElement('div');
 
-  const zs = curveXY.y.map(logit);
-  const xws = curveXY.x.map((r) => -Math.log(clamp01(r)));
+  Object.assign(valueLabel.style, {
+    marginTop: '4px',
+    textAlign: 'center',
+    fontFamily: FONT_FAMILY,
+    fontSize: '9px',
+    color: '#555',
+  });
 
-  const idx = zs.map((_, i) => i).sort((a, b) => zs[a] - zs[b]);
+  parent.appendChild(valueLabel);
 
   return {
-    x: idx.map(i => zs[i]),
-    y: idx.map(i => xws[i])
+    slider,
+    valueLabel,
   };
-
 }
 
-function zwPointFromPr(pt) {
-  return { z: logit(pt.precision), xw: -Math.log(clamp01(pt.recall)) };
-}
 
-// Closed-form reference curves.
+// -------------------------------------------------------------------
+// One curve + operating-point marker
+// -------------------------------------------------------------------
 
-function perfectPrCurve() {
-  return { x: [0, 1, 1], y: [1, 1, PI] };
-}
-
-function randomPrCurve() {
-  return { x: [0, 1], y: [PI, PI] };
-}
-
-function alwaysWrongPrCurve(num = 100) {
-
-  const x = [], y = [];
-
-  for (let i = 0; i <= num; i++) {
-
-    const r = i / num;
-
-    x.push(r);
-    y.push(PI * r / (PI * r + (1 - PI)));
-
+function curveAndPoint(
+  curve,
+  pt,
+  {
+    color,
+    width,
+    dash,
+    name,
+    legend,
+    legendrank,
+    markerSize = 10,
   }
+) {
 
-  return { x, y };
+  // Unique group per curve: clicking its legend entry toggles only this
+  // curve (line + operating-point marker), not the whole block.
+  const legendgroup = 'curve-' + name;
 
+  return [
+
+    {
+      x: curve.x,
+      y: curve.y,
+      mode: 'lines',
+      name,
+      legend,
+      legendgroup,
+      legendrank,
+      line: {
+        color,
+        width,
+        dash,
+      },
+      showlegend: true,
+    },
+
+    {
+      x: [pt.recall],
+      y: [pt.precision],
+      mode: 'markers',
+      legend,
+      legendgroup,
+      legendrank,
+
+      marker: {
+        color: 'white',
+        size: markerSize,
+        symbol: 'circle',
+        line: {
+          color,
+          width: 2,
+        },
+      },
+
+      showlegend: false,
+    },
+
+  ];
 }
 
-function randomGuessingQCurve() {
-  return { x: [0, 1], y: [1, 1] };
-}
 
-function randomGuessingRocCurve() {
-  return { x: [0, 1], y: [0, 1] };
-}
+// ===================================================================
+// Main widget
+// ===================================================================
 
 export async function initGaussianSymmetricPrWidget(container) {
 
@@ -331,394 +389,1039 @@ export async function initGaussianSymmetricPrWidget(container) {
   const plotDiv =
     container.querySelector('.gaussian-symmetric-pr-plot');
 
-  const plotDivQ =
-    container.querySelector('.gaussian-symmetric-pr-plot-q');
 
-  const plotDivRoc =
-    container.querySelector('.gaussian-symmetric-pr-plot-roc');
+  const tMin = -4;
+  const tMax = 5;
 
-  const plotDivZW =
-    container.querySelector('.gaussian-symmetric-pr-plot-zw');
 
-  // --- Control panel: a single threshold slider. ------------------------
+  // -----------------------------------------------------------------
+  // Threshold control
+  // -----------------------------------------------------------------
 
-  const tMin = -6, tMax = 8;
+  addLabel(controlsDiv, 'Threshold');
 
-  const label = document.createElement('div');
+  const {
+    slider: thresholdSlider,
+    valueLabel: thresholdValueLabel,
+  } =
+    addSlider(
+      controlsDiv,
+      {
+        min: tMin,
+        max: tMax,
+        step: (tMax - tMin) / 500,
+        value: 0.5,
+      }
+    );
 
-  label.textContent = 'Threshold';
 
-  label.style.fontFamily = FONT_FAMILY;
-  label.style.fontWeight = '600';
-  label.style.fontSize = '9.5px';
-  label.style.marginBottom = '4px';
+  function updateThresholdValueLabel() {
 
-  controlsDiv.appendChild(label);
-
-  const slider = document.createElement('input');
-
-  slider.type = 'range';
-  slider.min = tMin;
-  slider.max = tMax;
-  slider.step = (tMax - tMin) / 500;
-  slider.value = 0.5;
-  slider.style.width = '100%';
-
-  controlsDiv.appendChild(slider);
-
-  const valueLabel = document.createElement('div');
-
-  valueLabel.style.marginTop = '4px';
-  valueLabel.style.textAlign = 'center';
-  valueLabel.style.fontFamily = FONT_FAMILY;
-  valueLabel.style.fontSize = '9px';
-  valueLabel.style.color = '#555';
-
-  controlsDiv.appendChild(valueLabel);
-
-  function updateValueLabel() {
-
-    valueLabel.textContent =
-      'Threshold = ' + parseFloat(slider.value).toPrecision(3);
-
+    thresholdValueLabel.textContent =
+      'Threshold = ' +
+      parseFloat(thresholdSlider.value).toPrecision(3);
   }
 
-  updateValueLabel();
+  updateThresholdValueLabel();
 
-  // --- Legend (shared across all panels) ----------------------------------
 
-  const legendRow = document.createElement('div');
+  // -----------------------------------------------------------------
+  // Prevalence control
+  // -----------------------------------------------------------------
 
-  legendRow.style.marginTop = '10px';
-  legendRow.style.fontFamily = FONT_FAMILY;
-  legendRow.style.fontSize = '8.5px';
-  legendRow.style.color = '#555';
-  legendRow.style.lineHeight = '1.5';
+  addLabel(
+    controlsDiv,
+    'Prevalence (π)',
+    { top: true }
+  );
 
-  legendRow.innerHTML = `
 
-    <div style="display:flex; align-items:center; gap:4px; margin-bottom:2px;">
+  const {
+    slider: prevalenceSlider,
+    valueLabel: prevalenceValueLabel,
+  } =
+    addSlider(
+      controlsDiv,
+      {
+        min: 0.01,
+        max: 0.99,
+        step: 0.01,
+        value: 0.2,
+      }
+    );
 
-      <span style="width:8px; height:8px; border-radius:50%;
-        background:white; border:2px solid black; display:inline-block;"></span>
 
-      operating point
+  function updatePrevalenceValueLabel() {
 
-    </div>
+    prevalenceValueLabel.textContent =
+      'π = ' +
+      parseFloat(prevalenceSlider.value).toFixed(2);
+  }
 
-    <div style="display:flex; align-items:center; gap:4px; margin-bottom:2px;">
+  updatePrevalenceValueLabel();
 
-      <span style="width:8px; height:8px; border-radius:50%;
-        background:white; border:2px solid #999; display:inline-block;"></span>
 
-      reversed test
+  // -----------------------------------------------------------------
+  // Small HTML legend in the controls
+  // -----------------------------------------------------------------
 
-    </div>
+  const legendRow =
+    document.createElement('div');
 
-    <div style="display:flex; align-items:center; gap:4px;">
+  Object.assign(
+    legendRow.style,
+    {
+      marginTop: '10px',
+      fontFamily: FONT_FAMILY,
+      fontSize: '8.5px',
+      color: '#555',
+      lineHeight: '1.5',
+      display: 'grid',
+      gridTemplateColumns: '1fr',
+      gap: '4px 8px',
+    }
+  );
 
-      <span style="width:8px; height:8px; border-radius:50%;
-        background:white; border:2px solid #666; display:inline-block;"></span>
 
-      class inversion + reversed threshold
+  legendRow.innerHTML = [
 
-    </div>`;
+    [COLORS.roc, 'PR curve'],
+
+    [
+      COLORS.thresholdReversal,
+      'Threshold reversal',
+    ],
+
+    [
+      COLORS.classSwap,
+      'Class label swap',
+    ],
+
+    [
+      COLORS.classSwapReversal,
+      'Class label swap + threshold reversal',
+    ],
+
+  ]
+    .map(([color, label]) => `
+      <div style="display:flex; align-items:center; gap:4px;">
+        <span
+          style="
+            width:8px;
+            height:8px;
+            border-radius:50%;
+            background:white;
+            border:2px solid ${color};
+            display:inline-block;
+          ">
+        </span>
+        ${label}
+      </div>
+    `)
+    .join('');
+
 
   controlsDiv.appendChild(legendRow);
 
-  // --- Static curves (independent of t) ------------------------------------
 
-  const perfectCurve = perfectPrCurve();
-  const randomCurve = randomPrCurve();
-  const wrongCurve = alwaysWrongPrCurve();
+  // =================================================================
+  // Build curves
+  // =================================================================
 
-  const gaussianCurveFull = prCurve(prPoint, tMin, tMax);
-  const reversedTestCurve = prCurve(reversedTestPrPoint, tMin, tMax);
-  const classInvertedCurve = prCurve(classInvertedPrPoint, tMin, tMax);
+  function buildCurves(prevalence) {
 
-  const randomQCurve = randomGuessingQCurve();
+    const gaussianCurve =
+      prCurve(
+        prPoint,
+        prevalence,
+        tMin,
+        tMax
+      );
 
-  const gaussianQCurveFull = qCurve(qPoint, tMin, tMax);
-  const reversedTestQCurve = qCurve(reversedTestQPoint, tMin, tMax);
-  const classInvertedQCurve = qCurve(classInvertedQPoint, tMin, tMax);
+    const reversedTestCurve =
+      prCurve(
+        reversedTestPrPoint,
+        prevalence,
+        tMin,
+        tMax
+      );
 
-  const randomRocCurve = randomGuessingRocCurve();
+    const classInversionCurve =
+      prCurve(
+        classInversionPrPoint,
+        prevalence,
+        tMin,
+        tMax
+      );
 
-  const gaussianRocCurveFull = rocCurveOf(rocPoint, tMin, tMax);
-  const reversedTestRocCurve = rocCurveOf(reversedTestRocPoint, tMin, tMax);
-  const classInvertedRocCurve = rocCurveOf(classInvertedRocPoint, tMin, tMax);
+    const classInversionReversedCurve =
+      prCurve(
+        classInversionReversedPrPoint,
+        prevalence,
+        tMin,
+        tMax
+      );
 
-  // Panel 4: the same six curves as panel 1, reparametrized through
-  // (z, x_w) = (logit(precision), -log(recall)) — no new curve math,
-  // just a pointwise transform of the panel-1 arrays already computed.
-  const perfectZWCurve = toZW(perfectCurve);
-  const randomZWCurve = toZW(randomCurve);
-  const wrongZWCurve = toZW(wrongCurve);
-  const gaussianZWCurve = toZW(gaussianCurveFull);
-  const reversedTestZWCurve = toZW(reversedTestCurve);
-  const classInvertedZWCurve = toZW(classInvertedCurve);
 
-  // Layout range for panel 4, derived from the main/reversed/inverted
-  // curves only (the perfect/random/always-wrong reference curves can
-  // run to very large |z| or x_w near their endpoints, since logit and
-  // -log diverge at 0/1 — those are simply clipped by the axis range,
-  // same convention as the q-panel's clamp).
-  const zwCoreX = [
-    ...gaussianZWCurve.x, ...reversedTestZWCurve.x, ...classInvertedZWCurve.x,
-  ].filter(Number.isFinite);
-  const zwCoreY = [
-    ...gaussianZWCurve.y, ...reversedTestZWCurve.y, ...classInvertedZWCurve.y,
-  ].filter(Number.isFinite);
-  const zwXRange = [Math.min(...zwCoreX) - 1, Math.max(...zwCoreX) + 1];
-  const zwYRange = [Math.max(0, Math.min(...zwCoreY) - 1), Math.max(...zwCoreY) + 1];
+    return {
+      gaussianCurve,
+      reversedTestCurve,
+      classInversionCurve,
+      classInversionReversedCurve,
+    };
+  }
 
-  function buildPrTraces(t) {
 
-    const pt = prPoint(t);
-    const ptRev = reversedTestPrPoint(t);
-    const ptInv = classInvertedPrPoint(t);
+  // -----------------------------------------------------------------
+  // Responsive marker scaling
+  // -----------------------------------------------------------------
 
-    return [
+  function currentScale() {
 
-      { x: perfectCurve.x, y: perfectCurve.y, mode: 'lines',
-        name: 'Perfect classification', line: { color: '#cccccc', width: 2.5 }, showlegend: true },
+    const {
+      width,
+    } = computePlotSize();
 
-      { x: randomCurve.x, y: randomCurve.y, mode: 'lines',
-        name: 'Random classification', line: { color: '#cccccc', width: 2.5, dash: 'dash' }, showlegend: true },
+    return width / NATURAL_WIDTH;
+  }
 
-      { x: wrongCurve.x, y: wrongCurve.y, mode: 'lines',
-        name: 'Always-wrong classification', line: { color: '#cccccc', width: 2.5, dash: 'dot' }, showlegend: true },
 
-      { x: reversedTestCurve.x, y: reversedTestCurve.y, mode: 'lines',
-        name: 'Reversed test', line: { color: '#999999', width: 2.5, dash: 'dashdot' }, showlegend: true },
+  // =================================================================
+  // Plot traces
+  // =================================================================
 
-      { x: classInvertedCurve.x, y: classInvertedCurve.y, mode: 'lines',
-        name: 'Class inversion + reversed threshold', line: { color: '#666666', width: 2.5, dash: 'longdash' }, showlegend: true },
+  function buildTraces(t, prevalence) {
 
-      { x: gaussianCurveFull.x, y: gaussianCurveFull.y, mode: 'lines',
-        name: 'PR curve', line: { color: '#000000', width: 3.5 }, showlegend: true },
+    const scale =
+      currentScale();
 
-      { x: [pt.recall], y: [pt.precision], mode: 'markers', name: 'Operating point',
-        marker: { color: 'white', size: 12, symbol: 'circle', line: { color: 'black', width: 2 } }, showlegend: false },
 
-      { x: [ptRev.recall], y: [ptRev.precision], mode: 'markers', name: 'Reversed test point',
-        marker: { color: 'white', size: 10, symbol: 'circle', line: { color: '#999999', width: 2 } }, showlegend: false },
+    const scaleMarker =
+      size =>
+        Math.max(
+          4,
+          size * scale
+        );
 
-      { x: [ptInv.recall], y: [ptInv.precision], mode: 'markers', name: 'Class-inverted point',
-        marker: { color: 'white', size: 10, symbol: 'circle', line: { color: '#666666', width: 2 } }, showlegend: false },
+
+    const {
+      gaussianCurve,
+      reversedTestCurve,
+      classInversionCurve,
+      classInversionReversedCurve,
+    } =
+      buildCurves(prevalence);
+
+
+    const traces = [
+
+      // =============================================================
+      // ORIGINAL
+      // =============================================================
+
+      {
+        x: [null],
+        y: [null],
+        mode: 'lines',
+
+        name: '<b>Original</b>',
+
+        legend: 'legend',
+        legendgroup: 'heading-original',
+        legendrank: 100,
+
+        showlegend: true,
+
+        line: {
+          width: 0,
+        },
+
+        hoverinfo: 'skip',
+      },
+
+
+      // Original PR
+      ...curveAndPoint(
+        gaussianCurve,
+        prPoint(t, prevalence),
+        {
+          color: COLORS.roc,
+          width: 2.5,
+          dash: 'solid',
+
+          name: 'PR curve',
+
+          legend: 'legend',
+          legendrank: 101,
+
+          markerSize:
+            scaleMarker(16),
+        }
+      ),
+
+
+      // =============================================================
+      // TRANSFORMATIONS
+      // =============================================================
+
+      {
+        x: [null],
+        y: [null],
+        mode: 'lines',
+
+        name: '<b>Transformations</b>',
+
+        legend: 'legend',
+        legendgroup: 'heading-transformations',
+        legendrank: 200,
+
+        showlegend: true,
+
+        line: {
+          width: 0,
+        },
+
+        hoverinfo: 'skip',
+      },
+
+
+      // Threshold reversal
+      ...curveAndPoint(
+        reversedTestCurve,
+        reversedTestPrPoint(
+          t,
+          prevalence
+        ),
+        {
+          color: COLORS.thresholdReversal,
+          width: 2,
+          dash: 'dot',
+
+          name: 'Threshold reversal',
+
+          legend: 'legend',
+          legendrank: 201,
+
+          markerSize:
+            scaleMarker(10),
+        }
+      ),
+
+
+      // Class label swap
+      ...curveAndPoint(
+        classInversionCurve,
+        classInversionPrPoint(
+          t,
+          prevalence
+        ),
+        {
+          color: COLORS.classSwap,
+          width: 2,
+          dash: 'dash',
+
+          name: 'Class label swap',
+
+          legend: 'legend',
+          legendrank: 202,
+
+          markerSize:
+            scaleMarker(10),
+        }
+      ),
+
+
+      // Class swap + threshold reversal
+      ...curveAndPoint(
+        classInversionReversedCurve,
+        classInversionReversedPrPoint(
+          t,
+          prevalence
+        ),
+        {
+          color: COLORS.classSwapReversal,
+          width: 2,
+          dash: 'longdash',
+
+          name: 'Class swap + threshold rev.',
+
+          legend: 'legend',
+          legendrank: 203,
+
+          markerSize:
+            scaleMarker(10),
+        }
+      ),
+
+
+      // =============================================================
+      // EXTREME CASES
+      // =============================================================
+
+      {
+        x: [null],
+        y: [null],
+        mode: 'lines',
+
+        name: '<b>Extreme cases</b>',
+
+        legend: 'legend',
+        legendgroup: 'heading-extreme',
+        legendrank: 300,
+
+        showlegend: true,
+
+        line: {
+          width: 0,
+        },
+
+        hoverinfo: 'skip',
+      },
+
+
+      // Perfect classifier:
+      // precision = 1 throughout the informative part of the curve.
+      {
+        x: [0, 1],
+        y: [1, 1],
+
+        mode: 'lines',
+
+        name: 'Perfect',
+
+        legend: 'legend',
+        legendgroup: 'curve-Perfect',
+        legendrank: 301,
+
+        showlegend: true,
+
+        line: {
+          color: COLORS.perfect,
+          width: 1.5,
+          dash: 'dot',
+        },
+      },
+
+
+      // Random classifier:
+      // precision = prevalence π for every recall.
+      {
+        x: [0, 1],
+        y: [prevalence, prevalence],
+
+        mode: 'lines',
+
+        name: 'Random',
+
+        legend: 'legend',
+        legendgroup: 'curve-Random',
+        legendrank: 302,
+
+        showlegend: true,
+
+        line: {
+          color: COLORS.random,
+          width: 1.5,
+          dash: 'dash',
+        },
+      },
+
+
+      // Perfectly wrong ranking.
+      //
+      // Parameterize the ROC anti-diagonal:
+      // FPR = 1 - TPR.
+      //
+      // The corresponding PR curve for the positive class is
+      //
+      // precision =
+      //   π r / [π r + (1-π)(1-r)],
+      //
+      // where r is recall.
+      {
+        x: [],
+        y: [],
+
+        mode: 'lines',
+
+        name: 'Always wrong',
+
+        legend: 'legend',
+        legendgroup: 'curve-Always wrong',
+        legendrank: 303,
+
+        showlegend: true,
+
+        line: {
+          color: COLORS.wrong,
+          width: 1.5,
+          dash: 'longdashdot',
+        },
+      },
 
     ];
 
+
+    // ---------------------------------------------------------------
+    // Generate the perfectly-wrong PR curve.
+    // ---------------------------------------------------------------
+
+    const wrongRecall = [];
+    const wrongPrecision = [];
+
+    for (let i = 0; i <= 400; i++) {
+
+      const r = i / 400;
+
+      const denominator =
+        prevalence * r +
+        (1 - prevalence) * (1 - r);
+
+      const p =
+        denominator > 0
+          ? (prevalence * r) / denominator
+          : 0;
+
+      wrongRecall.push(r);
+      wrongPrecision.push(p);
+    }
+
+
+    // The last trace is the "Always wrong" curve.
+    traces[traces.length - 1].x =
+      wrongRecall;
+
+    traces[traces.length - 1].y =
+      wrongPrecision;
+
+
+    return traces;
   }
 
-  function buildQTraces(t) {
 
-    const pt = qPoint(t);
-    const ptRev = reversedTestQPoint(t);
-    const ptInv = classInvertedQPoint(t);
+  // =================================================================
+  // Compact Plotly legend
+  // =================================================================
 
-    return [
+  let cachedNormalGap = null;
 
-      { x: randomQCurve.x, y: randomQCurve.y, mode: 'lines',
-        name: 'Random classification (q=1)', line: { color: '#cccccc', width: 2.5, dash: 'dash' }, showlegend: true },
+  function compactLegendInterlineSpacing() {
 
-      { x: reversedTestQCurve.x, y: reversedTestQCurve.y, mode: 'lines',
-        name: 'Reversed test (q)', line: { color: '#999999', width: 2.5, dash: 'dashdot' }, showlegend: true },
+    const items =
+      plotDiv.querySelectorAll(
+        '.legend .traces'
+      );
 
-      { x: classInvertedQCurve.x, y: classInvertedQCurve.y, mode: 'lines',
-        name: 'Class inversion + reversed threshold (q, clipped)', line: { color: '#666666', width: 2.5, dash: 'longdash' }, showlegend: true },
 
-      { x: gaussianQCurveFull.x, y: gaussianQCurveFull.y, mode: 'lines',
-        name: 'q = FPR/TPR curve', line: { color: '#000000', width: 3.5 }, showlegend: true },
+    // Expected order:
+    //
+    // 0  Original
+    // 1  PR curve
+    // 2  Transformations
+    // 3  Threshold reversal
+    // 4  Class label swap
+    // 5  Class swap + threshold rev.
+    // 6  Extreme cases
+    // 7  Perfect
+    // 8  Random
+    // 9  Always wrong
 
-      { x: [pt.recall], y: [clampQForDisplay(pt.q)], mode: 'markers', name: 'Operating point (q)',
-        marker: { color: 'white', size: 12, symbol: 'circle', line: { color: 'black', width: 2 } }, showlegend: false },
+    if (items.length < 10)
+      return;
 
-      { x: [ptRev.recall], y: [clampQForDisplay(ptRev.q)], mode: 'markers', name: 'Reversed test point (q)',
-        marker: { color: 'white', size: 10, symbol: 'circle', line: { color: '#999999', width: 2 } }, showlegend: false },
 
-      { x: [ptInv.recall], y: [clampQForDisplay(ptInv.q)], mode: 'markers', name: 'Class-inverted point (q)',
-        marker: { color: 'white', size: 10, symbol: 'circle', line: { color: '#666666', width: 2 } }, showlegend: false },
+    const transforms =
+      Array.from(items).map(item => {
+
+        const transform =
+          item.getAttribute('transform') ||
+          '';
+
+        const match =
+          transform.match(
+            /translate\(\s*([-\d.]+)[,\s]+([-\d.]+)\s*\)/
+          );
+
+
+        if (!match)
+          return null;
+
+
+        return {
+          item,
+          x: parseFloat(match[1]),
+          y: parseFloat(match[2]),
+        };
+      });
+
+
+    if (
+      transforms.some(
+        v => v === null
+      )
+    )
+      return;
+
+
+    // Measured once, from Plotly's untouched layout, then cached: re-applying
+    // the compaction after a legend redraw must never compound.
+    if (cachedNormalGap === null)
+      cachedNormalGap = transforms[1].y - transforms[0].y;
+
+    const normalGap = cachedNormalGap;
+
+
+    // 1.00 = normal Plotly spacing
+    // 0.80 = 20% reduction
+    // 0.63 = 37% reduction
+    //
+    // Block boundaries remain relatively open.
+
+    const gapFactor = [
+
+      0.800, // Original → PR curve
+      0.800, // PR curve → Transformations
+      0.800, // Transformations → Threshold reversal
+
+      0.630, // Threshold reversal → Class label swap
+      0.630, // Class label swap → Class swap + threshold rev.
+
+      0.800, // Class swap + threshold rev. → Extreme cases
+      0.800, // Extreme cases → Perfect
+
+      0.630, // Perfect → Random
+      0.630, // Random → Always wrong
 
     ];
 
+
+    let y =
+      transforms[0].y;
+
+
+    transforms[0].item.setAttribute(
+      'transform',
+      `translate(${transforms[0].x},${y})`
+    );
+
+
+    for (
+      let i = 1;
+      i < transforms.length;
+      i++
+    ) {
+
+      const gap =
+        normalGap *
+        gapFactor[i - 1];
+
+
+      y += gap;
+
+
+      transforms[i].item.setAttribute(
+        'transform',
+        `translate(${transforms[i].x},${y})`
+      );
+    }
   }
 
-  function buildRocTraces(t) {
 
-    const pt = rocPoint(t);
-    const ptRev = reversedTestRocPoint(t);
-    const ptInv = classInvertedRocPoint(t);
+  // =================================================================
+  // Legend layout
+  // =================================================================
 
-    return [
-
-      { x: randomRocCurve.x, y: randomRocCurve.y, mode: 'lines',
-        name: 'Random classification (diagonal)', line: { color: '#cccccc', width: 2.5, dash: 'dash' }, showlegend: true },
-
-      { x: [pt.fpr, ptRev.fpr], y: [pt.tpr, ptRev.tpr], mode: 'lines',
-        name: 'Central reflection (guide)', line: { color: '#999999', width: 1, dash: 'dot' }, showlegend: false },
-
-      { x: [pt.fpr, ptInv.fpr], y: [pt.tpr, ptInv.tpr], mode: 'lines',
-        name: 'Anti-diagonal reflection (guide)', line: { color: '#666666', width: 1, dash: 'dot' }, showlegend: false },
-
-      { x: reversedTestRocCurve.x, y: reversedTestRocCurve.y, mode: 'lines',
-        name: 'Reversed test (ROC)', line: { color: '#999999', width: 2.5, dash: 'dashdot' }, showlegend: true },
-
-      { x: classInvertedRocCurve.x, y: classInvertedRocCurve.y, mode: 'lines',
-        name: 'Class inversion + reversed threshold (ROC)', line: { color: '#666666', width: 2.5, dash: 'longdash' }, showlegend: true },
-
-      { x: gaussianRocCurveFull.x, y: gaussianRocCurveFull.y, mode: 'lines',
-        name: 'ROC curve', line: { color: '#000000', width: 3.5 }, showlegend: true },
-
-      { x: [pt.fpr], y: [pt.tpr], mode: 'markers', name: 'Operating point (ROC)',
-        marker: { color: 'white', size: 12, symbol: 'circle', line: { color: 'black', width: 2 } }, showlegend: false },
-
-      { x: [ptRev.fpr], y: [ptRev.tpr], mode: 'markers', name: 'Reversed test point (ROC)',
-        marker: { color: 'white', size: 10, symbol: 'circle', line: { color: '#999999', width: 2 } }, showlegend: false },
-
-      { x: [ptInv.fpr], y: [ptInv.tpr], mode: 'markers', name: 'Class-inverted point (ROC)',
-        marker: { color: 'white', size: 10, symbol: 'circle', line: { color: '#666666', width: 2 } }, showlegend: false },
-
-    ];
-
-  }
-
-function buildZWTraces(t) {
-
-  const pt = zwPointFromPr(prPoint(t));
-  const ptRev = zwPointFromPr(reversedTestPrPoint(t));
-  const ptInv = zwPointFromPr(classInvertedPrPoint(t));
-
-  return [
-
-    { x: perfectZWCurve.y, y: perfectZWCurve.x, mode: 'lines',
-      name: 'Perfect classification (x_w, z)', line: { color: '#cccccc', width: 2.5 }, showlegend: true },
-
-    { x: randomZWCurve.y, y: randomZWCurve.x, mode: 'lines',
-      name: 'Random classification (x_w, z)', line: { color: '#cccccc', width: 2.5, dash: 'dash' }, showlegend: true },
-
-    { x: wrongZWCurve.y, y: wrongZWCurve.x, mode: 'lines',
-      name: 'Always-wrong classification (x_w, z)', line: { color: '#cccccc', width: 2.5, dash: 'dot' }, showlegend: true },
-
-    { x: reversedTestZWCurve.y, y: reversedTestZWCurve.x, mode: 'lines',
-      name: 'Reversed test (x_w, z)', line: { color: '#999999', width: 2.5, dash: 'dashdot' }, showlegend: true },
-
-    { x: classInvertedZWCurve.y, y: classInvertedZWCurve.x, mode: 'lines',
-      name: 'Class inversion + reversed threshold (x_w, z)', line: { color: '#666666', width: 2.5, dash: 'longdash' }, showlegend: true },
-
-    { x: gaussianZWCurve.y, y: gaussianZWCurve.x, mode: 'lines',
-      name: '(x_w, z) curve', line: { color: '#000000', width: 3.5 }, showlegend: true },
-
-    { x: [pt.xw], y: [pt.z], mode: 'markers', name: 'Operating point (x_w, z)',
-      marker: { color: 'white', size: 12, symbol: 'circle', line: { color: 'black', width: 2 } }, showlegend: false },
-
-    { x: [ptRev.xw], y: [ptRev.z], mode: 'markers', name: 'Reversed test point (x_w, z)',
-      marker: { color: 'white', size: 10, symbol: 'circle', line: { color: '#999999', width: 2 } }, showlegend: false },
-
-    { x: [ptInv.xw], y: [ptInv.z], mode: 'markers', name: 'Class-inverted point (x_w, z)',
-      marker: { color: 'white', size: 10, symbol: 'circle', line: { color: '#666666', width: 2 } }, showlegend: false },
-
-  ];
-
-}
-
-  function baseLayout(xTitle, yTitle, yAxisExtra) {
+  function legendLayout() {
 
     return {
 
-      font: { family: FONT_FAMILY, size: 12, color: '#333' },
+      orientation: 'v',
+
+      y: 0.98,
+      yanchor: 'top',
+
+      x: 1.02,
+      xanchor: 'left',
+
+      valign: 'top',
+
+      font: {
+        size: 10,
+        family: FONT_FAMILY,
+      },
+
+      borderwidth: 0,
+
+      itemwidth: 28,
+
+      traceorder: 'normal',
+    };
+  }
+
+
+  // =================================================================
+  // Responsive sizing
+  // =================================================================
+
+  const MARGIN_L = 55;
+  const MARGIN_R = 175;
+  const MARGIN_T = 20;
+  const MARGIN_B = 45;
+
+  const NATURAL_WIDTH = 600;
+  const MIN_WIDTH = 360;
+  const MIN_PLOT_SIDE = 200;
+
+
+  function computePlotSize() {
+
+    const measured =
+      plotDiv.getBoundingClientRect().width;
+
+
+    const available =
+      measured > 0
+        ? measured
+        : NATURAL_WIDTH;
+
+
+    const width =
+      Math.max(
+        MIN_WIDTH,
+        Math.min(
+          NATURAL_WIDTH,
+          Math.round(available)
+        )
+      );
+
+
+    const plotSide =
+      Math.max(
+        MIN_PLOT_SIDE,
+        width -
+          MARGIN_L -
+          MARGIN_R
+      );
+
+
+    const height =
+      plotSide +
+      MARGIN_T +
+      MARGIN_B;
+
+
+    return {
+      width,
+      height,
+    };
+  }
+
+
+  // =================================================================
+  // Plot layout
+  // =================================================================
+
+  function layout() {
+
+    const ticks = [
+      0,
+      0.2,
+      0.4,
+      0.6,
+      0.8,
+      1,
+    ];
+
+
+    const {
+      width,
+      height,
+    } =
+      computePlotSize();
+
+
+    return {
+
+      font: {
+        family: FONT_FAMILY,
+        size: 12,
+        color: '#333',
+      },
+
 
       xaxis: {
-        range: [-0.05, 1.05],
-        title: { text: xTitle, font: { size: 12 } },
+
+        range: [
+          -0.04,
+          1.04,
+        ],
+
+        autorange: false,
+
+        tickvals: ticks,
+
+        showline: false,
+        zeroline: false,
+
+        gridcolor: '#e5e5e5',
+        gridwidth: 1,
+
+        title: {
+          text: 'Recall',
+          font: {
+            size: 12,
+          },
+          standoff: 8,
+        },
       },
 
-      yaxis: Object.assign({
-        title: { text: yTitle, font: { size: 12 } },
-      }, yAxisExtra || {}),
 
-      margin: { l: 60, r: 20, t: 60, b: 55, pad: 4 },
+      yaxis: {
 
-      legend: {
-        orientation: 'h', y: 1.15, yanchor: 'bottom', x: 0.5, xanchor: 'center',
-        font: { size: 9.5, family: FONT_FAMILY },
+        range: [
+          -0.04,
+          1.04,
+        ],
+
+        autorange: false,
+
+        scaleanchor: 'x',
+        scaleratio: 1,
+
+        tickvals: ticks,
+
+        showline: false,
+        zeroline: false,
+
+        gridcolor: '#e5e5e5',
+        gridwidth: 1,
+
+        title: {
+          text: 'Precision',
+          font: {
+            size: 12,
+          },
+          standoff: 8,
+        },
       },
 
-      width: 480,
-      height: 400,
+
+      margin: {
+        l: MARGIN_L,
+        r: MARGIN_R,
+        t: MARGIN_T,
+        b: MARGIN_B,
+        pad: 0,
+      },
+
+
+      legend:
+        legendLayout(),
+
+
+      uirevision: 'keep',
+
+      width,
+      height,
+
       autosize: false,
-      paper_bgcolor: 'rgba(0,0,0,0)',
-      plot_bgcolor: 'rgba(0,0,0,0)',
 
+      paper_bgcolor:
+        'rgba(0,0,0,0)',
+
+      plot_bgcolor:
+        'rgba(0,0,0,0)',
     };
-
   }
 
-  function layoutPr() {
-    return baseLayout('Recall', 'Precision', {
-      range: [-0.05, 1.05], scaleanchor: 'x', scaleratio: 1,
-    });
+
+  // =================================================================
+  // Rendering
+  // =================================================================
+
+  let rendering = false;
+  let pending = false;
+
+
+  async function render() {
+
+    if (rendering) {
+
+      pending = true;
+
+      return;
+    }
+
+
+    rendering = true;
+
+
+    const t =
+      parseFloat(
+        thresholdSlider.value
+      );
+
+
+    const prevalence =
+      parseFloat(
+        prevalenceSlider.value
+      );
+
+
+    await Plotly.react(
+      plotDiv,
+
+      buildTraces(
+        t,
+        prevalence
+      ),
+
+      layout(),
+
+      {
+        displayModeBar: false,
+      }
+    );
+
+
+    compactLegendInterlineSpacing();
+
+
+    rendering = false;
+
+
+    if (pending) {
+
+      pending = false;
+
+      render();
+    }
   }
 
-  function layoutQ() {
 
-    return baseLayout('Recall', 'q = FPR/TPR  (= 1/LR⁺, clipped to [0, 6])', {
-      range: [Q_CLAMP_MIN - 0.2, Q_CLAMP_MAX + 0.2],
-    });
+  // =================================================================
+  // Controls
+  // =================================================================
 
-  }
+  thresholdSlider.addEventListener(
+    'input',
+    () => {
 
-  function layoutRoc() {
-    return baseLayout('FPR', 'TPR', {
-      range: [-0.05, 1.05], scaleanchor: 'x', scaleratio: 1,
-    });
-  }
+      updateThresholdValueLabel();
 
-  function layoutZW() {
+      render();
+    }
+  );
 
-    const l = baseLayout('z = logit(Precision)', 'x_w = -log(Recall)', {
-      range: zwYRange,
-    });
 
-    l.xaxis.range = zwXRange;
+  prevalenceSlider.addEventListener(
+    'input',
+    () => {
 
-    return l;
+      updatePrevalenceValueLabel();
 
-  }
+      render();
+    }
+  );
 
-  function render() {
 
-    const t = parseFloat(slider.value);
+  // =================================================================
+  // Initial render
+  // =================================================================
 
-    Plotly.react(plotDiv, buildPrTraces(t), layoutPr(),
-      { responsive: false, displayModeBar: false });
+  const isHeading = ev =>
+    String(ev.data[ev.curveNumber].legendgroup || '')
+      .startsWith('heading-');
 
-    Plotly.react(plotDivQ, buildQTraces(t), layoutQ(),
-      { responsive: false, displayModeBar: false });
 
-    Plotly.react(plotDivRoc, buildRocTraces(t), layoutRoc(),
-      { responsive: false, displayModeBar: false });
+  render().then(() => {
 
-    Plotly.react(plotDivZW, buildZWTraces(t), layoutZW(),
-      { responsive: false, displayModeBar: false });
+    // Headings are labels only: ignore clicks on them.
+    plotDiv.on('plotly_legendclick', ev => !isHeading(ev));
+    plotDiv.on('plotly_legenddoubleclick', ev => !isHeading(ev));
 
-  }
-
-  slider.addEventListener('input', () => {
-
-    updateValueLabel();
-    render();
-
+    // Plotly redraws the legend after a click/restyle and resets the item
+    // positions; re-apply the compact spacing so nothing shifts.
+    plotDiv.on('plotly_restyle', compactLegendInterlineSpacing);
+    plotDiv.on('plotly_afterplot', compactLegendInterlineSpacing);
   });
 
-  render();
 
+  // =================================================================
+  // Responsive ResizeObserver
+  // =================================================================
+
+  let lastWidth = null;
+
+
+  requestAnimationFrame(
+    () => {
+
+      const w =
+        Math.round(
+          plotDiv.parentElement
+            .getBoundingClientRect()
+            .width
+        );
+
+
+      if (
+        w !== lastWidth &&
+        w > 0
+      ) {
+
+        lastWidth = w;
+
+        render();
+      }
+    }
+  );
+
+
+  const ro =
+    new ResizeObserver(
+      entries => {
+
+        const w =
+          Math.round(
+            entries[0]
+              .contentRect
+              .width
+          );
+
+
+        if (
+          w === lastWidth
+        )
+          return;
+
+
+        lastWidth = w;
+
+        render();
+      }
+    );
+
+
+  ro.observe(
+    plotDiv.parentElement
+  );
 }
 
+
+// ===================================================================
+// Initialize all PR widgets
+// ===================================================================
+
 document
-  .querySelectorAll('.gaussian-symmetric-pr-interactive')
-  .forEach((container) => {
+  .querySelectorAll(
+    '.gaussian-symmetric-pr-interactive'
+  )
+  .forEach(
+    container => {
 
-    initGaussianSymmetricPrWidget(container);
-
-  });
+      initGaussianSymmetricPrWidget(
+        container
+      );
+    }
+  );

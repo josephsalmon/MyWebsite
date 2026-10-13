@@ -97,7 +97,10 @@ function addSlider(parent, { min, max, step, value }) {
 }
 
 // One curve + its operating-point marker, sharing a color/legend entry.
-function curveAndPoint(curve, pt, { color, width, dash, name, legend, legendgroup, legendrank, markerSize = 10 }) {
+function curveAndPoint(curve, pt, { color, width, dash, name, legend, legendrank, markerSize = 10 }) {
+  // Unique group per curve: clicking its legend entry toggles only this curve
+  // (line + operating-point marker), not the whole Original/Transformations/Extreme block.
+  const legendgroup = 'curve-' + name;
   return [
     { x: curve.x, y: curve.y, mode: 'lines', name, legend, legendgroup, legendrank,
       line: { color, width, dash }, showlegend: true },
@@ -191,7 +194,7 @@ export async function initGaussianSymmetricRocWidget(container) {
       mode: 'lines',
       name: '<b>Original</b>',
       legend: 'legend',
-      legendgroup: 'original',
+      legendgroup: 'heading-original',
       legendrank: 100,
       showlegend: true,
       line: { width: 0 },
@@ -208,7 +211,6 @@ export async function initGaussianSymmetricRocWidget(container) {
         dash: 'solid',
         name: 'ROC curve',
         legend: 'legend',
-        legendgroup: 'original',
         legendrank: 101,
         markerSize: scaleMarker(16),
       }
@@ -225,7 +227,7 @@ export async function initGaussianSymmetricRocWidget(container) {
       mode: 'lines',
       name: '<b>Transformations</b>',
       legend: 'legend',
-      legendgroup: 'transformations',
+      legendgroup: 'heading-transformations',
       legendrank: 200,
       showlegend: true,
       line: { width: 0 },
@@ -242,7 +244,6 @@ export async function initGaussianSymmetricRocWidget(container) {
         dash: 'dot',
         name: 'Threshold reversal',
         legend: 'legend',
-        legendgroup: 'transformations',
         legendrank: 201,
         markerSize: scaleMarker(10),
       }
@@ -258,7 +259,6 @@ export async function initGaussianSymmetricRocWidget(container) {
         dash: 'dash',
         name: 'Class label swap',
         legend: 'legend',
-        legendgroup: 'transformations',
         legendrank: 202,
         markerSize: scaleMarker(10),
       }
@@ -274,7 +274,6 @@ export async function initGaussianSymmetricRocWidget(container) {
         dash: 'longdash',
         name: 'Class swap + threshold rev.',
         legend: 'legend',
-        legendgroup: 'transformations',
         legendrank: 203,
         markerSize: scaleMarker(10),
       }
@@ -291,7 +290,7 @@ export async function initGaussianSymmetricRocWidget(container) {
       mode: 'lines',
       name: '<b>Extreme cases</b>',
       legend: 'legend',
-      legendgroup: 'extreme',
+      legendgroup: 'heading-extreme',
       legendrank: 300,
       showlegend: true,
       line: { width: 0 },
@@ -305,7 +304,7 @@ export async function initGaussianSymmetricRocWidget(container) {
       mode: 'lines',
       name: 'Perfect',
       legend: 'legend',
-      legendgroup: 'extreme',
+      legendgroup: 'curve-Perfect',
       legendrank: 301,
       showlegend: true,
       line: {
@@ -322,7 +321,7 @@ export async function initGaussianSymmetricRocWidget(container) {
       mode: 'lines',
       name: 'Random',
       legend: 'legend',
-      legendgroup: 'extreme',
+      legendgroup: 'curve-Random',
       legendrank: 302,
       showlegend: true,
       line: {
@@ -339,7 +338,7 @@ export async function initGaussianSymmetricRocWidget(container) {
       mode: 'lines',
       name: 'Always wrong',
       legend: 'legend',
-      legendgroup: 'extreme',
+      legendgroup: 'curve-Always wrong',
       legendrank: 303,
       showlegend: true,
       line: {
@@ -358,6 +357,8 @@ export async function initGaussianSymmetricRocWidget(container) {
 // -------------------------------------------------------------------
 // One legend, with three explicitly grouped sections.
 // -------------------------------------------------------------------
+
+let cachedNormalGap = null;
 
 function compactLegendInterlineSpacing() {
 
@@ -395,7 +396,10 @@ function compactLegendInterlineSpacing() {
   if (transforms.some(v => v === null)) return;
 
   // Use the normal Plotly spacing as the reference gap.
-  const normalGap = transforms[1].y - transforms[0].y;
+  // Measured once, from Plotly's untouched layout, then cached: re-applying
+  // the compaction after a legend redraw must never compound.
+  if (cachedNormalGap === null) cachedNormalGap = transforms[1].y - transforms[0].y;
+  const normalGap = cachedNormalGap;
 
   // 30% reduction inside blocks.
   const compactGap = normalGap * 0.70;
@@ -553,6 +557,7 @@ function legendLayout() {
       margin: { l: MARGIN_L, r: MARGIN_R, t: MARGIN_T, b: MARGIN_B, pad: 0 },
 
       legend: legendLayout(),
+      uirevision: 'keep',
       width,
       height,
       autosize: false,
@@ -575,7 +580,17 @@ function legendLayout() {
   thresholdSlider.addEventListener('input', () => { updateThresholdValueLabel(); render(); });
   prevalenceSlider.addEventListener('input', () => { updatePrevalenceValueLabel(); render(); });
 
-  render();   // initial
+  const isHeading = (ev) =>
+    String(ev.data[ev.curveNumber].legendgroup || '').startsWith('heading-');
+
+  render().then(() => {   // initial; attach legend handlers once the plot exists
+    plotDiv.on('plotly_legendclick', (ev) => !isHeading(ev));
+    plotDiv.on('plotly_legenddoubleclick', (ev) => !isHeading(ev));
+    // Plotly redraws the legend after a click/restyle and resets the item
+    // positions; re-apply the compact spacing so nothing shifts.
+    plotDiv.on('plotly_restyle', compactLegendInterlineSpacing);
+    plotDiv.on('plotly_afterplot', compactLegendInterlineSpacing);
+  });
   requestAnimationFrame(() => {
     const w = Math.round(plotDiv.parentElement.getBoundingClientRect().width);
     if (w !== lastWidth && w > 0) { lastWidth = w; render(); }
