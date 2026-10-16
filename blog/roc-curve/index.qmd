@@ -1395,83 +1395,59 @@ def precision_recall(thresholds, y_true, score):
 
 #### Endpoints
 
-:::: {#lem-pr-endpoints}
-
-# PR endpoints
-
-Assume that $X_0$ and $X_1$ are almost surely finite. Then, for the threshold rule $\hat{Y}_t(X) = \mathbb{1}\{X \ge t\}$, the Precision-Recall curve has the limiting endpoints:
-
+Throughout, $\pi_1\in(0,1)$, $\pi_0=1-\pi_1$, and $X_0,X_1$ are almost surely finite. For the threshold rule $\hat Y_t(X)=\mathbb 1\{X\ge t\}$,
 $$
-\boxed{
-\lim_{t\to+\infty}
-\bigl(\mathrm{Recall}(t),\mathrm{Precision}(t)\bigr)
-=(0,1)
-}
+\mathrm{Recall}(t)=\mathbb P(X_1\ge t),
+\qquad
+\mathrm{Precision}(t)=\frac{\pi_1\,\mathbb P(X_1\ge t)}{\pi_1\,\mathbb P(X_1\ge t)+\pi_0\,\mathbb P(X_0\ge t)},
 $$
-and
+where $\mathrm{Precision}(t)=\mathbb P(Y=1\mid\hat Y_t=1)$ is defined whenever the denominator is positive.
+
+:::: {#lem-pr-endpoint}
+
+# Universal endpoint of the PR curve
+
+There exists $t_0\in\mathbb R$ such that the denominator of $\mathrm{Precision}(t)$ is positive for all $t\le t_0$, and
 $$
-\boxed{
-\lim_{t\to-\infty}
-\bigl(\mathrm{Recall}(t),\mathrm{Precision}(t)\bigr)
-=\left(1,\pi_1\right).
-}
+\boxed{\lim_{t\to-\infty}\bigl(\mathrm{Recall}(t),\mathrm{Precision}(t)\bigr)=(1,\pi_1).}
 $$
 
 ::::
-
 
 :::: {.proof-container}
-::: {.proof-header onclick="toggleProof('lem-pr-endpoints')"}
-[▶]{#proof-arrow-lem-pr-endpoints .proof-arrow} [Proof]{.proof-title}
+::: {.proof-header onclick="toggleProof('lem-pr-endpoint')"}
+[▶]{#proof-arrow-lem-pr-endpoint .proof-arrow} [Proof]{.proof-title}
 :::
 
-::: {#proof-content-lem-pr-endpoints .proof-content}
+::: {#proof-content-lem-pr-endpoint .proof-content}
 
-**Step 1: Limit as $t\to+\infty$**
-
-By definition,
+Since $X_0$ and $X_1$ are almost surely finite, the events $\{X_y\ge t\}$ increase to $\{X_y>-\infty\}$, which has probability $1$, as $t\downarrow-\infty$. By continuity of probability measures,
 $$
-\mathrm{Recall}(t) =
-\mathbb{P}(X_1 \ge t), \qquad
-\mathrm{Precision}(t) =
-\frac{\pi_1 \mathbb{P}(X_1 \ge t)}{\pi_1 \mathbb{P}(X_1 \ge t) + \pi_0 \mathbb{P}(X_0 \ge t)}.
+\lim_{t\to-\infty}\mathbb P(X_y\ge t)=1,\qquad y\in\{0,1\}.
 $$
-Since $X_0$ and $X_1$ are almost surely finite,
+Hence $\mathrm{Recall}(t)\to1$, and the denominator of $\mathrm{Precision}(t)$ tends to $\pi_1+\pi_0=1$. In particular it is positive for all $t$ sufficiently negative, so $\mathrm{Precision}(t)$ is defined there. Since the limit of the denominator is $1\neq0$, the quotient rule for limits gives
 $$
-\lim_{t\to+\infty} \mathbb{P}(X_y \ge t) = 0, \qquad y \in \{0,1\}.
-$$
-Thus,
-$$
-\lim_{t\to+\infty} \mathrm{Recall}(t) = 0, \qquad \lim_{t\to+\infty} \mathrm{Precision}(t) = 1,
-$$
-and therefore
-$$
-\boxed{\lim_{t\to+\infty} \bigl(\mathrm{Recall}(t),\mathrm{Precision}(t)\bigr) = (0,1).}
-$$
-
-**Step 2: Limit as $t\to-\infty$**
-
-Similarly,
-$$
-\mathbb{P}(X_y \ge t) \longrightarrow 1 \quad \text{as } t\to-\infty, \qquad y \in \{0,1\},
-$$
-since $X_0$ and $X_1$ are almost surely finite. Hence,
-$$
-\lim_{t\to-\infty} \mathrm{Recall}(t) = 1, \qquad \lim_{t\to-\infty} \mathrm{Precision}(t) = \pi_1,
-$$
-and therefore
-$$
-\boxed{\lim_{t\to-\infty} \bigl(\mathrm{Recall}(t),\mathrm{Precision}(t)\bigr) = (1, \pi_1).}
+\mathrm{Precision}(t)\longrightarrow\frac{\pi_1\cdot1}{\pi_1\cdot1+\pi_0\cdot1}=\pi_1.
 $$
 
 :::
 ::::
+
+
+**Remark (the other end, $\mathrm{Recall}\to0$).** The limit as $t\to+\infty$ is *not* universal: numerator and denominator of $\mathrm{Precision}(t)$ both tend to $0$, and
+$$
+\mathrm{Precision}(t)=\Bigl(1+\frac{\pi_0}{\pi_1}\,\frac{\mathbb P(X_0\ge t)}{\mathbb P(X_1\ge t)}\Bigr)^{-1}
+$$
+is governed by the tail ratio $\mathbb P(X_0\ge t)/\mathbb P(X_1\ge t)$. For instance:
+
+- $X_y\sim\mathcal N(\mu_y,\sigma^2)$ with $\mu_1>\mu_0$: the ratio tends to $0$, and the curve ends at $(0,1)$.
+- $X_0\stackrel{d}{=}X_1$: the ratio is $\equiv1$, and the curve ends at $(0,\pi_1)$.
+- $X_y\sim\mathcal N(\mu_y,\sigma^2)$ with $\mu_1<\mu_0$: the ratio tends to $+\infty$, and the curve ends at $(0,0)$.
 
 
 
 ### Extreme Cases
 
-Throughout, recall the convention $\mathrm{Precision}(t):=1$ whenever $\mathbb P(X\ge t)=0$ for both classes simultaneously (nothing is predicted positive, so the ratio $0/0$ is resolved by this standing convention).
 
 #### Perfect Classifier
 
@@ -1536,7 +1512,8 @@ $$
 $$
 Then $(\mathrm{Recall}(t),\mathrm{Precision}(t))$ traces exactly two pieces as $t$ ranges over $\mathbb R$:
 
-- for $t\ge t^\dagger$: $\mathrm{Recall}(t)\equiv0$, $\mathrm{Precision}(t)\equiv0$ — this entire half-line **collapses to the single point $(0,0)$**;
+- for $t\ge t^\dagger$: $\mathrm{Recall}(t)\equiv0$, $\mathrm{Precision}(t)\equiv0$
+- 
 - for $t\le t^\dagger$: $\mathrm{FPR}(t)\equiv1$, and $r:=\mathrm{Recall}(t)$ sweeps $[0,1]$ continuously as $t\to-\infty$, tracing
 $$
 \boxed{\mathrm{Precision}(r) = \frac{\pi_1\,r}{\pi_1\,r + \pi_0}, \qquad r\in[0,1].}
@@ -1570,11 +1547,11 @@ As $t$ decreases from $t^\dagger$ to $-\infty$, $r=\mathrm{TPR}(t)$ increases fr
 
 # PR curve under random guessing
 
-Suppose $X_0 \stackrel{d}{=} X_1$, and consider $\hat{Y}_t(X) = \mathbb{1}\{X \geq t\}$. Then, for every $t$ with $\mathbb P(X_0\ge t)>0$,
+Suppose $X_0 \stackrel{d}{=} X_1$, and let $\hat{Y}_t(X) = \mathbb{1}\{X \geq t\}$. Write $p(t):=\mathbb P(X_0\ge t)=\mathbb P(X_1\ge t)$. Then $\mathrm{Precision}(t)$ is defined if and only if $p(t)>0$, and in that case
 $$
-\boxed{\mathrm{Precision}(t) = \pi_1.}
+\boxed{\mathrm{Recall}(t)=p(t), \qquad \mathrm{Precision}(t) = \pi_1.}
 $$
-Consequently the PR curve is the horizontal line $\mathrm{Precision}=\pi_1$: at every finite threshold for unbounded-support models (Gaussian, Cauchy, Logistic, Gumbel, ...); outside the support for bounded models, where instead $\mathrm{Precision}$ jumps to $1$ by convention.
+Consequently the PR curve $\{(\mathrm{Recall}(t),\mathrm{Precision}(t)) : p(t)>0\}$ is contained in the horizontal line $\mathrm{Precision}=\pi_1$.
 
 ::::
 
@@ -1585,17 +1562,26 @@ Consequently the PR curve is the horizontal line $\mathrm{Precision}=\pi_1$: at 
 
 ::: {#proof-content-thm-random-pr-guessing .proof-content}
 
-Since $X_0 \stackrel{d}{=} X_1$, $\mathbb{P}(X_0 \ge t) = \mathbb{P}(X_1 \ge t) =: p(t)$ for every $t$. For $p(t)>0$,
+By definition, $\mathrm{Recall}(t)=\mathbb P(X_1\ge t)$ and
 $$
-\mathrm{Precision}(t) = \frac{\pi_1\,p(t)}{\pi_1\,p(t) + \pi_0\,p(t)} = \pi_1,
+\mathrm{Precision}(t)=\mathbb P(Y=1\mid\hat Y_t=1)=\frac{\pi_1\,\mathbb P(X_1\ge t)}{\pi_1\,\mathbb P(X_1\ge t)+\pi_0\,\mathbb P(X_0\ge t)},
 $$
-$p(t)$ cancelling since it strictly positive. The caveat $p(t)>0$ is needed only because at $p(t)=0$ both counts vanish and the convention sets $\mathrm{Precision}:=1$ instead (matching $\pi_1$ only when $\pi_1=1$).
+which is defined if and only if the denominator $\mathbb P(\hat Y_t=1)$ is positive. Since $X_0\stackrel d=X_1$, both tail probabilities equal $p(t)$, so $\mathrm{Recall}(t)=p(t)$ and the denominator equals $(\pi_1+\pi_0)\,p(t)=p(t)$. Hence $\mathrm{Precision}(t)$ is defined if and only if $p(t)>0$, and then
+$$
+\mathrm{Precision}(t)=\frac{\pi_1\,p(t)}{p(t)}=\pi_1.
+$$
 
 :::
 ::::
 
-**Interpretation.** Together, these three cases show $\mathrm{Recall}=1$ is the only universal endpoint: $\mathrm{Precision}(1)=\pi_1$ always (@lem-roc-endpoints + @thm-precision-formula, no extra hypothesis). $\mathrm{Recall}=0$ is model-dependent — $1$ for the perfect classifier, $\pi_1$ for random guessing, $0$ here — spanning the full range, which is why the earlier Gaussian and exponential derivations needed tail-rate arguments (Mills' ratio; a power-law comparison) to pin it down: unlike the $\mathrm{Recall}=1$ endpoint, it is never free.
 
+
+**Interpretation.** The three cases show an asymmetry between the two ends of the PR curve.
+
+- **$\mathrm{Recall}=1$ is the universal endpoint.** It is reached as $t\to-\infty$, where the classifier labels *everything* positive. Precision is then simply the base rate, $\mathrm{Precision}=\pi_1$, whatever the score distributions are (@lem-roc-endpoints + @thm-precision-formula, no extra hypothesis). The perfect, random and always-wrong classifiers all pass through $(1,\pi_1)$.
+- **$\mathrm{Recall}=0$ is model-dependent.** It is reached as $t\to+\infty$, where the classifier labels almost nothing positive, and $\mathrm{Precision}$ measures the purity of the *extreme upper tail* of the scores. That purity is not determined by $\pi_1$ or by the ROC endpoints alone, but by the tail ratio $\mathbb P(X_0\ge t)/\mathbb P(X_1\ge t)$. The limit can take any value in $[0,1]$: $1$ for the perfect classifier (the top scores are all positives), $\pi_1$ for random guessing (the top scores carry no information), and $0$ for the always-wrong classifier (the top scores are all negatives).
+
+This is why the earlier Gaussian and exponential derivations needed tail-rate arguments (Mills' ratio; a power-law comparison) to determine the $\mathrm{Recall}=0$ end. Unlike the $\mathrm{Recall}=1$ endpoint, it is never given for free.
 
 
 

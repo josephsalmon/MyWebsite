@@ -97,7 +97,7 @@ function prPoint(t, prevalence) {
   const precision =
     denominator > 0
       ? (pi * pt.tpr) / denominator
-      : pi;
+      : NaN;   // 0/0: precision undefined, not a point of the curve
 
   return {
     recall: pt.tpr,
@@ -135,7 +135,7 @@ function reversedTestPrPoint(t, prevalence) {
   const precision =
     denominator > 0
       ? (pi * (1 - pt.tpr)) / denominator
-      : pi;
+      : NaN;   // 0/0: precision undefined, not a point of the curve
 
   return {
     recall,
@@ -174,7 +174,7 @@ function classInversionPrPoint(t, prevalence) {
   const precision =
     denominator > 0
       ? (pi0 * pt.fpr) / denominator
-      : pi0;
+      : NaN;   // 0/0: precision undefined, not a point of the curve
 
   return {
     recall,
@@ -213,7 +213,7 @@ function classInversionReversedPrPoint(t, prevalence) {
   const precision =
     denominator > 0
       ? (pi0 * (1 - pt.fpr)) / denominator
-      : pi0;
+      : NaN;   // 0/0: precision undefined, not a point of the curve
 
   return {
     recall,
@@ -226,7 +226,7 @@ function classInversionReversedPrPoint(t, prevalence) {
 // Generate a PR curve
 // -------------------------------------------------------------------
 
-function prCurve(pointFn, prevalence, tMin, tMax, num = 400) {
+function prCurve(pointFn, prevalence, tMin, tMax, endpointPrecision, num = 400) {
 
   const recall = [];
   const precision = [];
@@ -238,6 +238,10 @@ function prCurve(pointFn, prevalence, tMin, tMax, num = 400) {
       (tMax - tMin) * i / num;
 
     const pt = pointFn(t, prevalence);
+
+    // Precision is undefined where no positive is predicted (0/0):
+    // such thresholds are not points of the curve.
+    if (!Number.isFinite(pt.precision)) continue;
 
     recall.push(pt.recall);
     precision.push(pt.precision);
@@ -251,13 +255,19 @@ function prCurve(pointFn, prevalence, tMin, tMax, num = 400) {
   const x = idx.map(i => recall[i]);
   const y = idx.map(i => precision[i]);
 
-  // Universal endpoint (recall = 1, precision = prevalence), reached as
-  // t -> -infinity. Over a finite threshold range the curve may stop just
-  // short of it, so always append it explicitly.
+  // Endpoint at recall = 1. It is the limit of the curve where the
+  // classifier labels *every* sample as positive, so its height is the
+  // base rate of the class that is treated as positive:
+  //
+  //   original / threshold reversal          -> pi       (positive = Y=1)
+  //   class swap / class swap + reversal     -> 1 - pi   (positive = Y=0)
+  //
+  // Over a finite threshold range the curve may stop just short of it,
+  // so append it explicitly.
   x.push(1);
-  y.push(prevalence);
+  y.push(endpointPrecision);
 
-  return { x, y };
+  return { x, y, endpointPrecision };
 }
 
 
@@ -265,10 +275,10 @@ function prCurve(pointFn, prevalence, tMin, tMax, num = 400) {
 // Marker for the universal endpoint (1, pi)
 // -------------------------------------------------------------------
 
-function endpointMarker({ color, prevalence, legend, legendgroup, legendrank, size = 7 }) {
+function endpointMarker({ color, precision, legend, legendgroup, legendrank, size = 7 }) {
   return {
     x: [1],
-    y: [prevalence],
+    y: [precision],
     mode: 'markers',
     legend,
     legendgroup,
@@ -280,7 +290,7 @@ function endpointMarker({ color, prevalence, legend, legendgroup, legendrank, si
       line: { color: 'white', width: 1 },
     },
     showlegend: false,
-    hovertemplate: 'Recall = 1<br>Precision = \u03c0 = %{y:.2f}<extra></extra>',
+    hovertemplate: 'Recall = 1<br>Precision = %{y:.2f}<extra></extra>',
   };
 }
 
@@ -357,7 +367,6 @@ function curveAndPoint(
     legend,
     legendrank,
     markerSize = 10,
-    prevalence,
     endpointSize = 7,
   }
 ) {
@@ -407,7 +416,7 @@ function curveAndPoint(
 
     endpointMarker({
       color,
-      prevalence,
+      precision: curve.endpointPrecision,
       legend,
       legendgroup,
       legendrank,
@@ -576,7 +585,8 @@ export async function initGaussianSymmetricPrWidget(container) {
         prPoint,
         prevalence,
         tMin,
-        tMax
+        tMax,
+        prevalence
       );
 
     const reversedTestCurve =
@@ -584,7 +594,8 @@ export async function initGaussianSymmetricPrWidget(container) {
         reversedTestPrPoint,
         prevalence,
         tMin,
-        tMax
+        tMax,
+        prevalence
       );
 
     const classInversionCurve =
@@ -592,7 +603,8 @@ export async function initGaussianSymmetricPrWidget(container) {
         classInversionPrPoint,
         prevalence,
         tMin,
-        tMax
+        tMax,
+        1 - prevalence
       );
 
     const classInversionReversedCurve =
@@ -600,7 +612,8 @@ export async function initGaussianSymmetricPrWidget(container) {
         classInversionReversedPrPoint,
         prevalence,
         tMin,
-        tMax
+        tMax,
+        1 - prevalence
       );
 
 
@@ -728,7 +741,6 @@ export async function initGaussianSymmetricPrWidget(container) {
           markerSize:
             scaleMarker(16),
 
-          prevalence,
           endpointSize: scaleMarker(7),
         }
       ),
@@ -779,7 +791,6 @@ export async function initGaussianSymmetricPrWidget(container) {
           markerSize:
             scaleMarker(10),
 
-          prevalence,
           endpointSize: scaleMarker(7),
         }
       ),
@@ -805,7 +816,6 @@ export async function initGaussianSymmetricPrWidget(container) {
           markerSize:
             scaleMarker(10),
 
-          prevalence,
           endpointSize: scaleMarker(7),
         }
       ),
@@ -831,7 +841,6 @@ export async function initGaussianSymmetricPrWidget(container) {
           markerSize:
             scaleMarker(10),
 
-          prevalence,
           endpointSize: scaleMarker(7),
         }
       ),
@@ -888,7 +897,7 @@ export async function initGaussianSymmetricPrWidget(container) {
 
       endpointMarker({
         color: COLORS.perfect,
-        prevalence,
+        precision: prevalence,
         legend: 'legend',
         legendgroup: 'curve-Perfect',
         legendrank: 301,
@@ -921,7 +930,7 @@ export async function initGaussianSymmetricPrWidget(container) {
 
       endpointMarker({
         color: COLORS.random,
-        prevalence,
+        precision: prevalence,
         legend: 'legend',
         legendgroup: 'curve-Random',
         legendrank: 302,
@@ -954,7 +963,7 @@ export async function initGaussianSymmetricPrWidget(container) {
 
       endpointMarker({
         color: COLORS.wrong,
-        prevalence,
+        precision: prevalence,
         legend: 'legend',
         legendgroup: 'curve-Always wrong',
         legendrank: 303,
