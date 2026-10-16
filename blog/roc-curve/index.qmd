@@ -1587,6 +1587,15 @@ This is why the earlier Gaussian and exponential derivations needed tail-rate ar
 
 
 
+##### Summary and visualization
+
+Unlike in ROC space, none of the three transformations (threshold reversal, class label swap, and their composition) has a simple geometric description in PR space: there is no reflection or rotation of the original PR curve that produces the transformed curves. The map $(\mathrm{FPR},\mathrm{TPR})\mapsto(\mathrm{Recall},\mathrm{Precision})$ is nonlinear and depends on the prevalence $\pi_1=\mathbb P(Y=1)$, and each transformation also changes the role of the positive class.
+Each transformed curve must therefore be recomputed from the definitions of precision and recall. Consequently, the transformed curves generally have a different shape from the original one, and, unlike the ROC curve, they all depend on $\pi_1$. What remains simple is the endpoint at $\mathrm{Recall}=1$: it is $(1,\pi_1)$ for the original curve and the threshold reversal, and $(1,1-\pi_1)$ for the two curves with swapped labels.
+You can verify this directly with the interactive below.
+
+**Interactive PR curve exploration.** The visualization below illustrates these properties for the same Gaussian model $X\mid Y=0\sim\mathcal N(0,1)$, $X\mid Y=1\sim\mathcal N(1,2^2)$ as before. 
+Use the **Threshold ($t$)** slider to move along the PR curve and watch the operating point change, together with the corresponding points on the transformed curves. The **Prevalence ($\pi_1$)** slider shows that, unlike the ROC curve, the PR curve and its transformations are reshaped by the class balance, and the endpoints at $\mathrm{Recall}=1$ move with it. The plot also shows the threshold-reversed and class-swapped curves described above, as well as the extreme cases (perfect, random and always-wrong classifiers). Click an entry in the legend to show or hide the corresponding curve.
+
 ::: {#fig-gaussian-symmetric-pr}
 
 ```{=html}
@@ -1623,152 +1632,106 @@ This is why the earlier Gaussian and exponential derivations needed tail-rate ar
 
 
 
-### Precision and Recall via a sigmoid and an exponential
+## PR curve zoology for classic distributions
 
-Define, at threshold $t$, the **surprisals**
-$$
-x_w(t) := -\log\mathrm{TPR}(t), \qquad x_\phi(t) := -\log\mathrm{FPR}(t), \qquad \kappa := \log\frac{\pi_1}{\pi_0}
-$$
-(so $x_w,x_\phi>0$, and $\kappa$ is the log prior odds *for* the positive class), and set
-$$
-z(t) := \kappa + x_\phi(t) - x_w(t).
-$$
-
-:::: {#lem-precision-sigmoid}
-
-# Precision as a sigmoid, Recall as an exponential
-
-$$
-\boxed{
-\mathrm{Precision}(t) = \sigma\bigl(z(t)\bigr) = \frac{1}{1+e^{-z(t)}}, \qquad \mathrm{Recall}(t) = e^{-x_w(t)}.
-}
-$$
-
-::::
-
-:::: {.proof-container}
-::: {.proof-header onclick="toggleProof('lem-precision-sigmoid')"}
-[▶]{#proof-arrow-lem-precision-sigmoid .proof-arrow} [Proof]{.proof-title}
-:::
-
-::: {#proof-content-lem-precision-sigmoid .proof-content}
-By @thm-precision-formula,
-$$
-\frac{\mathrm{Precision}(t)}{1-\mathrm{Precision}(t)} = \frac{\pi_1\,\mathrm{TPR}(t)}{\pi_0\,\mathrm{FPR}(t)} = \frac{\pi_1}{\pi_0}\cdot\frac{e^{-x_w}}{e^{-x_\phi}} = \frac{\pi_1}{\pi_0}\,e^{x_\phi-x_w} = e^{\kappa+x_\phi-x_w} = e^{z}.
-$$
-Solving $\dfrac{p}{1-p}=e^z$ for $p$ gives $p=\dfrac1{1+e^{-z}}=\sigma(z)$. And $\mathrm{Recall}(t)=\mathrm{TPR}(t)=e^{-x_w(t)}$ by definition of $x_w$.
-:::
-
-::::
-
-This is the requested form: $\mathrm{Precision}=\sigma(z)$ with $z=\log(\pi_1/\pi_0)+\log(\mathrm{TPR}/\mathrm{FPR})=\kappa+x_\phi-x_w$ read directly as "log prior odds plus weight of evidence for the positive class," and $\mathrm{Recall}=e^{-x_w}$ reads off directly from $\mathrm{TPR}=e^{-x_w}$.
-
-### The three transformations, directly via $\mathrm{TPR}=e^{-x_w}$, $\mathrm{FPR}=e^{-x_\phi}$
-
-:::: {#thm-three-transforms-exp}
-
-# Reversed rule, class inversion, and their composite, in $(x_w,x_\phi,\kappa)$
-
-**Reversed rule** ($\rho$, prevalence — hence $\kappa$ — unchanged):
-$$
-\boxed{x_w' = -\log\bigl(1-e^{-x_w}\bigr), \qquad x_\phi' = -\log\bigl(1-e^{-x_\phi}\bigr), \qquad \kappa'=\kappa.}
-$$
-
-**Class inversion** ($\delta$): a **plain swap**, together with a sign flip of $\kappa$,
-$$
-\boxed{x_w' = x_\phi, \qquad x_\phi' = x_w, \qquad \kappa' = -\kappa.}
-$$
-
-**Class inversion + reversed rule** ($\rho\delta=\delta\rho$):
-$$
-\boxed{x_w' = -\log\bigl(1-e^{-x_\phi}\bigr), \qquad x_\phi' = -\log\bigl(1-e^{-x_w}\bigr), \qquad \kappa'=-\kappa.}
-$$
-
-In every case, by @lem-precision-sigmoid applied to the transformed problem, $\mathrm{Recall}'=e^{-x_w'}$ and $\mathrm{Precision}'=\sigma(z')$ with $z':=\kappa'+x_\phi'-x_w'$.
-
-::::
-
-:::: {.proof-container}
-::: {.proof-header onclick="toggleProof('thm-three-transforms-exp')"}
-[▶]{#proof-arrow-thm-three-transforms-exp .proof-arrow} [Proof]{.proof-title}
-:::
-
-::: {#proof-content-thm-three-transforms-exp .proof-content}
-
-**Reversed rule.** $\rho$ replaces $\mathrm{TPR}$ by $\mathrm{TPR}'=1-\mathrm{TPR}=1-e^{-x_w}$, so
-$$
-x_w' = -\log\mathrm{TPR}'(t) = -\log\bigl(1-e^{-x_w}\bigr),
-$$
-and symmetrically $x_\phi'=-\log(1-e^{-x_\phi})$, from $\mathrm{FPR}'=1-e^{-x_\phi}$. The prevalence, hence $\kappa$, is untouched by $\rho$.
-
-**Class inversion.** $\delta$ swaps the classes: the new $\mathrm{TPR}'(t)=\mathbb P(\text{old }X_0\ge t)=\mathrm{FPR}(t)=e^{-x_\phi}$, so $x_w'=x_\phi$; symmetrically $\mathrm{FPR}'(t)=\mathrm{TPR}(t)=e^{-x_w}$, so $x_\phi'=x_w$. The new positive-class prevalence is $\pi_0$, giving $\kappa'=\log(\pi_0/\pi_1)=-\kappa$.
-
-**Composite.** Apply $\delta$ then $\rho$: $(x_w,x_\phi,\kappa)\xrightarrow{\delta}(x_\phi,x_w,-\kappa)\xrightarrow{\rho}\bigl(-\log(1-e^{-x_\phi}),\,-\log(1-e^{-x_w}),\,-\kappa\bigr)$, matching the boxed statement (the $\rho$ step leaves the already-flipped $\kappa$ unchanged). Applying $\rho$ then $\delta$ instead gives the same triple by the identical swap argument, confirming $\rho\delta=\delta\rho$.
-:::
-
-::::
-
-:::: {#lem-reversed-rule-exp-involution}
-
-# The reversed-rule map on $x_w$ (or $x_\phi$) is an involution
-
-Writing $x\mapsto -\log(1-e^{-x})$ for either coordinate's reversed-rule update, applying it twice returns $x$.
-
-::::
-
-:::: {.proof-container}
-::: {.proof-header onclick="toggleProof('lem-reversed-rule-exp-involution')"}
-[▶]{#proof-arrow-lem-reversed-rule-exp-involution .proof-arrow} [Proof]{.proof-title}
-:::
-
-::: {#proof-content-lem-reversed-rule-exp-involution .proof-content}
-Consistent with $\rho^2=\mathrm{id}$ on the underlying decision rule: apply the map twice,
-$$
--\log\Bigl(1-e^{-\bigl(-\log(1-e^{-x})\bigr)}\Bigr) = -\log\bigl(1-(1-e^{-x})\bigr) = -\log(e^{-x}) = x.
-$$
-:::
-
-::::
-
-**Summary.** No auxiliary function name is introduced: everything is stated directly as an update rule on the surprisals $x_w=-\log\mathrm{TPR}$, $x_\phi=-\log\mathrm{FPR}$ themselves, matching the definitions fixed in @lem-precision-sigmoid, with $\mathrm{Precision}$ now reading cleanly as $\sigma(z)$ — the sigmoid of prior log-odds plus weight of evidence, with no extra minus sign to track. Class inversion is a bare coordinate swap plus a sign flip of the scalar $\kappa$; reversed rule updates each surprisal by the one-line formula $x\mapsto-\log(1-e^{-x})$, applied identically and independently to both coordinates; the composite is their combination. @lem-reversed-rule-exp-involution records, as a one-line check, that this update is self-inverse — matching the fact that $\rho$ itself is an involution on the decision rule.
-
-
-
-
-
-
-**Why this is the clean form.** Three improvements over every earlier attempt: (i) reversed rule is now **exactly coordinatewise**, and moreover uses the identical function $g$ on both $w$ and $\phi$ — no per-class asymmetry of the kind that appeared in the $(u,v)$-softmax version (there, the two coordinates transformed via $\log(\pi_1-e^u)$ and $\log(\pi_0-e^v)$, differing by which prevalence entered); (ii) class inversion is a bare coordinate swap plus a sign flip on the single scalar $\kappa$, with no per-point computation at all; (iii) $g$ is a genuine involution (@lem-g-involution), matching the fact that $\rho$ itself is an involution on the underlying decision rule — a consistency check that has no analogue in the $q$- or $\ell$-space formulas, where the algebraic form of $\rho$ gave no visible hint that $\rho^2=\mathrm{id}$.
-
-**Recovering earlier results.** Setting $\kappa=0$ (equivalently $\pi_1=\pi_0=\tfrac12$) recovers the random-guessing baseline's symmetric role; the sign-flip on $\kappa$ under class inversion, combined with $z=\kappa+\phi-w$, gives $z'=-\kappa+g(\phi)-g(w)$ under the composite — expanding $g$ is a strictly more work-intensive route to @cor-class-inversion-precision-flip's clean $p'=1-p$ than working with $z$ and $\kappa$ alone (as in @thm-three-transforms-logit), which remains the right tool for *that* specific fact; the present $(w,\phi,\kappa)$ system is instead the right tool for the reversed-rule and composite transforms, which is exactly where the earlier coordinates fell short.
-
-
-
----
-
-## Invariance under strictly monotone transformations
-
-A strictly increasing bijective transformation preserves the fundamental geometry of Precision-Recall curves, though the interpretation differs from ROC curves.
-If $g$ is strictly increasing, the PR curve of $g(X)$ is identical to that of $X$, with only the threshold parametrization transformed via $t \mapsto g^{-1}(t)$.
-
-
-:::: {#thm-pr-bijective-transform}
-
-### PR operating points under a bijective transformation
-
-Let $X$ be a real-valued diagnostic marker, and assume that the conditional distributions of $X$ given $Y=0$ and $Y=1$ are **continuous**. For a threshold $t \in \mathbb{R}$, define
-
+Below we summarize the Precision-Recall curves for the same location-scale families as in the ROC case, along with the exponential case.
+Throughout, we assume that $Z_0, Z_1$ are independent and identically distributed with a common continuous CDF $F$, and we define the location-scale variables
 $$
 \begin{align*}
-\mathrm{Recall}_X(t) & = \mathbb{P}(X \ge t \mid Y = 1) \\
-\mathrm{Precision}_X(t) & = \frac{\pi_1 \mathbb{P}(X \ge t \mid Y = 1)}{\pi_1 \mathbb{P}(X \ge t \mid Y = 1) + \pi_0 \mathbb{P}(X \ge t \mid Y = 0)}.
+X_0 & = \sigma_0 Z_0 + \mu_0,\\
+X_1 & = \sigma_1 Z_1 + \mu_1,
 \end{align*}
 $$
+where $\sigma_0,\sigma_1>0$ and $\mu_0,\mu_1\in\mathbb R$. Unlike the ROC curve, the PR curve also depends on the prevalence $\pi_1=\mathbb P(Y=1)$, with $\pi_0=1-\pi_1$. We use the notation:
 
-Let $g: \mathbb{R} \to \mathbb{R}$ be a strictly increasing bijection. Then the operating characteristics of $g(X)$ are:
+- $\Delta = (\mu_1 - \mu_0) / \sigma_1$ (standardized separation)
+- $\rho = \sigma_0 / \sigma_1 > 0$ (scale ratio)
+- $\Phi(z) = \int_{-\infty}^z \frac{1}{\sqrt{2\pi}} e^{-u^2/2} \, du$ (standard Gaussian CDF)
+- $[x]_0^1 = \max(0, \min(1, x))$ (clipping function)
+- $G(r)$: the FPR of the threshold whose recall is $r$.
 
+The PR curve is parametrized by recall $r\in(0,1)$. Since $\mathrm{Recall}=\mathrm{TPR}=r$ and $\mathrm{FPR}=G(r)$,
+$$
+\mathrm{Precision}(r)=\frac{\pi_1\,r}{\pi_1\,r+\pi_0\,G(r)}=\Bigl(1+\frac{\pi_0}{\pi_1}\,\frac{G(r)}{r}\Bigr)^{-1},
+$$
+so each distribution is described by its $G$. This is the ROC curve read in the other direction ($\mathrm{FPR}$ as a function of $\mathrm{TPR}$), and it does not depend on $\pi_1$.
+
+::: {style="font-size:90%; margin: 1em 0;"}
+ | Law of $Z$ | CDF $F(z)$ | $G(r)=\mathrm{FPR}$ at $\mathrm{Recall}=r$ | Symmetric |
+ |------------|-------------|------------------------|:---------:|
+ | **Gaussian** | $\Phi(z)$ | $\Phi\bigl((\Phi^{-1}(r)-\Delta)/\rho\bigr)$ | ✓ |
+ | **Cauchy** | $\tfrac{1}{2} + \tfrac{\tan^{-1}z}{\pi}$ | $\tfrac{1}{2} + \tfrac{1}{\pi}\tan^{-1}\!\Bigl(\tfrac{\tan(\pi(r - \frac{1}{2})) - \Delta}{\rho}\Bigr)$ | ✓ |
+ | **Logistic** | $\dfrac{1}{1 + e^{-z}}$ | $\dfrac{r^{1/\rho}}{r^{1/\rho} + e^{\Delta/\rho}(1 - r)^{1/\rho}}$ | ✓ |
+ | **Uniform** $(-\tfrac{1}{2}, \tfrac{1}{2})$ | $\bigl[z + \tfrac{1}{2}\bigr]_0^1$ | $\Bigl[\dfrac{r-\Delta-\frac{1-\rho}{2}}{\rho}\Bigr]_0^1$ | ✓ |
+ | **Gumbel** | $\exp\bigl(-e^{-z}\bigr)$ | $1 - \exp\Bigl(-e^{-\Delta/\rho}\bigl(-\ln(1 - r)\bigr)^{1/\rho}\Bigr)$ | ✗ |
+ | **Exp.** | $(1 - e^{-z})_+$ | $\min\bigl(e^{-\Delta/\rho}\, r^{1/\rho},\ 1\bigr)$ | ✗ |
+
+: FPR as a function of recall, for common distributions. The precision is $\mathrm{Precision}(r)=\bigl(1+\tfrac{\pi_0}{\pi_1}\tfrac{G(r)}{r}\bigr)^{-1}$. {#tbl-distributions-pr .striped .hover}
+:::
+
+
+
+
+### PR curve for location-scale family
+
+:::: {#thm-location-scale-pr}
+
+## Location-scale PR curve
+
+Under the hypotheses of @thm-location-scale-roc, let $\pi_1\in(0,1)$ and $\pi_0=1-\pi_1$. Then for every $r\in(0,1)$ there is a unique threshold $t_r$ with $\mathrm{Recall}(t_r)=r$, and
+$$
+\boxed{\mathrm{FPR}(t_r)=G(r):=1-F\Bigl(\frac{F^{-1}(1-r)+\Delta}{\rho}\Bigr)}
+\tag{$\star\star$}
+$$
+$$
+\boxed{\mathrm{Precision}(t_r)=\frac{\pi_1\,r}{\pi_1\,r+\pi_0\,G(r)}}
+\tag{$\star\star\star$}
+$$
+Equivalently, $\dfrac{\mathrm{Precision}(t_r)}{1-\mathrm{Precision}(t_r)}=\dfrac{\pi_1}{\pi_0}\cdot\dfrac{r}{G(r)}$, so the prevalence only rescales the odds.
+
+::::
+
+:::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('thm-location-scale-pr')"}
+
+[▶]{#proof-arrow-thm-location-scale-pr .proof-arrow} [Proof]{.proof-title}
+
+:::
+
+::: {#proof-content-thm-location-scale-pr .proof-content}
+
+**Threshold.** Since $\mathrm{Recall}(t)=\mathrm{TPR}(t)=1-F\bigl(\tfrac{t-\mu_1}{\sigma_1}\bigr)$, the equation $\mathrm{Recall}(t)=r$ reads $F\bigl(\tfrac{t-\mu_1}{\sigma_1}\bigr)=1-r\in(0,1)$. As $F$ is strictly increasing on $\{0<F<1\}$, its unique solution is
+$$
+t_r=\mu_1+\sigma_1F^{-1}(1-r).
+$$
+
+**FPR.** At $t_r$,
+$$
+\frac{t_r-\mu_0}{\sigma_0}=\frac{\sigma_1F^{-1}(1-r)+\mu_1-\mu_0}{\sigma_0}=\frac{F^{-1}(1-r)+\Delta}{\rho},
+$$
+so $\mathrm{FPR}(t_r)=1-F\bigl(\tfrac{t_r-\mu_0}{\sigma_0}\bigr)=G(r)$, which is ($\star\star$).
+
+**Precision.** By definition,
+$$
+\mathrm{Precision}(t)=\frac{\pi_1\,\mathrm{TPR}(t)}{\pi_1\,\mathrm{TPR}(t)+\pi_0\,\mathrm{FPR}(t)},
+$$
+whose denominator is at least $\pi_1 r>0$ at $t=t_r$. Substituting $\mathrm{TPR}(t_r)=r$ and $\mathrm{FPR}(t_r)=G(r)$ gives ($\star\star\star$). Writing $P:=\mathrm{Precision}(t_r)$, we get $1-P=\dfrac{\pi_0G(r)}{\pi_1r+\pi_0G(r)}$, and dividing $P$ by $1-P$ gives the odds identity.
+
+:::
+
+::::
+
+### Corollary: symmetric location-scale PR
+
+:::: {#cor-symmetric-pr}
+
+## Symmetric location-scale PR curve
+
+Under the hypotheses of @thm-location-scale-pr, suppose in addition that $F(-x)=1-F(x)$ for every $x\in\mathbb R$. Then for every $r\in(0,1)$,
 $$
 \boxed{
-\mathrm{Recall}_{g(X)}(t) = \mathrm{Recall}_X(g^{-1}(t)), \quad \mathrm{Precision}_{g(X)}(t) = \mathrm{Precision}_X(g^{-1}(t)).
+G(r)=F\Bigl(\frac{F^{-1}(r)-\Delta}{\rho}\Bigr).
 }
 $$
 
@@ -1776,286 +1739,85 @@ $$
 
 :::: {.proof-container}
 
-::: {.proof-header onclick="toggleProof('thm-pr-bijective-transform')"}
-[▶]{#proof-arrow-thm-pr-bijective-transform .proof-arrow} **Proof**
-:::
+::: {.proof-header onclick="toggleProof('cor-symmetric-pr')"}
 
-::: {#proof-content-thm-pr-bijective-transform .proof-content}
-
-Since $g$ is a strictly monotone bijection, so is $g^{-1}$. By assumption, the conditional law of $X$ given $Y = y$ has no atoms, so
-
-$$
-\mathbb{P}(X = s \mid Y = y) = 0 \quad \text{for all } s \in \mathbb{R}, \, y \in \{0, 1\}.
-$$
-
-Consequently, for every $s \in \mathbb{R}$ and $y \in \{0, 1\}$,
-
-$$
-\mathbb{P}(X \ge s \mid Y = y) = \mathbb{P}(X > s \mid Y = y), \quad \mathbb{P}(X \le s \mid Y = y) = 1 - \mathbb{P}(X \ge s \mid Y = y).
-$$
-
-#### Step 1: Increasing transformation
-
-If $g$ is strictly increasing, then $g^{-1}$ is also strictly increasing. The events $\{g(X) \ge t\}$ and $\{X \ge g^{-1}(t)\}$ coincide:
-
-$$
-g(X) \ge t \iff X \ge g^{-1}(t).
-$$
-
-Thus, for $y \in \{0, 1\}$,
-
-$$
-\mathbb{P}(g(X) \ge t \mid Y = y) = \mathbb{P}(X \ge g^{-1}(t) \mid Y = y).
-$$
-
-Specializing to $y = 1$ for recall and using the definition of precision:
-
-$$
-\mathrm{Recall}_{g(X)}(t) = \mathrm{Recall}_X(g^{-1}(t)),
-$$
-
-$$
-\begin{align*}
-\mathrm{Precision}_{g(X)}(t)
-& = \frac{\pi_1 \mathbb{P}(g(X) \ge t \mid Y = 1)}{\pi_1 \mathbb{P}(g(X) \ge t \mid Y = 1) + \pi_0 \mathbb{P}(g(X) \ge t \mid Y = 0)} \\
-& = \mathrm{Precision}_X(g^{-1}(t)).
-\end{align*}
-$$
-
-Thus, the PR curve of $g(X)$ is identical to that of $X$. As $t$ ranges over $\mathbb{R}$, so does $g^{-1}(t)$, and the map $t \mapsto g^{-1}(t)$ is an order-preserving bijection of thresholds.
-
+[▶]{#proof-arrow-cor-symmetric-pr .proof-arrow} [Proof]{.proof-title}
 
 :::
-::::
 
+::: {#proof-content-cor-symmetric-pr .proof-content}
 
-
-<div id="gaussian-symmetric-pr-interactive"
-     class="gaussian-symmetric-pr-interactive"
-     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap;
-            max-width:100%; overflow-x:auto; width:fit-content; margin:0 auto;
-            font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
-
-  <div class="gaussian-symmetric-pr-controls"
-       style="display:flex; flex-direction:column; justify-content:center;
-              min-width:200px; flex:0 0 200px;
-              border:1px solid rgba(0,0,0,0.15);
-              border-radius:8px; padding:8px; font-size:9.5px;
-              background:rgba(0,0,0,0.02);">
-  </div>
-
-  <div class="gaussian-symmetric-pr-plot"
-       style="flex:0 0 auto;
-              display:flex; align-items:center; justify-content:center;">
-  </div>
-
-</div>
-
-<script type="module" src="gaussian_symmetric_pr.js"></script>
-
-
-
-**Interpretation.**
-
-- *Contrast with the ROC diagonal.* Under random guessing, the ROC curve lies on the diagonal $\mathrm{TPR}=\mathrm{FPR}$, a line whose position does not depend on the prevalence $\pi$, since $\mathrm{TPR}(t)$ and $\mathrm{FPR}(t)$ are both defined purely from the conditional laws $X_0,X_1$. The Precision-Recall analogue is instead a *horizontal* line at height $\pi$: unlike the ROC diagonal, its position moves up or down with the prevalence, which is exactly the prevalence-dependence of precision already noted after XXX.
-
-
-- *A baseline for judging real classifiers.* Just as the ROC diagonal is the reference against which discriminative power is judged, the flat line at $\pi$ is the reference for the Precision-Recall curve: any classifier carrying real information about $Y$ must have $\mathrm{Precision}(t)>\pi$ over at least part of the recall range, and the vertical gap between an assay's Precision-Recall curve and this baseline reflects how much the assay's score changes the odds of $Y=1$ relative to the prevalence alone.
-
-
-
-
-### Gaussian case
-
-We return to the general Gaussian model of @thm-location-scale-roc,
+Fix $r\in(0,1)$. By symmetry, $F(-F^{-1}(r))=1-r$, so uniqueness of $F^{-1}$ on $(0,1)$ gives $F^{-1}(1-r)=-F^{-1}(r)$. With $x:=\tfrac{F^{-1}(r)-\Delta}{\rho}$, the argument of $F$ in $G(r)$ is $\tfrac{-F^{-1}(r)+\Delta}{\rho}=-x$, hence
 $$
-X_0\sim\mathcal N(\mu_0,\sigma_0^2), \qquad X_1\sim\mathcal N(\mu_1,\sigma_1^2), \qquad \mu_1>\mu_0,\ \sigma_0,\sigma_1>0,
+G(r)=1-F(-x)=1-\bigl(1-F(x)\bigr)=F(x),
 $$
-with standardized separation $\Delta=(\mu_1-\mu_0)/\sigma_1>0$ and scale ratio $\rho=\sigma_0/\sigma_1>0$, and combine it with @thm-precision-formula to obtain a closed form for the Precision-Recall curve, at a fixed prevalence $\pi=\mathbb P(Y=1)$.
-
-:::: {#thm-gaussian-pr}
-
-# Precision-Recall curve for two Gaussian classes
-
-Under the model above, with prevalence $\pi\in(0,1)$, the theoretical Precision-Recall curve has the closed-form expression
-$$
-\boxed{
-\mathrm{Precision}(r) = \frac{\pi\, r}{\pi\, r + (1-\pi)\,\Phi\!\left(\dfrac{\Phi^{-1}(r)-\Delta}{\rho}\right)}
-}, \qquad r=\mathrm{Recall}(t)\in(0,1),
-$$
-with limiting endpoint at $r=1$
-$$
-\boxed{
-\mathrm{Precision}(1) = \pi
-}
-\qquad\text{(independent of }\Delta,\rho \text{)},
-$$
-while the endpoint at $r\to0^+$ depends on how the two scales $\sigma_0,\sigma_1$ compare:
-$$
-\boxed{
-\lim_{r \to 0^+}\mathrm{Precision}(r) =
-\begin{cases}
-1, & \sigma_0\le\sigma_1 \quad(\text{i.e., } \rho\le1),\\[4pt]
-0, & \sigma_0>\sigma_1 \quad(\text{i.e., } \rho>1).
-\end{cases}
-}
-$$
-
-::::
-
-:::: {.proof-container}
-
-::: {.proof-header onclick="toggleProof('thm-gaussian-pr')"}
-[▶]{#proof-arrow-thm-gaussian-pr .proof-arrow} [Proof]{.proof-title}
-:::
-
-::: {#proof-content-thm-gaussian-pr .proof-content}
-
-**Step 1: Precision as a function of $t$.** By @thm-location-scale-roc, $\mathrm{FPR}(t)=1-\Phi\!\left(\frac{t-\mu_0}{\sigma_0}\right)$ and $\mathrm{TPR}(t)=1-\Phi\!\left(\frac{t-\mu_1}{\sigma_1}\right)$; since $\mathrm{Recall}(t)=\mathrm{TPR}(t)$, @thm-precision-formula gives
-$$
-\mathrm{Precision}(t) = \frac{\pi\Bigl(1-\Phi\bigl(\frac{t-\mu_1}{\sigma_1}\bigr)\Bigr)}{\pi\Bigl(1-\Phi\bigl(\frac{t-\mu_1}{\sigma_1}\bigr)\Bigr) + (1-\pi)\Bigl(1-\Phi\bigl(\frac{t-\mu_0}{\sigma_0}\bigr)\Bigr)}.
-$$
-
-**Step 2: Eliminate the threshold.** The boxed identity of @thm-location-scale-roc, $\mathrm{TPR}=\Phi\bigl(\Delta+\rho \,\Phi^{-1}(\mathrm{FPR})\bigr)$, holds for every threshold $t$. Since $\Phi:\mathbb R\to(0,1)$ is a strictly increasing bijection, it may be inverted on both sides:
-$$
-\mathrm{TPR}=\Phi\bigl(\Delta + \rho\,\Phi^{-1}(\mathrm{FPR})\bigr)
-\quad\Longleftrightarrow\quad
-\Phi^{-1}(\mathrm{TPR}) = \Delta + \rho\,\Phi^{-1}(\mathrm{FPR})
-\quad\Longleftrightarrow\quad
-\mathrm{FPR}=\Phi\!\left(\frac{\Phi^{-1}(\mathrm{TPR})-\Delta}{\rho}\right).
-$$
-Writing $r:=\mathrm{TPR}(t)=\mathrm{Recall}(t)$, this becomes $\mathrm{FPR}(t)=\Phi\!\left(\frac{\Phi^{-1}(r)-\Delta}{\rho}\right)$, which depends on $t$ only through $r$. Substituting into Step 1 eliminates $t$ entirely:
-$$
-\mathrm{Precision}(r) = \frac{\pi\, r}{\pi\, r + (1-\pi)\,\Phi\!\left(\dfrac{\Phi^{-1}(r)-\Delta}{\rho}\right)}, \qquad r\in(0,1).
-$$
-
-**Step 3: Endpoint at $r=1$.** This is the threshold $t\to-\infty$: $\Phi^{-1}(1)=+\infty$, and since $b>0$, $\frac{\Phi^{-1}(1)-\Delta}{\rho}=+\infty$, so $\Phi\!\left(\frac{\Phi^{-1}(1)-\Delta}{\rho}\right)=\Phi(+\infty)=1$. The formula gives directly
-$$
-\mathrm{Precision}(1) = \frac{\pi\cdot1}{\pi\cdot1+(1-\pi)\cdot1} = \pi,
-$$
-matching the general baseline $\lim_{t\to-\infty}\mathrm{Precision}(t)=\pi$ established earlier from @lem-roc-endpoints and @thm-precision-formula — and note this holds regardless of $\Delta$ or $b$, since $b>0$ is all that was used.
-
-**Step 4: Endpoint at $r\to0^+$.** This is the threshold $t\to+\infty$, where the formula is $0/0$ and must be handled as a limit. Write $\varphi(x):=\frac1{\sqrt{2\pi}}e^{-x^2/2}$ for the standard normal density, and set
-$$
-a:=\frac{t-\mu_0}{\sigma_0}, \qquad c:=\frac{t-\mu_1}{\sigma_1},
-$$
-so that $\mathrm{FPR}(t)=1-\Phi(a)$ and $\mathrm{TPR}(t)=1-\Phi(c)$, both $\to0$ as $t\to\infty$, but not necessarily at the same rate. By the standard Gaussian tail (Mills' ratio) asymptotic $1-\Phi(x)\sim\varphi(x)/x$ as $x\to\infty$,
-$$
-\frac{\mathrm{FPR}(t)}{\mathrm{TPR}(t)} \sim \frac{\varphi(a)/a}{\varphi(c)/c} = \frac{\varphi(a)}{\varphi(c)}\cdot\frac{c}{a}.
-$$
-The second factor converges to a finite positive constant: $c/a = \frac{\sigma_0}{\sigma_1}\cdot\frac{t-\mu_1}{t-\mu_0}\to b$ as $t\to\infty$. For the first factor, using $\varphi(a)/\varphi(c)=\exp\{-(a^2-c^2)/2\}$, expand
-$$
-a^2-c^2 = \left(\frac1{\sigma_0^2}-\frac1{\sigma_1^2}\right)t^2 - 2\left(\frac{\mu_0}{\sigma_0^2}-\frac{\mu_1}{\sigma_1^2}\right)t + \left(\frac{\mu_0^2}{\sigma_0^2}-\frac{\mu_1^2}{\sigma_1^2}\right).
-$$
-Three cases arise, according to the sign of $K:=1/\sigma_0^2-1/\sigma_1^2$:
-
-- **$\sigma_0<\sigma_1$ (so $K>0$):** the leading $t^2$ term dominates with a positive coefficient, so $a^2-c^2\to+\infty$.
-- **$\sigma_0=\sigma_1=\sigma$ (so $K=0$):** the quadratic term vanishes, and the linear term dominates: $a^2-c^2 = \frac{2t(\mu_1-\mu_0)}{\sigma^2}+O(1)\to+\infty$, since $\mu_1>\mu_0$. (This is exactly the equal-variance case treated previously.)
-- **$\sigma_0>\sigma_1$ (so $K<0$):** the leading $t^2$ term dominates with a negative coefficient, so $a^2-c^2\to-\infty$.
-
-Hence $\varphi(a)/\varphi(c)=\exp\{-(a^2-c^2)/2\}\to0$ whenever $\sigma_0\le\sigma_1$, and $\to+\infty$ whenever $\sigma_0>\sigma_1$. Since $c/a\to b$, a finite positive constant, in both cases:
-$$
-\frac{\mathrm{FPR}(t)}{\mathrm{TPR}(t)} \longrightarrow
-\begin{cases}
-0, & \sigma_0\le\sigma_1,\\
-+\infty, & \sigma_0>\sigma_1.
-\end{cases}
-$$
-Dividing numerator and denominator of $\mathrm{Precision}(t)$ by $\mathrm{TPR}(t)$,
-$$
-\mathrm{Precision}(t) = \frac{\pi}{\pi + (1-\pi)\,\mathrm{FPR}(t)/\mathrm{TPR}(t)},
-$$
-so, letting $t\to\infty$ (i.e., $r\to0^+$),
-$$
-\lim_{r\to0^+}\mathrm{Precision}(r) =
-\begin{cases}
-\dfrac{\pi}{\pi+0}=1, & \sigma_0\le\sigma_1,\\[6pt]
-\dfrac{\pi}{\pi+\infty}=0, & \sigma_0>\sigma_1.
-\end{cases}
-$$
+using symmetry once more. $\blacksquare$
 
 :::
 
 ::::
+
+### Applications: the symmetric rows
+
+Each is an immediate instance of @cor-symmetric-pr: verify that $F$ is symmetric, write down $F^{-1}$, and substitute into $G$.
+
+**Gaussian.** $F=\Phi$ satisfies $\Phi(-x)=1-\Phi(x)$, so
+$$
+G(r)=\Phi\Bigl(\frac{\Phi^{-1}(r)-\Delta}{\rho}\Bigr).
+$$
+
+**Cauchy.** $F(x)=\tfrac12+\tfrac1\pi\tan^{-1}x$ is symmetric since $\tan^{-1}$ is odd, with $F^{-1}(p)=\tan\bigl(\pi(p-\tfrac12)\bigr)$. Hence
+$$
+G(r)=\tfrac12+\tfrac1\pi\tan^{-1}\!\Bigl(\frac{\tan(\pi(r-\frac12))-\Delta}{\rho}\Bigr).
+$$
+
+**Logistic.** $F(x)=\dfrac{1}{1+e^{-x}}$ is symmetric, with $F^{-1}(p)=\ln\dfrac{p}{1-p}$. Therefore
+$$
+\begin{aligned}
+G(r)
+&=\frac{1}{1+\exp\bigl(-\tfrac{1}{\rho}\bigl(\ln\tfrac{r}{1-r}-\Delta\bigr)\bigr)}\\
+&=\frac{1}{1+e^{\Delta/\rho}\bigl(\tfrac{1-r}{r}\bigr)^{1/\rho}}\\
+&=\frac{r^{1/\rho}}{r^{1/\rho}+e^{\Delta/\rho}(1-r)^{1/\rho}}.
+\end{aligned}
+$$
+
+**Uniform $(-\tfrac12,\tfrac12)$.** $F(z)=[z+\tfrac12]_0^1$ is symmetric, with $F^{-1}(p)=p-\tfrac12$ on $(0,1)$. Hence
+$$
+G(r)=F\Bigl(\frac{r-\frac12-\Delta}{\rho}\Bigr)=\Bigl[\frac{r-\Delta-\frac{1-\rho}{2}}{\rho}\Bigr]_0^1 .
+$$
+
+### The remaining rows: Gumbel and Exponential (not symmetric)
+
+Here we use @thm-location-scale-pr directly.
+
+**Gumbel.** $F(x)=\exp(-e^{-x})$ and $F^{-1}(p)=-\ln(-\ln p)$, so $F^{-1}(1-r)=-\ln(-\ln(1-r))$. The argument of $F$ in $G(r)$ is $a:=\tfrac{\Delta-\ln(-\ln(1-r))}{\rho}$, and
+$$
+F(a)=\exp\bigl(-e^{-a}\bigr)=\exp\Bigl(-\bigl(e^{-\Delta}(-\ln(1-r))\bigr)^{1/\rho}\Bigr).
+$$
+Hence
+$$
+\boxed{G(r)=1-\exp\Bigl(-e^{-\Delta/\rho}\bigl(-\ln(1-r)\bigr)^{1/\rho}\Bigr).}
+$$
+
+**Exponential.** $F(z)=(1-e^{-z})_+$ and $F^{-1}(p)=-\ln(1-p)$, so $F^{-1}(1-r)=-\ln r$ and the argument of $F$ is $a:=\tfrac{\Delta-\ln r}{\rho}$. If $a\ge0$, then $1-F(a)=e^{-a}=e^{-\Delta/\rho}r^{1/\rho}$. If $a<0$, then $F(a)=0$ and $G(r)=1$. Hence
+$$
+\boxed{G(r)=\min\bigl(e^{-\Delta/\rho}\,r^{1/\rho},\,1\bigr).}
+$$
+
+*Remark (bounded-below supports).* For the Uniform and Exponential laws, recall $1$ can be reached at a finite threshold, so the plotted curve $r\mapsto(r,\mathrm{Precision}(r))$ stops before $r=1$. The remaining part of the PR curve is the vertical segment at $\mathrm{Recall}=1$, from $\mathrm{Precision}(1^-)$ down to the universal endpoint $(1,\pi_1)$ (reached as $t\to-\infty$).
+
 
 **Interpretation**
 
-* **Equal variances ($\sigma_0=\sigma_1$, $b=1$).** This recovers the case treated previously: $\mathrm{Precision}(r)=\dfrac{\pi r}{\pi r+(1-\pi)\Phi(\Phi^{-1}(r)-\Delta)}$, decreasing smoothly from $1$ at $r=0^+$ down to $\pi$ at $r=1$.
+$\Delta$ and $\rho$ fix the ROC curve, hence the function $G$; the prevalence $\pi_1$ then rescales the odds of precision.
 
-* **$\sigma_0<\sigma_1$ (healthy population less dispersed than the sick one).** The $r\to0^+$ endpoint is still $1$ — in fact the convergence is faster than in the equal-variance case, since $a^2-c^2$ now grows quadratically in $t$ rather than linearly, so $\mathrm{FPR}(t)/\mathrm{TPR}(t)$ vanishes at a much faster rate as the threshold increases.
-
-* **$\sigma_0>\sigma_1$ (healthy population *more* dispersed than the sick one).** The $r\to0^+$ endpoint drops to $\mathbf 0$: at extremely high thresholds, the heavier right tail of the (more dispersed) healthy class eventually contributes *more* false positives than the sick class contributes true positives, so precision degrades to zero rather than improving to perfect precision as recall shrinks. This is a genuinely new phenomenon relative to the equal-variance case, and mirrors the non-concave, S-shaped ROC curve noted in @thm-location-scale-roc's interpretation for this same regime — both are manifestations of the healthy population's heavier tail dominating at extreme thresholds.
-
-* **Recovering the random-guessing baseline.** If $\Delta=0$ and $b=1$ (i.e. $\mu_0=\mu_1$ and $\sigma_0=\sigma_1$), then $\Phi\!\left(\frac{\Phi^{-1}(r)-\Delta}{\rho}\right)=\Phi(\Phi^{-1}(r))=r$ for every $r$, and the formula collapses to $\mathrm{Precision}(r)=\pi r/(\pi r+(1-\pi)r)=\pi$ for all $r\in(0,1)$, the flat line at height $\pi$ identified in @thm-random-pr, as it must, since this is exactly $X_0\stackrel{d}{=}X_1$.
-
-* **Approaching the ideal curve as $\Delta\to\infty$ (fixed $b$).** For any fixed $r\in(0,1)$, letting $\Delta\to\infty$ sends $\frac{\Phi^{-1}(r)-\Delta}{\rho}\to-\infty$ and hence $\Phi\!\left(\frac{\Phi^{-1}(r)-\Delta}{\rho}\right)\to0$, giving $\mathrm{Precision}(r)\to1$ for every $r\in(0,1)$ — while $\mathrm{Precision}(1)=\pi$ always. In the limit, the curve is flat at $1$ except for a drop to $\pi$ exactly at $r=1$: the same perfect-separation Precision-Recall curve as in the equal-variance case, now reached along any fixed scale ratio $b$.
+* **Odds form:** $\dfrac{\mathrm{Precision}}{1-\mathrm{Precision}}=\dfrac{\pi_1}{\pi_0}\cdot\dfrac{\mathrm{TPR}}{\mathrm{FPR}}$. Lowering $\pi_1$ with the ROC curve fixed lowers the precision at every recall level, and the PR curve is pulled toward the horizontal axis. At fixed $(\Delta,\rho)$ the ROC curve is the same for every $\pi_1$, but the PR curve is not.
+* **$\Delta=0,\ \rho=1$ (symmetric $F$):** $G(r)=r$, so $\mathrm{Precision}\equiv\pi_1$: the PR curve is the random-guessing baseline of @thm-random-pr. As in the ROC case, $\Delta=0$ alone is not enough when $\rho\ne1$.
+* **Right end of the curve, $\mathrm{Recall}\to1$:** $\mathrm{Precision}\to\pi_1$ for every $(\Delta,\rho,F)$, which is the universal endpoint $(1,\pi_1)$.
+* **Left end of the curve, $\mathrm{Recall}\to0$:** the limit is governed by the tail ratio $G(r)/r$ as $r\to0$. In the Gaussian case it is $1$ if $\rho<1$, or $\rho=1$ and $\Delta>0$; it is $\pi_1$ if $\rho=1$ and $\Delta=0$; and it is $0$ if $\rho>1$, or $\rho=1$ and $\Delta<0$. A more dispersed healthy class ($\rho>1$) therefore puts mostly healthy samples in the extreme upper tail.
+* **$\Delta\to\infty$** (fixed $\rho$): $G(r)\to0$ for each $r\in(0,1)$, so $\mathrm{Precision}(r)\to1$ and the curve approaches the ideal curve through $(1,1)$.
 
 
-
-
-### Precision-Recall curve for the exponential case
-
-We combine  with @thm-precision-formula to obtain a closed form for the Precision-Recall curve at a fixed prevalence $\pi=\mathbb P(Y=1)$.
-
-:::: {#thm-exponential-pr}
-
-# Precision-Recall curve for two exponential health-status classes
-
-Under the model of , with rate ratio $\theta=\lambda_1/\lambda_0\in(0,1)$ and prevalence $\pi\in(0,1)$, the theoretical Precision-Recall curve has the closed-form expression
-$$
-\boxed{
-\mathrm{Precision}(r) = \frac{\pi}{\pi + (1-\pi)\, r^{\,1/\theta-1}}
-}, \qquad r=\mathrm{Recall}(t)\in(0,1],
-$$
-with limiting endpoints
-$$
-\boxed{
-\lim_{r\to0^+}\mathrm{Precision}(r) = 1
-}
-\qquad\text{and}\qquad
-\boxed{
-\mathrm{Precision}(1) = \pi.
-}
-$$
-Moreover $\mathrm{Precision}(\cdot)$ is strictly decreasing on $(0,1]$.
-
-::::
-
-:::: {.proof-container}
-
-::: {.proof-header onclick="toggleProof('thm-exponential-pr')"}
-[▶]{#proof-arrow-thm-exponential-pr .proof-arrow} [Proof]{.proof-title}
-:::
-
-::: {#proof-content-thm-exponential-pr .proof-content}
-
-**Step 1: Express $\mathrm{FPR}$ as a function of recall.** By , for $t\ge0$, $\mathrm{TPR}(t)=e^{-\lambda_1 t}$ and $\mathrm{FPR}(t)=e^{-\lambda_0 t}$. Writing $r:=\mathrm{TPR}(t)=\mathrm{Recall}(t)\in(0,1]$, we have $r=e^{-\lambda_1 t}$, hence $t=-\ln(r)/\lambda_1$, and
-$$
-\mathrm{FPR}(t) = e^{-\lambda_0 t} = \exp\!\left(\frac{\lambda_0}{\lambda_1}\ln r\right) = r^{\lambda_0/\lambda_1} = r^{1/\theta}.
-$$
-
-**Step 2: Substitute into @thm-precision-formula.** Using $\mathrm{TPR}(t)=r$ and $\mathrm{FPR}(t)=r^{1/\theta}$,
-$$
-\mathrm{Precision}(t) = \frac{\pi\, r}{\pi\, r + (1-\pi)\, r^{1/\theta}} = \frac{\pi}{\pi + (1-\pi)\, r^{1/\theta - 1}},
-$$
-after dividing numerator and denominator by $r>0$. This is the boxed formula, now expressed purely as a function of $r$.
-
-**Step 3: Endpoint at $r=1$.** Direct substitution gives $r^{1/\theta-1}=1$, so
-$$
-\mathrm{Precision}(1) = \frac{\pi}{\pi+(1-\pi)} = \pi,
-$$
-matching the general baseline $\lim_{t\to-\infty}\mathrm{Precision}(t)=\pi$ (obtained earlier from @lem-roc-endpoints and @thm-precision-formula).
-
-**Step 4: Endpoint at $r\to0^+$.** Since $\theta\in(0,1)$, the exponent $1/\theta-1$ is strictly positive, so $r^{1/\theta-1}\to0$ as $r\to0^+$ — unlike the Gaussian case, this limit needs no tail asymptotics, since the power function vanishes outright. Hence
-$$
-\lim_{r\to0^+}\mathrm{Precision}(r) = \frac{\pi}{\pi+0} = 1.
-$$
-
-**Step 5: Monotonicity.** Since $1/\theta-1>0$, $r\mapsto r^{1/\theta-1}$ is strictly increasing on $(0,1]$, so the denominator $\pi+(1-\pi)r^{1/\theta-1}$ is strictly increasing in $r$ while the numerator $\pi$ is constant; hence $\mathrm{Precision}(r)$ is strictly decreasing on $(0,1]$.
-
-:::
-
-::::
 
 **Interpretation.**
 
@@ -2064,28 +1826,47 @@ $$
 - *Shape versus the Gaussian case.* Both curves share the same two endpoints ($1$ at $r=0^+$, $\pi$ at $r=1$) and are strictly decreasing, but the exponential PR curve is a pure power law in $r$ with no transcendental functions involved, whereas the Gaussian one requires $\Phi,\Phi^{-1}$ — a useful contrast when illustrating that the *endpoints* of a PR curve are governed by general principles (@thm-precision-formula, @lem-roc-endpoints), while the *shape in between* is entirely model-dependent.
 
 
-```{=html}
-<div id="exponential-pr-interactive"
-     class="exponential-pr-interactive"
-     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap; max-width:100%; overflow-x:auto; font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
-  <div class="exponential-pr-controls"
+**Visualization**
+
+The widget below lets you explore @thm-location-scale-pr interactively for the distributions described in @tbl-distributions-pr.
+Use the sliders on the left to set $\mu_0,\sigma_0$ (healthy class), $\mu_1,\sigma_1$ (sick class) and the **Prevalence** $\pi_1$, and drag the **Threshold** slider to move $t$.
+
+- The **middle panel** shows the two population densities plotted vertically: $X_1$ (sick) on the left in blue, $X_0$ (healthy) on the right in red. The horizontal black line marks the current threshold $t$; the lighter region of each density, above the line, is predicted *positive* under the rule $\hat Y_t=\mathbb 1\{X\ge t\}$.
+- The **right panel** shows the theoretical PR curve for the current $(\mu_0,\sigma_0,\mu_1,\sigma_1,\pi_1)$, with the dashed horizontal line $\mathrm{Precision}=\pi_1$ as the random-guessing reference (@thm-random-pr) and a marker at the operating point $(\mathrm{Recall}(t),\mathrm{Precision}(t))$ for the selected threshold. Moving the prevalence slider reshapes the curve and moves the baseline, and the curve always ends at $(1,\pi_1)$ on the right.
+
+The title above the plot reports the current $\Delta$, $\rho$ and $\pi_1$.
+
+[Note]{.underline}: Visually, the recall is the ratio of the light blue area over the full blue area on the left. The precision is the share of the predicted-positive mass that is blue: $\pi_1$ times the light blue fraction, divided by that quantity plus $\pi_0$ times the light red fraction.
+
+
+::: {#fig-gaussian-pr-interactive}
+
+```{=html}
+<div id="gaussian-pr-interactive"
+     class="gaussian-pr-interactive"
+     style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap;
+            width:100%; max-width:895px; margin:0 auto;
+            font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
+
+  <div class="gaussian-pr-controls"
        style="display:flex; flex-direction:column; justify-content:center;
-              min-width:200px; flex:0 0 200px;
-              border:1px solid rgba(0,0,0,0.15);
-              border-radius:8px; padding:8px; font-size:9.5px;
-              background:rgba(0,0,0,0.02);">
+                min-width:125px; flex:0 0 115px;
+                border:1px solid rgba(0,0,0,0.15);
+                border-radius:8px; padding:6px; font-size:9px;
+                background:rgba(0,0,0,0.02);">
   </div>
 
-  <div class="exponential-pr-plot"
-       style="flex:1 1 auto; min-width:520px; max-width:1050px;
-              display:flex; align-items:center;">
+  <div class="gaussian-pr-plot"
+       style="flex:1 1 auto; min-width:0;
+              display:flex; align-items:center; justify-content:center;">
   </div>
 
 </div>
 
-<script type="module" src="exponential_pr_interactive.js"></script>
+<script type="module" src="gaussian_pr_interactive.js"></script>
 ```
+:::
 
 
 #### Precision-Recall curve visualization
