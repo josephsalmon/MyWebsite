@@ -57,14 +57,35 @@ We illustrate in this post the notion of **ROC curves** and **Precision-Recall c
 
 For the empirical part, the underlying study compared the Abbott, DiaSorin, Oxford, Roche, and Siemens
 assays using a common set of well-characterized samples.
-We follow @ainsworth2020performance and we have used
+We follow @ainsworth2020performance and have used a dataset that contains two groups of samples:
 
-- **976 pre-pandemic samples** as the known-negative reference group; and
-- **536 laboratory-confirmed SARS-CoV-2-positive samples** collected at least 20 days after symptom onset.
+- **976 pre-pandemic samples**, used as the known-negative reference group;
+- **536 laboratory-confirmed SARS-CoV-2-positive samples**, collected at least 20 days after symptom onset.
 
-The dataset (`supplementary_dataset2.csv`) can be downloaded [here](https://figshare.com/articles/dataset/Dataset_Head-to-head_benchmark_evaluation_of_the_sensitivity_and_specificity_of_five_immunoassays_for_SARS-CoV-2_serology_on_1500_samples/12622172?backTo=%2Fcollections%2FHead-to-head_benchmark_evaluation_of_the_sensitivity_and_specificity_of_five_immunoassays_for_SARS-CoV-2_serology_on_1500_samples%2F5046032&file=23736068) and the supplementary material of the associated paper describes the preprocessing we have also followed.
+These groups contain a total of
 
-## A statistical testing point of view
+$$
+n = 976 + 536 = 1512
+$$
+
+observations. The proportion of positive samples in this dataset is therefore
+
+$$
+\widehat{\pi}_1 = \frac{536}{1512} \approx 0.355,
+$$
+
+or approximately $35.5\%$.
+
+**An important distinction:** this proportion describes the composition of the dataset, not necessarily the prevalence of SARS-CoV-2 infection in the population where a diagnostic test would be used. The sample composition may reflect how the study was designed and how samples were selected.
+
+This distinction will become important when interpreting precision–recall curves and average precision, which depend on the prevalence of positive cases.
+
+The dataset (`supplementary_dataset2.csv`) is available
+[here](https://figshare.com/articles/dataset/Dataset_Head-to-head_benchmark_evaluation_of_the_sensitivity_and_specificity_of_five_immunoassays_for_SARS-CoV-2_serology_on_1500_samples/12622172).
+The supplementary material of the associated paper describes the preprocessing used in this analysis.
+
+
+## Diagnostic testing as hypothesis testing
 
 A diagnostic test can be framed as a classical **statistical hypothesis test**. In this medical context, we consider the null hypothesis
 $$
@@ -167,7 +188,7 @@ $$
 \end{align*}
 $$
 
-## The ROC curve function
+## The ROC curve
 
 The **receiver operating characteristic** (ROC) curve traces its origins to signal detection theory, developed during **World War II** to enhance the precision of radar and sonar systems in distinguishing enemy signals from noise.
 This framework, initially designed for military applications, laid the groundwork for quantifying the trade-off between detecting true threats and minimizing false alarms.
@@ -212,7 +233,7 @@ $$
 
 ### Properties
 
-#### Endpoints
+#### Roc endpoints
 
 :::: {#lem-roc-endpoints}
 
@@ -263,7 +284,7 @@ $$
 
 #### Extreme cases
 
-##### Perfect classifier
+##### ROC curve for a perfect classifier
 
 :::: {#thm-perfect-separation}
 
@@ -291,11 +312,11 @@ By definition, $\mathrm{FPR}(t^\star) = \mathbb P(X_0 \ge t^\star) = 0$ and $\ma
 ::::
 
 
-##### Always-wrong classifier
+##### ROC curve for an always-wrong classifier
 
 :::: {#cor-perfect-anti-separation}
 
-# ROC curve for a flawed classifier
+# ROC curve for an always-wrong classifier
 
 Suppose there exists a threshold $t^\star \in \mathbb{R}$ such that, for $\hat{Y}_t = \mathbb{1}\{X \geq t\}$,
 $$
@@ -319,7 +340,7 @@ By definition, $\mathrm{FPR}(t^\star) = \mathbb P(X_0 \ge t^\star) = 1$ and $\ma
 ::::
 
 
-##### Random classifier
+##### ROC curve under random guessing
 
 :::: {#thm-random-guessing}
 
@@ -370,7 +391,7 @@ i.e. $\mathrm{TPR}(t_1) \geq \mathrm{TPR}(t_2)$ and $\mathrm{FPR}(t_1) \geq \mat
 :::
 ::::
 
-##### Invariance under strictly increasing transformations
+##### Invariance of ROC curves under increasing transformations
 
 A strictly increasing bijection does not introduce new ROC geometry: the ROC curve of $g(X)$ is identical to that of $X$, with only the threshold parametrization transformed via $t\mapsto g^{-1}(t)$.
 
@@ -568,7 +589,7 @@ You can verify this directly with the interactive below
 **ROC curve under symmetry transformations**
 :::
 
-## ROC curve zoology for classic distributions
+## ROC curve for common distributions
 
 
 
@@ -718,7 +739,7 @@ def roc(thresholds, y_true, score):
         FP = 0
         TP = 0
         for i in range(len(score)):
-            if score[i] > thresh:
+            if score[i] >= thresh:
                 if y_true[i] == True:
                     TP += 1
                 else:
@@ -728,7 +749,7 @@ def roc(thresholds, y_true, score):
     return tpr, fpr
 ```
 
-**Note**: the jittering on  the x-axis for the scatter plots is not meaningful but only here for visualization.
+**Note**: the jittering on the x-axis for the scatter plots is not meaningful but only here for visualization.
 
 
 ### Area Under the ROC Curve (AUC)
@@ -932,8 +953,10 @@ $$
 :::
 ::::
 
+AUC is the probability that a randomly selected positive case receives a higher score than a randomly selected negative case, with ties counted as half a win.
 
-This probabilistic reading of the AUC (the chance that a randomly drawn positive case outscores a randomly drawn negative case) is not just a theoretical curiosity: it is directly *estimable* from data, since it is itself a probability that can be approximated by counting concordant pairs in a finite sample.
+<!-- This probabilistic reading of the AUC (the chance that a randomly drawn positive case outscores a randomly drawn negative case) is not just a theoretical curiosity: it is directly *estimable* from data, since it is itself a probability that can be approximated by counting concordant pairs in a finite sample. -->
+
 Replacing $X_0,X_1$ by two independent samples and $\mathbb P(X_1>X_0)$ by the corresponding sample proportion gives exactly the classical **Mann-Whitney $U$ statistic** from nonparametric statistics, providing the empirical, plug-in counterpart to @cor-continuous-auc.
 
 
@@ -1048,55 +1071,108 @@ Write $u:=\mathrm{FPR}^+(t)$, $f(u):=\mathrm{TPR}^+(t)$, so $\operatorname{AUC}=
 You can verify this directly with the interactive above, see @fig-gaussian-symmetric-roc: the "ROC curve" and "Class swap + threshold rev." curves in the plot share the same AUC, while "Threshold reversal" and "Class label swap" alone each trace out the complementary area.
 
 
-## The Precision/Recall curve function
+## The Precision–Recall curve
 
-The **Precision-Recall curve** is the parametric curve obtained as the threshold $t$ varies:
-
-$$
-\{(\mathrm{Recall}(t), \mathrm{Precision}(t)) : t \in \mathbb{R}\},
-$$
-
-where $\mathrm{Recall}(t) = \mathrm{TPR}(t) = \mathbb P(X_1\ge t)$, as defined above. Precision, however, cannot be written purely in terms of $X_0$ and $X_1$: unlike $\mathrm{TPR}(t)$ and $\mathrm{FPR}(t)$, which are conditional on $Y$, precision conditions on the *prediction*,
-$$
-\mathrm{Precision}(t) = \mathbb P(Y=1 \mid X\ge t),
-$$
-so it also depends on how frequently $Y=1$ occurs to begin with. We write $\pi_!:= \mathbb P(Y=1)$ for this **prevalence** (the proportion of sick individuals in the population of interest), so that $1-\pi_1=\mathbb P(Y=0):=\pi_0$.
-
-In practice, the estimation is performed using empirical counterparts. For each threshold $t$, we compute:
+The **precision–recall (PR) curve** describes the trade-off between recall and precision as the decision threshold $t$ varies. It is the parametric curve
 
 $$
-\begin{align*}
-\widehat{\mathrm{TPR}}(t)
-& = \frac{1}{\mathrm{P}} \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\},
-\\
-\widehat{\mathrm{Precision}}(t)
-& = \frac{\mathrm{TP}(t)}{\mathrm{TP}(t) + \mathrm{FP}(t)},
-\end{align*}
+\left\{
+\bigl(\mathrm{Recall}(t),\mathrm{Precision}(t)\bigr)
+: t\in\mathbb{R}
+\right\},
 $$
-where we remind that
+
+where recall is the true-positive rate:
+
 $$
-\begin{align*}
-\mathrm{TP}(t) 
-& = \sum_{i: Y_i=1} \mathbb{1}\{X_i \geq t\},
-\\
+\begin{aligned}
+\mathrm{Recall}(t)
+&=\mathrm{TPR}(t)\\
+&=\mathbb{P}(X\geq t\mid Y=1)\\
+&=\mathbb{P}(X_1\geq t).
+\end{aligned}
+$$
+
+Precision, in contrast, is the probability that an individual truly belongs to the positive class, given that the test predicts a positive result:
+
+$$
+\mathrm{Precision}(t)
+=
+\mathbb{P}(Y=1\mid X\geq t).
+$$
+
+Unlike recall and the false-positive rate, which are conditional on the true class, precision also depends on the **prevalence** of the positive class in the population of interest. We denote the class prevalences by
+
+$$
+\pi_1=\mathbb{P}(Y=1),
+\qquad
+\pi_0=\mathbb{P}(Y=0)=1-\pi_1.
+$$
+
+### Empirical estimation
+
+Given a sample $(X_i,Y_i)_{i=1}^n$, let
+
+$$
+n_1=\sum_{i=1}^{n}\mathbb{1}\{Y_i=1\},
+\qquad
+n_0=\sum_{i=1}^{n}\mathbb{1}\{Y_i=0\}
+$$
+
+denote the numbers of positive and negative observations, respectively. At a threshold $t$, the numbers of true positives and false positives are
+
+$$
+\begin{aligned}
+\mathrm{TP}(t)
+&=
+\sum_{i=1}^{n}
+\mathbb{1}\{Y_i=1,\ X_i\geq t\},\\
 \mathrm{FP}(t)
-& = \sum_{i: Y_i=0} \mathbb{1}\{X_i \geq t\}
-\end{align*}
+&=
+\sum_{i=1}^{n}
+\mathbb{1}\{Y_i=0,\ X_i\geq t\}.
+\end{aligned}
 $$
 
-### Precision as a function of TPR, FPR, and prevalence
+The empirical recall and precision are then
 
-Since $\mathrm{TPR}(\cdot)$ and $\mathrm{FPR}(\cdot)$ depend only on $X_0,X_1$, not on $\pi_1$, it is worth isolating exactly how $\pi_1$ enters $\mathrm{Precision}(\cdot)$: this explains the shape of the Precision-Recall curve, and warns against comparing precision values across studies with different prevalence.
-This relevant in our Covid-19 example, since our 976 pre-pandemic negatives and 536 confirmed positives reflect the *design* of the benchmark study, not the prevalence of Covid-19 in any real population.
+$$
+\boxed{
+\begin{aligned}
+\widehat{\mathrm{Recall}}(t)
+&=\frac{\mathrm{TP}(t)}{n_1},\\[6pt]
+\widehat{\mathrm{Precision}}(t)
+&=\frac{\mathrm{TP}(t)}
+{\mathrm{TP}(t)+\mathrm{FP}(t)}.
+\end{aligned}
+}
+$$
+
+Empirical recall measures the fraction of positive observations detected by the test, while empirical precision measures the fraction of predicted-positive observations that are truly positive.
+
+If no observations are predicted positive, then $\mathrm{TP}(t)+\mathrm{FP}(t)=0$ and empirical precision is undefined. Implementations of PR curves may adopt a convention for this endpoint, which should be considered when comparing empirical curves.
+
+### Precision in terms of TPR, FPR, and prevalence
+
+The following theorem makes explicit how prevalence enters the precision formula.
 
 :::: {#thm-precision-formula}
 
-# Precision in terms of TPR, FPR and prevalence
+# Precision in terms of TPR, FPR, and prevalence
 
-Writing $\pi_1:=\mathbb P(Y=1)$ and $\pi_0:=\mathbb P(Y=0)$, then for every $t\in\mathbb R$ with $\mathbb P(X\ge t)>0$, the precision reads:
+Let $\pi_1=\mathbb{P}(Y=1)$ and $\pi_0=\mathbb{P}(Y=0)$. For every threshold $t$ such that $\mathbb{P}(X\geq t)>0$,
+
 $$
 \boxed{
-\mathrm{Precision}(t) = \frac{\pi_1\,\mathrm{TPR}(t)}{\pi_1\,\mathrm{TPR}(t) + \pi_0\,\mathrm{FPR}(t)}.
+\mathrm{Precision}(t)
+=
+\frac{
+\pi_1\,\mathrm{TPR}(t)
+}{
+\pi_1\,\mathrm{TPR}(t)
++
+\pi_0\,\mathrm{FPR}(t)
+}.
 }
 $$
 
@@ -1109,25 +1185,88 @@ $$
 
 ::: {#proof-content-thm-precision-formula .proof-content}
 
-Conditioning on $Y$, one has
+By the law of total probability,
+
 $$
-\begin{align*}
-\mathbb P(X\ge t) 
-& = \mathbb P(X\ge t\mid Y=1)\,\pi_1 + \mathbb P(X\ge t\mid Y=0)\,\pi_0 \\
-& = \pi_1\,\mathrm{TPR}(t) + \pi_0\,\mathrm{FPR}(t),
-\end{align*}
+\begin{aligned}
+\mathbb{P}(X\geq t)
+&=
+\mathbb{P}(X\geq t\mid Y=1)\pi_1\\
+&\quad+
+\mathbb{P}(X\geq t\mid Y=0)\pi_0\\
+&=
+\pi_1\,\mathrm{TPR}(t)
++
+\pi_0\,\mathrm{FPR}(t).
+\end{aligned}
 $$
-and also $\mathbb P(Y=1, X\ge t) = \mathbb P(X\ge t\mid Y=1)\,\pi_1 = \pi_1\,\mathrm{TPR}(t)$. Since $\mathrm{Precision}(t)=\mathbb P(Y=1\mid X\ge t)=\dfrac{\mathbb P(Y=1,X\ge t)}{\mathbb P(X\ge t)}$, substituting both gives the boxed formula.
+
+Furthermore,
+
+$$
+\begin{aligned}
+\mathbb{P}(Y=1,\ X\geq t)
+&=
+\mathbb{P}(X\geq t\mid Y=1)\pi_1\\
+&=
+\pi_1\,\mathrm{TPR}(t).
+\end{aligned}
+$$
+
+By the definition of conditional probability,
+
+$$
+\mathrm{Precision}(t)
+=
+\frac{\mathbb{P}(Y=1,\ X\geq t)}
+{\mathbb{P}(X\geq t)}.
+$$
+
+Substituting the expressions above yields the claimed formula.
 
 :::
 ::::
 
-**Consequences.**
+### Consequences
 
-- *Baseline of the Precision-Recall curve.* As $t\to-\infty$, $\mathrm{TPR}(t),\mathrm{FPR}(t)\to1$ (@lem-roc-endpoints), so $\mathrm{Precision}(t)\to\pi_1$: a threshold predicting everyone positive reaches $\mathrm{Recall}=1$ at $\mathrm{Precision}=\pi_1$, the PR analogue of the ROC diagonal's endpoint. More generally, for random guessing ($X_0\stackrel d=X_1$, @thm-random-guessing) $\mathrm{TPR}(t)=\mathrm{FPR}(t)$ for every $t$, so $\mathrm{Precision}(t)=\pi_1$ everywhere: the **random-guessing baseline is the horizontal line at height $\pi_1$**, not the diagonal. 
-This is the key qualitative difference from ROC curve, whose baseline doesn't depend on prevalence at all.
+**Dependence on prevalence.** For fixed class-conditional score distributions, both $\mathrm{TPR}(t)$ and $\mathrm{FPR}(t)$ remain unchanged when prevalence changes. The ROC curve therefore remains unchanged, whereas the PR curve generally changes through the prevalence terms $\pi_1$ and $\pi_0$ in the theorem. In particular, when positive cases become less common, precision typically decreases at a fixed threshold. This is why precision values should be compared cautiously across studies with different prevalences.
 
-- *Precision, unlike TPR/FPR, is prevalence-dependent.* $\mathrm{TPR}(t)$ and $\mathrm{FPR}(t)$ involve only the conditional laws $X_0,X_1$, so the ROC curve is unaffected by how a study sampled its negatives and positives. Precision is not: for a fixed pair $(\mathrm{TPR}(t),\mathrm{FPR}(t))$, $\mathrm{Precision}(t)$ moves with $\pi_1$, since it appears explicitly in the formula. This is exactly the caveat from the introduction: this benchmark's $\pi_1=536/(536+976)\approx0.35$ reflects the *study's* sampling ratio, not any real-world Covid-19 prevalence, so its reported precision values are specific to that design and would shift under a different sampling ratio (even though $\mathrm{TPR}(t)$, $\mathrm{FPR}(t)$, and hence the ROC curve, would not).
+**The positive fraction in our dataset.** In our COVID-19 example, the benchmark contains 976 pre-pandemic negative samples and 536 confirmed positive samples. The positive fraction is therefore
+
+$$
+\frac{536}{976+536}\approx 35.45\%.
+$$
+
+This fraction describes the **composition of the benchmark dataset**, not necessarily the prevalence of COVID-19 in a clinical population. If the benchmark's class composition differs from that of the target population, its empirical PR curve and average precision may not represent the predictive performance expected in that population. The ROC curve and AUC, by contrast, are unaffected by prevalence when the class-conditional score distributions are held fixed.
+
+**The PR baseline under random guessing.** As $t\to-\infty$, the classifier predicts every individual positive. Under the usual endpoint limits, $\mathrm{TPR}(t)\to1$ and $\mathrm{FPR}(t)\to1$; consequently,
+
+$$
+\mathrm{Recall}(t)\to1,
+\qquad
+\mathrm{Precision}(t)\to\pi_1.
+$$
+
+Thus, the all-positive endpoint of the PR curve is $(1,\pi_1)$.
+
+More generally, under random guessing, the class-conditional score distributions coincide, so
+
+$$
+\mathrm{TPR}(t)=\mathrm{FPR}(t)
+$$
+
+for every threshold $t$ (see @thm-random-guessing). The theorem then gives
+
+$$
+\mathrm{Precision}(t)=\pi_1
+$$
+
+whenever the denominator is positive. The **random-guessing baseline is therefore a horizontal line at precision $\pi_1$**, unlike the diagonal ROC baseline, which does not depend on prevalence.
+
+
+
+One mathematical nuance worth preserving: the final statement assumes the threshold selects a nonzero fraction of the population. At extreme thresholds where $\mathbb{P}(X\geq t)=0$, precision is undefined, rather than equal to prevalence. Also, the random-guessing result is a population-level statement; empirical PR curves can fluctuate around the prevalence baseline in finite samples.
+
 
 The Python code to compute this curve is provided below.
 ```{python}
@@ -1394,7 +1533,7 @@ Use the **Threshold ($t$)** slider to move along the PR curve and watch the oper
 
 
 
-## PR curve zoology for classic distributions
+## PR curve for common distributions
 
 Below we summarize the Precision-Recall curves for the same classic location-scale distributions as in the ROC case, along with the exponential case.
 Throughout, we assume that $Z_0, Z_1$ are independent and identically distributed with a common CDF $F$ that is continuous and strictly increasing on $\{z:0<F(z)<1\}$ (this holds for every law in the table below). We define the location-scale variables as:
