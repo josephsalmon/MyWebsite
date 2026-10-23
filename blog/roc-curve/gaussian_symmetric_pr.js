@@ -414,14 +414,14 @@ function curveAndPoint(
       showlegend: false,
     },
 
-    endpointMarker({
-      color,
-      precision: curve.endpointPrecision,
-      legend,
-      legendgroup,
-      legendrank,
-      size: endpointSize,
-    }),
+    // endpointMarker({
+    //   color,
+    //   precision: curve.endpointPrecision,
+    //   legend,
+    //   legendgroup,
+    //   legendrank,
+    //   size: endpointSize,
+    // }),
 
   ];
 }
@@ -791,7 +791,7 @@ export async function initGaussianSymmetricPrWidget(container) {
           markerSize:
             scaleMarker(10),
 
-          endpointSize: scaleMarker(7),
+          // endpointSize: scaleMarker(7),
         }
       ),
 
@@ -816,7 +816,7 @@ export async function initGaussianSymmetricPrWidget(container) {
           markerSize:
             scaleMarker(10),
 
-          endpointSize: scaleMarker(7),
+          // endpointSize: scaleMarker(7),
         }
       ),
 
@@ -841,7 +841,7 @@ export async function initGaussianSymmetricPrWidget(container) {
           markerSize:
             scaleMarker(10),
 
-          endpointSize: scaleMarker(7),
+          // endpointSize: scaleMarker(7),
         }
       ),
 
@@ -895,14 +895,14 @@ export async function initGaussianSymmetricPrWidget(container) {
         },
       },
 
-      endpointMarker({
-        color: COLORS.perfect,
-        precision: prevalence,
-        legend: 'legend',
-        legendgroup: 'curve-Perfect',
-        legendrank: 301,
-        size: scaleMarker(7),
-      }),
+      // endpointMarker({
+      //   color: COLORS.perfect,
+      //   precision: prevalence,
+      //   legend: 'legend',
+      //   legendgroup: 'curve-Perfect',
+      //   legendrank: 301,
+      //   size: scaleMarker(7),
+      // }),
 
 
       // Random classifier:
@@ -928,14 +928,14 @@ export async function initGaussianSymmetricPrWidget(container) {
         },
       },
 
-      endpointMarker({
-        color: COLORS.random,
-        precision: prevalence,
-        legend: 'legend',
-        legendgroup: 'curve-Random',
-        legendrank: 302,
-        size: scaleMarker(7),
-      }),
+      // endpointMarker({
+      //   color: COLORS.random,
+      //   precision: prevalence,
+      //   legend: 'legend',
+      //   legendgroup: 'curve-Random',
+      //   legendrank: 302,
+      //   size: scaleMarker(7),
+      // }),
 
 
       // Always-wrong classifier:
@@ -961,14 +961,14 @@ export async function initGaussianSymmetricPrWidget(container) {
         },
       },
 
-      endpointMarker({
-        color: COLORS.wrong,
-        precision: prevalence,
-        legend: 'legend',
-        legendgroup: 'curve-Always wrong',
-        legendrank: 303,
-        size: scaleMarker(7),
-      }),
+      // endpointMarker({
+      //   color: COLORS.wrong,
+      //   precision: prevalence,
+      //   legend: 'legend',
+      //   legendgroup: 'curve-Always wrong',
+      //   legendrank: 303,
+      //   size: scaleMarker(7),
+      // }),
 
     ];
 

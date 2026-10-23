@@ -26,9 +26,48 @@
 //     which are not representable on a log axis.
 //   - JSON `title_prefix`: text prepended to the primary assay/signal name
 //     in the plot title (defaults to "PCR test name: ").
+//   - container `data-layout="stacked"`: alternative arrangement of the
+//     three panels. The scatter panel is elongated vertically on the left,
+//     the ROC curve sits on top of the PR curve on the right (both square).
+//     Meant to be used with a horizontal controls bar above the plot (the
+//     container then has flex-direction:column). The default is the
+//     original "scatter | ROC | PR" row.
+//
+// Responsive sizing (same recipe as the sampling explorers): the figure
+// width is *measured* from the plot div (clamped between MIN_WIDTH and
+// NATURAL_WIDTH) and passed explicitly to Plotly, together with a height
+// derived from it so that the ROC / PR panels are square by construction.
+// A ResizeObserver re-renders when the available width changes. The plot
+// can therefore never be wider than its container (no horizontal
+// scrollbar), and it shrinks smoothly on narrow screens.
 
 export async function initRocWidget(container, jsonPath) {
   const plotDiv = container.querySelector('.roc-plot');
+
+  const STACKED = container.dataset.layout === 'stacked';
+
+  const NATURAL_WIDTH = STACKED ? 900 : 800;  // widest the figure may get
+  const MIN_WIDTH = STACKED ? 340 : 360;      // narrowest the figure may get
+
+  // Make the plot area follow its container instead of its own content.
+  // Row container: a fixed basis (MIN_WIDTH) that grows to fill the row and
+  // wraps below the controls box when the row is too narrow. Column
+  // container (controls bar on top): simply the full width. Neither depends
+  // on the figure's current size, so there is no feedback loop.
+  const isColumn = getComputedStyle(container).flexDirection.startsWith('column');
+  if (isColumn) {
+    plotDiv.style.width = '100%';
+    plotDiv.style.flex = '0 0 auto';
+  } else {
+    plotDiv.style.flex = `1 1 ${MIN_WIDTH}px`;
+  }
+  plotDiv.style.minWidth = '0';
+  plotDiv.style.maxWidth = '100%';
+  // Last-resort fallback on very narrow screens: scroll the figure inside
+  // its own box rather than widening the page.
+  plotDiv.style.overflowX = 'auto';
+  plotDiv.style.overflowY = 'hidden';
+
   const resp = await fetch(new URL(jsonPath, import.meta.url));
   if (!resp.ok) {
     plotDiv.innerHTML = '<div style="color:red;">Failed to load ' + jsonPath + '</div>';
@@ -83,9 +122,10 @@ export async function initRocWidget(container, jsonPath) {
     input.id = id;
     input.value = name;
     input.checked = selected.has(name);
-    input.style.marginRight = '4px';
+    input.style.marginRight = '2px';
+    input.style.marginLeft = '0';
     input.style.cursor = 'pointer';
-    input.style.transform = 'scale(0.85)';
+    input.style.transform = 'scale(0.75)';
 
     const label = document.createElement('label');
     label.htmlFor = id;
@@ -103,7 +143,7 @@ export async function initRocWidget(container, jsonPath) {
     const chip = document.createElement('div');
     chip.style.display = 'flex';
     chip.style.alignItems = 'center';
-    chip.style.padding = '2px 4px';
+    chip.style.padding = '1px 3px';
     chip.style.borderRadius = '4px';
     chip.style.border = '1px solid rgba(0,0,0,0.15)';
     chip.style.borderLeftWidth = '3px';
@@ -203,13 +243,101 @@ export async function initRocWidget(container, jsonPath) {
     return out;
   }
 
-  function buildScatterTraces(assay, threshold) {
+  // ------------------------------------------------------------------
+  // Responsive sizing
+  // ------------------------------------------------------------------
+
+  const MARGIN_L = 60;
+  const MARGIN_R = 20;
+  const MARGIN_B = 55;
+
+  // Minimum horizontal gaps, in pixels, so the y-axis titles never
+  // collide with the neighbouring panel.
+  const MIN_GAP_PX_3 = 52;    // 3 panels (scatter | ROC | PR)
+  const SCATTER_RATIO = 0.8;  // scatter panel width / curve panel side
+  const MIN_GAP_PX_2 = 58;    // 2 panels
+
+  // The top band hosts the title and the (wrapping) legend: give it a bit
+  // more room when the figure is narrow, since the legend then wraps onto
+  // more rows.
+  const marginTop = (scale) => Math.round(140 + 60 * (1 - scale));
+
+  // Measure the available width, derive every size from it. The ROC and PR
+  // panels are square (scaleanchor), so their pixel boxes are made square
+  // by construction: the figure height follows from the panel side.
+  function computePlotSize() {
+    const measured = plotDiv.getBoundingClientRect().width;
+    const available = measured > 0 ? measured : NATURAL_WIDTH;
+    const width = Math.max(MIN_WIDTH, Math.min(NATURAL_WIDTH, Math.round(available)));
+    const scale = width / NATURAL_WIDTH;
+    const plotAreaW = width - MARGIN_L - MARGIN_R;
+
+    let side;                         // pixel side of one square curve panel
+    let plotH;                        // pixel height of the plot area
+    let scatterDomain, rocDomain, prDomain;
+    let rocY = null, prY = null;      // y-domains (stacked layout only)
+    const stacked = STACKED && showRoc && showPr;
+
+    if (stacked) {
+      // scatter (tall) | ROC over PR. Both curve panels are square: x
+      // domain width = side px, y domain height = side px, with a vertical
+      // gap that holds the ROC x-axis tick labels and title.
+      const gap = Math.max(40, 0.06 * plotAreaW);
+      const vgap = 48;
+
+      // Give the stacked ROC and PR panels more width; the scatter panel
+      // uses the remaining domain and is therefore narrower.
+      side = Math.min(0.48 * plotAreaW, 320);
+      side = Math.min(0.45 * plotAreaW, 252);
+      plotH = 2 * side + vgap;
+      const f = side / plotAreaW;
+      const g = gap / plotAreaW;
+      scatterDomain = [0, 1 - f - g];
+      rocDomain = [1 - f, 1];
+      prDomain = [1 - f, 1];
+      rocY = [(side + vgap) / plotH, 1];
+      prY = [0, side / plotH];
+    } else if (showRoc && showPr) {
+      // scatter | ROC | PR. The scatter panel (two columns of points) is
+      // narrower than the two square curve panels, which get the freed
+      // space: plotAreaW = scatter + 2 * side + 2 * gap.
+      const gap = Math.max(MIN_GAP_PX_3, 0.095 * plotAreaW);
+      side = (plotAreaW - 2 * gap) / (2 + SCATTER_RATIO);
+      const f = side / plotAreaW;
+      const g = gap / plotAreaW;
+      const s = SCATTER_RATIO * f;
+      scatterDomain = [0, s];
+      rocDomain = [s + g, s + g + f];
+      prDomain = [1 - f, 1];
+    } else if (showRoc || showPr) {
+      // scatter | one curve panel
+      const gap = Math.max(MIN_GAP_PX_2, 0.1 * plotAreaW);
+      side = Math.min(0.45 * plotAreaW, 320);
+      const f = side / plotAreaW;
+      const g = gap / plotAreaW;
+      scatterDomain = [0, 1 - f - g];
+      const curveDomain = [1 - f, 1];
+      if (showRoc) rocDomain = curveDomain; else prDomain = curveDomain;
+    } else {
+      side = Math.min(0.6 * plotAreaW, 320);
+      scatterDomain = [0, 1];
+    }
+
+    if (plotH === undefined) plotH = side;
+    const top = marginTop(scale);
+    const height = Math.round(plotH + top + MARGIN_B);
+
+    return { width, height, scale, top, scatterDomain, rocDomain, prDomain, rocY, prY, stacked };
+  }
+
+  function buildScatterTraces(assay, threshold, scale) {
     const posColor = data.colors.pos;
     const negColor = data.colors.neg;
     const xPos = data.x_pos;
     const xNeg = data.x_neg;
     const pos = assay.pos;
     const neg = assay.neg;
+    const ms = Math.max(3, 6 * scale);
 
     const posAbove = { x: [], y: [] }, posBelow = { x: [], y: [] };
     const negAbove = { x: [], y: [] }, negBelow = { x: [], y: [] };
@@ -232,16 +360,16 @@ export async function initRocWidget(container, jsonPath) {
 
     const scatterTraces = [
       { x: posAboveP.x, y: posAboveP.y, mode: 'markers', name: `TP (${TP})`,
-        marker: { color: posColor, size: 6, line: { color: 'black', width: 0.5 } },
+        marker: { color: posColor, size: ms, line: { color: 'black', width: 0.5 } },
         xaxis: 'x', yaxis: 'y' },
       { x: posBelowP.x, y: posBelowP.y, mode: 'markers', name: `FN (${FN})`,
-        marker: { color: posColor, size: 6, symbol: 'x' },
+        marker: { color: posColor, size: ms, symbol: 'x' },
         xaxis: 'x', yaxis: 'y' },
       { x: negAboveP.x, y: negAboveP.y, mode: 'markers', name: `FP (${FP})`,
-        marker: { color: negColor, size: 6, line: { color: 'black', width: 0.5 } },
+        marker: { color: negColor, size: ms, line: { color: 'black', width: 0.5 } },
         xaxis: 'x', yaxis: 'y' },
       { x: negBelowP.x, y: negBelowP.y, mode: 'markers', name: `TN (${TN})`,
-        marker: { color: negColor, size: 6, symbol: 'x' },
+        marker: { color: negColor, size: ms, symbol: 'x' },
         xaxis: 'x', yaxis: 'y' },
       { x: [-0.3, 0.9], y: [threshold, threshold], mode: 'lines', name: 'Threshold',
         line: { color: 'black', width: 3 }, xaxis: 'x', yaxis: 'y', showlegend: true },
@@ -257,9 +385,11 @@ export async function initRocWidget(container, jsonPath) {
     return scatterTraces;
   }
 
-  function buildComparisonTraces(names, threshold) {
+  function buildComparisonTraces(names, threshold, scale) {
     const rocTraces = [];
     const prTraces = [];
+    const sizePrimary = Math.max(7, 11 * scale);
+    const sizeOther = Math.max(5, 8 * scale);
 
     names.forEach((name) => {
       const assay = data.assays[name];
@@ -278,7 +408,8 @@ export async function initRocWidget(container, jsonPath) {
         rocTraces.push({
           x: [FPR], y: [TPR], mode: 'markers', name: name + ' point',
           marker: {
-            color, size: isPrimary ? 11 : 8, symbol: isPrimary ? 'circle' : 'diamond',
+            color, size: isPrimary ? sizePrimary : sizeOther,
+            symbol: isPrimary ? 'circle' : 'diamond',
             line: { color: 'black', width: isPrimary ? 1 : 0 },
           },
           xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, legendgroup: name, showlegend: false,
@@ -306,7 +437,8 @@ export async function initRocWidget(container, jsonPath) {
         prTraces.push({
           x: [recall], y: [precision], mode: 'markers', name: name + ' point',
           marker: {
-            color, size: isPrimary ? 11 : 8, symbol: isPrimary ? 'circle' : 'diamond',
+            color, size: isPrimary ? sizePrimary : sizeOther,
+            symbol: isPrimary ? 'circle' : 'diamond',
             line: { color: 'black', width: isPrimary ? 1 : 0 },
           },
           xaxis: AXIS_PR.x, yaxis: AXIS_PR.y, legendgroup: name, showlegend: false,
@@ -335,14 +467,14 @@ export async function initRocWidget(container, jsonPath) {
         if (showRoc) {
           rocTraces.push({
             x: [reco.FPR], y: [reco.TPR], mode: 'markers', name: 'Reco. point',
-            marker: { color: 'gray', size: 11, symbol: 'x' },
+            marker: { color: 'gray', size: sizePrimary, symbol: 'x' },
             xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: false,
           });
         }
         if (showPr) {
           prTraces.push({
             x: [reco.TPR], y: [recoPrecision], mode: 'markers', name: 'Reco. point',
-            marker: { color: 'gray', size: 11, symbol: 'x' },
+            marker: { color: 'gray', size: sizePrimary, symbol: 'x' },
             xaxis: AXIS_PR.x, yaxis: AXIS_PR.y, showlegend: false,
           });
         }
@@ -353,24 +485,9 @@ export async function initRocWidget(container, jsonPath) {
   }
 
 
-  function layoutFor(assay, title, primary) {
+  function layoutFor(assay, title, primary, size) {
     const panelCount = 1 + (showRoc ? 1 : 0) + (showPr ? 1 : 0);
-
-    // Domains: reproduce the exact original 3-panel domains when both
-    // curve panels are shown, so real-data widgets render pixel-identical
-    // to before. Compute a simple 2-panel (or 1-panel) split otherwise.
-    let scatterDomain, rocDomain, prDomain;
-    if (showRoc && showPr) {
-      scatterDomain = [0, 0.27];
-      rocDomain = [0.365, 0.635];
-      prDomain = [0.73, 1];
-    } else if (panelCount === 2) {
-      scatterDomain = [0, 0.45];
-      const otherDomain = [0.55, 1];
-      if (showRoc) rocDomain = otherDomain; else prDomain = otherDomain;
-    } else {
-      scatterDomain = [0, 1];
-    }
+    const { width, height, scale, top, scatterDomain, rocDomain, prDomain, rocY, prY, stacked } = size;
 
     const yAxisConfig = yScale === 'linear'
       ? {
@@ -392,18 +509,21 @@ export async function initRocWidget(container, jsonPath) {
         title: { text: 'True covid status (' + primary + ' only)', font: { size: 11 } },
       },
       yaxis: yAxisConfig,
-      margin: { l: 60, r: 20, t: 140, b: 55, pad: 4 },
+      margin: { l: MARGIN_L, r: MARGIN_R, t: top, b: MARGIN_B, pad: 4 },
       title: {
         text: title,
-        font: { size: 20, family: FONT_FAMILY, color: '#111' },
+        font: { size: Math.max(13, Math.round(20 * scale)), family: FONT_FAMILY, color: '#111' },
         x: 0.5, xanchor: 'center', y: 1, yanchor: 'top', pad: { t: 0, b: 20 },
       },
       legend: {
         orientation: 'h', y: 1.1, yanchor: 'bottom', x: 0.5, xanchor: 'center',
-        font: { size: 10, family: FONT_FAMILY },
+        font: { size: scale < 0.8 ? 9 : 10, family: FONT_FAMILY },
       },
-      height: 440,
-      autosize: true,
+      // Explicit size: derived from the measured container width, so the
+      // figure never exceeds its container. (No `autosize`, no Plotly
+      // `responsive`: the ResizeObserver below owns responsiveness.)
+      width,
+      height,
       paper_bgcolor: 'rgba(0,0,0,0)',
       plot_bgcolor: 'rgba(0,0,0,0)',
     };
@@ -423,12 +543,27 @@ export async function initRocWidget(container, jsonPath) {
       };
       layout[AXIS_PR.y.replace('y', 'yaxis')] = {
         range: [-0.05, 1.05], scaleanchor: AXIS_PR.x, scaleratio: 1,
-        title: { text: 'Precision (AP = Average Precision)', font: { size: 11 } },
+        title: { text: 'Precision (AP = Average Precision)', font: { size: scale < 0.8 ? 10 : 11 } },
       };
+    }
+
+    if (stacked) {
+      // No `grid` here: every axis gets an explicit domain and anchor, so
+      // that ROC (top right) and PR (bottom right) share the right column.
+      delete layout.grid;
+      layout.xaxis.anchor = 'y';
+      layout.yaxis.anchor = 'x';
+      layout.yaxis.domain = [0, 1];
+      Object.assign(layout.xaxis2, { anchor: 'y2' });
+      Object.assign(layout.yaxis2, { anchor: 'x2', domain: rocY });
+      Object.assign(layout.xaxis3, { anchor: 'y3' });
+      Object.assign(layout.yaxis3, { anchor: 'x3', domain: prY });
     }
 
     return layout;
   }
+
+  let lastWidth = null;
 
   function render() {
     const names = assayNames.filter((n) => selected.has(n));
@@ -437,6 +572,9 @@ export async function initRocWidget(container, jsonPath) {
     const threshold = currentThreshold();
     updateThresholdLabel();
 
+    const size = computePlotSize();
+    lastWidth = size.width;
+
     const popSuffix = (data.n_pos !== undefined && data.n_neg !== undefined)
       ? ` — n₊=${data.n_pos}, n₋=${data.n_neg}`
       : '';
@@ -444,16 +582,27 @@ export async function initRocWidget(container, jsonPath) {
       ? titlePrefix + primary + ' (+' + (names.length - 1) + ' compared)'
       : titlePrefix + primary) + popSuffix;
 
-    const traces = buildScatterTraces(assay, threshold)
-      .concat(buildComparisonTraces(names, threshold));
-    const layout = layoutFor(assay, title, primary);
-    Plotly.react(plotDiv, traces, layout, { responsive: true, displayModeBar: false });
+    const traces = buildScatterTraces(assay, threshold, size.scale)
+      .concat(buildComparisonTraces(names, threshold, size.scale));
+    const layout = layoutFor(assay, title, primary, size);
+    Plotly.react(plotDiv, traces, layout, { displayModeBar: false });
   }
 
   thresholdSlider.addEventListener('input', render);
 
   setupThresholdSlider();
   render();
+
+  // Re-render whenever the available width changes (window resize, layout
+  // wrapping, sidebar toggled, tab revealed...). Scoped to this widget, so
+  // several widgets on one page don't interfere; the width guard avoids
+  // needless redraws (and any feedback loop) when only the height moved.
+  const ro = new ResizeObserver(() => {
+    if (computePlotSize().width !== lastWidth) render();
+  });
+  ro.observe(container);
+  ro.observe(plotDiv);
+  container._rocResizeObserver = ro;
 }
 
 // Auto-boot every widget container found on the page. Each container just
