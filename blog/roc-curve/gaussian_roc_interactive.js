@@ -59,8 +59,15 @@ const locationScaleRocModel = {
     const rho = p.sigma0 / p.sigma1;
     const dist = distributions[p.distribution || 'gaussian'];
 
-    // Single-line title with minimal spacing to prevent clipping
-    return `${dist.label} — Δ=${Delta.toFixed(2)}, ρ=${rho.toFixed(2)}`;
+    // `auc` is the value returned by metricFn; recompute it if the engine
+    // did not pass it. The ROC curve does not depend on the prevalence
+    // pi, so unlike the PR title there is no pi term here.
+    const aucValue = typeof auc === 'number' ? auc : distributionAuc(p);
+
+    return (
+      `${dist.label} model  —  ` +
+      `Δ = ${Delta.toFixed(2)}, ρ = ${rho.toFixed(2)}  →  AUC ≈ ${aucValue.toFixed(3)}`
+    );
   },
 
   curve: {

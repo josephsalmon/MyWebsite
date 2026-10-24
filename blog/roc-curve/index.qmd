@@ -522,7 +522,7 @@ $$
 :::: {#thm-roc-class-inversion}
 
 # Anti-diagonal symmetry
->
+
 Under simultaneous class-label swapping and threshold reversal, the ROC curve is the reflection of the original curve about the anti-diagonal $y=1-x$.
 
 ::::
