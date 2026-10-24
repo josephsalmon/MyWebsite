@@ -1,4 +1,4 @@
-// Single-panel ROC plot: fixed Gaussian model (mu0=0, sigma0=1, mu1=1, sigma1=1)
+// Single-panel ROC plot: fixed Gaussian model (mu0=0, sigma0=1, mu1=1, sigma1=2)
 const FONT_FAMILY = 'Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
 
 const COLORS = {
@@ -35,6 +35,14 @@ function Phi(x) {
 
 function fprAt(t) { return 1 - Phi(t); }
 function tprAt(t) { return 1 - Phi((t - 1) / 2); }
+
+// Model constants, consistent with fprAt / tprAt above, and the closed-form
+// AUC = P(X1 > X0) = Phi(Delta / sqrt(1 + rho^2)) of the original ROC curve.
+// (The prevalence plays no role: the ROC curve does not depend on it.)
+const MU0 = 0, SIGMA0 = 1, MU1 = 1, SIGMA1 = 2;
+const DELTA = (MU1 - MU0) / SIGMA1;   // standardized separation
+const RHO = SIGMA0 / SIGMA1;          // scale ratio
+const AUC = Phi(DELTA / Math.sqrt(1 + RHO * RHO));
 
 function rocPoint(t) {
   return { fpr: fprAt(t), tpr: tprAt(t) };
@@ -127,12 +135,12 @@ export async function initGaussianSymmetricRocWidget(container) {
   updateThresholdValueLabel();
 
   // Prevalence control (illustrative only: does not affect the ROC curve)
-  addLabel(controlsDiv, 'Prevalence (π)', { top: true });
+  addLabel(controlsDiv, 'Prevalence (π₁)', { top: true });
   const { slider: prevalenceSlider, valueLabel: prevalenceValueLabel } =
     addSlider(controlsDiv, { min: 0.01, max: 0.99, step: 0.01, value: 0.5 });
 
   function updatePrevalenceValueLabel() {
-    prevalenceValueLabel.textContent = 'π = ' + parseFloat(prevalenceSlider.value).toFixed(2);
+    prevalenceValueLabel.textContent = 'π₁ = ' + parseFloat(prevalenceSlider.value).toFixed(2);
   }
   updatePrevalenceValueLabel();
 
@@ -508,7 +516,7 @@ function legendLayout() {
 
   const MARGIN_L = 55;
   const MARGIN_R = 175;   // reserved for the three legend columns
-  const MARGIN_T = 20;
+  const MARGIN_T = 44;   // title band
   const MARGIN_B = 45;
 
   const NATURAL_WIDTH = 600;
@@ -530,8 +538,19 @@ function legendLayout() {
     const ticks = [0, 0.2, 0.4, 0.6, 0.8, 1];
     const { width, height } = computePlotSize();
 
+    const scale = width / NATURAL_WIDTH;
+
     return {
       font: { family: FONT_FAMILY, size: 12, color: '#333' },
+      title: {
+        text:
+          'Gaussian model  —  ' +
+          `Δ = ${DELTA.toFixed(2)}, ρ = ${RHO.toFixed(2)}  →  AUC = ${AUC.toFixed(3)}`,
+        x: 0.5, xanchor: 'center', xref: 'container',
+        y: 1, yanchor: 'top', yref: 'container',
+        font: { size: Math.max(11, 14 * scale), family: FONT_FAMILY, color: '#111' },
+        pad: { t: 6, b: 0 },
+      },
       xaxis: {
         range: [-0.04, 1.04],
         autorange: false,
