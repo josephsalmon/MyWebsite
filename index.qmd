@@ -100,8 +100,8 @@ A full list of publications can be found
 
 :::{#news}
 ## News
-
-- **July. 2026**: Come and join us for [CAP/RFIAP](https://caprfiap2026.sciencesconf.org/), CAp (Conférence sur l'Apprentissage automatique) and RFIAP (Reconnaissance des Formes, Image, Apprentissage et Perception) conferences.
+- **Oct. 2026**: Elected an ELLIS Fellow.
+- **July 2026**: Come and join us for [CAP/RFIAP](https://caprfiap2026.sciencesconf.org/), CAp (Conférence sur l'Apprentissage automatique) and RFIAP (Reconnaissance des Formes, Image, Apprentissage et Perception) conferences.
 - **Sept. 2024**: I've joined Inria as a senior researcher (Team: Iroko, Montpellier)
 - **Sept. 2023**: ANR VITE accepted  (PI: B. Thirion; Theme: variable importance / explainability).
 - **April 2023**: [STATLEARN 2023](https://statlearn.sciencesconf.org/) in Montpellier

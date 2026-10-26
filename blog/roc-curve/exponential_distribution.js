@@ -7,7 +7,7 @@ export function exponentialSurvival(t, lambda) {
 
 export const exponentialParamSliders = [
   { key: 'lambda0', label: 'λ₀ (healthy rate)', min: 0.2, max: 3, step: 0.05, value: 1 },
-  { key: 'lambda1', label: 'λ₁ (sick rate)',    min: 0.2, max: 3, step: 0.05, value: 0.4 },
+  { key: 'lambda1', label: 'λ₁ (sick rate)',    min: 0.2, max: 3, step: 0.05, value: 0.4 }, 
 ];
 
 export function exponentialYDomain(p) {

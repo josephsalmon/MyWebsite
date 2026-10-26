@@ -73,6 +73,7 @@ website:
     right:
     - icon: rss
       href: blog/index.xml
+      #to combine with https://mastofeed.org/
     - icon: github
       # text: Github
       href: https://github.com/josephsalmon

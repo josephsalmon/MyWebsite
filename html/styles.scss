@@ -240,6 +240,42 @@ h2 a {
   color: $orange;
 }
 
+
+/* Quarto Code dropdown: readable without hovering */
+#quarto-code-tools-menu + .dropdown-menu,
+.dropdown-menu[aria-labelelledby="quarto-code-tools-menu"],
+.dropdown-menu[aria-labelledby="quarto-code-tools-menu"] {
+  background-color: #212529 !important;
+  border: 1px solid #495057 !important;
+}
+
+/* Normal state */
+.dropdown-menu .dropdown-item {
+  color: #f8f9fa !important;
+  background-color: #212529 !important;
+}
+
+/* Hover and keyboard focus */
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+  color: #ffffff !important;
+  background-color: #495057 !important;
+}
+
+/* Active state */
+.dropdown-menu .dropdown-item:active,
+.dropdown-menu .dropdown-item.active {
+  color: #ffffff !important;
+  background-color: #343a40 !important;
+}
+
+/* Divider */
+.dropdown-menu .dropdown-divider {
+  border-top-color: #6c757d !important;
+}
+
+
+
 #quarto-content>* {
   padding: 0;
 }

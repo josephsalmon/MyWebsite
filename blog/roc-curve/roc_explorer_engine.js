@@ -40,7 +40,115 @@
 export const FONT_FAMILY = 'Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
 export const COLOR_X0 = '#e41a1c'; // red, right side (healthy)
 export const COLOR_X1 = '#377eb8'; // blue, left side (sick)
+
+const LIGHT_THEME = {
+  dark: false,
+  text: '#243247', title: '#142238', secondary: '#46566d',
+  grid: 'rgba(30, 50, 75, 0.18)',
+  zeroLine: 'rgba(30, 50, 75, 0.55)',
+  border: 'rgba(30, 50, 75, 0.28)',
+  panel: 'rgba(0, 0, 0, 0.02)',      // was '#ffffff'
+  curve: '#142238', threshold: '#142238',
+  marker: '#ffffff', markerBorder: '#142238',
+  x0: '#c62828', x1: '#1769aa',
+};
+
+const DARK_THEME = {
+  dark: true,
+  text: '#e8edf5', title: '#ffffff', secondary: '#c1cde0',
+  grid: 'rgba(220, 232, 250, 0.16)',  // softer than 0.22
+  zeroLine: 'rgba(220, 232, 250, 0.60)',
+  border: 'rgba(220, 232, 250, 0.25)',
+  panel: 'rgba(255, 255, 255, 0.04)', // blends with any dark bg
+  curve: '#ffffff', threshold: '#f0f4fa',
+  marker: '#1b2534', markerBorder: '#ffffff',
+  x0: '#ff8a80', x1: '#64b5f6',
+};
+
+const THEME = { ...LIGHT_THEME, bg: '#ffffff' };
+
+function parseRgba(str) {
+  const m = /rgba?\(([^)]+)\)/.exec(str || '');
+  if (!m) return null;
+
+  const values = m[1]
+    .split(/[,\s/]+/)
+    .filter(Boolean)
+    .map(Number);
+
+  if (values.length < 3 || values.slice(0, 3).some(Number.isNaN)) {
+    return null;
+  }
+
+  return {
+    r: values[0],
+    g: values[1],
+    b: values[2],
+    a: values.length > 3 && !Number.isNaN(values[3])
+      ? values[3]
+      : 1,
+  };
+}
+
+function getPageTheme(el) {
+  const root = document.documentElement;
+  const body = document.body;
+
+  // Quarto's theme classes take precedence.
+  if (
+    root.classList.contains('quarto-dark') ||
+    body?.classList.contains('quarto-dark')
+  ) {
+    return DARK_THEME;
+  }
+
+  if (
+    root.classList.contains('quarto-light') ||
+    body?.classList.contains('quarto-light')
+  ) {
+    return LIGHT_THEME;
+  }
+
+  // Fall back to explicit theme attributes.
+  const themeValue =
+    root.getAttribute('data-bs-theme') ||
+    root.getAttribute('data-theme') ||
+    body?.getAttribute('data-bs-theme') ||
+    body?.getAttribute('data-theme');
+
+  if (themeValue) {
+    return themeValue.toLowerCase().includes('dark')
+      ? DARK_THEME
+      : LIGHT_THEME;
+  }
+
+  // Fall back to the nearest opaque background colour.
+  for (let node = el; node; node = node.parentElement) {
+    const bg = parseRgba(getComputedStyle(node).backgroundColor);
+
+    if (bg && bg.a > 0.5) {
+      const luminance =
+        (0.2126 * bg.r + 0.7152 * bg.g + 0.0722 * bg.b) / 255;
+
+      return luminance < 0.5 ? DARK_THEME : LIGHT_THEME;
+    }
+  }
+
+  return LIGHT_THEME;
+}
+
+function refreshTheme(el) {
+  const nextTheme = getPageTheme(el);
+  const changed = THEME.dark !== nextTheme.dark;
+
+  Object.assign(THEME, nextTheme);
+  return changed;
+}
+
 const AXIS_CURVE = { x: 'x2', y: 'y2' };
+
+
+
 
 const fmt2 = (v) => Number(v).toFixed(2);
 
@@ -60,20 +168,77 @@ export async function initRocExplorerWidget(container, model) {
   const controlsDiv = container.querySelector(model.controlsSelector);
   const plotDiv = container.querySelector(model.plotSelector);
 
+  if (!controlsDiv || !plotDiv) {
+    throw new Error(
+      'ROC explorer: controls or plot container was not found.'
+    );
+  }
+
+  function applyWidgetTypography() {
+    container.style.setProperty(
+      'font-family',
+      FONT_FAMILY,
+      'important'
+    );
+
+    controlsDiv.style.setProperty(
+      'font-family',
+      FONT_FAMILY,
+      'important'
+    );
+
+    controlsDiv.querySelectorAll('*').forEach((el) => {
+      el.style.setProperty(
+        'font-family',
+        FONT_FAMILY,
+        'important'
+      );
+    });
+  }
+
+  // Keep the remainder of your existing initialization here.
+
+  if (!controlsDiv || !plotDiv) {
+    throw new Error(
+      'ROC explorer: controls or plot container was not found.'
+    );
+  }
+
   const params = {};
-  model.paramSliders.forEach(({ key, value }) => { params[key] = value; });
+  model.paramSliders.forEach(({ key, value }) => {
+    params[key] = value;
+  });
+
   params.t = model.initialT;
-
-  // Distribution selection (set by the radio buttons in
-  // gaussian_roc_interactive.js via the container dataset).
-  if (container.dataset.distribution) {
-    params.distribution = container.dataset.distribution;
-}
-
-  // --- Build the control panel -------------------------------------
 
   const sliderEls = {};
   const valueEls = {};
+
+  // Distribution selection.
+  if (container.dataset.distribution) {
+    params.distribution = container.dataset.distribution;
+  }
+
+  // Continue with the control panel construction here.
+
+  // --- Build the control panel -------------------------------------
+
+// Fixed typography for controls.
+// Theme changes should affect colours, not font sizes.
+const CONTROL_FONT = {
+  family: FONT_FAMILY,
+  label: '11px',
+  value: '11px',
+  threshold: '11px',
+  lineHeight: '1.35',
+};
+
+
+function setFixedFont(el, size) {
+  el.style.setProperty('font-family', CONTROL_FONT.family, 'important');
+  el.style.setProperty('font-size', size, 'important');
+  el.style.setProperty('line-height', CONTROL_FONT.lineHeight, 'important');
+}
 
   function makeSliderRow(key, label, min, max, step, value, formatFn) {
     const row = document.createElement('div');
@@ -82,20 +247,28 @@ export async function initRocExplorerWidget(container, model) {
     const labelRow = document.createElement('div');
     labelRow.style.display = 'flex';
     labelRow.style.justifyContent = 'space-between';
-    labelRow.style.fontFamily = FONT_FAMILY;
-    labelRow.style.fontSize = '9px';
-    labelRow.style.marginBottom = '2px';
+    labelRow.style.alignItems = 'baseline';
+    labelRow.style.gap = '10px';
+    labelRow.style.marginBottom = '5px';
+
+    setFixedFont(labelRow, CONTROL_FONT.label);
+    labelRow.style.color = THEME.text;
 
     const labelText = document.createElement('span');
     labelText.textContent = label;
     labelText.style.fontWeight = '600';
     labelText.style.whiteSpace = 'normal';
-    labelText.style.lineHeight = '1.2';
-    
+    labelText.style.color = THEME.text;
+
+    setFixedFont(labelText, CONTROL_FONT.label);
+
     const valueText = document.createElement('span');
     valueText.textContent = formatFn(value);
-    valueText.style.color = '#555';
+    valueText.style.color = THEME.secondary;
+    valueText.style.fontWeight = '600';
+    valueText.style.whiteSpace = 'nowrap';
 
+    setFixedFont(valueText, CONTROL_FONT.value);
     labelRow.appendChild(labelText);
     labelRow.appendChild(valueText);
 
@@ -121,7 +294,7 @@ export async function initRocExplorerWidget(container, model) {
 
   const hr = document.createElement('hr');
   hr.style.margin = '8px 0';
-  hr.style.borderColor = 'rgba(0,0,0,0.1)';
+  hr.style.borderColor = THEME.border;
   controlsDiv.appendChild(hr);
 
   // --- Threshold slider: own dedicated layout, matching the original
@@ -131,11 +304,11 @@ export async function initRocExplorerWidget(container, model) {
 
   const thresholdLabel = document.createElement('div');
   thresholdLabel.textContent = 'Threshold';
-  thresholdLabel.style.fontFamily = FONT_FAMILY;
-  thresholdLabel.style.fontWeight = '600';
-  thresholdLabel.style.fontSize = '9px';
-  thresholdLabel.style.marginBottom = '4px';
-  controlsDiv.appendChild(thresholdLabel);
+  thresholdLabel.style.fontWeight = '700';
+  thresholdLabel.style.color = THEME.text;
+  thresholdLabel.style.marginBottom = '5px';
+
+  setFixedFont(thresholdLabel, CONTROL_FONT.threshold);
 
   const thresholdSlider = document.createElement('input');
   thresholdSlider.type = 'range';
@@ -147,11 +320,12 @@ export async function initRocExplorerWidget(container, model) {
   controlsDiv.appendChild(thresholdSlider);
 
   const thresholdValueLabel = document.createElement('div');
-  thresholdValueLabel.style.marginTop = '4px';
+  thresholdValueLabel.style.marginTop = '6px';
   thresholdValueLabel.style.textAlign = 'center';
-  thresholdValueLabel.style.fontFamily = FONT_FAMILY;
-  thresholdValueLabel.style.fontSize = '8.5px';
-  thresholdValueLabel.style.color = '#555';
+  thresholdValueLabel.style.color = THEME.secondary;
+  thresholdValueLabel.style.fontWeight = '600';
+
+  setFixedFont(thresholdValueLabel, CONTROL_FONT.value);
   controlsDiv.appendChild(thresholdValueLabel);
 
   sliderEls.t = thresholdSlider;
@@ -165,8 +339,59 @@ export async function initRocExplorerWidget(container, model) {
   legendRow.style.display = 'flex';
   legendRow.style.gap = '10px';
   legendRow.style.marginTop = '8px';
-  legendRow.style.fontSize = '8.5px';
+  legendRow.style.color = THEME.text;
+
+  setFixedFont(legendRow, '10px');
   controlsDiv.appendChild(legendRow);
+
+function updateControlTheme() {
+  controlsDiv.style.setProperty('color', THEME.text, 'important');
+  controlsDiv.style.setProperty(
+    'background-color',
+    THEME.panel,
+    'important'
+  );
+  controlsDiv.style.setProperty(
+    'border-color',
+    THEME.border,
+    'important'
+  );
+
+  // Update primary slider labels.
+  controlsDiv.querySelectorAll('span, div').forEach((el) => {
+    el.style.setProperty('color', THEME.text, 'important');
+  });
+
+  // Restore secondary text colours.
+  Object.values(valueEls).forEach((el) => {
+    el.style.setProperty('color', THEME.secondary, 'important');
+  });
+
+  thresholdValueLabel.style.setProperty(
+    'color',
+    THEME.secondary,
+    'important'
+  );
+
+  // Update separators.
+  controlsDiv.querySelectorAll('hr').forEach((el) => {
+    el.style.setProperty('border-color', THEME.border, 'important');
+  });
+
+  // Keep typography stable across theme changes.
+  controlsDiv.querySelectorAll('span, div').forEach((el) => {
+    if (
+      el === thresholdValueLabel ||
+      Object.values(valueEls).includes(el)
+    ) {
+      setFixedFont(el, CONTROL_FONT.value);
+    } else {
+      setFixedFont(el, CONTROL_FONT.label);
+    }
+  });
+
+  applyWidgetTypography();
+}
 
   // --- Threshold-range maintenance ----------------------------------
 
@@ -204,21 +429,49 @@ export async function initRocExplorerWidget(container, model) {
         if (ys[i] <= p.t) { below.x.push(xv); below.y.push(ys[i]); }
         else { above.x.push(xv); above.y.push(ys[i]); }
       }
-      return [
-        { x: below.x, y: below.y, mode: 'lines', fill: 'tozerox',
-          fillcolor: color + '99', line: { color, width: 1 },
-          name, showlegend: false, xaxis: 'x', yaxis: 'y' },
-        { x: above.x, y: above.y, mode: 'lines', fill: 'tozerox',
-          fillcolor: color + '33', line: { color, width: 1 },
-          name, showlegend: true, xaxis: 'x', yaxis: 'y' },
-      ];
+      const withAlpha = (hex, alpha) => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+  return [
+    {
+      x: below.x,
+      y: below.y,
+      mode: 'lines',
+      fill: 'tozerox',
+      fillcolor: withAlpha(color, 0.42),
+      line: { color, width: 1.8 },
+      name,
+      showlegend: false,
+      xaxis: 'x',
+      yaxis: 'y',
+    },
+    {
+      x: above.x,
+      y: above.y,
+      mode: 'lines',
+      fill: 'tozerox',
+      fillcolor: withAlpha(color, 0.16),
+      line: { color, width: 1.8 },
+      name,
+      showlegend: true,
+      xaxis: 'x',
+      yaxis: 'y',
+    },
+  ];
     }
 
     const traces = [
-      ...splitTraces(pdf1, -1, COLOR_X1, 'X₁ (sick)'),
-      ...splitTraces(pdf0, +1, COLOR_X0, 'X₀ (healthy)'),
+      ...splitTraces(pdf1, -1, THEME.x1, 'X₁ (sick)'),
+      ...splitTraces(pdf0, +1, THEME.x0, 'X₀ (healthy)'),
       { x: [-maxDensity * 1.15, maxDensity * 1.15], y: [p.t, p.t],
-        mode: 'lines', name: 'Threshold', line: { color: 'black', width: 2 },
+      mode: 'lines',
+      name: 'Threshold',
+      line: { color: THEME.threshold, width: 2 },
         xaxis: 'x', yaxis: 'y' },
     ];
 
@@ -240,27 +493,27 @@ export async function initRocExplorerWidget(container, model) {
     if (ref.type === 'diagonal') {
       traces.push({
         x: [0, 1], y: [0, 1], mode: 'lines', name: 'Random guessing',
-        line: { color: 'gray', width: 1.5, dash: 'dash' },
+        line: { color: THEME.secondary, width: 1.8, dash: 'dash' },
         xaxis: AXIS_CURVE.x, yaxis: AXIS_CURVE.y, showlegend: false,
       });
     } else if (ref.type === 'baseline') {
       const yb = ref.value(p);
       traces.push({
         x: [0, 1], y: [yb, yb], mode: 'lines', name: ref.label || 'Baseline',
-        line: { color: 'gray', width: 1.5, dash: 'dash' },
+        line: { color: THEME.secondary, width: 1.5, dash: 'dash' },
         xaxis: AXIS_CURVE.x, yaxis: AXIS_CURVE.y, showlegend: false,
       });
     }
     traces.push({
       x: curvePoints.x, y: curvePoints.y, mode: 'lines', name: curve.curveName,
-      line: { color: '#000000', width: 2.5 }, xaxis: AXIS_CURVE.x, yaxis: AXIS_CURVE.y,
+      line: { color: THEME.curve, width: 3.5 }, xaxis: AXIS_CURVE.x, yaxis: AXIS_CURVE.y,
     });
     traces.push({
       x: [currentPoint.x], y: [currentPoint.y], mode: 'markers', name: 'Operating point',
       marker: {
-        color: 'white',
+        color: THEME.marker,
         size: Math.max(6, 12 * (computePlotSize().width / NATURAL_WIDTH)),
-        symbol: 'circle', line: { color: 'black', width: 2 },
+        symbol: 'circle', line: { color: THEME.markerBorder, width: 2 },
       },
       xaxis: AXIS_CURVE.x, yaxis: AXIS_CURVE.y, showlegend: false,
     });
@@ -330,20 +583,98 @@ export async function initRocExplorerWidget(container, model) {
     const axesTopFrac = (height - MARGIN_T) / height;
 
     return {
-      font: { family: FONT_FAMILY, size: 12, color: '#333' },
+      font: {
+        family: FONT_FAMILY,
+        size: 12,
+        color: THEME.text,
+      },
       grid: { rows: 1, columns: 2, pattern: 'independent' },
 
-      xaxis: {                                    // PDF panel
-        domain: pdfDomain, range: [-maxDensity * 1.15, maxDensity * 1.15],
-        zeroline: true, zerolinecolor: 'rgba(0,0,0,0.3)', showticklabels: false,
-        title: { text: model.xAxisPdfLabel || 'X₁ density ← | → X₀ density', font: { size: 11 } },
-      },
-      yaxis: {
-        domain: [0, 1], range: yDomain,
-        zerolinecolor: '#eee', zerolinewidth: 1,
-        gridcolor: '#eee', gridwidth: 1, showgrid: true,
-        title: { text: 'Assay value (X)', font: { size: 12 } },
-      },
+xaxis: {
+  domain: pdfDomain,
+  range: [-maxDensity * 1.15, maxDensity * 1.15],
+  zeroline: true,
+  zerolinecolor: THEME.zeroLine,
+  showticklabels: false,
+  color: THEME.text,
+  tickfont: {
+    family: FONT_FAMILY,
+    size: 12,
+    color: THEME.text,
+  },
+  title: {
+    text: model.xAxisPdfLabel || 'X₁ density ← | → X₀ density',
+    font: {
+      family: FONT_FAMILY,
+      size: 11,
+      color: THEME.text,
+    },
+  },
+},
+
+yaxis: {
+  domain: [0, 1],
+  range: yDomain,
+  zerolinecolor: THEME.grid,
+  zerolinewidth: 1,
+  gridcolor: THEME.grid,
+  gridwidth: 1,
+  showgrid: true,
+  color: THEME.text,
+  tickfont: {
+    family: FONT_FAMILY,
+    size: 12,
+    color: THEME.text,
+  },
+  title: {
+    text: 'Assay value (X)',
+    font: {
+      family: FONT_FAMILY,
+      size: 12,
+      color: THEME.text,
+    },
+  },
+},
+
+xaxis2: {
+  domain: curveDomain,
+  range: [-0.05, 1.05],
+  color: THEME.text,
+  tickfont: {
+    family: FONT_FAMILY,
+    size: 12,
+    color: THEME.text,
+  },
+  title: {
+    text: model.curve.xAxisTitle,
+    font: {
+      family: FONT_FAMILY,
+      size: 12,
+      color: THEME.text,
+    },
+  },
+},
+
+yaxis2: {
+  range: [-0.05, 1.05],
+  scaleanchor: AXIS_CURVE.x,
+  scaleratio: 1,
+  color: THEME.text,
+  tickfont: {
+    family: FONT_FAMILY,
+    size: 12,
+    color: THEME.text,
+  },
+  title: {
+    text: model.curve.yAxisTitle,
+    font: {
+      family: FONT_FAMILY,
+      size: Math.max(9, 12 * scale),
+      color: THEME.text,
+    },
+    standoff: Math.max(8, 12 * scale),
+  },
+},
       [AXIS_CURVE.x.replace('x', 'xaxis')]: {     // curve panel
         domain: curveDomain, range: [-0.05, 1.05],
         title: { text: model.curve.xAxisTitle, font: { size: 12 } },
@@ -361,7 +692,7 @@ export async function initRocExplorerWidget(container, model) {
         text: model.titleFn(p, metric),
         y: 1, yanchor: 'top', yref: 'container',
         x: 0.5, xanchor: 'center',
-        font: { size: Math.max(11, 16 * scale), family: FONT_FAMILY, color: '#111' },
+        font: { size: Math.max(11, 16 * scale), family: FONT_FAMILY, color: THEME.title },
         pad: { t: 6, b: 0 },
       },
       legend: {
@@ -371,7 +702,11 @@ export async function initRocExplorerWidget(container, model) {
         y: axesTopFrac + 0.25,
         yanchor: 'bottom',
         x: 0.5, xanchor: 'center',
-        font: { size: Math.max(8.5, 10 * scale), family: FONT_FAMILY },
+        font: {
+          size: 11,
+          family: FONT_FAMILY,
+          color: THEME.text,
+        },
       },
       width, height,
       autosize: false,
@@ -413,13 +748,28 @@ export async function initRocExplorerWidget(container, model) {
     updateThresholdLabel();
     render();
   });
-
-  render();
-
+  // --- React to page theme changes ---------------------------------
+  const themeObserver = new MutationObserver(() => {
+    if (refreshTheme(container)) {
+      updateControlTheme();
+      render();
+    }
+  });
+  themeObserver.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['class', 'data-theme', 'data-bs-theme'],
+  });
+  if (document.body) {
+    themeObserver.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class', 'data-theme', 'data-bs-theme'],
+    });
+  }
   // Re-render when the container width changes. Observe the PARENT
   // (which tracks the page width — the plot div itself is sized by
   // Plotly and only changes after a render), and guard on width so
   // our own height-changing renders don't re-trigger the observer.
+  // Re-render when the container width changes.
   let lastWidth = null;
   const ro = new ResizeObserver((entries) => {
     const w = Math.round(entries[0].contentRect.width);
@@ -427,6 +777,7 @@ export async function initRocExplorerWidget(container, model) {
     lastWidth = w;
     render();
   });
+
   ro.observe(plotDiv.parentElement);
   container._rocExplorerResizeObserver = ro;
 }

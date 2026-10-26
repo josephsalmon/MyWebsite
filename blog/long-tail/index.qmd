@@ -1,5 +1,5 @@
 ---
-title: "Optimal prediction sets for plant identification: an interactive guide"
+title: "Optimal prediction sets for plant identification: an interactive guide."
 categories: [Conformal prediction, classification, machine learning, Pl@ntNet]
 execute:
   enabled: true
@@ -109,7 +109,7 @@ biblatex: true
 date: "2025-10-20"
 image: ../../../talks/posts/2026-01-29-slides_citizen_sciences/images/set_prediction.png
 date-format: "MMM D, YYYY"
-description: "Insights and visualization of conformal prediction in the context of long-tailed classification. Challenges from citizen sciences platforms like Pl@ntNet"
+description: "Insights and visualization of conformal prediction in the context of long-tailed classification. Challenges from citizen sciences platforms like Pl@ntNet."
 
 ---
 

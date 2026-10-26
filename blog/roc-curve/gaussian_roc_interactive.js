@@ -28,7 +28,7 @@ const locationScaleRocModel = {
 
     {
       key: 'pi',
-      label: 'π (prevalence)',
+      label: 'π₁ (prevalence)',
       min: 0.05,
       max: 0.95,
       step: 0.05,
@@ -94,51 +94,83 @@ const locationScaleRocModel = {
 // Initialize
 // ============================================================
 
-document
-  .querySelectorAll('.gaussian-roc-interactive')
-  .forEach((container) => {
+function initializeGaussianRoc() {
+  const containers = document.querySelectorAll(
+    '.gaussian-roc-interactive'
+  );
 
-    // Add the distribution radio buttons before initializing
-    // the existing ROC explorer.
-    addDistributionSelector(container);
+  containers.forEach(async (container) => {
+    try {
+      const controls = container.querySelector(
+        '.gaussian-roc-controls'
+      );
 
-    // Initial distribution.
-    container.dataset.distribution = 'gaussian';
+      const plot = container.querySelector(
+        '.gaussian-roc-plot'
+      );
 
-    // Listen to distribution changes.
-    const radios = container.querySelectorAll(
-      '.distribution-selector input[type="radio"]'
-    );
-
-    radios.forEach((radio) => {
-
-      radio.addEventListener('change', () => {
-
-        if (!radio.checked) return;
-
-        container.dataset.distribution = radio.value;
-
-        // The engine reads the parameter object generated from
-        // the controls. We expose the selected distribution
-        // through the container.
-        //
-        // If the engine provides a refresh/update method,
-        // it should be called here. Otherwise, dispatch an
-        // input event so the existing control machinery can
-        // recompute the widget.
-        container.dispatchEvent(
-          new CustomEvent('roc-distribution-change', {
-            detail: {
-              distribution: radio.value,
-            },
-          })
+      if (!controls || !plot) {
+        throw new Error(
+          'Could not find .gaussian-roc-controls or .gaussian-roc-plot.'
         );
+      }
+
+      // Prevent duplicate initialization.
+      if (container.dataset.rocInitialized === 'true') {
+        return;
+      }
+
+      // Set the initial distribution before building the widget.
+      container.dataset.distribution = 'gaussian';
+
+      // Add the distribution selector.
+      addDistributionSelector(
+        container,
+        '.gaussian-roc-controls'
+      );
+
+      const radios = container.querySelectorAll(
+        '.distribution-selector input[type="radio"]'
+      );
+
+      radios.forEach((radio) => {
+        radio.addEventListener('change', () => {
+          if (!radio.checked) return;
+
+          container.dataset.distribution = radio.value;
+
+          container.dispatchEvent(
+            new CustomEvent('roc-distribution-change', {
+              detail: { distribution: radio.value },
+            })
+          );
+        });
       });
+      // Initialize the ROC explorer.
+      await initRocExplorerWidget(
+        container,
+        locationScaleRocModel
+      );
 
-    });
+      container.dataset.rocInitialized = 'true';
 
-    initRocExplorerWidget(
-      container,
-      locationScaleRocModel
-    );
+      console.info('Gaussian ROC explorer initialized.');
+
+    } catch (error) {
+      console.error(
+        'Failed to initialize Gaussian ROC explorer:',
+        error
+      );
+    }
   });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener(
+    'DOMContentLoaded',
+    initializeGaussianRoc,
+    { once: true }
+  );
+} else {
+  initializeGaussianRoc();
+}

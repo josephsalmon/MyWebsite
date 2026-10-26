@@ -1,6 +1,6 @@
 ---
 title: "Public civil servant salaries and inflation"
-description: "Bye bye public civil servants"
+description: "Bye bye public civil servants."
 date: "2024-09-02"
 categories: [news, code, data science, economics]
 author:

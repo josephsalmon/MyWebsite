@@ -5,7 +5,7 @@ author:
     url: https://josephsalmon.eu/
     orcid: 0000-0002-3181-0634
 date: "2025-09-09"
-description: "Gaussian elimination in action: a simple visualization of a famous algorithm "
+description: "Gaussian elimination in action: a simple visualization of a famous algorithm."
 categories: [linear algebra, math visualization]
 image: "gaussian_elimination.gif"
 reference-location: document
@@ -15,7 +15,7 @@ draft: false
 
 # Gaussian elimination
 
-Here is a simple visualisation of the Gaussian elimination steps:
+Here is a simple visualization of the Gaussian elimination steps:
 <img src="gauss_pivot.gif" title="Evolution of a random square matrix along the steps of a Gaussian elimination" style="width:100%" />
 
 and a more complete one:

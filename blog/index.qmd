@@ -6,18 +6,26 @@ format:
   html:
     html-math-method: katex
 description-meta: "Welcome to my blog. Any kind of feedback is welcome, so feel free to reach out to me. Thanks for your interest and time."
-
 listing:
+  - id: posts_2026
+    feed:
+      items: 1
+      type: metadata
+    contents:
+      - "roc-curve/index.qmd"
+    sort: "date desc"
+    template: ../html/blog/listing.ejs
+    categories: true
+
   - id: posts_2025
-    feed: true
     contents:
       - "long-tail/index.qmd"
       - "gaussian_elimination/index.qmd"
     sort: "date desc"
     template: ../html/blog/listing.ejs
     categories: true
+
   - id: posts_2024
-    feed: true
     contents:
       - "isotonic/index.qmd"
       - "softmax/index.qmd"
@@ -36,7 +44,8 @@ listing:
 toc-title: Year
 toc-location: right
 date-format: "MMMM D, YYYY"
-image: ""
+image: "../img/Flag_of_Occitania.svg"
+image-alt: "Occitan cross in orange."
 code-tools: false
 comments: false
 citation: false
@@ -45,6 +54,11 @@ citation: false
 
 Welcome to my blog, `Donadas Brutas`. Any kind of feedback is welcome, so feel free to reach out. Thanks for your interest and time.
 
+
+## 2026
+
+:::{#posts_2026}
+:::
 
 ## 2025
 

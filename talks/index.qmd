@@ -6,7 +6,7 @@ listing:
   - id: post_2024
     contents:
       - "metadata.yml"
-    feed: true
+    # feed: true
     sort: "date desc"
     template: ../html/blog/listing.ejs
     type: grid

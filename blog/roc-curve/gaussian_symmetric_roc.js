@@ -1,23 +1,74 @@
 // Single-panel ROC plot: fixed Gaussian model (mu0=0, sigma0=1, mu1=1, sigma1=2)
 const FONT_FAMILY = 'Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
 
-const COLORS = {
-  // Primary ROC curves (Original)
-  roc: '#000000ff',          // Blue (more visible than pure black)
-  thresholdReversal: '#1f77b4',  // Orange (distinct from blue)
-  classSwap: '#1f77b4',    // Green (distinct from orange)
-  classSwapReversal: '#1f77b4', // Red (distinct from green)
+// ---------------------------------------------------------------------------
+// Colors. Two palettes (light / dark page background); `COLORS` and `THEME`
+// are updated in place by refreshTheme(), which reads the *actual* background
+// color of the page, so no assumption is made about the site's theme names.
+// ---------------------------------------------------------------------------
 
-  // Reference curves (Extreme cases)
-  perfect: '#9467bd',      // Purple (visually distinct)
-  random: '#8c564b',      // Brown (neutral, less prominent)
-  wrong: '#e377c2',       // Pink (high contrast)
+const LIGHT_COLORS = {
+  roc: '#000000ff',                // Original ROC curve
+  thresholdReversal: '#1f77b4',
+  classSwap: '#1f77b4',
+  classSwapReversal: '#1f77b4',
 
-  // UI elements
-  grid: '#E6E6E6',        // Light gray (unchanged)
-  text: '#333333',        // Dark gray (unchanged)
-  secondaryText: '#666666', // Medium gray (unchanged)
+  perfect: '#9467bd',              // Extreme cases
+  random: '#8c564b',
+  wrong: '#e377c2',
 };
+
+const DARK_COLORS = {
+  roc: '#f2f2f2',                  // near white instead of black
+  thresholdReversal: '#6cb2eb',    // lighter blue
+  classSwap: '#6cb2eb',
+  classSwapReversal: '#6cb2eb',
+
+  perfect: '#b79cff',
+  random: '#e0a58f',
+  wrong: '#f48fb1',
+};
+
+const LIGHT_THEME = {
+  text: '#333333', title: '#111111', secondary: '#555555',
+  grid: '#e5e5e5', border: 'rgba(0,0,0,0.15)', panel: 'rgba(0,0,0,0.02)',
+};
+
+const DARK_THEME = {
+  text: '#e6e6e6', title: '#f5f5f5', secondary: '#b8b8b8',
+  grid: 'rgba(255,255,255,0.16)', border: 'rgba(255,255,255,0.28)', panel: 'rgba(255,255,255,0.05)',
+};
+
+const COLORS = { ...LIGHT_COLORS };
+const THEME = { dark: false, bg: 'rgb(255,255,255)', ...LIGHT_THEME };
+
+function parseRgba(str) {
+  const m = /rgba?\(([^)]+)\)/.exec(str || '');
+  if (!m) return null;
+  const v = m[1].split(/[,\s/]+/).filter(Boolean).map(Number);
+  return { r: v[0], g: v[1], b: v[2], a: v.length > 3 ? v[3] : 1 };
+}
+
+// First non-transparent background color found going up from `el`.
+function pageBackground(el) {
+  for (let n = el; n; n = n.parentElement) {
+    const c = parseRgba(getComputedStyle(n).backgroundColor);
+    if (c && c.a > 0.5) return c;
+  }
+  return { r: 255, g: 255, b: 255, a: 1 };
+}
+
+// Updates THEME and COLORS from the page background. Returns true if changed.
+function refreshTheme(el) {
+  const bg = pageBackground(el);
+  const luminance = (0.2126 * bg.r + 0.7152 * bg.g + 0.0722 * bg.b) / 255;
+  const dark = luminance < 0.5;
+  const bgStr = `rgb(${bg.r},${bg.g},${bg.b})`;
+  const changed = dark !== THEME.dark || bgStr !== THEME.bg;
+  Object.assign(THEME, dark ? DARK_THEME : LIGHT_THEME, { dark, bg: bgStr });
+  Object.assign(COLORS, dark ? DARK_COLORS : LIGHT_COLORS);
+  return changed;
+}
 
 function erf(x) {
   const sign = x < 0 ? -1 : 1;
@@ -97,7 +148,7 @@ function addSlider(parent, { min, max, step, value }) {
   const valueLabel = document.createElement('div');
   Object.assign(valueLabel.style, {
     marginTop: '4px', textAlign: 'center',
-    fontFamily: FONT_FAMILY, fontSize: '9px', color: '#555',
+    fontFamily: FONT_FAMILY, fontSize: '9px', color: THEME.secondary,
   });
   parent.appendChild(valueLabel);
 
@@ -113,7 +164,7 @@ function curveAndPoint(curve, pt, { color, width, dash, name, legend, legendrank
     { x: curve.x, y: curve.y, mode: 'lines', name, legend, legendgroup, legendrank,
       line: { color, width, dash }, showlegend: true },
     { x: [pt.fpr], y: [pt.tpr], mode: 'markers', legend, legendgroup, legendrank,
-      marker: { color: 'white', size: markerSize, symbol: 'circle', line: { color, width: 2 } },
+      marker: { color: THEME.bg, size: markerSize, symbol: 'circle', line: { color, width: 2 } },
       showlegend: false },
   ];
 }
@@ -121,6 +172,8 @@ function curveAndPoint(curve, pt, { color, width, dash, name, legend, legendrank
 export async function initGaussianSymmetricRocWidget(container) {
   const controlsDiv = container.querySelector('.gaussian-symmetric-roc-controls');
   const plotDiv = container.querySelector('.gaussian-symmetric-roc-plot');
+
+  refreshTheme(container);
 
   const tMin = -4, tMax = 5;
 
@@ -148,20 +201,35 @@ export async function initGaussianSymmetricRocWidget(container) {
   const legendRow = document.createElement('div');
   Object.assign(legendRow.style, {
     marginTop: '10px', fontFamily: FONT_FAMILY, fontSize: '8.5px',
-    color: '#555', lineHeight: '1.5', display: 'grid',
+    lineHeight: '1.5', display: 'grid',
     gridTemplateColumns: '1fr', gap: '4px 8px',
   });
-  legendRow.innerHTML = [
-    [COLORS.roc, 'ROC curve'],
-    [COLORS.thresholdReversal, 'Threshold reversal'],
-    [COLORS.classSwap, 'Class label swap'],
-    [COLORS.classSwapReversal, 'Class label swap + threshold reversal'],
-  ].map(([color, label]) => `
+  controlsDiv.appendChild(legendRow);
+
+  function fillLegendRow() {
+    legendRow.innerHTML = [
+      [COLORS.roc, 'ROC curve'],
+      [COLORS.thresholdReversal, 'Threshold reversal'],
+      [COLORS.classSwap, 'Class label swap'],
+      [COLORS.classSwapReversal, 'Class label swap + threshold reversal'],
+    ].map(([color, label]) => `
     <div style="display:flex; align-items:center; gap:4px;">
-      <span style="width:8px; height:8px; border-radius:50%; background:white; border:2px solid ${color}; display:inline-block;"></span>
+      <span style="width:8px; height:8px; border-radius:50%; background:${THEME.bg}; border:2px solid ${color}; display:inline-block;"></span>
       ${label}
     </div>`).join('');
-  controlsDiv.appendChild(legendRow);
+  }
+
+  // Everything in the controls box that depends on the page theme.
+  function styleControls() {
+    controlsDiv.style.border = `1px solid ${THEME.border}`;
+    controlsDiv.style.background = THEME.panel;
+    controlsDiv.style.color = THEME.text;
+    [thresholdValueLabel, prevalenceValueLabel, legendRow].forEach((el) => {
+      el.style.color = THEME.secondary;
+    });
+    fillLegendRow();
+  }
+  styleControls();
 
   // Static reference curves and the four transformed ROC curves
   const perfectCurve = { x: [0, 0, 1], y: [0, 1, 1] };
@@ -541,14 +609,14 @@ function legendLayout() {
     const scale = width / NATURAL_WIDTH;
 
     return {
-      font: { family: FONT_FAMILY, size: 12, color: '#333' },
+      font: { family: FONT_FAMILY, size: 12, color: THEME.text },
       title: {
         text:
           'Gaussian model  —  ' +
           `Δ = ${DELTA.toFixed(2)}, ρ = ${RHO.toFixed(2)}  →  AUC = ${AUC.toFixed(3)}`,
         x: 0.5, xanchor: 'center', xref: 'container',
         y: 1, yanchor: 'top', yref: 'container',
-        font: { size: Math.max(11, 14 * scale), family: FONT_FAMILY, color: '#111' },
+        font: { size: Math.max(11, 14 * scale), family: FONT_FAMILY, color: THEME.title },
         pad: { t: 6, b: 0 },
       },
       xaxis: {
@@ -557,7 +625,7 @@ function legendLayout() {
         tickvals: ticks,
         showline: false,
         zeroline: false,
-        gridcolor: '#e5e5e5',
+        gridcolor: THEME.grid,
         gridwidth: 1,
         title: { text: 'False Positive Rate', font: { size: 12 }, standoff: 8 },
       },
@@ -569,7 +637,7 @@ function legendLayout() {
         tickvals: ticks,
         showline: false,
         zeroline: false,
-        gridcolor: '#e5e5e5',
+        gridcolor: THEME.grid,
         gridwidth: 1,
         title: { text: 'True Positive Rate', font: { size: 12 }, standoff: 8 },
       },
@@ -598,6 +666,29 @@ function legendLayout() {
 
   thresholdSlider.addEventListener('input', () => { updateThresholdValueLabel(); render(); });
   prevalenceSlider.addEventListener('input', () => { updatePrevalenceValueLabel(); render(); });
+
+  // Follow the site's light / dark toggle (Quarto swaps stylesheets and body
+  // classes) and the OS preference. The stylesheet swap is not instantaneous,
+  // so the check is repeated shortly after each change.
+  function refreshThemeAndRender() {
+    if (refreshTheme(container)) {
+      styleControls();
+      render();
+    }
+  }
+  let themeTimers = [];
+  function scheduleThemeCheck() {
+    themeTimers.forEach(clearTimeout);
+    themeTimers = [60, 400].map((ms) => setTimeout(refreshThemeAndRender, ms));
+  }
+  const themeObserver = new MutationObserver(scheduleThemeCheck);
+  themeObserver.observe(document.documentElement, { attributes: true });
+  themeObserver.observe(document.body, { attributes: true });
+  themeObserver.observe(document.head, {
+    subtree: true, attributes: true, attributeFilter: ['disabled', 'rel', 'media', 'href'],
+  });
+  window.matchMedia('(prefers-color-scheme: dark)')
+    .addEventListener?.('change', scheduleThemeCheck);
 
   const isHeading = (ev) =>
     String(ev.data[ev.curveNumber].legendgroup || '').startsWith('heading-');
