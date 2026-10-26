@@ -45,6 +45,79 @@ import {
 } from './gaussian_distribution.js';
 
 const FONT_FAMILY = 'Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
+
+const THEME_COLORS = {
+  light: {
+    text: '#333333',
+    title: '#111111',
+    muted: '#666666',
+    axis: '#444444',
+    grid: 'rgba(0, 0, 0, 0.12)',
+    zero: 'rgba(0, 0, 0, 0.25)',
+    threshold: '#333333',
+    theoretical: '#111111',
+    operatingPoint: '#ffffff',
+    empirical: '#a7a7a7',
+    empiricalPoint: '#d8d8d8',
+    separator: 'rgba(0, 0, 0, 0.15)',
+  },
+  dark: {
+    text: '#e5e7eb',
+    title: '#f3f4f6',
+    muted: '#b0b7c3',
+    axis: '#d1d5db',
+    grid: 'rgba(255, 255, 255, 0.16)',
+    zero: 'rgba(255, 255, 255, 0.3)',
+    threshold: '#e5e7eb',
+    theoretical: '#f3f4f6',
+    operatingPoint: '#252525',
+    empirical: '#9ca3af',
+    empiricalPoint: '#6b7280',
+    separator: 'rgba(255, 255, 255, 0.2)',
+  },
+};
+
+function isDarkTheme() {
+  return document.documentElement.getAttribute('data-bs-theme') === 'dark'
+    || document.documentElement.getAttribute('data-theme') === 'dark'
+    || document.body.classList.contains('quarto-dark')
+    || document.documentElement.classList.contains('quarto-dark');
+}
+
+function getThemeColors() {
+  return isDarkTheme() ? THEME_COLORS.dark : THEME_COLORS.light;
+}
+
+function applyControlTypography(container) {
+  const controls = container.querySelector('.sampling-roc-controls');
+  if (!controls) return;
+
+  controls.style.setProperty('font-family', FONT_FAMILY, 'important');
+
+  controls.querySelectorAll('*').forEach((el) => {
+    el.style.setProperty('font-family', FONT_FAMILY, 'important');
+    el.style.setProperty('box-sizing', 'border-box', 'important');
+  });
+
+  // Force consistent typography on all control text.
+  controls.querySelectorAll(
+    '.distribution-selector label, span, label'
+  ).forEach((el) => {
+    el.style.setProperty('font-size', '11px', 'important');
+    el.style.setProperty('line-height', '1.35', 'important');
+  });
+
+  controls.querySelectorAll(
+    'input[type="radio"], input[type="range"]'
+  ).forEach((input) => {
+    input.style.setProperty(
+      'accent-color',
+      isDarkTheme() ? '#93c5fd' : '#2563eb'
+    );
+  });
+}
+
+
 const COLOR_X0 = '#e41a1c'; // red, right side (healthy)
 const COLOR_X1 = '#377eb8'; // blue, left side (sick)
 const AXIS_ROC = { x: 'x2', y: 'y2' };
@@ -121,13 +194,16 @@ function empiricalPoint(x0, x1, t) {
 export async function initRocSamplingWidget(container) {
   const controlsDiv = container.querySelector('.sampling-roc-controls');
   const plotDiv = container.querySelector('.sampling-roc-plot');
+  applyControlTypography(container);
 
+  const controlTextEls = [];
   const params = {
     distribution: 'gaussian',
     mu0: 0, sigma0: 1, mu1: 1, sigma1: 1,
     n0: 60, n1: 60,
     t: 0.5,
   };
+
 
   // --- Control panel --------------------------------------------------
 
@@ -137,21 +213,29 @@ export async function initRocSamplingWidget(container) {
   function makeSliderRow(key, label, min, max, step, value, formatFn) {
     const row = document.createElement('div');
     row.style.marginBottom = '7px';
-
     const labelRow = document.createElement('div');
     labelRow.style.display = 'flex';
     labelRow.style.justifyContent = 'space-between';
     labelRow.style.fontFamily = FONT_FAMILY;
     labelRow.style.marginBottom = '2px';
-    labelRow.style.fontSize = '9.77px';      // was 9.5px
-  
+    labelRow.style.setProperty('font-size', '11px', 'important');
+    labelRow.style.setProperty('line-height', '1.35', 'important');
+
     const labelText = document.createElement('span');
     labelText.textContent = label;
     labelText.style.fontWeight = '600';
 
     const valueText = document.createElement('span');
     valueText.textContent = formatFn(value);
-    valueText.style.color = '#555';
+    valueText.style.color = getThemeColors().muted;
+
+    [labelText, valueText].forEach((el) => {
+      el.style.setProperty('font-size', '11px', 'important');
+      el.style.setProperty('line-height', '1.35', 'important');
+      el.style.setProperty('font-family', FONT_FAMILY, 'important');
+    });
+
+    controlTextEls.push(valueText);
 
     labelRow.appendChild(labelText);
     labelRow.appendChild(valueText);
@@ -194,10 +278,10 @@ export async function initRocSamplingWidget(container) {
   controlsDiv.appendChild(makeSliderRow('n1', 'n₁ (positive samples)', 5, MAX_N, 5, params.n1, fmt0));
 
   const prevalenceLabel = document.createElement('div');
-  prevalenceLabel.style.fontFamily = FONT_FAMILY;
-  prevalenceLabel.style.fontSize = '9.77px';
-  prevalenceLabel.style.color = '#777';
-  prevalenceLabel.style.marginTop = '2px';
+    prevalenceLabel.style.setProperty('font-family', FONT_FAMILY, 'important');
+  prevalenceLabel.style.setProperty('font-size', '11px', 'important');
+  prevalenceLabel.style.setProperty('line-height', '1.35', 'important');
+  prevalenceLabel.style.color = getThemeColors().muted; prevalenceLabel.style.marginTop = '2px';
   prevalenceLabel.style.marginBottom = '6px';
   controlsDiv.appendChild(prevalenceLabel);
 
@@ -225,7 +309,8 @@ thresholdLabelRow.style.display = 'flex';
 thresholdLabelRow.style.justifyContent = 'space-between';
 thresholdLabelRow.style.fontFamily = FONT_FAMILY;
 thresholdLabelRow.style.marginBottom = '2px';
-thresholdLabelRow.style.fontSize = '9.77px';
+thresholdLabelRow.style.setProperty('font-size', '11px', 'important');
+thresholdLabelRow.style.setProperty('line-height', '1.35', 'important');
 thresholdRow.appendChild(thresholdLabelRow);
 
 const thresholdLabel = document.createElement('span');
@@ -235,7 +320,8 @@ thresholdLabelRow.appendChild(thresholdLabel);
 
 const thresholdValueLabel = document.createElement('span');
 thresholdValueLabel.textContent = 'Threshold = ' + params.t.toPrecision(3);
-thresholdValueLabel.style.color = '#555';
+thresholdValueLabel.style.color = getThemeColors().muted;
+controlTextEls.push(thresholdValueLabel);
 thresholdLabelRow.appendChild(thresholdValueLabel);
 
 const thresholdSlider = document.createElement('input');
@@ -288,6 +374,7 @@ updateThresholdLabel();
   function buildScatterTraces(samples) {
     const { x0, x1, j0, j1 } = samples;
     const t = params.t;
+    const theme = getThemeColors();
     const ms = Math.max(3, 6 * currentScale());   // sample points
     const wms = Math.max(3, 6 * currentScale());  // miss crosses
     
@@ -305,7 +392,12 @@ updateThresholdLabel();
       return [
         { x: correct.x, y: correct.y, mode: 'markers',
           name: label, showlegend: true,
-          marker: { color, size: ms, line: { color: 'black', width: 0.5 } } },
+          marker: {
+          color,
+          size: ms,
+          line: { color: theme.axis, width: 0.5 },
+                  }
+        },
         { x: wrong.x, y: wrong.y, mode: 'markers',
           name: `${label} — miss`, showlegend: false,
           marker: { color, size: wms, symbol: 'x' } },
@@ -315,8 +407,12 @@ updateThresholdLabel();
     const traces = [
       ...splitAndBuild(x1, j1, -1, COLOR_X1, 'X₁ (sick)', true),
       ...splitAndBuild(x0, j0, +1, COLOR_X0, 'X₀ (healthy)', false),
-      { x: [-1.15, 1.15], y: [t, t], mode: 'lines', name: 'Threshold',
-        line: { color: 'black', width: 2 }, showlegend: true },
+      {   x: [-1.15, 1.15],
+          y: [t, t],
+          mode: 'lines',
+          name: 'Threshold',
+          line: { color: theme.threshold, width: 2 },
+          showlegend: true, },
     ];
     return traces;
   }
@@ -336,6 +432,7 @@ updateThresholdLabel();
   }
 
    function buildRocTraces(p, yDomain, samples) {
+    const theme = getThemeColors();
     const theoCurve = rocCurveTheoretical(p, yDomain);
     const theoPoint = { fpr: distributionFpr(p.t, p), tpr: distributionTpr(p.t, p) };
     const empCurve = empiricalRocCurve(samples.x0, samples.x1);
@@ -345,23 +442,31 @@ updateThresholdLabel();
     return [
       // Diagonal reference — light gray.
       { x: [0, 1], y: [0, 1], mode: 'lines', name: 'Random guessing',
-        line: { color: 'gray', width: 1.5, dash: 'dash' },
+        line: { color: theme.muted, width: 1.5, dash: 'dash' },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: false },
       // Empirical ROC — thin, light gray.
       { x: empCurve.x, y: empCurve.y, mode: 'lines', name: 'Empirical ROC',
-        line: { color: '#bbbbbb', width: 1.5 },
+        line: { color: theme.empirical, width: 1.5 },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: true },
       { x: [empPoint.fpr], y: [empPoint.tpr], mode: 'markers', name: 'Empirical point',
-        marker: { color: '#eeeeee', size: Math.max(4, 8 * scale),
-                  symbol: 'circle', line: { color: '#bbbbbb', width: 1.5 } },
+        marker: {
+                  color: theme.empiricalPoint,
+                  size: Math.max(4, 8 * scale),
+                  symbol: 'circle',
+                  line: { color: theme.empirical, width: 1.5 },
+                },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: false },
       // Theoretical ROC — solid black.
       { x: theoCurve.x, y: theoCurve.y, mode: 'lines', name: 'ROC curve',
-        line: { color: '#000000', width: 2.5 },
+        line: { color: theme.theoretical, width: 2.5 },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y },
       { x: [theoPoint.fpr], y: [theoPoint.tpr], mode: 'markers', name: 'Operating point',
-        marker: { color: 'white', size: Math.max(6, 12 * scale),
-                  symbol: 'circle', line: { color: 'black', width: 2 } },
+        marker: {
+                  color: theme.operatingPoint,
+                  size: Math.max(6, 12 * scale),
+                  symbol: 'circle',
+                  line: { color: theme.theoretical, width: 2 },
+                },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: false },
     ];                                                          // ← array closed
   }
@@ -429,60 +534,142 @@ function layoutFor(p, yDomain, auc) {
   const Delta = (p.mu1 - p.mu0) / p.sigma1;
   const rho = p.sigma0 / p.sigma1;
 
+  const theme = getThemeColors();
   const { width, height, scatterDomain, rocDomain } = computePlotSize();
   const scale = width / NATURAL_WIDTH;
   const axesTopFrac = (height - MARGIN_T) / height;
 
+  const axisStyle = {
+    color: theme.axis,
+    linecolor: theme.axis,
+    tickcolor: theme.axis,
+    gridcolor: theme.grid,
+    zerolinecolor: theme.zero,
+    title: {
+      font: {
+        family: FONT_FAMILY,
+        size: Math.max(11, 12 * scale),
+        color: theme.text,
+      },
+    },
+    tickfont: {
+      family: FONT_FAMILY,
+      size: Math.max(10, 11 * scale),
+      color: theme.text,
+    },
+  };
+
   return {
-    font: { family: FONT_FAMILY, size: 12, color: '#333' },
+    font: {
+      family: FONT_FAMILY,
+      size: 12,
+      color: theme.text,
+    },
+
     grid: { rows: 1, columns: 2, pattern: 'independent' },
 
-    // --- Sample distribution panel ---
+    // Sample distribution panel.
     xaxis: {
-      domain: scatterDomain, range: [-1.3, 1.3],
-      zeroline: true, zerolinecolor: 'rgba(0,0,0,0.3)', showticklabels: false,
-      title: { text: 'X₁ samples ← | → X₀ samples', font: { size: Math.max(12, 11 * scale) } },
+      ...axisStyle,
+      domain: scatterDomain,
+      range: [-1.3, 1.3],
+      zeroline: true,
+      zerolinecolor: theme.zero,
+      showticklabels: false,
+      title: {
+        text: 'X₁ samples ← | → X₀ samples',
+        font: {
+          family: FONT_FAMILY,
+          size: Math.max(12, 11 * scale),
+          color: theme.text,
+        },
+      },
     },
+
     yaxis: {
-      domain: [0, 1], range: yDomain,
-      zerolinecolor: '#eee', zerolinewidth: 1,
-      gridcolor: '#eee', gridwidth: 1, showgrid: true,
-      title: { text: 'Assay value (X)', font: { size: 12 } },
+      ...axisStyle,
+      domain: [0, 1],
+      range: yDomain,
+      zerolinecolor: theme.zero,
+      gridcolor: theme.grid,
+      gridwidth: 1,
+      showgrid: true,
+      title: {
+        text: 'Assay value (X)',
+        font: {
+          family: FONT_FAMILY,
+          size: Math.max(11, 12 * scale),
+          color: theme.text,
+        },
+      },
     },
 
-    // --- ROC panel ---
+    // ROC panel.
     [AXIS_ROC.x.replace('x', 'xaxis')]: {
-      domain: rocDomain, range: [-0.05, 1.05],
-      title: { text: 'FPR', font: { size: 12 } },
-    },
-    [AXIS_ROC.y.replace('y', 'yaxis')]: {
+      ...axisStyle,
+      domain: rocDomain,
       range: [-0.05, 1.05],
-      scaleanchor: AXIS_ROC.x, scaleratio: 1,
-      title: { text: 'TPR', font: { size: 12 }, standoff: 12 },
+      title: {
+        text: 'FPR',
+        font: {
+          family: FONT_FAMILY,
+          size: Math.max(11, 12 * scale),
+          color: theme.text,
+        },
+      },
     },
 
-    // --- Title ---
+    [AXIS_ROC.y.replace('y', 'yaxis')]: {
+      ...axisStyle,
+      range: [-0.05, 1.05],
+      scaleanchor: AXIS_ROC.x,
+      scaleratio: 1,
+      title: {
+        text: 'TPR',
+        standoff: 12,
+        font: {
+          family: FONT_FAMILY,
+          size: Math.max(11, 12 * scale),
+          color: theme.text,
+        },
+      },
+    },
+
     title: {
       text: `${dist.label} — Δ=${Delta.toFixed(2)}, ρ=${rho.toFixed(2)}`,
-      y: 1, yanchor: 'top', yref: 'container',
-      x: 0.5, xanchor: 'center',
-      font: { size: Math.max(11, 16 * scale), family: FONT_FAMILY, color: '#111' },
+      y: 1,
+      yanchor: 'top',
+      yref: 'container',
+      x: 0.5,
+      xanchor: 'center',
+      font: {
+        family: FONT_FAMILY,
+        size: Math.max(11, 16 * scale),
+        color: theme.title,
+      },
       pad: { t: 6, b: 0 },
     },
 
-    // --- Legend ---
     legend: {
       orientation: 'h',
       y: axesTopFrac + 0.25,
       yanchor: 'bottom',
-      x: 0.5, xanchor: 'center',
-      font: { size: Math.max(9.77, 10 * scale), family: FONT_FAMILY },
+      x: 0.5,
+      xanchor: 'center',
+      font: {
+        family: FONT_FAMILY,
+        size: Math.max(10, 10 * scale),
+        color: theme.text,
+      },
       traceorder: 'normal',
     },
 
     margin: { l: MARGIN_L, r: MARGIN_R, t: MARGIN_T, b: MARGIN_B, pad: 4 },
-    width, height,
+    width,
+    height,
     autosize: false,
+
+    // Keep transparent backgrounds so Quarto's theme shows through.
     paper_bgcolor: 'rgba(0,0,0,0)',
     plot_bgcolor: 'rgba(0,0,0,0)',
   };
@@ -540,17 +727,17 @@ function layoutFor(p, yDomain, auc) {
     });
   });
 
+// At the very end, insert the theme observer.
+  applyControlTypography(container);
   render();
 
-  // Re-render (recomputing width/height/markers) whenever the plot
-  // div's box changes — scoped to this widget, so several widgets on
-  // one page don't interfere with each other.
   const ro = new ResizeObserver(() => render());
   ro.observe(plotDiv.parentElement);
   container._samplingRocResizeObserver = ro;
+  // Insert the rest of the theme-observer code here.
 }
 
-
+// Keep this outside the function.
 document.querySelectorAll('.sampling-roc-interactive').forEach((container) => {
   initRocSamplingWidget(container);
 });
