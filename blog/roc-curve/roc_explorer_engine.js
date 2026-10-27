@@ -178,19 +178,41 @@ export async function initRocExplorerWidget(container, model) {
 
 
 function applyWidgetTypography() {
-  container.style.setProperty('font-family', FONT_FAMILY, 'important');
+  container.style.setProperty(
+    'font-family',
+    FONT_FAMILY,
+    'important'
+  );
 
-  controlsDiv.style.setProperty('font-family', FONT_FAMILY, 'important');
+  controlsDiv.style.setProperty(
+    'font-family',
+    FONT_FAMILY,
+    'important'
+  );
 
-  // Keep radio-button labels and other control text at a stable size.
   controlsDiv.querySelectorAll(
     'label, span, input, button, select'
   ).forEach((el) => {
-    el.style.setProperty('font-family', FONT_FAMILY, 'important');
+    el.style.setProperty(
+      'font-family',
+      FONT_FAMILY,
+      'important'
+    );
 
+    // Keep radio-button and other control labels stable
+    // when switching between light and dark themes.
     if (el.matches('label')) {
-      el.style.setProperty('font-size', '11px', 'important');
-      el.style.setProperty('line-height', '1.35', 'important');
+      el.style.setProperty(
+        'font-size',
+        '11px',
+        'important'
+      );
+
+      el.style.setProperty(
+        'line-height',
+        '1.35',
+        'important'
+      );
     }
   });
 }

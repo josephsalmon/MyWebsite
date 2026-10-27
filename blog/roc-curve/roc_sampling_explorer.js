@@ -86,9 +86,13 @@ const DARK_THEME = {
   threshold: '#f0f4fa',
   marker: '#1b2534',
   markerBorder: '#ffffff',
+
+  // Sample distributions
   x0: '#ff8a80',
   x1: '#64b5f6',
-  empirical: '#aab5c4',
+
+  // Empirical and theoretical ROC
+  empirical: '#c1cde0',
   empiricalPoint: '#1b2534',
   theoretical: '#ffffff',
   operatingPoint: '#1b2534',
@@ -96,6 +100,13 @@ const DARK_THEME = {
 
 let THEME = { ...LIGHT_THEME };
 
+function refreshTheme(el) {
+  const nextTheme = getPageTheme(el);
+  const changed = THEME.dark !== nextTheme.dark;
+
+  Object.assign(THEME, nextTheme);
+  return changed;
+}
 function parseRgba(str) {
   const match = /rgba?\(([^)]+)\)/.exec(str || '');
   if (!match) return null;
@@ -172,47 +183,26 @@ function getPageTheme(el) {
   return LIGHT_THEME;
 }
 
-function refreshTheme(el) {
-  const nextTheme = getPageTheme(el);
-  const changed = THEME.dark !== nextTheme.dark;
-
-  Object.assign(THEME, nextTheme);
-
-  return changed;
-}
 
 function getThemeColors() {
   return THEME;
 }
 
 function applyControlTypography(container) {
+  const theme = getThemeColors();
+
   container.querySelectorAll(
     'label, span, .form-label, .form-check-label'
   ).forEach((el) => {
-    el.style.setProperty(
-      'font-family',
-      FONT_FAMILY,
-      'important'
-    );
-
-    el.style.setProperty(
-      'font-size',
-      '11px',
-      'important'
-    );
-
-    el.style.setProperty(
-      'line-height',
-      '1.35',
-      'important'
-    );
+    el.style.setProperty('font-family', FONT_FAMILY, 'important');
+    el.style.setProperty('font-size', '11px', 'important');
+    el.style.setProperty('line-height', '1.35', 'important');
+    el.style.setProperty('color', theme.text, 'important');
   });
 }
 
 
 
-const COLOR_X0 = '#e41a1c'; // red, right side (healthy)
-const COLOR_X1 = '#377eb8'; // blue, left side (sick)
 const AXIS_ROC = { x: 'x2', y: 'y2' };
 
 const MAX_N = 300; // largest sample count either slider can request
@@ -498,8 +488,8 @@ updateThresholdLabel();
     }
 
     const traces = [
-      ...splitAndBuild(x1, j1, -1, COLOR_X1, 'X₁ (sick)', true),
-      ...splitAndBuild(x0, j0, +1, COLOR_X0, 'X₀ (healthy)', false),
+      ...splitAndBuild(x1, j1, -1, theme.x1, 'X₁ (sick)', true),
+      ...splitAndBuild(x0, j0, +1, theme.x0, 'X₀ (healthy)', false),
       {   x: [-1.15, 1.15],
           y: [t, t],
           mode: 'lines',
@@ -821,12 +811,55 @@ function layoutFor(p, yDomain, auc) {
   });
 
 // At the very end, insert the theme observer.
-  applyControlTypography(container);
-  render();
+// --- Initial theme detection ----------------------------------------
 
-  const ro = new ResizeObserver(() => render());
-  ro.observe(plotDiv.parentElement);
-  container._samplingRocResizeObserver = ro;
+refreshTheme(container);
+applyControlTypography(container);
+render();
+
+// --- Responsive resizing -------------------------------------------
+
+const ro = new ResizeObserver(() => render());
+ro.observe(plotDiv.parentElement);
+container._samplingRocResizeObserver = ro;
+
+// --- Dark/light theme changes --------------------------------------
+
+const themeObserver = new MutationObserver(() => {
+  if (refreshTheme(container)) {
+    // Update text colors in the HTML controls.
+    container.querySelectorAll('label, span, .form-label, .form-check-label')
+      .forEach((el) => {
+        el.style.setProperty('color', getThemeColors().text, 'important');
+      });
+
+    // Keep the slider values and prevalence text readable.
+    controlTextEls.forEach((el) => {
+      el.style.setProperty('color', getThemeColors().muted, 'important');
+    });
+
+    prevalenceLabel.style.setProperty(
+      'color',
+      getThemeColors().muted,
+      'important'
+    );
+
+    // Update Plotly traces, axes, title, legend, and grid.
+    render();
+  }
+});
+
+themeObserver.observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: ['class', 'data-bs-theme', 'data-theme'],
+});
+
+themeObserver.observe(document.body, {
+  attributes: true,
+  attributeFilter: ['class', 'data-bs-theme', 'data-theme'],
+});
+
+container._samplingRocThemeObserver = themeObserver;
   // Insert the rest of the theme-observer code here.
 }
 
