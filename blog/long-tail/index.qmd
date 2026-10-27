@@ -108,6 +108,7 @@ google-scholar: true
 biblatex: true
 date: "2025-10-20"
 image: ../../../talks/posts/2026-01-29-slides_citizen_sciences/images/set_prediction.png
+image-alt: "Example of a 2D classification problems with three classes, the associated Bayes classifier and the data. Color of points and regions indicate the three possible labels. The left one (in green) is a rare class."
 date-format: "MMM D, YYYY"
 description: "Insights and visualization of conformal prediction in the context of long-tailed classification. Challenges from citizen sciences platforms like Pl@ntNet."
 
@@ -462,14 +463,23 @@ Together, these extremes illustrate how $\alpha$ directly controls the **size–
 
 A concern with the standard conformal prediction approach is that all classes are treated similarly. If certain rare classes behave differently from the majority, they may never appear in the prediction set. For instance, the classifier may consistently assign low probabilities to rare classes, as these are not sufficiently represented during training and then, they never get above the threshold.
 
-For this reason, it makes sense to control the conditional coverage for all classes $y \in \cY$, while targeting sets of minimum size. Then the optimization formulation now becomes:
+For this reason, it makes sense to control the conditional coverage for all classes $y \in \cY$, while targeting sets of minimum size.
+A compact notation for the **class-conditional coverage** is
+$$
+\boxed{c_y := \P\paren{ y \in \mathcal{C}(X) \mid Y=y }
+$$
+
+Then, the optimization formulation now becomes:
 
 $$
 \begin{align}
 & \min_{\mathcal{C} : \mathcal{X} \mapsto 2^\mathcal{Y}} \mathbb{E}[|\mathcal{C}(X)|] \, . \\
-\text{ s.t. } & \P\paren{ y \in \mathcal{C}(X) \mid Y=y } \geq 1-\alpha, \forall y \in \mathcal{Y}
+\text{ s.t. } & c_y \geq 1-\alpha, \forall y \in \mathcal{Y}
 \end{align}
 $$ {#eq-min_st_condcoverage}
+
+
+
 
 @sadinle2019least have shown that the optimal solution for such a set:
 
@@ -556,7 +566,7 @@ $$
 $$ {#eq-min_st_macrocoverage}
 where we defined the macro-coverage as
 $$
-\text{MacroCov}(\cC) = \frac{1}{|\mathcal{Y}|}\sum_{y \in \mathcal{Y}} \P(Y \in \mathcal{C}(X) \mid Y = y).
+\text{MacroCov}(\cC) = \tfrac{1}{|\mathcal{Y}|}\sum_{y \in \mathcal{Y}} c_y.
 $$ {#eq-def_macrocov}
 The motivation of this program is to treat all classes equally. We provide an adaptation of the previous proposition for this new constraints:
 
@@ -631,7 +641,7 @@ Given user-chosen class weights $\omega(y)$ for $y \in \cY$ that sum to one, we 
 $$
 \begin{align}
     \mathrm{MacroCov}_{\omega}(\cC) =
-    \sum_{y \in \cY} \omega(y) \P(Y \in \cC(X) \mid Y = y).
+    \sum_{y \in \cY} \omega(y) c_y.
 \end{align}
 $$ {#eq-min_st_wmacrocoverage}
 
@@ -735,17 +745,15 @@ $\tfrac{1}{|\mathcal{Y}_{\mathrm{at\text{-}risk}}|}\sum_{y\in\mathcal{Y}_{\mathr
 
 
 
-
-| **Metric**          | **Definition**                     | **Target** |
-|---------------------|------------------------------------|------------|
-| Avg. set size       | $\frac{1}{N}\sum_{i=1}^{N}|\mathcal{C}(X_i^{\mathcal{T}})|$ | Lower      |
-| MarginalCov         | $\frac{1}{N}\sum_{i=1}^{N}\mathbb{1}\{Y_i^{\mathcal{T}}\in\mathcal{C}(X_i^{\mathcal{T}})\}$ | Higher      |
-| MacroCov            | $\frac{1}{|\mathcal{Y}|}\sum_{y\in \mathcal{Y}}\hat{c}_y$ | Higher      |
-| FracBelow50%        | $\frac{1}{|\mathcal{Y}|}\sum_{y\in \mathcal{Y}} \mathbb{1}\{\hat{c}_y \le 0.5\}$ | Lower      |
-| UnderCovGap         | $\frac{1}{|\mathcal{Y}|}\sum_{y\in \mathcal{Y}} \max(1-\alpha-\hat{c}_y,0)$ | Lower      |
-| At-risk average $\hat{c}_y$ | $\tfrac{1}{|\mathcal{Y}_{\mathrm{at\text{-}risk}}|} \sum_{y \in \mathcal{Y}_{\mathrm{at\text{-}risk}}} \hat{c}_y$ | Higher |
-| Not-at-risk average $\hat{c}_y$ | $\tfrac{1}{|\mathcal{Y} \setminus \mathcal{Y}_{\mathrm{at\text{-}risk}}|} \sum_{y \in \mathcal{Y} \setminus \mathcal{Y}_{\mathrm{at\text{-}risk}}} \hat{c}_y$ | Higher |
-
+| **Metric** | **Definition** |
+|---|---|
+| Avg. set size | $\frac{1}{N}\sum_{i=1}^{N}|\mathcal{C}(X_i^{\mathcal{T}})|$ |
+| MarginalCov | $\frac{1}{N}\sum_{i=1}^{N}\mathbb{1}\{Y_i^{\mathcal{T}}\in\mathcal{C}(X_i^{\mathcal{T}})\}$ |
+| MacroCov | $\frac{1}{|\mathcal{Y}|}\sum_{y\in \mathcal{Y}}\hat{c}_y$ |
+| FracBelow50% | $\frac{1}{|\mathcal{Y}|}\sum_{y\in \mathcal{Y}} \mathbb{1}\{\hat{c}_y \le 0.5\}$ |
+| UnderCovGap | $\frac{1}{|\mathcal{Y}|}\sum_{y\in \mathcal{Y}} \max(1-\alpha-\hat{c}_y,0)$ |
+| At-risk average $\hat{c}_y$ | $\tfrac{1}{|\mathcal{Y}_{\mathrm{at\text{-}risk}}|} \sum_{y \in \mathcal{Y}_{\mathrm{at\text{-}risk}}} \hat{c}_y$ |
+| Not-at-risk average $\hat{c}_y$ | $\tfrac{1}{|\mathcal{Y} \setminus \mathcal{Y}_{\mathrm{at\text{-}risk}}|} \sum_{y \in \mathcal{Y} \setminus \mathcal{Y}_{\mathrm{at\text{-}risk}}} \hat{c}_y$ |
 
 : Evaluation metrics ($\hat{c}_y$ : empirical coverage for class $y$) {.striped .hover}
 
@@ -828,7 +836,7 @@ $${#eq-neyman}
 If there exists $t_\nu$ such that
 $$
 \begin{equation}
-    \int_{\cX\times \cY} \mathbb{1}\{f(x,y) \geq t_\nu \cdot g(x,y)\} f(x,y) d\mu(x,y) = \nu,
+    \int_{\cX\times \cY} \mathbb{1}\left\{ \frac{f(x,y)}{g(x,y)} \geq t_\nu \right\} f(x,y) d\mu(x,y) = \nu,
 \end{equation}
 $${#eq-neyman_condition}
 then

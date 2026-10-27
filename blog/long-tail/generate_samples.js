@@ -75,9 +75,58 @@ const paramsPath = path.join(__dirname, 'gaussian_params.json');
 fs.writeFileSync(paramsPath, JSON.stringify(params, null, 2));
 console.log('gaussian_params.json updated for Quarto integration');
 
-
 // Also create gaussian_params_description.qmd for Quarto integration
 const qmdPath = path.join(__dirname, 'gaussian_params_description.qmd');
-const latex = `\n\nWe generate $n = ${n_samples}$ samples from a mixture of $K=3$ Gaussians:\n\n- Class priors:\n$\\pi_1 = ${priors[0]},\\ \\pi_2 = ${priors[1]},\\ \\pi_3 = ${priors[2]}$\n\n- Means:\n$\\mu_1 = \\begin{pmatrix} ${means[0][0]} \\ ${means[0][1]} \\end{pmatrix},\\\n\\mu_2 = \\begin{pmatrix} ${means[1][0]} \\ ${means[1][1]} \\end{pmatrix},\\\n\\mu_3 = \\begin{pmatrix} ${means[2][0]} \\ ${means[2][1]} \\end{pmatrix}$\n\n- Covariances:\n$\\Sigma_1 = \\begin{pmatrix} ${covs[0][0][0]} & ${covs[0][0][1]} \\\\ ${covs[0][1][0]} & ${covs[0][1][1]} \\end{pmatrix},\\\n\\Sigma_2 = \\begin{pmatrix} ${covs[1][0][0]} & ${covs[1][0][1]} \\\\ ${covs[1][1][0]} & ${covs[1][1][1]} \\end{pmatrix},\\\n\\Sigma_3 = \\begin{pmatrix} ${covs[2][0][0]} & ${covs[2][0][1]} \\\\ ${covs[2][1][0]} & ${covs[2][1][1]} \\end{pmatrix}$\n`;
+
+const priorRow = priors
+    .map((p, i) => `$\\pi_{${i + 1}} = ${p}$`)
+    .join(' | ');
+
+const meanRow = means
+    .map((m, i) =>
+        `$\\mu_{${i + 1}} = \\begin{pmatrix} ${m[0]} \\\\ ${m[1]} \\end{pmatrix}$`
+    )
+    .join(' | ');
+
+const covarianceRow = covs
+    .map((S, i) =>
+        `$\\Sigma_{${i + 1}} = \\begin{pmatrix} ${S[0][0]} & ${S[0][1]} \\\\ ${S[1][0]} & ${S[1][1]} \\end{pmatrix}$`
+    )
+    .join(' | ');
+
+const separator = priors.map(() => '---------------').join(' | ');
+
+const latex = `
+<style>
+.gaussian-params-table {
+  font-size: 100%;
+}
+
+@media (max-width: 600px) {
+  .gaussian-params-table {
+    font-size: 65%;
+  }
+
+  .gaussian-params-table th,
+  .gaussian-params-table td {
+    padding: 0.2em;
+  }
+}
+</style>
+
+We generate $n = ${n_samples}$ samples from a mixture of $|\\mathcal{Y}| = ${means.length}$ Gaussian distributions with the following parameters:
+
+::: { .gaussian-params-table style="overflow-x:auto; max-width:100%; margin:1em 0;" }
+
+| ${priorRow} |
+| ${separator} |
+| ${meanRow} |
+| ${covarianceRow} |
+
+: Parameters {.striped .hover}
+
+:::
+`;
+
 fs.writeFileSync(qmdPath, latex);
 console.log('gaussian_params_description.qmd updated for Quarto integration');
