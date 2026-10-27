@@ -174,35 +174,29 @@ export async function initRocExplorerWidget(container, model) {
     );
   }
 
-  function applyWidgetTypography() {
-    container.style.setProperty(
-      'font-family',
-      FONT_FAMILY,
-      'important'
-    );
 
-    controlsDiv.style.setProperty(
-      'font-family',
-      FONT_FAMILY,
-      'important'
-    );
 
-    controlsDiv.querySelectorAll('*').forEach((el) => {
-      el.style.setProperty(
-        'font-family',
-        FONT_FAMILY,
-        'important'
-      );
-    });
-  }
 
-  // Keep the remainder of your existing initialization here.
+function applyWidgetTypography() {
+  container.style.setProperty('font-family', FONT_FAMILY, 'important');
 
-  if (!controlsDiv || !plotDiv) {
-    throw new Error(
-      'ROC explorer: controls or plot container was not found.'
-    );
-  }
+  controlsDiv.style.setProperty('font-family', FONT_FAMILY, 'important');
+
+  // Keep radio-button labels and other control text at a stable size.
+  controlsDiv.querySelectorAll(
+    'label, span, input, button, select'
+  ).forEach((el) => {
+    el.style.setProperty('font-family', FONT_FAMILY, 'important');
+
+    if (el.matches('label')) {
+      el.style.setProperty('font-size', '11px', 'important');
+      el.style.setProperty('line-height', '1.35', 'important');
+    }
+  });
+}
+
+
+
 
   const params = {};
   model.paramSliders.forEach(({ key, value }) => {
@@ -211,8 +205,9 @@ export async function initRocExplorerWidget(container, model) {
 
   params.t = model.initialT;
 
-  const sliderEls = {};
-  const valueEls = {};
+const sliderEls = {};
+const labelEls = {};
+const valueEls = {};
 
   // Distribution selection.
   if (container.dataset.distribution) {
@@ -258,9 +253,11 @@ function setFixedFont(el, size) {
     labelText.textContent = label;
     labelText.style.fontWeight = '600';
     labelText.style.whiteSpace = 'normal';
-    labelText.style.color = THEME.text;
 
     setFixedFont(labelText, CONTROL_FONT.label);
+    labelText.style.setProperty('color', THEME.text, 'important');
+
+    labelEls[key] = labelText;
 
     const valueText = document.createElement('span');
     valueText.textContent = formatFn(value);
@@ -330,42 +327,10 @@ function setFixedFont(el, size) {
 
   sliderEls.t = thresholdSlider;
 
-  function updateThresholdLabel() {
-    thresholdValueLabel.textContent = 'Threshold = ' + params.t.toPrecision(3);
-  }
-  updateThresholdLabel();
 
-  const legendRow = document.createElement('div');
-  legendRow.style.display = 'flex';
-  legendRow.style.gap = '10px';
-  legendRow.style.marginTop = '8px';
-  legendRow.style.color = THEME.text;
-
-  setFixedFont(legendRow, '10px');
-  controlsDiv.appendChild(legendRow);
-
-function updateControlTheme() {
-  controlsDiv.style.setProperty('color', THEME.text, 'important');
-  controlsDiv.style.setProperty(
-    'background-color',
-    THEME.panel,
-    'important'
-  );
-  controlsDiv.style.setProperty(
-    'border-color',
-    THEME.border,
-    'important'
-  );
-
-  // Update primary slider labels.
-  controlsDiv.querySelectorAll('span, div').forEach((el) => {
-    el.style.setProperty('color', THEME.text, 'important');
-  });
-
-  // Restore secondary text colours.
-  Object.values(valueEls).forEach((el) => {
-    el.style.setProperty('color', THEME.secondary, 'important');
-  });
+function updateThresholdLabel() {
+  thresholdValueLabel.textContent =
+    'Threshold = ' + params.t.toPrecision(3);
 
   thresholdValueLabel.style.setProperty(
     'color',
@@ -373,27 +338,74 @@ function updateControlTheme() {
     'important'
   );
 
-  // Update separators.
+  setFixedFont(
+    thresholdValueLabel,
+    CONTROL_FONT.value
+  );
+}
+
+updateThresholdLabel();
+
+const legendRow = document.createElement('div');
+
+legendRow.style.display = 'flex';
+legendRow.style.gap = '10px';
+legendRow.style.marginTop = '8px';
+
+legendRow.style.setProperty(
+  'color',
+  THEME.text,
+  'important'
+);
+
+setFixedFont(legendRow, '10px');
+
+controlsDiv.appendChild(legendRow);
+
+function updateControlTheme() {
+  // Control-panel container.
+  controlsDiv.style.setProperty('color', THEME.text, 'important');
+  controlsDiv.style.setProperty('background-color', THEME.panel, 'important');
+  controlsDiv.style.setProperty('border-color', THEME.border, 'important');
+
+  // Slider labels: explicitly restore both font size and colour.
+  Object.values(labelEls).forEach((el) => {
+    setFixedFont(el, CONTROL_FONT.label);
+    el.style.setProperty('color', THEME.text, 'important');
+  });
+
+  // Slider values.
+  Object.values(valueEls).forEach((el) => {
+    setFixedFont(el, CONTROL_FONT.value);
+    el.style.setProperty('color', THEME.secondary, 'important');
+  });
+
+  // Threshold heading.
+  setFixedFont(thresholdLabel, CONTROL_FONT.threshold);
+  thresholdLabel.style.setProperty('color', THEME.text, 'important');
+
+  // Threshold value.
+  setFixedFont(thresholdValueLabel, CONTROL_FONT.value);
+  thresholdValueLabel.style.setProperty('color', THEME.secondary, 'important');
+
+  // Legend container.
+  setFixedFont(legendRow, '10px');
+  legendRow.style.setProperty('color', THEME.text, 'important');
+
+  // Separators.
   controlsDiv.querySelectorAll('hr').forEach((el) => {
     el.style.setProperty('border-color', THEME.border, 'important');
   });
 
-  // Keep typography stable across theme changes.
-  controlsDiv.querySelectorAll('span, div').forEach((el) => {
-    if (
-      el === thresholdValueLabel ||
-      Object.values(valueEls).includes(el)
-    ) {
-      setFixedFont(el, CONTROL_FONT.value);
-    } else {
-      setFixedFont(el, CONTROL_FONT.label);
-    }
-  });
-
+  // Restore the font family only. Do not set font sizes globally here.
   applyWidgetTypography();
 }
 
-  // --- Threshold-range maintenance ----------------------------------
+refreshTheme(container);
+applyWidgetTypography();
+updateControlTheme();
+
+// --- Threshold-range maintenance ----------------------------------
 
   function refreshThresholdRange() {
     const [yMin, yMax] = model.computeYDomain(params);
@@ -675,18 +687,6 @@ yaxis2: {
     standoff: Math.max(8, 12 * scale),
   },
 },
-      [AXIS_CURVE.x.replace('x', 'xaxis')]: {     // curve panel
-        domain: curveDomain, range: [-0.05, 1.05],
-        title: { text: model.curve.xAxisTitle, font: { size: 12 } },
-      },
-      [AXIS_CURVE.y.replace('y', 'yaxis')]: {     // the "TPR" side
-        range: [-0.05, 1.05], scaleanchor: AXIS_CURVE.x, scaleratio: 1,
-        // Scaled title font + reduced standoff at narrow widths keeps
-        // "TPR" inside even the 46px floor gap.
-        title: { text: model.curve.yAxisTitle,
-                 font: { size: Math.max(9, 12 * scale) },
-                 standoff: Math.max(8, 12 * scale) },
-      },
       margin: { l: MARGIN_L, r: MARGIN_R, t: MARGIN_T, b: MARGIN_B, pad: 4 },
       title: {
         text: model.titleFn(p, metric),
@@ -734,6 +734,9 @@ yaxis2: {
       valueEls[key].textContent = fmt2(params[key]);
       refreshThresholdRange();
       render();
+
+
+
     });
   });
   thresholdSlider.addEventListener('input', () => {
@@ -748,13 +751,29 @@ yaxis2: {
     updateThresholdLabel();
     render();
   });
-  // --- React to page theme changes ---------------------------------
-  const themeObserver = new MutationObserver(() => {
-    if (refreshTheme(container)) {
-      updateControlTheme();
-      render();
-    }
+
+// --- React to page theme changes ---------------------------------
+
+const themeObserver = new MutationObserver(() => {
+  if (refreshTheme(container)) {
+    updateControlTheme();
+    render();
+  }
+});
+
+themeObserver.observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: ['class', 'data-theme', 'data-bs-theme'],
+});
+
+if (document.body) {
+  themeObserver.observe(document.body, {
+    attributes: true,
+    attributeFilter: ['class', 'data-theme', 'data-bs-theme'],
   });
+}
+
+
   themeObserver.observe(document.documentElement, {
     attributes: true,
     attributeFilter: ['class', 'data-theme', 'data-bs-theme'],

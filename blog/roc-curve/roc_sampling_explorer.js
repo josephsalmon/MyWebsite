@@ -46,76 +46,169 @@ import {
 
 const FONT_FAMILY = 'Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
 
-const THEME_COLORS = {
-  light: {
-    text: '#333333',
-    title: '#111111',
-    muted: '#666666',
-    axis: '#444444',
-    grid: 'rgba(0, 0, 0, 0.12)',
-    zero: 'rgba(0, 0, 0, 0.25)',
-    threshold: '#333333',
-    theoretical: '#111111',
-    operatingPoint: '#ffffff',
-    empirical: '#a7a7a7',
-    empiricalPoint: '#d8d8d8',
-    separator: 'rgba(0, 0, 0, 0.15)',
-  },
-  dark: {
-    text: '#e5e7eb',
-    title: '#f3f4f6',
-    muted: '#b0b7c3',
-    axis: '#d1d5db',
-    grid: 'rgba(255, 255, 255, 0.16)',
-    zero: 'rgba(255, 255, 255, 0.3)',
-    threshold: '#e5e7eb',
-    theoretical: '#f3f4f6',
-    operatingPoint: '#252525',
-    empirical: '#9ca3af',
-    empiricalPoint: '#6b7280',
-    separator: 'rgba(255, 255, 255, 0.2)',
-  },
+const LIGHT_THEME = {
+  dark: false,
+  bg: '#ffffff',
+  text: '#243247',
+  title: '#142238',
+  secondary: '#46566d',
+  axis: '#243247',
+  muted: '#46566d',
+  grid: 'rgba(30, 50, 75, 0.18)',
+  zero: 'rgba(30, 50, 75, 0.55)',
+  border: 'rgba(30, 50, 75, 0.28)',
+  panel: 'rgba(0, 0, 0, 0.02)',
+  curve: '#142238',
+  threshold: '#142238',
+  marker: '#ffffff',
+  markerBorder: '#142238',
+  x0: '#c62828',
+  x1: '#1769aa',
+  empirical: '#8a96a5',
+  empiricalPoint: '#ffffff',
+  theoretical: '#142238',
+  operatingPoint: '#ffffff',
 };
 
-function isDarkTheme() {
-  return document.documentElement.getAttribute('data-bs-theme') === 'dark'
-    || document.documentElement.getAttribute('data-theme') === 'dark'
-    || document.body.classList.contains('quarto-dark')
-    || document.documentElement.classList.contains('quarto-dark');
+const DARK_THEME = {
+  dark: true,
+  bg: '#1b2534',
+  text: '#e8edf5',
+  title: '#ffffff',
+  secondary: '#c1cde0',
+  axis: '#e8edf5',
+  muted: '#c1cde0',
+  grid: 'rgba(220, 232, 250, 0.16)',
+  zero: 'rgba(220, 232, 250, 0.60)',
+  border: 'rgba(220, 232, 250, 0.25)',
+  panel: 'rgba(255, 255, 255, 0.04)',
+  curve: '#ffffff',
+  threshold: '#f0f4fa',
+  marker: '#1b2534',
+  markerBorder: '#ffffff',
+  x0: '#ff8a80',
+  x1: '#64b5f6',
+  empirical: '#aab5c4',
+  empiricalPoint: '#1b2534',
+  theoretical: '#ffffff',
+  operatingPoint: '#1b2534',
+};
+
+let THEME = { ...LIGHT_THEME };
+
+function parseRgba(str) {
+  const match = /rgba?\(([^)]+)\)/.exec(str || '');
+  if (!match) return null;
+
+  const values = match[1]
+    .split(/[,\s/]+/)
+    .filter(Boolean)
+    .map(Number);
+
+  if (
+    values.length < 3 ||
+    values.slice(0, 3).some(Number.isNaN)
+  ) {
+    return null;
+  }
+
+  return {
+    r: values[0],
+    g: values[1],
+    b: values[2],
+    a: values.length > 3 && !Number.isNaN(values[3])
+      ? values[3]
+      : 1,
+  };
+}
+
+function getPageTheme(el) {
+  const root = document.documentElement;
+  const body = document.body;
+
+  if (
+    root.classList.contains('quarto-dark') ||
+    body?.classList.contains('quarto-dark')
+  ) {
+    return DARK_THEME;
+  }
+
+  if (
+    root.classList.contains('quarto-light') ||
+    body?.classList.contains('quarto-light')
+  ) {
+    return LIGHT_THEME;
+  }
+
+  const themeValue =
+    root.getAttribute('data-bs-theme') ||
+    root.getAttribute('data-theme') ||
+    body?.getAttribute('data-bs-theme') ||
+    body?.getAttribute('data-theme');
+
+  if (themeValue) {
+    return themeValue.toLowerCase().includes('dark')
+      ? DARK_THEME
+      : LIGHT_THEME;
+  }
+
+  for (let node = el; node; node = node.parentElement) {
+    const bg = parseRgba(
+      getComputedStyle(node).backgroundColor
+    );
+
+    if (bg && bg.a > 0.5) {
+      const luminance =
+        (0.2126 * bg.r +
+         0.7152 * bg.g +
+         0.0722 * bg.b) / 255;
+
+      return luminance < 0.5
+        ? DARK_THEME
+        : LIGHT_THEME;
+    }
+  }
+
+  return LIGHT_THEME;
+}
+
+function refreshTheme(el) {
+  const nextTheme = getPageTheme(el);
+  const changed = THEME.dark !== nextTheme.dark;
+
+  Object.assign(THEME, nextTheme);
+
+  return changed;
 }
 
 function getThemeColors() {
-  return isDarkTheme() ? THEME_COLORS.dark : THEME_COLORS.light;
+  return THEME;
 }
 
 function applyControlTypography(container) {
-  const controls = container.querySelector('.sampling-roc-controls');
-  if (!controls) return;
-
-  controls.style.setProperty('font-family', FONT_FAMILY, 'important');
-
-  controls.querySelectorAll('*').forEach((el) => {
-    el.style.setProperty('font-family', FONT_FAMILY, 'important');
-    el.style.setProperty('box-sizing', 'border-box', 'important');
-  });
-
-  // Force consistent typography on all control text.
-  controls.querySelectorAll(
-    '.distribution-selector label, span, label'
+  container.querySelectorAll(
+    'label, span, .form-label, .form-check-label'
   ).forEach((el) => {
-    el.style.setProperty('font-size', '11px', 'important');
-    el.style.setProperty('line-height', '1.35', 'important');
-  });
+    el.style.setProperty(
+      'font-family',
+      FONT_FAMILY,
+      'important'
+    );
 
-  controls.querySelectorAll(
-    'input[type="radio"], input[type="range"]'
-  ).forEach((input) => {
-    input.style.setProperty(
-      'accent-color',
-      isDarkTheme() ? '#93c5fd' : '#2563eb'
+    el.style.setProperty(
+      'font-size',
+      '11px',
+      'important'
+    );
+
+    el.style.setProperty(
+      'line-height',
+      '1.35',
+      'important'
     );
   });
 }
+
 
 
 const COLOR_X0 = '#e41a1c'; // red, right side (healthy)
