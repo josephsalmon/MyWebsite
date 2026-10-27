@@ -737,7 +737,9 @@ def roc(thresholds, y_true, score):
 **Note**: the jittering on the x-axis for the scatter plots is not meaningful but only here for visualization.
 
 
-### Area Under the ROC Curve (Cis ranked higher than a randomly chosen negative one, ties counting for one half.
+### Area Under the ROC Curve 
+The **Area Under the ROC Curve (AUC)** is a scalar summary of the classifier’s discriminative power across all thresholds.
+Because the ROC curve plots the true positive rate against the false positive rate for every possible decision boundary, its area ​quantifies the probability that a randomly chosen positive instance is ranked higher than a randomly chosen negative instance.
 Often the AUC is used to measure overall performance: the larger the AUC, the better the assay discriminates between the two classes.
 
 Remind that $X_0$ and $X_1$ are independent, distributed as the conditional laws of $X$ given $Y=0$ and $Y=1$, respectively:
