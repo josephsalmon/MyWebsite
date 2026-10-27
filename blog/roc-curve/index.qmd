@@ -2038,23 +2038,25 @@ When the manufacturer provides a recommended threshold, it appears as a dotted g
      data-json="roc_data.json"
      data-layout="stacked"
      style="display:flex; gap:6px; align-items:stretch; flex-wrap:wrap;
-            width:100%; max-width:840px; margin:0 auto;
+            width:105%; max-width:none; margin:0 0 0 -2.5%;
+            box-sizing:border-box;
             font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
-  <div style="display:flex; flex-direction:column; justify-content:center;
-              min-width:88px; flex:0 0 88px;
-              border:1px solid rgba(0,0,0,0.15);
-              border-radius:6px; padding:4px; font-size:8.5px;
-              background:rgba(0,0,0,0.02);">
+<div style="display:flex; flex-direction:column; justify-content:center;
+            min-width:120px; flex:0 0 120px;
+            box-sizing:border-box;
+            border:1px solid rgba(0,0,0,0.15);
+            border-radius:6px; padding:5px; font-size:9px;
+            background:rgba(0,0,0,0.02);">
 
-    <div style="margin-bottom:2px; font-weight:600; font-size:8.5px;">Assay (click)</div>
+    <div style="margin-bottom:2px; font-weight:600; font-size:10px;">Assay (click)</div>
     <div class="roc-assay-radios"
          style="font-size:8.5px; line-height:1.15;
                 display:flex; flex-direction:column; gap:2px;"></div>
 
     <hr style="margin:4px 0; border-color:rgba(0,0,0,0.1);">
 
-    <div style="margin-bottom:2px; font-weight:600; font-size:8.5px;">Threshold</div>
+    <div style="margin-bottom:2px; font-weight:600; font-size:10px;">Threshold</div>
     <input type="range" class="roc-threshold" min="0" max="1" step="0.001" value="0.5"
            style="width:100%; margin:0;">
     <div class="roc-threshold-value"
@@ -2083,23 +2085,25 @@ Now we rerun the same assays, with the same thresholds, but keep only 5% of the 
      data-json="roc_data_imbalanced.json"
      data-layout="stacked"
      style="display:flex; gap:6px; align-items:stretch; flex-wrap:wrap;
-            width:100%; max-width:840px; margin:0 auto;
+            width:105%; max-width:none; margin:0 0 0 -2.5%;
+            box-sizing:border-box;
             font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
-  <div style="display:flex; flex-direction:column; justify-content:center;
-              min-width:88px; flex:0 0 88px;
-              border:1px solid rgba(0,0,0,0.15);
-              border-radius:6px; padding:4px; font-size:8.5px;
-              background:rgba(0,0,0,0.02);">
+<div style="display:flex; flex-direction:column; justify-content:center;
+            min-width:120px; flex:0 0 120px;
+            box-sizing:border-box;
+            border:1px solid rgba(0,0,0,0.15);
+            border-radius:6px; padding:5px; font-size:9px;
+            background:rgba(0,0,0,0.02);">
 
-    <div style="margin-bottom:2px; font-weight:600; font-size:8.5px;">Assay (click)</div>
+    <div style="margin-bottom:2px; font-weight:600; font-size:10px;">Assay (click)</div>
     <div class="roc-assay-radios"
          style="font-size:8.5px; line-height:1.15;
                 display:flex; flex-direction:column; gap:2px;"></div>
 
     <hr style="margin:4px 0; border-color:rgba(0,0,0,0.1);">
 
-    <div style="margin-bottom:2px; font-weight:600; font-size:8.5px;">Threshold</div>
+    <div style="margin-bottom:2px; font-weight:600; font-size:10px;">Threshold</div>
     <input type="range" class="roc-threshold" min="0" max="1" step="0.001" value="0.5"
            style="width:100%; margin:0;">
     <div class="roc-threshold-value"

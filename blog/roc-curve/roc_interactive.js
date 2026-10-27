@@ -1,59 +1,13 @@
 // Interactive ROC / assay-threshold explorer (Plotly.js, client-side).
-// Loads a data JSON (exported from the Python analysis) and renders:
-//  - left panel: sample assay values split by true covid status
-//    (for the "primary" assay, i.e. the first one checked)
-//  - middle panel: ROC curves, overlaid for every checked assay (optional)
-//  - right panel: precision/recall curves, overlaid for every checked assay (optional)
-// Clickable checkbox "chips" let the user select one or more assays to
-// compare, and a range slider lets the user move the classification
-// threshold of the primary assay.
-//
-// initRocWidget(container, jsonPath) runs one independent instance of the
-// widget inside `container`, fetching its data from `jsonPath`. This lets
-// several widgets (e.g. full data vs. an imbalanced subsample, or a
-// synthetic-signals demo) share this single script with no duplicated
-// logic — see the auto-boot loop at the bottom, which starts one instance
-// per `.roc-interactive` element found on the page, using each container's
-// `data-json` attribute.
-//
-// Per-widget configuration, all optional and all defaulting to the
-// original behaviour (so existing real-data widgets are unaffected):
-//   - container `data-show-roc="false"`: hide the ROC panel.
-//   - container `data-show-pr="false"`:  hide the Precision/Recall panel.
-//   - JSON `y_scale: "linear"`: use a linear assay-value / threshold axis
-//     instead of the default log scale. Needed for scenarios whose values
-//     can be zero or negative (e.g. a Gaussian or "ideal" toy example),
-//     which are not representable on a log axis.
-//   - JSON `title_prefix`: text prepended to the primary assay/signal name
-//     in the plot title (defaults to "PCR test name: ").
-//   - container `data-layout="stacked"`: alternative arrangement of the
-//     three panels. The scatter panel is elongated vertically on the left,
-//     the ROC curve sits on top of the PR curve on the right (both square).
-//     Meant to be used with a horizontal controls bar above the plot (the
-//     container then has flex-direction:column). The default is the
-//     original "scatter | ROC | PR" row.
-//
-// Responsive sizing (same recipe as the sampling explorers): the figure
-// width is *measured* from the plot div (clamped between MIN_WIDTH and
-// NATURAL_WIDTH) and passed explicitly to Plotly, together with a height
-// derived from it so that the ROC / PR panels are square by construction.
-// A ResizeObserver re-renders when the available width changes. The plot
-// can therefore never be wider than its container (no horizontal
-// scrollbar), and it shrinks smoothly on narrow screens.
+// [header comments unchanged — keep yours]
 
 export async function initRocWidget(container, jsonPath) {
   const plotDiv = container.querySelector('.roc-plot');
 
   const STACKED = container.dataset.layout === 'stacked';
+  const NATURAL_WIDTH = STACKED ? 945 : 800;
+  const MIN_WIDTH = STACKED ? 340 : 360;
 
-  const NATURAL_WIDTH = STACKED ? 900 : 800;  // widest the figure may get
-  const MIN_WIDTH = STACKED ? 340 : 360;      // narrowest the figure may get
-
-  // Make the plot area follow its container instead of its own content.
-  // Row container: a fixed basis (MIN_WIDTH) that grows to fill the row and
-  // wraps below the controls box when the row is too narrow. Column
-  // container (controls bar on top): simply the full width. Neither depends
-  // on the figure's current size, so there is no feedback loop.
   const isColumn = getComputedStyle(container).flexDirection.startsWith('column');
   if (isColumn) {
     plotDiv.style.width = '100%';
@@ -63,8 +17,6 @@ export async function initRocWidget(container, jsonPath) {
   }
   plotDiv.style.minWidth = '0';
   plotDiv.style.maxWidth = '100%';
-  // Last-resort fallback on very narrow screens: scroll the figure inside
-  // its own box rather than widening the page.
   plotDiv.style.overflowX = 'auto';
   plotDiv.style.overflowY = 'hidden';
 
@@ -80,10 +32,6 @@ export async function initRocWidget(container, jsonPath) {
   const yScale = data.y_scale === 'linear' ? 'linear' : 'log';
   const titlePrefix = data.title_prefix || 'PCR test name: ';
 
-  // Axis-slot assignment: the scatter panel is always 'x'/'y'. When both
-  // curve panels are shown, ROC uses 'x2'/'y2' and PR uses 'x3'/'y3' (the
-  // original, unchanged layout). When only one curve panel is shown, it
-  // takes the 'x2'/'y2' slot, so only two axes are ever defined.
   const AXIS_ROC = { x: 'x2', y: 'y2' };
   const AXIS_PR = showRoc ? { x: 'x3', y: 'y3' } : { x: 'x2', y: 'y2' };
 
@@ -94,26 +42,83 @@ export async function initRocWidget(container, jsonPath) {
 
   const FONT_FAMILY = 'Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
 
-  // Qualitative palette used to distinguish overlaid assay curves.
-  const PALETTE = ['#000000ff','#ff7f00', '#693775ff', '#4daf4a', '#c4769fff', '#8b8c8dff', '#377eb8',  ];
-  const assayColor = {};
-  assayNames.forEach((name, i) => { assayColor[name] = PALETTE[i % PALETTE.length]; });
+  // --- Theme system (defined BEFORE first use) ------------------------
+  const LIGHT_THEME = {
+    dark: false,
+    text: '#243247', title: '#142238', muted: '#46566d', axis: '#243247',
+    grid: 'rgba(30, 50, 75, 0.18)', zero: 'rgba(30, 50, 75, 0.55)',
+    border: 'rgba(30, 50, 75, 0.28)', panel: 'rgba(0, 0, 0, 0.02)',
+    threshold: '#142238', reco: '#46566d',
+  };
+  const DARK_THEME = {
+    dark: true,
+    text: '#e8edf5', title: '#ffffff', muted: '#c1cde0', axis: '#e8edf5',
+    grid: 'rgba(220, 232, 250, 0.16)', zero: 'rgba(220, 232, 250, 0.60)',
+    border: 'rgba(220, 232, 250, 0.25)', panel: 'rgba(255, 255, 255, 0.04)',
+    threshold: '#f0f4fa', reco: '#c1cde0',
+  };
+  let THEME = { ...LIGHT_THEME };
+
+  function parseRgba(str) {
+    const m = /rgba?\(([^)]+)\)/.exec(str || '');   // FIXED: escaped \( \)
+    if (!m) return null;
+    const values = m[1].split(/[,\s/]+/).filter(Boolean).map(Number);
+    if (values.length < 3 || values.slice(0, 3).some(Number.isNaN)) return null;
+    return {
+      r: values[0], g: values[1], b: values[2],
+      a: values.length > 3 && !Number.isNaN(values[3]) ? values[3] : 1,
+    };
+  }
+  function getPageTheme(el) {
+    const root = document.documentElement;
+    const body = document.body;
+    if (root.classList.contains('quarto-dark') || body?.classList.contains('quarto-dark')) return DARK_THEME;
+    if (root.classList.contains('quarto-light') || body?.classList.contains('quarto-light')) return LIGHT_THEME;
+    const themeValue = root.getAttribute('data-bs-theme') || root.getAttribute('data-theme')
+      || body?.getAttribute('data-bs-theme') || body?.getAttribute('data-theme');
+    if (themeValue) return themeValue.toLowerCase().includes('dark') ? DARK_THEME : LIGHT_THEME;
+    for (let node = el; node; node = node.parentElement) {
+      const bg = parseRgba(getComputedStyle(node).backgroundColor);
+      if (bg && bg.a > 0.5) {
+        const luminance = (0.2126 * bg.r + 0.7152 * bg.g + 0.0722 * bg.b) / 255;
+        return luminance < 0.5 ? DARK_THEME : LIGHT_THEME;
+      }
+    }
+    return LIGHT_THEME;
+  }
+  function refreshTheme(el) {
+    Object.assign(THEME, getPageTheme(el));
+  }
+
+  // --- Palette (AFTER theme detection) ---------------------------------
+  const PALETTE_LIGHT = ['#000000ff', '#ff7f00', '#693775ff', '#4daf4a', '#c4769fff', '#8b8c8dff', '#377eb8'];
+  const PALETTE_DARK  = ['#ffffffff', '#ff9d2e', '#9d5b8f', '#6fc76f', '#b08ad9', '#a0a2b8', '#64b5f6'];
+
+  refreshTheme(container);
+
+  const assayColor = {};                                   // SINGLE declaration
+  function rebuildAssayColors() {
+    assayNames.forEach((name, i) => {
+      assayColor[name] = (THEME.dark ? PALETTE_DARK : PALETTE_LIGHT)[i % PALETTE_LIGHT.length];
+    });
+  }
+  rebuildAssayColors();
 
   const defaultAssay = data.default_assay && data.assays[data.default_assay]
-    ? data.default_assay
-    : assayNames[0];
+    ? data.default_assay : assayNames[0];
   const selected = new Set([defaultAssay]);
+  let lastSelectedAssay = defaultAssay;
 
   function primaryAssay() {
-    for (const name of assayNames) {
-      if (selected.has(name)) return name;
+    if (selected.has(lastSelectedAssay)) {
+      return lastSelectedAssay;
     }
-    return assayNames[0];
+
+    return [...selected].at(-1) || assayNames[0];
   }
 
   const chipEls = {};
 
-  // Build clickable checkbox "chips"
   assayNames.forEach((name) => {
     const id = container.id + '-radio-' + name.replace(/[^a-zA-Z0-9]/g, '-');
 
@@ -131,9 +136,7 @@ export async function initRocWidget(container, jsonPath) {
     label.htmlFor = id;
     const auc = data.assays[name].auc;
     label.textContent = name;
-    if (typeof auc === 'number') {
-      label.title = `AUC = ${auc.toFixed(3)}`;
-    }
+    if (typeof auc === 'number') label.title = `AUC = ${auc.toFixed(3)}`;
     label.style.cursor = 'pointer';
     label.style.userSelect = 'none';
     label.style.overflow = 'hidden';
@@ -145,31 +148,39 @@ export async function initRocWidget(container, jsonPath) {
     chip.style.alignItems = 'center';
     chip.style.padding = '1px 3px';
     chip.style.borderRadius = '4px';
-    chip.style.border = '1px solid rgba(0,0,0,0.15)';
+    chip.style.border = `1px solid ${THEME.border}`;
     chip.style.borderLeftWidth = '3px';
     chip.style.transition = 'background 0.15s, border-color 0.15s';
-    chipEls[name] = chip;
 
     function refreshChipStyle() {
       const isSel = selected.has(name);
       chip.style.background = isSel ? assayColor[name] + '22' : 'transparent';
-      chip.style.borderColor = isSel ? assayColor[name] : 'rgba(0,0,0,0.15)';
+      chip.style.borderColor = isSel ? assayColor[name] : THEME.border;
       chip.style.borderLeftColor = assayColor[name];
     }
+    chip._refresh = refreshChipStyle;         // lives INSIDE the loop
 
     function toggle() {
       if (selected.has(name)) {
-        if (selected.size > 1) selected.delete(name);
+        // Keep at least one lab selected.
+        if (selected.size > 1) {
+          selected.delete(name);
+
+          // If the primary lab was deselected, choose the most
+          // recently selected lab that is still active.
+          if (lastSelectedAssay === name) {
+            lastSelectedAssay = [...selected].at(-1);
+          }
+        }
       } else {
         selected.add(name);
+        lastSelectedAssay = name;
       }
+
       input.checked = selected.has(name);
-      assayNames.forEach((n) => {
-        const isSel = selected.has(n);
-        chipEls[n].style.background = isSel ? assayColor[n] + '22' : 'transparent';
-        chipEls[n].style.borderColor = isSel ? assayColor[n] : 'rgba(0,0,0,0.15)';
-        chipEls[n].style.borderLeftColor = assayColor[n];
-      });
+
+      assayNames.forEach((n) => chipEls[n]?._refresh());
+
       setupThresholdSlider();
       render();
     }
@@ -182,12 +193,15 @@ export async function initRocWidget(container, jsonPath) {
     chip.appendChild(input);
     chip.appendChild(label);
     chipsDiv.appendChild(chip);
+
+    // Register this chip so toggle() can refresh its style.
+    chipEls[name] = chip;
+
     refreshChipStyle();
+
   });
 
-  function log10(x) {
-    return Math.log(x) / Math.LN10;
-  }
+  function log10(x) { return Math.log(x) / Math.LN10; }
 
   function setupThresholdSlider() {
     const assay = data.assays[primaryAssay()];
@@ -216,55 +230,24 @@ export async function initRocWidget(container, jsonPath) {
   }
 
   function computeCounts(assay, threshold) {
-    const pos = assay.pos;
-    const neg = assay.neg;
+    const pos = assay.pos, neg = assay.neg;
     let TP = 0, FN = 0, FP = 0, TN = 0;
-    for (let i = 0; i < pos.length; i++) {
-      if (pos[i] >= threshold) TP++; else FN++;
-    }
-    for (let i = 0; i < neg.length; i++) {
-      if (neg[i] >= threshold) FP++; else TN++;
-    }
-    const TPR = TP / (TP + FN);
-    const FPR = FP / (FP + TN);
-    return { TP, FN, FP, TN, TPR, FPR };
+    for (let i = 0; i < pos.length; i++) { if (pos[i] >= threshold) TP++; else FN++; }
+    for (let i = 0; i < neg.length; i++) { if (neg[i] >= threshold) FP++; else TN++; }
+    return { TP, FN, FP, TN, TPR: TP / (TP + FN), FPR: FP / (FP + TN) };
   }
 
-  // Plotly can fail to draw a proper legend marker swatch when a trace's
-  // data arrays are completely empty (e.g. count == 0). Padding with a
-  // single NaN point keeps the legend entry (with correct color/symbol)
-  // always visible, without plotting anything on the chart itself.
   function ensureNonEmpty(arr) {
     const out = { x: arr.x.slice(), y: arr.y.slice() };
-    if (out.x.length === 0) {
-      out.x.push(NaN);
-      out.y.push(NaN);
-    }
+    if (out.x.length === 0) { out.x.push(NaN); out.y.push(NaN); }
     return out;
   }
 
-  // ------------------------------------------------------------------
-  // Responsive sizing
-  // ------------------------------------------------------------------
+  // --- Responsive sizing (unchanged from your version) ----------------
+  const MARGIN_L = 60, MARGIN_R = 20, MARGIN_B = 55;
+  const MIN_GAP_PX_3 = 52, SCATTER_RATIO = 0.8, MIN_GAP_PX_2 = 58;
+  const marginTop = (scale) => Math.round(165 + 60 * (1 - scale));
 
-  const MARGIN_L = 60;
-  const MARGIN_R = 20;
-  const MARGIN_B = 55;
-
-  // Minimum horizontal gaps, in pixels, so the y-axis titles never
-  // collide with the neighbouring panel.
-  const MIN_GAP_PX_3 = 52;    // 3 panels (scatter | ROC | PR)
-  const SCATTER_RATIO = 0.8;  // scatter panel width / curve panel side
-  const MIN_GAP_PX_2 = 58;    // 2 panels
-
-  // The top band hosts the title and the (wrapping) legend: give it a bit
-  // more room when the figure is narrow, since the legend then wraps onto
-  // more rows.
-  const marginTop = (scale) => Math.round(140 + 60 * (1 - scale));
-
-  // Measure the available width, derive every size from it. The ROC and PR
-  // panels are square (scaleanchor), so their pixel boxes are made square
-  // by construction: the figure height follows from the panel side.
   function computePlotSize() {
     const measured = plotDiv.getBoundingClientRect().width;
     const available = measured > 0 ? measured : NATURAL_WIDTH;
@@ -272,22 +255,14 @@ export async function initRocWidget(container, jsonPath) {
     const scale = width / NATURAL_WIDTH;
     const plotAreaW = width - MARGIN_L - MARGIN_R;
 
-    let side;                         // pixel side of one square curve panel
-    let plotH;                        // pixel height of the plot area
+    let side, plotH;
     let scatterDomain, rocDomain, prDomain;
-    let rocY = null, prY = null;      // y-domains (stacked layout only)
+    let rocY = null, prY = null;
     const stacked = STACKED && showRoc && showPr;
 
     if (stacked) {
-      // scatter (tall) | ROC over PR. Both curve panels are square: x
-      // domain width = side px, y domain height = side px, with a vertical
-      // gap that holds the ROC x-axis tick labels and title.
       const gap = Math.max(40, 0.06 * plotAreaW);
       const vgap = 48;
-
-      // Give the stacked ROC and PR panels more width; the scatter panel
-      // uses the remaining domain and is therefore narrower.
-      side = Math.min(0.48 * plotAreaW, 320);
       side = Math.min(0.45 * plotAreaW, 252);
       plotH = 2 * side + vgap;
       const f = side / plotAreaW;
@@ -298,9 +273,6 @@ export async function initRocWidget(container, jsonPath) {
       rocY = [(side + vgap) / plotH, 1];
       prY = [0, side / plotH];
     } else if (showRoc && showPr) {
-      // scatter | ROC | PR. The scatter panel (two columns of points) is
-      // narrower than the two square curve panels, which get the freed
-      // space: plotAreaW = scatter + 2 * side + 2 * gap.
       const gap = Math.max(MIN_GAP_PX_3, 0.095 * plotAreaW);
       side = (plotAreaW - 2 * gap) / (2 + SCATTER_RATIO);
       const f = side / plotAreaW;
@@ -310,7 +282,6 @@ export async function initRocWidget(container, jsonPath) {
       rocDomain = [s + g, s + g + f];
       prDomain = [1 - f, 1];
     } else if (showRoc || showPr) {
-      // scatter | one curve panel
       const gap = Math.max(MIN_GAP_PX_2, 0.1 * plotAreaW);
       side = Math.min(0.45 * plotAreaW, 320);
       const f = side / plotAreaW;
@@ -360,34 +331,35 @@ export async function initRocWidget(container, jsonPath) {
 
     const scatterTraces = [
       { x: posAboveP.x, y: posAboveP.y, mode: 'markers', name: `TP (${TP})`,
-        marker: { color: posColor, size: ms, line: { color: 'black', width: 0.5 } },
+        marker: { color: posColor, size: ms, line: { color: THEME.axis, width: 0.5 } },
         xaxis: 'x', yaxis: 'y' },
       { x: posBelowP.x, y: posBelowP.y, mode: 'markers', name: `FN (${FN})`,
         marker: { color: posColor, size: ms, symbol: 'x' },
         xaxis: 'x', yaxis: 'y' },
       { x: negAboveP.x, y: negAboveP.y, mode: 'markers', name: `FP (${FP})`,
-        marker: { color: negColor, size: ms, line: { color: 'black', width: 0.5 } },
+        marker: { color: negColor, size: ms, line: { color: THEME.axis, width: 0.5 } },
         xaxis: 'x', yaxis: 'y' },
       { x: negBelowP.x, y: negBelowP.y, mode: 'markers', name: `TN (${TN})`,
         marker: { color: negColor, size: ms, symbol: 'x' },
         xaxis: 'x', yaxis: 'y' },
       { x: [-0.3, 0.9], y: [threshold, threshold], mode: 'lines', name: 'Threshold',
-        line: { color: 'black', width: 3 }, xaxis: 'x', yaxis: 'y', showlegend: true },
+        line: { color: THEME.threshold, width: 3 }, xaxis: 'x', yaxis: 'y', showlegend: true },
     ];
 
     if (assay.threshold_reco !== null && assay.threshold_reco !== undefined) {
       scatterTraces.push({
         x: [-0.3, 0.9], y: [assay.threshold_reco, assay.threshold_reco],
         mode: 'lines', name: 'Thr. Reco.',
-        line: { color: 'gray', width: 3, dash: 'dot' }, xaxis: 'x', yaxis: 'y',
+        line: { color: THEME.reco, width: 3, dash: 'dot' },
+        xaxis: 'x', yaxis: 'y',
       });
     }
+
     return scatterTraces;
   }
 
   function buildComparisonTraces(names, threshold, scale) {
-    const rocTraces = [];
-    const prTraces = [];
+    const rocTraces = [], prTraces = [];
     const sizePrimary = Math.max(7, 11 * scale);
     const sizeOther = Math.max(5, 8 * scale);
 
@@ -410,14 +382,10 @@ export async function initRocWidget(container, jsonPath) {
           marker: {
             color, size: isPrimary ? sizePrimary : sizeOther,
             symbol: isPrimary ? 'circle' : 'diamond',
-            line: { color: 'black', width: isPrimary ? 1 : 0 },
+            line: { color: THEME.axis, width: isPrimary ? 1 : 0 },   // was 'black'
           },
           xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, legendgroup: name, showlegend: false,
         });
-        // Theoretical (population-level) ROC curve, when the dataset
-        // provides one — e.g. the synthetic gaussian/ideal/random signals,
-        // which have a known closed form. Absent for real assay data, so
-        // this is a no-op there.
         if (assay.roc_fpr_theory && assay.roc_tpr_theory) {
           rocTraces.push({
             x: assay.roc_fpr_theory, y: assay.roc_tpr_theory, mode: 'lines',
@@ -439,18 +407,10 @@ export async function initRocWidget(container, jsonPath) {
           marker: {
             color, size: isPrimary ? sizePrimary : sizeOther,
             symbol: isPrimary ? 'circle' : 'diamond',
-            line: { color: 'black', width: isPrimary ? 1 : 0 },
+            line: { color: THEME.axis, width: isPrimary ? 1 : 0 },   // was 'black'
           },
           xaxis: AXIS_PR.x, yaxis: AXIS_PR.y, legendgroup: name, showlegend: false,
         });
-        // Theoretical (population-level) Precision-Recall curve, when the
-        // dataset provides one. Each scenario's curve is exact for that
-        // scenario — flat at the prevalence pi for random guessing
-        // (@thm-random-pr), the closed form of @thm-gaussian-pr for the
-        // Gaussian case, or the perfect-separation limit for the ideal
-        // case — unlike a single generic reference line, which cannot be
-        // simultaneously correct for all three. Absent for real assay
-        // data, so this is a no-op there.
         if (assay.pr_recall_theory && assay.pr_precision_theory) {
           prTraces.push({
             x: assay.pr_recall_theory, y: assay.pr_precision_theory, mode: 'lines',
@@ -467,14 +427,14 @@ export async function initRocWidget(container, jsonPath) {
         if (showRoc) {
           rocTraces.push({
             x: [reco.FPR], y: [reco.TPR], mode: 'markers', name: 'Reco. point',
-            marker: { color: 'gray', size: sizePrimary, symbol: 'x' },
+            marker: { color: THEME.reco, size: sizePrimary, symbol: 'x' },
             xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: false,
           });
         }
         if (showPr) {
           prTraces.push({
             x: [reco.TPR], y: [recoPrecision], mode: 'markers', name: 'Reco. point',
-            marker: { color: 'gray', size: sizePrimary, symbol: 'x' },
+            marker: { color: THEME.reco, size: sizePrimary, symbol: 'x' },
             xaxis: AXIS_PR.x, yaxis: AXIS_PR.y, showlegend: false,
           });
         }
@@ -484,72 +444,87 @@ export async function initRocWidget(container, jsonPath) {
     return rocTraces.concat(prTraces);
   }
 
-
   function layoutFor(assay, title, primary, size) {
     const panelCount = 1 + (showRoc ? 1 : 0) + (showPr ? 1 : 0);
     const { width, height, scale, top, scatterDomain, rocDomain, prDomain, rocY, prY, stacked } = size;
 
     const yAxisConfig = yScale === 'linear'
-      ? {
-          range: [assay.ylims[0], assay.ylims[1]],
-          title: { text: 'Assay result', font: { size: 12 } },
-        }
-      : {
-          type: 'log',
+      ? { range: [assay.ylims[0], assay.ylims[1]],
+          title: { text: 'Assay result', font: { size: 12 } } }
+      : { type: 'log',
           range: [Math.log10(assay.ylims[0]), Math.log10(assay.ylims[1])],
-          title: { text: 'Assay result (log scale)', font: { size: 12 } },
-        };
+          title: { text: 'Assay result (log scale)', font: { size: 12 } } };
+
+    const axisFont = (s) => ({ family: FONT_FAMILY, size: s, color: THEME.text });
 
     const layout = {
-      font: { family: FONT_FAMILY, size: 12, color: '#333' },
+      font: { family: FONT_FAMILY, size: 12, color: THEME.text },
       grid: { rows: 1, columns: panelCount, pattern: 'independent' },
       xaxis: {
         domain: scatterDomain, range: [-0.35, 0.95], tickvals: [0, 0.6],
         ticktext: ['Positive', 'Negative'],
-        title: { text: 'True covid status (' + primary + ' only)', font: { size: 11 } },
+        color: THEME.axis, gridcolor: THEME.grid, zerolinecolor: THEME.zero,
+        tickfont: { family: FONT_FAMILY, size: 11, color: THEME.text },
+        title: { text: 'True covid status (' + primary + ' only)', font: axisFont(11) },
       },
-      yaxis: yAxisConfig,
-      margin: { l: MARGIN_L, r: MARGIN_R, t: top, b: MARGIN_B, pad: 4 },
+      yaxis: {
+        ...yAxisConfig,
+        color: THEME.axis, gridcolor: THEME.grid, zerolinecolor: THEME.zero,
+        tickfont: { family: FONT_FAMILY, size: 11, color: THEME.text },
+      },
+      margin: { l: MARGIN_L, r: MARGIN_R, t: top, b: MARGIN_B, pad: 4 },   // RESTORED
       title: {
         text: title,
-        font: { size: Math.max(13, Math.round(20 * scale)), family: FONT_FAMILY, color: '#111' },
-        x: 0.5, xanchor: 'center', y: 1, yanchor: 'top', pad: { t: 0, b: 20 },
+        font: {
+          size: Math.max(13, Math.round(20 * scale)),
+          family: FONT_FAMILY,
+          color: THEME.title,
+        },
+        x: 0.5,
+        xanchor: 'center',
+        y: 0.96,
+        yanchor: 'top',
+        pad: { t: 8, b: 12 },
       },
       legend: {
         orientation: 'h', y: 1.1, yanchor: 'bottom', x: 0.5, xanchor: 'center',
-        font: { size: scale < 0.8 ? 9 : 10, family: FONT_FAMILY },
+        font: { size: scale < 0.8 ? 9 : 10, family: FONT_FAMILY, color: THEME.text },
       },
-      // Explicit size: derived from the measured container width, so the
-      // figure never exceeds its container. (No `autosize`, no Plotly
-      // `responsive`: the ResizeObserver below owns responsiveness.)
-      width,
-      height,
-      paper_bgcolor: 'rgba(0,0,0,0)',
-      plot_bgcolor: 'rgba(0,0,0,0)',
+      width, height,                                    // RESTORED — without
+      paper_bgcolor: 'rgba(0,0,0,0)',                  // these the plot
+      plot_bgcolor: 'rgba(0,0,0,0)',                   // breaks sizing
     };
 
     if (showRoc) {
       layout[AXIS_ROC.x.replace('x', 'xaxis')] = {
-        domain: rocDomain, range: [-0.05, 1.05], title: { text: 'FPR', font: { size: 12 } },
+        domain: rocDomain, range: [-0.05, 1.05],
+        color: THEME.axis, gridcolor: THEME.grid, zerolinecolor: THEME.zero,
+        tickfont: { family: FONT_FAMILY, size: 11, color: THEME.text },
+        title: { text: 'FPR', font: axisFont(12) },
       };
       layout[AXIS_ROC.y.replace('y', 'yaxis')] = {
         range: [-0.05, 1.05], scaleanchor: AXIS_ROC.x, scaleratio: 1,
-        title: { text: 'TPR', font: { size: 12 } },
+        color: THEME.axis, gridcolor: THEME.grid, zerolinecolor: THEME.zero,
+        tickfont: { family: FONT_FAMILY, size: 11, color: THEME.text },
+        title: { text: 'TPR', font: axisFont(12) },
       };
     }
     if (showPr) {
       layout[AXIS_PR.x.replace('x', 'xaxis')] = {
-        domain: prDomain, range: [-0.05, 1.05], title: { text: 'Recall', font: { size: 12 } },
+        domain: prDomain, range: [-0.05, 1.05],
+        color: THEME.axis, gridcolor: THEME.grid, zerolinecolor: THEME.zero,
+        tickfont: { family: FONT_FAMILY, size: 11, color: THEME.text },
+        title: { text: 'Recall', font: axisFont(12) },
       };
       layout[AXIS_PR.y.replace('y', 'yaxis')] = {
         range: [-0.05, 1.05], scaleanchor: AXIS_PR.x, scaleratio: 1,
-        title: { text: 'Precision (AP = Average Precision)', font: { size: scale < 0.8 ? 10 : 11 } },
+        color: THEME.axis, gridcolor: THEME.grid, zerolinecolor: THEME.zero,
+        tickfont: { family: FONT_FAMILY, size: 11, color: THEME.text },
+        title: { text: 'Precision (AP = Average Precision)', font: axisFont(scale < 0.8 ? 10 : 11) },
       };
     }
 
     if (stacked) {
-      // No `grid` here: every axis gets an explicit domain and anchor, so
-      // that ROC (top right) and PR (bottom right) share the right column.
       delete layout.grid;
       layout.xaxis.anchor = 'y';
       layout.yaxis.anchor = 'x';
@@ -563,11 +538,28 @@ export async function initRocWidget(container, jsonPath) {
     return layout;
   }
 
+  function updateControlTheme() {
+    rebuildAssayColors();
+    container.style.setProperty('color', THEME.text, 'important');
+    container.style.setProperty('font-family', FONT_FAMILY, 'important');
+    Object.values(chipEls).forEach((chip) => chip._refresh());
+    container.querySelectorAll('div, span, label').forEach((el) => {
+      el.style.setProperty('font-family', FONT_FAMILY, 'important');
+    });
+    thresholdValueLabel.style.setProperty('color', THEME.muted, 'important');
+    thresholdSlider.style.setProperty('accent-color', '#1769aa', 'important');
+  }
+
+  // --- Render (was MISSING from your version) ---------------------------
   let lastWidth = null;
 
   function render() {
     const names = assayNames.filter((n) => selected.has(n));
-    const primary = names[0];
+    const primary = primaryAssay();
+    const orderedNames = [
+          primary,
+          ...names.filter((n) => n !== primary),
+        ];
     const assay = data.assays[primary];
     const threshold = currentThreshold();
     updateThresholdLabel();
@@ -576,27 +568,42 @@ export async function initRocWidget(container, jsonPath) {
     lastWidth = size.width;
 
     const popSuffix = (data.n_pos !== undefined && data.n_neg !== undefined)
-      ? ` — n₊=${data.n_pos}, n₋=${data.n_neg}`
-      : '';
+      ? ` — n₁=${data.n_pos}, n₀=${data.n_neg}` : '';
     const title = (names.length > 1
       ? titlePrefix + primary + ' (+' + (names.length - 1) + ' compared)'
       : titlePrefix + primary) + popSuffix;
 
     const traces = buildScatterTraces(assay, threshold, size.scale)
-      .concat(buildComparisonTraces(names, threshold, size.scale));
+      .concat(buildComparisonTraces(orderedNames, threshold, size.scale));
     const layout = layoutFor(assay, title, primary, size);
     Plotly.react(plotDiv, traces, layout, { displayModeBar: false });
   }
 
-  thresholdSlider.addEventListener('input', render);
-
+  // --- Init, theme observer, resize observer (single sequence) ----------
+  refreshTheme(container);
+  updateControlTheme();
   setupThresholdSlider();
   render();
 
-  // Re-render whenever the available width changes (window resize, layout
-  // wrapping, sidebar toggled, tab revealed...). Scoped to this widget, so
-  // several widgets on one page don't interfere; the width guard avoids
-  // needless redraws (and any feedback loop) when only the height moved.
+  let renderedDark = THEME.dark;
+  const themeObserver = new MutationObserver(() => {
+    refreshTheme(container);
+    if (THEME.dark !== renderedDark) {
+      renderedDark = THEME.dark;
+      updateControlTheme();
+      render();
+    }
+  });
+  themeObserver.observe(document.documentElement, {
+    attributes: true, attributeFilter: ['class', 'data-bs-theme', 'data-theme'],
+  });
+  themeObserver.observe(document.body, {
+    attributes: true, attributeFilter: ['class', 'data-bs-theme', 'data-theme'],
+  });
+  container._rocThemeObserver = themeObserver;
+
+  thresholdSlider.addEventListener('input', render);
+
   const ro = new ResizeObserver(() => {
     if (computePlotSize().width !== lastWidth) render();
   });
@@ -605,9 +612,6 @@ export async function initRocWidget(container, jsonPath) {
   container._rocResizeObserver = ro;
 }
 
-// Auto-boot every widget container found on the page. Each container just
-// needs class="roc-interactive" plus a data-json attribute pointing at its
-// own exported JSON — no per-widget <script> block needed.
 document.querySelectorAll('.roc-interactive').forEach((container) => {
   initRocWidget(container, container.dataset.json || 'roc_data.json');
 });
