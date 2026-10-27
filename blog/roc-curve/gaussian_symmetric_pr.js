@@ -21,20 +21,6 @@ const LIGHT_COLORS = {
   operatingPoint: '#1f77b4',
 };
 
-const DARK_COLORS = {
-  roc: '#f2f2f2',
-  thresholdReversal: '#6cb2eb',
-  classSwap: '#6cb2eb',
-  classSwapReversal: '#6cb2eb',
-  perfect: '#b79cff',
-  random: '#e0a58f',
-  wrong: '#f48fb1',
-
-  pr: '#f2f2f2',
-  baseline: '#e0a58f',
-  operatingPoint: '#6cb2eb',
-};
-
 const LIGHT_THEME = {
   text: '#333333',
   title: '#111111',
@@ -44,13 +30,27 @@ const LIGHT_THEME = {
   panel: 'rgba(0,0,0,0.02)',
 };
 
+const DARK_COLORS = {
+  roc: '#ffffff',
+  thresholdReversal: '#56b4e9',
+  classSwap: '#e69f00',
+  classSwapReversal: '#cc79a7',
+  perfect: '#d0a8ff',
+  random: '#f0a38a',
+  wrong: '#ff79b0',
+
+  pr: '#ffffff',
+  baseline: '#f0a38a',
+  operatingPoint: '#56b4e9',
+};
+
 const DARK_THEME = {
-  text: '#e6e6e6',
-  title: '#f5f5f5',
-  secondary: '#b8b8b8',
-  grid: 'rgba(255,255,255,0.16)',
-  border: 'rgba(255,255,255,0.28)',
-  panel: 'rgba(255,255,255,0.05)',
+  text: '#f2f2f2',
+  title: '#ffffff',
+  secondary: '#d0d0d0',
+  grid: 'rgba(255,255,255,0.24)',
+  border: 'rgba(255,255,255,0.35)',
+  panel: 'rgba(255,255,255,0.06)',
 };
 
 const COLORS = { ...LIGHT_COLORS };
@@ -60,8 +60,12 @@ const THEME = {
   ...LIGHT_THEME,
 };
 
+// ============================================================
+// Theme detection — compatible with Quarto light/dark themes
+// ============================================================
+
 function parseRgba(str) {
-  const m = /rgba?\(([^)]+)\)/.exec(str || '');
+  const m = /rgba?\(([^)]+)\)/i.exec(str || '');
   if (!m) return null;
 
   const values = m[1]
@@ -69,17 +73,70 @@ function parseRgba(str) {
     .filter(Boolean)
     .map(Number);
 
+  if (values.slice(0, 3).some(v => !Number.isFinite(v))) {
+    return null;
+  }
+
   return {
     r: values[0],
     g: values[1],
     b: values[2],
-    a: values.length > 3 ? values[3] : 1,
+    a: Number.isFinite(values[3]) ? values[3] : 1,
   };
+}
+
+function explicitTheme(el) {
+  const nodes = [];
+
+  for (let node = el; node; node = node.parentElement) {
+    nodes.push(node);
+  }
+
+  for (const node of [
+    document.documentElement,
+    document.body,
+  ]) {
+    if (node && !nodes.includes(node)) nodes.push(node);
+  }
+
+  for (const node of nodes) {
+    const dataBsTheme =
+      node.getAttribute?.('data-bs-theme')?.toLowerCase();
+
+    const dataTheme =
+      node.getAttribute?.('data-theme')?.toLowerCase();
+
+    const classes = node.classList;
+
+    // Explicit dark-theme markers.
+    if (
+      dataBsTheme === 'dark' ||
+      dataTheme === 'dark' ||
+      classes?.contains('quarto-dark') ||
+      classes?.contains('theme-dark')
+    ) {
+      return true;
+    }
+
+    // Explicit light-theme markers.
+    if (
+      dataBsTheme === 'light' ||
+      dataTheme === 'light' ||
+      classes?.contains('quarto-light') ||
+      classes?.contains('theme-light')
+    ) {
+      return false;
+    }
+  }
+
+  return null;
 }
 
 function pageBackground(el) {
   for (let node = el; node; node = node.parentElement) {
-    const color = parseRgba(getComputedStyle(node).backgroundColor);
+    const color = parseRgba(
+      getComputedStyle(node).backgroundColor
+    );
 
     if (color && color.a > 0.5) {
       return color;
@@ -93,20 +150,39 @@ function refreshTheme(el) {
   const bg = pageBackground(el);
 
   const luminance =
-    (0.2126 * bg.r + 0.7152 * bg.g + 0.0722 * bg.b) / 255;
+    (0.2126 * bg.r +
+     0.7152 * bg.g +
+     0.0722 * bg.b) / 255;
 
-  const dark = luminance < 0.5;
-  const bgStr = `rgb(${bg.r},${bg.g},${bg.b})`;
+  // Explicit theme declarations take priority over background detection.
+  const explicitDark = explicitTheme(el);
 
-  const changed = dark !== THEME.dark || bgStr !== THEME.bg;
+  // If the page declares a theme, respect it. Otherwise infer it
+  // from the effective background.
+  const dark =
+    explicitDark !== null
+      ? explicitDark
+      : luminance < 0.5;
 
-  Object.assign(
-    THEME,
-    dark ? DARK_THEME : LIGHT_THEME,
-    { dark, bg: bgStr }
-  );
+  const bgStr =
+    `rgb(${bg.r}, ${bg.g}, ${bg.b})`;
 
-  Object.assign(COLORS, dark ? DARK_COLORS : LIGHT_COLORS);
+  const nextColors = dark ? DARK_COLORS : LIGHT_COLORS;
+  const nextTheme = dark ? DARK_THEME : LIGHT_THEME;
+
+  const changed =
+    dark !== THEME.dark ||
+    bgStr !== THEME.bg ||
+    Object.keys(nextColors).some(
+      key => COLORS[key] !== nextColors[key]
+    );
+
+  Object.assign(COLORS, nextColors);
+
+  Object.assign(THEME, nextTheme, {
+    dark,
+    bg: bgStr,
+  });
 
   return changed;
 }
@@ -368,19 +444,19 @@ function prCurve(pointFn, prevalence, tMin, tMax, endpointPrecision, num = 400) 
 // -------------------------------------------------------------------
 
 function addLabel(parent, text, { top = false } = {}) {
-
   const el = document.createElement('div');
 
   el.textContent = text;
 
-  el.style.fontFamily = FONT_FAMILY;
-  el.style.fontWeight = '600';
-  el.style.fontSize = '9.5px';
-  el.style.margin =
-    top ? '8px 0 4px 0' : '0 0 4px 0';
+  Object.assign(el.style, {
+    fontFamily: FONT_FAMILY,
+    fontWeight: '600',
+    fontSize: '9.5px',
+    margin: top ? '8px 0 4px 0' : '0 0 4px 0',
+    color: THEME.text,
+  });
 
   parent.appendChild(el);
-
   return el;
 }
 
@@ -397,7 +473,11 @@ function addSlider(parent, { min, max, step, value }) {
     value,
   });
 
-  slider.style.width = '100%';
+Object.assign(slider.style, {
+  width: '100%',
+  accentColor: THEME.dark ? '#56b4e9' : '#1f77b4',
+  colorScheme: THEME.dark ? 'dark' : 'light',
+});
 
   parent.appendChild(slider);
 
@@ -469,7 +549,7 @@ function curveAndPoint(
       legendrank,
 
       marker: {
-        color: THEME.bg,
+        color: THEME.dark ? DARK_THEME.panel : LIGHT_THEME.panel,
         size: markerSize,
         symbol: 'circle',
         line: {
@@ -591,7 +671,7 @@ export async function initGaussianSymmetricPrWidget(container) {
       marginTop: '10px',
       fontFamily: FONT_FAMILY,
       fontSize: '8.5px',
-      color: '#555',
+      color: THEME.secondary,
       lineHeight: '1.5',
       display: 'grid',
       gridTemplateColumns: '1fr',
@@ -633,19 +713,29 @@ function fillLegendRow() {
   legendRow.style.color = THEME.secondary;
 }
 
-
-  controlsDiv.appendChild(legendRow);
-
-
 function styleControls() {
   controlsDiv.style.border = `1px solid ${THEME.border}`;
-  controlsDiv.style.background = THEME.panel;
+  controlsDiv.style.backgroundColor = THEME.panel;
   controlsDiv.style.color = THEME.text;
+
+  // Keep all control text readable in both themes.
+  controlsDiv.querySelectorAll('div').forEach(el => {
+    el.style.color = THEME.text;
+  });
 
   thresholdValueLabel.style.color = THEME.secondary;
   prevalenceValueLabel.style.color = THEME.secondary;
-  legendRow.style.color = THEME.secondary;
 
+  // Refresh native slider appearance after theme changes.
+  controlsDiv.querySelectorAll('input[type="range"]').forEach(slider => {
+    slider.style.accentColor =
+      THEME.dark ? '#56b4e9' : '#1f77b4';
+
+    slider.style.colorScheme =
+      THEME.dark ? 'dark' : 'light';
+  });
+
+  legendRow.style.color = THEME.secondary;
   fillLegendRow();
 }
 
@@ -1289,29 +1379,30 @@ function layout() {
       },
     },
 
+
     xaxis: {
       range: [-0.04, 1.04],
       autorange: false,
       tickvals: ticks,
       showline: false,
       zeroline: false,
-      gridcolor: THEME.grid,
       gridwidth: 1,
-      tickfont: {
-        family: FONT_FAMILY,
-        size: 12,
-        color: THEME.text,
-      },
-      title: {
-        text: 'Recall',
-        font: {
+      gridcolor: THEME.grid,
+        tickfont: {
           family: FONT_FAMILY,
-          size: 14,
-          color: THEME.title,
+          size: 12,
+          color: THEME.text,
         },
-        standoff: 8,
+      title: {
+          text: 'Recall',
+          font: {
+            family: FONT_FAMILY,
+            size: 14,
+            color: THEME.title,
+          },
+          standoff: 8,
+        },
       },
-    },
 
     yaxis: {
       range: [-0.04, 1.04],
@@ -1407,23 +1498,29 @@ function layout() {
   }
 }
 
-  // ===================================================================
+ // ===================================================================
 // Theme changes
 // ===================================================================
 
 let themeTimers = [];
 
 function refreshThemeAndRender() {
-  const changed = refreshTheme(container);
+  refreshTheme(container);
 
-  if (changed) {
-    styleControls();
+  // Always refresh the controls and plot after a theme check.
+  // This also corrects colors if the theme changed without the
+  // background string changing.
+  styleControls();
+
+  if (plotDiv && plotDiv.data) {
+    render();
+  } else {
     render();
   }
 }
 
 function scheduleThemeCheck() {
-  themeTimers.forEach(clearTimeout);
+  themeTimers.forEach(timer => clearTimeout(timer));
 
   themeTimers = [60, 400].map(ms =>
     setTimeout(refreshThemeAndRender, ms)
@@ -1432,15 +1529,22 @@ function scheduleThemeCheck() {
 
 const themeObserver = new MutationObserver(scheduleThemeCheck);
 
+const themeAttributes = [
+  'class',
+  'style',
+  'data-bs-theme',
+  'data-theme',
+];
+
 themeObserver.observe(document.documentElement, {
   attributes: true,
-  attributeFilter: ['class', 'style', 'data-bs-theme', 'data-theme'],
+  attributeFilter: themeAttributes,
 });
 
 if (document.body) {
   themeObserver.observe(document.body, {
     attributes: true,
-    attributeFilter: ['class', 'style', 'data-bs-theme', 'data-theme'],
+    attributeFilter: themeAttributes,
   });
 }
 
@@ -1448,19 +1552,26 @@ if (document.head) {
   themeObserver.observe(document.head, {
     subtree: true,
     attributes: true,
-    attributeFilter: ['disabled', 'rel', 'media', 'href'],
+    attributeFilter: [
+      'disabled',
+      'rel',
+      'media',
+      'href',
+    ],
   });
 }
 
-const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const colorSchemeQuery =
+  window.matchMedia('(prefers-color-scheme: dark)');
 
-colorSchemeQuery.addEventListener?.('change', scheduleThemeCheck);
+colorSchemeQuery.addEventListener?.(
+  'change',
+  scheduleThemeCheck
+);
 
-// Apply the initial theme to the controls.
-// The initial render below will use the same THEME values.
+// Apply the initial theme before the first plot render.
 refreshTheme(container);
 styleControls();
-
 
   // =================================================================
   // Controls
@@ -1574,14 +1685,7 @@ styleControls();
 
 
 document
-  .querySelectorAll(
-    '.gaussian-symmetric-pr-interactive'
-  )
-  .forEach(
-    container => {
-
-      initGaussianSymmetricPrWidget(
-        container
-      );
-    }
-  );
+  .querySelectorAll('.gaussian-symmetric-pr-interactive')
+  .forEach(container => {
+    initGaussianSymmetricPrWidget(container);
+  });

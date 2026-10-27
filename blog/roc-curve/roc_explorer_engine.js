@@ -385,44 +385,98 @@ setFixedFont(legendRow, '10px');
 controlsDiv.appendChild(legendRow);
 
 function updateControlTheme() {
-  // Control-panel container.
-  controlsDiv.style.setProperty('color', THEME.text, 'important');
-  controlsDiv.style.setProperty('background-color', THEME.panel, 'important');
-  controlsDiv.style.setProperty('border-color', THEME.border, 'important');
+  // Control panel.
+  controlsDiv.style.setProperty(
+    'color',
+    THEME.text,
+    'important'
+  );
 
-  // Slider labels: explicitly restore both font size and colour.
+  controlsDiv.style.setProperty(
+    'background-color',
+    THEME.panel,
+    'important'
+  );
+
+  controlsDiv.style.setProperty(
+    'border-color',
+    THEME.border,
+    'important'
+  );
+
+  // Labels and values for parameter sliders.
   Object.values(labelEls).forEach((el) => {
     setFixedFont(el, CONTROL_FONT.label);
-    el.style.setProperty('color', THEME.text, 'important');
+
+    el.style.setProperty(
+      'color',
+      THEME.text,
+      'important'
+    );
   });
 
-  // Slider values.
   Object.values(valueEls).forEach((el) => {
     setFixedFont(el, CONTROL_FONT.value);
-    el.style.setProperty('color', THEME.secondary, 'important');
+
+    el.style.setProperty(
+      'color',
+      THEME.secondary,
+      'important'
+    );
   });
 
-  // Threshold heading.
+  // Threshold label and displayed value.
   setFixedFont(thresholdLabel, CONTROL_FONT.threshold);
-  thresholdLabel.style.setProperty('color', THEME.text, 'important');
 
-  // Threshold value.
+  thresholdLabel.style.setProperty(
+    'color',
+    THEME.text,
+    'important'
+  );
+
   setFixedFont(thresholdValueLabel, CONTROL_FONT.value);
-  thresholdValueLabel.style.setProperty('color', THEME.secondary, 'important');
 
-  // Legend container.
+  thresholdValueLabel.style.setProperty(
+    'color',
+    THEME.secondary,
+    'important'
+  );
+
+  // Sliders.
+  Object.values(sliderEls).forEach((el) => {
+    el.style.setProperty(
+      'accent-color',
+      THEME.dark ? '#64b5f6' : '#1769aa',
+      'important'
+    );
+
+    el.style.setProperty(
+      'color-scheme',
+      THEME.dark ? 'dark' : 'light'
+    );
+  });
+
+  // Legend.
   setFixedFont(legendRow, '10px');
-  legendRow.style.setProperty('color', THEME.text, 'important');
+
+  legendRow.style.setProperty(
+    'color',
+    THEME.text,
+    'important'
+  );
 
   // Separators.
   controlsDiv.querySelectorAll('hr').forEach((el) => {
-    el.style.setProperty('border-color', THEME.border, 'important');
+    el.style.setProperty(
+      'border-color',
+      THEME.border,
+      'important'
+    );
   });
 
-  // Restore the font family only. Do not set font sizes globally here.
+  // Keep the existing fixed typography.
   applyWidgetTypography();
 }
-
 refreshTheme(container);
 applyWidgetTypography();
 updateControlTheme();
@@ -775,13 +829,23 @@ yaxis2: {
   });
 
 // --- React to page theme changes ---------------------------------
+// NOTE: THEME is a module-level object shared by every widget on the
+// page. Comparing THEME.dark before/after refreshTheme only detects
+// the change for the FIRST observer that fires; all other widgets
+// would keep their previous theme. Track what THIS widget last
+// rendered instead.
+let renderedDark = THEME.dark;
 
 const themeObserver = new MutationObserver(() => {
-  if (refreshTheme(container)) {
+  refreshTheme(container);
+
+  if (THEME.dark !== renderedDark) {
+    renderedDark = THEME.dark;
     updateControlTheme();
     render();
   }
 });
+
 
 themeObserver.observe(document.documentElement, {
   attributes: true,
@@ -795,30 +859,28 @@ if (document.body) {
   });
 }
 
+// Initial render: required to draw the PDF and curve panels.
+render();
 
-  themeObserver.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['class', 'data-theme', 'data-bs-theme'],
-  });
-  if (document.body) {
-    themeObserver.observe(document.body, {
-      attributes: true,
-      attributeFilter: ['class', 'data-theme', 'data-bs-theme'],
-    });
-  }
-  // Re-render when the container width changes. Observe the PARENT
-  // (which tracks the page width — the plot div itself is sized by
-  // Plotly and only changes after a render), and guard on width so
-  // our own height-changing renders don't re-trigger the observer.
-  // Re-render when the container width changes.
-  let lastWidth = null;
-  const ro = new ResizeObserver((entries) => {
-    const w = Math.round(entries[0].contentRect.width);
-    if (w === lastWidth) return;
-    lastWidth = w;
-    render();
-  });
+// Resize the plot when its parent container changes size.
+let lastWidth = null;
 
-  ro.observe(plotDiv.parentElement);
-  container._rocExplorerResizeObserver = ro;
+const ro = new ResizeObserver((entries) => {
+  const width = Math.round(entries[0].contentRect.width);
+
+  if (width === lastWidth) return;
+  lastWidth = width;
+
+  render();
+});
+
+ro.observe(plotDiv.parentElement);
+
+// Keep references so they can be cleaned up if the widget is reinitialized.
+container._rocExplorerResizeObserver?.disconnect();
+container._rocExplorerResizeObserver = ro;
+container._rocExplorerThemeObserver?.disconnect();
+container._rocExplorerThemeObserver = themeObserver;
+
+
 }
