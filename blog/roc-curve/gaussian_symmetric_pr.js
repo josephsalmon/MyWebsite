@@ -6,23 +6,110 @@
 
 const FONT_FAMILY = 'Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif';
 
-const COLORS = {
-  // Primary PR curves
+const LIGHT_COLORS = {
   roc: '#000000ff',
   thresholdReversal: '#1f77b4',
   classSwap: '#1f77b4',
   classSwapReversal: '#1f77b4',
-
-  // Reference curves
   perfect: '#9467bd',
   random: '#8c564b',
   wrong: '#e377c2',
 
-  // UI elements
-  grid: '#E6E6E6',
-  text: '#333333',
-  secondaryText: '#666666',
+  // PR-curve-specific traces: keep these if the previous file uses them.
+  pr: '#000000ff',
+  baseline: '#8c564b',
+  operatingPoint: '#1f77b4',
 };
+
+const DARK_COLORS = {
+  roc: '#f2f2f2',
+  thresholdReversal: '#6cb2eb',
+  classSwap: '#6cb2eb',
+  classSwapReversal: '#6cb2eb',
+  perfect: '#b79cff',
+  random: '#e0a58f',
+  wrong: '#f48fb1',
+
+  pr: '#f2f2f2',
+  baseline: '#e0a58f',
+  operatingPoint: '#6cb2eb',
+};
+
+const LIGHT_THEME = {
+  text: '#333333',
+  title: '#111111',
+  secondary: '#555555',
+  grid: '#e5e5e5',
+  border: 'rgba(0,0,0,0.15)',
+  panel: 'rgba(0,0,0,0.02)',
+};
+
+const DARK_THEME = {
+  text: '#e6e6e6',
+  title: '#f5f5f5',
+  secondary: '#b8b8b8',
+  grid: 'rgba(255,255,255,0.16)',
+  border: 'rgba(255,255,255,0.28)',
+  panel: 'rgba(255,255,255,0.05)',
+};
+
+const COLORS = { ...LIGHT_COLORS };
+const THEME = {
+  dark: false,
+  bg: 'rgb(255,255,255)',
+  ...LIGHT_THEME,
+};
+
+function parseRgba(str) {
+  const m = /rgba?\(([^)]+)\)/.exec(str || '');
+  if (!m) return null;
+
+  const values = m[1]
+    .split(/[,\s/]+/)
+    .filter(Boolean)
+    .map(Number);
+
+  return {
+    r: values[0],
+    g: values[1],
+    b: values[2],
+    a: values.length > 3 ? values[3] : 1,
+  };
+}
+
+function pageBackground(el) {
+  for (let node = el; node; node = node.parentElement) {
+    const color = parseRgba(getComputedStyle(node).backgroundColor);
+
+    if (color && color.a > 0.5) {
+      return color;
+    }
+  }
+
+  return { r: 255, g: 255, b: 255, a: 1 };
+}
+
+function refreshTheme(el) {
+  const bg = pageBackground(el);
+
+  const luminance =
+    (0.2126 * bg.r + 0.7152 * bg.g + 0.0722 * bg.b) / 255;
+
+  const dark = luminance < 0.5;
+  const bgStr = `rgb(${bg.r},${bg.g},${bg.b})`;
+
+  const changed = dark !== THEME.dark || bgStr !== THEME.bg;
+
+  Object.assign(
+    THEME,
+    dark ? DARK_THEME : LIGHT_THEME,
+    { dark, bg: bgStr }
+  );
+
+  Object.assign(COLORS, dark ? DARK_COLORS : LIGHT_COLORS);
+
+  return changed;
+}
 
 
 function erf(x) {
@@ -275,25 +362,6 @@ function prCurve(pointFn, prevalence, tMin, tMax, endpointPrecision, num = 400) 
 // Marker for the universal endpoint (1, pi)
 // -------------------------------------------------------------------
 
-function endpointMarker({ color, precision, legend, legendgroup, legendrank, size = 7 }) {
-  return {
-    x: [1],
-    y: [precision],
-    mode: 'markers',
-    legend,
-    legendgroup,
-    legendrank,
-    marker: {
-      color,
-      size,
-      symbol: 'circle',
-      line: { color: 'white', width: 1 },
-    },
-    showlegend: false,
-    hovertemplate: 'Recall = 1<br>Precision = %{y:.2f}<extra></extra>',
-  };
-}
-
 
 // -------------------------------------------------------------------
 // Small DOM helpers
@@ -340,7 +408,7 @@ function addSlider(parent, { min, max, step, value }) {
     textAlign: 'center',
     fontFamily: FONT_FAMILY,
     fontSize: '9px',
-    color: '#555',
+    color: THEME.secondary,
   });
 
   parent.appendChild(valueLabel);
@@ -367,7 +435,6 @@ function curveAndPoint(
     legend,
     legendrank,
     markerSize = 10,
-    endpointSize = 7,
   }
 ) {
 
@@ -402,7 +469,7 @@ function curveAndPoint(
       legendrank,
 
       marker: {
-        color: 'white',
+        color: THEME.bg,
         size: markerSize,
         symbol: 'circle',
         line: {
@@ -533,46 +600,54 @@ export async function initGaussianSymmetricPrWidget(container) {
   );
 
 
+function fillLegendRow() {
   legendRow.innerHTML = [
-
     [COLORS.roc, 'PR curve'],
-
-    [
-      COLORS.thresholdReversal,
-      'Threshold reversal',
-    ],
-
-    [
-      COLORS.classSwap,
-      'Class label swap',
-    ],
-
+    [COLORS.thresholdReversal, 'Threshold reversal'],
+    [COLORS.classSwap, 'Class label swap'],
     [
       COLORS.classSwapReversal,
       'Class label swap + threshold reversal',
     ],
+  ].map(([color, label]) => `
+    <div style="
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: ${THEME.secondary};
+    ">
+      <span style="
+        width: 8px;
+        height: 8px;
+        box-sizing: content-box;
+        border-radius: 50%;
+        background: ${THEME.bg};
+        border: 2px solid ${color};
+        display: inline-block;
+        flex-shrink: 0;
+      "></span>
+      <span>${label}</span>
+    </div>
+  `).join('');
 
-  ]
-    .map(([color, label]) => `
-      <div style="display:flex; align-items:center; gap:4px;">
-        <span
-          style="
-            width:8px;
-            height:8px;
-            border-radius:50%;
-            background:white;
-            border:2px solid ${color};
-            display:inline-block;
-          ">
-        </span>
-        ${label}
-      </div>
-    `)
-    .join('');
+  legendRow.style.color = THEME.secondary;
+}
 
 
   controlsDiv.appendChild(legendRow);
 
+
+function styleControls() {
+  controlsDiv.style.border = `1px solid ${THEME.border}`;
+  controlsDiv.style.background = THEME.panel;
+  controlsDiv.style.color = THEME.text;
+
+  thresholdValueLabel.style.color = THEME.secondary;
+  prevalenceValueLabel.style.color = THEME.secondary;
+  legendRow.style.color = THEME.secondary;
+
+  fillLegendRow();
+}
 
   // =================================================================
   // Build curves
@@ -741,7 +816,6 @@ export async function initGaussianSymmetricPrWidget(container) {
           markerSize:
             scaleMarker(16),
 
-          endpointSize: scaleMarker(7),
         }
       ),
 
@@ -1110,31 +1184,28 @@ export async function initGaussianSymmetricPrWidget(container) {
   // =================================================================
 
   function legendLayout() {
+  return {
+    orientation: 'v',
 
-    return {
+    y: 0.98,
+    yanchor: 'top',
 
-      orientation: 'v',
+    x: 1.02,
+    xanchor: 'left',
 
-      y: 0.98,
-      yanchor: 'top',
+    valign: 'top',
 
-      x: 1.02,
-      xanchor: 'left',
+    font: {
+      size: 10,
+      family: FONT_FAMILY,
+      color: THEME.text,
+    },
 
-      valign: 'top',
-
-      font: {
-        size: 10,
-        family: FONT_FAMILY,
-      },
-
-      borderwidth: 0,
-
-      itemwidth: 28,
-
-      traceorder: 'normal',
-    };
-  }
+    borderwidth: 0,
+    itemwidth: 28,
+    traceorder: 'normal',
+  };
+}
 
 
   // =================================================================
@@ -1199,118 +1270,100 @@ export async function initGaussianSymmetricPrWidget(container) {
   // Plot layout
   // =================================================================
 
-  function layout() {
+function layout() {
+  const ticks = [0, 0.2, 0.4, 0.6, 0.8, 1];
+  const { width, height } = computePlotSize();
 
-    const ticks = [
-      0,
-      0.2,
-      0.4,
-      0.6,
-      0.8,
-      1,
-    ];
+  return {
+    font: {
+      family: FONT_FAMILY,
+      size: 12,
+      color: THEME.text,
+    },
 
-
-    const {
-      width,
-      height,
-    } =
-      computePlotSize();
-
-
-    return {
-
+    title: {
       font: {
         family: FONT_FAMILY,
+        size: 14,
+        color: THEME.title,
+      },
+    },
+
+    xaxis: {
+      range: [-0.04, 1.04],
+      autorange: false,
+      tickvals: ticks,
+      showline: false,
+      zeroline: false,
+      gridcolor: THEME.grid,
+      gridwidth: 1,
+      tickfont: {
+        family: FONT_FAMILY,
         size: 12,
-        color: '#333',
+        color: THEME.text,
       },
-
-
-      xaxis: {
-
-        range: [
-          -0.04,
-          1.04,
-        ],
-
-        autorange: false,
-
-        tickvals: ticks,
-
-        showline: false,
-        zeroline: false,
-
-        gridcolor: '#e5e5e5',
-        gridwidth: 1,
-
-        title: {
-          text: 'Recall',
-          font: {
-            size: 12,
-          },
-          standoff: 8,
+      title: {
+        text: 'Recall',
+        font: {
+          family: FONT_FAMILY,
+          size: 14,
+          color: THEME.title,
         },
+        standoff: 8,
       },
+    },
 
-
-      yaxis: {
-
-        range: [
-          -0.04,
-          1.04,
-        ],
-
-        autorange: false,
-
-        scaleanchor: 'x',
-        scaleratio: 1,
-
-        tickvals: ticks,
-
-        showline: false,
-        zeroline: false,
-
-        gridcolor: '#e5e5e5',
-        gridwidth: 1,
-
-        title: {
-          text: 'Precision',
-          font: {
-            size: 12,
-          },
-          standoff: 8,
+    yaxis: {
+      range: [-0.04, 1.04],
+      autorange: false,
+      scaleanchor: 'x',
+      scaleratio: 1,
+      tickvals: ticks,
+      showline: false,
+      zeroline: false,
+      gridcolor: THEME.grid,
+      gridwidth: 1,
+      tickfont: {
+        family: FONT_FAMILY,
+        size: 12,
+        color: THEME.text,
+      },
+      title: {
+        text: 'Precision',
+        font: {
+          family: FONT_FAMILY,
+          size: 14,
+          color: THEME.title,
         },
+        standoff: 8,
       },
+    },
 
+    margin: {
+      l: MARGIN_L,
+      r: MARGIN_R,
+      t: MARGIN_T,
+      b: MARGIN_B,
+      pad: 0,
+    },
 
-      margin: {
-        l: MARGIN_L,
-        r: MARGIN_R,
-        t: MARGIN_T,
-        b: MARGIN_B,
-        pad: 0,
+    legend: {
+      ...legendLayout(),
+      font: {
+        family: FONT_FAMILY,
+        size: 10,
+        color: THEME.text,
       },
+    },
 
-
-      legend:
-        legendLayout(),
-
-
-      uirevision: 'keep',
-
-      width,
-      height,
-
-      autosize: false,
-
-      paper_bgcolor:
-        'rgba(0,0,0,0)',
-
-      plot_bgcolor:
-        'rgba(0,0,0,0)',
-    };
-  }
+    uirevision: 'keep',
+    width,
+    height,
+    autosize: false,
+    paper_bgcolor: 'rgba(0,0,0,0)',
+    plot_bgcolor: 'rgba(0,0,0,0)',
+  };
+}
 
 
   // =================================================================
@@ -1321,60 +1374,92 @@ export async function initGaussianSymmetricPrWidget(container) {
   let pending = false;
 
 
-  async function render() {
+ async function render() {
+  if (rendering) {
+    pending = true;
+    return;
+  }
 
-    if (rendering) {
+  rendering = true;
 
-      pending = true;
-
-      return;
-    }
-
-
-    rendering = true;
-
-
-    const t =
-      parseFloat(
-        thresholdSlider.value
-      );
-
-
-    const prevalence =
-      parseFloat(
-        prevalenceSlider.value
-      );
-
-
-    await Plotly.react(
-      plotDiv,
-
-      buildTraces(
-        t,
-        prevalence
-      ),
-
-      layout(),
-
-      {
-        displayModeBar: false,
-      }
-    );
-
-
-    compactLegendInterlineSpacing();
-
-
-    rendering = false;
-
-
-    if (pending) {
-
+  try {
+    do {
       pending = false;
 
-      render();
-    }
+      const t = parseFloat(thresholdSlider.value);
+      const prevalence = parseFloat(prevalenceSlider.value);
+
+      await Plotly.react(
+        plotDiv,
+        buildTraces(t, prevalence),
+        layout(),
+        {
+          displayModeBar: false,
+        }
+      );
+
+      compactLegendInterlineSpacing();
+    } while (pending);
+  } catch (error) {
+    console.error('Error rendering PR widget:', error);
+  } finally {
+    rendering = false;
   }
+}
+
+  // ===================================================================
+// Theme changes
+// ===================================================================
+
+let themeTimers = [];
+
+function refreshThemeAndRender() {
+  const changed = refreshTheme(container);
+
+  if (changed) {
+    styleControls();
+    render();
+  }
+}
+
+function scheduleThemeCheck() {
+  themeTimers.forEach(clearTimeout);
+
+  themeTimers = [60, 400].map(ms =>
+    setTimeout(refreshThemeAndRender, ms)
+  );
+}
+
+const themeObserver = new MutationObserver(scheduleThemeCheck);
+
+themeObserver.observe(document.documentElement, {
+  attributes: true,
+  attributeFilter: ['class', 'style', 'data-bs-theme', 'data-theme'],
+});
+
+if (document.body) {
+  themeObserver.observe(document.body, {
+    attributes: true,
+    attributeFilter: ['class', 'style', 'data-bs-theme', 'data-theme'],
+  });
+}
+
+if (document.head) {
+  themeObserver.observe(document.head, {
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['disabled', 'rel', 'media', 'href'],
+  });
+}
+
+const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+colorSchemeQuery.addEventListener?.('change', scheduleThemeCheck);
+
+// Apply the initial theme to the controls.
+// The initial render below will use the same THEME values.
+refreshTheme(container);
+styleControls();
 
 
   // =================================================================
@@ -1487,9 +1572,6 @@ export async function initGaussianSymmetricPrWidget(container) {
 }
 
 
-// ===================================================================
-// Initialize all PR widgets
-// ===================================================================
 
 document
   .querySelectorAll(
