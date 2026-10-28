@@ -1,681 +1,1146 @@
 // PlantNet Conformal Prediction Comparison Visualization
-// Interactive Plotly.js visualization matching the Python matplotlib implementation
+// Responsive Plotly.js implementation.
+//
+// Desktop: 4 plots in one row.
+// Mobile: 4 plots stacked vertically.
+// Features:
+// - Six prediction methods
+// - Alpha-specific marker sizes and opacity
+// - WPAS connecting lines
+// - Target-coverage lines on Marginal Coverage
+// - Compact, method-based legend
+// - Shared linear y-axis range and synchronized zoom
+// - Responsive resizing
+// - Robust CSV parsing and visible error messages
 
-import { getPlotlyFontConfig, applyDocumentFont } from './font_utils.js';
+import { getPlotlyFontConfig } from './font_utils.js';
 
-// CSV parsing helper function
+// -----------------------------------------------------------------------------
+// Configuration
+// -----------------------------------------------------------------------------
+
+const CONTAINER_ID = 'plantnet-comparison-container';
+
+const CSV_PATH = 'images/plantnet_conformal_comparison_data.csv';
+
+const METHOD_ORDER = [
+  'standard',
+  'prevalence-adjusted',
+  'WPAS ($\\gamma=$ 1)',
+  'WPAS ($\\gamma=$ 10)',
+  'WPAS ($\\gamma=$ 100)',
+  'WPAS ($\\gamma=$ 1000)'
+];
+
+const METHOD_MAPPING = {
+  'standard': 'Standard',
+  'prevalence-adjusted': 'PAS',
+  'WPAS ($\\gamma=$ 1)': 'WPAS γ=1',
+  'WPAS ($\\gamma=$ 10)': 'WPAS γ=10',
+  'WPAS ($\\gamma=$ 100)': 'WPAS γ=100',
+  'WPAS ($\\gamma=$ 1000)': 'WPAS γ=1000'
+};
+
+const METHOD_STYLES = {
+  'Standard': {
+    color: '#1f77b4',
+    symbol: 'x'
+  },
+  'PAS': {
+    color: '#ff7f0e',
+    symbol: 'triangle-up'
+  },
+  'WPAS γ=1': {
+    color: '#2ca02c',
+    symbol: 'star'
+  },
+  'WPAS γ=10': {
+    color: '#2ca02c',
+    symbol: 'star'
+  },
+  'WPAS γ=100': {
+    color: '#2ca02c',
+    symbol: 'star'
+  },
+  'WPAS γ=1000': {
+    color: '#2ca02c',
+    symbol: 'star'
+  }
+};
+
+const ALPHA_STYLES = {
+  0.01: { size: 13, opacity: 1.00 },
+  0.05: { size: 11, opacity: 0.85 },
+  0.10: { size: 9, opacity: 0.70 },
+  0.20: { size: 7, opacity: 0.55 }
+};
+
+const METRICS = [
+  {
+    key: 'at_risk_avg_coverage',
+    label: 'At-risk average coverage'
+  },
+  {
+    key: 'not_at_risk_avg_coverage',
+    label: 'Not-at-risk average coverage'
+  },
+  {
+    key: 'macro_coverage',
+    label: 'Macro Coverage'
+  },
+  {
+    key: 'marginal_coverage',
+    label: 'Marginal Coverage'
+  }
+];
+
+const REQUIRED_COLUMNS = [
+  'alpha',
+  'method',
+  'at_risk_avg_coverage',
+  'not_at_risk_avg_coverage',
+  'marginal_coverage',
+  'avg_set_size',
+  'macro_coverage'
+];
+
+// -----------------------------------------------------------------------------
+// Robust CSV parser
+// -----------------------------------------------------------------------------
+
 function parseCSV(csvText) {
-  const lines = csvText.trim().split('\n');
-  const headers = lines[0].split(',');
-  const data = [];
-  
-  for (let i = 1; i < lines.length; i++) {
-    const values = lines[i].split(',');
-    const row = {};
-    headers.forEach((header, index) => {
-      const value = values[index];
-      // Convert numeric values
-      if (!isNaN(value) && !isNaN(parseFloat(value))) {
-        row[header] = parseFloat(value);
+  if (!csvText || !csvText.trim()) {
+    throw new Error('The CSV file is empty.');
+  }
+
+  const text = csvText.replace(/^\uFEFF/, '');
+
+  const rows = [];
+  let row = [];
+  let field = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    const next = text[i + 1];
+
+    if (char === '"') {
+      if (inQuotes && next === '"') {
+        field += '"';
+        i++;
       } else {
-        row[header] = value;
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ',' && !inQuotes) {
+      row.push(field.trim());
+      field = '';
+    } else if (
+      (char === '\n' || char === '\r') &&
+      !inQuotes
+    ) {
+      if (char === '\r' && next === '\n') {
+        i++;
+      }
+
+      row.push(field.trim());
+
+      if (row.some(value => value !== '')) {
+        rows.push(row);
+      }
+
+      row = [];
+      field = '';
+    } else {
+      field += char;
+    }
+  }
+
+  if (inQuotes) {
+    throw new Error(
+      'The CSV contains an unclosed quoted field.'
+    );
+  }
+
+  if (field !== '' || row.length > 0) {
+    row.push(field.trim());
+
+    if (row.some(value => value !== '')) {
+      rows.push(row);
+    }
+  }
+
+  if (rows.length < 2) {
+    throw new Error(
+      'The CSV must contain a header and at least one data row.'
+    );
+  }
+
+  const headers = rows[0].map(header => header.trim());
+
+  if (new Set(headers).size !== headers.length) {
+    throw new Error(
+      'The CSV contains duplicate column names.'
+    );
+  }
+
+  return rows.slice(1).map((values, rowIndex) => {
+    const record = {};
+
+    headers.forEach((header, columnIndex) => {
+      const value = (values[columnIndex] ?? '').trim();
+
+      if (value === '') {
+        record[header] = null;
+      } else {
+        const numericValue = Number(value);
+
+        record[header] = Number.isFinite(numericValue)
+          ? numericValue
+          : value;
       }
     });
-    data.push(row);
-  }
-  
-  return data;
+
+    if (values.length > headers.length) {
+      console.warn(
+        `CSV row ${rowIndex + 2} has more fields than the header.`
+      );
+    }
+
+    return record;
+  });
 }
 
-// Data loading and processing functions
+// -----------------------------------------------------------------------------
+// Load and validate the CSV
+// -----------------------------------------------------------------------------
+
 async function loadComparisonData() {
-  try {
-    // Load the CSV data
-    const response = await fetch(new URL('images/plantnet_conformal_comparison_data.csv', import.meta.url));
-    if (response.ok) {
-      const csvText = await response.text();
-      const rawData = parseCSV(csvText);
-      
-      // Extract unique alpha levels from CSV data
-      const targetAlphas = [...new Set(rawData.map(row => row.alpha))].sort((a, b) => a - b);
-      const filteredData = rawData.filter(row => targetAlphas.includes(row.alpha));
-      
-      // Extract unique methods and map to display names
-      const methodMapping = {
-        'standard': 'Standard',
-        'prevalence-adjusted': 'PAS',
-        'WPAS ($\\gamma=$ 1)': 'WPAS γ=1',
-        'WPAS ($\\gamma=$ 10)': 'WPAS γ=10', 
-        'WPAS ($\\gamma=$ 100)': 'WPAS γ=100',
-        'WPAS ($\\gamma=$ 1000)': 'WPAS γ=1000'
-      };
-      
-      const methods = [];
-      const colors = ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'];
-      
-      // Organize metrics by alpha and method
-      const metricsByAlpha = {};
-      
-      // Sort methods to ensure consistent ordering
-      const orderedMethods = [
-        'standard', 
-        'prevalence-adjusted', 
-        'WPAS ($\\gamma=$ 1)', 
-        'WPAS ($\\gamma=$ 10)', 
-        'WPAS ($\\gamma=$ 100)', 
-        'WPAS ($\\gamma=$ 1000)'
-      ];
-      
-      // Process data for each alpha level
-      targetAlphas.forEach(alpha => {
-        metricsByAlpha[alpha] = {
-          methods: [],
-          metrics: {
-            'At-risk average ĉy': [],
-            'Not-at-risk average ĉy': [],
-            'Marginal Coverage': [],
-            'Average Set Size': [],
-            'Macro Coverage': []
-          }
-        };
-        
-        orderedMethods.forEach(methodKey => {
-          const row = filteredData.find(r => r.method === methodKey && r.alpha === alpha);
-          if (row) {
-            metricsByAlpha[alpha].methods.push(methodMapping[methodKey]);
-            metricsByAlpha[alpha].metrics['At-risk average ĉy'].push(row.at_risk_avg_coverage);
-            metricsByAlpha[alpha].metrics['Not-at-risk average ĉy'].push(row.not_at_risk_avg_coverage);
-            metricsByAlpha[alpha].metrics['Marginal Coverage'].push(row.marginal_coverage);
-            metricsByAlpha[alpha].metrics['Average Set Size'].push(row.avg_set_size);
-            metricsByAlpha[alpha].metrics['Macro Coverage'].push(row.macro_coverage);
-          }
-        });
-      });
-      
-      // For backward compatibility, set methods from first alpha
-      if (targetAlphas.length > 0) {
-        methods.push(...metricsByAlpha[targetAlphas[0]].methods);
-      }
-      
-      return {
-        methods,
-        colors,
-        metricsByAlpha,
-        targetAlphas,
-        
-        // Additional metadata for better visualization
-        description: {
-          'At-risk average ĉy': 'Average class-conditional coverage for endangered/vulnerable species',
-          'Not-at-risk average ĉy': 'Average class-conditional coverage for non-threatened species',
-          'Marginal Coverage': 'Overall coverage across all test samples',
-          'Average Set Size': 'Mean number of species in prediction sets',
-          'Macro Coverage': 'Unweighted average coverage across all classes'
-        }
-      };
-    }
-  } catch (error) {
-    console.warn('Could not load CSV data:', error);
+  const csvUrl = new URL(CSV_PATH, import.meta.url);
+
+  const response = await fetch(csvUrl);
+
+  if (!response.ok) {
+    throw new Error(
+      `Could not load comparison CSV: HTTP ${response.status}. ` +
+      `Requested file: ${csvUrl}`
+    );
   }
-  
-  // Fallback to sample data if CSV loading fails
-  const fallbackMethods = ['Standard', 'PAS', 'WPAS γ=1', 'WPAS γ=10', 'WPAS γ=100', 'WPAS γ=1000'];
-  // Use common alpha levels as fallback, but these could be made configurable
-  const fallbackAlphas = [0.01, 0.05, 0.1, 0.2];
-  const fallbackMetricsByAlpha = {};
-  
-  // Generate realistic sample data for each alpha level based on expected patterns
-  const generateFallbackMetrics = (alpha) => {
-    // Generate values that follow expected patterns for conformal prediction
-    const baseAtRisk = 0.3 + alpha * 0.5; // Lower for stricter alpha
-    const baseNotAtRisk = 0.5 + alpha * 0.3;
-    const targetCoverage = 1 - alpha;
-    const baseSetSize = 1.5 + alpha * 15; // Larger sets for stricter coverage
-    
-    return {
-      'At-risk average ĉy': fallbackMethods.map((_, i) => 
-        Math.min(0.99, baseAtRisk + (i * 0.1) + (Math.random() * 0.05 - 0.025))
+
+  const csvText = await response.text();
+  const rawData = parseCSV(csvText);
+
+  const missingColumns = REQUIRED_COLUMNS.filter(
+    column => !Object.prototype.hasOwnProperty.call(
+      rawData[0],
+      column
+    )
+  );
+
+  if (missingColumns.length > 0) {
+    throw new Error(
+      `Missing required CSV columns: ${missingColumns.join(', ')}`
+    );
+  }
+
+  const validRows = rawData.filter(row => {
+    return (
+      typeof row.method === 'string' &&
+      row.method.length > 0 &&
+      Number.isFinite(row.alpha)
+    );
+  });
+
+  if (validRows.length === 0) {
+    throw new Error(
+      'The CSV contains no valid method/alpha records.'
+    );
+  }
+
+  const targetAlphas = [
+    ...new Set(validRows.map(row => row.alpha))
+  ].sort((a, b) => a - b);
+
+  const availableMethodKeys = [
+    ...new Set(validRows.map(row => row.method))
+  ];
+
+  const unknownMethods = availableMethodKeys.filter(
+    method => !METHOD_MAPPING[method]
+  );
+
+  if (unknownMethods.length > 0) {
+    console.warn(
+      'Unmapped methods will be displayed using their CSV names:',
+      unknownMethods
+    );
+  }
+
+  const orderedMethodKeys = [
+    ...METHOD_ORDER.filter(
+      method => availableMethodKeys.includes(method)
+    ),
+    ...availableMethodKeys.filter(
+      method => !METHOD_ORDER.includes(method)
+    )
+  ];
+
+  const metricsByAlpha = {};
+
+  targetAlphas.forEach(alpha => {
+    const alphaRows = validRows.filter(
+      row => row.alpha === alpha
+    );
+
+    const methodRows = orderedMethodKeys
+      .map(method => alphaRows.find(row => row.method === method))
+      .filter(Boolean);
+
+    metricsByAlpha[alpha] = {
+      methods: methodRows.map(
+        row => METHOD_MAPPING[row.method] || row.method
       ),
-      'Not-at-risk average ĉy': fallbackMethods.map((_, i) => 
-        Math.min(0.99, baseNotAtRisk + (i * 0.05) + (Math.random() * 0.03 - 0.015))
-      ),
-      'Marginal Coverage': fallbackMethods.map(() => 
-        targetCoverage + (Math.random() * 0.02 - 0.01)
-      ),
-      'Average Set Size': fallbackMethods.map((_, i) => 
-        Math.max(1.0, baseSetSize + (i * 0.2) + (Math.random() * 0.3 - 0.15))
-      ),
-      'Macro Coverage': fallbackMethods.map((_, i) => 
-        Math.min(0.99, baseAtRisk + (i * 0.08) + (Math.random() * 0.04 - 0.02))
-      )
-    };
-  };
-  
-  // Create sample data for each alpha level
-  fallbackAlphas.forEach(alpha => {
-    fallbackMetricsByAlpha[alpha] = {
-      methods: fallbackMethods,
-      metrics: generateFallbackMetrics(alpha)
+
+      methodKeys: methodRows.map(row => row.method),
+
+      metrics: {
+        at_risk_avg_coverage: methodRows.map(
+          row => row.at_risk_avg_coverage
+        ),
+
+        not_at_risk_avg_coverage: methodRows.map(
+          row => row.not_at_risk_avg_coverage
+        ),
+
+        marginal_coverage: methodRows.map(
+          row => row.marginal_coverage
+        ),
+
+        avg_set_size: methodRows.map(
+          row => row.avg_set_size
+        ),
+
+        macro_coverage: methodRows.map(
+          row => row.macro_coverage
+        )
+      }
     };
   });
 
   return {
-    methods: fallbackMethods,
-    colors: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b'],
-    metricsByAlpha: fallbackMetricsByAlpha,
-    targetAlphas: fallbackAlphas,
-    
-    // Additional metadata for better visualization
-    description: {
-      'At-risk average ĉy': 'Average class-conditional coverage for endangered/vulnerable species',
-      'Not-at-risk average ĉy': 'Average class-conditional coverage for non-threatened species',
-      'Marginal Coverage': 'Overall coverage across all test samples',
-      'Average Set Size': 'Mean number of species in prediction sets',
-      'Macro Coverage': 'Unweighted average coverage across all classes'
-    }
+    targetAlphas,
+    metricsByAlpha,
+    methodKeys: orderedMethodKeys,
+    methods: orderedMethodKeys.map(
+      method => METHOD_MAPPING[method] || method
+    )
   };
 }
 
-// Main initialization function
-async function initializePlantNetComparison() {
-  try {
-    console.log('Initializing Pl@ntNet comparison visualization...');
-    
-    // Load the comparison data
-    const data = await loadComparisonData();
-    console.log('Data loaded successfully:', data);
-    
-    // Create the main comparison plot
-    await createComparisonPlot(data);
-    console.log('Visualization created successfully!');
-    
-  } catch (error) {
-    console.error('Error initializing Pl@ntNet comparison visualization:', error);
-    
-    // Show error message in the container
-    const container = document.getElementById('plantnet-comparison-container');
-    if (container) {
-      container.innerHTML = `
-        <div style="text-align: center; padding: 20px; color: #666;">
-          <p>Error loading comparison visualization</p>
-          <p style="font-size: 12px;">${error.message}</p>
-        </div>
-      `;
-    }
-  }
-}
+// -----------------------------------------------------------------------------
+// Initialization and visible error handling
+// -----------------------------------------------------------------------------
 
-async function createComparisonPlot(data) {
-  const container = document.getElementById('plantnet-comparison-container');
+async function initializePlantNetComparison() {
+  const container = document.getElementById(CONTAINER_ID);
+
   if (!container) {
-    console.error('Container element not found');
+    console.error(
+      `Container #${CONTAINER_ID} was not found.`
+    );
     return;
   }
 
-  const fontConfig = getPlotlyFontConfig();
-  const fontFamily = fontConfig.family;
-  
-  // Define color and marker mapping (matching Python code)
-  const scoreToColor = {
-    'Standard': 'blue',             // blue
-    'PAS': 'orange',              // orange  
-    'WPAS γ=1': 'green',         // green
-    'WPAS γ=10': 'green',        // green
-    'WPAS γ=100': 'green',       // green
-    'WPAS γ=1000': 'green'       // green
-  };
-  
-  const scoreToSymbol = {
-    'Standard': 'x',                // X marker
-    'PAS': 'triangle-up',          // ^ marker
-    'WPAS γ=1': 'star',           // * marker
-    'WPAS γ=10': 'star',          // * marker
-    'WPAS γ=100': 'star',         // * marker
-    'WPAS γ=1000': 'star'         // * marker
-  };
+  try {
+    if (typeof Plotly === 'undefined') {
+      throw new Error(
+        'Plotly.js is unavailable. Load Plotly before this module.'
+      );
+    }
 
-  // Metric names (matching Python)
-  const metricNames = [
-    'At-risk average ĉy',
-    'Not-at-risk average ĉy', 
-    'MacroCov',
-    'MarginalCov'
-  ];
-  
-  // Get global data ranges for proper scaling across all alphas
-  let allSetSizes = [];
+    console.log(
+      'Initializing responsive PlantNet comparison visualization...'
+    );
+
+    const data = await loadComparisonData();
+
+    await createComparisonPlot(data);
+
+    console.log(
+      'PlantNet comparison visualization created successfully.'
+    );
+  } catch (error) {
+    console.error(
+      'Could not initialize PlantNet comparison visualization:',
+      error
+    );
+
+    if (container._plantNetResizeObserver) {
+      container._plantNetResizeObserver.disconnect();
+      container._plantNetResizeObserver = null;
+    }
+
+    container.replaceChildren();
+
+    const message = document.createElement('div');
+
+    message.style.cssText = [
+      'box-sizing:border-box',
+      'padding:20px',
+      'margin:10px 0',
+      'border:1px solid #ddd',
+      'border-radius:6px',
+      'color:#8b1e1e',
+      'background:#fff8f8',
+      'font-family:Arial,sans-serif',
+      'overflow-wrap:anywhere'
+    ].join(';');
+
+    const heading = document.createElement('strong');
+    heading.textContent =
+      'Error loading PlantNet comparison visualization';
+
+    const details = document.createElement('p');
+    details.textContent = error.message;
+    details.style.fontSize = '12px';
+
+    message.append(heading, details);
+    container.appendChild(message);
+  }
+}
+
+// -----------------------------------------------------------------------------
+// Responsive Plotly layout
+// -----------------------------------------------------------------------------
+
+function makeLayout(
+  container,
+  data,
+  traces,
+  fontFamily
+) {
+const width = container.clientWidth || 1000;
+const isMobile = width < 700;
+
+// Desktop: four columns in one row.
+// Mobile: two columns and two rows.
+const xDomains = isMobile
+  ? [
+      [0.16, 0.47],  // Plot 1: top left
+      [0.64, 0.95],  // Plot 2: top right
+      [0.16, 0.47],  // Plot 3: bottom left
+      [0.64, 0.95]   // Plot 4: bottom right
+    ]
+  : [
+      [0.055, 0.235],
+      [0.305, 0.485],
+      [0.555, 0.735],
+      [0.805, 0.985]
+    ];
+
+// Plotly domains are specified from bottom to top.
+const yDomains = isMobile
+  ? [
+      [0.56, 0.91],  // Top-left
+      [0.56, 0.91],  // Top-right
+      [0.12, 0.47],  // Bottom-left
+      [0.12, 0.47]   // Bottom-right
+    ]
+  : Array.from(
+      { length: 4 },
+      () => [0.12, 0.91]
+    );
+
+  const allSetSizes = [];
+
   data.targetAlphas.forEach(alpha => {
-    if (data.metricsByAlpha[alpha]) {
-      allSetSizes.push(...data.metricsByAlpha[alpha].metrics['Average Set Size']);
-    }
-  });
-  
-  const maxSetSize = Math.max(...allSetSizes);
-  const minSetSize = Math.min(...allSetSizes);
-  
-  const traces = [];
-  
-  // Alpha level styling for differentiation (improved visibility)
-  const alphaStyles = {
-    0.01: { opacity: 1.0, size: 14, lineWidth: 2 },
-    0.05: { opacity: 0.85, size: 12, lineWidth: 2 },
-    0.1: { opacity: 0.7, size: 10, lineWidth: 1.5 },
-    0.2: { opacity: 0.55, size: 8, lineWidth: 1 }
-  };
-  
-  // Create 4 subplots, each showing all alpha levels
-  for (let subplotIdx = 0; subplotIdx < 4; subplotIdx++) {
-    
-    // Determine which metric to show on x-axis for this subplot
-    let metricKey;
-    if (subplotIdx === 0) {
-      metricKey = 'At-risk average ĉy';
-    } else if (subplotIdx === 1) {
-      metricKey = 'Not-at-risk average ĉy';
-    } else if (subplotIdx === 2) {
-      metricKey = 'Macro Coverage';
-    } else {
-      metricKey = 'Marginal Coverage';
-    }
-    
-    // For each alpha level, add all methods to this subplot (render largest/most transparent first)
-  [...data.targetAlphas].forEach((alpha, alphaIdx) => {
-      const alphaData = data.metricsByAlpha[alpha];
-      if (!alphaData) return;
-      
-      const setSizes = alphaData.metrics['Average Set Size'];
-      const xAxisData = alphaData.metrics[metricKey];
-      
-      // Add points for each method at this alpha level (PAS rendered last for visibility)
-      const methodsToRender = [...alphaData.methods];
-      const pasIndex = methodsToRender.findIndex(method => method === 'PAS');
-      let pasMethod = null;
-      let pasMethodIdx = null;
-      
-      // Remove PAS from the list and save it for later
-      if (pasIndex !== -1) {
-        pasMethod = methodsToRender.splice(pasIndex, 1)[0];
-        pasMethodIdx = pasIndex;
-      }
-      
-      // Render all methods except PAS first
-      methodsToRender.forEach((method, originalIdx) => {
-        // Adjust index if PAS was removed from earlier position
-        const methodIdx = originalIdx >= pasIndex && pasIndex !== -1 ? originalIdx + 1 : originalIdx;
-        const color = scoreToColor[method];
-        const symbol = scoreToSymbol[method];
-        const alphaStyle = alphaStyles[alpha];
-        
-        traces.push({
-          x: [xAxisData[methodIdx]],
-          y: [setSizes[methodIdx]],
-          type: 'scatter',
-          mode: 'markers',
-          name: `${method}`,
-          marker: {
-            symbol: symbol,
-            size: alphaStyle.size,
-            color: color,
-            opacity: alphaStyle.opacity,
-            line: { width: alphaStyle.lineWidth, color: 'white' }
-          },
-          xaxis: `x${subplotIdx + 1}`,
-          yaxis: subplotIdx === 0 ? 'y' : `y${subplotIdx + 1}`,
-          hovertemplate: `<b>${method}</b><br>` +
-                         `Alpha: ${alpha}<br>` +
-                         `${metricKey}: %{x:.3f}<br>` +
-                         'Set Size: %{y:.2f}<extra></extra>',
-          showlegend: subplotIdx === 0,  // Only show legend for first subplot
-          legendgroup: `α = ${alpha}`,      // Group by alpha level
-          legendgrouptitle: { 
-            text: `          α = ${alpha}`,
-            font: { size: 12, family: fontFamily }
-          },
-          customdata: { method: method, alpha: alpha, subplot: subplotIdx }  // Custom identifier
-        });
-      });
-      
-      // Now render PAS last so it appears on top
-      if (pasMethod && pasMethodIdx !== null) {
-        const color = scoreToColor[pasMethod];
-        const symbol = scoreToSymbol[pasMethod];
-        const alphaStyle = alphaStyles[alpha];
-        
-        traces.push({
-          x: [xAxisData[pasMethodIdx]],
-          y: [setSizes[pasMethodIdx]],
-          type: 'scatter',
-          mode: 'markers',
-          name: `${pasMethod}`,
-          marker: {
-            symbol: symbol,
-            size: alphaStyle.size,
-            color: color,
-            opacity: alphaStyle.opacity,
-            line: { width: alphaStyle.lineWidth, color: 'white' }
-          },
-          xaxis: `x${subplotIdx + 1}`,
-          yaxis: subplotIdx === 0 ? 'y' : `y${subplotIdx + 1}`,
-          hovertemplate: `<b>${pasMethod}</b><br>` +
-                         `Alpha: ${alpha}<br>` +
-                         `${metricKey}: %{x:.3f}<br>` +
-                         'Set Size: %{y:.2f}<extra></extra>',
-          showlegend: subplotIdx === 0,  // Only show legend for first subplot
-          legendgroup: `α = ${alpha}`,      // Group by alpha level
-          legendgrouptitle: { 
-            text: `α = ${alpha}`,
-            font: { size: 12, family: fontFamily }
-          },
-          customdata: { method: pasMethod, alpha: alpha, subplot: subplotIdx }  // Custom identifier
-        });
-      }
-      
-      // Add WPAS connecting line for this alpha level in this subplot
-      const wpasPoints = [];
-      alphaData.methods.forEach((method, methodIdx) => {
-        if (method.startsWith('WPAS')) {
-          wpasPoints.push([xAxisData[methodIdx], setSizes[methodIdx]]);
-        }
-      });
-      
-      if (wpasPoints.length > 1) {
-        wpasPoints.sort((a, b) => a[0] - b[0]);
-        const xCoords = wpasPoints.map(p => p[0]);
-        const yCoords = wpasPoints.map(p => p[1]);
-        
-        traces.push({
-          x: xCoords,
-          y: yCoords,
-          type: 'scatter',
-          mode: 'lines',
-          line: {
-            color: 'green',
-            width: 1.5,
-            opacity: alphaStyles[alpha].opacity * 0.6
-          },
-          xaxis: `x${subplotIdx + 1}`,
-          yaxis: subplotIdx === 0 ? 'y' : `y${subplotIdx + 1}`,
-          hoverinfo: 'skip',
-          showlegend: false
-        });
+    const sizes =
+      data.metricsByAlpha[alpha]?.metrics.avg_set_size || [];
+
+    sizes.forEach(size => {
+      if (Number.isFinite(size) && size >= 0) {
+        allSetSizes.push(size);
       }
     });
+  });
+
+  if (allSetSizes.length === 0) {
+    throw new Error(
+      'The CSV contains no valid non-negative average set sizes.'
+    );
   }
 
-  // Add vertical dashed lines at 1-alpha values on the 4th subplot (Marginal Coverage)
-  data.targetAlphas.forEach(alpha => {
-    const targetCoverage = 1 - alpha;
-    traces.push({
-      x: [targetCoverage, targetCoverage],
-      y: [0, maxSetSize * 1.1],
-      type: 'scatter',
-      mode: 'lines',
-      line: { 
-        color: 'grey', 
-        width: 1, 
-        dash: 'dash'
-      },
-      xaxis: 'x4',  // 4th subplot (Marginal Coverage)
-      yaxis: 'y4',
-      hovertemplate: `Target coverage: ${targetCoverage}<br>` +
-                     `(α = ${alpha})<extra></extra>`,
-      showlegend: false,
-      name: `Target ${targetCoverage}`
-    });
-  });
+  const maxSetSize = Math.max(...allSetSizes);
+  const yMaximum = maxSetSize > 0
+    ? maxSetSize * 1.1
+    : 1;
 
   const layout = {
+    autosize: true,
+
+    width,
+
+    height: isMobile ? 760 : 540,
+
+    margin: isMobile
+      ? { t: 75, r: 8, b: 75, l: 8 }
+      : { t: 80, r: 15, b: 75, l: 55 },
+
     title: {
-      text: '<b>Conformal prediction for Pl@ntNet-300K, at-risk species:<br>size vs. coverage trade-offs</b>',
+      text:
+        'Conformal prediction for Pl@ntNet-300K:<br>' +
+        '<span style="font-size:0.82em">Set size vs. coverage trade-offs</span>',
+
       x: 0.5,
-      font: { 
-        size: 18, 
-        family: fontFamily
+      xanchor: 'center',
+      y: 0.96,
+      yanchor: 'top',
+
+      pad: { t: 0, b: 0 },
+
+      font: {
+        family: fontFamily,
+        size: isMobile ? 16 : 20,
+        color: '#222'
       }
     },
-    
-    // X-axis configurations for 4 metric subplots
-    xaxis: {
-      domain: [0, 0.22],  // First subplot: At-risk coverage
-      title: { text: metricNames[0], font: { size: 14, family: fontFamily } },
-      showgrid: false,
-      showline: true,
-      linewidth: 1,
-      linecolor: 'black',
-      zeroline: false,
-      ticks: 'outside',
-      ticklen: 5
-    },
-    xaxis2: {
-      domain: [0.26, 0.48],  // Second subplot: Not-at-risk coverage
-      title: { text: metricNames[1], font: { size: 14, family: fontFamily } },
-      showgrid: false,
-      showline: true,
-      linewidth: 1,
-      linecolor: 'black',
-      zeroline: false,
-      ticks: 'outside',
-      ticklen: 5
-    },
-    xaxis3: {
-      domain: [0.52, 0.74],  // Third subplot: Macro coverage
-      title: { text: metricNames[2], font: { size: 14, family: fontFamily } },
-      showgrid: false,
-      showline: true,
-      linewidth: 1,
-      linecolor: 'black',
-      zeroline: false,
-      ticks: 'outside',
-      ticklen: 5
-    },
-    xaxis4: {
-      domain: [0.78, 1.0],  // Fourth subplot: Marginal coverage
-      title: { text: metricNames[3], font: { size: 14, family: fontFamily } },
-      showgrid: false,
-      showline: true,
-      linewidth: 1,
-      linecolor: 'black',
-      zeroline: false,
-      ticks: 'outside',
-      ticklen: 5
-    },
-    
-    // Y-axis (only shown for leftmost subplot)
-    yaxis: {
-      title: { text: 'Average set size', font: { size: 14, family: fontFamily } },
-      showgrid: true,
-      gridcolor: 'rgba(0,0,0,0.1)',
-      gridwidth: 1,
-      showline: true,
-      linewidth: 1,
-      linecolor: 'black',
-      zeroline: false,
-      range: [0, maxSetSize * 1.1],
-      ticks: 'outside',
-      ticklen: 5
-    },
-    yaxis2: {
-      showgrid: true,
-      gridcolor: 'rgba(0,0,0,0.1)',
-      gridwidth: 1,
-      showline: false,
-      zeroline: false,
-      range: [0, maxSetSize * 1.1],
-      ticks: '',
-      showticklabels: false
-    },
-    yaxis3: {
-      showgrid: true,
-      gridcolor: 'rgba(0,0,0,0.1)',
-      gridwidth: 1,
-      showline: false,
-      zeroline: false,
-      range: [0, maxSetSize * 1.1],
-      ticks: '',
-      showticklabels: false
-    },
-    yaxis4: {
-      showgrid: true,
-      gridcolor: 'rgba(0,0,0,0.1)',
-      gridwidth: 1,
-      showline: false,
-      zeroline: false,
-      range: [0, maxSetSize * 1.1],
-      ticks: '',
-      showticklabels: false
-    },
-    
-    // Clean layout styling
-    plot_bgcolor: 'white',
-    paper_bgcolor: 'white',
-    font: { family: fontFamily },
-    
-    margin: { t: 50, r: 20, b: 180, l: 60 },
-    height: 490,
-    
 
-    
-    // Legend configuration (organized by alpha groups, methods linked across all subplots)
+    font: {
+      family: fontFamily,
+      size: isMobile ? 10 : 11
+    },
+
+    paper_bgcolor: 'white',
+    plot_bgcolor: 'white',
+
+    hovermode: 'closest',
+
+    showlegend: true,
+
     legend: {
-      x: 0.5,
-      y: -0.5,
-      xanchor: 'center',
-      yanchor: 'top',
-      orientation: 'h',
-      font: { size: 12, family: fontFamily },
-      borderwidth: 1,
-      bordercolor: '#E2E2E2',
-      bgcolor: 'rgba(255,255,255,0.8)',
-      groupclick: "toggleitem",
-      tracegroupgap: 20,
-      itemsizing: 'trace',
-      itemwidth: 30
+        orientation: 'h',
+
+        x: 0.5,
+        xanchor: 'center',
+
+        y: 0,
+        yanchor: 'top',
+
+        font: {
+          family: fontFamily,
+          size: isMobile ? 10 : 11,
+          color: '#333'
+        },
+
+        borderwidth: 1,
+        bordercolor: '#E2E2E2',
+        bgcolor: 'rgba(255,255,255,0.9)',
+
+        tracegroupgap: 4,
+        itemsizing: 'constant',
+        itemwidth: isMobile ? 48 : 70,
+
+        groupclick: 'togglegroup'
+      },
+
+    annotations: [],
+
+    shapes: [],
+
+    hoverlabel: {
+      font: {
+        family: fontFamily,
+        size: 12
+      }
     }
   };
 
+  METRICS.forEach((metric, index) => {
+    const axisNumber = index + 1;
+
+    const xAxisKey = axisNumber === 1
+      ? 'xaxis'
+      : `xaxis${axisNumber}`;
+
+    const yAxisKey = axisNumber === 1
+      ? 'yaxis'
+      : `yaxis${axisNumber}`;
+
+    const xReference = axisNumber === 1
+      ? 'x'
+      : `x${axisNumber}`;
+
+    const yReference = axisNumber === 1
+      ? 'y'
+      : `y${axisNumber}`;
+
+    layout[xAxisKey] = {
+      domain: xDomains[index],
+      anchor: yReference,
+
+      type: 'linear',
+
+      title: {
+      text: metric.label,
+      standoff: isMobile ? 4 : 8,
+      font: {
+        family: fontFamily,
+        size: isMobile ? 9 : 12
+      }
+    },
+
+    tickfont: {
+      family: fontFamily,
+      size: isMobile ? 8 : 10
+    },
+
+      automargin: true,
+
+      showgrid: false,
+
+      showline: true,
+      linecolor: '#444',
+      linewidth: 1,
+
+      ticks: 'outside',
+      ticklen: 4,
+
+      zeroline: false,
+
+      // Coverage metrics conventionally range from zero to one.
+      // Allow a little room if the input contains values outside that range.
+      ...(index === 0 || index === 1 || index === 2 || index === 3
+        ? {}
+        : {})
+    };
+
+    layout[yAxisKey] = {
+      domain: yDomains[index],
+      anchor: xReference,
+
+      type: 'linear',
+      range: [0, yMaximum],
+      rangemode: 'tozero',
+
+      title: {
+        text: isMobile || index === 0
+          ? 'Average set size'
+          : '',
+        standoff: isMobile ? 5 : 8,
+        font: {
+          family: fontFamily,
+          size: isMobile ? 10 : 12
+        }
+      },
+
+      tickfont: {
+        family: fontFamily,
+        size: isMobile ? 8 : 10
+      },
+
+      automargin: true,
+
+      showgrid: true,
+      gridcolor: 'rgba(0,0,0,0.10)',
+      gridwidth: 1,
+
+      showline: true,
+      linecolor: '#444',
+      linewidth: 1,
+
+      ticks: 'outside',
+      ticklen: 3,
+
+      zeroline: false,
+
+      // Preserve visible tick labels on every mobile plot.
+      showticklabels: true
+    };
+  });
+
+  // Target-coverage lines are drawn on the fourth plot.
+  data.targetAlphas.forEach(alpha => {
+    const targetCoverage = 1 - alpha;
+
+    layout.shapes.push({
+      type: 'line',
+
+      xref: 'x4',
+      yref: 'y4',
+
+      x0: targetCoverage,
+      x1: targetCoverage,
+
+      y0: 0,
+      y1: yMaximum,
+
+      line: {
+        color: '#777',
+        width: 1,
+        dash: 'dash'
+      },
+
+      layer: 'below'
+    });
+  });
+
+  return layout;
+}
+
+// -----------------------------------------------------------------------------
+// Build the four-panel plot
+// -----------------------------------------------------------------------------
+
+async function createComparisonPlot(data) {
+  const container = document.getElementById(CONTAINER_ID);
+
+  if (!container) {
+    throw new Error(
+      `Container #${CONTAINER_ID} was not found.`
+    );
+  }
+
+  if (typeof Plotly === 'undefined') {
+    throw new Error(
+      'Plotly.js is unavailable.'
+    );
+  }
+
+  const fontConfig = getPlotlyFontConfig();
+  const fontFamily = fontConfig?.family || 'Arial, sans-serif';
+
+  container.style.width = '100%';
+  container.style.minWidth = '0';
+  container.style.boxSizing = 'border-box';
+
+  const traces = [];
+
+  // Create traces for all four panels.
+  // Each trace represents one method across the target alpha values.
+  METRICS.forEach((metric, metricIndex) => {
+    const axisNumber = metricIndex + 1;
+
+    const xAxis = axisNumber === 1
+      ? 'x'
+      : `x${axisNumber}`;
+
+    const yAxis = axisNumber === 1
+      ? 'y'
+      : `y${axisNumber}`;
+
+    data.methodKeys.forEach((methodKey, methodIndex) => {
+      const displayName =
+        METHOD_MAPPING[methodKey] || methodKey;
+
+      const style = METHOD_STYLES[displayName] || {
+        color: '#555555',
+        symbol: 'circle'
+      };
+
+      const xValues = [];
+      const yValues = [];
+      const alphaValues = [];
+      const markerSizes = [];
+      const markerOpacities = [];
+
+      data.targetAlphas.forEach(alpha => {
+        const alphaData = data.metricsByAlpha[alpha];
+
+        if (!alphaData) {
+          return;
+        }
+
+        const rowIndex =
+          alphaData.methodKeys.indexOf(methodKey);
+
+        if (rowIndex === -1) {
+          return;
+        }
+
+        const coverage =
+          alphaData.metrics[metric.key][rowIndex];
+
+        const setSize =
+          alphaData.metrics.avg_set_size[rowIndex];
+
+        if (
+          !Number.isFinite(coverage) ||
+          !Number.isFinite(setSize)
+        ) {
+          return;
+        }
+
+        const alphaStyle = ALPHA_STYLES[alpha] || {
+          size: 9,
+          opacity: 0.7
+        };
+
+        xValues.push(coverage);
+        yValues.push(setSize);
+        alphaValues.push(alpha);
+        markerSizes.push(alphaStyle.size);
+        markerOpacities.push(alphaStyle.opacity);
+      });
+
+      if (xValues.length === 0) {
+        return;
+      }
+
+      const isWPAS = methodKey.startsWith('WPAS');
+
+      traces.push({
+        type: 'scatter',
+        mode: 'markers',
+
+        name: displayName,
+        legendgroup: displayName,
+
+        // Show each method only once in the shared legend.
+        showlegend: metricIndex === 0,
+
+        x: xValues,
+        y: yValues,
+
+        xaxis: xAxis,
+        yaxis: yAxis,
+
+        marker: {
+          color: style.color,
+          symbol: style.symbol,
+          size: markerSizes,
+          opacity: markerOpacities,
+          line: {
+            width: 0.5,
+            color: style.color
+          }
+        },
+        customdata: alphaValues,
+
+        hovertemplate:
+          `<b>${displayName}</b><br>` +
+          `${metric.label}: %{x:.4f}<br>` +
+          `Average set size: %{y:.4f}<br>` +
+          `α: %{customdata:.2f}` +
+          '<extra></extra>'
+      });
+    });
+  });
+
+  if (traces.length === 0) {
+    throw new Error(
+      'No valid plotting traces could be created. ' +
+      'Check the CSV coverage and average set-size values.'
+    );
+  }
+
+  const allSetSizes = [];
+
+  data.targetAlphas.forEach(alpha => {
+    const alphaData = data.metricsByAlpha[alpha];
+
+    if (!alphaData) {
+      return;
+    }
+
+    alphaData.metrics.avg_set_size.forEach(size => {
+      if (Number.isFinite(size) && size >= 0) {
+        allSetSizes.push(size);
+      }
+    });
+  });
+
+  if (allSetSizes.length === 0) {
+    throw new Error(
+      'No valid average set-size values were found.'
+    );
+  }
+
+  const maxSetSize = Math.max(...allSetSizes);
+  const targetLineMax = maxSetSize > 0
+    ? maxSetSize * 1.1
+    : 1;
+
+
+
+  // Target-coverage lines on Marginal Coverage (the fourth panel).
+  // These are implemented as layout shapes so they do not add legend items.
+  // Their hover labels are not interactive; the target values are shown
+  // through the annotation labels below.
+
+  const annotations = [];
+
+  data.targetAlphas.forEach(alpha => {
+    const targetCoverage = 1 - alpha;
+
+    annotations.push({
+      x: targetCoverage,
+      y: targetLineMax,
+
+      xref: 'x4',
+      yref: 'y4',
+
+      text: `1−α=${targetCoverage.toFixed(2)}`,
+
+      showarrow: false,
+
+      textangle: -90,
+
+      xanchor: 'right',
+      yanchor: 'top',
+
+      font: {
+        family: fontFamily,
+        size: 9,
+        color: '#777'
+      },
+
+      bgcolor: 'rgba(255,255,255,0.65)'
+    });
+  });
+
   const config = {
+    responsive: true,
+
     displayModeBar: 'hover',
     displaylogo: false,
-    modeBarButtonsToRemove: ['pan2d', 'select2d', 'lasso2d', 'autoScale2d', 'toggleSpikelines'],
+
+    modeBarButtonsToRemove: [
+      'pan2d',
+      'select2d',
+      'lasso2d',
+      'autoScale2d',
+      'toggleSpikelines'
+    ],
+
     toImageButtonOptions: {
       format: 'svg',
       filename: 'plantnet_conformal_comparison',
-      height: 700,
-      width: 1200,
+      height: 800,
+      width: 1600,
       scale: 1
-    },
-    responsive: true
+    }
   };
 
-  const plot = await Plotly.newPlot('plantnet-comparison-container', traces, layout, config);
-  
-  // Add custom legend click handler to link same method+alpha across all subplots
-  plot.on('plotly_legendclick', function(eventData) {
-    const clickedTrace = traces[eventData.curveNumber];
-    if (!clickedTrace.customdata) return true; // Allow default behavior for non-marker traces
-    
-    const clickedMethod = clickedTrace.customdata.method;
-    const clickedAlpha = clickedTrace.customdata.alpha;
-    
-    // Find all traces with same method and alpha across all subplots
-    const relatedTraces = [];
-    traces.forEach((trace, index) => {
-      if (trace.customdata && 
-          trace.customdata.method === clickedMethod && 
-          trace.customdata.alpha === clickedAlpha) {
-        relatedTraces.push(index);
+  // Disconnect previous observers if the chart is rebuilt.
+  if (container._plantNetResizeObserver) {
+    container._plantNetResizeObserver.disconnect();
+    container._plantNetResizeObserver = null;
+  }
+
+  const buildLayout = () => {
+    const layout = makeLayout(
+      container,
+      data,
+      traces,
+      fontFamily
+    );
+
+    layout.annotations = annotations;
+
+    return layout;
+  };
+
+  await Plotly.newPlot(
+    container,
+    traces,
+    buildLayout(),
+    config
+  );
+
+  // ---------------------------------------------------------------------------
+  // Synchronize y-axis zoom and reset operations.
+  // ---------------------------------------------------------------------------
+
+  if (container._plantNetRelayoutHandler) {
+    container.removeListener(
+      'plotly_relayout',
+      container._plantNetRelayoutHandler
+    );
+  }
+
+  let syncing = false;
+
+  const relayoutHandler = relayoutData => {
+    if (syncing || !relayoutData) {
+      return;
+    }
+
+    const keys = Object.keys(relayoutData);
+
+    const yAxisChanged = keys.some(key =>
+      /^yaxis\d*(\.range(\[\d\])?|\.autorange)$/.test(key)
+    );
+
+    if (!yAxisChanged) {
+      return;
+    }
+
+    const resetRequested = keys.some(key =>
+      /^yaxis\d*\.autorange$/.test(key) &&
+      relayoutData[key] === true
+    );
+
+    const update = {};
+
+    if (resetRequested) {
+      for (let i = 1; i <= 4; i++) {
+        const axis = i === 1
+          ? 'yaxis'
+          : `yaxis${i}`;
+
+        update[`${axis}.autorange`] = true;
       }
-    });
-    
-    // Toggle opacity for all related traces (instead of hiding completely)
-    const currentOpacity = clickedTrace.marker.opacity;
-    const newOpacity = currentOpacity > 0.3 ? 0.15 : alphaStyles[clickedAlpha].opacity;
-    
-    const update = { 'marker.opacity': relatedTraces.map(() => newOpacity) };
-    Plotly.restyle('plantnet-comparison-container', update, relatedTraces);
-    
-    return false; // Prevent default legend click behavior
+    } else {
+      let selectedRange = null;
+
+      for (let i = 1; i <= 4; i++) {
+        const axis = i === 1
+          ? 'yaxis'
+          : `yaxis${i}`;
+
+        const low = relayoutData[`${axis}.range[0]`];
+        const high = relayoutData[`${axis}.range[1]`];
+
+        const completeRange = relayoutData[`${axis}.range`];
+
+        if (
+          low !== undefined &&
+          high !== undefined
+        ) {
+          selectedRange = [low, high];
+          break;
+        }
+
+        if (Array.isArray(completeRange)) {
+          selectedRange = completeRange;
+          break;
+        }
+      }
+
+      if (!selectedRange) {
+        return;
+      }
+
+      for (let i = 1; i <= 4; i++) {
+        const axis = i === 1
+          ? 'yaxis'
+          : `yaxis${i}`;
+
+        update[`${axis}.autorange`] = false;
+        update[`${axis}.range`] = selectedRange;
+      }
+    }
+
+    syncing = true;
+
+    Plotly.relayout(container, update)
+      .catch(error => {
+        console.error(
+          'Could not synchronize y-axis zoom:',
+          error
+        );
+      })
+      .finally(() => {
+        syncing = false;
+      });
+  };
+
+  container._plantNetRelayoutHandler = relayoutHandler;
+
+  container.on(
+    'plotly_relayout',
+    relayoutHandler
+  );
+
+  // ---------------------------------------------------------------------------
+  // Responsive resizing.
+  // ---------------------------------------------------------------------------
+
+  let resizeTimer;
+
+  let previousWidth = container.clientWidth;
+
+  const resizeObserver = new ResizeObserver(() => {
+    clearTimeout(resizeTimer);
+
+    resizeTimer = setTimeout(async () => {
+      if (!container.isConnected) {
+        return;
+      }
+
+      const currentWidth = container.clientWidth;
+
+      if (
+        currentWidth === 0 ||
+        Math.abs(currentWidth - previousWidth) < 2
+      ) {
+        return;
+      }
+
+      const previousLayout = container._fullLayout;
+
+      const wasMobile = previousWidth < 700;
+      const isMobile = currentWidth < 700;
+
+      previousWidth = currentWidth;
+
+      try {
+        // Rebuild only when crossing the desktop/mobile breakpoint.
+        if (wasMobile !== isMobile) {
+          await Plotly.react(
+            container,
+            traces,
+            buildLayout(),
+            config
+          );
+        } else {
+          await Plotly.relayout(container, {
+            width: currentWidth
+          });
+
+          await Plotly.Plots.resize(container);
+        }
+      } catch (error) {
+        console.error(
+          'Could not resize PlantNet comparison visualization:',
+          error
+        );
+      }
+    }, 180);
   });
 
-  // Keep y-axis ranges synchronized across subplots when user zooms/pans one subplot
-  (function() {
-    let syncing = false;
+  resizeObserver.observe(container.parentElement || container);
 
-    plot.on('plotly_relayout', function(relayoutData) {
-      if (syncing) return;
-      if (!relayoutData || Object.keys(relayoutData).length === 0) return;
-
-      // Find any yaxis range change or autorange change
-      const yAxisKeys = Object.keys(relayoutData).filter(k => k.startsWith('yaxis'));
-      if (yAxisKeys.length === 0) return;
-
-      // Determine if autorange was triggered for any axis
-      const autorangeKey = yAxisKeys.find(k => k.endsWith('.autorange'));
-      const update = {};
-
-      if (autorangeKey) {
-        // Apply autorange to all yaxes
-        for (let i = 1; i <= 4; i++) {
-          const key = i === 1 ? 'yaxis.autorange' : `yaxis${i}.autorange`;
-          update[key] = true;
-        }
-      } else {
-        // Look for a full range set (range[0] and range[1]) on any yaxis
-        // Prefer to use the first axis that provides both endpoints
-        let foundRange = null;
-        for (const k of yAxisKeys) {
-          const base = k.split('.')[0]; // e.g., 'yaxis' or 'yaxis2'
-          const r0 = relayoutData[`${base}.range[0]`];
-          const r1 = relayoutData[`${base}.range[1]`];
-          if (typeof r0 !== 'undefined' && typeof r1 !== 'undefined') {
-            foundRange = [r0, r1];
-            break;
-          }
-        }
-
-        if (!foundRange) return; // nothing we can synchronize
-
-        // Apply the same numeric range to all yaxes
-        for (let i = 1; i <= 4; i++) {
-          const key0 = i === 1 ? 'yaxis.range[0]' : `yaxis${i}.range[0]`;
-          const key1 = i === 1 ? 'yaxis.range[1]' : `yaxis${i}.range[1]`;
-          update[key0] = foundRange[0];
-          update[key1] = foundRange[1];
-        }
-      }
-
-      // Apply update while preventing recursive handling
-      syncing = true;
-      Plotly.relayout('plantnet-comparison-container', update)
-        .then(() => { syncing = false; })
-        .catch(() => { syncing = false; });
-    });
-  })();
+  container._plantNetResizeObserver = resizeObserver;
 }
 
+// -----------------------------------------------------------------------------
+// Initialize when the DOM is ready.
+// -----------------------------------------------------------------------------
 
-
-// Initialize the visualization when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-  initializePlantNetComparison();
-});
-
-// Also initialize if called directly (for module systems)
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { 
-    createComparisonPlot,
-    initializePlantNetComparison
-  };
-} else if (typeof define === 'function' && define.amd) {
-  define([], function() { 
-    return { 
-      createComparisonPlot,
-      initializePlantNetComparison
-    }; 
-  });
+if (document.readyState === 'loading') {
+  document.addEventListener(
+    'DOMContentLoaded',
+    initializePlantNetComparison,
+    { once: true }
+  );
 } else {
-  // Browser global
-  window.PlantNetComparison = { 
+  initializePlantNetComparison();
+}
+
+// -----------------------------------------------------------------------------
+// Browser global and ES module exports.
+// -----------------------------------------------------------------------------
+
+if (typeof window !== 'undefined') {
+  window.PlantNetComparison = {
+    loadComparisonData,
     createComparisonPlot,
     initializePlantNetComparison
   };
 }
+
+export {
+  loadComparisonData,
+  createComparisonPlot,
+  initializePlantNetComparison
+};

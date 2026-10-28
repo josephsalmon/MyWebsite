@@ -4,7 +4,7 @@ function classConditionalBarTraces(alpha) {
     // You can replace with other class-conditional metrics if needed
     // Create traces for each class, linking them across all three barplots
     let traces = [];
-    const xCenters = [0.2, 0.5, 0.8];
+    const xCenters = [0.12, 0.5, 0.88];
     // Compute coverage for each class and each barplot
     // Barplot 1: conditional, Barplot 2: marginal, Barplot 3: macro
     // Use alpha argument directly
@@ -58,10 +58,9 @@ function classConditionalBarTraces(alpha) {
                 marker: { color: colors[classIdx] },
                 xaxis: `x${colIdx+4}`,
                 yaxis: `y${colIdx+4}`,
-                showlegend: (colIdx === 0),
-                legendgroup: `class${classIdx+1}`,
-                name: (colIdx === 0) ? `Class ${classIdx+1} (coverage)` : undefined,
-                width: 0.2,
+                showlegend: colIdx === 0,
+                legendgroup: `class${classIdx + 1}`,
+                name: `Class ${classIdx + 1}`,
                 offsetgroup: `class${classIdx+1}`,
             });
         }
@@ -457,7 +456,13 @@ function alphaContoursMacro(alpha) {
 
     for (let i = 0; i < n_classes; i++) {
         // macro_score = ZX[idx, int(y[idx])] / priors[int(y[idx])]
-        const macro_score = ZX.map((probs, idx) => probs[y[idx]] / currentPriors[y[idx]]);
+        const probsAll = params.type === 'logistic'
+        ? predictLogistic(X, params.weights)
+        : predict_proba(X, params.means, params.covs, params.priors);
+
+        const macro_score = probsAll.map(
+            (probs, idx) => probs[y[idx]] / currentPriors[y[idx]]
+        );
         // threshold = min(1, np.quantile(macro_score, alpha) * priors[i])
         const threshold = Math.min(1, quantile(macro_score, alpha) * currentPriors[i]);
         // mask = predictions[:, i] >= threshold
@@ -507,137 +512,339 @@ document.addEventListener('DOMContentLoaded', function() {
     plotsDiv.style.margin = '0 auto';
 
     // Add Model selection buttons (Theoretical/Empirical/Logistic)
+   // Add model selection buttons
     const toggleContainer = document.createElement('div');
+
     toggleContainer.style.display = 'flex';
+    toggleContainer.style.flexWrap = 'wrap';
     toggleContainer.style.alignItems = 'center';
-    toggleContainer.style.marginBottom = '-4px';
-    toggleContainer.style.gap = '10px';
+    toggleContainer.style.justifyContent = 'center';
+    toggleContainer.style.marginBottom = '8px';
+    toggleContainer.style.gap = '6px';
+    toggleContainer.style.width = '100%';
+    toggleContainer.style.boxSizing = 'border-box';
+    toggleContainer.style.padding = '0 8px';
 
     const toggleLabel = document.createElement('span');
     toggleLabel.textContent = 'Probability model:';
     toggleLabel.style.fontWeight = 'bold';
-    toggleLabel.style.marginRight = '8px';
+    toggleLabel.style.marginRight = '4px';
+    toggleLabel.style.fontSize = '14px';
 
     const theoreticalBtn = document.createElement('button');
     theoreticalBtn.textContent = 'Theoretical';
     theoreticalBtn.id = 'theoretical-btn';
-    theoreticalBtn.style.padding = '6px 12px';
-    theoreticalBtn.style.border = 'none';
-    theoreticalBtn.style.borderRadius = '4px 0 0 0';
-    theoreticalBtn.style.cursor = 'pointer';
-    theoreticalBtn.style.backgroundColor = '#4CAF50';
-    theoreticalBtn.style.color = 'white';
 
     const empiricalBtn = document.createElement('button');
     empiricalBtn.textContent = 'Empirical';
     empiricalBtn.id = 'empirical-btn';
-    empiricalBtn.style.padding = '6px 12px';
-    empiricalBtn.style.border = 'none';
-    empiricalBtn.style.borderRadius = '0';
-    empiricalBtn.style.cursor = 'pointer';
-    empiricalBtn.style.backgroundColor = '#f1f1f1';
-    empiricalBtn.style.color = '#333';
 
     const logisticBtn = document.createElement('button');
     logisticBtn.textContent = 'Logistic Reg.';
     logisticBtn.id = 'logistic-btn';
-    logisticBtn.style.padding = '6px 12px';
-    logisticBtn.style.border = 'none';
-    logisticBtn.style.borderRadius = '0 4px 4px 0';
-    logisticBtn.style.cursor = 'pointer';
-    logisticBtn.style.backgroundColor = '#f1f1f1';
-    logisticBtn.style.color = '#333';
+    theoreticalBtn.addEventListener('click', () => {
+        if (modelType !== 'theoretical') {
+            modelType = 'theoretical';
+            updateGridProbs();
+            updateButtonStyles();
+            drawPlot();
+        }
+    });
+
+    empiricalBtn.addEventListener('click', () => {
+        if (modelType !== 'empirical') {
+            modelType = 'empirical';
+            updateGridProbs();
+            updateButtonStyles();
+            drawPlot();
+        }
+    });
+
+    logisticBtn.addEventListener('click', () => {
+        if (modelType !== 'logistic') {
+            modelType = 'logistic';
+            updateGridProbs();
+            updateButtonStyles();
+            drawPlot();
+        }
+    });
+
+
+    [theoreticalBtn, empiricalBtn, logisticBtn].forEach(btn => {
+        btn.style.padding = '7px 9px';
+        btn.style.border = 'none';
+        btn.style.cursor = 'pointer';
+        btn.style.fontSize = '12px';
+        btn.style.whiteSpace = 'normal';
+        btn.style.borderRadius = '4px';
+    });
+
+    theoreticalBtn.style.backgroundColor = '#4CAF50';
+    theoreticalBtn.style.color = 'white';
+
+    [empiricalBtn, logisticBtn].forEach(btn => {
+        btn.style.backgroundColor = '#f1f1f1';
+        btn.style.color = '#333';
+    });
 
     toggleContainer.appendChild(toggleLabel);
     toggleContainer.appendChild(theoreticalBtn);
     toggleContainer.appendChild(empiricalBtn);
     toggleContainer.appendChild(logisticBtn);
+
     plotsDiv.appendChild(toggleContainer);
 
+
     const container = document.createElement('div');
-    container.id = 'plotContainer';
+    container.id = 'plotlyChart3';
     container.style.width = '100%';
+    container.style.minWidth = '0';
     container.style.maxWidth = '100%';
-    container.style.height = 'auto';
-    container.style.marginTop = '0px'; // Remove any top margin
-    container.style.paddingTop = '0px'; // Remove any top padding
     plotsDiv.appendChild(container);
 
+
     function getResponsiveLayout() {
-        const containerWidth = container.offsetWidth || plotsDiv.offsetWidth || 1200;
+        const containerWidth = container.clientWidth || plotsDiv.clientWidth || 800;
+
+        const isMobile = containerWidth <= 600;
+        const isVeryNarrow = containerWidth <= 380;
+
+        const titleSize = isVeryNarrow ? 10 : isMobile ? 12 : 16;
+        const tickSize = isVeryNarrow ? 7 : isMobile ? 8 : 11;
+        const legendSize = isVeryNarrow ? 8 : isMobile ? 9 : 12;
+
+        // Give mobile layouts more vertical room.
+        const plotHeight = isMobile
+            ? Math.max(480, Math.round(containerWidth * 1.15))
+            : Math.round(containerWidth * 0.72);
+        const leftMargin = isMobile ? 38 : 60;
+        const rightMargin = isMobile ? 8 : 10;
+
         return {
-            // 2 rows, 3 columns grid for subplots
-            grid: { rows: 2, columns: 3, pattern: 'independent', xgap: 0.03, ygap: 0.01 },
+            grid: {
+                    rows: 2,
+                    columns: 3,
+                    pattern: 'independent',
+                    xgap: isMobile ? 0.025 : 0.03,
+                    ygap: 0.015
+                },
+
             width: containerWidth,
-            height: Math.round(containerWidth * 0.9),
-            // Top row domains (row 1)
-            xaxis: { scaleanchor: 'y', scaleratio: 1, range: [xMin, xMax], domain: [0.0, 0.31333333333333335], anchor: 'y', row: 1, col: 1, ticklabelposition: 'middle' },
-            xaxis2: { scaleanchor: 'y2', scaleratio: 1, range: [xMin, xMax], domain: [0.34333333333333335, 0.6566666666666667], anchor: 'y2', row: 1, col: 2, ticklabelposition: 'middle' },
-            xaxis3: { scaleanchor: 'y3', scaleratio: 1, range: [xMin, xMax], domain: [0.6866666666666667, 1.0], anchor: 'y3', row: 1, col: 3, ticklabelposition: 'middle' },
-            // Top row: occupy 2/3 of height
-            yaxis: { range: [yMin, yMax], domain: [0.28, 1.0], showticklabels: true, constrain: 'domain', automargin: true, anchor: 'x', row: 1, col: 1 },
-            yaxis2: { range: [yMin, yMax], domain: [0.28, 1.0], showticklabels: false, showgrid: false, showline: false, constrain: 'domain', automargin: true, anchor: 'x2', row: 1, col: 2 },
-            yaxis3: { range: [yMin, yMax], domain: [0.28, 1.0], showticklabels: false, showgrid: false, showline: false, constrain: 'domain', automargin: true, anchor: 'x3', row: 1, col: 3 },
-            // Bottom row: occupy 0 to 0.15 of height
-            xaxis4: { domain: [0.0, 0.31333333333333335], anchor: 'y4', row: 2, col: 1, ticklabelposition: 'middle', ticklabelmode: 'anchor', ticklabelpadding: 20, range: [-0.1, 1.1], tickvals: [0.12, 0.5, 0.88], ticktext: ['Class 1', 'Class 2', 'Class 3'] },
-            xaxis5: { domain: [0.34333333333333335, 0.6566666666666667], anchor: 'y5', row: 2, col: 2, ticklabelposition: 'middle', ticklabelmode: 'anchor', ticklabelpadding: 20, range: [-0.1, 1.1], tickvals: [0.12, 0.5, 0.88], ticktext: ['Class 1', 'Class 2', 'Class 3'] },
-            xaxis6: { domain: [0.6866666666666667, 1.0], anchor: 'y6', row: 2, col: 3, ticklabelposition: 'middle', ticklabelmode: 'anchor', ticklabelpadding: 20, range: [-0.1, 1.1], tickvals: [0.12, 0.5, 0.88], ticktext: ['Class 1', 'Class 2', 'Class 3'] },
-            yaxis4: { domain: [0.20, 0.36], range: [0., 1.02], showticklabels: true, automargin: true, anchor: 'x4', row: 2, col: 1, title: { text: 'Class coverage', font: { size: 15 } } },
-            yaxis5: { domain: [0.20, 0.36], range: [0., 1.02], showticklabels: false, automargin: true, anchor: 'x5', row: 2, col: 2 },
-            yaxis6: { domain: [0.20, 0.36], range: [0., 1.02], showticklabels: false, automargin: true, anchor: 'x6', row: 2, col: 3 },
-            yaxis5: {domain: [0.20, 0.36], range: [0., 1.02], showticklabels: false, automargin:false, anchor:'x5'},
-            yaxis6: {domain: [0.20, 0.36], range: [0., 1.02], showticklabels: false, automargin:false, anchor:'x6'},
-            // reduce left/right margins slightly to compensate for tighter domains
-    margin: { t: 5, r: 10, b: 50, l: 60 },
-            font: { family: 'Inter, sans-serif' },
+            height: plotHeight,
+
+            // Density plots: first row
+            xaxis: {
+                scaleanchor: 'y',
+                scaleratio: 1,
+                range: [xMin, xMax],
+                domain: [0.0, 0.3133],
+                anchor: 'y',
+                tickfont: { size: tickSize },
+                automargin: true
+            },
+
+            xaxis2: {
+                scaleanchor: 'y2',
+                scaleratio: 1,
+                range: [xMin, xMax],
+                domain: [0.3433, 0.6567],
+                anchor: 'y2',
+                tickfont: { size: tickSize },
+                automargin: true
+            },
+
+            xaxis3: {
+                scaleanchor: 'y3',
+                scaleratio: 1,
+                range: [xMin, xMax],
+                domain: [0.6867, 1.0],
+                anchor: 'y3',
+                tickfont: { size: tickSize },
+                automargin: true
+            },
+
+            yaxis: {
+                range: [yMin, yMax],
+                domain: [0.4, 1.0],
+                showticklabels: true,
+                constrain: 'domain',
+                automargin: true,
+                anchor: 'x',
+                tickfont: { size: tickSize }
+            },
+
+            yaxis2: {
+                range: [yMin, yMax],
+                domain: [0.4, 1.0],
+                showticklabels: false,
+                showgrid: false,
+                showline: false,
+                constrain: 'domain',
+                anchor: 'x2',
+                tickfont: { size: tickSize }
+            },
+
+            yaxis3: {
+                range: [yMin, yMax],
+                domain: [0.4, 1.0],
+                showticklabels: false,
+                showgrid: false,
+                showline: false,
+                constrain: 'domain',
+                anchor: 'x3',
+                tickfont: { size: tickSize }
+            },
+
+            // Coverage barplots: second row
+            xaxis4: {
+                domain: [0.0, 0.3133],
+                anchor: 'y4',
+                range: [-0.1, 1.1],
+                tickvals: [0.12, 0.5, 0.88],
+                ticktext: ['Class 1', 'Class 2', 'Class 3'],
+                tickfont: { size: tickSize },
+                tickangle: isVeryNarrow ? -35 : 0,
+                automargin: true
+            },
+
+            xaxis5: {
+                domain: [0.3433, 0.6567],
+                anchor: 'y5',
+                range: [-0.1, 1.1],
+                tickvals: [0.12, 0.5, 0.88],
+                ticktext: ['Class 1', 'Class 2', 'Class 3'],
+                tickfont: { size: tickSize },
+                tickangle: isVeryNarrow ? -35 : 0,
+                automargin: true
+            },
+
+            xaxis6: {
+                domain: [0.6867, 1.0],
+                anchor: 'y6',
+                range: [-0.1, 1.1],
+                tickvals: [0.12, 0.5, 0.88],
+                ticktext: ['Class 1', 'Class 2', 'Class 3'],
+                tickfont: { size: tickSize },
+                tickangle: isVeryNarrow ? -35 : 0,
+                automargin: true
+            },
+
+            yaxis4: {
+                domain: [0.12, 0.32],
+                range: [0, 1.02],
+                showticklabels: true,
+                automargin: true,
+                anchor: 'x4',
+                tickfont: { size: tickSize },
+                title: {
+                    text: isMobile ? 'Coverage' : 'Class coverage',
+                    font: { size: isMobile ? 9 : 15 }
+                }
+            },
+
+            yaxis5: {
+                domain: [0.12, 0.32],
+                range: [0, 1.02],
+                showticklabels: false,
+                automargin: false,
+                anchor: 'x5'
+            },
+
+            yaxis6: {
+                domain: [0.12, 0.32],
+                range: [0, 1.02],
+                showticklabels: false,
+                automargin: false,
+                anchor: 'x6'
+            },
+
+            margin: {
+                        t: isMobile ? 55 : 45,
+                        r: rightMargin,
+                        b: isVeryNarrow ? 125 : isMobile ? 105 : 80,
+                        l: leftMargin,
+                        pad: 3
+                    },
+
             legend: {
-                orientation: 'h',
-                x: 0.5,
-                y: .13,
-                xanchor: 'center',
-                yanchor: 'top',
-                font: { size: 15 },
-                itemsizing: 'constant',
-                traceorder: 'normal',
-                ncol: 3
+                        orientation: 'h',
+                        x: 0.5,
+                        xanchor: 'center',
+                        y: isVeryNarrow ? -0.18 : isMobile ? -0.14 : -0.10,
+                        yanchor: 'top',
+
+                        font: {
+                            size: isVeryNarrow ? 8 : isMobile ? 9 : 11,
+                            family: 'Inter, sans-serif'
+                        },
+
+                        itemsizing: 'constant',
+                        traceorder: 'normal',
+
+                        // Aim for three columns by controlling entry width
+                        entrywidth: isMobile ? 85 : 110,
+                        entrywidthmode: 'pixels',
+                        ncol: 3,
+                    },
+            font: {
+                family: 'Inter, sans-serif',
+                size: isMobile ? 9 : 12
             },
             annotations: [
                 {
-                    text: 'Conditional',
-                    x: 0.15666666666666668,
-                    y: 0.87,
+                    text: isMobile ? 'Conditional' : 'Conditional',
+                    x: 0.1567,
+                    y: 1.04,
                     xref: 'paper',
                     yref: 'paper',
                     showarrow: false,
-                    font: { size: 16, family: 'Inter, sans-serif', color: '#222' },
+                    font: {
+                        size: titleSize,
+                        family: 'Inter, sans-serif',
+                        color: '#222'
+                    },
                     xanchor: 'center',
-                    yanchor: 'bottom'
+                    yanchor: 'bottom',
+                    align: 'center'
                 },
                 {
                     text: 'Standard',
                     x: 0.5,
-                    y: 0.87,
+                    y: 1.04,
                     xref: 'paper',
                     yref: 'paper',
                     showarrow: false,
-                    font: { size: 16, family: 'Inter, sans-serif', color: '#222' },
+                    font: {
+                        size: titleSize,
+                        family: 'Inter, sans-serif',
+                        color: '#222'
+                    },
                     xanchor: 'center',
-                    yanchor: 'bottom'
+                    yanchor: 'bottom',
+                    align: 'center'
                 },
                 {
-                    text: 'Standard with PAS',
-                    x: 0.8433333333333334,
-                    y: 0.87,
+                    text: isMobile
+                        ? 'Standard with<br>PAS'
+                        : 'Standard with PAS',
+                    x: 0.8433,
+                    y: 1.04,
                     xref: 'paper',
                     yref: 'paper',
                     showarrow: false,
-                    font: { size: 16, family: 'Inter, sans-serif', color: '#222' },
+                    font: {
+                        size: titleSize,
+                        family: 'Inter, sans-serif',
+                        color: '#222'
+                    },
                     xanchor: 'center',
-                    yanchor: 'bottom'
+                    yanchor: 'bottom',
+                    align: 'center'
                 }
             ],
-                uirevision: 'keep-state'
-            };
+
+            uirevision: 'keep-state'
+        };
     }
     let currentAlpha = 0.15;
     function createTraces(alpha) {
@@ -700,6 +907,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 hoverinfo: 'none'
             }
         ];
+        
         return [
             ...scatterLeft,
             ...contourLeft,
@@ -786,8 +994,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+        let plotInitialized = false;
+
     function drawPlot() {
-        Plotly.newPlot(container, createTraces(currentAlpha), getResponsiveLayout(), {responsive: true}).then(attachRelayoutHandler);
+        const plotPromise = plotInitialized
+            ? Plotly.react(
+                container,
+                createTraces(currentAlpha),
+                getResponsiveLayout(),
+                { responsive: true }
+            )
+            : Plotly.newPlot(
+                container,
+                createTraces(currentAlpha),
+                getResponsiveLayout(),
+                { responsive: true }
+            );
+
+        plotPromise
+            .then(() => {
+                plotInitialized = true;
+                attachRelayoutHandler();
+            })
+            .catch(error => {
+                console.error('Failed to render Plotly visualization:', error);
+            });
     }
 
     function updateButtonStyles() {
@@ -810,26 +1041,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Button event handlers
-    theoreticalBtn.addEventListener('click', () => {
-        console.log('Switching to theoretical model');
-        if (modelType !== 'theoretical') {
-            modelType = 'theoretical';
-            updateGridProbs();
-            updateButtonStyles();
-            drawPlot();
-        }
-    });
-
-    empiricalBtn.addEventListener('click', () => {
-        console.log('Switching to empirical model');
-        if (modelType !== 'empirical') {
-            modelType = 'empirical';
-            updateGridProbs();
-            updateButtonStyles();
-            drawPlot();
-        }
-    });
 
     logisticBtn.addEventListener('click', () => {
         console.log('Switching to logistic regression model');
@@ -842,11 +1053,58 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     drawPlot();
-    window.addEventListener('resize', drawPlot);
+
+    let resizeTimer;
+
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+
+        resizeTimer = setTimeout(() => {
+            Plotly.react(
+                container,
+                createTraces(currentAlpha),
+                getResponsiveLayout(),
+                { responsive: true }
+            ).then(attachRelayoutHandler);
+        }, 150);
+    });
+
     // --- Slider ---
-    const slider = document.getElementById('alphaSlider2');
-    const alphaDisplay = document.getElementById('alphaValue2');
+// --- Alpha slider: register exactly one input handler ---
+const slider = document.getElementById('alphaSlider2');
+const alphaDisplay = document.getElementById('alphaValue2');
+
+if (slider) {
     slider.value = currentAlpha;
+
+    if (alphaDisplay) {
+        alphaDisplay.textContent = currentAlpha.toFixed(3);
+    }
+
+    slider.addEventListener('input', (event) => {
+        const alpha = Number.parseFloat(event.target.value);
+
+        if (!Number.isFinite(alpha)) return;
+
+        currentAlpha = alpha;
+
+        if (alphaDisplay) {
+            alphaDisplay.textContent = currentAlpha.toFixed(3);
+        }
+
+        if (plotInitialized) {
+            Plotly.react(
+                container,
+                createTraces(currentAlpha),
+                getResponsiveLayout(),
+                { responsive: true }
+            )
+            .then(attachRelayoutHandler)
+            .catch(console.error);
+        }
+    });
+}
+
     if (alphaDisplay) alphaDisplay.textContent = currentAlpha.toFixed(3);
     slider.addEventListener('input', (e) => {
         const alpha = parseFloat(e.target.value);

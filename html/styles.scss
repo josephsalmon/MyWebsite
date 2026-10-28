@@ -563,3 +563,100 @@ div.theorem {
   p {
   text-align: justify
     }
+
+
+
+// ---------------------------------------------------------------------------
+// Responsive maths
+// ---------------------------------------------------------------------------
+
+// Display formulas: let the paragraph that MathJax wraps them in scroll.
+// The mjx-container itself is not touched, so no spurious scrollbar chrome.
+p:has(> mjx-container[display="true"]),
+div.math.display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+// Modest font reduction on very narrow screens.
+@media (max-width: 480px) {
+  mjx-container { font-size: 90%; }
+}
+@media (max-width: 360px) {
+  mjx-container { font-size: 80%; }
+}
+
+// Proof boxes and theorem divs scroll internally.
+.proof-content,
+div.theorem, div.lemma, div.proposition, div.definition {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+
+// ---------------------------------------------------------------------------
+// Responsive typography and maths
+// ---------------------------------------------------------------------------
+
+@media (max-width: 600px) {
+  // Fit more words on each line
+  #quarto-content {
+    font-size: 0.88rem;
+  }
+
+  // Reduce horizontal padding in mathematical environments
+  .proof-content {
+    padding-left: 0.45em;
+    padding-right: 0.45em;
+  }
+
+  div.theorem,
+  div.lemma,
+  div.proposition,
+  div.definition {
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+  }
+
+  // Slightly smaller mathematical expressions
+  mjx-container {
+    font-size: 82%;
+  }
+
+  // Tighter line spacing
+  p {
+    line-height: 1.4;
+  }
+}
+
+// Extra adjustment for very narrow phones
+@media (max-width: 380px) {
+  #quarto-content {
+    font-size: 0.84rem;
+  }
+
+  mjx-container {
+    font-size: 75%;
+  }
+}
+
+// Display formulas: scroll horizontally if they exceed the available width
+p:has(> mjx-container[display="true"]),
+div.math.display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+// Proof boxes and theorem environments can scroll internally
+.proof-content,
+div.theorem,
+div.lemma,
+div.proposition,
+div.definition {
+  overflow-x: auto;
+  overflow-y: hidden;
+}

@@ -242,42 +242,60 @@ This metadata allows us to analyze species distributions both in terms of their 
 
 The interactive visualization below lets you explore the species distribution in the Pl@ntNet-300K training set, enriched with their IUCN conservation statuses.
 
+
 ```{=html}
-<div id="plantnet-viz" style="max-width: 1200px; margin: 0 auto;">
+<div id="plantnet-viz" style="max-width:1200px; margin:0 auto;">
 
-  <div id="filter-container" style="margin-bottom: 20px;"></div>
+  <!-- IUCN legend: always full width, always on top -->
+  <div id="filter-container" style="margin-bottom:16px;"></div>
 
-  <!-- Main content area with side-by-side layout -->
-  <div style="display: flex; flex-direction: row; align-items: flex-start; gap: 20px;">
-  <!-- Plot container on the left (wider and shorter) -->
-  <div id="plotly-container" style="flex: 4; height: 400px; width: 48vw; max-width: 48vw; min-width: 200px;"></div>
+  <!-- Plot + sidebar: side by side at all widths, never wrap -->
+  <div style="display:flex; flex-direction:row; align-items:flex-start;
+              gap:16px; flex-wrap:nowrap;">
 
-    <!-- Right sidebar with controls and image preview -->
-    <div style="flex: 1; min-width: 280px; display: flex; flex-direction: column;">
-      <!-- Controls for plot options (moved to align with plot head) -->
-      <div style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
+    <!-- Plot: fills the available width -->
+    <div id="plotly-container"
+         style="flex:4 1 0; min-width:0; height:400px;"></div>
+
+    <!-- Right sidebar -->
+    <div style="flex:1 1 120px; min-width:100px; max-width:220px;
+                display:flex; flex-direction:column;">
+
+      <!-- Scale toggle -->
+      <div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
         <div class="scale-toggle">
           <span class="scale-label">Y-Scale:</span>
           <button type="button" id="log-scale-btn" class="scale-btn"
-            onclick="window.setScale('log'); return false;">Log</button>
+                  onclick="window.setScale('log'); return false;">Log</button>
           <button type="button" id="linear-scale-btn" class="scale-btn active"
-            onclick="window.setScale('linear'); return false;">Linear</button>
+                  onclick="window.setScale('linear'); return false;">Linear</button>
         </div>
       </div>
 
-      <!-- Image preview container -->
-      <div id="image-preview-container" style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; flex: 1;">
-        <div style="margin-bottom: 10px;">Species Preview</div>
-        <img id="preview-image" src="" style="width: 100%; height: 250px; border: 1px solid #ccc; display: none; border-radius: 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); object-fit: cover;" />
-        <div id="image-label" style="font-weight: bold; font-size: 13px; min-height: 3.5em; margin-top: 1px; text-align: center; width: 100%; line-height: 1.2;"></div>
+      <!-- Image preview -->
+      <div id="image-preview-container"
+           style="display:flex; flex-direction:column;
+                  justify-content:flex-start; align-items:center; flex:1;">
+        <div style="margin-bottom:8px; font-size:clamp(10px,2.5vw,13px);">
+          Species Preview
+        </div>
+        <img id="preview-image" src=""
+             style="width:100%; height:auto; max-height:200px;
+                    border:1px solid #ccc; display:none; border-radius:5px;
+                    box-shadow:0 2px 5px rgba(0,0,0,0.1); object-fit:cover;" />
+        <div id="image-label"
+             style="font-weight:bold; font-size:clamp(10px,2vw,13px);
+                    min-height:3em; margin-top:4px;
+                    text-align:center; width:100%; line-height:1.2;"></div>
       </div>
-    </div
+    </div>
+
   </div>
 </div>
 
 <script type="module" src="plantnet_viz.js"></script>
-
 ```
+
 This visualization provides a dynamic way to explore the intersection of species popularity and ecological importance.
 **"At-risk" species** are highlighted and typically have far fewer observations, reflecting the challenges in documenting rare or threatened flora. Use the interactive features (**hover** the points on the left!) to navigate observation counts, conservation status, and the distribution of both common and rare species.
 
@@ -619,12 +637,24 @@ In the visualization below, we also illustrate the variation of the **(empirical
 <br>
 
 ```{=html}
-
-<div id="plots3" style="width:100%; max-width:800px; overflow-x:auto;"></div>
-<div id="alphaControl2" style="display:flex; align-items:center; justify-content:center; gap:2px;">
-  <label for="alphaSlider2"><span class="math inline">\(\alpha\)</span>: <span id="alphaValue2">0.15</span></label>
-  <input type="range" id="alphaSlider2" min="0.001" max="0.20" step="0.001" value="0.15">
+<div id="alphaControl2" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:8px; width:100%; margin:0 auto 12px;">
+  <label for="alphaSlider2">
+    <span class="math inline">\(\alpha\)</span>:
+    <span id="alphaValue2">0.150</span>
+  </label>
+  <input
+    type="range"
+    id="alphaSlider2"
+    min="0.001"
+    max="0.20"
+    step="0.001"
+    value="0.15"
+    style="width:min(320px, 70%);"
+  >
 </div>
+
+<div id="plots3" style="width:100%; max-width:800px; margin:0 auto;"></div>
+
 <script type="module" src="subplot_viz_3.js"></script>
 
 ```
@@ -771,8 +801,8 @@ Let us start with a synthesis over all classes/species.
 </div>
 
 <script type="module" src="all_metrics_softmax_viz.js"></script>
+<br>
 ```
-
 
 When targeting set size and class-conditional or macro-coverage, it is more effective to optimize for this trade-off directly than trading off set size and marginal coverage.
 Adjusting $\alpha$ in Standard CP is a plausible solution to target class-conditional coverage, but the results show that this does not optimally navigate the set size/class-conditional coverage trade-off (Pareto front), which is our goal.
@@ -787,14 +817,15 @@ Standard with $\PAS$ is Pareto optimal, in the sense that at any marginal covera
 We now turn to a more detailed analysis of at-risk species. To this end, we present results for the Standard method applied to the Pl@ntNet-300K dataset, using three conformal score functions: softmax, PAS, and WPAS with $\gamma \in \{1, 10, 10^2, 10^3\}$.
 Our findings show that increasing $\gamma$ in WPAS enhances the class-conditional coverage for at-risk classes, as measured by $\hat{c}_y$, the empirical class-conditional coverage for class $y$. We summarize these results by computing the "at-risk average $\hat{c}_y$" as $(1/|\mathcal{Y}_{\text{at-risk}}|)\sum_{y \in \mathcal{Y}_{\text{at-risk}}} \hat{c}_y$, and similarly for the "not-at-risk average $\hat{c}_y$".
 
+We observe that Standard with $\WPAS$ improves the class-conditional coverage of at-risk classes relative to Standard with softmax or $\PAS$. Comparing $\WPAS$ to $\PAS$, we see that increasing $\gamma$, the amount we up-weight at-risk classes, leads to larger improvements in the class-conditional coverage of at-risk classes, as expected. These increases are "paid for'' in terms of a mild increase in average set size and have no discernible effect on the class-conditional coverage of not-at-risk classes, which is appealing from a practical perspective.
 
 ```{=html}
 <div id="plantnet-comparison-container" style="width: 100%; height: 500px; margin: 20px 0;">
 </div>
 
 <script type="module" src="plantnet_comparison_viz.js"></script>
+<br>
 ```
-We observe that Standard with $\WPAS$ improves the class-conditional coverage of at-risk classes relative to Standard with softmax or $\PAS$. Comparing $\WPAS$ to $\PAS$, we see that increasing $\gamma$, the amount we up-weight at-risk classes, leads to larger improvements in the class-conditional coverage of at-risk classes, as expected. These increases are "paid for'' in terms of a mild increase in average set size and have no discernible effect on the class-conditional coverage of not-at-risk classes, which is appealing from a practical perspective.
 
 ## Conclusion
 

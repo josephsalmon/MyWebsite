@@ -29,7 +29,7 @@ export async function initializePlantNetViz(config = {}) {
       fetch(new URL('tiny_plantnet300k_metadata.csv', import.meta.url)),
       fetch(new URL('Metadata/authors.json', import.meta.url))
     ]);
-    
+
     if (!csvResponse.ok) {
       throw new Error(`Failed to fetch CSV: ${csvResponse.status} ${csvResponse.statusText}`);
     }
@@ -38,6 +38,55 @@ export async function initializePlantNetViz(config = {}) {
     }
   const csvText = await csvResponse.text();
   const authorsData = authorsResponse.ok ? await authorsResponse.json() : {};
+
+    // Adapt Log/Linear controls to the available sidebar width.
+    function makeScaleToggleResponsive() {
+      const toggle = document.querySelector('.scale-toggle');
+      if (!toggle) return;
+
+      const label = toggle.querySelector('.scale-label');
+      const buttons = toggle.querySelectorAll('.scale-btn');
+
+      function updateSize() {
+        const width = toggle.getBoundingClientRect().width;
+        const narrow = width < 180;
+        const veryNarrow = width < 130;
+
+        toggle.style.display = 'flex';
+        toggle.style.alignItems = 'center';
+        toggle.style.justifyContent = 'flex-end';
+        toggle.style.flexWrap = 'wrap';
+        toggle.style.gap = veryNarrow ? '2px' : '4px';
+        toggle.style.maxWidth = '100%';
+        toggle.style.boxSizing = 'border-box';
+
+        if (label) {
+          label.style.fontSize = veryNarrow ? '9px' : narrow ? '10px' : '13px';
+          label.style.whiteSpace = 'nowrap';
+        }
+
+        buttons.forEach(button => {
+          button.style.fontSize = veryNarrow ? '10px' : narrow ? '11px' : '13px';
+          button.style.padding = veryNarrow ? '4px' : narrow ? '5px 6px' : '6px 10px';
+          button.style.minWidth = '0';
+          button.style.minHeight = veryNarrow ? '28px' : '32px';
+          button.style.whiteSpace = 'nowrap';
+          button.style.boxSizing = 'border-box';
+        });
+      }
+
+      updateSize();
+
+      if (typeof ResizeObserver !== 'undefined') {
+        const observer = new ResizeObserver(updateSize);
+        observer.observe(toggle);
+        observer.observe(toggle.parentElement);
+      } else {
+        window.addEventListener('resize', updateSize);
+      }
+    }
+
+    makeScaleToggleResponsive();
 
     // Helper function to extract image hash from image path
     function getImageHash(imagePath) {
@@ -167,9 +216,9 @@ export async function initializePlantNetViz(config = {}) {
     const legendBox = document.createElement('div');
     legendBox.style.border = '1px solid #ddd';
     legendBox.style.borderRadius = '5px';
-    legendBox.style.padding = '10px';
+    legendBox.style.padding = 'clamp(6px, 2vw, 10px)';
     legendBox.style.backgroundColor = '#fafafa';
-    legendBox.style.maxWidth = '950px';
+    legendBox.style.maxWidth = '100%';
     legendBox.style.margin = '0 auto';
     applyDocumentFont(legendBox);
 
@@ -180,14 +229,14 @@ export async function initializePlantNetViz(config = {}) {
     legendTitle.style.marginBottom = '10px';
     legendTitle.style.borderBottom = '1px solid #ddd';
     legendTitle.style.paddingBottom = '5px';
-    applyDocumentFont(legendTitle, '16px');
+    applyDocumentFont(legendTitle, 'clamp(11px, 2.5vw, 16px)');
     legendBox.appendChild(legendTitle);
 
   // Create three-column layout for legend to mimic the page table: At Risk | Not at Risk | Unknown/unclear
     const legendGrid = document.createElement('div');
     legendGrid.style.display = 'grid';
-    legendGrid.style.gridTemplateColumns = '1fr 1fr 1fr';
-    legendGrid.style.gap = '12px';
+    legendGrid.style.gridTemplateColumns = 'repeat(auto-fit, minmax(min(100%, 140px), 1fr))';
+    legendGrid.style.gap = 'clamp(4px, 1.5vw, 12px)';
     legendBox.appendChild(legendGrid);
 
   // Add "Select All" checkbox spanning both columns
@@ -206,7 +255,7 @@ export async function initializePlantNetViz(config = {}) {
     allLabel.style.marginLeft = '8px';
     allLabel.style.fontWeight = 'bold';
     allLabel.textContent = 'Display All';
-    applyDocumentFont(allLabel, '14px');
+    applyDocumentFont(allLabel, 'clamp(10px, 2vw, 14px)');
 
     allDiv.appendChild(allCheckbox);
     allDiv.appendChild(allLabel);
@@ -227,7 +276,7 @@ export async function initializePlantNetViz(config = {}) {
   leftHeader.style.marginBottom = '6px';
   leftHeader.setAttribute('role', 'heading');
   leftHeader.setAttribute('aria-level', '2');
-  applyDocumentFont(leftHeader, '13px');
+  applyDocumentFont(leftHeader, 'clamp(9px, 1.8vw, 13px)');
   leftColumn.appendChild(leftHeader);
 
   const middleHeader = document.createElement('div');
@@ -236,7 +285,7 @@ export async function initializePlantNetViz(config = {}) {
   middleHeader.style.marginBottom = '6px';
   middleHeader.setAttribute('role', 'heading');
   middleHeader.setAttribute('aria-level', '2');
-  applyDocumentFont(middleHeader, '13px');
+  applyDocumentFont(middleHeader, 'clamp(9px, 1.8vw, 13px)');
   middleColumn.appendChild(middleHeader);
 
   const rightHeader = document.createElement('div');
@@ -245,7 +294,7 @@ export async function initializePlantNetViz(config = {}) {
   rightHeader.style.marginBottom = '6px';
   rightHeader.setAttribute('role', 'heading');
   rightHeader.setAttribute('aria-level', '2');
-  applyDocumentFont(rightHeader, '13px');
+  applyDocumentFont(rightHeader, 'clamp(9px, 1.8vw, 13px)');
   rightColumn.appendChild(rightHeader);
 
   // Desired ordering within columns
@@ -284,10 +333,10 @@ export async function initializePlantNetViz(config = {}) {
         const colorBox = document.createElement('span');
         colorBox.className = 'status-color-box';
         colorBox.style.display = 'inline-block';
-        colorBox.style.width = '14px';
-        colorBox.style.height = '14px';
+        colorBox.style.width = 'clamp(10px, 2vw, 14px)';
+        colorBox.style.height = 'clamp(10px, 2vw, 14px)';
         colorBox.style.backgroundColor = statusColors[status];
-        colorBox.style.marginRight = '8px';
+        colorBox.style.marginRight = 'clamp(4px, 1vw, 8px)';
         colorBox.style.border = '1px solid #ccc';
         colorBox.style.borderRadius = '3px';
         label.appendChild(colorBox);
@@ -314,7 +363,7 @@ export async function initializePlantNetViz(config = {}) {
       const fullName = getFullName(status);
       statusText.textContent = (status.length <= 3 || status.includes('/')) ? `${fullName} (${status})` : fullName;
       statusText.title = fullName;
-      applyDocumentFont(statusText, '12px');
+      applyDocumentFont(statusText, 'clamp(8px, 1.6vw, 12px)');
       label.appendChild(statusText);
 
       container.appendChild(checkbox);
@@ -599,8 +648,18 @@ export async function initializePlantNetViz(config = {}) {
       
       const layout = {
         title: {
-          text: 'Species popularity by IUCN Status',
-          font: fontConfig.title
+          text: window.innerWidth <= 600
+            ? 'Species popularity<br>by IUCN Status'
+            : 'Species popularity by IUCN Status',
+          x: 0.5,
+          xanchor: 'center',
+          yanchor: 'top',
+          font: {
+            ...fontConfig.title,
+            size: window.innerWidth <= 380 ? 12
+                : window.innerWidth <= 600 ? 14
+                : Math.min(fontConfig.title.size || 20, 20)
+          }
         },
         xaxis: {
           title: {
@@ -635,7 +694,7 @@ export async function initializePlantNetViz(config = {}) {
           x: 0.5,
           font: fontConfig.legend
         },
-        margin: { l: 60, r: 30, t: 60, b: 40 },
+        margin: { l: 60, r: 30,   t: window.innerWidth <= 600 ? 85 : 60, b: 40 },
         autosize: true,
         showlegend: false, // We use our custom legend with checkboxes
         font: {
@@ -735,8 +794,8 @@ export async function initializePlantNetViz(config = {}) {
         // Build the label with italicized main species and normal author/photographer
         const main = escapeHtml(maxCustomData.speciesMain || '');
         const spAuthor = escapeHtml(maxCustomData.speciesAuthor || '');
-        let labelHtml = `<span style="font-size: 13px; font-weight: normal;"><em>${main}</em>${spAuthor}</span><br>`;
-        labelHtml += `<span style="font-size: 13px; color: #666;"># of examples: ${maxCustomData.count.toLocaleString()}</span>`;
+        let labelHtml = `<span style="font-size: clamp(9px, 2.5vw, 13px); font-weight: normal;"><em>${main}</em>${spAuthor}</span><br>`;
+        labelHtml += `<span style="font-size: clamp(8px, 2vw, 13px); color: #666;"># of examples: ${maxCustomData.count.toLocaleString()}</span>`;
 
         if (maxCustomData.author) {
           // labelHtml += `<br><span style="font-size: 12px; color: #888; font-style: italic;">© ${escapeHtml(maxCustomData.author)}</span>`; -- Moved to overlay
@@ -766,8 +825,8 @@ export async function initializePlantNetViz(config = {}) {
           // Build the label with italicized main species and normal author/photographer
           const main = escapeHtml(customData.speciesMain || '');
           const spAuthor = escapeHtml(customData.speciesAuthor || '');
-          let labelHtml = `<span style="font-size: 13px; font-weight: normal;"><em>${main}</em>${spAuthor}</span><br>`;
-          labelHtml += `<span style="font-size: 13px; color: #666;"># of examples: ${customData.count.toLocaleString()}</span>`;
+          let labelHtml = `<span style="font-size: clamp(9px, 2.5vw, 13px); font-weight: normal;"><em>${main}</em>${spAuthor}</span><br>`;
+          labelHtml += `<span style="font-size: clamp(8px, 2vw, 13px); color: #666;"># of examples: ${customData.count.toLocaleString()}</span>`;
 
           if (customData.author) {
 //             labelHtml += `<br><span style="font-size: 12px; color: #888; font-style: italic;">Photo by: ${escapeHtml(customData.author)}</span>`;
@@ -793,8 +852,8 @@ export async function initializePlantNetViz(config = {}) {
           // Build the label with italicized main species and normal author/photographer
           const main = escapeHtml(customData.speciesMain || '');
           const spAuthor = escapeHtml(customData.speciesAuthor || '');
-          let labelHtml = `<span style="font-size: 13px; font-weight: normal;"><em>${main}</em>${spAuthor}</span><br>`;
-          labelHtml += `<span style="font-size: 13px; color: #666;"># of examples: ${customData.count.toLocaleString()}</span>`;
+          let labelHtml = `<span style="font-size: clamp(9px, 2.5vw, 13px); font-weight: normal;"><em>${main}</em>${spAuthor}</span><br>`;
+          labelHtml += `<span style="font-size: clamp(8px, 2vw, 13px); color: #666;"># of examples: ${customData.count.toLocaleString()}</span>`;
 
           if (customData.author) {
 //             labelHtml += `<br><span style="font-size: 12px; color: #888; font-style: italic;">Photo by: ${escapeHtml(customData.author)}</span>`;

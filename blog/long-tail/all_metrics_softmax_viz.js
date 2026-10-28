@@ -1,7 +1,7 @@
 // All Metrics Softmax Pareto Visualization
 // Interactive Plotly.js visualization for PlantNet-300K softmax pareto analysis
 
-import { getPlotlyFontConfig, applyDocumentFont } from './font_utils.js';
+import { getPlotlyFontConfig} from './font_utils.js';
 
 // CSV parsing helper function
 function parseCSV(csvText) {
@@ -113,25 +113,39 @@ async function loadSoftmaxData() {
 async function initializeSoftmaxViz() {
   try {
     console.log('Initializing All Metrics Softmax visualization...');
-    
-    // Load the data
+
     const data = await loadSoftmaxData();
+
+    const hasData = data.methods.some(method => {
+      const methodData = data.processedData[method];
+      return methodData &&
+        methodData.alphas &&
+        methodData.alphas.length > 0;
+    });
+
+    if (!hasData) {
+      throw new Error(
+        'No visualization data available. Check the CSV path and file contents.'
+      );
+    }
+
     console.log('Data loaded successfully:', data);
-    
-    // Create the main plot
+
     await createSoftmaxPlot(data);
+
     console.log('Softmax visualization created successfully!');
-    
   } catch (error) {
     console.error('Error initializing softmax visualization:', error);
-    
-    // Show error message in the container
-    const container = document.getElementById('all-metrics-softmax-container');
+
+    const container = document.getElementById(
+      'all-metrics-softmax-container'
+    );
+
     if (container) {
       container.innerHTML = `
-        <div style="text-align: center; padding: 20px; color: #666;">
+        <div style="text-align:center; padding:20px; color:#666;">
           <p>Error loading softmax visualization</p>
-          <p style="font-size: 12px;">${error.message}</p>
+          <p style="font-size:12px;">${error.message}</p>
         </div>
       `;
     }
@@ -147,7 +161,8 @@ async function createSoftmaxPlot(data) {
 
   const fontConfig = getPlotlyFontConfig();
   const fontFamily = fontConfig.family;
-  
+  const isMobile = window.innerWidth < 700;
+  const isVeryNarrow = window.innerWidth < 420;
   // Define the metrics to plot
   const metrics = [
     { key: 'cov_below50', name: 'FracBelow50%' },
@@ -260,240 +275,363 @@ async function createSoftmaxPlot(data) {
   const minSetSize = Math.min(...allSetSizes);
   const setRange = [Math.max(0, minSetSize * 0.9), maxSetSize * 1.1];
 
-  const layout = {
+const getResponsiveLayout = () => {
+  const width = container.getBoundingClientRect().width || window.innerWidth;
+
+  // Use the viewport width to decide the layout.
+  // Use the container width to size the visualization.
+  const mobile = window.innerWidth < 700;
+  const narrow = window.innerWidth < 420;
+
+  const metrics = [
+    { key: 'cov_below50', name: 'FracBelow50%' },
+    { key: 'undercov_gap', name: 'UnderCovGap' },
+    { key: 'macro_cov', name: 'MacroCov' },
+    { key: 'train_marginal_cov', name: 'MarginalCov' }
+  ];
+
+  const desktopDomains = [
+    [0.00, 0.225],
+    [0.255, 0.48],
+    [0.51, 0.735],
+    [0.765, 1.00]
+  ];
+
+  const mobileDomains = [
+    [0.16, 0.47],
+    [0.62, 0.98],
+    [0.16, 0.47],
+    [0.62, 0.98]
+  ];
+
+// Desktop: all four plots occupy the same vertical space.
+
+// Desktop: all four plots occupy the same vertical space.
+// Mobile: arrange the plots in two rows.
+  const xDomains = mobile ? mobileDomains : desktopDomains;
+
+  // Desktop: four plots in one horizontal row.
+  // Mobile: two plots per row.
+  const topYDomain = mobile ? [0.56, 0.94] : [0.08, 0.96];
+  const bottomYDomain = mobile ? [0.12, 0.48] : [0.08, 0.96];
+
+  const axisFontSize = narrow ? 9 : mobile ? 10 : 12;
+  const titleFontSize = narrow ? 10 : mobile ? 11 : 14;
+
+  const xAxis = (idx) => ({
+    domain: xDomains[idx],
     title: {
-      text: '<b>Conformal prediction for Pl@ntNet-300K:<br>size vs. coverage trade-offs</b>',
+      text: metrics[idx].name,
+      font: { size: titleFontSize, family: fontFamily },
+      standoff: mobile ? 6 : 10
+    },
+    showgrid: false,
+    showline: true,
+    linewidth: 1,
+    linecolor: 'black',
+    zeroline: false,
+    ticks: 'outside',
+    ticklen: mobile ? 3 : 5,
+    tickfont: { size: axisFontSize },
+    automargin: true,
+    minor: {
+      ticks: mobile ? '' : 'inside',
+      ticklen: 3,
+      showgrid: false
+    }
+  });
+
+  const yAxis = (idx) => {
+    // Show y-axis tick labels only on the leftmost plot
+    // on desktop, and on the left plot of each row on mobile.
+    const showLabels = mobile
+      ? idx % 2 === 0
+      : idx === 0;
+
+    const isLeftmost = mobile
+      ? idx === 0 || idx === 2
+      : idx === 0;
+
+    return {
+      type: 'log',
+      dtick: 1,
+      tickmode: 'array',
+      tickvals: [10, 100, 1000, 10000],
+      ticktext: ['10¹', '10²', '10³', '10⁴'],
+      tickformat: '10^d',
+      domain: mobile
+        ? (idx < 2 ? topYDomain : bottomYDomain)
+        : [0.08, 0.96],
+      showgrid: true,
+      gridcolor: 'rgba(0,0,0,0.1)',
+      gridwidth: 1,
+      showline: isLeftmost,
+      linewidth: 1,
+      linecolor: 'black',
+      zeroline: false,
+      ticks: showLabels ? 'outside' : '',
+      ticklen: 4,
+      tickfont: { size: axisFontSize },
+      showticklabels: showLabels,
+      automargin: true,
+      dtick: 1,
+      title: isLeftmost ? {
+        text: 'Average Set Size',
+        font: { size: titleFontSize, family: fontFamily },
+        standoff: mobile ? 4 : 10
+      } : undefined
+    };
+  };
+
+  return {
+    title: {
+      text: mobile
+        ? '<b>PlantNet-300K:<br>Size vs. coverage</b>'
+        : '<b>Conformal prediction for Pl@ntNet-300K:<br>size vs. coverage trade-offs</b>',
       x: 0.5,
-      font: { 
-        size: 18, 
+      xanchor: 'center',
+      font: {
+        size: mobile ? (narrow ? 13 : 15) : 18,
         family: fontFamily
       }
     },
-    
-    // X-axis configurations for 4 metric subplots
-    xaxis: {
-      domain: [0, 0.22],
-  title: { text: metrics[0].name, font: { size: 14, family: fontFamily } },
-      showgrid: false,
-      showline: true,
-      linewidth: 1,
-      linecolor: 'black',
-      zeroline: false,
-      ticks: 'outside',
-      ticklen: 5,
-      minor: { ticks: 'inside', ticklen: 3, showgrid: false }
+
+    grid: {
+      rows: mobile ? 2 : 1,
+      columns: mobile ? 2 : 4,
+      pattern: 'independent',
+      xgap: mobile ? 0.12 : 0.04,
+      ygap: mobile ? 0.12 : 0.05
     },
-    xaxis2: {
-      domain: [0.26, 0.48],
-  title: { text: metrics[1].name, font: { size: 14, family: fontFamily } },
-      showgrid: false,
-      showline: true,
-      linewidth: 1,
-      linecolor: 'black',
-      zeroline: false,
-      ticks: 'outside',
-      ticklen: 5,
-      minor: { ticks: 'inside', ticklen: 3, showgrid: false }
-    },
-    xaxis3: {
-      domain: [0.52, 0.74],
-  title: { text: metrics[2].name, font: { size: 14, family: fontFamily } },
-      showgrid: false,
-      showline: true,
-      linewidth: 1,
-      linecolor: 'black',
-      zeroline: false,
-      ticks: 'outside',
-      ticklen: 5,
-      minor: { ticks: 'inside', ticklen: 3, showgrid: false }
-    },
-    xaxis4: {
-      domain: [0.78, 1.0],
-  title: { text: metrics[3].name, font: { size: 14, family: fontFamily } },
-      showgrid: false,
-      showline: true,
-      linewidth: 1,
-      linecolor: 'black',
-      zeroline: false,
-      ticks: 'outside',
-      ticklen: 5,
-      minor: { ticks: 'inside', ticklen: 3, showgrid: false }
-    },
-    
-    // Y-axis (only shown for leftmost subplot)
-    yaxis: {
-  title: { text: 'Average Set Size', font: { size: 14, family: fontFamily } },
-      type: 'log',
-      showgrid: true,
-      gridcolor: 'rgba(0,0,0,0.1)',
-      gridwidth: 1,
-      showline: true,
-      linewidth: 1,
-      linecolor: 'black',
-      zeroline: false,
-      ticks: 'outside',
-      ticklen: 5,
-      minor: { ticks: 'inside', ticklen: 3, showgrid: false },
-      dtick: 1  // Show grid lines only at powers of 10
-    },
-    yaxis2: {
-      type: 'log',
-      showgrid: true,
-      gridcolor: 'rgba(0,0,0,0.1)',
-      gridwidth: 1,
-      showline: false,
-      zeroline: false,
-      ticks: '',
-      showticklabels: false,
-      dtick: 1
-    },
-    yaxis3: {
-      type: 'log',
-      showgrid: true,
-      gridcolor: 'rgba(0,0,0,0.1)',
-      gridwidth: 1,
-      showline: false,
-      zeroline: false,
-      ticks: '',
-      showticklabels: false,
-      dtick: 1
-    },
-    yaxis4: {
-      type: 'log',
-      showgrid: true,
-      gridcolor: 'rgba(0,0,0,0.1)',
-      gridwidth: 1,
-      showline: false,
-      zeroline: false,
-      ticks: '',
-      showticklabels: false,
-      dtick: 1
-    },
-    
-    // Clean layout styling
+
+    xaxis: xAxis(0),
+    xaxis2: xAxis(1),
+    xaxis3: xAxis(2),
+    xaxis4: xAxis(3),
+
+    yaxis: yAxis(0),
+    yaxis2: yAxis(1),
+    yaxis3: yAxis(2),
+    yaxis4: yAxis(3),
+
     plot_bgcolor: 'white',
     paper_bgcolor: 'white',
-    font: { family: fontFamily },
-    
-    margin: { t: 60, r: 20, b: 100, l: 60 },
-    height: 400,
-    
-    // Legend configuration (organized by alpha groups, methods linked across all subplots)
+    font: {
+      family: fontFamily,
+      size: mobile ? 10 : 12
+    },
+    height: mobile ? (narrow ? 760 : 720) : 430,
+
+    margin: {
+      t: mobile ? 55 : 75,
+      r: mobile ? 8 : 15,
+      b: mobile ? 100 : 110,
+      l: mobile ? (narrow ? 45 : 50) : 65,
+      pad: 2
+    },
+
     legend: {
       x: 0.5,
-      y: -0.4,
+      y: mobile ? -0.12 : -0.20,
       xanchor: 'center',
       yanchor: 'top',
       orientation: 'h',
-      font: { size: 12, family: fontFamily },
+
+      font: {
+        size: mobile ? (narrow ? 9 : 10) : 12,
+        family: fontFamily
+      },
+
       borderwidth: 1,
       bordercolor: '#E2E2E2',
-      bgcolor: 'rgba(255,255,255,0.8)',
-      groupclick: "toggleitem",
-      tracegroupgap: 20,
-      itemsizing: 'trace',
-      itemwidth: 30
-    }
-  };
+      bgcolor: 'rgba(255,255,255,0.9)',
 
-  const config = {
-    displayModeBar: 'hover',
-    displaylogo: false,
-    modeBarButtonsToRemove: ['pan2d', 'select2d', 'lasso2d', 'autoScale2d', 'toggleSpikelines'],
-    toImageButtonOptions: {
-      format: 'svg',
-      filename: 'plantnet_softmax_pareto',
-      height: 500,
-      width: 1200,
-      scale: 1
+      groupclick: 'toggleitem',
+      tracegroupgap: mobile ? 4 : 10,
+      itemsizing: 'constant',
+      itemwidth: mobile ? 20 : 30
     },
-    responsive: true
+
+    uirevision: 'softmax-pareto',
+    autosize: true
   };
+};
 
-  await Plotly.newPlot('all-metrics-softmax-container', traces, layout, config);
-  
-  // Synchronize y-axis ranges across subplots when zooming/panning any subplot
-  (function() {
-    const plotId = 'all-metrics-softmax-container';
-    let syncing = false;
+const layout = getResponsiveLayout();
 
-    const plotEl = document.getElementById(plotId);
-    if (!plotEl) return;
+const config = {
+  displayModeBar: 'hover',
+  displaylogo: false,
+  modeBarButtonsToRemove: [
+    'pan2d',
+    'select2d',
+    'lasso2d',
+    'autoScale2d',
+    'toggleSpikelines'
+  ],
+  toImageButtonOptions: {
+    format: 'svg',
+    filename: 'plantnet_softmax_pareto',
+    height: 500,
+    width: 1200,
+    scale: 1
+  },
+  responsive: true
+};
 
-    plotEl.on('plotly_relayout', function(relayoutData) {
-      if (syncing) return;
-      if (!relayoutData || Object.keys(relayoutData).length === 0) return;
+const plotEl = container;
 
-      // Collect any yaxis keys changed
-      const yAxisKeys = Object.keys(relayoutData).filter(k => k.startsWith('yaxis'));
-      if (yAxisKeys.length === 0) return;
+// Draw the plot.
+await Plotly.newPlot(plotEl, traces, layout, config);
 
-      const update = {};
+// Set up responsive resizing only once.
+if (!plotEl.dataset.resizeHandlerAttached) {
+  let resizeTimer;
+  let lastWidth = 0;
 
-      // Check for autorange change
-      const autorangeKey = yAxisKeys.find(k => k.endsWith('.autorange'));
-      if (autorangeKey) {
-        for (let i = 1; i <= 4; i++) {
-          const key = i === 1 ? 'yaxis.autorange' : `yaxis${i}.autorange`;
-          update[key] = true;
-        }
-      } else {
-        // Find a full range in relayoutData
-        let foundRange = null;
-        for (const k of yAxisKeys) {
-          const base = k.split('.')[0];
-          const r0 = relayoutData[`${base}.range[0]`];
-          const r1 = relayoutData[`${base}.range[1]`];
-          if (typeof r0 !== 'undefined' && typeof r1 !== 'undefined') {
-            foundRange = [r0, r1];
-            break;
-          }
-        }
+  if (container._softmaxResizeObserver) {
+    container._softmaxResizeObserver.disconnect();
+  }
 
-        if (!foundRange) return;
+  const resizeObserver = new ResizeObserver(() => {
+    clearTimeout(resizeTimer);
 
-        for (let i = 1; i <= 4; i++) {
-          const key0 = i === 1 ? 'yaxis.range[0]' : `yaxis${i}.range[0]`;
-          const key1 = i === 1 ? 'yaxis.range[1]' : `yaxis${i}.range[1]`;
-          update[key0] = foundRange[0];
-          update[key1] = foundRange[1];
-        }
+    resizeTimer = setTimeout(async () => {
+      if (!plotEl.isConnected) return;
+
+      const currentWidth = window.innerWidth;
+
+      // Ignore insignificant width changes to avoid resize loops.
+      if (Math.abs(currentWidth - lastWidth) < 2) return;
+
+      lastWidth = currentWidth;
+
+      try {
+        const newLayout = getResponsiveLayout();
+
+        await Plotly.relayout(plotEl, {
+          height: newLayout.height,
+          margin: newLayout.margin,
+          title: newLayout.title,
+          legend: newLayout.legend,
+          grid: newLayout.grid,
+          xaxis: newLayout.xaxis,
+          xaxis2: newLayout.xaxis2,
+          xaxis3: newLayout.xaxis3,
+          xaxis4: newLayout.xaxis4,
+          yaxis: newLayout.yaxis,
+          yaxis2: newLayout.yaxis2,
+          yaxis3: newLayout.yaxis3,
+          yaxis4: newLayout.yaxis4
+        });
+
+        await Plotly.Plots.resize(plotEl);
+      } catch (error) {
+        console.error(
+          'Could not resize softmax visualization:',
+          error
+        );
       }
+    }, 200);
+  });
 
-      syncing = true;
-      Plotly.relayout(plotId, update)
-        .then(() => { syncing = false; })
-        .catch(() => { syncing = false; });
-    });
-  })();
+  resizeObserver.observe(plotEl.parentElement || plotEl);
+
+  container._softmaxResizeObserver = resizeObserver;
+  plotEl.dataset.resizeHandlerAttached = 'true';
 }
 
-// Initialize the visualization when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+// Synchronize y-axis zoom across all four subplots.
+let syncing = false;
+
+plotEl.on('plotly_relayout', function (relayoutData) {
+  if (syncing || !relayoutData) return;
+
+  const keys = Object.keys(relayoutData);
+  const update = {};
+
+  const autorangeChanged = keys.some(
+    key => /^yaxis\d*\.autorange$/.test(key) &&
+      relayoutData[key] === true
+  );
+
+  if (autorangeChanged) {
+    for (let i = 1; i <= 4; i++) {
+      const axis = `yaxis${i === 1 ? '' : i}`;
+      update[`${axis}.autorange`] = true;
+    }
+  } else {
+    let range = null;
+
+    for (let i = 1; i <= 4; i++) {
+      const axis = `yaxis${i === 1 ? '' : i}`;
+
+      const low = relayoutData[`${axis}.range[0]`];
+      const high = relayoutData[`${axis}.range[1]`];
+      const completeRange = relayoutData[`${axis}.range`];
+
+      if (low !== undefined && high !== undefined) {
+        range = [low, high];
+        break;
+      }
+
+      if (Array.isArray(completeRange)) {
+        range = completeRange;
+        break;
+      }
+    }
+
+    if (!range) return;
+
+    for (let i = 1; i <= 4; i++) {
+      const axis = `yaxis${i === 1 ? '' : i}`;
+
+      update[`${axis}.range`] = range;
+      update[`${axis}.autorange`] = false;
+    }
+  }
+
+  syncing = true;
+
+  Plotly.relayout(plotEl, update)
+    .catch(error => {
+      console.error('Could not synchronize y-axis zoom:', error);
+    })
+    .finally(() => {
+      syncing = false;
+    });
+});
+}
+
+// Initialize the visualization when DOM is loaded.
+document.addEventListener('DOMContentLoaded', function () {
   initializeSoftmaxViz();
 });
 
-// ES6 module exports
-export { loadSoftmaxData, createSoftmaxPlot, initializeSoftmaxViz };
+// ES6 module exports.
+export {
+  loadSoftmaxData,
+  createSoftmaxPlot,
+  initializeSoftmaxViz
+};
 
-// Module exports
+// CommonJS / AMD / browser exports.
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { 
+  module.exports = {
     loadSoftmaxData,
     createSoftmaxPlot,
     initializeSoftmaxViz
   };
 } else if (typeof define === 'function' && define.amd) {
-  define([], function() { 
-    return { 
+  define([], function () {
+    return {
       loadSoftmaxData,
       createSoftmaxPlot,
       initializeSoftmaxViz
-    }; 
+    };
   });
-} else {
-  // Browser global
-  window.AllMetricsSoftmax = { 
+} else if (typeof window !== 'undefined') {
+  window.AllMetricsSoftmax = {
     loadSoftmaxData,
     createSoftmaxPlot,
     initializeSoftmaxViz

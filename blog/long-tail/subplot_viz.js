@@ -159,35 +159,136 @@ document.addEventListener('DOMContentLoaded', function() {
     container.style.height = 'auto';
     plotsDiv.appendChild(container);
 
-    function getResponsiveLayout() {
-        const containerWidth = container.offsetWidth || plotsDiv.offsetWidth || 700;
-        const fontConfig = getPlotlyFontConfig();
-        return {
-            grid: { rows: 2, columns: 2, pattern: 'independent', xgap: 0.15, ygap: 0.03 },
-            width: containerWidth,
-            height: Math.round(containerWidth * 0.7) +70,
+function getResponsiveLayout() {
+    const containerWidth = container.offsetWidth || plotsDiv.offsetWidth || 700;
+    const isMobile = containerWidth < 600;
+    const isVeryNarrow = containerWidth < 400;
+
+    const fontConfig = getPlotlyFontConfig();
+
+    const leftDomain = isMobile ? [0.0, 0.47] : [0.0, 0.48];
+    const rightDomain = isMobile ? [0.53, 1.0] : [0.52, 1.0];
+
+    const topYDomain = isMobile ? [0.43, 0.96] : [0.35, 0.96];
+    const bottomYDomain = isMobile ? [0.12, 0.27] : [0.08, 0.25];
+
+    return {
+        grid: {
+            rows: 2,
+            columns: 2,
+            pattern: 'independent',
+            xgap: isMobile ? 0.08 : 0.10,
+            ygap: isMobile ? 0.04 : 0.06
+        },
+
+        width: containerWidth,
+        height: Math.round(containerWidth * (isMobile ? 1.05 : 0.75))
+            + (isMobile ? 100 : 40),
             // Top row: scatter/contour
-            xaxis: { scaleanchor: 'y', scaleratio: 1, range: [xMin, xMax], domain: [0, 0.48], row: 1, col: 1 },
-            xaxis2: { scaleanchor: 'y', scaleratio: 1, range: [xMin, xMax], domain: [0.52, 1], row: 1, col: 2 },
-            yaxis: { range: [yMin, yMax], domain: [0.25, 1.0], row: 1, col: 1 },
-            yaxis2: { range: [yMin, yMax], domain: [0.25, 1.0], showticklabels: false, showgrid: false, showline: false, row: 1, col: 2 },
-            // Bottom row: barplots
-            xaxis3: { domain: [0, 0.48], row: 2, col: 1, ticklabelposition: 'middle', ticklabelmode: 'anchor', ticklabelpadding: 20, range: [-0.1, 1.1], tickvals: [0.12, 0.5, 0.88], ticktext: ['Class 1', 'Class 2', 'Class 3'] },
-            xaxis4: { domain: [0.52, 1], row: 2, col: 2, ticklabelposition: 'middle', ticklabelmode: 'anchor', ticklabelpadding: 20, range: [-0.1, 1.1], tickvals: [0.12, 0.5, 0.88], ticktext: ['Class 1', 'Class 2', 'Class 3'] },
-            yaxis3: { domain: [0.04, 0.18], range: [0., 1.02], row: 2, col: 1, title: { text: 'Class coverage', font: { size: 15 } } },
-            yaxis4: { domain: [0.04, 0.18], range: [0., 1.02], showticklabels: false, row: 2, col: 2 },
-            margin: { t: 40, r: 20, b: 70, l: 50 },
+            // Top row: scatter plots
+        xaxis: {
+            scaleanchor: 'y',
+            scaleratio: 1,
+            range: [xMin, xMax],
+            domain: leftDomain,
+            row: 1,
+            col: 1,
+            tickfont: { size: isMobile ? 9 : 12 }
+        },
+
+        xaxis2: {
+            scaleanchor: 'y',
+            scaleratio: 1,
+            range: [xMin, xMax],
+            domain: rightDomain,
+            row: 1,
+            col: 2,
+            tickfont: { size: isMobile ? 9 : 12 }
+        },
+
+        yaxis: {
+            range: [yMin, yMax],
+            domain: topYDomain,
+            row: 1,
+            col: 1,
+            tickfont: { size: isMobile ? 9 : 12 }
+        },
+
+        yaxis2: {
+            range: [yMin, yMax],
+            domain: topYDomain,
+            showticklabels: false,
+            showgrid: false,
+            showline: false,
+            row: 1,
+            col: 2
+        },
+
+        // Bottom row: coverage bar charts
+        xaxis3: {
+            domain: leftDomain,
+            row: 2,
+            col: 1,
+            range: [-0.1, 1.1],
+            tickvals: [0.2, 0.5, 0.8],
+            ticktext: ['Class 1', 'Class 2', 'Class 3'],
+            tickfont: { size: isVeryNarrow ? 8 : isMobile ? 9 : 11 },
+            automargin: true
+        },
+
+        xaxis4: {
+            domain: rightDomain,
+            row: 2,
+            col: 2,
+            range: [-0.1, 1.1],
+            tickvals: [0.2, 0.5, 0.8],
+            ticktext: ['Class 1', 'Class 2', 'Class 3'],
+            tickfont: { size: isVeryNarrow ? 8 : isMobile ? 9 : 11 },
+            automargin: true
+        },
+
+        yaxis3: {
+            domain: bottomYDomain,
+            range: [0, 1.02],
+            row: 2,
+            col: 1,
+            title: {
+                text: isMobile ? 'Coverage' : 'Class coverage',
+                font: { size: isMobile ? 10 : 14 }
+            },
+            tickfont: { size: isMobile ? 8 : 10 },
+            automargin: true
+        },
+
+        yaxis4: {
+            domain: bottomYDomain,
+            range: [0, 1.02],
+            showticklabels: false,
+            row: 2,
+            col: 2
+        },
+
+        margin: {
+            t: isMobile ? 38 : 45,
+            r: isMobile ? 5 : 15,
+            b: isMobile ? 65 : 75,
+            l: isMobile ? 35 : 55,
+            pad: 2
+        },
             font: { family: fontConfig.family },
             legend: {
                 orientation: 'h',
                 x: 0.5,
-                y: -0.04,
+                y: isVeryNarrow ? -0.20 : isMobile ? -0.16 : -0.12,
                 xanchor: 'center',
                 yanchor: 'top',
-                font: { size: Math.round(12 * 1.2), family: fontConfig.family },
+                font: {
+                    size: isVeryNarrow ? 8 : isMobile ? 9 : 12,
+                    family: fontConfig.family
+                },
                 itemsizing: 'constant',
                 traceorder: 'normal',
-                ncol: 3
+                ncol: 3,
             },
             annotations: [
                 {

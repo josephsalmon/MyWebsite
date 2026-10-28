@@ -189,59 +189,132 @@ document.addEventListener('DOMContentLoaded', function() {
     container.style.height = 'auto';
     plotsDiv.appendChild(container);
 
+
     function getResponsiveLayout() {
         const containerWidth = container.offsetWidth || plotsDiv.offsetWidth || 700;
         const fontConfig = getPlotlyFontConfig();
-        
+
+        const isMobile = containerWidth <= 600;
+        const isVeryNarrow = containerWidth <= 380;
+
+        const titleSize = isVeryNarrow ? 10 : isMobile ? 12 : 16;
+        const legendSize = isVeryNarrow ? 8 : isMobile ? 10 : 15;
+
         return {
-            grid: { rows: 1, columns: 2, pattern: 'independent', xgap: 0.10 },
+            grid: {
+                rows: 1,
+                columns: 2,
+                pattern: 'independent',
+                xgap: isMobile ? 0.06 : 0.10
+            },
+
             width: containerWidth,
-            height: Math.round(containerWidth / 2) + 70,
-            xaxis: { scaleanchor: 'y', scaleratio: 1, range: [xMin, xMax], domain: [0.03, 0.46] },
-            xaxis2: { scaleanchor: 'y2', scaleratio: 1, range: [xMin, xMax], domain: [0.54, 0.95] },
-            yaxis: { range: [yMin, yMax], domain: [0, 1.0] },
-            yaxis2: { range: [yMin, yMax], domain: [0, 1.0] },
-            margin: { t: 50, r: 20, b: 120, l: 50 },
-            font: { family: fontConfig.family },
+            height: Math.round(containerWidth / 2) + (isMobile ? 110 : 70),
+
+            xaxis: {
+                scaleanchor: 'y',
+                scaleratio: 1,
+                range: [xMin, xMax],
+                domain: [0.03, 0.46]
+            },
+
+            xaxis2: {
+                scaleanchor: 'y2',
+                scaleratio: 1,
+                range: [xMin, xMax],
+                domain: [0.54, 0.95]
+            },
+
+            yaxis: {
+                range: [yMin, yMax],
+                domain: [0, 1.0],
+                tickfont: { size: isMobile ? 8 : 12 }
+            },
+
+            yaxis2: {
+                range: [yMin, yMax],
+                domain: [0, 1.0],
+                tickfont: { size: isMobile ? 8 : 12 }
+            },
+
+            margin: {
+                t: isMobile ? 65 : 50,
+                r: isMobile ? 8 : 20,
+                b: isMobile ? (isVeryNarrow ? 105 : 95) : 120,
+                l: isMobile ? 32 : 50
+            },
+
+            font: {
+                family: fontConfig.family,
+                size: isMobile ? 10 : 12
+            },
+
             legend: {
                 orientation: 'h',
                 x: 0.5,
-                y: -0.25,
+                y: isMobile ? -0.28 : -0.25,
                 xanchor: 'center',
                 yanchor: 'top',
-                font: { size: 15, family: fontConfig.family },
+
+                font: {
+                    size: legendSize,
+                    family: fontConfig.family
+                },
+
                 itemsizing: 'constant',
                 traceorder: 'normal',
-                ncol: 3
+
+                // Fewer columns on mobile so legend labels fit.
+                ncol: isMobile ? 2 : 3,
+
+                entrywidthmode: 'fraction',
+                entrywidth: isMobile ? 0.46 : 0.30
             },
+
             annotations: [
                 {
-                    text: 'Density and level sets',
+                    text: isMobile
+                        ? 'Density and<br>level sets'
+                        : 'Density and level sets',
                     x: 0.27,
                     y: 1.08,
                     xref: 'paper',
                     yref: 'paper',
                     showarrow: false,
-                    font: { size: 16, family: fontConfig.family, color: '#222' },
+                    font: {
+                        size: titleSize,
+                        family: fontConfig.family,
+                        color: '#222'
+                    },
                     xanchor: 'center',
-                    yanchor: 'bottom'
+                    yanchor: 'bottom',
+                    align: 'center'
                 },
                 {
-                    text: 'Samples and (Bayes) classifier',
+                    text: isMobile
+                        ? 'Samples and<br>Bayes classifier'
+                        : 'Samples and (Bayes) classifier',
                     x: 0.73,
                     y: 1.08,
                     xref: 'paper',
                     yref: 'paper',
                     showarrow: false,
-                    font: { size: 16, family: fontConfig.family, color: '#222' },
+                    font: {
+                        size: titleSize,
+                        family: fontConfig.family,
+                        color: '#222'
+                    },
                     xanchor: 'center',
-                    yanchor: 'bottom'
+                    yanchor: 'bottom',
+                    align: 'center'
                 }
             ],
+
             uirevision: 'keep-state'
         };
     }
-    function createTraces() {
+
+        function createTraces() {
         // Get left subplot traces, move Mixture and Separation to the end for legend order
         const leftTraces = leftSubplotTraces();
         // Mixture and Separation are last two traces
