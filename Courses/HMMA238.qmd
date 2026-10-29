@@ -3,6 +3,7 @@ title: HMMA238 - Programmation et bonnes pratiques (2018-2019)
 description: "Light intro to numpy and scipy for maths"
 categories: [python, programming, scipy, numpy]
 image: "images/python_ecosystem.svg"
+image-alt: "Illustration of the Python ecosystem for data science, for core packages in the center, to more advanced packages in the periphery."
 reference-location: document
 fig-cap-location: bottom
 draft: false

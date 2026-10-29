@@ -3,6 +3,7 @@ title: SD3 - Statistiques Descriptives (2010-2011)
 description: "aka viz"
 categories: [descriptive statistics, box plots,violin plots]
 image: "images/boxplots.svg"
+image-alt: "Box plots of median incomes for regions in Belgium."
 reference-location: document
 fig-cap-location: bottom
 draft: false

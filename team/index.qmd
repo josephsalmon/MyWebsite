@@ -39,7 +39,8 @@ The application process is light:
 ## Ph.D. Students
 - [Theo Larcher](https://fr.linkedin.com/in/th%C3%A9o-larcher-3405a5147/en):
 co-supervised by [Alexis Joly](http://www-sop.inria.fr/members/Alexis.Joly/wiki/pmwiki.php) 2024-2027?
-- [Alex Maleknia](https://scholar.google.com/citations?user=rnlL4KwAAAAJ&hl=en), co supervised by [Evgenii Chzhen](https://echzhen.com) 2025-2028?
+- [Alex Maleknia](https://scholar.google.com/citations?user=rnlL4KwAAAAJ&hl=en), co-supervised by [Evgenii Chzhen](https://echzhen.com) 2025-2028?
+- [Bronislav Abadie](https://fr.linkedin.com/in/bronislaw-abadie-a6b835280), 2026-2029?
 
 <!-- ## Engineers -->
 

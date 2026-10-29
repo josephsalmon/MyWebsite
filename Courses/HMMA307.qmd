@@ -3,6 +3,7 @@ title: HMMA307 - Modèles Linéaires Avancés (2019-2020)
 description: "Linear models and beyond."
 categories: [stats, ANOVA, mixed models]
 image: "images/pollution_occitanie.svg"
+image-alt: "Illustration of the Python ecosystem for data science, for core packages in the center, to more advanced packages in the periphery."
 reference-location: document
 fig-cap-location: bottom
 draft: false

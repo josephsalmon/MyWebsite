@@ -9,6 +9,7 @@ date: "2024-11-10"
 description: "Iso, Iso, Iso ... Tonic! Or how to fit a non-decreasing signal."
 categories: [Quadratic programming, Calibration, PAVA, Optimization]
 image: "isotonic.png"
+image-alt: "Clouds of points (black) and a non-decreasing step-wise function approximating it (red). It's actually the projection of the vector representing the cloud of points onto the set of vectors with non-decreasing coordinates."
 reference-location: document
 fig-cap-location: bottom
 draft: false

@@ -8,6 +8,7 @@ date: "2024-09-05"
 description: "Some guidance on why, when, and **when not** using it."
 categories: [Latex, writing]
 image: Tsybakov2009.svg
+image-alt: "Extract of a page of a book, illustrating LaTeX formula."
 reference-location: document
 fig-cap-location: bottom
 draft: false

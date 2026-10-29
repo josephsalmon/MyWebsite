@@ -11,6 +11,7 @@ date: "2024-09-03"
 description: "Back to exponential weights and log-sum-exp functions"
 categories: [statistics, optimization, machine learning]
 image: "softmax.png"
+image-alt: "Triangle representing the probability simplex and colors representing level-sets inside."
 reference-location: document
 fig-cap-location: bottom
 draft: false

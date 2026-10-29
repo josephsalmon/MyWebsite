@@ -7,7 +7,7 @@
    viewBox="0 0 137.964 51.082321"
    version="1.1"
    id="svg3683"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.4.4 (1:1.4.4+202605061432+dcaf3e7d9e)"
    sodipodi:docname="descente_gradient.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -26,11 +26,11 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.84096521"
-     inkscape:cx="309.16856"
-     inkscape:cy="-72.5357"
-     inkscape:window-width="1474"
-     inkscape:window-height="891"
+     inkscape:zoom="1.7680033"
+     inkscape:cx="212.95209"
+     inkscape:cy="-18.947928"
+     inkscape:window-width="1610"
+     inkscape:window-height="986"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -1138,6 +1138,15 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(15.384769,-245.91768)">
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.50738;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill"
+       id="rect1"
+       width="137.3653"
+       height="51.082321"
+       x="-15.384769"
+       y="245.91768"
+       rx="2.8633528"
+       ry="1.2422156" />
     <g
        id="g11353"
        transform="translate(-38.414199,112.89104)">

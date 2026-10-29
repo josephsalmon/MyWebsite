@@ -8,11 +8,14 @@ author:
     url: https://josephsalmon.eu/
     orcid: 0000-0002-3181-0634
 
-image: point_indice.png
+image: "point_indice.png"
+image-alt: "Time series showing curves going up with one way quicker that the other."
 reference-location: margin
 draft: false
 citation: false
-
+include-in-header:
+  - text: |
+      <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
 # title-block-banner: hello-world-bg.jpg
 
 # format:
@@ -20,7 +23,7 @@ citation: false
 #     include-before-body: ../../html/margin_image.html
 #     include-after-body: ../../html/blog_footer.html
 ---
-
+<!-- 
 
 This is a post with executable code. It actually loads an old post from another website, that updates with a GitHub action; see [https://josephsalmon.github.io/Tweets/economics/index.html](https://josephsalmon.github.io/Tweets/economics/index.html)
 
@@ -32,13 +35,105 @@ This is a post with executable code. It actually loads an old post from another 
 <div style="transform: scale(0.5); transform-origin: top left; width: 200%; height: 200%;">
 <iframe src="https://josephsalmon.github.io/Tweets/economics/index.html" width="105%" height="280%" ></iframe>
 
-</div>
-
-<br>
-<br>
-<br>
+</div> -->
 
 
+```{=html}
 
+<div id="plot-joint" style="width:100%;height:450px"></div>
+<div id="plot-constant" style="width:100%;height:450px"></div>
+<p id="stamp"></p>
+<div id="error" style="color:#b00"></div>
+
+<script>
+(async () => {
+  const show = msg => { document.getElementById("error").textContent = msg; console.error(msg); };
+  try {
+    if (typeof Plotly === "undefined") throw new Error("Plotly did not load");
+
+    const initDate = "2005-09";
+    const startPeriod = "1990-01";
+    const d = new Date();
+    d.setMonth(d.getMonth() - 2);
+    const endPeriod = d.toISOString().slice(0, 7);
+
+    async function loadIPC() {
+      const url = `https://api.insee.fr/series/BDM/V1/data/SERIES_BDM/001763852?startPeriod=${startPeriod}&endPeriod=${endPeriod}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`INSEE: HTTP ${res.status}`);
+      const xml = new DOMParser().parseFromString(await res.text(), "application/xml");
+      return Array.from(xml.getElementsByTagNameNS("*", "Obs"))
+        .map(o => ({ month: o.getAttribute("TIME_PERIOD"), ipc: parseFloat(o.getAttribute("OBS_VALUE")) }))
+        .filter(r => r.month && !isNaN(r.ipc))
+        .sort((a, b) => a.month.localeCompare(b.month));
+    }
+
+    async function loadPtIdx() {
+      const resourceId = "6b5a3e7e-7de7-437c-b8eb-a04ab4138fbb";
+      const meta = await fetch("https://www.data.gouv.fr/api/1/datasets/61c7a154a23569c570f803b2/");
+      if (!meta.ok) throw new Error(`data.gouv API: HTTP ${meta.status}`);
+      const dataset = await meta.json();
+      const resource = dataset.resources.find(r => r.id === resourceId) || dataset.resources[0];
+      const res = await fetch(resource.url);
+      if (!res.ok) throw new Error(`data.gouv file: HTTP ${res.status}`);
+      const lines = (await res.text()).trim().split(/\r?\n/);
+      const head = lines[0].split(",").map(s => s.trim());
+      const iDate = head.indexOf("date_effet");
+      const iVal = head.indexOf("valeur_100_points_euros");
+      return lines.slice(1)
+        .map(l => l.split(","))
+        .map(c => ({ date: c[iDate], value: parseFloat(c[iVal]) }))
+        .filter(r => r.date && !isNaN(r.value))
+        .sort((a, b) => a.date.localeCompare(b.date));
+    }
+
+    const [ipc, pt] = await Promise.all([loadIPC(), loadPtIdx()]);
+    console.log("IPC rows:", ipc.length, ipc[0], ipc[ipc.length - 1]);
+    console.log("Point d'indice rows:", pt.length, pt[0], pt[pt.length - 1]);
+
+    let j = -1;
+    const merged = ipc.map(r => {
+      const day = r.month + "-01";
+      while (j + 1 < pt.length && pt[j + 1].date <= day) j++;
+      return { ...r, day, pt: j >= 0 ? pt[j].value : null };
+    }).filter(r => r.pt !== null);
+    console.log("Merged rows:", merged.length);
+
+    const base = merged.find(r => r.month === initDate);
+    if (!base) throw new Error(`Origin ${initDate} not found (merged range: ${merged[0]?.month} to ${merged[merged.length - 1]?.month})`);
+
+    const rows = merged.filter(r => r.month >= initDate).map(r => {
+      const ipcIdx = r.ipc / base.ipc, ptIdx = r.pt / base.pt;
+      return { day: r.day, ipcIdx, ptIdx, constant: ptIdx / ipcIdx };
+    });
+    console.log("Plot rows:", rows.length);
+
+    const x = rows.map(r => r.day);
+    const common = {
+      hovermode: "x unified",
+      xaxis: { tickangle: -60, nticks: 15, tickformat: "%Y" },
+      margin: { t: 70 },
+      paper_bgcolor: "white", plot_bgcolor: "white"
+    };
+    const hover = "%{x|%Y/%m} value: %{y:.3f}";
+
+    await Plotly.newPlot("plot-joint", [
+      { x, y: rows.map(r => r.ipcIdx), mode: "lines", name: "IPC(idx)", hovertemplate: hover },
+      { x, y: rows.map(r => r.ptIdx), mode: "lines", name: "Point d'indice(idx)", hovertemplate: hover }
+    ], { ...common, title: { text: `Joint evolution of inflation and point d'indice<br>Reference 1 on ${initDate}-01` },
+         legend: { x: 0.01, y: 0.99 } }, { responsive: true });
+
+    await Plotly.newPlot("plot-constant", [
+      { x, y: rows.map(r => r.constant), mode: "lines", name: "Point d'indice (euros constant)", hovertemplate: hover }
+    ], { ...common, title: { text: `Point d'indice (corrigé de l'inflation)<br>Reference 1 on ${initDate}-01` },
+         yaxis: { range: [0.8, 1.2] } }, { responsive: true });
+
+    document.getElementById("stamp").textContent = `Data fetched at: ${new Date().toISOString()} (GMT)`;
+  } catch (e) {
+    show("Could not load data: " + e.message);
+  }
+})();
+</script>
+```
 
 

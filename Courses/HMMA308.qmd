@@ -3,6 +3,7 @@ title: HMMA308 - Statistical Learning (2018-2020)
 description: "ML intro and basics, mostly supervised and no deep learning."
 categories: [Random forest, linear regression, PCA, clustering]
 image: "images/level_sets.svg"
+image-alt: "Three level representations for 2D functions connected to sparse regression objective functions."
 reference-location: document
 fig-cap-location: bottom
 draft: false

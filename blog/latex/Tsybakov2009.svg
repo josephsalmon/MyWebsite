@@ -6,7 +6,7 @@
    version="1.1"
    id="svg6763"
    sodipodi:docname="Tsybakov2009.svg"
-   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   inkscape:version="1.4.4 (1:1.4.4+202605061432+dcaf3e7d9e)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -24,10 +24,10 @@
      inkscape:document-units="pt"
      showgrid="false"
      inkscape:zoom="0.84085511"
-     inkscape:cx="409.70198"
-     inkscape:cy="613.06638"
-     inkscape:window-width="3378"
-     inkscape:window-height="1360"
+     inkscape:cx="327.04802"
+     inkscape:cy="351.42796"
+     inkscape:window-width="1610"
+     inkscape:window-height="986"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
@@ -1220,6 +1220,15 @@
       </g>
     </g>
   </defs>
+  <rect
+     style="fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:5.6693;stroke-linecap:round;stroke-linejoin:round;paint-order:markers stroke fill"
+     id="rect1"
+     width="608.30939"
+     height="854.4873"
+     x="-5.3690143"
+     y="-5.1465335"
+     rx="5.9178066"
+     ry="8.5020895" />
   <g
      id="g11643"
      transform="translate(2.2822892,-1.0887126)">

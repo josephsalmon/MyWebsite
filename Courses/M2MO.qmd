@@ -3,6 +3,7 @@ title: M2MO - Statistical Learning (2013-2018)
 description: "Mostly theory on ML."
 categories: [VC dimension, Concentration]
 image: "images/CV_10_two.svg"
+image-alt: "Schema representing cross validation splits. On the left the features X and label vector y are split in ten blocks. On the right the second block (in orange) is used for validation."
 reference-location: document
 fig-cap-location: bottom
 draft: false

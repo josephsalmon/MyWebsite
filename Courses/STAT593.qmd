@@ -3,6 +3,7 @@ title: STAT593 - Robust statistics (2018-2019)
 description: "Force et robustesse"
 categories: [Rosust statistics, depth, breaking point]
 image: "images/depth_level_sets_full.svg"
+image-alt: "Illustration of Tuckey depth: a quadrangle (in dark gray), represents the convex envelop of some (black) points. The lines draw inside the quadrangle represent the separation between"
 reference-location: document
 fig-cap-location: bottom
 draft: false

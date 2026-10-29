@@ -9,6 +9,7 @@ date: "2024-09-01"
 categories:
   - news
 image: Bezier_good.gif
+image-alt: "Animation on an hexagon, with recursive hexagons inscribed in it, whose corners vary along the sides of the previous layer."
 reference-location: margin
 draft: false
 title-block-banner: hello-world-bg.jpg

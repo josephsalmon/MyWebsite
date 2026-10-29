@@ -3,6 +3,7 @@ title: M53010 - Économétrie (2009-2010)
 description: "Simple linear models (aka econometrics 101)"
 categories: [Econometrics, linear models]
 image: "images/moindre_carre_projection_new.svg"
+image-alt: "Scatter plots of points (in black), with the regression line displayed (in red). Black vertical lines connect (black) points with their predictions by the linear model associated (red dots)."
 reference-location: document
 fig-cap-location: bottom
 draft: false

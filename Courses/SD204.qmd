@@ -3,6 +3,7 @@ title: SD204 - linear models (2016-2018)
 description: "Linear models and a bit of sparsity"
 categories: [linear models, sparse models]
 image: "images/fig_pca_axis2.svg"
+image-alt: "Left: points cloud is showed (green points), and a line goes through the center of mass of the point cloud. The orthogonal projection of the points are connected by dashes to their projections (in black). Right: the curve (in black) show the associated variance of the projected samples. The current point (in green) represent the variance of the black projected points from the left part."
 reference-location: document
 fig-cap-location: bottom
 draft: false

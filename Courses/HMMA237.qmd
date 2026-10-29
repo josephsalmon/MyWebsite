@@ -3,6 +3,7 @@ title: HMMA237 - Advanced time series (2018-2019)
 description: "Time series and around, a bit of splines and other things "
 categories: [statistics, filtering, dynamic programming, splines]
 image: "images/splines.svg"
+image-alt: "Scatter plots, and several curves representing splines approximations for various parameters."
 reference-location: document
 fig-cap-location: bottom
 draft: false

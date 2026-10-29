@@ -3,6 +3,7 @@ title: HLMA408 - Traitement de données pour l'écologie (2018--2021)
 description: "Stats for ecology... sort of! just for ecologists!"
 categories: [statistics, confidence intervals, tests, linear models]
 image: "images/jitter_male_mouse_by_gene_only_ICs.svg"
+image-alt: "Scatter plots and there means for illustrating the mass ouf mice w.r.t to some feature (ADN)."
 reference-location: document
 fig-cap-location: bottom
 draft: false

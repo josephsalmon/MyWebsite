@@ -3,6 +3,7 @@ title: HAX606X - Convex optimization (2020 - 2023)
 description: "Go down, deep down."
 categories: [statistics, optimization, machine learning]
 image: "images/descente_gradient.svg"
+image-alt: "Left: level sets of a 2D function (in blue). The evolution of the gradient descent trajectory is represented by black dots connected by black lines. Right, a similar plots where the convergence is slower, due to larger oscillations of the trajectory."
 reference-location: document
 fig-cap-location: bottom
 draft: false

@@ -2,7 +2,8 @@
 title: MDI720 - Modèles linéaires (2012-2018)
 description: "Linear models and a bit of sparsity"
 categories: [linear models, sparse models]
-image: "images/depth_level_sets_full.svg"
+image: "images/l1_ball_projection.svg"
+image-alt: "Levels sets in shades of red, with elliptic shapes. A blue square represents the unit l1 ball, and a point (in red) represents the minimum values of the functions, constrained to be inside the blue square."
 reference-location: document
 fig-cap-location: bottom
 draft: false

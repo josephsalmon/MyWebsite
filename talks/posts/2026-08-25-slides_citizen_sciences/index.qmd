@@ -761,7 +761,9 @@ A machine learning-driven **citizen science** platform for mobile plant identifi
 ::: {.column width="10%" }
 :::
 
-::: {.column width="40%" style="padding: 0.5rem;"}
+::: {.column width="40%"}
+
+<div style="padding: 0.5rem;">
 
 **A multidisciplinary collaboration:**
 
@@ -774,12 +776,17 @@ A machine learning-driven **citizen science** platform for mobile plant identifi
 
 </div>
 
+</div>
+
 :::
 
 ::: {.column width="10%" }
 :::
 
-::: {.column width="55%" style="padding: 0.5rem;"}
+::: {.column width="55%" }
+
+<div style="padding: 0.5rem;">
+
 
 **Addressing open challenges:**
 
@@ -790,6 +797,9 @@ A machine learning-driven **citizen science** platform for mobile plant identifi
 - Large-scale computational needs
 - Cross-disciplinary integration
 </div>
+
+</div>
+
 
 :::
 

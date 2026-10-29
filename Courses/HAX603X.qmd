@@ -3,6 +3,7 @@ title: HAX603X - Stochastic modeling (2023 - 2024)
 description: "Randomize and simulate!"
 categories: [statistics, optimization, machine learning]
 image: "images/output.gif"
+image-alt: "Animated gif illustrating the inversion method for sampling a distribution: particles arrived horizontally and start following down when then meet the cumulated distribution function"
 reference-location: document
 fig-cap-location: bottom
 draft: false

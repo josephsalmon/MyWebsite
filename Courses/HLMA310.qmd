@@ -3,6 +3,7 @@ title: HLMA310 - Logiciels scientifiques (2018-2020)
 description: "Numeric and scientific computing with Python"
 categories: [numerical linear algebra, python, optimization]
 image: "images/python_ecosystem.svg"
+image-alt: "Illustration of the Python ecosystem for data science, for core packages in the center, to more advanced packages in the periphery."
 reference-location: document
 fig-cap-location: bottom
 draft: false

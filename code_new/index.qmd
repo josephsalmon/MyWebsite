@@ -13,11 +13,12 @@ toc-title: Year
 toc-location: right
 date-format: "MMMM D, YYYY"
 image: ""
+image-alt: ""
 code-tools: false
 comments: false
 ---
 
-Code is important in applied research. Here are some of the code I have written over the years.
+Code is important in applied research. Here are some I have written over the years.
 
 - [peerannot](https://peerannot.github.io/): a package to make transparent and reproducible comparisons between annotation algorithms, especially in the context of citizen science.
 - [OrganizationFiles](https://github.com/josephsalmon/OrganizationFiles): This repository provides some tools, advice and guidelines for researchers working in applied mathematics, statistics or machine learning.

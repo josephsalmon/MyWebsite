@@ -45,14 +45,14 @@ toc-title: Year
 toc-location: right
 date-format: "MMMM D, YYYY"
 image: "../img/Flag_of_Occitania.svg"
-image-alt: "Occitan cross in orange."
+image-alt: "Flag of Occitania, Occitan cross in orange cross."
 code-tools: false
 comments: false
 citation: false
 
 ---
 
-Welcome to my blog, `Donadas Brutas`. Any kind of feedback is welcome, so feel free to reach out. Thanks for your interest and time.
+Welcome to my blog, `Donadas Brutas`. Any kind of feedback is appreciated, so feel free to reach out. Thanks for your interest and time.
 
 
 ## 2026
