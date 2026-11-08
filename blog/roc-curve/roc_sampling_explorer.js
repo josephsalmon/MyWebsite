@@ -246,33 +246,113 @@ const J1 = fillArray(MAX_N, rngJ1).map((u) => 0.15 + 0.85 * u);
 // yields a single point, matching sklearn's roc_curve convention).
 // ------------------------------------------------------------------
 
+// ------------------------------------------------------------------
+// Empirical ROC curve — PIECEWISE AFFINE (not the staircase).
+//
+// A knot is emitted ONLY where the class of the next-highest score
+// changes (positive-run meets negative-run). Consecutive knots differ
+// in BOTH coordinates, so the connecting segments are true diagonals.
+// Equivalently: this is the ROC of the randomized classifiers that mix
+// the two knot thresholds (randomization theorem) — the linear
+// interpolation of the staircase corners, dominating the staircase.
+// ------------------------------------------------------------------
+
+// ------------------------------------------------------------------
+// Empirical ROC — PIECEWISE AFFINE via the concave majorant.
+//
+// The staircase vertices are the operating points of all deterministic
+// thresholds. By the randomization theorem, every point of the convex
+// hull of these vertices is attainable by a randomized classifier, and
+// the effective ROC is the hull's upper-left boundary: the least
+// concave majorant of the staircase. Hull edges are straight diagonals
+// with non-increasing slopes — piecewise affine, concave, dominating
+// the staircase, and directly comparable to the concave theoretical
+// (Neyman-Pearson) curve.
+// ------------------------------------------------------------------
+
+function staircaseVertices(x0, x1) {
+  const N = x0.length, P = x1.length;
+  const scored = [];
+  x1.forEach((v) => scored.push({ v, label: 1 }));
+  x0.forEach((v) => scored.push({ v, label: 0 }));
+  scored.sort((a, b) => b.v - a.v);
+
+  const pts = [{ fpr: 0, tpr: 0 }];
+  let fp = 0, tp = 0;
+  for (let i = 0; i < scored.length; i++) {
+    if (scored[i].label === 1) tp++; else fp++;
+    if (i === scored.length - 1 || scored[i].v !== scored[i + 1].v)
+      pts.push({ fpr: fp / N, tpr: tp / P });
+  }
+  // ensure (1,1) endpoint (dedup if the last vertex already is (1,1))
+  const last = pts[pts.length - 1];
+  if (last.fpr !== 1 || last.tpr !== 1) pts.push({ fpr: 1, tpr: 1 });
+  return pts;
+}
+
+// ------------------------------------------------------------------
+// Empirical ROC curve — PIECEWISE AFFINE via LOCAL randomization.
+//
+// At each upper-left corner of the staircase (the operating point
+// reached when a run of positive flips ends and negatives take over),
+// randomizing between this corner's threshold and the next corner's
+// threshold traces the straight segment joining the two corners
+// (randomization theorem). The curve therefore:
+//   - visits EVERY corner (no hull, no domination pruning),
+//   - is a function of FPR (one point per FPR level),
+//   - has only diagonal segments: consecutive corners differ in both
+//     coordinates (an FPR step from the negative run, a TPR step from
+//     the following positive run).
+// Note: unlike the concave hull, this curve may be non-concave — it
+// is the LOCAL randomization frontier, not the global optimum.
+// ------------------------------------------------------------------
+
 function empiricalRocCurve(x0, x1) {
   const N = x0.length, P = x1.length;
-  if (N === 0 || P === 0) return { x: [0, 1], y: [0, 1] };
+  if (!N || !P) return { x: [0, 1], y: [0, 1] };
 
   const scored = [];
   x1.forEach((v) => scored.push({ v, label: 1 }));
   x0.forEach((v) => scored.push({ v, label: 0 }));
-  scored.sort((a, b) => b.v - a.v); // descending: high score = predicted positive first
+  scored.sort((a, b) => b.v - a.v);   // descending: high score first
 
-  let tp = 0, fp = 0;
-  const fprArr = [0], tprArr = [0];
+  const xs = [0], ys = [0];           // (0,0) always on the curve
+  let fp = 0, tp = 0;
+  let run = null;
+
   for (let i = 0; i < scored.length; i++) {
+    if (run === 1 && scored[i].label === 0) {
+      // A positive run just ended: current cumulative point is an
+      // upper-left corner — keep it as a knot.
+      xs.push(fp / N);
+      ys.push(tp / P);
+    }
     if (scored[i].label === 1) tp++; else fp++;
-    // Only emit a point once all entries tied at this score are processed.
-    if (i === scored.length - 1 || scored[i].v !== scored[i + 1].v) {
-      fprArr.push(fp / N);
-      tprArr.push(tp / P);
+    run = scored[i].label;
+  }
+
+  xs.push(1); ys.push(1);             // (1,1) always on the curve
+  return { x: xs, y: ys };
+}
+
+// Operating point ON the randomized-interpolation curve: the test's
+// FPR with TPR linearly interpolated between the bracketing corners.
+function empiricalPoint(x0, x1, t, curve) {
+  const N = x0.length;
+  if (!N || !x1.length || !curve || curve.x.length < 2) return { fpr: 0, tpr: 0 };
+
+  const fpr = x0.filter((v) => v >= t).length / N;
+
+  for (let k = 1; k < curve.x.length; k++) {
+    if (fpr <= curve.x[k]) {
+      const xA = curve.x[k - 1], xB = curve.x[k];
+      const u = xB > xA ? (fpr - xA) / (xB - xA) : 0;
+      return { fpr, tpr: curve.y[k - 1] + u * (curve.y[k] - curve.y[k - 1]) };
     }
   }
-  return { x: fprArr, y: tprArr };
+  return { fpr, tpr: curve.y[curve.y.length - 1] };
 }
 
-function empiricalPoint(x0, x1, t) {
-  const fpr = x0.length ? x0.filter((v) => v >= t).length / x0.length : 0;
-  const tpr = x1.length ? x1.filter((v) => v >= t).length / x1.length : 0;
-  return { fpr, tpr };
-}
 
 export async function initRocSamplingWidget(container) {
   const controlsDiv = container.querySelector('.sampling-roc-controls');
@@ -514,12 +594,13 @@ updateThresholdLabel();
     return { x: idx.map((i) => xs[i]), y: idx.map((i) => ys[i]) };
   }
 
-   function buildRocTraces(p, yDomain, samples) {
+  function buildRocTraces(p, yDomain, samples) {
     const theme = getThemeColors();
     const theoCurve = rocCurveTheoretical(p, yDomain);
     const theoPoint = { fpr: distributionFpr(p.t, p), tpr: distributionTpr(p.t, p) };
     const empCurve = empiricalRocCurve(samples.x0, samples.x1);
-    const empPoint = empiricalPoint(samples.x0, samples.x1, p.t);
+    const empPoint = empiricalPoint(samples.x0, samples.x1, p.t, empCurve);
+    const empVerts = staircaseVertices(samples.x0, samples.x1);   // ← NEW
     const scale = currentScale();
 
     return [
@@ -527,34 +608,38 @@ updateThresholdLabel();
       { x: [0, 1], y: [0, 1], mode: 'lines', name: 'Random guessing',
         line: { color: theme.muted, width: 1.5, dash: 'dash' },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: false },
-      // Empirical ROC — thin, light gray.
+
+      // NEW: every deterministic operating point (staircase vertices),
+      // including the dominated ones — kept visible as small dots.
+      { x: empVerts.map((v) => v.fpr), y: empVerts.map((v) => v.tpr),
+        mode: 'markers', name: 'Sample thresholds',
+        marker: { color: theme.empirical, size: Math.max(2.5, 4 * scale),
+                  symbol: 'circle', opacity: 0.7 },
+        xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: true },
+
+      // Empirical ROC frontier — piecewise affine (concave majorant).
       { x: empCurve.x, y: empCurve.y, mode: 'lines', name: 'Empirical ROC',
         line: { color: theme.empirical, width: 1.5 },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: true },
       { x: [empPoint.fpr], y: [empPoint.tpr], mode: 'markers', name: 'Empirical point',
-        marker: {
-                  color: theme.empiricalPoint,
+        marker: { color: theme.empiricalPoint,
                   size: Math.max(4, 8 * scale),
                   symbol: 'circle',
-                  line: { color: theme.empirical, width: 1.5 },
-                },
+                  line: { color: theme.empirical, width: 1.5 } },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: false },
-      // Theoretical ROC — solid black.
+
+      // Theoretical ROC — solid, prominent.
       { x: theoCurve.x, y: theoCurve.y, mode: 'lines', name: 'ROC curve',
         line: { color: theme.theoretical, width: 2.5 },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y },
       { x: [theoPoint.fpr], y: [theoPoint.tpr], mode: 'markers', name: 'Operating point',
-        marker: {
-                  color: theme.operatingPoint,
+        marker: { color: theme.operatingPoint,
                   size: Math.max(6, 12 * scale),
                   symbol: 'circle',
-                  line: { color: theme.theoretical, width: 2 },
-                },
+                  line: { color: theme.theoretical, width: 2 } },
         xaxis: AXIS_ROC.x, yaxis: AXIS_ROC.y, showlegend: false },
-    ];                                                          // ← array closed
+    ];
   }
-
-  // --- Layout -----------------------------------------------------------
   // --- Layout -----------------------------------------------------------
 
   // Responsive sizing: same recipe as roc_explorer_engine.js.
@@ -758,16 +843,70 @@ function layoutFor(p, yDomain, auc) {
   };
 }
 
-  // --- Render -------------------------------------------------------------
+/* -------------------------------------------------------------
+   1️⃣  Preserve any user‑zoomed ranges that Plotly is storing.
+   ------------------------------------------------------------- */
 
-  function render() {
-    const samples = currentSamples();
-    const yDomain = distributionYDomain(params);
-    const auc = distributionAuc(params);
-    const traces = buildScatterTraces(samples).concat(buildRocTraces(params, yDomain, samples));
-    const layout = layoutFor(params, yDomain, auc);
-    Plotly.react(plotDiv, traces, layout, { responsive: true, displayModeBar: false });
+
+   /* -------------------------------------------------------------
+   Preserve any user‑zoom/pan that Plotly has stored.
+   Plotly stores the *current* layout on the DOM element under
+   the property `_fullLayout`.  The first (scatter) subplot uses the
+   keys `xaxis` / `yaxis`.  The second (ROC) subplot is the **second**
+   x‑ and y‑axis, whose keys are `xaxis2` and `yaxis2` (not `x2axis`
+   / `y2axis`).  This function copies those ranges into the newly
+   generated layout before we call Plotly.react, so the view never
+   jumps back to the default after the threshold slider moves.
+   ------------------------------------------------------------- */
+function preserveZoom(layout) {
+  // The full layout exists only after the first draw.
+  const existing = plotDiv._fullLayout;
+  if (!existing) return layout;   // first render – nothing to keep
+
+  // ----- Scatter panel (left side) -----
+  if (existing.xaxis?.range) {
+    layout.xaxis.range = existing.xaxis.range.slice();   // clone array
   }
+  if (existing.yaxis?.range) {
+    layout.yaxis.range = existing.yaxis.range.slice();
+  }
+
+  // ----- ROC panel (right side) -----
+  // The ROC subplot is the *second* x‑ and y‑axis in Plotly.
+  if (existing.xaxis2?.range) {
+    // AXIS_ROC.x is "x2".  replace('x','xaxis') => "xaxis2"
+    layout[AXIS_ROC.x.replace('x', 'xaxis')].range = existing.xaxis2.range.slice();
+  }
+  if (existing.yaxis2?.range) {
+    layout[AXIS_ROC.y.replace('y', 'yaxis')].range = existing.yaxis2.range.slice();
+  }
+
+  return layout;
+}
+
+/* -------------------------------------------------------------
+   2️⃣  Updated render() – build the layout, then inject the saved
+       ranges, then redraw.
+   ------------------------------------------------------------- */
+function render() {
+  const samples   = currentSamples();
+  const yDomain   = distributionYDomain(params);
+  const auc       = distributionAuc(params);
+  const traces    = buildScatterTraces(samples)
+                    .concat(buildRocTraces(params, yDomain, samples));
+
+  // Build a fresh layout (titles, margins, colours, …)
+  let layout = layoutFor(params, yDomain, auc);
+
+  // Preserve whatever zoom/pan the user applied to either subplot.
+  layout = preserveZoom(layout);
+
+  // Re‑draw the figure – Plotly.react replaces the old plot but keeps
+  // the axis ranges we just copied, so the view stays exactly as the
+  // user left it.
+  Plotly.react(plotDiv, traces, layout,
+               { responsive: true, displayModeBar: false });
+}
 
   // --- Wiring ---------------------------------------------------------
 

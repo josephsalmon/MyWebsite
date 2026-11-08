@@ -652,7 +652,7 @@ div.math.display {
 }
 
 // Proof boxes and theorem environments can scroll internally
-.proof-content,
+.proof-content,>
 div.theorem,
 div.lemma,
 div.proposition,

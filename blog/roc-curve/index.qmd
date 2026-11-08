@@ -89,7 +89,7 @@ The supplementary material of the associated paper describes the preprocessing u
 
 A diagnostic test can be framed as a classical **statistical hypothesis test**. In this medical context, we consider the null hypothesis
 $$
-\mathcal{H}_0: \text{``you are healthy''} 
+\mathcal{H}_0: \text{``you are healthy''}
 $$
 against the alternative:
 $$
@@ -107,9 +107,14 @@ $$
 $$
 When no ambiguity is possible we simply write $\hat{Y}_t$.
 
-Throughout this post, $\hat{Y}_t$ denotes this rule, except in the symmetry sections where the reversed rule $\mathbb{1}\{X<t\}$ is considered explicitly.
+More generally,  we consider a family of classifiers (or test), i.e., a set of measurable functions indexed by $t\in\mathbb{R}$ such that
+$\phi_t:\mathbb{R}\rightarrow\{0,1\}$.
+When $\phi_t(x)=1$, $\mathcal{H}_0$ is rejected, and accepted when $\phi_t(x)=0$. For randomized tests, $\phi_t:\mathbb{R} \rightarrow [0,1]$, the decision becomes a soft decision (and not a hard one anymore).
 
-It is convenient to isolate the two conditional laws of $X$ given the health status. Under $\mathcal H_0$, $X$ follows $\mathcal{L}(X\mid Y=0)$; under $\mathcal H_1$, it follows $\mathcal{L}(X\mid Y=1)$. We write
+
+<!-- Throughout this post, $\hat{Y}_t$ denotes this rule, except in the symmetry sections where the reversed rule $\mathbb{1}\{X<t\}$ is considered explicitly. -->
+
+It is convenient to isolate the two conditional laws of $X$ given the health status. Under $\mathcal{H}_0$, $X$ follows $\mathcal{L}(X\mid Y=0)$; under $\mathcal{H}_1$, it follows $\mathcal{L}(X\mid Y=1)$. We write
 $$
 \begin{align*}
 X_0 & \sim \mathcal{L}(X\mid Y=0), \\
@@ -119,11 +124,11 @@ $$
 for two independent random variables with these laws. This turns any probability conditional on $Y$ into an ordinary, unconditional probability: for every threshold $t$,
 $$
 \begin{align*}
-\mathbb{P}(X \ge t \mid Y=0) 
-& = \mathbb{P}(X_0\ge t),
+\mathbb{P}(\phi_t(X)=1 \mid Y=0)
+& = \mathbb{P}(\phi_t(X_0)=1),
 \\
-\mathbb{P}(X \ge t \mid Y=1) 
-& = \mathbb{P}(X_1\ge t),
+\mathbb{P}(\phi_t(X)=1 \mid Y=1)
+& = \mathbb{P}(\phi_t(X_1)=1),
 \end{align*}
 $$
 and we use the right-hand sides from here on, since they involve a single random variable rather than a conditional statement.
@@ -158,7 +163,7 @@ $$\displaystyle\mathrm{TN} = \sum_{i=1}^n \mathbb{1}\{Y_i=0,\ \hat{Y}_{t,i}=0\}$
 $$\displaystyle\mathrm{FP} = \sum_{i=1}^n \mathbb{1}\{Y_i=0,\ \hat{Y}_{t,i}=1\}$$
 
 - **False Negative** (Type II error): sick but wrongly declared negative
-$$\displaystyle\mathrm{FN} = \sum_{i=1}^n \mathbb{1}\{Y_i=1,\ \hat{Y}_{t,i}=0\}$$ 
+$$\displaystyle\mathrm{FN} = \sum_{i=1}^n \mathbb{1}\{Y_i=1,\ \hat{Y}_{t,i}=0\}$$
 
 From the observed true labels, we define the two class counts:
 
@@ -179,9 +184,9 @@ We also define the following rates, used throughout this post. Let $\pi_1\triang
 
 **The true rates.** These are probabilities of the underlying random variables (population quantities, not counts):
 
-- $\mathrm{TPR}(t) \triangleq \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=1\right)$ (**True Positive Rate**, a.k.a. **sensitivity** or **recall**): among sick people, the proportion correctly detected. This is also $\mathbb{P}(X_1\ge t)$.
+- $\mathrm{TPR}(t) \triangleq \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=1\right)$ (**True Positive Rate**, a.k.a. **sensitivity** or **recall**): among sick people, the proportion correctly detected. This is also $\mathbb{P}(\phi(X_1)=t)$.
 - $\mathrm{TNR}(t) \triangleq \mathbb{P}\!\left(\hat{Y}_t=0 \mid Y=0\right)$ (**True Negative Rate**, a.k.a. **specificity**): among healthy people, the proportion correctly cleared. This is also $\mathbb{P}(X_0< t)$.
-- $\mathrm{FPR}(t) \triangleq \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=0\right)$ (**False Positive Rate**): among healthy people, the proportion wrongly flagged, exactly the Type I error probability. This is also $\mathbb{P}(X_0\ge t)$.
+- $\mathrm{FPR}(t) \triangleq \mathbb{P}\!\left(\hat{Y}_t=1 \mid Y=0\right)$ (**False Positive Rate**): among healthy people, the proportion wrongly flagged, exactly the Type I error probability. This is also $\mathbb{P}(\phi_t(X_0))$.
 - $\mathrm{Precision}(t) \triangleq \mathbb{P}\!\left(Y=1 \mid \hat{Y}_t=1\right)$: among people declared positive, the proportion actually sick.
 
 The first three depend only on the conditional laws $X_0,X_1$. Precision does not: it also depends on the class probabilities $\pi_0,\pi_1$, and so, unlike the other three, cannot be written purely in terms of $X_0$ and $X_1$ (its exact form is given in @thm-precision-formula below).
@@ -207,8 +212,8 @@ For a threshold $t\in\mathbb{R}$, the **ROC operating point** is the pair of fal
 
 $$
 \begin{align*}
-\mathrm{FPR}(t) & = \mathbb{P}(X_0\ge t),\\
-\mathrm{TPR}(t) & = \mathbb{P}(X_1\ge t).
+\mathrm{FPR}(t) & = \mathbb{P}(\phi_t(X_0)=1),\\
+\mathrm{TPR}(t) & = \mathbb{P}(\phi_t(X_1)=1).
 \end{align*}
 $$
 
@@ -228,11 +233,82 @@ $$
 
 #### ROC endpoints
 
+We now treat the two extreme classifiers (that do **not** depend on a threshold):
+
+* **Always‑accept** (never reject): $\phi_{\text{acc}}(x)\equiv0$.
+* **Always‑reject** (always reject): $\phi_{\text{rej}}(x)\equiv1$.
+
+These are the two “corner’’ points of any ROC curve.  The following lemma makes this precise.
+
+:::: {#lem-roc-corners}
+
+# ROC corner points
+
+Assume the scores $X_0,X_1$ are almost surely finite.  Then
+
+$$
+\boxed{
+\bigl(\mathrm{FPR}(\phi_{\text{acc}}),\;\mathrm{TPR}(\phi_{\text{acc}})\bigr)=(0,0),
+}
+$$
+and
+$$
+\boxed{
+\bigl(\mathrm{FPR}(\phi_{\text{rej}}),\;\mathrm{TPR}(\phi_{\text{rej}})\bigr)=(1,1)
+}.
+$$
+
+::::
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('lem-roc-corners')"}
+[▶]{#proof-arrow-lem-roc-corners .proof-arrow} **Proof**
+:::
+
+::: {#proof-content-lem-roc-corners .proof-content}
+*Always‑accept.*
+For every observation $x$ we have $\phi_{\text{acc}}(x)=0$, hence
+
+$$
+\begin{align*}
+\mathrm{FPR}(\phi_{\text{acc}})
+  & =\mathbb P\bigl(\phi_{\text{acc}}(X_0)=1\bigr)=0,\\
+\mathrm{TPR}(\phi_{\text{acc}})
+  & =\mathbb P\bigl(\phi_{\text{acc}}(X_1)=1\bigr)=0 .
+\end{align*}
+$$
+
+*Always‑reject.*
+Similarly $\phi_{\text{rej}}(x)=1$ for all $x$, so
+
+$$
+\begin{align*}
+\mathrm{FPR}(\phi_{\text{rej}})
+  & =\mathbb P\bigl(\phi_{\text{rej}}(X_0)=1\bigr)=1,\\
+\mathrm{TPR}(\phi_{\text{rej}})
+  & =\mathbb P\bigl(\phi_{\text{rej}}(X_1)=1\bigr)=1 .
+\end{align*}
+$$
+
+:::
+
+::::
+
+
+The point $(0,0)$ corresponds to a classifier that never declares a signal (no false‑positives, no true‑positives); the point $(1,1)$ corresponds to a
+classifier that always declares a signal (maximal false‑positives and maximal true‑positives).
+
+
+Every ROC curve for a finite scoring rule must start at
+$(0,0)$ and end at $(1,1)$; the two extreme tests are precisely these endpoints, as formalized below:
+
+
+
 :::: {#lem-roc-endpoints}
 
 # ROC endpoints
 
-Assume that $X_0$ and $X_1$ are almost surely finite. Then the ROC curve has the limiting endpoints:
+Assume that $X_0$ and $X_1$ are almost surely finite and that $\phi_t(x)=\mathbb{1}(X \ge t)$. Then the ROC curve has the limiting endpoints:
 
 $$
 \boxed{
@@ -285,13 +361,13 @@ $$
 
 Suppose there exists a threshold $t^\star \in \mathbb{R}$ such that
 $$
-\mathbb{P}(X_0 \ge t^\star) = 0, \quad \mathbb{P}(X_1 \ge t^\star) = 1.
+\mathbb{P}(\phi_{t^\star}(X_0)=1) = 0, \quad \mathbb{P}(\phi_{t^\star}(X_1)=1) = 1.
 $$
 Then,
 $$
 \boxed{\mathrm{FPR}(t^\star) = 0, \quad \mathrm{TPR}(t^\star) = 1,}
 $$
-and the ROC curve passes through the upper-left corner $(0,1)$, in addition to the endpoints $(0,0)$ and $(1,1)$.
+and the ROC curve passes through the upper-left corner $(0,1)$ for $t^\star$.
 
 ::::
 
@@ -300,7 +376,7 @@ and the ROC curve passes through the upper-left corner $(0,1)$, in addition to t
 [▶]{#proof-arrow-thm-perfect-separation .proof-arrow} [Proof]{.proof-title}
 :::
 ::: {#proof-content-thm-perfect-separation .proof-content}
-By definition, $\mathrm{FPR}(t^\star) = \mathbb{P}(X_0 \ge t^\star) = 0$ and $\mathrm{TPR}(t^\star) = \mathbb{P}(X_1 \ge t^\star) = 1$. Thus the threshold $t^\star$ yields the operating point $(0,1)$, representing perfect discrimination.
+By definition, $\mathrm{FPR}(t^\star) = \mathbb{P}(\phi_{t^\star}(X_0)=1)) = 0$ and $\mathrm{TPR}(t^\star) = \mathbb{P}(\phi_{t^\star}(X_1)=1)) = 1$. Thus the threshold $t^\star$ yields the operating point $(0,1)$, representing perfect discrimination.
 :::
 ::::
 
@@ -313,13 +389,13 @@ By definition, $\mathrm{FPR}(t^\star) = \mathbb{P}(X_0 \ge t^\star) = 0$ and $\m
 
 Suppose there exists a threshold $t^\star \in \mathbb{R}$ such that
 $$
-\mathbb{P}(X_0 \ge t^\star) = 1, \quad \mathbb{P}(X_1 \ge t^\star) = 0.
+\mathbb{P}(\phi_{t^\star}(X_0) = 1) = 1, \quad \mathbb{P}(\phi_{t^\star}(X_1) = 1) = 0.
 $$
 Then,
 $$
 \boxed{\mathrm{FPR}(t^\star) = 1, \quad \mathrm{TPR}(t^\star) = 0,}
 $$
-and the ROC curve passes through the lower-right corner $(1,0)$, in addition to the endpoints $(0,0)$ and $(1,1)$.
+and the ROC curve passes through the lower-right corner $(1,0)$.
 
 ::::
 
@@ -328,7 +404,7 @@ and the ROC curve passes through the lower-right corner $(1,0)$, in addition to 
 [▶]{#proof-arrow-cor-perfect-anti-separation .proof-arrow} [Proof]{.proof-title}
 :::
 ::: {#proof-content-cor-perfect-anti-separation .proof-content}
-By definition, $\mathrm{FPR}(t^\star) = \mathbb{P}(X_0 \ge t^\star) = 1$ and $\mathrm{TPR}(t^\star) = \mathbb{P}(X_1 \ge t^\star) = 0$. Thus the threshold $t^\star$ yields the operating point $(1,0)$, representing perfectly inverted discrimination.
+By definition, $\mathrm{FPR}(t^\star) = \mathbb{P}(\phi_{t^\star}(X_0) = 1) = 1$ and $\mathrm{TPR}(t^\star) = \mathbb{P}(\phi_{t^\star}(X_1) = 1) = 0$. Thus the threshold $t^\star$ yields the operating point $(1,0)$, representing perfectly inverted discrimination.
 :::
 ::::
 
@@ -352,25 +428,33 @@ Consequently, the ROC curve lies on the diagonal line $u=v$ of the unit square.
 [▶]{#proof-arrow-thm-random-guessing .proof-arrow} [Proof]{.proof-title}
 :::
 ::: {#proof-content-thm-random-guessing .proof-content}
-Since $X_0 \stackrel{d}{=} X_1$, $\mathbb{P}(X_0 \ge t) = \mathbb{P}(X_1 \ge t)$ for every $t \in \mathbb{R}$, so $\mathrm{FPR}(t) = \mathrm{TPR}(t)$ for all $t$, and the ROC curve coincides with the diagonal.
+Since $X_0 \stackrel{d}{=} X_1$, $\mathbb{P}(\phi_t(X_0) = 1) = \mathbb{P}(\phi_t(X_1) = 1)$ for every $t \in \mathbb{R}$, so $\mathrm{FPR}(t) = \mathrm{TPR}(t)$ for all $t$, and the ROC curve is included in the diagonal line.
 :::
 ::::
 
-#### Monotonicity of ROC curves
 
-A fundamental property of ROC curves, one that distinguishes them from Precision-Recall curves, is their **monotonicity**.
+
+#### Monotonicity of ROC curves (with the pointwise non‑increasing constraint)
+
+For a family of binary decision rules $\{\phi_t\}_{t\in\mathbb R}$ we impose the **nested‑rejection (pointwise) constraint**, that is for all $x\in \mathbb{R}$,
+
+$$
+t_1<t_2\;\implies\;\phi_{t_1}(x)\ge \phi_{t_2}(x).
+$$
+
+Under this condition the ROC operating‑point functions are monotone in the threshold. In particular this is the case for the tests of the form $\phi_t(x) = \mathbb{1}(x \ge t)$.
 
 :::: {#thm-roc-monotonicity}
 
 # Monotonicity of ROC curves
 
-Both $\mathrm{TPR}(\cdot)$ and $\mathrm{FPR}(\cdot)$ are non-increasing in the threshold: for any $t_1, t_2 \in \mathbb{R}$ with $t_1 < t_2$,
-$$
-\begin{align*}
-\mathrm{TPR}(t_1) & \ge \mathrm{TPR}(t_2),\\
-\mathrm{FPR}(t_1) & \ge \mathrm{FPR}(t_2).
-\end{align*}
-$$
+If $\{\phi_t\}_{t\in\mathbb R}$ satisfies the pointwise non‑increasing constraint, then for any thresholds $t_1,t_2\in\mathbb R$ with $t_1<t_2$ we have
+
+$$\mathrm{TPR}(t_1)\ge \mathrm{TPR}(t_2),$$
+
+$$\mathrm{FPR}(t_1)\ge \mathrm{FPR}(t_2).$$
+
+In words, both the true‑positive rate and the false‑positive rate are non‑increasing as the decision threshold increases.
 
 ::::
 
@@ -379,39 +463,92 @@ $$
 [▶]{#proof-arrow-thm-roc-monotonicity .proof-arrow} [Proof]{.proof-title}
 :::
 ::: {#proof-content-thm-roc-monotonicity .proof-content}
-Recall $\mathrm{TPR}(t) = \mathbb{P}(X_1 \ge t)$ and $\mathrm{FPR}(t) = \mathbb{P}(X_0 \ge t)$. Fix $t_1<t_2$: since $X\ge t_2$ implies $X\ge t_1$, the event $\{X\ge t_2\}$ is contained in $\{X\ge t_1\}$ for both $X_0$ and $X_1$. By monotonicity of probability measures,
-$$
-\mathbb{P}(X_1 \ge t_2) \le \mathbb{P}(X_1 \ge t_1) \quad\text{and}\quad \mathbb{P}(X_0 \ge t_2) \le \mathbb{P}(X_0 \ge t_1),
-$$
-i.e. $\mathrm{TPR}(t_1) \ge \mathrm{TPR}(t_2)$ and $\mathrm{FPR}(t_1) \ge \mathrm{FPR}(t_2)$.
-:::
-::::
 
-##### Invariance of ROC curves under increasing transformations
-
-A strictly increasing bijection does not introduce new ROC geometry: the ROC curve of $g(X)$ is identical to that of $X$, with only the threshold parametrization transformed via $t\mapsto g^{-1}(t)$.
-
-:::: {#thm-roc-bijective-transform}
-
-# Invariance of ROC curves under increasing transformations
-
-Let $X$ be a real-valued random variable, with $X\mid Y=0$ and $X\mid Y=1$ atomless, and let $g:\mathbb{R}\to\mathbb{R}$ be a strictly increasing bijection.
-Writing 
+Recall the definitions of the operating‑point functions
 
 $$
 \begin{align*}
-\mathrm{FPR}_X(t)=\mathbb{P}(X\ge t\mid Y=0),\\ \mathrm{TPR}_X(t)=\mathbb{P}(X\ge t\mid Y=1),
+\mathrm{TPR}(t) & =\mathbb P\bigl(\phi_t(X_1)=1\bigr),\\
+\mathrm{FPR}(t) & =\mathbb P\bigl(\phi_t(X_0)=1\bigr).
 \end{align*}
 $$
-the operating characteristics of $g(X)$ are
+
+Fix two thresholds $t_1<t_2$. By the pointwise constraint, for every possible value $x$ we have
+
+$$
+\phi_{t_1}(x)\ge\phi_{t_2}(x).
+$$
+
+Consequently, for each class $y\in\{0,1\}$ the event that the classifier
+outputs a positive decision at the higher threshold is contained in the
+corresponding event at the lower threshold:
+
+$$
+\{\phi_{t_2}(X_y)=1\}\subseteq\{\phi_{t_1}(X_y)=1\}.
+$$
+
+Probability measures are monotone with respect to set inclusion, so
+
+$$
+\mathbb P\bigl(\phi_{t_2}(X_y)=1\bigr)\le
+  \mathbb P\bigl(\phi_{t_1}(X_y)=1\bigr),\qquad y\in\{0,1\}.
+$$
+
+Replacing the left‑hand sides by the definitions of $\mathrm{TPR}$ and $\mathrm{FPR}$ yields
+
+$$
+\mathrm{TPR}(t_2)\le\mathrm{TPR}(t_1)
+$$
+and
+$$
+\mathrm{FPR}(t_2)\le\mathrm{FPR}(t_1),
+$$
+which is precisely the desired monotonicity.
+:::
+::::
+
+
+
+
+##### Invariance of ROC curves under strictly increasing transformations
+
+Let $g:\mathbb R\to\mathbb R$ be a **strictly increasing bijection** and set
+$Z=g(X)$.  We keep the same index set for thresholds and apply the original
+family to the transformed data via the inverse map:
+
+$$
+\widetilde\phi_t(z):=\phi_{\,g^{-1}(t)}\!\bigl(g^{-1}(z)\bigr),
+\qquad t\in\mathbb R,\;z\in\mathbb R .
+$$
+
+The false‑ and true‑positive rates for the transformed variable are
+
+$$
+\mathrm{FPR}_{g(X)}(t)=\mathbb P\bigl(\widetilde\phi_t(Z_0)=1\bigr),\qquad
+\mathrm{TPR}_{g(X)}(t)=\mathbb P\bigl(\widetilde\phi_t(Z_1)=1\bigr).
+$$
+
+:::: {#thm-roc-bijective-transform}
+
+# Invariance of ROC curves under strictly increasing transformations
+
+Assume $\{\phi_t\}$ has the nested‑rejection (pointwise) constraint and let $g$ be a strictly increasing bijection.
+Then for every threshold $t\in\mathbb R$
+
 $$
 \boxed{
 \begin{aligned}
-\mathrm{FPR}_{g(X)}(t) &= \mathrm{FPR}_X(g^{-1}(t)), \\
-\mathrm{TPR}_{g(X)}(t) &= \mathrm{TPR}_X(g^{-1}(t)).
-\end{aligned}
-}
+\mathrm{FPR}_{\,g(X)}(t) &= \mathrm{FPR}_X\!\bigl(g^{-1}(t)\bigr),\\[4pt]
+\mathrm{TPR}_{\,g(X)}(t) &= \mathrm{TPR}_X\!\bigl(g^{-1}(t)\bigr).
+\end{aligned}}
 $$
+
+Consequently the ROC curve of the transformed data
+$\{(\mathrm{FPR}_{\,g(X)}(t),\mathrm{TPR}_{\,g(X)}(t)) : t\in\mathbb R\}$
+coincides exactly with the original ROC curve
+$\{(\mathrm{FPR}_X(s),\mathrm{TPR}_X(s)) : s\in\mathbb R\}$; only the
+parameterisation of the curve is changed by the order‑preserving map
+$t\mapsto g^{-1}(t)$.
 
 ::::
 
@@ -420,24 +557,66 @@ $$
 [▶]{#proof-arrow-thm-roc-bijective-transform .proof-arrow} [Proof]{.proof-title}
 :::
 ::: {#proof-content-thm-roc-bijective-transform .proof-content}
-Since $g$ is a strictly increasing bijection, so is $g^{-1}$, and the events $\{g(X)\ge t\}$ and $\{X\ge g^{-1}(t)\}$ coincide: $g(X)\ge t \iff X\ge g^{-1}(t)$. Hence, for $y\in\{0,1\}$,
+
+Fix a threshold $t$.  Because $g$ is strictly increasing, its inverse
+$g^{-1}$ is also strictly increasing, so the order of real numbers is
+preserved under the map $x\mapsto g(x)$.
+
+Take any observation $x$ from the null or alternative class.  By definition of
+$\widetilde\phi_t$,
+
 $$
-\mathbb{P}(g(X)\ge t\mid Y=y) = \mathbb{P}(X\ge g^{-1}(t)\mid Y=y),
+\widetilde\phi_t\bigl(g(x)\bigr)
+   =\phi_{\,g^{-1}(t)}\!\bigl(g^{-1}(g(x))\bigr)
+   =\phi_{\,g^{-1}(t)}(x).
+\tag{1}
 $$
-which, specializing to $y=0$ and $y=1$, is exactly the boxed identity. As $t$ ranges over $\mathbb{R}$, so does $g^{-1}(t)$, and $t\mapsto g^{-1}(t)$ is an order-preserving reparametrization of thresholds — so the ROC curve of $g(X)$ is identical to that of $X$, only traced by a relabeled threshold.
+
+Thus the event that the transformed classifier makes a positive decision is
+identical to the event that the original classifier, with threshold
+$g^{-1}(t)$, makes a positive decision on the original data:
+
+$$
+\bigl\{\widetilde\phi_t(Z_y)=1\bigr\}
+   =\bigl\{\phi_{\,g^{-1}(t)}(X_y)=1\bigr\},
+\qquad y\in\{0,1\}.
+\tag{2}
+$$
+
+Taking probabilities under the class‑conditional distributions yields
+
+$$
+\begin{aligned}
+\mathrm{FPR}_{\,g(X)}(t)
+   &=\mathbb P\!\bigl(\widetilde\phi_t(Z_0)=1\bigr)
+     =\mathbb P\!\bigl(\phi_{\,g^{-1}(t)}(X_0)=1\bigr)
+     =\mathrm{FPR}_X\!\bigl(g^{-1}(t)\bigr),\\[6pt]
+\mathrm{TPR}_{\,g(X)}(t)
+   &=\mathbb P\!\bigl(\widetilde\phi_t(Z_1)=1\bigr)
+     =\mathbb P\!\bigl(\phi_{\,g^{-1}(t)}(X_1)=1\bigr)
+     =\mathrm{TPR}_X\!\bigl(g^{-1}(t)\bigr).
+\end{aligned}
+$$
+
+Since $g^{-1}$ is a bijection, as $t$ runs over all real numbers,
+$g^{-1}(t)$ also runs over all real numbers, so the set of ROC points is
+unchanged; only the labelling of each point by a threshold is altered.
+
 :::
+
 ::::
+
+
+
 
 #### Symmetries of ROC curves
 
 The ROC curve exhibits three nontrivial symmetries, generated by reversing the decision rule and/or swapping the class labels. Each acts as an exact affine reflection of the $(\mathrm{FPR},\mathrm{TPR})$ square, mostly because **the ROC curve is completely unaffected by class prevalence**.
 
-Each symmetry is described by its action on the operating point $(\mathrm{FPR}(t),\mathrm{TPR}(t))$ of the upper-tail rule $\hat{Y}_t=\mathbb{1}\{X\ge t\}$.
-No assumption on the laws of $X\mid Y$ is needed here, since $\{X<t\}$ is exactly the complement of $\{X\ge t\}$.
 
-##### Threshold reversal
+##### Test reversal
 
-Keeping the class labels unchanged and reversing the rule to $\hat{Y}_t^\star=\mathbb{1}\{X<t\}$ sends the operating point as
+Keeping the class labels unchanged and reversing the rule to $\phi_t'(X)=1-\phi_t(X)$ sends the operating point as
 $$
 \boxed{
 \binom{\mathrm{FPR}(t)}{\mathrm{TPR}(t)} \longmapsto \binom{1-\mathrm{FPR}(t)}{1-\mathrm{TPR}(t)}.
@@ -448,7 +627,7 @@ $$
 
 # Central symmetry
 
-The ROC curve under threshold reversal (class labels fixed) is the central reflection of the original ROC curve about $(0.5,0.5)$.
+The ROC curve under test reversal (class labels fixed) is the central reflection of the original ROC curve about $(0.5,0.5)$.
 
 ::::
 
@@ -457,9 +636,9 @@ The ROC curve under threshold reversal (class labels fixed) is the central refle
 [▶]{#proof-arrow-thm-roc-threshold-reversal .proof-arrow} [Proof]{.proof-title}
 :::
 ::: {#proof-content-thm-roc-threshold-reversal .proof-content}
-Under the reversed rule $\hat{Y}_t^\star=\mathbb{1}\{X<t\}$,
+Under the test reversal $\phi_t'=1-\phi_t$,
 $$
-\mathbb{P}(X<t\mid Y=0) = 1-\mathrm{FPR}(t), \quad \mathbb{P}(X<t\mid Y=1) = 1-\mathrm{TPR}(t).
+\mathbb{P}(\phi_t'\mid Y=0) = 1-\mathrm{FPR}(t), \quad \mathbb{P}(\phi_t'\mid Y=1) = 1-\mathrm{TPR}(t).
 $$
 Thus $(\mathrm{FPR}(t),\mathrm{TPR}(t))\mapsto(1-\mathrm{FPR}(t),\,1-\mathrm{TPR}(t))$, a central reflection about $(0.5,0.5)$.
 :::
@@ -467,7 +646,7 @@ Thus $(\mathrm{FPR}(t),\mathrm{TPR}(t))\mapsto(1-\mathrm{FPR}(t),\,1-\mathrm{TPR
 
 ##### Class label swap
 
-Keeping the rule unchanged but swapping the labels, $Y^\star=1-Y$, $\hat{Y}_t^\star=\mathbb{1}\{X\ge t\}$, sends the operating point as
+Keeping the rule unchanged but swapping the labels, $Y'=1-Y$, $\phi_t'=\phi_t$, sends the operating point as
 $$
 \boxed{
 \binom{\mathrm{FPR}(t)}{\mathrm{TPR}(t)} \longmapsto \binom{\mathrm{TPR}(t)}{\mathrm{FPR}(t)}.
@@ -487,17 +666,17 @@ Under class-label swapping with the rule unchanged, the ROC curve is the reflect
 [▶]{#proof-arrow-thm-roc-class-swap .proof-arrow} [Proof]{.proof-title}
 :::
 ::: {#proof-content-thm-roc-class-swap .proof-content}
-Since $Y^\star=1-Y$, $\{Y^\star=0\}=\{Y=1\}$ and $\{Y^\star=1\}=\{Y=0\}$. Under the unchanged rule,
+Since $Y'=1-Y$, $\{Y'=0\}=\{Y=1\}$ and $\{Y'=1\}=\{Y=0\}$. Under the unchanged rule,
 $$
-\mathbb{P}(X\ge t\mid Y^\star=0) = \mathrm{TPR}(t), \quad \mathbb{P}(X\ge t\mid Y^\star=1) = \mathrm{FPR}(t).
+\mathbb{P}(\phi_t(X)=1\mid Y'=0) = \mathrm{TPR}(t), \quad \mathbb{P}(\phi_t(X)=1\mid Y'=1) = \mathrm{FPR}(t).
 $$
 Thus $(\mathrm{FPR}(t),\mathrm{TPR}(t))\mapsto(\mathrm{TPR}(t),\,\mathrm{FPR}(t))$, a reflection about $y=x$.
 :::
 ::::
 
-##### Class label swap with threshold reversal
+##### Class label swap with test reversal
 
-Swapping the labels **and** reversing the rule, $Y^\star=1-Y$, $\hat{Y}_t^\star=\mathbb{1}\{X<t\}$, sends the operating point as
+Swapping the labels **and** reversing the test, $Y'=1-Y$, $\phi_t'=1-$, sends the operating point as
 $$
 \boxed{
 \begin{pmatrix}\mathrm{FPR}(t)\\ \mathrm{TPR}(t)\end{pmatrix}
@@ -510,7 +689,7 @@ $$
 
 # Anti-diagonal symmetry
 
-Under simultaneous class-label swapping and threshold reversal, the ROC curve is the reflection of the original curve about the anti-diagonal $y=1-x$.
+Under simultaneous class-label swapping and test reversal, the ROC curve is the reflection of the original curve about the anti-diagonal $y=1-x$.
 
 ::::
 
@@ -519,9 +698,9 @@ Under simultaneous class-label swapping and threshold reversal, the ROC curve is
 [▶]{#proof-arrow-thm-roc-class-inversion .proof-arrow} [Proof]{.proof-title}
 :::
 ::: {#proof-content-thm-roc-class-inversion .proof-content}
-As above, $\{Y^\star=0\}=\{Y=1\}$ and $\{Y^\star=1\}=\{Y=0\}$. Under the reversed rule, $\{X<t\}=\{X\ge t\}^c$ gives
+As above, $\{Y'=0\}=\{Y=1\}$ and $\{Y'=1\}=\{Y=0\}$. Under the reversed rule, 
 $$
-\mathbb{P}(X<t\mid Y^\star=0) = 1-\mathrm{TPR}(t), \quad \mathbb{P}(X<t\mid Y^\star=1) = 1-\mathrm{FPR}(t).
+\mathbb{P}(\phi_t'(X)=1\mid Y'=0) = 1-\mathrm{TPR}(t), \quad \mathbb{P}(\phi_t'(X)=1\mid Y'=1) = 1-\mathrm{FPR}(t).
 $$
 Thus $(\mathrm{FPR}(t),\mathrm{TPR}(t))\mapsto(1-\mathrm{TPR}(t),\,1-\mathrm{FPR}(t))$, a reflection about $y=1-x$.
 :::
@@ -532,7 +711,7 @@ Thus $(\mathrm{FPR}(t),\mathrm{TPR}(t))\mapsto(1-\mathrm{TPR}(t),\,1-\mathrm{FPR
 ::: {style="font-size:90%; overflow-x:auto; margin: 1em 0;"}
    Transformation | FPR$'$ / TPR$'$ | Geometry |
  |---|---|---|
- | Threshold reversal | $1-\mathrm{FPR}$ / $1-\mathrm{TPR}$ | Central symmetry, center $(0.5,0.5)$ |
+ | Test reversal | $1-\mathrm{FPR}$ / $1-\mathrm{TPR}$ | Central symmetry, center $(0.5,0.5)$ |
  | Label swap | $\mathrm{TPR}$ / $\mathrm{FPR}$ | Main diagonal $y=x$ |
  | Reversal + swap | $1-\mathrm{TPR}$ / $1-\mathrm{FPR}$ | Anti-diagonal $y=1-x$ |
 
@@ -580,7 +759,7 @@ You can verify this directly with the interactive below
 
 
 Below we summarize the ROC curves for classic location-scale distributions, along with the exponential case.
-Throughout, we assume that $Z_0, Z_1$ are independent and identically distributed with a common continuous CDF $F$.
+Throughout, we assume that $Z_0, Z_1$ are independent and identically distributed with a common continuous CDF $F$. The tests considered here are written as $\mathbb{1}(X \ge t)$.
 We define the location-scale variables as:
 
 $$
@@ -734,10 +913,302 @@ def roc(thresholds, y_true, score):
     return tpr, fpr
 ```
 
+ROC curves are commonly displayed with stepwise (vertical and horizontal) segments, but using affine interpolation between points provides a more informative visualization.
+In particular, the affine approach better reveals non-concavities in the curve, offering clearer insights into classifier performance and highlighting suboptimal decision thresholds (as explained below). Smooth interpolation distinguishes subtle variations in behavior that would otherwise be obscured by the sharp transitions of stepwise plots.
+
+
+
 **Note**: the jittering on the x-axis for the scatter plots is not meaningful but only here for visualization.
 
 
-### Area Under the ROC Curve 
+
+#### ROC curves and Neyman-Pearson
+
+
+:::: {#thm-roc-randomization}
+
+# Randomized mixtures fill the segment between two operating points
+
+Let $\phi$ and $\phi'$ be two tests with ROC operating points $P = (\mathrm{FPR}(\phi), \mathrm{TPR}(\phi))$ and $P' = (\mathrm{FPR}(\phi'), \mathrm{TPR}(\phi'))$.
+
+For any $\lambda \in [0,1]$, define the randomized classifier $\phi_\lambda$ as:
+$$
+\phi_\lambda(x) = \begin{cases}
+\phi(x) & \text{w. probability } \lambda \\
+\phi'(x) & \text{w. probability } 1-\lambda
+\end{cases}
+$$
+
+Then $\phi_\lambda$ is measurable and its operating point is the convex combination:
+$$
+\begin{align*}
+\mathrm{FPR}(\phi_\lambda) & = \lambda\,\mathrm{FPR}(\phi) + (1-\lambda)\,\mathrm{FPR}(\phi') \\
+\mathrm{TPR}(\phi_\lambda) & = \lambda\,\mathrm{TPR}(\phi) + (1-\lambda)\,\mathrm{TPR}(\phi')
+\end{align*}
+$$
+
+As $\lambda$ ranges from 0 to 1, all points on the segment $[P, P']$ are attainable by randomization.
+
+::::
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('thm-roc-randomization')"}
+[▶]{#proof-arrow-thm-roc-randomization .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-roc-randomization .proof-content}
+The measurability follows from the fact that $\phi_\lambda$ is a measurable function of $(B,x)$ where $B \sim \mathrm{Bernoulli}(\lambda)$.
+
+By linearity of expectation:
+$$
+\mathrm{FPR}(\phi_\lambda) = \lambda\,\mathrm{FPR}(\phi) + (1-\lambda)\,\mathrm{FPR}(\phi')
+$$
+and similarly for TPR, proving that $\phi_\lambda$ achieves the convex combination of the two operating points.
+
+As $\lambda$ varies from 0 to 1, this traces the entire segment $[P, P']$.
+:::
+
+::::
+
+Randomization therefore closes the ROC curve under convex combinations: any point of the segment joining two attainable operating points is itself attainable. This is why one may restrict attention to the **upper boundary** of the attainable region: anything below it can be improved or matched by randomizing between tests on the boundary.
+
+
+
+:::: {#thm-neyman-pearson}
+
+# Neyman–Pearson optimality of the likelihood-ratio classifier
+
+Let $X_0\sim\mathcal{L}(X\mid Y=0)$ and $X_1\sim\mathcal{L}(X\mid Y=1)$ be independent, with densities $f_0$ and $f_1$ with respect to a common $\sigma$-finite measure $\mu$ on $\mathbb{R}$. Assume $f_0>0$ $\mu$-almost everywhere.
+
+For every $\alpha\in[0,1]$, let $k_\alpha\ge 0$ and $\gamma_\alpha\in[0,1]$ be chosen so that the (possibly randomised) classifier
+
+$$
+\phi^\star_\alpha(x)=
+\begin{cases}
+1 & f_1(x)/f_0(x) > k_\alpha,\\
+\gamma_\alpha & f_1(x)/f_0(x) = k_\alpha,\\
+0 & f_1(x)/f_0(x) < k_\alpha,
+\end{cases}
+$$
+
+satisfies $\mathrm{FPR}(\phi^\star_\alpha)=\mathbb{E}[\phi^\star_\alpha(X_0)]=\alpha$. Then $\phi^\star_\alpha$ achieves the highest possible true-positive rate at false-positive level $\alpha$:
+
+$$
+\boxed{
+\mathrm{TPR}(\phi^\star_\alpha)
+=\sup\bigl\{\mathrm{TPR}(\phi):\phi\text{ measurable},\;\mathrm{FPR}(\phi)=\alpha\bigr\}.
+}
+$$
+
+As $\alpha$ varies over $[0,1]$, the resulting ROC curve $\alpha\mapsto\mathrm{TPR}(\phi^\star_\alpha)$ is the pointwise upper envelope of the ROC curves of all measurable classifiers, and it is concave.
+
+::::
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('thm-np-optimal-roc')"}
+[▶]{#proof-arrow-thm-np-optimal-roc .proof-arrow} [Proof]{.proof-title}
+:::
+::: {#proof-content-thm-np-optimal-roc .proof-content}
+
+### 1.  Optimality at a fixed level
+
+Fix $\alpha\in[0,1]$ and let $\phi$ be any measurable classifier with $\mathrm{FPR}(\phi)=\alpha$. We want to show $\mathrm{TPR}(\phi)\le\mathrm{TPR}(\phi^\star_\alpha)$.
+
+Write $A=\{x:\phi(x)=1\}$ and $A^\star=\{x:f_1(x)/f_0(x)>k_\alpha\}$. By the choice of $k_\alpha$ and $\gamma_\alpha$, $\mathrm{FPR}(\phi^\star_\alpha)=\alpha=\mathrm{FPR}(\phi)$, so
+
+$$
+\int_{A^\star} f_0\,d\mu = \int_A f_0\,d\mu.
+$$
+
+On $A^\star\setminus A$ one has $f_1/f_0>k_\alpha$, hence $f_1>k_\alpha f_0$; on $A\setminus A^\star$ one has $f_1/f_0\le k_\alpha$, hence $f_1\le k_\alpha f_0$. Therefore
+
+$$
+\begin{aligned}
+\mathrm{TPR}(\phi^\star_\alpha)-\mathrm{TPR}(\phi)
+&=\int_{A^\star\setminus A}f_1\,d\mu - \int_{A\setminus A^\star}f_1\,d\mu \\
+&\ge k_\alpha\int_{A^\star\setminus A}f_0\,d\mu - k_\alpha\int_{A\setminus A^\star}f_0\,d\mu \\
+&= k_\alpha\Bigl(\int_{A^\star}f_0\,d\mu - \int_A f_0\,d\mu\Bigr) = 0,
+\end{aligned}
+$$
+
+which gives $\mathrm{TPR}(\phi^\star_\alpha)\ge\mathrm{TPR}(\phi)$. Since $\phi$ was arbitrary, $\phi^\star_\alpha$ is optimal at level $\alpha$.
+
+The upper-envelope claim follows immediately: for any classifier $\phi$ with $\mathrm{FPR}(\phi)=\alpha$, the inequality above places its operating point on or below the likelihood-ratio ROC curve at the same FPR level.
+
+
+### 2.  Concavity of the envelope
+
+Take two false‑positive levels $\alpha_1,\alpha_2$ and a mixing weight $\lambda\in[0,1]$.  Let
+
+$$
+\alpha = \lambda\alpha_1+(1-\lambda)\alpha_2 .
+$$
+
+Consider the *randomised* classifier that, with probability $\lambda$, uses
+$\phi^\star_{\alpha_1}$ and, with probability $1-\lambda$, uses
+$\phi^\star_{\alpha_2}$:
+
+$$
+\psi(x)=\begin{cases}
+\phi^\star_{\alpha_1}(x) &\text{with prob. }\lambda,\\
+\phi^\star_{\alpha_2}(x) &\text{with prob. }1-\lambda .
+\end{cases}
+$$
+
+Since we have shown that  $\phi_1^\star$ (resp. $\phi_2^\star$) have FPR $\alpha_1$ (resp. $\alpha_2$), then
+
+$$
+\begin{aligned}
+\mathrm{FPR}(\psi) &=\lambda\,\alpha_1+(1-\lambda)\,\alpha_2=\alpha,\\
+\mathrm{TPR}(\psi) &=\lambda\,\mathrm{TPR}(\phi^\star_{\alpha_1})
+                     +(1-\lambda)\,\mathrm{TPR}(\phi^\star_{\alpha_2}).
+\end{aligned}
+\tag{4}
+$$
+
+Because $\psi$ is a (possibly randomised) admissible test, its true‑positive
+rate cannot exceed the optimal value at the same false‑positive level.
+Applying (1) with $\alpha$ gives
+
+$$
+\mathrm{TPR}(\phi^\star_\alpha)\;\ge\;\mathrm{TPR}(\psi).
+$$
+
+Substituting (4) yields exactly the desired concavity inequality.
+
+
+:::
+
+::::
+
+
+
+##### Likelihood-ratio tests for the Gaussian example
+
+Let $X\mid Y=0\sim\mathcal N(0,1)$ and $X\mid Y=1\sim\mathcal N(1,4)$, with $\Phi$ the standard normal CDF.
+
+
+
+**1. Likelihood-ratio (Neyman–Pearson) test**
+
+The log-likelihood ratio is
+
+$$
+\ell(x)=\tfrac{3}{8}x^{2}+\tfrac{1}{4}x-\tfrac{1}{8}-\ln2
+=\tfrac{3}{8}\!\Bigl(x+\tfrac{1}{3}\Bigr)^{2}-\tfrac{1}{6}-\ln2,
+$$
+
+so the level-$\lambda$ test rejects on $\{|x+\tfrac{1}{3}|\ge r\}$, where
+
+$$
+r(\lambda)=\sqrt{\tfrac{8}{3}\!\left(\lambda+\tfrac{1}{6}+\ln2\right)}\ge0.
+$$
+
+$$
+\boxed{
+\begin{aligned}
+\mathrm{FPR}(r)&=1-\Phi\!\bigl(r-\tfrac{1}{3}\bigr)+\Phi\!\bigl(-r-\tfrac{1}{3}\bigr),\\
+\mathrm{TPR}(r)&=1-\Phi\!\bigl(\tfrac{r}{2}-\tfrac{2}{3}\bigr)+\Phi\!\bigl(-\tfrac{r}{2}-\tfrac{2}{3}\bigr).
+\end{aligned}}
+$$
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('lr-fpr-tpr')"}
+[▶]{#proof-arrow-lr-fpr-tpr .proof-arrow} [Derivation]{.proof-title}
+:::
+::: {#proof-content-lr-fpr-tpr .proof-content}
+Since $X\mid Y=0\sim\mathcal N(0,1)$, the rejection region $\{|X+\tfrac{1}{3}|\ge r\}$ splits into $X\le-r-\tfrac{1}{3}$ and $X\ge r-\tfrac{1}{3}$:
+$$
+\mathrm{FPR}(r)=\mathbb P\!\bigl(X_0\ge r-\tfrac{1}{3}\bigr)+\mathbb P\!\bigl(X_0\le -r-\tfrac{1}{3}\bigr)
+=1-\Phi(r-\tfrac{1}{3})+\Phi(-r-\tfrac{1}{3}).
+$$
+Since $X\mid Y=1\sim\mathcal N(1,4)$, standardise $X_1=(X-1)/2\sim\mathcal N(0,1)$:
+$$
+\mathrm{TPR}(r)=\mathbb P\!\bigl(X_1\ge r-\tfrac{1}{3}\bigr)+\mathbb P\!\bigl(X_1\le -r-\tfrac{1}{3}\bigr)
+=1-\Phi\!\bigl(\tfrac{r-\tfrac{1}{3}-1}{2}\bigr)+\Phi\!\bigl(\tfrac{-r-\tfrac{1}{3}-1}{2}\bigr),
+$$
+which simplifies to the formula above.
+:::
+::::
+
+
+**2. Right-tail (one-sided) test** $\phi^{\mathrm{right}}_t(x)=\mathbb{1}\{x\ge t\}$
+
+$$
+\boxed{
+\begin{aligned}
+\mathrm{FPR}(t)&=1-\Phi(t),\\
+\mathrm{TPR}(t)&=1-\Phi\!\bigl(\tfrac{t-1}{2}\bigr).
+\end{aligned}}
+$$
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('right-fpr-tpr')"}
+[▶]{#proof-arrow-right-fpr-tpr .proof-arrow} [Derivation]{.proof-title}
+:::
+::: {#proof-content-right-fpr-tpr .proof-content}
+$\mathrm{FPR}(t)=\mathbb P(X_0\ge t)=1-\Phi(t)$. For TPR, standardise: $\mathbb P(X_1\ge t)=\mathbb P\!\bigl(\tfrac{X_1-1}{2}\ge\tfrac{t-1}{2}\bigr)=1-\Phi\!\bigl(\tfrac{t-1}{2}\bigr)$.
+:::
+::::
+
+
+
+**3. Two-sided (outside-interval) test** $\phi^{\mathrm{two}}_{c,r}(x)=\mathbb{1}\{|x-c|\ge r\}$
+
+$$
+\boxed{
+\begin{aligned}
+\mathrm{FPR}(c,r)&=1-\Phi(c+r)+\Phi(c-r),\\
+\mathrm{TPR}(c,r)&=1-\Phi\!\Bigl(\tfrac{c+r-1}{2}\Bigr)+\Phi\!\Bigl(\tfrac{c-r-1}{2}\Bigr).
+\end{aligned}}
+$$
+
+As before, $\{|X-c|\ge r\}=\{X\ge c+r\}\cup\{X\le c-r\}$, and both events are computed by standardising $X_0$ and $X_1$ respectively. Setting $c=-\tfrac{1}{3}$ recovers the likelihood-ratio test. With $c=0$, the FPR level is $\alpha=2\Phi(-r)$, giving $r_\alpha=\Phi^{-1}(1-\tfrac{\alpha}{2})$ and
+
+$$
+\mathrm{TPR}(\alpha)=\Phi\!\Bigl(\tfrac{1-r_\alpha}{2}\Bigr)+1-\Phi\!\Bigl(\tfrac{1+r_\alpha}{2}\Bigr).
+$$
+
+
+
+
+
+
+::: {#fig-gaussian-symmetric-roc}
+
+```{=html}
+<div id="gaussian-roc-simple"
+     style="display:flex; gap:12px; align-items:stretch; flex-wrap:wrap;
+            width:100%; max-width:720px; margin:0 auto;">
+
+  <div class="gaussian-roc-controls"
+       style="display:flex; flex-direction:column; justify-content:center;
+              min-width:150px; flex:0 0 150px;
+              border:1px solid rgba(0,0,0,0.15);
+              border-radius:8px; padding:8px; font-size:9.5px;
+              background:rgba(0,0,0,0.02);">
+    <label style="margin-bottom:4px;">Log‑likelihood‑ratio threshold</label>
+    <input id="lr-threshold" type="range" min="-4" max="4" step="0.01"
+           value="0" style="width:100%;">
+    <span id="lr-thr-val" style="font-weight:600; margin-top:2px;">0.00</span>
+  </div>
+
+  <div class="gaussian-roc-plot"
+       style="flex:1 1 380px; min-width:380px;
+              display:flex; align-items:center; justify-content:center;">
+  </div>
+</div>
+
+<script type="module" src="gaussian_roc_simple.js"></script>
+```
+
+**Gaussian example for visualizing on ROC curves, Neyman-Person dominance on other tests.**
+
+
+:::
+
+
+### Area Under the ROC Curve
 The **Area Under the ROC Curve (AUC)** is a scalar summary of the classifier’s discriminative power across all thresholds.
 Because the ROC curve plots the true positive rate against the false positive rate for every possible decision boundary, its area ​quantifies the probability that a randomly chosen positive instance is ranked higher than a randomly chosen negative instance.
 Often the AUC is used to measure overall performance: the larger the AUC, the better the assay discriminates between the two classes.
@@ -1037,11 +1508,11 @@ We now determine how the three symmetries of the previous section act on the AUC
 
 :::: {#thm-auc-class-inversion}
 
-# AUC under threshold reversal and class inversion
+# AUC under test reversal and class inversion
 
 Assume $X\mid Y=0$ and $X\mid Y=1$ are atomless and almost surely finite. Write $\mathrm{AUC}^\star$ for the AUC of the transformed problem in each case below. Then:
 
-- under threshold reversal alone, $\boxed{\mathrm{AUC}^\star = 1-\mathrm{AUC}}$;
+- under test reversal alone, $\boxed{\mathrm{AUC}^\star = 1-\mathrm{AUC}}$;
 - under class label swap alone, $\boxed{\mathrm{AUC}^\star = 1-\mathrm{AUC}}$;
 - under both together (the anti-diagonal transform), $\boxed{\mathrm{AUC}^\star = \mathrm{AUC}}$, leaving the AUC unchanged.
 
@@ -1308,7 +1779,7 @@ Consequently, for any $t\ge t^\star$ with $\mathrm{TPR}(t)>0$,
 $$
 \mathrm{Precision}(t) = \frac{\pi_1\,\mathrm{TPR}(t)}{\pi_1\,\mathrm{TPR}(t) + \pi_0\cdot0} = 1.
 $$
-If $\mathrm{TPR}(t)=0$ as well, then no positives are predicted and population precision is undefined. Thus the population PR curve has precision $1$ on the nonempty predicted-positive part of this threshold range; empirical implementations may separately assign precision $1$ at the no-predictions endpoint. 
+If $\mathrm{TPR}(t)=0$ as well, then no positives are predicted and population precision is undefined. Thus the population PR curve has precision $1$ on the nonempty predicted-positive part of this threshold range; empirical implementations may separately assign precision $1$ at the no-predictions endpoint.
 
 
 **The endpoints.** As $t$ ranges over $[t^\star,\infty)$, recall decreases from $1$ to $0$, and precision remains $1$ whenever predicted positives remain. The endpoint at recall $0$ is represented as $(0,1)$ under the usual PR-plotting convention; population precision is undefined if no positives are predicted. As $t\to-\infty$, $\mathrm{TPR}(t)\to1$ and $\mathrm{FPR}(t)\to1$ (@lem-roc-endpoints), so precision tends to $\pi_1$: the universal endpoint $(1,\pi_1)$ (see @thm-precision-formula).
@@ -1352,7 +1823,7 @@ If the positive-class score distribution is continuous, these points trace the f
 **Branch $t\le t^\dagger$.** Since $\mathrm{FPR}(t^\dagger)=1$ and $\mathrm{FPR}$ is non-increasing, $\mathrm{FPR}(t)\ge1$ for $t\le t^\dagger$, forcing $\mathrm{FPR}(t)\equiv1$ there. Substituting into @thm-precision-formula,
 $$
 \begin{align*}
-\mathrm{Precision}(t) 
+\mathrm{Precision}(t)
 & = \frac{\pi_1\,\mathrm{TPR}(t)}{\pi_1
 \mathrm{TPR}(t)+\pi_0}\\
 & = \frac{\pi_1\,r}{\pi_1\,r+\pi_0}, \quad r\triangleq    \mathrm{Recall}(t).
@@ -1411,11 +1882,11 @@ This is why the earlier Gaussian and exponential derivations needed tail-rate ar
 
 ### Symmetries of PR curves
 
-Unlike in ROC space, none of the three transformations (threshold reversal, class label swap, and their composition) has a simple geometric description in PR space: there is no reflection or rotation of the original PR curve that produces the transformed curves. The map $(\mathrm{FPR},\mathrm{TPR})\mapsto(\mathrm{Recall},\mathrm{Precision})$ is nonlinear and depends on the prevalence $\pi_1=\mathbb{P}(Y=1)$, and each transformation also changes the role of the positive class.
-Each transformed curve must therefore be recomputed from the definitions of precision and recall. Consequently, the transformed curves generally have a different shape from the original one, and, unlike the ROC curve, they all depend on $\pi_1$. What remains simple is the endpoint at $\mathrm{Recall}=1$: it is $(1,\pi_1)$ for the original curve and the threshold reversal, and $(1,1-\pi_1)$ for the two curves with swapped labels.
+Unlike in ROC space, none of the three transformations (test reversal, class label swap, and their composition) has a simple geometric description in PR space: there is no reflection or rotation of the original PR curve that produces the transformed curves. The map $(\mathrm{FPR},\mathrm{TPR})\mapsto(\mathrm{Recall},\mathrm{Precision})$ is nonlinear and depends on the prevalence $\pi_1=\mathbb{P}(Y=1)$, and each transformation also changes the role of the positive class.
+Each transformed curve must therefore be recomputed from the definitions of precision and recall. Consequently, the transformed curves generally have a different shape from the original one, and, unlike the ROC curve, they all depend on $\pi_1$. What remains simple is the endpoint at $\mathrm{Recall}=1$: it is $(1,\pi_1)$ for the original curve and the test reversal, and $(1,1-\pi_1)$ for the two curves with swapped labels.
 You can verify this directly with the interactive below.
 
-**Interactive PR curve exploration.** The visualization below illustrates these properties for the same Gaussian model $X\mid Y=0\sim\mathcal N(0,1)$, $X\mid Y=1\sim\mathcal N(1,2^2)$ as before. 
+**Interactive PR curve exploration.** The visualization below illustrates these properties for the same Gaussian model $X\mid Y=0\sim\mathcal N(0,1)$, $X\mid Y=1\sim\mathcal N(1,2^2)$ as before.
 Use the **Threshold ($t$)** slider to move along the PR curve and watch the operating point change, together with the corresponding points on the transformed curves. The **Prevalence ($\pi_1$)** slider shows that, unlike the ROC curve, the PR curve and its transformations are reshaped by the class balance, and the endpoints at $\mathrm{Recall}=1$ move with it. The plot also shows the threshold-reversed and class-swapped curves described above, as well as the extreme cases (perfect, random and always-wrong classifiers). Click an entry in the legend to show or hide the corresponding curve.
 
 ::: {#fig-gaussian-symmetric-pr}
@@ -1749,7 +2220,7 @@ Under the assumptions of @thm-ap,
 $$
 \boxed{1+\frac{\pi_0}{\pi_1}\ln\pi_0\ \le\ \mathrm{AP}\ \le\ 1.}
 $$
-The upper bound is attained if and only if the classifier is perfect ($\mathrm{AUC}=1$), and the lower bound if and only if it is always wrong ($\mathrm{AUC}=0$). 
+The upper bound is attained if and only if the classifier is perfect ($\mathrm{AUC}=1$), and the lower bound if and only if it is always wrong ($\mathrm{AUC}=0$).
 Moreover, for random guessing ($X_0\stackrel d=X_1$), $\mathrm{AP}=\pi_1$, and the lower bound is strictly smaller than $\pi_1$: an always-wrong classifier does worse than random guessing.
 
 ::::
@@ -2120,6 +2591,13 @@ Now we rerun the same assays, with the same thresholds, but keep only 5% of the 
 
 **Same assays, with only 5% of the positive samples kept** (same panels and thresholds as in @fig-assays-interactive).
 
+
+## Acknowledgement
+
+I am grateful to Stephan Clémençon for his feedback on a preliminary version, which led to improvements in the Neyman-Pearson and affine versions of empirical ROC curves.
+
+
+
 :::
 
 ## {{< fa link title="link" >}} References
@@ -2146,7 +2624,7 @@ This appendix gathers the computations behind @tbl-distributions, with the notat
 
 # Location-scale ROC curve
 
-Let $Z_0,Z_1$ be i.i.d. real-valued random variables with common CDF $F$, continuous and strictly increasing on $\{z\in\mathbb{R}:0<F(z)<1\}$, so that $F^{-1}:(0,1)\to\mathbb{R}$ is well defined. Fix $\mu_0,\mu_1\in\mathbb{R}$, $\sigma_0,\sigma_1>0$, and let 
+Let $Z_0,Z_1$ be i.i.d. real-valued random variables with common CDF $F$, continuous and strictly increasing on $\{z\in\mathbb{R}:0<F(z)<1\}$, so that $F^{-1}:(0,1)\to\mathbb{R}$ is well defined. Fix $\mu_0,\mu_1\in\mathbb{R}$, $\sigma_0,\sigma_1>0$, and let
 $$
 X_0\triangleq   \sigma_0Z_0+\mu_0, \quad X_1\triangleq   \sigma_1Z_1+\mu_1
 $$
@@ -2329,7 +2807,7 @@ $$
 $$
 
 **Cauchy.** The standard Cauchy CDF is $F(x)=\tfrac12+\tfrac1\pi\tan^{-1} x$. Since $\tan^{-1}$ is odd, $F(-x)=1-F(x)$.
-Solving 
+Solving
 $$
 \tfrac12+\tfrac1\pi\tan^{-1}(F^{-1}(p))=p
 $$ gives

@@ -209,9 +209,9 @@ export async function initGaussianSymmetricRocWidget(container) {
   function fillLegendRow() {
     legendRow.innerHTML = [
       [COLORS.roc, 'ROC curve'],
-      [COLORS.thresholdReversal, 'Threshold reversal'],
+      [COLORS.thresholdReversal, 'Test reversal'],
       [COLORS.classSwap, 'Class label swap'],
-      [COLORS.classSwapReversal, 'Class label swap + threshold reversal'],
+      [COLORS.classSwapReversal, 'Class label swap + test reversal'],
     ].map(([color, label]) => `
     <div style="display:flex; align-items:center; gap:4px;">
       <span style="width:8px; height:8px; border-radius:50%; background:${THEME.bg}; border:2px solid ${color}; display:inline-block;"></span>
@@ -318,7 +318,7 @@ export async function initGaussianSymmetricRocWidget(container) {
         color: COLORS.thresholdReversal,
         width: 2,
         dash: 'dot',
-        name: 'Threshold reversal',
+        name: 'Test reversal',
         legend: 'legend',
         legendrank: 201,
         markerSize: scaleMarker(10),
@@ -348,7 +348,7 @@ export async function initGaussianSymmetricRocWidget(container) {
         color: COLORS.classSwapReversal,
         width: 2,
         dash: 'longdash',
-        name: 'Class swap + threshold rev.',
+        name: 'Class swap + test rev.',
         legend: 'legend',
         legendrank: 203,
         markerSize: scaleMarker(10),

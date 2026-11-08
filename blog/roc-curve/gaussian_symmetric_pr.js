@@ -683,11 +683,11 @@ export async function initGaussianSymmetricPrWidget(container) {
 function fillLegendRow() {
   legendRow.innerHTML = [
     [COLORS.roc, 'PR curve'],
-    [COLORS.thresholdReversal, 'Threshold reversal'],
+    [COLORS.thresholdReversal, 'Test reversal'],
     [COLORS.classSwap, 'Class label swap'],
     [
       COLORS.classSwapReversal,
-      'Class label swap + threshold reversal',
+      'Class label swap + test reversal',
     ],
   ].map(([color, label]) => `
     <div style="
@@ -947,7 +947,7 @@ function styleControls() {
           width: 2,
           dash: 'dot',
 
-          name: 'Threshold reversal',
+          name: 'Test reversal',
 
           legend: 'legend',
           legendrank: 201,
@@ -997,7 +997,7 @@ function styleControls() {
           width: 2,
           dash: 'longdash',
 
-          name: 'Class swap + threshold rev.',
+          name: 'Class swap + test rev.',
 
           legend: 'legend',
           legendrank: 203,

@@ -101,6 +101,7 @@ A full list of publications can be found
 :::{#news}
 ## News
 - **Oct. 2026**: Elected an ELLIS Fellow.
+- **Oct. 2026**: Release[Pl@ntNet-300K-v2](https://zenodo.org/records/10419064) and associated weights on [HuggingFace](https://huggingface.co/collections/PlantNet/plantnet-300k-v2-models), see [github](https://github.com/plantnet/PlantNet-300K) repo.
 - **July 2026**: Come and join us for [CAP/RFIAP](https://caprfiap2026.sciencesconf.org/), CAp (Conférence sur l'Apprentissage automatique) and RFIAP (Reconnaissance des Formes, Image, Apprentissage et Perception) conferences.
 - **Sept. 2024**: I've joined Inria as a senior researcher (Team: Iroko, Montpellier)
 - **Sept. 2023**: ANR VITE accepted  (PI: B. Thirion; Theme: variable importance / explainability).

@@ -1,4 +1,14 @@
 # Internal slide decks
+
+# Internal slide decks
+- title: "2026 Taiwan - France Joint Research Workshop on Cybersecurity & AI"
+  date: 2026-11-06
+  image: posts/2026-11-06-FR-Taiwan/images/PN_simple.png
+  path: 2026-11-06-FR-Taiwan/index.qmd
+  categories:
+   - citizen sciences
+   - crowdsourcing
+   - open data
 - title: "Citizen science & machine learning for plant Identification: challenges fro Pl@ntNet"
   date: 2026-08-25
   image: posts/2026-08-25-slides_citizen_sciences/images/earth.jpg

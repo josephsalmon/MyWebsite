@@ -41,12 +41,38 @@
   data: ''
 - abstract: ''
   accessed: ''
+  author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://www.lirmm.fr/lirmm_eng/users/utilisateurs-lirmm/antoine-affouard">A.
+    Affouard</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
+    Charlier</a>, <a href="https://sites.google.com/site/jclombardocv/">J.-C. Lombardo</a>,
+    <a href="https://www.lirmm.fr/users/utilisateurs-lirmm/mathias-chouet">M. Chouet</a>,
+    <a href=" "https://amap-dev.cirad.fr/users/119"">H. Goëau</a>, <strong>J. Salmon</strong>,
+    <a href="http://agents.cirad.fr/index.php/Pierre+BONNET">P. Bonnet</a> and <a
+    href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
+  container-title: Methods in Ecology and Evolution
+  doi: ''
+  id: Lefort_etal24
+  issn: ''
+  issue: ''
+  issued: ''
+  page: 392-403
+  title: 'Cooperative learning of Pl@ntNet''s Artificial Intelligence algorithm: how
+    does it work and how can we improve it?'
+  type: article
+  url: https://arxiv.org/abs/2406.03356
+  volume: '17'
+  journaltitle: Methods in Ecology and Evolution
+  date: '2026'
+  path: https://arxiv.org/pdf/2406.03356.pdf
+  code: https://peerannot.github.io/
+  data: https://zenodo.org/records/10782465
+- abstract: ''
+  accessed: ''
   author: <a href="https://ilyassmoummad.github.io/">I. Moummad</a>, <a href="nan">R.
     Bensaid</a>, <a href="https://www.ina.fr/institut-national-audiovisuel/equipe-recherche/kawtar-zaher">K.
     Zaher</a>, <a href=" "https://amap-dev.cirad.fr/users/119"">H. Goëau</a>, <a href="https://sites.google.com/site/jclombardocv/">J.-C.
     Lombardo</a>, <strong>J. Salmon</strong>, <a href="http://agents.cirad.fr/index.php/Pierre+BONNET">P.
     Bonnet</a> and <a href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
-  container-title: ArXiv e-prints
+  container-title: Pattern Recognition. ICPR 2026 International Workshops
   doi: ''
   id: Moummad_etal2026
   issn: ''
@@ -54,12 +80,12 @@
   issued: ''
   page: ''
   title: Energy-Efficient Plant Monitoring via Knowledge Distillation
-  type: techreport
+  type: inproceedings
   url: ''
   volume: ''
-  journaltitle: ArXiv e-prints
+  journaltitle: Pattern Recognition. ICPR 2026 International Workshops
   date: '2026'
-  path: https://arxiv.org/pdf/2604.27178.pdf
+  path: https://inria.hal.science/hal-05673726
   code: ''
   data: ''
 - abstract: ''
@@ -106,32 +132,6 @@
   path: https://arxiv.org/abs/2303.18118
   code: ''
   data: ''
-- abstract: ''
-  accessed: ''
-  author: <a href="https://tanglef.github.io/">T. Lefort</a>, <a href="https://www.lirmm.fr/lirmm_eng/users/utilisateurs-lirmm/antoine-affouard">A.
-    Affouard</a>, <a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">B.
-    Charlier</a>, <a href="https://sites.google.com/site/jclombardocv/">J.-C. Lombardo</a>,
-    <a href="https://www.lirmm.fr/users/utilisateurs-lirmm/mathias-chouet">M. Chouet</a>,
-    <a href=" "https://amap-dev.cirad.fr/users/119"">H. Goëau</a>, <strong>J. Salmon</strong>,
-    <a href="http://agents.cirad.fr/index.php/Pierre+BONNET">P. Bonnet</a> and <a
-    href="http://www-sop.inria.fr/members/Alexis.Joly/">A. Joly</a>
-  container-title: Methods in Ecology and Evolution
-  doi: ''
-  id: Lefort_etal24
-  issn: ''
-  issue: ''
-  issued: ''
-  page: ''
-  title: 'Cooperative learning of Pl@ntNet''s Artificial Intelligence algorithm: how
-    does it work and how can we improve it?'
-  type: article
-  url: https://arxiv.org/abs/2406.03356
-  volume: ''
-  journaltitle: Methods in Ecology and Evolution
-  date: '2025'
-  path: https://arxiv.org/pdf/2406.03356.pdf
-  code: https://peerannot.github.io/
-  data: https://zenodo.org/records/10782465
 - abstract: ''
   accessed: ''
   author: <a href="https://www.linkedin.com/in/axel-dubar-1b462a182/">A. Dubar</a>,
