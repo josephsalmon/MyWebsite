@@ -510,7 +510,7 @@ which is precisely the desired monotonicity.
 
 
 
-##### Invariance of ROC curves under strictly increasing transformations
+##### Invariance of ROC curves under increasing transforms
 
 Let $g:\mathbb R\to\mathbb R$ be a **strictly increasing bijection** and set
 $Z=g(X)$.  We keep the same index set for thresholds and apply the original
@@ -929,7 +929,7 @@ In particular, the affine approach better reveals non-concavities in the curve, 
 
 :::: {#thm-roc-randomization}
 
-# Randomized mixtures fill the segment between two operating points
+# Randomized mixtures
 
 Let $\phi$ and $\phi'$ be two tests with ROC operating points $P = (\mathrm{FPR}(\phi), \mathrm{TPR}(\phi))$ and $P' = (\mathrm{FPR}(\phi'), \mathrm{TPR}(\phi'))$.
 
@@ -1113,7 +1113,7 @@ $$
 $$
 
 
-so the level-$\lambda$ test $\mathbb{1}(\ell^{LR}(x) \ge \lambda)$ rejects on $\{|x+\tfrac{1}{3}|\ge r\}$, where
+so the level-$\lambda$ test defined as $\mathbb{1}(\ell^{LR}(x) \ge \lambda)$ rejects on $\{|x+\tfrac{1}{3}|\ge r\}$, where
 
 $$
 r(\lambda)=\sqrt{\tfrac{8}{3}\!\left(\lambda+\tfrac{1}{6}+\ln2\right)}\ge0.
@@ -1249,65 +1249,96 @@ $$
 :::
 
 
+
 ### Area Under the ROC Curve
 The **Area Under the ROC Curve (AUC)** is a scalar summary of the classifier’s discriminative power across all thresholds.
-Because the ROC curve plots the true positive rate against the false positive rate for every possible decision boundary, its area ​quantifies the probability that a randomly chosen positive instance is ranked higher than a randomly chosen negative instance.
 Often the AUC is used to measure overall performance: the larger the AUC, the better the assay discriminates between the two classes.
 
-Remind that $X_0$ and $X_1$ are independent, distributed as the conditional laws of $X$ given $Y=0$ and $Y=1$, respectively:
+Recall that $X_0$ and $X_1$ are independent, with $X_0\sim\mathcal{L}(X\mid Y=0)$ and $X_1\sim\mathcal{L}(X\mid Y=1)$.
+
+**Families of tests.** We consider a family $(\phi_t)_{t\in\mathbb{R}}$ of (randomized) tests $\phi_t:\mathbb{R}\to[0,1]$, where $\phi_t(x)$ is the probability of predicting class 1 when $X=x$. We assume that, for every $x\in\mathbb{R}$, the family is **nested**,
+$$
+t_1<t_2 \implies \phi_{t_1}(x)\ge\phi_{t_2}(x),
+$$ {#eq-nested}
+**left-continuous**,
+$$
+\phi_t(x)=\lim_{u\uparrow t}\phi_u(x),
+$$ {#eq-left-cont}
+and has the right **boundary behavior**,
+$$
+\lim_{t\to-\infty}\phi_t(x)=1,\qquad \lim_{t\to+\infty}\phi_t(x)=0.
+$$ {#eq-boundary}
+
+Examples include:
+
+  - $\phi_t(x)=\mathbb{1}_{\{x\ge t\}}$,
+  - $\phi_t(x)=\mathbb{1}_{\{g(x)\ge t\}}$ for a score $g$,
+  - $\phi_t(x)=\sigma(g(x)-t)$ with $\sigma$ a sigmoid,
+  - etc.
+
+By @eq-nested, $\phi_{t+}(x)\triangleq\lim_{u\downarrow t}\phi_u(x)\le\phi_t(x)$ exists. Set
 $$
 \begin{align*}
-X_0 & \sim \mathcal{L}(X\mid Y=0)\\
-X_1 & \sim \mathcal{L}(X\mid Y=1).
+\alpha(t) & \triangleq\mathbb{E}[\phi_t(X_0)]\ (\text{FPR}),\\
+\beta(t)  & \triangleq\mathbb{E}[\phi_t(X_1)]\ (\text{TPR}).
 \end{align*}
-$$
-As conditional laws of a real random variable $X$, both $X_0$ and $X_1$ are almost surely finite.
-Below we use the notation $\overline{\mathbb{R}}= [-\infty, + \infty]$.
+$$ {#eq-alpha-beta}
 
 
 :::: {#thm-randomized-roc}
 
-# Randomized ROC curve
+# Randomized ROC curve for nested tests
 
-For $s\in[0,1]$, define
+**Score representation.** The functions $\alpha,\beta$ are non-increasing and left-continuous, with $\alpha(t+)=\mathbb{E}[\phi_{t+}(X_0)]$ and $\beta(t+)=\mathbb{E}[\phi_{t+}(X_1)]$. Both tend to $1$ at $-\infty$ and to $0$ at $+\infty$. Hence there exist **independent** real random variables $T_0,T_1$ with
 $$
-t(s) \triangleq \sup\{t\in\mathbb{R} : \mathbb{P}(X_0\ge t)\ge s\} \in \overline{\mathbb{R}}
+\begin{align*}
+\mathbb{P}(T_0\ge t) & = \alpha(t),\\
+\mathbb{P}(T_1\ge t) & = \beta(t).
+\end{align*}
+$$ {#eq-score}
+
+**Randomized tests with exact FPR.** For $s\in(0,1)$ let
+$$
+\begin{align*}
+t(s) & \triangleq\sup\{t:\alpha(t)\ge s\}\in\mathbb{R},\\
+\lambda(s)  & \triangleq
+    \begin{cases}
+        \dfrac{s-\alpha(t(s)+)}{\alpha(t(s))-\alpha(t(s)+)} & \text{ if} \alpha(t(s))>\alpha(t(s)+),\\[2mm]
+        0 & \text{otherwise,}
+    \end{cases}
+\end{align*}
+$$ {#eq-ts-lambda}
+and
+$$
+\phi^{(s)}\triangleq(1-\lambda(s))\,\phi_{t(s)+}+\lambda(s)\,\phi_{t(s)} .
+$$ {#eq-phi-s}
+Then $\lambda(s)\in[0,1]$, $\phi^{(s)}$ is a $[0,1]$-valued test and $\mathrm{FPR}(\phi^{(s)})=\mathbb{E}[\phi^{(s)}(X_0)]=s$.
+The ROC curve is
+$$
+\begin{align*}
+\mathrm{ROC}(s) 
+& \triangleq \mathbb{E}[\phi^{(s)}(X_1)]\\
+& = \beta(t(s)+)+\lambda(s)\bigl(\beta(t(s))-\beta(t(s)+)\bigr).
+\end{align*}
+$$ {#eq-roc}
+
+**Affine pieces.** If $c$ is an atom of $T_0$, i.e. $p\triangleq\alpha(c)-\alpha(c+)>0$, then the $\mathrm{ROC}$ curve is affine on $(\alpha(c+),\alpha(c)]$, with slope
+$$
+\begin{align*}
+\frac{\beta(c)-\beta(c+)}{\alpha(c)-\alpha(c+)}
+& =\frac{\mathbb{E}[\phi_c(X_1)-\phi_{c+}(X_1)]}{\mathbb{E}[\phi_c(X_0)-\phi_{c+}(X_0)]}\\
+& =\frac{\mathbb{P}(T_1=c)}{\mathbb{P}(T_0=c)}.
+\end{align*}
+$$ {#eq-slope}
+
+**Area under the curve.**
+$$
+\mathrm{AUC}\triangleq\int_0^1\mathrm{ROC}(s)\,ds, 
 $$
 and
 $$
-\lambda(s) \triangleq \frac{s - \mathbb{P}(X_0 > t(s))}{\mathbb{P}(X_0 = t(s))} \cdot \mathbb{1}_{\{\mathbb{P}(X_0 = t(s)) > 0\}}
-$$
-
-Define the randomized decision rule
-$$
-\phi_s(x) =
-\begin{cases}
-1, & x > t(s), \\
-\lambda(s), & x = t(s), \\
-0, & x < t(s).
-\end{cases}
-$$
-
-Then $\lambda(s)\in[0,1]$ is well defined for every $s\in[0,1]$, and
-$$
-\mathrm{FPR}(\phi_s) \triangleq \mathbb{E}[\phi_s(X_0)] = s,
-$$
-so the (randomized) ROC curve $\mathrm{ROC}(s)\triangleq\mathrm{TPR}(\phi_s)=\mathbb{E}[\phi_s(X_1)]$, $s\in[0,1]$, is well defined for any laws of $X_0$ and $X_1$.
-
-Moreover, at every atom $c$ of $X_0$ (i.e., $\mathbb{P}(X_0=c)>0$), $\mathrm{ROC}$ is affine on the interval $\bigl(\mathbb{P}(X_0>c),\ \mathbb{P}(X_0\ge c)\bigr]$, of length $\mathbb{P}(X_0=c)$, with slope $\mathbb{P}(X_1=c)/\mathbb{P}(X_0=c)$.
-
-Finally,
-$$
-\boxed{
-\mathrm{AUC} \triangleq \int_0^1\mathrm{ROC}(s)\,ds,
-}
-$$
-and
-$$
-\boxed{
-\mathrm{AUC} = \mathbb{P}(X_1>X_0) + \tfrac{\mathbb{P}(X_1=X_0)}{2}.
-}
-$$
+\boxed{\mathrm{AUC}=\mathbb{P}(T_1>T_0)+\tfrac12\,\mathbb{P}(T_1=T_0).}
+$$ {#eq-auc}
 
 ::::
 
@@ -1318,129 +1349,94 @@ $$
 :::
 
 ::: {#proof-content-thm-randomized-roc .proof-content}
-Throughout, write $S_0(t)\triangleq\mathbb{P}(X_0\ge t)$ for the survival function of $X_0$, and $S_0(x+)\triangleq\lim_{u\downarrow x}S_0(u)$ for its right limit at any $x\in\mathbb{R}$. As a survival function, $S_0$ is non-increasing, and it is left-continuous, $S_0(x)=\lim_{u\uparrow x}S_0(u)$, since $\{X_0\ge u_n\}\downarrow\{X_0\ge x\}$ along any $u_n\uparrow x$; likewise $\{X_0\ge u_n\}\uparrow\{X_0>x\}$ along any $u_n\downarrow x$ gives $S_0(x+)=\mathbb{P}(X_0>x)$, so
-$$
-\mathbb{P}(X_0=x)\triangleq S_0(x)-S_0(x+)=\mathbb{P}(X_0=x)
-$$
-is exactly the atomic mass of $X_0$ at $x$. Since $X_0$ is a.s. finite, continuity of measure applied to the nested events $\{X_0\ge t\}$ as $t\to\mp\infty$ also gives
-$$
-\lim_{t\to-\infty}S_0(t)=1, \quad \lim_{t\to\infty}S_0(t)=0.
-$$
 
-**Step 1 (existence of $t(s)$).** Call $L\subseteq\mathbb{R}$ a *lower set* if $t\in L,\,u\le t\Rightarrow u\in L$. Fix $s\in(0,1)$ and set $A_s\triangleq\{t:S_0(t)\ge s\}$. Since $S_0$ is non-increasing, $A_s$ is a lower set; since $S_0\to1>s$ as $t\to-\infty$ and $S_0\to0<s$ as $t\to\infty$, $A_s$ is nonempty and bounded above, so
-$$
-t(s)\triangleq\sup A_s\ \in\ \mathbb{R}
-$$
-is well defined. In fact $A_s=(-\infty,t(s)]$: any $t<t(s)$ is not an upper bound of $A_s$, hence lies in $A_s$ by the lower-set property; and $t(s)\in A_s$ by left-continuity of $S_0$ along $t_n\uparrow t(s)$, $t_n\in A_s$.
-
-For the endpoints $s\in\{0,1\}$, the same set $A_s=\{t:S_0(t)\ge s\}$ is used, with the convention $\sup\emptyset=-\infty$: since $S_0\le1$ everywhere, $A_0=\mathbb{R}$ and $t(0)=+\infty$; and $A_1=\{t:S_0(t)=1\}$, which is a (possibly empty) lower set, giving $t(1)\in\mathbb{R}\cup\{-\infty\}$ with $A_1=(-\infty,t(1)]$ by the same argument (or $A_1=\emptyset$, $t(1)=-\infty$, if $S_0(t)<1$ for every $t$).
-
-**Step 2 (level sets, and the defining inequality).** For $x\in\mathbb{R}$,
-$$
-t(s)=x \quad\Longleftrightarrow\quad S_0(x+) < s \le S_0(x). \tag{$\dagger$}
-$$
-
-*Proof.* By Step 1, $t(s)=x$ if and only if $x\in A_s$ and no $y>x$ lies in $A_s$, i.e.,
-$$
-S_0(x)\ge s \quad\text{and}\quad S_0(y)<s\ \ \forall y>x.
-$$
-Since $S_0$ is non-increasing, $\sup_{y>x}S_0(y)=S_0(x+)$, so the second condition is equivalent to $s>S_0(x+)$; this proves $(\dagger)$.
-
-Taking $x=t(s)$ in $(\dagger)$ yields both the defining inequality and the atom size at the threshold:
-$$
-\begin{cases}
-S_0(t(s)+) \ \le\ s\ \le\ S_0(t(s)), \\
-S_0(t(s))-S_0(t(s)+) = \mathbb{P}(X_0=t(s)). \tag{$\ast$}
-\end{cases}
-$$
-
-
-**Step 3 ($\phi_s$ attains $\mathrm{FPR}(\phi_s)=s$ exactly).** By $(\ast)$,
-$$
-0\ \le\ s-S_0(t(s)+)\ \le\ \mathbb{P}(X_0=t(s)),
-$$
-so whenever $\mathbb{P}(X_0=t(s))>0$, $\lambda(s)=\dfrac{s-S_0(t(s)+)}{P(X_0=t(s))}\in[0,1]$ . If instead $\mathbb{P}(X_0=t(s))=0$, the two bounds coincide and force $s=S_0(t(s)+)$; the definition sets $\lambda(s)\triangleq 0$ in this case, and its value has no impact since it multiplies the null event $\{X_0=t(s)\}$. In either case,
-$$
-\mathrm{FPR}(\phi_s) = \mathbb{E}[\phi_s(X_0)] = S_0(t(s)+) + \lambda(s)\,\mathbb{P}(X_0=t(s)) = s.
-$$
-
-
-**Step 4 (affine property of ROC).** Fix $c$ with $\mathbb{P}(X_0=c)>0$, and let $s\in(S_0(c+),S_0(c)]$. By $(\dagger)$, $t(s)=c$ throughout this interval, so substituting $t(s)=c$ into the definition of $\lambda$, legitimate since $\mathbb{P}(X_0=t(s))=\mathbb{P}(X_0=c)>0$ there, gives
-$$
-\lambda(s) = \frac{s-S_0(c+)}{P(X_0=c)},
-$$
-a linear, increasing function of $s$, running from $0$ at $s=S_0(c+)$ to $1$ at $s=S_0(c)$. Hence
-$\mathrm{ROC}(s) = \mathbb{E}[\phi_s(X_1)] = \mathbb{P}(X_1>c) + \lambda(s)\,\mathbb{P}(X_1=c)$
-is affine in $s$ on $(S_0(c+),S_0(c)]$, an interval of length $\mathbb{P}(X_0=c)$, with slope $\mathbb{P}(X_1=c)/\mathbb{P}(X_0=c)$.
-
-**Step 5 (AUC).** Since $t(\cdot)$ is non-increasing (its sublevel sets $A_s$ are nested in $s$, by Step 1) and $\lambda(\cdot)$ is Borel where defined, $(s,x)\mapsto\phi_s(x)$ is jointly measurable, $[0,1]$-valued, so Tonelli's theorem gives
-$$
-\mathrm{AUC} = \int_0^1 \mathbb{E}[\phi_s(X_1)]\,ds = \mathbb{E}\!\left[\int_0^1 \phi_s(X_1)\,ds\right].
-$$
-
-Fix $x\in\mathbb{R}$. By $(\dagger)$, up to the single (Lebesgue-null) point $S_0(x+)$, the interval $[0,1]$ splits into three sets, according to the position of $t(s)$ relative to $x$:
+**Monotonicity and score representation** (@eq-score). By @eq-nested, $t\mapsto\phi_t(x)$ is non-increasing, so $\alpha,\beta$ are non-increasing. Since $0\le\phi_t\le1$, dominated convergence together with @eq-left-cont, @eq-boundary and the definition of $\phi_{t+}$ gives left-continuity of $\alpha,\beta$, the identities for $\alpha(t+),\beta(t+)$, and the limits $1$ at $-\infty$ and $0$ at $+\infty$.
+Hence $F_0(t)\triangleq1-\alpha(t)$ is non-decreasing, left-continuous, with limits $0$ and $1$: it is the distribution function $t\mapsto\mathbb{P}(T_0<t)$ of a unique probability law on $\mathbb{R}$. Likewise for $\beta$. Take $T_0,T_1$ independent with these laws. In particular
 $$
 \begin{align*}
-\{s:t(s)>x\} &= [0,S_0(x+)], & \operatorname{Leb}\bigl(\{s:t(s)>x\}\bigr) &= \mathbb{P}(X_0>x), \\
-\{s:t(s)=x\} &= (S_0(x+),S_0(x)], & \operatorname{Leb}\bigl(\{s:t(s)=x\}\bigr) &= \mathbb{P}(X_0=x), \\
-\{s:t(s)<x\} &= (S_0(x),1], & \operatorname{Leb}\bigl(\{s:t(s)<x\}\bigr) &= \mathbb{P}(X_0<x).
+\mathbb{P}(T_0>t)
+& = \alpha(t+),\\
+\mathbb{P}(T_1>t)
+& = \beta(t+),\\
+\mathbb{P}(T_0=t)
+& =\alpha(t)-\alpha(t+),\\
+\mathbb{P}(T_1=t)
+& =\beta(t)-\beta(t+).
+\end{align*}
+$$ {#eq-atoms}
+
+**Level sets of $t(\cdot)$.** Fix $s\in(0,1)$ and $A_s\triangleq\{t:\alpha(t)\ge s\}$. It is a lower set (as $\alpha$ is non-increasing), non-empty and bounded above (by the limits of $\alpha$), so $t(s)=\sup A_s\in\mathbb{R}$. By left-continuity, $t(s)\in A_s$, so $A_s=(-\infty,t(s)]$. Therefore, for every $y\in\mathbb{R}$,
+$$
+t(s)\ge y\iff s\le\alpha(y),\qquad
+t(s)>y\iff s\le\alpha(y')\ \text{for some }y'>y .
+$$
+The second set is $\bigcup_{y'>y}(0,\alpha(y')]$, which lies between $(0,\alpha(y+))$ and $(0,\alpha(y+)]$. Consequently, up to at most one point of $s$ (Lebesgue-null),
+$$
+\{s:t(s)<y\}=(\alpha(y),1),\qquad \{s:t(s)=y\}=(\alpha(y+),\alpha(y)]. 
+$$ {#eq-levelsets}
+Taking $y=t(s)$ also gives the sandwich
+$$
+\alpha(t(s)+)\le s\le\alpha(t(s)).
+$$ {#eq-sandwich}
+
+**Exact FPR** (@eq-ts-lambda, @eq-phi-s). Write $t=t(s)$. By @eq-sandwich, $0\le s-\alpha(t+)\le\alpha(t)-\alpha(t+)$, so $\lambda(s)\in[0,1]$ when the atom $\alpha(t)-\alpha(t+)$ is positive. If it is zero, then $\alpha(t+)=s=\alpha(t)$. In both cases
+$$
+\mathbb{E}[\phi^{(s)}(X_0)]=(1-\lambda)\alpha(t+)+\lambda\alpha(t)=s,
+$$
+and $\phi^{(s)}$ is a convex combination of $[0,1]$-valued functions, hence a test.
+
+**Affine pieces** (@eq-slope). Let $s\in(\alpha(c+),\alpha(c)]$ with $p=\alpha(c)-\alpha(c+)>0$. By @eq-levelsets, $t(s)=c$, so $\lambda(s)=(s-\alpha(c+))/p$ and, by @eq-roc,
+$$
+\mathrm{ROC}(s)=\beta(c+)+\frac{s-\alpha(c+)}{p}\bigl(\beta(c)-\beta(c+)\bigr),
+$$
+which is affine on an interval of length $p$, with the stated slope (use @eq-atoms for the expressions in terms of $\phi$ and $T_i$).
+
+**AUC** (@eq-auc). By @eq-atoms, for every $s$,
+$$
+\mathrm{ROC}(s)=\mathbb{E}\bigl[h(s,T_1)\bigr],\qquad h(s,y)\triangleq\mathbb{1}_{\{y>t(s)\}}+\lambda(s)\mathbb{1}_{\{y=t(s)\}}.
+$$ {#eq-h}
+$h$ is Borel, because $t(\cdot)$ is monotone and so are the compositions $\alpha(t(\cdot))$ and $\alpha(t(\cdot)+)$. By Tonelli,
+$$
+\mathrm{AUC}=\mathbb{E}\Bigl[\int_0^1 h(s,T_1)\,ds\Bigr].
+$$ {#eq-tonelli}
+
+::: {#lem-tie}
+For every $y\in\mathbb{R}$, $\displaystyle\int_0^1 h(s,y)\,ds=\mathbb{P}(T_0<y)+\tfrac12\mathbb{P}(T_0=y)$.
+:::
+
+*Proof of @lem-tie.* Let $p=\mathbb{P}(T_0=y)=\alpha(y)-\alpha(y+)$. By @eq-levelsets, $\{t(s)<y\}$ has length $1-\alpha(y)=\mathbb{P}(T_0<y)$ and $h=1$ there; $h=0$ on $\{t(s)>y\}$. On $\{t(s)=y\}$, which has length $p$, $h(s,y)=\lambda(s)$. If $p=0$ this set is null. If $p>0$, $\lambda(s)=(s-\alpha(y+))/p$ runs linearly from $0$ to $1$ on an interval of length $p$, so its integral is $p/2$. $\square$
+
+Applying @lem-tie at $y=T_1$ in @eq-tonelli and using the independence of $T_0$ and $T_1$,
+By @lem-tie and @eq-tonelli, $\mathrm{AUC}=\mathbb{E}[g(T_1)]$ with
+$$
+g(y)\triangleq\mathbb{P}(T_0<y)+\tfrac12\,\mathbb{P}(T_0=y).
+$$
+Since $T_0$ and $T_1$ are independent, their joint law is the product $\mu_0\otimes\mu_1$, and Fubini (bounded integrands) gives, for $\mathbb{1}_{\{x<y\}}$ and $\mathbb{1}_{\{x=y\}}$ respectively,
+$$
+\begin{align*}
+\mathbb{E}[g(T_1)] & =\int\Bigl(\int\bigl(\mathbb{1}_{\{x<y\}}+\tfrac12\mathbb{1}_{\{x=y\}}\bigr)\mu_0(dx)\Bigr)\mu_1(dy)\\
+& =\mathbb{P}(T_1>T_0)+\tfrac12\,\mathbb{P}(T_1=T_0).
 \end{align*}
 $$
-
-On each of these three sets, $\phi_s(x)=\mathbb{1}\{x>t(s)\}+\lambda(s)\mathbb{1}\{x=t(s)\}$ takes a simple form:
-$$
-\phi_s(x) =
-\begin{cases}
-0, & t(s)>x,\\
-\lambda(s), & t(s)=x,\\
-1, & t(s)<x.
-\end{cases}
-$$
-Hence $\int_0^1\phi_s(x)\,ds$ splits into three integrals, one over each set:
-$$
-\int_0^1\phi_s(x)\,ds
-= \underbrace{\int_{\{t(s)>x\}} 0\,ds}_{=\,0}
-\ +\ \underbrace{\int_{\{t(s)=x\}} \lambda(s)\,ds}_{=:I(x)}
-\ +\ \underbrace{\int_{\{t(s)<x\}} 1\,ds}_{=\,\mathbb{P}(X_0<x)}.
-$$
-
-It remains to compute $I(x)=\int_{(S_0(x+),S_0(x)]} \lambda(s)\,ds$, by splitting on whether $x$ is an atom of $X_0$:
-
-- If $\mathbb{P}(X_0=x)=0$: the domain of integration is Lebesgue-null, so $I(x)=0=\tfrac12\,\mathbb{P}(X_0=x)$.
-- If $\mathbb{P}(X_0=x)>0$: by Step 4 (with $c=x$), $\lambda(s)$ runs linearly from $0$ to $1$ as $s$ ranges over $(S_0(x+),S_0(x)]$. The average of a function running linearly between $0$ and $1$ over an interval is $\tfrac12$ (the midpoint of its range), so $I(x)=\mathbb{P}(X_0=x)\cdot\tfrac12$.
-
-Either way, $I(x)=\tfrac12\,\mathbb{P}(X_0=x)$, and therefore
-$$
-\int_0^1 \phi_s(x)\,ds = \mathbb{P}(X_0<x) + \tfrac12\,\mathbb{P}(X_0=x) = \mathbb{P}(X_0<x) + \tfrac12\,\mathbb{P}(X_0=x).
-$$
-
-Substituting $x=X_1$, taking expectations, and using the tower property,
-$$
-\mathrm{AUC} = \mathbb{P}(X_0<X_1) + \tfrac12\mathbb{P}(X_0=X_1) = \mathbb{P}(X_1>X_0) + \tfrac12\mathbb{P}(X_1=X_0).
-$$
-
 :::
 
 ::::
 
 
-For continuous random variables (with no point masses), the AUC reduces to the probability that $X_1 > X_0$.
 
+For a general nested family, ties come from atoms of the random scores $T_0,T_1$ of @eq-score, not of $X_0,X_1$. If one of these scores has no atom, the tie term disappears.
 
 :::: {#cor-continuous-auc}
 
+# AUC without ties
 
-# AUC for continuous distributions
-
-Let $X_0 \sim \mathcal{L}(X \mid Y=0)$ and $X_1 \sim \mathcal{L}(X \mid Y=1)$ be independent continuous random variables (no point masses).
-
-Then, the AUC of the ROC curve simplifies to:
-
+Consider a family of tests $(\phi_t)$ satisfying @eq-nested, @eq-left-cont and @eq-boundary. Assume that $\alpha$ is continuous, or that $\beta$ is continuous. Equivalently, $T_0$ or $T_1$ has no atom. Then
 $$
 \boxed{
-\mathrm{AUC} = \mathbb{P}(X_1 > X_0).
+\mathrm{AUC} = \mathbb{P}(T_1 > T_0),
 }
 $$
+and, if $\alpha$ is continuous, $\lambda\equiv 0$, $\phi^{(s)}=\phi_{t(s)}$ and $\mathrm{ROC}(s)=\beta(t(s)+)$.
 
 ::::
 
@@ -1451,11 +1447,16 @@ $$
 
 ::: {#proof-content-cor-continuous-auc .proof-content}
 
-Since $X_0$ and $X_1$ are continuous, $\mathbb{P}(X_1 = X_0) = 0$. By the randomized ROC theorem (@thm-randomized-roc), the AUC is:
-
+By @eq-atoms, $\mathbb{P}(T_0=t)=\alpha(t)-\alpha(t+)=\mathbb{E}[\phi_t(X_0)-\phi_{t+}(X_0)]$, and similarly for $T_1$ with $\beta$. So $T_0$ has no atom if and only if $\alpha$ is continuous.
+By independence and Fubini (as in the proof of the AUC formula),
 $$
-\mathrm{AUC} = \mathbb{P}(X_1 > X_0) + \tfrac12 \mathbb{P}(X_1 = X_0) = \mathbb{P}(X_1 > X_0).
+\mathbb{P}(T_1=T_0)=\int\mathbb{P}(T_0=y)\,\mu_1(dy)=0 .
 $$
+If instead $T_1$ has no atom, integrate out $T_1$ first: $\mathbb{P}(T_1=T_0)=\int\mathbb{P}(T_1=x)\,\mu_0(dx)=0$. By the randomized ROC theorem (@thm-randomized-roc, @eq-auc),
+$$
+\mathrm{AUC}=\mathbb{P}(T_1>T_0)+\tfrac12\,\mathbb{P}(T_1=T_0)=\mathbb{P}(T_1>T_0).
+$$
+If $\alpha$ is continuous, the denominator of $\lambda$ in @eq-ts-lambda is $0$, so $\lambda\equiv0$, $\phi^{(s)}=\phi_{t(s)+}=\phi_{t(s)}$ and @eq-roc gives $\mathrm{ROC}(s)=\beta(t(s))$.
 
 :::
 ::::
@@ -1465,25 +1466,44 @@ Replacing $X_0,X_1$ by two independent samples and $\mathbb{P}(X_1>X_0)$ by the 
 
 :::: {#thm-empirical-auc-mann-whitney}
 
-# Empirical AUC and Mann-Whitney U Statistic
+# Empirical AUC and Mann-Whitney U statistic
 
-Let $X_{1,1}, \dots, X_{1,n_1}$ be an i.i.d. sample from $X_1 \sim \mathcal{L}(X \mid Y=1)$ and $X_{0,1}, \dots, X_{0,n_0}$ be an i.i.d. sample from $X_0 \sim \mathcal{L}(X \mid Y=0)$, with both samples independent of each other. Assume $X_1$ and $X_0$ are continuous random variables (no point masses).
-
-Let $R_1$ be the sum of the ranks of the $X_{1,i}$ values in the combined sample of size $n_1 + n_0$ (ranks assigned in ascending order, so the smallest value has rank $1$). The **Mann-Whitney U statistic** for the positive group is defined as:
+Let $X_{1,1},\dots,X_{1,n_1}$ be an i.i.d. sample of $X_1\sim\mathcal{L}(X\mid Y=1)$ and $X_{0,1},\dots,X_{0,n_0}$ an i.i.d. sample of $X_0\sim\mathcal{L}(X\mid Y=0)$, the two samples being independent. Consider a family of tests $(\phi_t)$ satisfying @eq-nested, @eq-left-cont and @eq-boundary. The **empirical ROC curve** is the ROC curve of @thm-randomized-roc computed with the empirical laws of the two samples, that is with
 $$
-\begin{align*}
-U_1 & = R_1 - \frac{n_1 (n_1 + 1)}{2}\\
-    & = \sum_{i=1}^{n_1}\sum_{j=1}^{n_0} \mathbb{1}(X_{1,i} > X_{0,j}).
-\end{align*}
-$$
+\alpha_{n}(t)=\frac1{n_0}\sum_{j=1}^{n_0}\phi_t(X_{0,j}),\qquad
+\beta_{n}(t)=\frac1{n_1}\sum_{i=1}^{n_1}\phi_t(X_{1,i}),
+$$ {#eq-empirical-alpha-beta}
+and $\widehat{\mathrm{AUC}}$ denotes its area.
 
-Then, the **empirical AUC** of the ROC curve is equivalent to the normalized Mann-Whitney U statistic:
+**General family.** For every $x\in\mathbb{R}$, let $T_x$ be a real random variable with $\mathbb{P}(T_x\ge t)=\phi_t(x)$, the $T_x$ being independent across $x$. Then
 $$
 \boxed{
-\widehat{\mathrm{AUC}} = \frac{1}{n_1 n_0}\sum_{i=1}^{n_1}\sum_{j=1}^{n_0} \mathbb{1}(X_{1,i} > X_{0,j}).
+\widehat{\mathrm{AUC}}=\frac1{n_1n_0}\sum_{i=1}^{n_1}\sum_{j=1}^{n_0}k(X_{1,i},X_{0,j}),
 }
+$$ {#eq-empirical-kernel}
+where
+$$
+k(x_1,x_0)\triangleq\mathbb{P}(T_{x_1}>T_{x_0})+\tfrac12\,\mathbb{P}(T_{x_1}=T_{x_0}).
 $$
 
+**Rank formulation (score tests).** Let $\phi_t(x)=\mathbb{1}_{\{g(x)\ge t\}}$ for a score $g$. Then $T_x=g(x)$ and
+$$
+k(x_1,x_0)=\mathbb{1}_{\{g(x_1)>g(x_0)\}}+\tfrac12\mathbb{1}_{\{g(x_1)=g(x_0)\}}.
+$$
+Let $R_1$ be the sum of the ranks of the $g(X_{1,i})$ in the pooled sample of size $n_1+n_0$, ranks being assigned in ascending order (smallest value has rank $1$), with tied values receiving the average of their ranks. The **Mann-Whitney statistic** is
+$$
+U_1\triangleq R_1-\frac{n_1(n_1+1)}{2}.
+$$
+Then
+$$
+\boxed{
+\widehat{\mathrm{AUC}}=\frac{U_1}{n_1n_0}.
+}
+$$ {#eq-empirical-mw}
+If moreover $g(X_0)$ or $g(X_1)$ has no point mass (@cor-continuous-auc), there are almost surely no ties, the ranks are ordinary ranks, and
+$$
+U_1=\sum_{i=1}^{n_1}\sum_{j=1}^{n_0}\mathbb{1}_{\{g(X_{1,i})>g(X_{0,j})\}}.
+$$
 ::::
 
 :::: {.proof-container}
@@ -1493,69 +1513,65 @@ $$
 
 ::: {#proof-content-thm-empirical-auc-mann-whitney .proof-content}
 
-1. **Rank Sum Interpretation**:
-   The term $R_1$ in $U_1$ is the sum of the ranks of the $X_{1,i}$ values in the combined sample of size $n_1 + n_0$. For continuous distributions, all $X_{1,i}$ and $X_{0,j}$ are distinct almost surely, so the rank of each $X_{1,i}$ counts: the $X_{0,j}$ values it exceeds, the $X_{1,i'}$ values ($i' \neq i$) it exceeds, and $1$ for its own position. Introducing
-   $$
-   \begin{align*}
-   S_i & \triangleq \sum_{j=1}^{n_0} \mathbb{1}(X_{1,i} > X_{0,j}),\\
-   C_i & \triangleq \sum_{i' \neq i} \mathbb{1}(X_{1,i} > X_{1,i'}),
-    \end{align*}
-   $$
-   this reads
-   $$
-   R_1 = \sum_{i=1}^{n_1} \left( S_i + C_i + 1 \right).
-   $$
+**General family** (@eq-empirical-kernel). For fixed $x$, @eq-nested, @eq-left-cont and @eq-boundary say that $t\mapsto1-\phi_t(x)$ is non-decreasing, left-continuous, with limits $0$ and $1$. So $T_x$ exists, with law $\nu_x$. @thm-randomized-roc holds for any laws of $X_0$ and $X_1$, in particular for the empirical ones. With these laws, @eq-empirical-alpha-beta shows that the scores of @eq-score are mixtures:
+$$
+T_0\sim\frac1{n_0}\sum_{j}\nu_{X_{0,j}},\qquad T_1\sim\frac1{n_1}\sum_{i}\nu_{X_{1,i}},\qquad T_0\perp T_1 .
+$$
+The samples are held fixed, so these are laws conditional on the data. Since $\mathbb{P}(T_1>T_0)$ and $\mathbb{P}(T_1=T_0)$ are bilinear in the two laws (Fubini, as in the proof of @eq-auc),
+$$
+\begin{align*}
+\widehat{\mathrm{AUC}}
+& =\mathbb{P}(T_1>T_0)+\tfrac12\mathbb{P}(T_1=T_0)\\
+& =\frac1{n_1n_0}\sum_{i,j}\Bigl(\mathbb{P}(T_{X_{1,i}}>T_{X_{0,j}})+\tfrac12\mathbb{P}(T_{X_{1,i}}=T_{X_{0,j}})\Bigr),
+\end{align*}
+$$
+which is @eq-empirical-kernel.
 
-2. **Simplification of $R_1$**:
-   For each unordered pair $\{i,i'\}\subseteq\{1,\dots,n_1\}$, exactly one of the two indices has the larger value, so $\sum_i C_i$ counts each of the $\binom{n_1}{2}$ pairs exactly once:
-   $$
-   \sum_{i=1}^{n_1} C_i = \binom{n_1}{2} = \frac{n_1(n_1-1)}{2}.
-   $$
-   Writing
-   $$
-   S \triangleq \sum_{i=1}^{n_1}\sum_{j=1}^{n_0} \mathbb{1}(X_{1,i} > X_{0,j})
-   $$
-   for the number of cross-sample pairs where the positive-group value is larger, this gives
-   $$
-   R_1 = S + \frac{n_1(n_1-1)}{2} + n_1 = S + \frac{n_1(n_1+1)}{2}.
-   $$
+**Rank formulation** (@eq-empirical-mw). For $\phi_t=\mathbb{1}_{\{g\ge t\}}$, $T_x=g(x)$ is deterministic and $k$ takes the stated form. Write $Z_{1,i}=g(X_{1,i})$, $Z_{0,j}=g(X_{0,j})$, and
+$$
+c(a,b)\triangleq\mathbb{1}_{\{a>b\}}+\tfrac12\mathbb{1}_{\{a=b\}},\qquad c(a,b)+c(b,a)=1 .
+$$
 
-3. **Link to $U_1$**:
-   Substituting this expression for $R_1$ into the definition of $U_1$,
-   $$
-   U_1 = \left(S + \frac{n_1(n_1+1)}{2}\right) - \frac{n_1(n_1+1)}{2} = S,
-   $$
-   so $U_1$ is exactly the count of cross-sample pairs with $X_{1,i}>X_{0,j}$:
-   $$
-   U_1 = \sum_{i=1}^{n_1} \sum_{j=1}^{n_0} \mathbb{1}(X_{1,i} > X_{0,j}).
-   $$
+*Rank sum.* The midrank of $Z_{1,i}$ in the pooled sample is
+$$
+1+\underbrace{\sum_{j=1}^{n_0}c(Z_{1,i},Z_{0,j})}_{S_i}+\underbrace{\sum_{i'\ne i}c(Z_{1,i},Z_{1,i'})}_{C_i},
+$$
+since each observation strictly below counts $1$ and each tied one counts $\tfrac12$. Hence $R_1=\sum_{i}(1+S_i+C_i)$.
 
-4. **Empirical AUC**:
-   Recall that $\widehat{\mathrm{AUC}}$ is defined as the fraction of positive/negative pairs correctly ordered by the score:
-   $$
-   \widehat{\mathrm{AUC}} = \frac{1}{n_1 n_0} \sum_{i=1}^{n_1} \sum_{j=1}^{n_0} \mathbb{1}(X_{1,i} > X_{0,j}) = \frac{S}{n_1n_0}.
-   $$
-   By Step 3, $S=U_1$, so
-   $$
-   \widehat{\mathrm{AUC}} = \frac{U_1}{n_1 n_0}.
-   $$
+*Within-group term.* For each unordered pair $\{i,i'\}$, $c(Z_{1,i},Z_{1,i'})+c(Z_{1,i'},Z_{1,i})=1$, so $\sum_iC_i=\binom{n_1}{2}$, with or without ties.
+
+*Conclusion.* Let $S\triangleq\sum_{i,j}c(Z_{1,i},Z_{0,j})=\sum_i S_i$. Then
+$$
+R_1=S+\frac{n_1(n_1-1)}2+n_1=S+\frac{n_1(n_1+1)}2,
+$$
+so $U_1=S$. By @eq-empirical-kernel, $\widehat{\mathrm{AUC}}=S/(n_1n_0)=U_1/(n_1n_0)$, which is @eq-empirical-mw.
 
 :::
 ::::
 
 
-We now determine how the three symmetries of the previous section act on the AUC.
 
+We now determine how the three symmetries of the previous section act on the AUC.
 
 :::: {#thm-auc-class-inversion}
 
 # AUC under test reversal and class inversion
 
-Assume $X\mid Y=0$ and $X\mid Y=1$ are atomless and almost surely finite. Write $\mathrm{AUC}^\star$ for the AUC of the transformed problem in each case below. Then:
+Consider a family of tests $(\phi_t)$ satisfying @eq-nested, @eq-left-cont and @eq-boundary, with scores $T_0,T_1$ as in @eq-score, and $\mathrm{AUC}=\mathbb{P}(T_1>T_0)+\tfrac12\mathbb{P}(T_1=T_0)$ as in @eq-auc. Define two transformations.
 
-- under test reversal alone, $\boxed{\mathrm{AUC}^\star = 1-\mathrm{AUC}}$;
-- under class label swap alone, $\boxed{\mathrm{AUC}^\star = 1-\mathrm{AUC}}$;
-- under both together (the anti-diagonal transform), $\boxed{\mathrm{AUC}^\star = \mathrm{AUC}}$, leaving the AUC unchanged.
+- **Test reversal**: the family $\phi^{\mathrm{rev}}_t(x)\triangleq1-\phi_{(-t)+}(x)$, which rejects where $(\phi_t)$ accepts. 
+- **Class label swap**: the same family $(\phi_t)$, but with the roles of $Y=0$ and $Y=1$ exchanged, so that $X_0$ plays the positive class and $X_1$ the negative one.
+
+Write $\mathrm{AUC}^\star$ for the AUC of the transformed problem. Then
+$$
+\boxed{
+\begin{aligned}
+\text{test reversal alone:}\quad & \mathrm{AUC}^\star=1-\mathrm{AUC},\\
+\text{class label swap alone:}\quad & \mathrm{AUC}^\star=1-\mathrm{AUC},\\
+\text{both together:}\quad & \mathrm{AUC}^\star=\mathrm{AUC}.
+\end{aligned}
+}
+$$ {#eq-auc-inversion}
 
 ::::
 
@@ -1565,20 +1581,45 @@ Assume $X\mid Y=0$ and $X\mid Y=1$ are atomless and almost surely finite. Write 
 :::
 ::: {#proof-content-thm-auc-class-inversion .proof-content}
 
-Write $u\triangleq\mathrm{FPR}(t)$, $f(u)\triangleq\mathrm{TPR}(t)$, so $\mathrm{AUC}=\int_0^1 f(u)\,du$, with $f$ non-decreasing (@thm-roc-monotonicity), $f(0)=0$, $f(1)=1$ (@lem-roc-endpoints). Let $R\triangleq\{(x,y):0\le x\le1,\,0\le y\le f(x)\}$, of area $\mathrm{AUC}$.
+**Reversed family and its scores.** The family $\phi^{\mathrm{rev}}_t$ is $[0,1]$-valued and satisfies @eq-nested: if $t_1<t_2$, then $-t_1>-t_2$, so $\phi_{(-t_1)+}\le\phi_{(-t_2)+}$ and $\phi^{\mathrm{rev}}_{t_1}\ge\phi^{\mathrm{rev}}_{t_2}$. It satisfies @eq-boundary because $\phi_{s+}\to0$ as $s\to+\infty$ and $\to1$ as $s\to-\infty$. It satisfies @eq-left-cont because $s\mapsto\phi_{s+}(x)$ is right-continuous and $t\uparrow t_0$ means $-t\downarrow-t_0$. So @thm-randomized-roc applies to it. Its false positive rate is, by @eq-atoms,
+$$
+\alpha^{\mathrm{rev}}(t)=\mathbb{E}\bigl[1-\phi_{(-t)+}(X_0)\bigr]=1-\alpha((-t)+)=1-\mathbb{P}(T_0>-t)=\mathbb{P}(-T_0\ge t),
+$$
+and likewise $\beta^{\mathrm{rev}}(t)=\mathbb{P}(-T_1\ge t)$. By uniqueness of the law in @eq-score, the scores of the reversed family are $-T_0$ and $-T_1$ (independent).
 
-**Threshold reversal.** The transformed curve is $g(x')\triangleq  1-f(1-x')$. Reflecting $R$ through $(0.5,0.5)$ sends $(x,y)\mapsto(1-x,1-y)$, and $0\le y\le f(x)$ becomes $1-f(1-x')\le y'\le1$, the region **above** $g$, of area $1-\mathrm{AUC}^\star$. Since central reflection preserves area, $1-\mathrm{AUC}^\star=\mathrm{AUC}$, *i.e.*, $\mathrm{AUC}^\star=1-\mathrm{AUC}$.
+**Test reversal.** By @eq-auc applied to the reversed family,
+$$
+\mathrm{AUC}^\star=\mathbb{P}(-T_1>-T_0)+\tfrac12\mathbb{P}(-T_1=-T_0)=\mathbb{P}(T_1<T_0)+\tfrac12\mathbb{P}(T_1=T_0).
+$$
+Since $\mathbb{P}(T_1<T_0)=1-\mathbb{P}(T_1>T_0)-\mathbb{P}(T_1=T_0)$,
+$$
+\mathrm{AUC}^\star=1-\mathbb{P}(T_1>T_0)-\tfrac12\mathbb{P}(T_1=T_0)=1-\mathrm{AUC}.
+$$
 
-**Class label swap.** The transformed curve is $g\triangleq f^{-1}$ (generalized inverse). Reflecting $R$ across $y=x$ sends $(x,y)\mapsto(y,x)$, and $0\le x\le f(y)$ becomes, by monotonicity of $f$, $y\ge f^{-1}(x)=g(x)$, the same region above $g$, of area $1-\mathrm{AUC}^\star$. Reflection across a line preserves area, so once more $\mathrm{AUC}^\star=1-\mathrm{AUC}$.
+**Class label swap.** The theorem is stated for any pair of independent laws, so applying @eq-auc with $(X_0,X_1)$ exchanged, whose scores are then $(T_1,T_0)$, gives
+$$
+\mathrm{AUC}^\star=\mathbb{P}(T_0>T_1)+\tfrac12\mathbb{P}(T_0=T_1)=1-\mathrm{AUC},
+$$
+by the same computation.
 
-**Both together.** The two transforms commute at the level of the operating point, so applying one after the other composes the two identities just derived: $\mathrm{AUC}\mapsto1-\mathrm{AUC}\mapsto1-(1-\mathrm{AUC})=\mathrm{AUC}$.
+**Both together.** The positive class is $Y=0$ with the reversed family, so the scores are $(-T_1,-T_0)$ for (negative, positive). Hence
+$$
+\begin{align*}
+\mathrm{AUC}^\star
+& = \mathbb{P}(-T_0>-T_1)+\tfrac12\mathbb{P}(-T_0=-T_1)\\
+& = \mathbb{P}(T_1>T_0)+\tfrac12\mathbb{P}(T_1=T_0)=\mathrm{AUC}.
+\end{align*}
+$$
+Equivalently, $\mathrm{AUC}\mapsto1-\mathrm{AUC}\mapsto1-(1-\mathrm{AUC})$. $\square$
 
 :::
 ::::
 
-**Interpretation.** Only the composite (anti-diagonal) transform preserves AUC exactly; the two individual transforms each send $A\mapsto1-A$. This is intuitive: reversing the rule alone, or swapping the labels alone, each turns a good classifier into a bad one for the *new* problem (a classifier that correctly separates $X_0$ from $X_1$ under the original labeling is simply mislabeling everything once only one of the two conventions is flipped). On the other hand, flipping *both* conventions together restores consistency, since relabeling "positive" to mean "low score" and simultaneously testing for "low score" recovers a description of the exact same underlying discrimination ability. The fixed point of $A\mapsto1-A$ at $A=\tfrac12$ (random guessing) is the one case where all three transforms leave AUC unchanged, since $1-\tfrac12=\tfrac12$.
+**Interpretation.** Test reversal alone and class swap alone each send $\mathrm{AUC}\mapsto1-\mathrm{AUC}$: either one flips a single convention and turns a good classifier into a bad one for the new problem. Flipping both restores consistency, so the composite (anti-diagonal) transform leaves the AUC unchanged. Only $\mathrm{AUC}=\tfrac12$ (random guessing) is invariant under all three.
 
-You can verify this directly with the interactive above, see @fig-gaussian-symmetric-roc: the "ROC curve" and "Class swap + threshold rev." curves in the plot share the same AUC, while "Threshold reversal" and "Class label swap" alone each trace out the complementary area.
+Geometrically, with $f=\mathrm{ROC}$, test reversal replaces $f$ by $u\mapsto1-f(1-u)$ (central reflection through $(\tfrac12,\tfrac12)$) and class swap replaces it by the generalized inverse $f^{-1}$ (reflection across $y=x$). Both reflections map the area under the curve to the area above it. The score representation (@eq-score) gives the same result without arguing on regions, and covers atoms (flat and vertical segments) automatically.
+
+You can check this with the interactive in @fig-gaussian-symmetric-roc: the "ROC curve" and "Class swap + test rev." curves share the same AUC, while "Test reversal" and "Class label swap" alone each trace the complementary area.
 
 
 ## The precision–recall (PR) curve
@@ -1586,62 +1627,66 @@ You can verify this directly with the interactive above, see @fig-gaussian-symme
 The **precision–recall (PR)** curve has a different origin from the ROC curve: it comes from *information retrieval*, not from signal detection. In the 1950s, the first automated literature-searching systems raised a practical question: how should one measure the quality of a search? @kent1955machine proposed to count the share of the relevant documents that are retrieved (what we now call *recall*) and the share of the retrieved documents that are relevant (a first version of *precision*, then called "pertinency"). Medicine had its own names for the same quantities: recall is the *sensitivity*, and precision is the positive predictive value.
 
 
-
 :::: {#def-pr}
 
 # Precision–recall (PR) curve
 
-For a threshold $t\in\mathbb{R}$, the **precision–recall (PR) operating point** is the pair of recall and precision,
+Let $\pi_1\triangleq\mathbb{P}(Y=1)$ and $\pi_0\triangleq\mathbb{P}(Y=0)=1-\pi_1$, both in $(0,1)$. Consider a family of tests $(\phi_t)$ satisfying @eq-nested, @eq-left-cont and @eq-boundary, with $\alpha,\beta$ as in @eq-alpha-beta. Let $\hat Y_t\in\{0,1\}$ be the (randomized) prediction of $\phi_t$, that is $\mathbb{P}(\hat Y_t=1\mid X=x)=\phi_t(x)$.
 
+The **precision–recall (PR) operating point** at $t\in\mathbb{R}$ is the pair
 $$
 \begin{align*}
 \mathrm{Recall}(t)
-& = \mathbb{P}(X_1\geq t) \\
+& = \mathbb{P}(\hat Y_t=1\mid Y=1),\\
 \mathrm{Precision}(t)
-& = \mathbb{P}(Y=1\mid \hat{Y}_t=1),
+& = \mathbb{P}(Y=1\mid \hat Y_t=1),
 \end{align*}
+$$ {#eq-pr-point}
+the latter being defined when $\mathbb{P}(\hat Y_t=1)>0$. The **PR curve** is the parametric curve
 $$
-
-where $\hat{Y}_t=\mathbb{1}\{X\geq t\}$ denotes the threshold-based classifier.
-The **PR curve** is the parametric curve traced by this operating point as $t$ varies over $\mathbb{R}$:
-
-$$
-\left\{
-\bigl(\mathrm{Recall}(t),\mathrm{Precision}(t)\bigr)
-:
-t\in\mathbb{R}
-\right\}.
+\bigl\{\bigl(\mathrm{Recall}(t),\mathrm{Precision}(t)\bigr):t\in\mathbb{R}\bigr\}.
 $$
 
 ::::
 
-Unlike recall (=TPR) and the FPR, which are conditional on the true class, precision depends on the prevalence $\pi_1$ of the positive class in the population being evaluated.
-Consequently, the PR curve can change when prevalence changes, even if the class-conditional score distributions remain the same.
+For $\phi_t=\mathbb{1}_{\{x\ge t\}}$ we recover $\hat Y_t=\mathbb{1}\{X\ge t\}$, and for a score test $\phi_t=\mathbb{1}_{\{g\ge t\}}$, $\hat Y_t=\mathbb{1}\{g(X)\ge t\}$.
 
+Unlike recall ($=\mathrm{TPR}=\beta$) and the FPR ($=\alpha$), which are conditional on the true class, precision depends on the prevalence $\pi_1$ of the positive class in the population being evaluated. Consequently, the PR curve can change when prevalence changes, even if the class-conditional laws of $X$ (hence of the scores $T_0,T_1$ of @eq-score) remain the same.
 
-The empirical recall $\widehat{\mathrm{Recall}}(t)=\mathrm{TP}(t)/n_1$ and precision $\widehat{\mathrm{Precision}}(t)=\mathrm{TP}(t)/\hat{\mathrm{P}}_t$ are the plug-in estimators of the naming section ($\widehat{\mathrm{Recall}}=\widehat{\mathrm{TPR}}$). If no observation is predicted positive, then $\hat{\mathrm{P}}_t=0$ and the empirical precision is undefined: implementations of PR curves adopt a convention for this endpoint, which should be considered when comparing empirical curves.
+The empirical recall and precision are the plug-in estimators of the naming section. For the tests $\phi_t$, with $\mathrm{TP}(t)=\sum_{i}\phi_t(X_{1,i})$ and $\mathrm{FP}(t)=\sum_{j}\phi_t(X_{0,j})$,
+$$
+\begin{align*}
+\widehat{\mathrm{Recall}}(t)
+& =\frac{\mathrm{TP}(t)}{n_1}=\beta_n(t),\\
+\widehat{\mathrm{Precision}}(t)
+& =\frac{\mathrm{TP}(t)}{\mathrm{TP}(t)+\mathrm{FP}(t)}.
+\end{align*}
+$$
+If $\mathrm{TP}(t)+\mathrm{FP}(t)=0$ (no observation is predicted positive, which for randomized tests means zero expected positives), the empirical precision is undefined. Implementations of PR curves adopt a convention for this endpoint, which should be considered when comparing empirical curves.
 
-The following theorem makes explicit how prevalence enters the precision formula.
+The following theorem makes explicit how prevalence enters the precision.
 
 :::: {#thm-precision-formula}
 
 # Precision in terms of TPR, FPR, and prevalence
 
-Let $\pi_1=\mathbb{P}(Y=1)$ and $\pi_0=\mathbb{P}(Y=0)$. For every threshold $t$ such that $\mathbb{P}(X\ge t)>0$,
-
+For every $t$ such that $\pi_1\beta(t)+\pi_0\alpha(t)>0$,
 $$
 \boxed{
-\mathrm{Precision}(t)
-=
-\tfrac{
-\pi_1\,\mathrm{TPR}(t)
-}{
-\pi_1\,\mathrm{TPR}(t)
-+
-\pi_0\,\mathrm{FPR}(t)
-}.
+\begin{aligned}
+\mathrm{Recall}(t)&=\beta(t),\\
+\mathrm{Precision}(t)&=
+\frac{\pi_1\,\beta(t)}{\pi_1\,\beta(t)+\pi_0\,\alpha(t)}.
+\end{aligned}
 }
+$$ {#eq-precision-formula}
+Equivalently, in terms of the scores of @eq-score,
 $$
+\mathrm{Precision}(t)=
+\frac{\pi_1\,\mathbb{P}(T_1\ge t)}
+{\pi_1\,\mathbb{P}(T_1\ge t)+\pi_0\,\mathbb{P}(T_0\ge t)}.
+$$
+The condition holds for all $t$ small enough.
 
 ::::
 
@@ -1652,47 +1697,50 @@ $$
 
 ::: {#proof-content-thm-precision-formula .proof-content}
 
-By the law of total probability,
-
+Since $\mathbb{P}(\hat Y_t=1\mid X)=\phi_t(X)$, conditioning on the class gives
+$$
+\mathbb{P}(\hat Y_t=1\mid Y=1)=\mathbb{E}[\phi_t(X_1)]=\beta(t),
+$$
+which is the recall. By the law of total probability,
 $$
 \begin{aligned}
-\mathbb{P}(X\ge t)
-&=
-\mathbb{P}(X\ge t\mid Y=1)\pi_1\\
-&\quad+
-\mathbb{P}(X\ge t\mid Y=0)\pi_0\\
-&=
-\pi_1\,\mathrm{TPR}(t)
-+
-\pi_0\,\mathrm{FPR}(t).
+\mathbb{P}(\hat Y_t=1)
+&=\pi_1\,\mathbb{E}[\phi_t(X_1)]\\
+&\quad+\pi_0\,\mathbb{E}[\phi_t(X_0)]\\
+&=\pi_1\,\beta(t)+\pi_0\,\alpha(t).
 \end{aligned}
 $$
-
 Furthermore,
-
 $$
 \begin{aligned}
-\mathbb{P}(Y=1,\ X\ge t)
-&=
-\mathbb{P}(X\ge t\mid Y=1)\pi_1\\
-&=
-\pi_1\,\mathrm{TPR}(t).
+\mathbb{P}(Y=1,\ \hat Y_t=1)
+&=\pi_1\,\mathbb{P}(\hat Y_t=1\mid Y=1)\\
+&=\pi_1\,\beta(t).
 \end{aligned}
 $$
-
 By the definition of conditional probability,
-
 $$
-\mathrm{Precision}(t)
-=
-\frac{\mathbb{P}(Y=1,\ X\ge t)}
-{\mathbb{P}(X\ge t)}.
+\mathrm{Precision}(t)=
+\frac{\mathbb{P}(Y=1,\ \hat Y_t=1)}{\mathbb{P}(\hat Y_t=1)},
 $$
-
-Substituting the expressions above yields the claimed formula.
+and substituting the two expressions above gives @eq-precision-formula. The score form follows from @eq-score, since $\alpha(t)=\mathbb{P}(T_0\ge t)$ and $\beta(t)=\mathbb{P}(T_1\ge t)$. For $t\to-\infty$, @eq-boundary and dominated convergence give $\alpha,\beta\to1$, so the denominator tends to $\pi_1+\pi_0=1>0$.
 
 :::
 ::::
+
+:::: {#def-pr-interp}
+
+# Interpolated PR curve
+
+With the randomized tests $\phi^{(s)}$ of @eq-phi-s (false positive rate exactly $s$) and $\mathrm{ROC}$ as in @eq-roc, the **interpolated PR curve** is, for $s\in(0,1)$,
+$$
+\Bigl(\mathrm{ROC}(s),\ 
+\frac{\pi_1\,\mathrm{ROC}(s)}{\pi_1\,\mathrm{ROC}(s)+\pi_0\,s}\Bigr).
+$$ {#eq-pr-interp}
+
+::::
+
+It has no jumps at the atoms of $T_0$, and it shows that, for a given $\pi_1$, the PR curve is a deterministic transform of the ROC curve.
 
 
 For fixed class-conditional score distributions, $\mathrm{TPR}(t)$ and $\mathrm{FPR}(t)$ do not change with prevalence. The ROC curve therefore remains unchanged, whereas **the PR curve generally changes through $\pi_1$ and $\pi_0$** in the theorem above. In particular, precision at a fixed threshold typically decreases as positive cases become less common.
@@ -1731,13 +1779,11 @@ def precision_recall(thresholds, y_true, score):
 Throughout this section, assume $\pi_1\in(0,1)$, $\pi_0=1-\pi_1$, and that $X_0,X_1$ are almost surely finite. Recall and precision are as defined above; precision is defined only when $\mathbb{P}(X\ge t)>0$.
 
 
-
-
 :::: {#lem-pr-endpoint}
 
 # Universal endpoint of the PR curve
 
-There exists $t_0\in\mathbb{R}$ such that the denominator of $\mathrm{Precision}(t)$ is positive for all $t\le t_0$, and
+For a family of tests $(\phi_t)$ satisfying @eq-nested, @eq-left-cont and @eq-boundary, there exists $t_0\in\mathbb{R}$ such that the denominator of $\mathrm{Precision}(t)$ in @eq-precision-formula is positive for all $t\le t_0$, and
 $$
 \bigl(\mathrm{Recall}(t),\mathrm{Precision}(t)\bigr)\mathrel{\underset{t\to-\infty}{\longrightarrow}} (1,\pi_1).
 $$
@@ -1751,11 +1797,15 @@ $$
 
 ::: {#proof-content-lem-pr-endpoint .proof-content}
 
-Since $X_0$ and $X_1$ are almost surely finite, the events $\{X_y\ge t\}$ increase to $\{X_y>-\infty\}$, which has probability $1$, as $t\downarrow-\infty$. By continuity of probability measures,
+For $y\in\{0,1\}$, @eq-boundary gives $\phi_t(X_y)\to1$ pointwise as $t\to-\infty$. Since $0\le\phi_t\le1$, dominated convergence yields
 $$
-\lim_{t\to-\infty}\mathbb{P}(X_y\ge t)=1,\quad y\in\{0,1\}.
+\lim_{t\to-\infty}\alpha(t)=\lim_{t\to-\infty}\beta(t)=1.
 $$
-Hence $\mathrm{Recall}(t)\to1$, and the denominator of $\mathrm{Precision}(t)$ tends to $\pi_1+\pi_0=1$. In particular it is positive for all $t$ sufficiently negative, so $\mathrm{Precision}(t)$ is defined there. Since the limit of the denominator is $1\neq0$, the quotient rule for limits gives
+Hence $\mathrm{Recall}(t)=\beta(t)\to1$, and the denominator
+$$
+\pi_1\beta(t)+\pi_0\alpha(t)\longrightarrow\pi_1+\pi_0=1.
+$$
+In particular it is positive for all $t\le t_0$, for some $t_0$, so $\mathrm{Precision}(t)$ is defined there. Since the limit of the denominator is $1\neq0$, the quotient rule for limits gives
 $$
 \mathrm{Precision}(t)\longrightarrow\frac{\pi_1\cdot1}{\pi_1\cdot1+\pi_0\cdot1}=\pi_1.
 $$
@@ -1763,36 +1813,37 @@ $$
 :::
 ::::
 
-
-**Remark (the other end, $\mathrm{Recall}\to0$).** The limit as $t\to+\infty$ is *not* universal: numerator and denominator of $\mathrm{Precision}(t)$ both tend to $0$, and
+**Remark (the other end, $\mathrm{Recall}\to0$).** The limit as $t\to+\infty$ is *not* universal. By @eq-boundary, $\alpha(t),\beta(t)\to0$, so numerator and denominator of $\mathrm{Precision}(t)$ in @eq-precision-formula both tend to $0$, and, when $\beta(t)>0$,
 $$
-\mathrm{Precision}(t)=\Bigl(1+\frac{\pi_0}{\pi_1}\,\frac{\mathbb{P}(X_0\ge t)}{\mathbb{P}(X_1\ge t)}\Bigr)^{-1}
+\mathrm{Precision}(t)=\Bigl(1+\frac{\pi_0}{\pi_1}\,\frac{\alpha(t)}{\beta(t)}\Bigr)^{-1}
+=\Bigl(1+\frac{\pi_0}{\pi_1}\,\frac{\mathbb{P}(T_0\ge t)}{\mathbb{P}(T_1\ge t)}\Bigr)^{-1}
 $$
-is governed by the tail ratio $\mathbb{P}(X_0\ge t)/\mathbb{P}(X_1\ge t)$. For instance:
+is governed by the tail ratio $\alpha(t)/\beta(t)$ of the scores $T_0,T_1$ of @eq-score. For instance:
 
-- $X_y\sim\mathcal N(\mu_y,\sigma^2)$ with $\mu_1>\mu_0$: the ratio tends to $0$, and the curve ends at $(0,1)$.
-- $X_0\stackrel{d}{=}X_1$: the ratio is $\equiv1$, and the curve ends at $(0,\pi_1)$.
-- $X_y\sim\mathcal N(\mu_y,\sigma^2)$ with $\mu_1<\mu_0$: the ratio tends to $+\infty$, and the curve ends at $(0,0)$.
+- $\alpha(t)/\beta(t)\to0$: the curve ends at $(0,1)$. For $\phi_t=\mathbb{1}_{\{x\ge t\}}$ this occurs when $X_y\sim\mathcal N(\mu_y,\sigma^2)$ with $\mu_1>\mu_0$.
+- $\alpha\equiv\beta$ (that is $T_0\overset{d}{=}T_1$): the ratio is $\equiv1$ and the curve ends at $(0,\pi_1)$. For $\phi_t=\mathbb{1}_{\{x\ge t\}}$ this is $X_0\overset{d}{=}X_1$.
+- $\alpha(t)/\beta(t)\to+\infty$: the curve ends at $(0,0)$. For $\phi_t=\mathbb{1}_{\{x\ge t\}}$ this occurs when $X_y\sim\mathcal N(\mu_y,\sigma^2)$ with $\mu_1<\mu_0$.
 
+More generally, the ratio may have no limit, and the curve then has no endpoint at recall $0$.
 
 ### Extreme cases
 
-
-#### Perfect classifier
 
 :::: {#thm-perfect-pr-separation}
 
 # PR curve for a perfect classifier
 
-Suppose there exists a threshold $t^\star \in \mathbb{R}$ such that
+Consider a family of tests $(\phi_t)$ satisfying @eq-nested, @eq-left-cont and @eq-boundary. Suppose there exists a threshold $t^\star\in\mathbb{R}$ such that
 $$
-\mathbb{P}(X_0 \ge t^\star) = 0, \quad \mathbb{P}(X_1 \ge t^\star) = 1.
+\alpha(t^\star)=0,\qquad \beta(t^\star)=1 .
+$$ {#eq-perfect}
+Then
 $$
-Then,
+\boxed{\mathrm{Recall}(t^\star)=1,\qquad \mathrm{Precision}(t^\star)=1.}
 $$
-\boxed{\mathrm{Recall}(t^\star) = 1, \quad \mathrm{Precision}(t^\star) = 1,}
-$$
-For every $t\ge t^\star$ with $\mathrm{Recall}(t)>0$, precision is $1$. Thus the curve traces the horizontal segment at precision $1$ from $(1,1)$ toward $(0,1)$; at a threshold with no predicted positives, population precision is undefined, although PR-curve implementations commonly use $1$ for this endpoint. As $t\to-\infty$, the curve also approaches the universal endpoint $(1,\pi_1)$.
+For every $t\ge t^\star$ with $\mathrm{Recall}(t)>0$, the precision is $1$. The curve therefore traces the horizontal segment at precision $1$ from $(1,1)$ toward $(0,1)$. At a threshold with no predicted positives, the population precision is undefined, although PR-curve implementations commonly use $1$ for this endpoint. As $t\to-\infty$, the curve also approaches the universal endpoint $(1,\pi_1)$ of @lem-pr-endpoint.
+
+Equivalently, in terms of the scores of @eq-score, @eq-perfect reads $\mathbb{P}(T_0\ge t^\star)=0$ and $\mathbb{P}(T_1\ge t^\star)=1$, that is $T_0<t^\star\le T_1$ almost surely. In that case $\mathrm{AUC}=1$ by @eq-auc.
 
 ::::
 
@@ -1802,32 +1853,33 @@ For every $t\ge t^\star$ with $\mathrm{Recall}(t)>0$, precision is $1$. Thus the
 :::
 
 ::: {#proof-content-thm-perfect-pr-separation .proof-content}
-**The point at $t^\star$.** By definition,
+
+**The point at $t^\star$.** By @eq-precision-formula and @eq-perfect,
 $$
 \begin{align*}
 \mathrm{Recall}(t^\star)
-& = \mathbb{P}(X_1 \ge t^\star) = 1, \\
+& = \beta(t^\star)=1,\\
 \mathrm{Precision}(t^\star)
-& = \frac{\pi_1 \cdot 1}{\pi_1 \cdot 1 + \pi_0 \cdot 0} = 1.
+& = \frac{\pi_1\cdot1}{\pi_1\cdot1+\pi_0\cdot0}=1.
 \end{align*}
 $$
 
-**The flat segment.** By @thm-roc-monotonicity, $\mathrm{FPR}(t)=\mathbb{P}(X_0\ge t)$ is non-increasing in $t$. Since $\mathrm{FPR}(t^\star)=0$ and $\mathrm{FPR}\ge0$ always, monotonicity gives $\mathrm{FPR}(t)\le\mathrm{FPR}(t^\star)=0$ for every $t\ge t^\star$, so
+**The flat segment.** By @eq-nested, $\alpha$ is non-increasing. Since $\alpha\ge0$ and $\alpha(t^\star)=0$,
 $$
-\mathrm{FPR}(t) = 0 \quad\text{for all } t\ge t^\star.
+\alpha(t)=0\quad\text{for all } t\ge t^\star.
 $$
-Consequently, for any $t\ge t^\star$ with $\mathrm{TPR}(t)>0$,
+Consequently, for any $t\ge t^\star$ with $\beta(t)>0$,
 $$
-\mathrm{Precision}(t) = \frac{\pi_1\,\mathrm{TPR}(t)}{\pi_1\,\mathrm{TPR}(t) + \pi_0\cdot0} = 1.
+\mathrm{Precision}(t)=\frac{\pi_1\,\beta(t)}{\pi_1\,\beta(t)+\pi_0\cdot0}=1 .
 $$
-If $\mathrm{TPR}(t)=0$ as well, then no positives are predicted and population precision is undefined. Thus the population PR curve has precision $1$ on the nonempty predicted-positive part of this threshold range; empirical implementations may separately assign precision $1$ at the no-predictions endpoint.
+If $\beta(t)=0$ as well, no positives are predicted in expectation and the population precision is undefined. The population PR curve thus has precision $1$ wherever predicted positives remain, and empirical implementations may separately assign precision $1$ at the no-predictions endpoint.
 
+**The endpoints.** For $t\ge t^\star$, $\beta$ is non-increasing from $\beta(t^\star)=1$, and $\beta(t)\to0$ as $t\to+\infty$ by @eq-boundary and dominated convergence. So recall decreases from $1$ to $0$ while precision stays $1$ whenever $\beta(t)>0$. The endpoint at recall $0$ is represented as $(0,1)$ under the usual PR-plotting convention. As $t\to-\infty$, @lem-pr-endpoint gives $(\mathrm{Recall},\mathrm{Precision})\to(1,\pi_1)$.
 
-**The endpoints.** As $t$ ranges over $[t^\star,\infty)$, recall decreases from $1$ to $0$, and precision remains $1$ whenever predicted positives remain. The endpoint at recall $0$ is represented as $(0,1)$ under the usual PR-plotting convention; population precision is undefined if no positives are predicted. As $t\to-\infty$, $\mathrm{TPR}(t)\to1$ and $\mathrm{FPR}(t)\to1$ (@lem-roc-endpoints), so precision tends to $\pi_1$: the universal endpoint $(1,\pi_1)$ (see @thm-precision-formula).
+**Link with the scores.** From @eq-perfect, $\mathbb{P}(T_0\ge t^\star)=0$ and $\mathbb{P}(T_1\ge t^\star)=1$, so $T_0<t^\star\le T_1$ almost surely. Hence $\mathbb{P}(T_1>T_0)=1$ and @eq-auc gives $\mathrm{AUC}=1$.
+
 :::
-
 ::::
-
 
 #### Always-wrong classifier
 

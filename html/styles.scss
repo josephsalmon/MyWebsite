@@ -558,6 +558,10 @@ div.theorem {
     }
 
 
+    .theorem > p:first-of-type > span.theorem-title, .theorem .theorem-title {
+  display: block;
+}
+
 
 // Knuth algorithm will be activated this way for line breaks
   p {
