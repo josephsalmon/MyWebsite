@@ -4,6 +4,9 @@
 //   [ class densities ] [ log-likelihood ratio ] [ ROC curves + legend ]
 //   [                      lambda slider                                ]
 //
+// Tests drawn on the ROC panel: LR-optimal, one-sided right (X >= t), one-sided left (X <= t),
+// two-sided around 0 and around 1, plus the extreme cases.
+//
 // Responsive: wide (>= 760 px) the two left panels take 50 % of the width and the ROC panel
 // (square, with its legend on the right) the other 50 %; narrower, the layout stacks
 // (densities + LLR on top, ROC and its legend below), so there is never a horizontal scrollbar.
@@ -167,6 +170,11 @@ function oneSidedPoint(t) {
   return { fpr: 1 - Phi((t - MU0) / SIGMA0), tpr: 1 - Phi((t - MU1) / SIGMA1) };
 }
 
+// one-sided test on the left: X <= t  (FPR = Phi(t), TPR = Phi((t-1)/2))
+function leftSidedPoint(t) {
+  return { fpr: Phi((t - MU0) / SIGMA0), tpr: Phi((t - MU1) / SIGMA1) };
+}
+
 // Decision region {llr(x) >= lambda} = {x <= a} U {x >= b}; null if it is the whole line
 function lrBoundaries(lambda) {
   const disc = B * B - 4 * A * (C - lambda);
@@ -221,8 +229,8 @@ const wrongCurve = { x: [0, 1, 1], y: [0, 0, 1] };
 
 const lrCurve = radiusCurve((r) => twoSidedPoint(C_LR, r));      // LR-optimal (Neyman-Pearson)
 const oneSidedCurve = thresholdCurve(oneSidedPoint, T_MIN, T_MAX);
+const leftSidedCurve = thresholdCurve(leftSidedPoint, T_MIN, T_MAX);
 const twoNullCurve = radiusCurve((r) => twoSidedPoint(MU0, r));
-const twoAltCurve = radiusCurve((r) => twoSidedPoint(MU1, r));
 
 // AUC of the LR-optimal curve (trapezoid rule)
 const AUC_LR = (() => {
@@ -317,10 +325,15 @@ export async function initGaussianRocSimpleWidget(container) {
   Object.assign(container.style, {
     display: 'flex', flexDirection: 'column', flexWrap: 'nowrap', alignItems: 'stretch',
     gap: '8px', width: '100%', maxWidth: '1000px', margin: '0 auto',
+    minWidth: '0', boxSizing: 'border-box',
   });
+  // `contain: inline-size` stops the (fixed-width) Plotly SVG from contributing to the
+  // intrinsic width of the widget. Without it, a flex/grid/figure parent cannot shrink
+  // below the previous plot width, so the measured width stays stale after a resize
+  // until the page is reloaded.
   Object.assign(plotDiv.style, {
     order: '1', flex: '0 0 auto', minWidth: '0', width: '100%',
-    display: 'block', overflowX: 'hidden',
+    display: 'block', overflowX: 'hidden', contain: 'inline-size',
   });
   Object.assign(controlsDiv.style, {
     order: '2', flex: '0 0 auto', minWidth: '0', width: '100%', maxWidth: '560px',
@@ -369,9 +382,9 @@ export async function initGaussianRocSimpleWidget(container) {
   function fillLegendRow() {
     legendRow.innerHTML = [
       [COLORS.roc, 'LR-optimal test'],
-      [COLORS.test, 'One-sided'],
-      [COLORS.test, 'Two-sided around 0'],
-      [COLORS.test, 'Two-sided around 1'],
+      [COLORS.test, 'One-sided (right)'],
+      [COLORS.test, 'One-sided (left)'],
+      [COLORS.test, 'Two-sided'],
     ].map(([color, label]) => `
     <div style="display:flex; align-items:center; gap:4px;">
       <span style="width:8px; height:8px; border-radius:50%; background:${THEME.bg}; border:2px solid ${color}; display:inline-block;"></span>
@@ -518,8 +531,9 @@ export async function initGaussianRocSimpleWidget(container) {
   const lr = lrPoint(lambda);
   const f = lr.fpr;
   const t = solveDecreasing((x) => oneSidedPoint(x).fpr, f, T_MIN, T_MAX);
+  // left test X <= s has FPR = Phi(s) = 1 - Phi(-s): same FPR as the right test at t when s = -t
+  const sLeft = -t;
   const rNull = solveDecreasing((r) => twoSidedPoint(MU0, r).fpr, f, 0, R_MAX);
-  const rAlt = solveDecreasing((r) => twoSidedPoint(MU1, r).fpr, f, 0, R_MAX);
 
   const traces = [
 
@@ -558,7 +572,7 @@ export async function initGaussianRocSimpleWidget(container) {
         color: COLORS.roc,
         width: 2.5,
         dash: 'solid',
-        name: 'LR-optimal: |X + 1/3| ≥ r',
+        name: 'LR: |X + 1/3| ≥ r',
         legend: 'legend',
         legendrank: 101,
         markerSize: scaleMarker(16),
@@ -574,7 +588,7 @@ export async function initGaussianRocSimpleWidget(container) {
       x: [null],
       y: [null],
       mode: 'lines',
-      name: '<b>Other tests (same FPR)</b>',
+      name: '<b>Other tests</b>',
       legend: 'legend',
       legendgroup: 'heading-others',
       legendrank: 200,
@@ -598,6 +612,21 @@ export async function initGaussianRocSimpleWidget(container) {
       }
     ),
 
+    // One-sided on the left
+    ...curveAndPoint(
+      leftSidedCurve,
+      leftSidedPoint(sLeft),
+      {
+        color: COLORS.test,
+        width: 2,
+        dash: 'dashdot',
+        name: 'One-sided: X ≤ t',
+        legend: 'legend',
+        legendrank: 202,
+        markerSize: scaleMarker(10),
+      }
+    ),
+
     // Two-sided around the null mean
     ...curveAndPoint(
       twoNullCurve,
@@ -607,21 +636,6 @@ export async function initGaussianRocSimpleWidget(container) {
         width: 2,
         dash: 'dash',
         name: 'Two-sided: |X| ≥ r',
-        legend: 'legend',
-        legendrank: 202,
-        markerSize: scaleMarker(10),
-      }
-    ),
-
-    // Two-sided around the alternative mean
-    ...curveAndPoint(
-      twoAltCurve,
-      twoSidedPoint(MU1, rAlt),
-      {
-        color: COLORS.test,
-        width: 2,
-        dash: 'longdash',
-        name: 'Two-sided: |X − 1| ≥ r',
         legend: 'legend',
         legendrank: 203,
         markerSize: scaleMarker(10),
@@ -722,9 +736,9 @@ function compactLegendInterlineSpacing() {
   // 0  Neyman–Pearson
   // 1  LR-optimal
   // 2  Other tests (same FPR)
-  // 3  One-sided
-  // 4  Two-sided |X|
-  // 5  Two-sided |X - 1|
+  // 3  One-sided (X >= t)
+  // 4  One-sided (X <= t)
+  // 5  Two-sided |X|
   // 6  Extreme cases
   // 7  Perfect
   // 8  Random
@@ -766,10 +780,10 @@ function compactLegendInterlineSpacing() {
     .800, // LR-optimal → Other tests
     .800, // Other tests → One-sided
 
-    0.630, // One-sided → Two-sided |X|
-    0.630, // Two-sided |X| → Two-sided |X - 1|
+    0.630, // One-sided (right) → One-sided (left)
+    0.630, // One-sided (left) → Two-sided |X|
 
-    .800, // Two-sided |X - 1| → Extreme cases
+    .800, // Two-sided |X| → Extreme cases
     .800, // Extreme cases → Perfect
 
     0.630, // Perfect → Random
@@ -833,8 +847,8 @@ function legendLayout() {
 //     density: DENS_FRAC   (narrow — just two mirrored density curves)
 //     gap1:    GAP1_FRAC   (small gap between density and LLR)
 //     LLR:     LLR_FRAC
-//     gap2:    GAP2_FRAC   (larger gap: ROC y-axis labels live here)
-//     ROC:     1 - DENS_FRAC - GAP1_FRAC - LLR_FRAC - GAP2_FRAC
+//     gap2:    GAP2_PX     (fixed pixel gap: ROC y-axis labels live here)
+//     ROC:     (1 - DENS_FRAC - GAP1_FRAC - LLR_FRAC) * plotW - GAP2_PX
 //   The ROC panel is square (scaleanchor), so height = ROC side + margins.
 //
 // Narrow (< STACK_BELOW): density + LLR stacked on the top row, ROC on the
@@ -846,8 +860,8 @@ const MARGIN_R  = 175;      // legend band (wide layout)
 const MARGIN_R_STACK = 20;
 const MARGIN_T  = 44;       // title band
 const MARGIN_B  = 45;
-const LEGEND_H  = 165;      // room for the legend below ROC in stacked layout
-const ROW_GAP   = 70;       // vertical gap between top row and ROC in stacked layout
+const LEGEND_H  = 180;      // room for the legend below ROC in stacked layout
+const ROW_GAP   = 84;       // vertical gap between top row and ROC in stacked layout
 
 const NATURAL_WIDTH = 760;
 const MIN_WIDTH     = 300;
@@ -859,11 +873,17 @@ const STACK_BELOW   = 640;
 const DENS_FRAC  = 0.14;   // density panel
 const GAP1_FRAC  = 0.02;   // density → LLR gap
 const LLR_FRAC   = 0.16;   // LLR panel
-const GAP2_FRAC  = 0.08;   // LLR → ROC gap (ROC y-axis labels)
-// ROC_FRAC = 1 - DENS_FRAC - GAP1_FRAC - LLR_FRAC - GAP2_FRAC = 0.54
+const STACK_DENS_FRAC = 0.50;  // stacked layout: density panel (needs room for its title / axis title)
+const STACK_GAP_FRAC  = 0.05;  // stacked layout: gap density → LLR
+const GAP2_PX    = 72;     // LLR → ROC gap in pixels (room for the ROC y tick labels + axis title);
+                           // fixed in px (not a fraction) so the labels never touch the LLR panel
+// ROC side = (1 - DENS_FRAC - GAP1_FRAC - LLR_FRAC) * plotW - GAP2_PX
 
 function computePlotSize() {
-  const measured   = plotDiv.getBoundingClientRect().width;
+  const measured   = Math.min(
+    plotDiv.getBoundingClientRect().width || Infinity,
+    plotDiv.parentElement ? plotDiv.parentElement.getBoundingClientRect().width || Infinity : Infinity,
+  );
   const available  = measured > 0 ? measured : NATURAL_WIDTH;
   const width      = Math.max(MIN_WIDTH, Math.min(NATURAL_WIDTH, Math.round(available)));
   const stacked    = width < STACK_BELOW;
@@ -871,7 +891,7 @@ function computePlotSize() {
   if (!stacked) {
     const plotW = width - MARGIN_L - MARGIN_R;
     const rocSide = Math.max(MIN_PLOT_SIDE, Math.round(
-      (1 - DENS_FRAC - GAP1_FRAC - LLR_FRAC - GAP2_FRAC) * plotW
+      (1 - DENS_FRAC - GAP1_FRAC - LLR_FRAC) * plotW - GAP2_PX
     ));
 
     // Panel x-domains (fractions of plotW)
@@ -879,7 +899,7 @@ function computePlotSize() {
     const x1_dens  = DENS_FRAC;
     const x0_llr   = x1_dens + GAP1_FRAC;
     const x1_llr   = x0_llr  + LLR_FRAC;
-    const x0_roc   = x1_llr  + GAP2_FRAC;
+    const x0_roc   = x1_llr  + GAP2_PX / plotW;
     const x1_roc   = x0_roc  + rocSide / plotW;
 
     return {
@@ -888,6 +908,8 @@ function computePlotSize() {
       stacked, plotW,
       margin: { l: MARGIN_L, r: MARGIN_R, t: MARGIN_T, b: MARGIN_B },
       llrW: LLR_FRAC * plotW,
+      densW: DENS_FRAC * plotW,
+      densTitle: 'X₁ ← density → X₀',
       domDens: { x: [x0_dens, x1_dens], y: [0, 1] },
       domLlr:  { x: [x0_llr,  x1_llr],  y: [0, 1] },
       domRoc:  { x: [x0_roc,  x1_roc],  y: [0, 1] },
@@ -903,8 +925,9 @@ function computePlotSize() {
   const plotH    = topH + ROW_GAP + rocSide;
 
   // Top row: density and LLR share the full width
-  const x1_dens  = DENS_FRAC;
-  const x0_llr   = x1_dens + GAP1_FRAC;
+  // (the density panel used to be only 14 % wide here, so its titles collided with the LLR ones)
+  const x1_dens  = STACK_DENS_FRAC;
+  const x0_llr   = x1_dens + STACK_GAP_FRAC;
 
   const yTop = [(rocSide + ROW_GAP) / plotH, 1];
   const yBot = [0, rocSide / plotH];
@@ -915,13 +938,15 @@ function computePlotSize() {
     stacked, plotW,
     margin: { l: MARGIN_L, r: MARGIN_R_STACK, t: MARGIN_T, b: MARGIN_B + LEGEND_H },
     llrW: (1 - x0_llr) * plotW,
+    densW: x1_dens * plotW,
+    densTitle: x1_dens * plotW >= 105 ? 'X₁ ← density → X₀' : 'X₁ ← → X₀',
     domDens: { x: [0,       x1_dens], y: yTop },
     domLlr:  { x: [x0_llr,  1      ], y: yTop },
     domRoc:  { x: [rocX0 / plotW, (rocX0 + rocSide) / plotW], y: yBot },
     legend: {
       ...legendLayout(),
       x: (rocX0 + rocSide / 2) / plotW, xanchor: 'center',
-      y: -55 / plotH, yanchor: 'top',
+      y: -68 / plotH, yanchor: 'top',
     },
   };
 }
@@ -967,7 +992,7 @@ function computePlotSize() {
       xaxis: {
         ...axisBase, domain: g.domDens.x, anchor: 'y', range: [-DENS_RANGE, DENS_RANGE],
         zeroline: true, zerolinecolor: THEME.zeroLine, showticklabels: false,
-        title: axisTitle('X₁ ← density → X₀', 11),
+        title: axisTitle(g.densTitle, 11),
       },
       yaxis: {
         ...axisBase, domain: g.domDens.y, anchor: 'x', range: [Y_MIN, Y_MAX],
@@ -977,11 +1002,15 @@ function computePlotSize() {
       // panel 2: log-likelihood ratio, drawn against the SAME vertical axis
       xaxis2: {
         ...axisBase, domain: g.domLlr.x, anchor: 'y2', range: [L_MIN, L_MAX],
-        tickvals: [-4, -2, 0, 2, 4], title: axisTitle('ℓ(x)'),
+        tickvals: g.llrW >= 90 ? [-4, -2, 0, 2, 4] : [-4, 0, 4],
+        ticks: 'outside', ticklen: 4, tickcolor: THEME.secondary,
+        tickfont: { size: 10, color: THEME.secondary },
+        title: axisTitle('ℓ(x)'),
       },
       yaxis2: {
         ...axisBase, domain: g.domLlr.y, anchor: 'x2', range: [Y_MIN, Y_MAX],
         matches: 'y', showticklabels: false,
+        ticks: 'outside', ticklen: 4, tickcolor: THEME.secondary,   // tick marks only: labels are on the left panel
       },
 
       // panel 3: ROC (square)
@@ -1089,6 +1118,17 @@ function computePlotSize() {
     render();
   });
   ro.observe(plotDiv.parentElement);   // parent shrinks with the page; div doesn't
+
+  // Fallbacks: window resize (zoom, devtools docking, orientation) and a re-check on the
+  // next frame, in case the layout had not settled when the observer fired.
+  let resizeRaf = 0;
+  window.addEventListener('resize', () => {
+    cancelAnimationFrame(resizeRaf);
+    resizeRaf = requestAnimationFrame(() => {
+      const w = Math.round(plotDiv.parentElement.getBoundingClientRect().width);
+      if (w > 0) { lastWidth = w; render(); }
+    });
+  });
 }
 
 document

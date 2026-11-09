@@ -524,8 +524,10 @@ $$
 The false‑ and true‑positive rates for the transformed variable are
 
 $$
-\mathrm{FPR}_{g(X)}(t)=\mathbb P\bigl(\widetilde\phi_t(Z_0)=1\bigr),\qquad
-\mathrm{TPR}_{g(X)}(t)=\mathbb P\bigl(\widetilde\phi_t(Z_1)=1\bigr).
+\begin{align*}
+\mathrm{FPR}_{g(X)}(t) & = \mathbb P\bigl(\widetilde\phi_t(Z_0)=1\bigr)\\
+\mathrm{TPR}_{g(X)}(t) & = \mathbb P\bigl(\widetilde\phi_t(Z_1)=1\bigr).
+\end{align*}
 $$
 
 :::: {#thm-roc-bijective-transform}
@@ -983,7 +985,7 @@ Let $X_0\sim\mathcal{L}(X\mid Y=0)$ and $X_1\sim\mathcal{L}(X\mid Y=1)$ be indep
 For every $\alpha\in[0,1]$, let $k_\alpha\ge 0$ and $\gamma_\alpha\in[0,1]$ be chosen so that the (possibly randomised) classifier
 
 $$
-\phi^\star_\alpha(x)=
+\phi^{\mathrm{LR}}_\alpha(x)=
 \begin{cases}
 1 & f_1(x)/f_0(x) > k_\alpha,\\
 \gamma_\alpha & f_1(x)/f_0(x) = k_\alpha,\\
@@ -991,16 +993,16 @@ $$
 \end{cases}
 $$
 
-satisfies $\mathrm{FPR}(\phi^\star_\alpha)=\mathbb{E}[\phi^\star_\alpha(X_0)]=\alpha$. Then $\phi^\star_\alpha$ achieves the highest possible true-positive rate at false-positive level $\alpha$:
+satisfies $\mathrm{FPR}(\phi^{\mathrm{LR}}_\alpha)=\mathbb{E}[\phi^{\mathrm{LR}}_\alpha(X_0)]=\alpha$. Then $\phi^{\mathrm{LR}}_\alpha$ achieves the highest possible true-positive rate at false-positive level $\alpha$:
 
 $$
 \boxed{
-\mathrm{TPR}(\phi^\star_\alpha)
+\mathrm{TPR}(\phi^{\mathrm{LR}}_\alpha)
 =\sup\bigl\{\mathrm{TPR}(\phi):\phi\text{ measurable},\;\mathrm{FPR}(\phi)=\alpha\bigr\}.
 }
 $$
 
-As $\alpha$ varies over $[0,1]$, the resulting ROC curve $\alpha\mapsto\mathrm{TPR}(\phi^\star_\alpha)$ is the pointwise upper envelope of the ROC curves of all measurable classifiers, and it is concave.
+As $\alpha$ varies over $[0,1]$, the resulting ROC curve $\alpha\mapsto\mathrm{TPR}(\phi^{\mathrm{LR}}_\alpha)$ is the pointwise upper envelope of the ROC curves of all measurable classifiers, and it is concave.
 
 ::::
 
@@ -1012,26 +1014,26 @@ As $\alpha$ varies over $[0,1]$, the resulting ROC curve $\alpha\mapsto\mathrm{T
 
 ### 1.  Optimality at a fixed level
 
-Fix $\alpha\in[0,1]$ and let $\phi$ be any measurable classifier with $\mathrm{FPR}(\phi)=\alpha$. We want to show $\mathrm{TPR}(\phi)\le\mathrm{TPR}(\phi^\star_\alpha)$.
+Fix $\alpha\in[0,1]$ and let $\phi$ be any measurable classifier with $\mathrm{FPR}(\phi)=\alpha$. We want to show $\mathrm{TPR}(\phi)\le\mathrm{TPR}(\phi^{\mathrm{LR}}_\alpha)$.
 
-Write $A=\{x:\phi(x)=1\}$ and $A^\star=\{x:f_1(x)/f_0(x)>k_\alpha\}$. By the choice of $k_\alpha$ and $\gamma_\alpha$, $\mathrm{FPR}(\phi^\star_\alpha)=\alpha=\mathrm{FPR}(\phi)$, so
+Write $A=\{x:\phi(x)=1\}$ and $A^{\mathrm{LR}}=\{x:f_1(x)/f_0(x)>k_\alpha\}$. By the choice of $k_\alpha$ and $\gamma_\alpha$, $\mathrm{FPR}(\phi^{\mathrm{LR}}_\alpha)=\alpha=\mathrm{FPR}(\phi)$, so
 
 $$
-\int_{A^\star} f_0\,d\mu = \int_A f_0\,d\mu.
+\int_{A^{\mathrm{LR}}} f_0\,d\mu = \int_A f_0\,d\mu.
 $$
 
-On $A^\star\setminus A$ one has $f_1/f_0>k_\alpha$, hence $f_1>k_\alpha f_0$; on $A\setminus A^\star$ one has $f_1/f_0\le k_\alpha$, hence $f_1\le k_\alpha f_0$. Therefore
+On $A^{\mathrm{LR}}\setminus A$ one has $f_1/f_0>k_\alpha$, hence $f_1>k_\alpha f_0$; on $A\setminus A^{\mathrm{LR}}$ one has $f_1/f_0\le k_\alpha$, hence $f_1\le k_\alpha f_0$. Therefore
 
 $$
 \begin{aligned}
-\mathrm{TPR}(\phi^\star_\alpha)-\mathrm{TPR}(\phi)
-&=\int_{A^\star\setminus A}f_1\,d\mu - \int_{A\setminus A^\star}f_1\,d\mu \\
-&\ge k_\alpha\int_{A^\star\setminus A}f_0\,d\mu - k_\alpha\int_{A\setminus A^\star}f_0\,d\mu \\
-&= k_\alpha\Bigl(\int_{A^\star}f_0\,d\mu - \int_A f_0\,d\mu\Bigr) = 0,
+\mathrm{TPR}(\phi^{\mathrm{LR}}_\alpha)-\mathrm{TPR}(\phi)
+&=\int_{A^{\mathrm{LR}}\setminus A}f_1\,d\mu - \int_{A\setminus A^{\mathrm{LR}}}f_1\,d\mu \\
+&\ge k_\alpha\int_{A^{\mathrm{LR}}\setminus A}f_0\,d\mu - k_\alpha\int_{A\setminus A^{\mathrm{LR}}}f_0\,d\mu \\
+&= k_\alpha\Bigl(\int_{A^{\mathrm{LR}}}f_0\,d\mu - \int_A f_0\,d\mu\Bigr) = 0,
 \end{aligned}
 $$
 
-which gives $\mathrm{TPR}(\phi^\star_\alpha)\ge\mathrm{TPR}(\phi)$. Since $\phi$ was arbitrary, $\phi^\star_\alpha$ is optimal at level $\alpha$.
+which gives $\mathrm{TPR}(\phi^{\mathrm{LR}}_\alpha)\ge\mathrm{TPR}(\phi)$. Since $\phi$ was arbitrary, $\phi^{\mathrm{LR}}_\alpha$ is optimal at level $\alpha$.
 
 The upper-envelope claim follows immediately: for any classifier $\phi$ with $\mathrm{FPR}(\phi)=\alpha$, the inequality above places its operating point on or below the likelihood-ratio ROC curve at the same FPR level.
 
@@ -1045,13 +1047,13 @@ $$
 $$
 
 Consider the *randomised* classifier that, with probability $\lambda$, uses
-$\phi^\star_{\alpha_1}$ and, with probability $1-\lambda$, uses
-$\phi^\star_{\alpha_2}$:
+$\phi^{\mathrm{LR}}_{\alpha_1}$ and, with probability $1-\lambda$, uses
+$\phi^{\mathrm{LR}}_{\alpha_2}$:
 
 $$
 \psi(x)=\begin{cases}
-\phi^\star_{\alpha_1}(x) &\text{with prob. }\lambda,\\
-\phi^\star_{\alpha_2}(x) &\text{with prob. }1-\lambda .
+\phi^{\mathrm{LR}}_{\alpha_1}(x) &\text{with prob. }\lambda,\\
+\phi^{\mathrm{LR}}_{\alpha_2}(x) &\text{with prob. }1-\lambda .
 \end{cases}
 $$
 
@@ -1060,8 +1062,8 @@ Since we have shown that  $\phi_1^\star$ (resp. $\phi_2^\star$) have FPR $\alpha
 $$
 \begin{aligned}
 \mathrm{FPR}(\psi) &=\lambda\,\alpha_1+(1-\lambda)\,\alpha_2=\alpha,\\
-\mathrm{TPR}(\psi) &=\lambda\,\mathrm{TPR}(\phi^\star_{\alpha_1})
-                     +(1-\lambda)\,\mathrm{TPR}(\phi^\star_{\alpha_2}).
+\mathrm{TPR}(\psi) &=\lambda\,\mathrm{TPR}(\phi^{\mathrm{LR}}_{\alpha_1})
+                     +(1-\lambda)\,\mathrm{TPR}(\phi^{\mathrm{LR}}_{\alpha_2}).
 \end{aligned}
 \tag{4}
 $$
@@ -1071,7 +1073,7 @@ rate cannot exceed the optimal value at the same false‑positive level.
 Applying (1) with $\alpha$ gives
 
 $$
-\mathrm{TPR}(\phi^\star_\alpha)\;\ge\;\mathrm{TPR}(\psi).
+\mathrm{TPR}(\phi^{\mathrm{LR}}_\alpha)\;\ge\;\mathrm{TPR}(\psi).
 $$
 
 Substituting (4) yields exactly the desired concavity inequality.
@@ -1091,14 +1093,27 @@ Let $X\mid Y=0\sim\mathcal N(0,1)$ and $X\mid Y=1\sim\mathcal N(1,4)$, with $\Ph
 
 **1. Likelihood-ratio (Neyman–Pearson) test**
 
-The log-likelihood ratio is
+The densities are  
 
 $$
-\ell(x)=\tfrac{3}{8}x^{2}+\tfrac{1}{4}x-\tfrac{1}{8}-\ln2
-=\tfrac{3}{8}\!\Bigl(x+\tfrac{1}{3}\Bigr)^{2}-\tfrac{1}{6}-\ln2,
+f_0(x)=\frac{1}{\sqrt{2\pi}}e^{-x^{2}/2},\qquad
+f_1(x)=\frac{1}{2\sqrt{2\pi}}e^{-(x-1)^{2}/8}.
 $$
 
-so the level-$\lambda$ test rejects on $\{|x+\tfrac{1}{3}|\ge r\}$, where
+Hence, the log-likelihood ratio is
+
+
+$$
+\begin{align*}
+\ell^{LR}(x)
+        & =\log\frac{f_1(x)}{f_0(x)}\\
+        & =\frac{3}{8}x^{2}+\frac14x-\frac18-\log 2 \\
+        & =\frac38\!\Bigl(x+\frac13\Bigr)^{2}-\frac16-\log 2 .
+\end{align*}
+$$
+
+
+so the level-$\lambda$ test $\mathbb{1}(\ell^{LR}(x) \ge \lambda)$ rejects on $\{|x+\tfrac{1}{3}|\ge r\}$, where
 
 $$
 r(\lambda)=\sqrt{\tfrac{8}{3}\!\left(\lambda+\tfrac{1}{6}+\ln2\right)}\ge0.
@@ -1153,7 +1168,33 @@ $\mathrm{FPR}(t)=\mathbb P(X_0\ge t)=1-\Phi(t)$. For TPR, standardise: $\mathbb 
 
 
 
-**3. Two-sided (outside-interval) test** $\phi^{\mathrm{two}}_{c,r}(x)=\mathbb{1}\{|x-c|\ge r\}$
+**3. Left‑tail (one‑sided) test** $\phi^{\mathrm{left}}_t(x)=\mathbb{1}\{x\le t\}$
+
+$$
+\boxed{
+\begin{aligned}
+\mathrm{FPR}^{\mathrm{left}}(t)&=\Phi(t),\\
+\mathrm{TPR}^{\mathrm{left}}(t)&=\Phi\!\bigl(\tfrac{t-1}{2}\bigr).
+\end{aligned}}
+$$
+
+:::: {.proof-container}
+::: {.proof-header onclick="toggleProof('left-fpr-tpr')"}
+[▶]{#proof-arrow-left-fpr-tpr .proof-arrow} [Derivation]{.proof-title}
+:::
+::: {#proof-content-left-fpr-tpr .proof-content}
+$\mathrm{FPR}^{\mathrm{left}}(t)=\mathbb P(X_0\le t)=\Phi(t)$.  
+
+For TPR, standardise, standardise the $Y=1$ distribution:
+$$
+\mathbb P(X_1\le t)=\mathbb P\!\bigl(\tfrac{X_1-1}{2}\le\tfrac{t-1}{2}\bigr)
+                  =\Phi\!\bigl(\tfrac{t-1}{2}\bigr).
+$$
+:::
+::::
+
+
+**4. Two-sided (outside-interval) test** $\phi^{\mathrm{two}}_{c,r}(x)=\mathbb{1}\{|x-c|\ge r\}$
 
 $$
 \boxed{
