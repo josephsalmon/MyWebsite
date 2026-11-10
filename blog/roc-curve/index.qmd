@@ -9,7 +9,7 @@ date: "2026-10-26"
 description: "We Will, We Will ROC You: a long story on ROC and Precision-Recall curves."
 categories: [evaluation, risk, precision, recall, classification, machine learning]
 image: "roc-curve.png"
-image-alt: "Receiver operating characteristic (ROC) curves on the right part of the image, in the middle density distribution for the two class conditional distributions, left part widgets controlers."
+image-alt: "Receiver operating characteristic (ROC) curves on the right, the two class-conditional densities in the middle, widget controls on the left."
 draft: false
 reference-location: document
 fig-cap-location: bottom
@@ -21,8 +21,6 @@ resources:
   - "synthetic_pr_data.json"
   - "roc_data_imbalanced.json"
   - "*.js"
-filters:
-  - pseudocode
 jupyter: python3
 format:
   html:
@@ -58,7 +56,7 @@ We illustrate in this post the notion of **ROC curves** and **Precision-Recall c
 
 For the empirical part, the underlying study compared the Abbott, DiaSorin, Oxford, Roche, and Siemens
 assays using a common set of well-characterized samples.
-We follow @ainsworth2020performance and have used a dataset that contains two groups of samples:
+We follow @ainsworth2020performance and use a dataset that contains two groups of samples:
 
 - **976 pre-pandemic samples**, used as the known-negative reference group;
 - **536 laboratory-confirmed SARS-CoV-2-positive samples**, collected at least 20 days after symptom onset.
@@ -72,7 +70,7 @@ $$
 observations. The proportion of positive samples in this dataset is therefore
 
 $$
-\hat{\pi}_1 = \frac{536}{1512} \approx 0.355,
+\hat{\pi}_1 = \frac{536}{1512} \approx 0.3545,
 $$
 
 or approximately $35.5\%$.
@@ -216,7 +214,7 @@ false positive rate,
 true positive rate.
 
 **Note**:  $\beta$ is the *power* of the test,
-not the Type II error, which is $1-\beta$.)
+not the Type II error, which is $1-\beta$.
 
 :::: {#thm-create-test}
 
@@ -534,74 +532,7 @@ We now treat the two extreme classifiers (that do **not** depend on a threshold)
 * **Always‑accept** (never reject): $\phi_{\text{acc}}(x)\equiv0$.
 * **Always‑reject** (always reject): $\phi_{\text{rej}}(x)\equiv1$.
 
-These are the two “corner’’ points of any ROC curve.  The following lemma makes this precise.
-
-:::: {#lem-roc-corners}
-
-# ROC corner points
-
-Assume the scores $X_0,X_1$ are almost surely finite.  Then
-
-$$
-\boxed{
-\bigl(\mathrm{FPR}(\phi_{\text{acc}}),\;\mathrm{TPR}(\phi_{\text{acc}})\bigr)=(0,0),
-}
-$$
-and
-$$
-\boxed{
-\bigl(\mathrm{FPR}(\phi_{\text{rej}}),\;\mathrm{TPR}(\phi_{\text{rej}})\bigr)=(1,1)
-}.
-$$
-
-::::
-
-:::: {.proof-container}
-::: {.proof-header onclick="toggleProof('lem-roc-corners')"}
-[▶]{#proof-arrow-lem-roc-corners .proof-arrow} **Proof**
-:::
-
-::: {#proof-content-lem-roc-corners .proof-content}
-*Always‑accept.*
-For every observation $x$ we have $\phi_{\text{acc}}(x)=0$, hence
-
-$$
-\begin{align*}
-\mathrm{FPR}(\phi_{\text{acc}})
-  & =\mathbb P\bigl(\phi_{\text{acc}}(X_0)=1\bigr)=0,\\
-\mathrm{TPR}(\phi_{\text{acc}})
-  & =\mathbb P\bigl(\phi_{\text{acc}}(X_1)=1\bigr)=0 .
-\end{align*}
-$$
-
-*Always‑reject.*
-Similarly $\phi_{\text{rej}}(x)=1$ for all $x$, so
-
-$$
-\begin{align*}
-\mathrm{FPR}(\phi_{\text{rej}})
-  & =\mathbb P\bigl(\phi_{\text{rej}}(X_0)=1\bigr)=1,\\
-\mathrm{TPR}(\phi_{\text{rej}})
-  & =\mathbb P\bigl(\phi_{\text{rej}}(X_1)=1\bigr)=1 .
-\end{align*}
-$$
-
-:::
-
-::::
-
-
-The point $(0,0)$ corresponds to a classifier that never declares a signal (no false‑positives, no true‑positives); the point $(1,1)$ corresponds to a
-classifier that always declares a signal (maximal false‑positives and maximal true‑positives).
-
-
-Every ROC curve for a finite scoring rule must start at
-$(0,0)$ and end at $(1,1)$; the two extreme tests are precisely these endpoints, as formalized below:
-
-
-
-
-
+These are the two corner points of any ROC curve. The following lemma makes this precise.
 
 
 :::: {#lem-roc-endpoints}
@@ -670,6 +601,13 @@ $$
 
 ::::
 
+The point $(0,0)$ corresponds to a classifier that never declares a signal (no false‑positives, no true‑positives); the point $(1,1)$ corresponds to a
+classifier that always declares a signal (maximal false‑positives and maximal true‑positives).
+
+
+Every ROC curve for a finite scoring rule must start at
+$(0,0)$ and end at $(1,1)$; the two extreme tests are precisely these endpoints, as formalized below:
+
 #### Extreme cases
 
 ##### ROC curve for a perfect classifier
@@ -680,7 +618,7 @@ $$
 
 Suppose there exists a threshold $t^\star \in \mathbb{R}$ such that
 $$
-\mathbb{P}(\phi_{t^\star}(X_0)=1) = 0, \quad \mathbb{P}(\phi_{t^\star}(X_1)=1) = 1.
+\mathbb{E}(\phi_{t^\star}(X_0)) = 0, \quad \mathbb{E}(\phi_{t^\star}(X_1)) = 1.
 $$
 Then,
 $$
@@ -695,7 +633,7 @@ and the ROC curve passes through the upper-left corner $(0,1)$ for $t^\star$.
 [▶]{#proof-arrow-thm-perfect-separation .proof-arrow} [Proof]{.proof-title}
 :::
 ::: {#proof-content-thm-perfect-separation .proof-content}
-By definition, $\mathrm{FPR}(t^\star) = \mathbb{P}(\phi_{t^\star}(X_0)=1)) = 0$ and $\mathrm{TPR}(t^\star) = \mathbb{P}(\phi_{t^\star}(X_1)=1)) = 1$. Thus the threshold $t^\star$ yields the operating point $(0,1)$, representing perfect discrimination.
+By definition, $\mathrm{FPR}(t^\star) = \mathbb{E}(\phi_{t^\star}(X_0))) = 0$ and $\mathrm{TPR}(t^\star) = \mathbb{E}(\phi_{t^\star}(X_1)) = 1$. Thus the threshold $t^\star$ yields the operating point $(0,1)$, representing perfect discrimination.
 
 :::
 
@@ -710,7 +648,7 @@ By definition, $\mathrm{FPR}(t^\star) = \mathbb{P}(\phi_{t^\star}(X_0)=1)) = 0$ 
 
 Suppose there exists a threshold $t^\star \in \mathbb{R}$ such that
 $$
-\mathbb{P}(\phi_{t^\star}(X_0) = 1) = 1, \quad \mathbb{P}(\phi_{t^\star}(X_1) = 1) = 0.
+\mathbb{E}(\phi_{t^\star}(X_0)) = 1, \quad \mathbb{E}(\phi_{t^\star}(X_1)) = 0.
 $$
 Then,
 $$
@@ -725,7 +663,7 @@ and the ROC curve passes through the lower-right corner $(1,0)$.
 [▶]{#proof-arrow-cor-perfect-anti-separation .proof-arrow} [Proof]{.proof-title}
 :::
 ::: {#proof-content-cor-perfect-anti-separation .proof-content}
-By definition, $\mathrm{FPR}(t^\star) = \mathbb{P}(\phi_{t^\star}(X_0) = 1) = 1$ and $\mathrm{TPR}(t^\star) = \mathbb{P}(\phi_{t^\star}(X_1) = 1) = 0$. Thus the threshold $t^\star$ yields the operating point $(1,0)$, representing perfectly inverted discrimination.
+By definition, $\mathrm{FPR}(t^\star) = \mathbb{E}(\phi_{t^\star}(X_0)) = 1$ and $\mathrm{TPR}(t^\star) = \mathbb{E}(\phi_{t^\star}(X_1)) = 0$. Thus the threshold $t^\star$ yields the operating point $(1,0)$, representing perfectly inverted discrimination.
 
 :::
 
@@ -751,7 +689,7 @@ Consequently, the ROC curve lies on the diagonal line $u=v$ of the unit square.
 [▶]{#proof-arrow-thm-random-guessing .proof-arrow} [Proof]{.proof-title}
 :::
 ::: {#proof-content-thm-random-guessing .proof-content}
-Since $X_0 \stackrel{d}{=} X_1$, $\mathbb{P}(\phi_t(X_0) = 1) = \mathbb{P}(\phi_t(X_1) = 1)$ for every $t \in \mathbb{R}$, so $\mathrm{FPR}(t) = \mathrm{TPR}(t)$ for all $t$, and the ROC curve is included in the diagonal line.
+Since $X_0 \stackrel{d}{=} X_1$, $\mathbb{P}(\phi_t(X_0) = 1) = \mathbb{E}(\phi_t(X_1))$ for every $t \in \mathbb{R}$, so $\mathrm{FPR}(t) = \mathrm{TPR}(t)$ for all $t$, and the ROC curve is included in the diagonal line.
 
 :::
 
@@ -1201,8 +1139,7 @@ the order of the two operations does not matter.
 
 **Consequences.**
 
-- Reversing a test worst than randomly choosing the label,
-makes it better thant this naive test (reflection about $(\tfrac12,\tfrac12)$).
+- Reversing a worse-than-chance test makes it better than chance (reflection about $(\tfrac12,\tfrac12)$).
 - A curve symmetric under $S$ is unchanged by label swapping.
 - The curve of any "worse than chance" family
 can be improved by reversing it.
@@ -1213,7 +1150,7 @@ can be improved by reversing it.
 ##### Summary and visualization
 
 ::: {style="font-size:90%; overflow-x:auto; margin: 1em 0;"}
-   Transformation | FPR$'$ / TPR$'$ | Geometry |
+ | Transformation | FPR$'$ / TPR$'$ | Geometry |
  |---|---|---|
  | Test reversal | $1-\mathrm{FPR}$ / $1-\mathrm{TPR}$ | Central symmetry, center $(0.5,0.5)$ |
  | Label swap | $\mathrm{TPR}$ / $\mathrm{FPR}$ | Main diagonal $y=x$ |
@@ -1222,7 +1159,7 @@ can be improved by reversing it.
 : Transformations of the ROC operating point. Reversal: $X<t \leftrightarrow X\ge t$; label swap: $Y=0\leftrightarrow Y=1$. {#tbl-roc-transformations .striped .hover}
 :::
 
-These three transformations, together with the identity, preserve the curve's overall shape. As noted above, none of them depends on the class prevalence $\pi_1$.
+These three transformations creat reflected copy shape. As noted above, none of them depends on the class prevalence $\pi_1$.
 You can verify this directly with the interactive below.
 
 
@@ -1364,7 +1301,7 @@ Now we illustrate the empirical counterpart, when one samples elements from the 
 <div id="sampling-roc-interactive"
      class="sampling-roc-interactive"
      style="display:flex; gap:10px; align-items:stretch; flex-wrap:nowrap;
-            width:100%; max-width: min(895px, 100%)x; margin:0 auto; overflow-x:auto;
+            width:100%; max-width: min(895px, 100%); margin:0 auto; overflow-x:auto;
             font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
   <div class="sampling-roc-controls"
@@ -1389,40 +1326,9 @@ Now we illustrate the empirical counterpart, when one samples elements from the 
 
 :::
 
-```{python}
-#| echo: false
-
-def roc(thresholds, y_true, score):
-    # Extracted from https://stackoverflow.com/questions/25009284/how-to-plot-roc-curve-in-python
-    fpr = []  # false positive rate
-    tpr = []  # true positive rate
-
-    # get number of positive and negative examples in the dataset
-    P = sum(y_true)
-    N = len(y_true) - P
-
-    # iterate through all thresholds and determine fraction of true positives
-    # and false positives found at this threshold
-    for thresh in thresholds:
-        FP = 0
-        TP = 0
-        for i in range(len(score)):
-            if score[i] >= thresh:
-                if y_true[i] == True:
-                    TP += 1
-                else:
-                    FP += 1
-        fpr.append(FP / float(N))
-        tpr.append(TP / float(P))
-    return tpr, fpr
-```
 
 ROC curves are commonly displayed with stepwise (vertical and horizontal) segments, but using affine interpolation between points provides a more informative visualization.
 In particular, the affine approach better reveals non-concavities in the curve, offering clearer insights into classifier performance and highlighting suboptimal decision thresholds (as explained below). Smooth interpolation distinguishes subtle variations in behavior that would otherwise be obscured by the sharp transitions of stepwise plots.
-
-
-**Note**: the jittering on the x-axis for the scatter plots is not meaningful but only here for visualization.
-
 
 
 #### ROC curves and Neyman-Pearson
@@ -1557,24 +1463,21 @@ We write $\phi^{\mathrm{LR}}_\alpha\triangleq\phi^{\mathrm{LR}}_{k_\alpha,\gamma
 :::
 ::: {#proof-content-lem-np-level .proof-content}
 
-Let $G(k)\triangleq\mathbb{P}(L(X_0)>k)$.
+Let $H(k)\triangleq\mathbb{P}(L(X_0)>k)$.
 It is non-increasing and right-continuous,
-with $G(\infty)=0$ and $G(0)\le1$.
-Set $k_\alpha\triangleq\inf\{k\ge0:G(k)\le\alpha\}$.
+with $H(\infty)=0$ and $H(0)\le1$.
+Set $k_\alpha\triangleq\inf\{k\ge0:H(k)\le\alpha\}$.
 
 - If $k_\alpha=\infty$, then $\alpha=0$
 and $\phi^{\mathrm{LR}}_\alpha\equiv0$ ($\mu$-a.e., since $f_0>0$).
-- Otherwise, right-continuity gives $G(k_\alpha)\le\alpha\le G(k_\alpha-)$,
-and $G(k_\alpha-)-G(k_\alpha)=\mathbb{P}(L(X_0)=k_\alpha)$.
+- Otherwise, right-continuity gives $H(k_\alpha)\le\alpha\le H(k_\alpha-)$,
+and $H(k_\alpha-)-H(k_\alpha)=\mathbb{P}(L(X_0)=k_\alpha)$.
 If this probability is $0$, take $\gamma_\alpha=0$.
 If not, take
 $$
-\gamma_\alpha=\frac{\alpha-G(k_\alpha)}{\mathbb{P}(L(X_0)=k_\alpha)}\in[0,1].
+\gamma_\alpha=\frac{\alpha-H(k_\alpha)}{\mathbb{P}(L(X_0)=k_\alpha)}\in[0,1].
 $$
-- In both cases,
-$\mathbb{E}[\phi^{\mathrm{LR}}_\alpha(X_0)]
-=G(k_\alpha)+\gamma_\alpha\,\mathbb{P}(L(X_0)=k_\alpha)=\alpha$.
-
+- In both cases, $\mathbb{E}[\phi^{\mathrm{LR}}_\alpha(X_0)] =H(k_\alpha)+\gamma_\alpha\,\mathbb{P}(L(X_0)=k_\alpha)=\alpha$.
 :::
 
 ::::
@@ -1727,7 +1630,7 @@ $$
 $$
 
 
-so the level-$\lambda$ test defined as $\mathbb{1}(\ell^{LR}(x) \ge \lambda)$ rejects on $\{|x+\tfrac{1}{3}|\ge r\}$, where
+so the threshold-$\lambda$ test defined as $\mathbb{1}(\ell^{LR}(x) \ge \lambda)$ rejects on $\{|x+\tfrac{1}{3}|\ge r\}$, where
 
 $$
 r(\lambda)=\sqrt{\tfrac{8}{3}\!\left(\lambda+\tfrac{1}{6}+\ln2\right)}\ge0.
@@ -1799,7 +1702,7 @@ $$
 ::: {#proof-content-left-fpr-tpr .proof-content}
 $\mathrm{FPR}^{\mathrm{left}}(t)=\mathbb P(X_0\le t)=\Phi(t)$.  
 
-For TPR, standardise, standardise the $Y=1$ distribution:
+For TPR, standardise the $Y=1$ distribution:
 $$
 \mathbb P(X_1\le t)=\mathbb P\!\bigl(\tfrac{X_1-1}{2}\le\tfrac{t-1}{2}\bigr)
                   =\Phi\!\bigl(\tfrac{t-1}{2}\bigr).
@@ -1829,7 +1732,7 @@ $$
 
 
 
-::: {#fig-gaussian-symmetric-roc}
+::: {#fig-gaussian-roc-simple}
 
 ```{=html}
 <div id="gaussian-roc-simple"
@@ -1843,8 +1746,9 @@ $$
               border-radius:8px; padding:8px; font-size:9.5px;
               background:rgba(0,0,0,0.02);">
     <label style="margin-bottom:4px;">Log‑likelihood‑ratio threshold</label>
-    <input id="lr-threshold" type="range" min="-4" max="4" step="0.01"
-           value="0" style="width:100%;">
+    <input id="lr-threshold" type="range" 
+    min="-0.9" max="12" value="0"
+    value="0" style="width:100%;">
     <span id="lr-thr-val" style="font-weight:600; margin-top:2px;">0.00</span>
   </div>
 
@@ -1857,7 +1761,7 @@ $$
 <script type="module" src="gaussian_roc_simple.js"></script>
 ```
 
-**Gaussian example for visualizing on ROC curves, Neyman-Person dominance on other tests.**
+**Gaussian example for visualizing on ROC curves, Neyman–Pearson optimality of the LR test against other tests.**
 
 
 :::
@@ -2093,7 +1997,7 @@ Write $\widehat{\mathrm{AUC}}$ for its area.
 
 **Score of a single point.**
 For $x\in\mathbb{R}$, the family $t\mapsto\phi_t(x)$
-satisfies (A1)–(A3), so by @thm-create-test
+satisfies @eq-nested–@eq-boundary, so by @thm-create-test
 there is a real variable $T_x$ with
 $$
 \mathbb{P}(T_x\ge t)=\phi_t(x).
@@ -2241,7 +2145,7 @@ $$
 & = \mathbb{P}(T_1>T_0)+\tfrac12\mathbb{P}(T_1=T_0)=\mathrm{AUC}.
 \end{align*}
 $$
-Equivalently, $\mathrm{AUC}\mapsto1-\mathrm{AUC}\mapsto1-(1-\mathrm{AUC})$. $\square$
+Equivalently, $\mathrm{AUC}\mapsto1-\mathrm{AUC}\mapsto1-(1-\mathrm{AUC})$. 
 
 :::
 ::::
@@ -2258,69 +2162,130 @@ including for curves with flat or vertical segments.
 You can check this with the interactive in @fig-gaussian-symmetric-roc: the "ROC curve" and "Class swap + test rev." curves share the same AUC, while "Test reversal" and "Class label swap" alone each trace the complementary area.
 
 
+<!-- --------------------------------------- -->
+
 
 
 ## The precision–recall (PR) curve
 
-The **precision–recall (PR)** curve has a different origin from the ROC curve: it comes from *information retrieval*, not from signal detection. In the 1950s, the first automated literature-searching systems raised a practical question: how should one measure the quality of a search? @kent1955machine proposed to count the share of the relevant documents that are retrieved (what we now call *recall*) and the share of the retrieved documents that are relevant (a first version of *precision*, then called "pertinency"). Medicine had its own names for the same quantities: recall is the *sensitivity*, and precision is the positive predictive value.
+The **precision–recall (PR)** curve has a different origin
+from the ROC curve:
+it comes from *information retrieval*,
+not from signal detection.
+In the 1950s, the first automated literature-searching systems
+raised a practical question:
+how should one measure the quality of a search?
+@kent1955machine proposed to count
+the share of the relevant documents that are retrieved
+(what we now call *recall*)
+and the share of the retrieved documents that are relevant
+(a first version of *precision*, then called "pertinency").
+Medicine had its own names for the same quantities:
+recall is the *sensitivity*,
+and precision is the *positive predictive value*.
 
+**Why a second curve?**
+The ROC curve does not see the prevalence.
+Take a test with $\mathrm{TPR}=0.90$ and $\mathrm{FPR}=0.05$,
+used on a population where $\pi_1=1\%$ of people are sick.
+Out of $1000$ people, about $9$ sick people are detected,
+but $0.05\times 990\approx 50$ healthy people are flagged too.
+Only about $15\%$ of the flagged people are really sick.
+Precision measures exactly this,
+and it moves with $\pi_1$ while the ROC curve does not.
 
 :::: {#def-pr}
 
-# Precision–recall (PR) curve
+# Precision–recall curve
 
-Let $\pi_1\triangleq\mathbb{P}(Y=1)$ and $\pi_0\triangleq\mathbb{P}(Y=0)=1-\pi_1$, both in $(0,1)$. Consider a family of tests $(\phi_t)$ satisfying @eq-nested, @eq-left-cont and @eq-boundary, with $\alpha,\beta$ as in @eq-alpha-beta. Let $\hat Y_t\in\{0,1\}$ be the (randomized) prediction of $\phi_t$, that is $\mathbb{P}(\hat Y_t=1\mid X=x)=\phi_t(x)$.
+Let $(\phi_t)_{t\in\mathbb{R}}$ be a family of tests
+(@def-family),
+and let $\hat Y_t\in\{0,1\}$ be the prediction of $\phi_t$,
+that is $\mathbb{P}(\hat Y_t=1\mid X=x)=\phi_t(x)$.
+Assume $\pi_1=\mathbb{P}(Y=1)\in(0,1)$
+and set $\pi_0=1-\pi_1$.
 
-The **precision–recall (PR) operating point** at $t\in\mathbb{R}$ is the pair
+For a threshold $t\in\mathbb{R}$,
+the **PR operating point** is the pair
 $$
 \begin{align*}
-\mathrm{Recall}(t)
-& = \mathbb{P}(\hat Y_t=1\mid Y=1),\\
-\mathrm{Precision}(t)
-& = \mathbb{P}(Y=1\mid \hat Y_t=1),
+\mathrm{Rec}(t) & = \mathbb{P}(\hat Y_t=1\mid Y=1),\\
+\mathrm{Prec}(t) & = \mathbb{P}(Y=1\mid \hat Y_t=1),
 \end{align*}
 $$ {#eq-pr-point}
-the latter being defined when $\mathbb{P}(\hat Y_t=1)>0$. The **PR curve** is the parametric curve
+the latter being defined when $\mathbb{P}(\hat Y_t=1)>0$.
+
+The **PR curve** is the curve
+traced by the operating point
+as $t$ varies:
 $$
-\bigl\{\bigl(\mathrm{Recall}(t),\mathrm{Precision}(t)\bigr):t\in\mathbb{R}\bigr\}.
+\{(\mathrm{Rec}(t),\mathrm{Prec}(t)) : t\in\mathbb{R},\ \mathbb{P}(\hat Y_t=1)>0\}.
 $$
 
 ::::
 
-For $\phi_t=\mathbb{1}_{\{x\ge t\}}$ we recover $\hat Y_t=\mathbb{1}\{X\ge t\}$, and for a score test $\phi_t=\mathbb{1}_{\{g\ge t\}}$, $\hat Y_t=\mathbb{1}\{g(X)\ge t\}$.
+We write $\mathrm{Rec}$ and $\mathrm{Prec}$
+for recall and precision.
+For instance, for hard tests $\phi_t=\mathbb{1}\{x\ge t\}$,
+$\mathrm{Rec}(t)=\mathbb{P}(X_1\ge t)$
+and $\mathrm{Prec}(t)=\mathbb{P}(Y=1\mid X\ge t)$.
+For a score test $\phi_t=\mathbb{1}\{g(x)\ge t\}$,
+replace $X$ by $g(X)$.
 
-Unlike recall ($=\mathrm{TPR}=\beta$) and the FPR ($=\alpha$), which are conditional on the true class, precision depends on the prevalence $\pi_1$ of the positive class in the population being evaluated. Consequently, the PR curve can change when prevalence changes, even if the class-conditional laws of $X$ (hence of the scores $T_0,T_1$ of @eq-score) remain the same.
+Recall is the TPR:
+it depends only on the law of $X_1$.
+Precision mixes the two classes,
+so it depends on the prevalence $\pi_1$.
+The PR curve can therefore change with $\pi_1$
+even if the class-conditional laws of $X$
+(hence the scores $T_0,T_1$ of @eq-score) stay the same.
 
-The empirical recall and precision are the plug-in estimators of the naming section. For the tests $\phi_t$, with $\mathrm{TP}(t)=\sum_{i}\phi_t(X_{1,i})$ and $\mathrm{FP}(t)=\sum_{j}\phi_t(X_{0,j})$,
+**Estimators.**
+On a labeled sample, let
+$\mathrm{TP}(t)=\sum_{i=1}^{n_1}\phi_t(X_{1,i})$
+and $\mathrm{FP}(t)=\sum_{j=1}^{n_0}\phi_t(X_{0,j})$
+(the counts of the naming section,
+in expectation for randomized tests).
+The plug-in estimators are
 $$
 \begin{align*}
-\widehat{\mathrm{Recall}}(t)
+\widehat{\mathrm{Rec}}(t)
 & =\frac{\mathrm{TP}(t)}{n_1}=\beta_n(t),\\
-\widehat{\mathrm{Precision}}(t)
-& =\frac{\mathrm{TP}(t)}{\mathrm{TP}(t)+\mathrm{FP}(t)}.
+\widehat{\mathrm{Prec}}(t)
+& =\frac{\mathrm{TP}(t)}{\mathrm{TP}(t)+\mathrm{FP}(t)},
 \end{align*}
 $$
-If $\mathrm{TP}(t)+\mathrm{FP}(t)=0$ (no observation is predicted positive, which for randomized tests means zero expected positives), the empirical precision is undefined. Implementations of PR curves adopt a convention for this endpoint, which should be considered when comparing empirical curves.
-
-The following theorem makes explicit how prevalence enters the precision.
+with $\beta_n$ as in @eq-empirical-alpha-beta.
+If $\mathrm{TP}(t)+\mathrm{FP}(t)=0$,
+the empirical precision is undefined,
+and implementations adopt a convention for this endpoint.
+Note that $\widehat{\mathrm{Prec}}$ estimates the precision
+at the prevalence *of the sample*, $n_1/(n_0+n_1)$.
+If the target prevalence is different
+(*e.g.,* a balanced case-control sample),
+plug it into @eq-precision-formula
+together with $\alpha_n,\beta_n$.
 
 :::: {#thm-precision-formula}
 
-# Precision in terms of TPR, FPR, and prevalence
+# Precision in terms of TPR, FPR and prevalence
 
-For every $t$ such that $\pi_1\beta(t)+\pi_0\alpha(t)>0$,
+Let $(\phi_t)_{t\in\mathbb{R}}$ be a family of tests
+(@def-family).
+For every $t$ such that $\pi_1\beta(t)+\pi_0\alpha(t)>0$
+(which is exactly $\mathbb{P}(\hat Y_t=1)>0$),
 $$
 \boxed{
 \begin{aligned}
-\mathrm{Recall}(t)&=\beta(t),\\
-\mathrm{Precision}(t)&=
+\mathrm{Rec}(t)&=\beta(t),\\
+\mathrm{Prec}(t)&=
 \frac{\pi_1\,\beta(t)}{\pi_1\,\beta(t)+\pi_0\,\alpha(t)}.
 \end{aligned}
 }
 $$ {#eq-precision-formula}
 Equivalently, in terms of the scores of @eq-score,
 $$
-\mathrm{Precision}(t)=
+\mathrm{Prec}(t)=
 \frac{\pi_1\,\mathbb{P}(T_1\ge t)}
 {\pi_1\,\mathbb{P}(T_1\ge t)+\pi_0\,\mathbb{P}(T_0\ge t)}.
 $$
@@ -2329,296 +2294,530 @@ The condition holds for all $t$ small enough.
 ::::
 
 :::: {.proof-container}
+
 ::: {.proof-header onclick="toggleProof('thm-precision-formula')"}
 [▶]{#proof-arrow-thm-precision-formula .proof-arrow} [Proof]{.proof-title}
 :::
 
 ::: {#proof-content-thm-precision-formula .proof-content}
 
-Since $\mathbb{P}(\hat Y_t=1\mid X)=\phi_t(X)$, conditioning on the class gives
+Since $\mathbb{P}(\hat Y_t=1\mid X)=\phi_t(X)$,
+conditioning on the class gives
 $$
-\mathbb{P}(\hat Y_t=1\mid Y=1)=\mathbb{E}[\phi_t(X_1)]=\beta(t),
+\begin{align*}
+\mathbb{P}(\hat Y_t=1\mid Y=1)&=\mathbb{E}[\phi_t(X_1)]=\beta(t),\\
+\mathbb{P}(\hat Y_t=1\mid Y=0)&=\mathbb{E}[\phi_t(X_0)]=\alpha(t).
+\end{align*}
 $$
-which is the recall. By the law of total probability,
+The first line is the recall.
+By the law of total probability,
 $$
-\begin{aligned}
+\begin{align*}
 \mathbb{P}(\hat Y_t=1)
-&=\pi_1\,\mathbb{E}[\phi_t(X_1)]\\
-&\quad+\pi_0\,\mathbb{E}[\phi_t(X_0)]\\
-&=\pi_1\,\beta(t)+\pi_0\,\alpha(t).
-\end{aligned}
-$$
-Furthermore,
-$$
-\begin{aligned}
+&=\pi_1\,\mathbb{P}(\hat Y_t=1\mid Y=1)
++\pi_0\,\mathbb{P}(\hat Y_t=1\mid Y=0)\\
+&=\pi_1\,\beta(t)+\pi_0\,\alpha(t),\\
 \mathbb{P}(Y=1,\ \hat Y_t=1)
-&=\pi_1\,\mathbb{P}(\hat Y_t=1\mid Y=1)\\
 &=\pi_1\,\beta(t).
-\end{aligned}
+\end{align*}
 $$
-By the definition of conditional probability,
-$$
-\mathrm{Precision}(t)=
-\frac{\mathbb{P}(Y=1,\ \hat Y_t=1)}{\mathbb{P}(\hat Y_t=1)},
-$$
-and substituting the two expressions above gives @eq-precision-formula. The score form follows from @eq-score, since $\alpha(t)=\mathbb{P}(T_0\ge t)$ and $\beta(t)=\mathbb{P}(T_1\ge t)$. For $t\to-\infty$, @eq-boundary and dominated convergence give $\alpha,\beta\to1$, so the denominator tends to $\pi_1+\pi_0=1>0$.
+By definition of conditional probability,
+$\mathrm{Prec}(t)=\mathbb{P}(Y=1,\hat Y_t=1)/\mathbb{P}(\hat Y_t=1)$,
+which is @eq-precision-formula.
+The score form follows from @eq-score:
+$\alpha(t)=\mathbb{P}(T_0\ge t)$
+and $\beta(t)=\mathbb{P}(T_1\ge t)$.
+Finally, by @lem-roc-endpoints, $\alpha,\beta\to1$ as $t\to-\infty$,
+so the denominator tends to $\pi_1+\pi_0=1>0$.
 
 :::
 ::::
+
+**Reading the formula.**
+When $\alpha(t)>0$, it takes the *odds* form
+$$
+\frac{\mathrm{Prec}(t)}{1-\mathrm{Prec}(t)}
+=\frac{\pi_1}{\pi_0}\cdot\frac{\mathrm{TPR}(t)}{\mathrm{FPR}(t)}.
+$$ {#eq-prec-odds}
+The odds of being sick among the flagged people
+are the prior odds $\pi_1/\pi_0$
+multiplied by $\mathrm{TPR}/\mathrm{FPR}$,
+the positive likelihood ratio of the test.
+At fixed $(\alpha,\beta)$, $\mathrm{Prec}$ is non-decreasing in $\pi_1$:
+a rarer disease pulls the PR curve towards the horizontal axis,
+and leaves the ROC curve unchanged.
+
+**From ROC to PR.**
+Consider for $(u,v)\in[0,1]^2\setminus\{(0,0)\},$
+$$
+\Pi_{\pi_1}(u,v)\triangleq
+\Bigl(v,\ \frac{\pi_1\,v}{\pi_1\,v+\pi_0\,u}\Bigr),\\
+$$ {#eq-pi-map}
+which plays for the PR curve
+the role that $R,S$ play for the ROC curve.
+By @thm-precision-formula,
+$$
+\bigl(\mathrm{Rec}(t),\mathrm{Prec}(t)\bigr)
+=\Pi_{\pi_1}\bigl(\mathrm{FPR}(t),\mathrm{TPR}(t)\bigr).
+$$
+So, writing $\mathcal{C}$ for the ROC curve of the family,
+the PR curve is $\Pi_{\pi_1}\bigl(\mathcal{C}\setminus\{(0,0)\}\bigr)$.
+The map $\Pi_{\pi_1}$ has three features:
+
+- it sends the vertical coordinate to the horizontal one:
+the recall is the TPR,
+- it sends the ray $\{v=c\,u\}$, $c>0$,
+to the horizontal line $\mathrm{Prec}=\bigl(1+\tfrac{\pi_0}{c\,\pi_1}\bigr)^{-1}$
+(by @eq-prec-odds).
+In particular the diagonal $v=u$ goes to $\mathrm{Prec}=\pi_1$,
+- it is **not affine**,
+so a straight ROC segment is not a straight PR segment.
 
 :::: {#def-pr-interp}
 
 # Interpolated PR curve
 
-With the randomized tests $\phi^{(s)}$ of @eq-phi-s (false positive rate exactly $s$) and $\mathrm{ROC}$ as in @eq-roc, the **interpolated PR curve** is, for $s\in(0,1)$,
+Let $\phi^{(s)}$ be the randomized tests of @eq-phi-s
+(false positive rate exactly $s$),
+and $\mathrm{ROC}$ as in @eq-roc.
+The **interpolated PR curve** is, for $s\in(0,1)$,
 $$
-\Bigl(\mathrm{ROC}(s),\ 
+\Pi_{\pi_1}\bigl(s,\mathrm{ROC}(s)\bigr)
+=\Bigl(\mathrm{ROC}(s),\
 \frac{\pi_1\,\mathrm{ROC}(s)}{\pi_1\,\mathrm{ROC}(s)+\pi_0\,s}\Bigr).
 $$ {#eq-pr-interp}
 
 ::::
 
-It has no jumps at the atoms of $T_0$, and it shows that, for a given $\pi_1$, the PR curve is a deterministic transform of the ROC curve.
+This is @thm-precision-formula applied to $\phi^{(s)}$
+(its proof works for any test).
+The curve has no jumps at the atoms of $T_0$,
+and, for a given $\pi_1$,
+it is a deterministic transform of the ROC curve.
 
+**Properties.**
 
-For fixed class-conditional score distributions, $\mathrm{TPR}(t)$ and $\mathrm{FPR}(t)$ do not change with prevalence. The ROC curve therefore remains unchanged, whereas **the PR curve generally changes through $\pi_1$ and $\pi_0$** in the theorem above. In particular, precision at a fixed threshold typically decreases as positive cases become less common.
-
-In our COVID-19 example, the 976 pre-pandemic negative samples and 536 confirmed positive samples reflect the benchmark's sampling design, not necessarily the prevalence of infection in a clinical population. Consequently, its empirical PR curve and average precision need not represent predictive performance in a target population with a different class composition. The initial dataset description gives the benchmark's positive fraction; it should not be interpreted as clinical prevalence.
-
-The Python code to compute this curve is provided below.
-```{python}
-def precision_recall(thresholds, y_true, score):
-    precision = []
-    recall = []
-
-    P = sum(y_true)
-
-    for thresh in thresholds:
-        FP = 0
-        TP = 0
-        for i in range(len(score)):
-            if score[i] >= thresh:
-                if y_true[i] == True:
-                    TP += 1
-                else:
-                    FP += 1
-        recall.append(TP / float(P))
-        # Convention: precision is set to 1 when nothing is predicted positive
-        # (TP + FP = 0), as in scikit-learn at the recall = 0 endpoint.
-        precision.append(TP / float(TP + FP) if (TP + FP) > 0 else 1.0)
-    return precision, recall
-```
-
+- Since $\mathrm{Rec}$ and $\mathrm{Prec}$ are probabilities,
+the curve lies in the unit square $[0,1]^2$.
+- $\mathrm{Rec}(t)=\beta(t)$ is non-increasing in $t$
+(@thm-roc-monotonicity),
+from $1$ at $-\infty$ to $0$ at $+\infty$.
+- $\mathrm{Prec}(t)=\bigl(1+\tfrac{\pi_0}{\pi_1}\tfrac{\alpha(t)}{\beta(t)}\bigr)^{-1}$
+is a decreasing function of $\alpha(t)/\beta(t)$,
+which need not be monotone in $t$.
+Unlike the ROC curve, **a PR curve need not be monotone**
+(empirical PR curves have a saw-tooth shape).
+- The endpoint at $t\to-\infty$ is universal,
+the one at $\mathrm{Rec}\to0$ is not
+(@lem-pr-endpoint and the remark after it).
+- If $T_0,T_1$ have atoms, the set of points has jumps.
+As for ROC, one can keep the points
+or fill the jumps by randomization (@def-pr-interp).
+The filled pieces are not straight segments,
+so **linear interpolation of PR points
+does not correspond to any test**.
 
 ### Properties
 
 #### Endpoints
 
-Throughout this section, assume $\pi_1\in(0,1)$, $\pi_0=1-\pi_1$, and that $X_0,X_1$ are almost surely finite. Recall and precision are as defined above; precision is defined only when $\mathbb{P}(X\ge t)>0$.
-
-
 :::: {#lem-pr-endpoint}
 
 # Universal endpoint of the PR curve
 
-For a family of tests $(\phi_t)$ satisfying @eq-nested, @eq-left-cont and @eq-boundary, there exists $t_0\in\mathbb{R}$ such that the denominator of $\mathrm{Precision}(t)$ in @eq-precision-formula is positive for all $t\le t_0$, and
+Let $(\phi_t)_{t\in\mathbb{R}}$ be a family of tests
+(@def-family).
+There exists $t_0\in\mathbb{R}$ such that
+$\mathrm{Prec}(t)$ is defined for all $t\le t_0$, and
 $$
-\bigl(\mathrm{Recall}(t),\mathrm{Precision}(t)\bigr)\mathrel{\underset{t\to-\infty}{\longrightarrow}} (1,\pi_1).
+\boxed{
+\lim_{t\to-\infty}
+\bigl(\mathrm{Rec}(t),\mathrm{Prec}(t)\bigr)
+=(1,\pi_1).
+}
 $$
 
 ::::
 
 :::: {.proof-container}
+
 ::: {.proof-header onclick="toggleProof('lem-pr-endpoint')"}
 [▶]{#proof-arrow-lem-pr-endpoint .proof-arrow} [Proof]{.proof-title}
 :::
 
 ::: {#proof-content-lem-pr-endpoint .proof-content}
 
-For $y\in\{0,1\}$, @eq-boundary gives $\phi_t(X_y)\to1$ pointwise as $t\to-\infty$. Since $0\le\phi_t\le1$, dominated convergence yields
+By @lem-roc-endpoints,
+$(\alpha(t),\beta(t))\to(1,1)$ as $t\to-\infty$.
+The denominator $\pi_1\beta(t)+\pi_0\alpha(t)$
+tends to $\pi_1+\pi_0=1$,
+so it is positive for all $t\le t_0$, for some $t_0$.
+The map $\Pi_{\pi_1}$ is continuous on $[0,1]^2\setminus\{(0,0)\}$,
+since its denominator $\pi_1v+\pi_0u$ is positive there. Hence
 $$
-\lim_{t\to-\infty}\alpha(t)=\lim_{t\to-\infty}\beta(t)=1.
-$$
-Hence $\mathrm{Recall}(t)=\beta(t)\to1$, and the denominator
-$$
-\pi_1\beta(t)+\pi_0\alpha(t)\longrightarrow\pi_1+\pi_0=1.
-$$
-In particular it is positive for all $t\le t_0$, for some $t_0$, so $\mathrm{Precision}(t)$ is defined there. Since the limit of the denominator is $1\neq0$, the quotient rule for limits gives
-$$
-\mathrm{Precision}(t)\longrightarrow\frac{\pi_1\cdot1}{\pi_1\cdot1+\pi_0\cdot1}=\pi_1.
+\bigl(\mathrm{Rec}(t),\mathrm{Prec}(t)\bigr)
+=\Pi_{\pi_1}\bigl(\alpha(t),\beta(t)\bigr)
+\longrightarrow\Pi_{\pi_1}(1,1)=(1,\pi_1).
 $$
 
 :::
 ::::
 
-**Remark (the other end, $\mathrm{Recall}\to0$).** The limit as $t\to+\infty$ is *not* universal. By @eq-boundary, $\alpha(t),\beta(t)\to0$, so numerator and denominator of $\mathrm{Precision}(t)$ in @eq-precision-formula both tend to $0$, and, when $\beta(t)>0$,
+**The other end, $\mathrm{Rec}\to0$.**
+The limit as $t\to+\infty$ is *not* universal.
+By @eq-boundary, $\alpha(t),\beta(t)\to0$,
+so numerator and denominator of $\mathrm{Prec}(t)$ both tend to $0$.
+When $\beta(t)>0$,
 $$
-\mathrm{Precision}(t)=\Bigl(1+\frac{\pi_0}{\pi_1}\,\frac{\alpha(t)}{\beta(t)}\Bigr)^{-1}
+\mathrm{Prec}(t)
 =\Bigl(1+\frac{\pi_0}{\pi_1}\,\frac{\mathbb{P}(T_0\ge t)}{\mathbb{P}(T_1\ge t)}\Bigr)^{-1}
 $$
-is governed by the tail ratio $\alpha(t)/\beta(t)$ of the scores $T_0,T_1$ of @eq-score. For instance:
+is governed by the tail ratio of the scores.
+If $\alpha(t)/\beta(t)\to c\in[0,\infty]$, then
+$\mathrm{Prec}(t)\to\bigl(1+c\,\pi_0/\pi_1\bigr)^{-1}$
+(read as $0$ when $c=\infty$).
+For instance:
 
-- $\alpha(t)/\beta(t)\to0$: the curve ends at $(0,1)$. For $\phi_t=\mathbb{1}_{\{x\ge t\}}$ this occurs when $X_y\sim\mathcal N(\mu_y,\sigma^2)$ with $\mu_1>\mu_0$.
-- $\alpha\equiv\beta$ (that is $T_0\overset{d}{=}T_1$): the ratio is $\equiv1$ and the curve ends at $(0,\pi_1)$. For $\phi_t=\mathbb{1}_{\{x\ge t\}}$ this is $X_0\overset{d}{=}X_1$.
-- $\alpha(t)/\beta(t)\to+\infty$: the curve ends at $(0,0)$. For $\phi_t=\mathbb{1}_{\{x\ge t\}}$ this occurs when $X_y\sim\mathcal N(\mu_y,\sigma^2)$ with $\mu_1<\mu_0$.
+- $c=0$: the curve ends at $(0,1)$.
+For $\phi_t=\mathbb{1}\{x\ge t\}$ this occurs when
+$X_y\sim\mathcal N(\mu_y,\sigma^2)$ with $\mu_1>\mu_0$,
+- $c=1$: the curve ends at $(0,\pi_1)$.
+This is the case $T_0\overset{d}{=}T_1$,
+*e.g.,* $X_0\overset{d}{=}X_1$,
+- $c=\infty$: the curve ends at $(0,0)$.
+For $\phi_t=\mathbb{1}\{x\ge t\}$ this occurs when
+$X_y\sim\mathcal N(\mu_y,\sigma^2)$ with $\mu_1<\mu_0$.
 
-More generally, the ratio may have no limit, and the curve then has no endpoint at recall $0$.
+More generally, the ratio may have no limit,
+and the curve then has no endpoint at recall $0$.
 
-### Extreme cases
+#### Extreme cases
 
+##### PR curve for a perfect classifier
 
 :::: {#thm-perfect-pr-separation}
 
 # PR curve for a perfect classifier
 
-Consider a family of tests $(\phi_t)$ satisfying @eq-nested, @eq-left-cont and @eq-boundary. Suppose there exists a threshold $t^\star\in\mathbb{R}$ such that
+Let $(\phi_t)_{t\in\mathbb{R}}$ be a family of tests
+(@def-family).
+Suppose there exists $t^\star\in\mathbb{R}$ such that
 $$
-\alpha(t^\star)=0,\qquad \beta(t^\star)=1 .
+\alpha(t^\star)=0,\qquad\beta(t^\star)=1.
 $$ {#eq-perfect}
 Then
 $$
-\boxed{\mathrm{Recall}(t^\star)=1,\qquad \mathrm{Precision}(t^\star)=1.}
+\boxed{\mathrm{Rec}(t^\star)=1,\qquad\mathrm{Prec}(t^\star)=1,}
 $$
-For every $t\ge t^\star$ with $\mathrm{Recall}(t)>0$, the precision is $1$. The curve therefore traces the horizontal segment at precision $1$ from $(1,1)$ toward $(0,1)$. At a threshold with no predicted positives, the population precision is undefined, although PR-curve implementations commonly use $1$ for this endpoint. As $t\to-\infty$, the curve also approaches the universal endpoint $(1,\pi_1)$ of @lem-pr-endpoint.
+and the PR curve is contained in the union of two segments:
 
-Equivalently, in terms of the scores of @eq-score, @eq-perfect reads $\mathbb{P}(T_0\ge t^\star)=0$ and $\mathbb{P}(T_1\ge t^\star)=1$, that is $T_0<t^\star\le T_1$ almost surely. In that case $\mathrm{AUC}=1$ by @eq-auc.
+1. the horizontal segment $[0,1]\times\{1\}$,
+traced by the thresholds $t\ge t^\star$ with $\beta(t)>0$,
+2. the vertical segment $\{1\}\times[\pi_1,1]$,
+traced by the thresholds $t\le t^\star$,
+where $\mathrm{Prec}(t)=\pi_1/(\pi_1+\pi_0\alpha(t))$.
+
+Equivalently, in terms of the scores of @eq-score,
+@eq-perfect reads $T_0<t^\star\le T_1$ almost surely,
+and $\mathrm{AUC}=1$ by @eq-auc.
 
 ::::
 
 :::: {.proof-container}
+
 ::: {.proof-header onclick="toggleProof('thm-perfect-pr-separation')"}
 [▶]{#proof-arrow-thm-perfect-pr-separation .proof-arrow} [Proof]{.proof-title}
 :::
 
 ::: {#proof-content-thm-perfect-pr-separation .proof-content}
 
-**The point at $t^\star$.** By @eq-precision-formula and @eq-perfect,
+**Step 1: the point at $t^\star$.**
+By @eq-precision-formula and @eq-perfect,
 $$
 \begin{align*}
-\mathrm{Recall}(t^\star)
-& = \beta(t^\star)=1,\\
-\mathrm{Precision}(t^\star)
-& = \frac{\pi_1\cdot1}{\pi_1\cdot1+\pi_0\cdot0}=1.
+\mathrm{Rec}(t^\star)&=\beta(t^\star)=1,\\
+\mathrm{Prec}(t^\star)&=\frac{\pi_1\cdot1}{\pi_1\cdot1+\pi_0\cdot0}=1.
 \end{align*}
 $$
 
-**The flat segment.** By @eq-nested, $\alpha$ is non-increasing. Since $\alpha\ge0$ and $\alpha(t^\star)=0$,
+**Step 2: thresholds $t\ge t^\star$.**
+By @eq-nested, $\alpha$ is non-increasing,
+and $\alpha\ge0$, so $\alpha(t)=0$.
+If $\beta(t)>0$,
 $$
-\alpha(t)=0\quad\text{for all } t\ge t^\star.
+\mathrm{Prec}(t)=\frac{\pi_1\,\beta(t)}{\pi_1\,\beta(t)+\pi_0\cdot0}=1,
 $$
-Consequently, for any $t\ge t^\star$ with $\beta(t)>0$,
-$$
-\mathrm{Precision}(t)=\frac{\pi_1\,\beta(t)}{\pi_1\,\beta(t)+\pi_0\cdot0}=1 .
-$$
-If $\beta(t)=0$ as well, no positives are predicted in expectation and the population precision is undefined. The population PR curve thus has precision $1$ wherever predicted positives remain, and empirical implementations may separately assign precision $1$ at the no-predictions endpoint.
+and $\mathrm{Rec}(t)=\beta(t)\in(0,1]$.
+If $\beta(t)=0$ no positive is predicted
+and $\mathrm{Prec}(t)$ is undefined.
+By @eq-boundary, $\beta(t)\to0$ as $t\to+\infty$:
+the recall decreases from $1$ to $0$ at precision $1$.
 
-**The endpoints.** For $t\ge t^\star$, $\beta$ is non-increasing from $\beta(t^\star)=1$, and $\beta(t)\to0$ as $t\to+\infty$ by @eq-boundary and dominated convergence. So recall decreases from $1$ to $0$ while precision stays $1$ whenever $\beta(t)>0$. The endpoint at recall $0$ is represented as $(0,1)$ under the usual PR-plotting convention. As $t\to-\infty$, @lem-pr-endpoint gives $(\mathrm{Recall},\mathrm{Precision})\to(1,\pi_1)$.
+**Step 3: thresholds $t\le t^\star$.**
+Since $\beta$ is non-increasing, $\beta\le1$ and $\beta(t^\star)=1$,
+we get $\beta(t)=1$.
+So $\mathrm{Rec}(t)=1$ and
+$\mathrm{Prec}(t)=\pi_1/(\pi_1+\pi_0\alpha(t))$,
+which lies in $[\pi_1,1]$ since $\alpha(t)\in[0,1]$,
+and tends to $\pi_1$ as $t\to-\infty$ (@lem-pr-endpoint).
 
-**Link with the scores.** From @eq-perfect, $\mathbb{P}(T_0\ge t^\star)=0$ and $\mathbb{P}(T_1\ge t^\star)=1$, so $T_0<t^\star\le T_1$ almost surely. Hence $\mathbb{P}(T_1>T_0)=1$ and @eq-auc gives $\mathrm{AUC}=1$.
+**Step 4: scores.**
+By @eq-score, $\mathbb{P}(T_0\ge t^\star)=\alpha(t^\star)=0$
+and $\mathbb{P}(T_1\ge t^\star)=\beta(t^\star)=1$.
+So $T_0<t^\star\le T_1$ almost surely,
+$\mathbb{P}(T_1>T_0)=1$ and @eq-auc gives $\mathrm{AUC}=1$.
 
 :::
 ::::
 
-#### Always-wrong classifier
+At a threshold with no predicted positive,
+the population precision is undefined.
+PR-curve software commonly uses $1$ there,
+which represents the endpoint at recall $0$ as $(0,1)$.
 
-@thm-always-wrong-pr pins down the PR curve only for $t\ge t^\star$ (a single point, via monotonicity of $\mathrm{TPR}$). The same hypothesis, applied to $\mathrm{FPR}$ instead, determines the remaining branch $t\le t^\star$ as well.
+##### PR curve for an always-wrong classifier
 
 :::: {#thm-always-wrong-pr}
 
 # PR curve for an always-wrong classifier
 
-Suppose there exists $t^\dagger \in \mathbb{R}$ such that
+Let $(\phi_t)_{t\in\mathbb{R}}$ be a family of tests
+(@def-family).
+Suppose there exists $t^\dagger\in\mathbb{R}$ such that
 $$
-\mathbb{P}(X_0 \ge t^\dagger) = 1, \quad \mathbb{P}(X_1 \ge t^\dagger) = 0
+\alpha(t^\dagger)=1,\qquad\beta(t^\dagger)=0.
 $$
-Then the operating points satisfy the following:
+Then:
 
-- for $t\ge t^\dagger$: $\mathrm{Recall}(t)\equiv0$; precision is $0$ when $\mathrm{FPR}(t)>0$ and is undefined when no positives are predicted;
-- for $t\le t^\dagger$: $\mathrm{FPR}(t)\equiv1$, and with $r\triangleq    \mathrm{Recall}(t)$, every attainable recall value satisfies
+1. for $t\ge t^\dagger$, $\mathrm{Rec}(t)=0$,
+and $\mathrm{Prec}(t)=0$ if $\alpha(t)>0$
+(undefined if $\alpha(t)=0$),
+2. for $t\le t^\dagger$, $\alpha(t)=1$ and, with $r\triangleq\mathrm{Rec}(t)$,
 $$
-\boxed{\mathrm{Precision}(r) = \frac{\pi_1\,r}{\pi_1\,r + \pi_0}.}
+\boxed{\mathrm{Prec}=\frac{\pi_1\,r}{\pi_1\,r+\pi_0}.}
 $$
-If the positive-class score distribution is continuous, these points trace the full curve for $r\in[0,1]$.
+
+The PR curve is thus contained in the arc
+$r\mapsto\frac{\pi_1r}{\pi_1r+\pi_0}$, $r\in[0,1]$,
+which ends at $(1,\pi_1)$.
+If $\beta$ is continuous (*i.e.,* $T_1$ has no atom),
+the thresholds $t\le t^\dagger$ trace the whole arc.
 
 ::::
 
 :::: {.proof-container}
+
 ::: {.proof-header onclick="toggleProof('thm-always-wrong-pr')"}
 [▶]{#proof-arrow-thm-always-wrong-pr .proof-arrow} [Proof]{.proof-title}
 :::
 
 ::: {#proof-content-thm-always-wrong-pr .proof-content}
 
-**Branch $t\ge t^\dagger$.** By the assumption, $\mathrm{TPR}(t^\dagger)=0$; monotonicity (@thm-roc-monotonicity) gives $\mathrm{TPR}(t)=0$ for every $t\ge t^\dagger$. Hence recall is $0$ throughout this range. Precision is $0$ when $\mathrm{FPR}(t)>0$ and is undefined if $\mathrm{FPR}(t)=0$, because then no positives are predicted. Under the common plotting convention that assigns precision $1$ when no positives are predicted, the limiting endpoint is represented as $(0,1)$; the population definition itself leaves precision undefined there.
+**Thresholds $t\ge t^\dagger$.**
+By @eq-nested, $\beta$ is non-increasing and $\beta(t^\dagger)=0$,
+so $\mathrm{Rec}(t)=\beta(t)=0$.
+By @eq-precision-formula, $\mathrm{Prec}(t)=0$ when $\alpha(t)>0$,
+and no positive is predicted when $\alpha(t)=0$.
 
-**Branch $t\le t^\dagger$.** Since $\mathrm{FPR}(t^\dagger)=1$ and $\mathrm{FPR}$ is non-increasing, $\mathrm{FPR}(t)\ge1$ for $t\le t^\dagger$, forcing $\mathrm{FPR}(t)\equiv1$ there. Substituting into @thm-precision-formula,
+**Thresholds $t\le t^\dagger$.**
+Since $\alpha$ is non-increasing, $\alpha\le1$ and $\alpha(t^\dagger)=1$,
+we get $\alpha(t)=1$.
+Substituting in @eq-precision-formula,
 $$
-\begin{align*}
-\mathrm{Precision}(t)
-& = \frac{\pi_1\,\mathrm{TPR}(t)}{\pi_1
-\mathrm{TPR}(t)+\pi_0}\\
-& = \frac{\pi_1\,r}{\pi_1\,r+\pi_0}, \quad r\triangleq    \mathrm{Recall}(t).
-\end{align*}
+\mathrm{Prec}(t)=\frac{\pi_1\,\beta(t)}{\pi_1\,\beta(t)+\pi_0}
+=\frac{\pi_1\,r}{\pi_1\,r+\pi_0},
+\qquad r=\beta(t).
 $$
-As $t$ decreases from $t^\dagger$ to $-\infty$, $r=\mathrm{TPR}(t)$ increases from $0$ to $1$ (@lem-roc-endpoints), sweeping the boxed curve up to $(1,\pi_1)$.
+As $t$ decreases from $t^\dagger$ to $-\infty$,
+$r$ increases from $0$ to $1$ (@lem-roc-endpoints).
+If $\beta$ is continuous, it takes every value in $[0,1]$.
+At $r=1$ the precision is $\pi_1$.
 
 :::
 ::::
 
+In ROC space, this is the lower-right path
+(bottom edge, then right edge) of the square,
+and the arc is $\Pi_{\pi_1}$ of the right edge $\{1\}\times[0,1]$.
 
-#### Random guessing
+##### PR curve under random guessing
 
 :::: {#thm-random-pr}
 
 # PR curve under random guessing
 
-Suppose $X_0 \stackrel{d}{=} X_1$. Write $p(t)\triangleq    \mathbb{P}(X_0\ge t)=\mathbb{P}(X_1\ge t)$. Then $\mathrm{Precision}(t)$ is defined if and only if $p(t)>0$, and in that case
+Let $(\phi_t)_{t\in\mathbb{R}}$ be a family of tests
+(@def-family) with $T_0\overset{d}{=}T_1$, that is $\alpha\equiv\beta$.
+(This holds in particular if $X_0\overset{d}{=}X_1$.)
+Write $p(t)\triangleq\alpha(t)=\beta(t)$.
+Then $\mathrm{Prec}(t)$ is defined if and only if $p(t)>0$,
+and in that case
 $$
-\boxed{\mathrm{Recall}(t)=p(t), \quad \mathrm{Precision}(t) = \pi_1.}
+\boxed{\mathrm{Rec}(t)=p(t),\qquad\mathrm{Prec}(t)=\pi_1.}
 $$
-Consequently the PR curve $\{(\mathrm{Recall}(t),\mathrm{Precision}(t)) : p(t)>0\}$ is contained in the horizontal line $\mathrm{Precision}=\pi_1$.
+Consequently the PR curve is contained
+in the horizontal line $\mathrm{Prec}=\pi_1$.
 
 ::::
 
 :::: {.proof-container}
+
 ::: {.proof-header onclick="toggleProof('thm-random-pr')"}
 [▶]{#proof-arrow-thm-random-pr .proof-arrow} [Proof]{.proof-title}
 :::
 
 ::: {#proof-content-thm-random-pr .proof-content}
 
-By definition, $\mathrm{Recall}(t)=\mathbb{P}(X_1\ge t)$ and
+By @thm-precision-formula, $\mathrm{Rec}(t)=\beta(t)=p(t)$,
+and the denominator of the precision is
+$\pi_1p(t)+\pi_0p(t)=p(t)$.
+So $\mathrm{Prec}(t)$ is defined if and only if $p(t)>0$, and then
 $$
-\begin{align*}
-\mathrm{Precision}(t)
-& =\mathbb{P}(Y=1\mid\hat{Y}_t=1)\\
-& =\frac{\pi_1\,\mathbb{P}(X_1\ge t)}{\pi_1\,\mathbb{P}(X_1\ge t)+\pi_0\,\mathbb{P}(X_0\ge t)},
-\end{align*}$$
-which is defined if and only if the denominator $\mathbb{P}(\hat{Y}_t=1)$ is positive. Since $X_0\stackrel d=X_1$, both tail probabilities equal $p(t)$, so $\mathrm{Recall}(t)=p(t)$ and the denominator equals $(\pi_1+\pi_0)\,p(t)=p(t)$. Hence $\mathrm{Precision}(t)$ is defined if and only if $p(t)>0$, and then
-$$
-\mathrm{Precision}(t)=\frac{\pi_1\,p(t)}{p(t)}=\pi_1.
+\mathrm{Prec}(t)=\frac{\pi_1\,p(t)}{p(t)}=\pi_1.
 $$
 
 :::
 ::::
 
+**Interpretation.**
+The three cases show an asymmetry between the two ends of the PR curve.
 
-**Interpretation.** The three cases show an asymmetry between the two ends of the PR curve.
+- **$\mathrm{Rec}=1$ is the universal endpoint.**
+It is reached as $t\to-\infty$,
+where the classifier labels *everybody* positive.
+Precision is then the base rate $\pi_1$,
+whatever the score distributions are (@lem-pr-endpoint).
+The perfect, random and always-wrong classifiers
+all pass through $(1,\pi_1)$.
+- **$\mathrm{Rec}=0$ is model-dependent.**
+It is reached as $t\to+\infty$,
+where the classifier labels almost nobody positive,
+and $\mathrm{Prec}$ measures the purity of the *extreme upper tail*
+of the scores.
+This purity is not determined by $\pi_1$ or by the ROC endpoints,
+but by the tail ratio $\alpha(t)/\beta(t)$.
+The limit can take any value in $[0,1]$:
+$1$ for the perfect classifier (the top scores are all positives),
+$\pi_1$ for random guessing (the top scores carry no information),
+and $0$ for the always-wrong classifier (the top scores are all negatives).
 
-- **$\mathrm{Recall}=1$ is the universal endpoint.** It is reached as $t\to-\infty$, where the classifier labels *everything* positive. Precision is then simply the base rate, $\mathrm{Precision}=\pi_1$, whatever the score distributions are (@lem-roc-endpoints + @thm-precision-formula, no extra hypothesis). The perfect, random and always-wrong classifiers all pass through $(1,\pi_1)$.
-- **$\mathrm{Recall}=0$ is model-dependent.** It is reached as $t\to+\infty$, where the classifier labels almost nothing positive, and $\mathrm{Precision}$ measures the purity of the *extreme upper tail* of the scores. That purity is not determined by $\pi_1$ or by the ROC endpoints alone, but by the tail ratio $\mathbb{P}(X_0\ge t)/\mathbb{P}(X_1\ge t)$. The limit can take any value in $[0,1]$: $1$ for the perfect classifier (the top scores are all positives), $\pi_1$ for random guessing (the top scores carry no information), and $0$ for the always-wrong classifier (the top scores are all negatives).
+This is why the derivations of [Appendix B](#sec-app-pr)
+need tail-rate arguments
+(Mills' ratio; a power-law comparison)
+to determine the $\mathrm{Rec}=0$ end.
 
-This is why the earlier Gaussian and exponential derivations needed tail-rate arguments (Mills' ratio; a power-law comparison) to determine the $\mathrm{Recall}=0$ end. Unlike the $\mathrm{Recall}=1$ endpoint, it is never given for free.
+#### Symmetries of PR curves
 
+In ROC space, test reversal, label swap and their composition
+are the reflections $R$, $S$ and $R\circ S$ of the unit square.
+In PR space they have **no such description**:
+no reflection or rotation of the PR curve produces the transformed curves.
+The map $\Pi_{\pi_1}$ is nonlinear and depends on $\pi_1$,
+and a label swap also changes the *positive class*,
+whose prevalence becomes $\pi_0$.
+What survives is a clean recipe:
+transform the ROC curve first, then apply $\Pi$
+with the prevalence of the new positive class.
 
-### Symmetries of PR curves
+:::: {#thm-pr-symmetries}
 
-Unlike in ROC space, none of the three transformations (test reversal, class label swap, and their composition) has a simple geometric description in PR space: there is no reflection or rotation of the original PR curve that produces the transformed curves. The map $(\mathrm{FPR},\mathrm{TPR})\mapsto(\mathrm{Recall},\mathrm{Precision})$ is nonlinear and depends on the prevalence $\pi_1=\mathbb{P}(Y=1)$, and each transformation also changes the role of the positive class.
-Each transformed curve must therefore be recomputed from the definitions of precision and recall. Consequently, the transformed curves generally have a different shape from the original one, and, unlike the ROC curve, they all depend on $\pi_1$. What remains simple is the endpoint at $\mathrm{Recall}=1$: it is $(1,\pi_1)$ for the original curve and the test reversal, and $(1,1-\pi_1)$ for the two curves with swapped labels.
+# PR curves under reversal and label swap
+
+Let $(\phi_t)_{t\in\mathbb{R}}$ be a family of tests
+(@def-family) with $\alpha,\beta$ continuous,
+and let $\mathcal{C}$ be its ROC curve.
+Then the PR curves of
+
+- the reversed family $(\phi^{\mathrm{rev}}_t)_t$ (@eq-reversed-family),
+- the family with swapped labels,
+- the reversed family with swapped labels,
+
+are respectively
+$$
+\Pi_{\pi_1}\bigl(R(\mathcal{C})\bigr),\qquad
+\Pi_{\pi_0}\bigl(S(\mathcal{C})\bigr),\qquad
+\Pi_{\pi_0}\bigl((R\circ S)(\mathcal{C})\bigr),
+$$
+with $(0,0)$ removed.
+At $\mathrm{Rec}=1$ they end at $(1,\pi_1)$, $(1,\pi_0)$ and $(1,\pi_0)$.
+
+::::
+
+:::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('thm-pr-symmetries')"}
+[▶]{#proof-arrow-thm-pr-symmetries .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-pr-symmetries .proof-content}
+
+In each case the transformed problem is a family of tests
+(@thm-roc-threshold-reversal, @thm-roc-class-swap)
+with labels $Y'$.
+The ROC curve of the transformed problem is
+$R(\mathcal{C})$, $S(\mathcal{C})$ or $(R\circ S)(\mathcal{C})$
+by @thm-roc-threshold-reversal, @thm-roc-class-swap
+and @thm-roc-class-inversion,
+and the operating point at $t$ is the image
+of $(\alpha(t),\beta(t))$ under the corresponding map.
+The prevalence of the new positive class is
+$\pi'=\mathbb{P}(Y'=1)$,
+which is $\pi_1$ for the reversal (labels kept)
+and $\pi_0$ for the two label swaps ($Y'=1-Y$).
+Apply @thm-precision-formula to the transformed problem:
+its PR operating point is $\Pi_{\pi'}$ of its ROC operating point.
+
+For the endpoint, @lem-roc-endpoints applied to the transformed family
+gives a ROC operating point tending to $(1,1)$ as $t\to-\infty$,
+so the PR point tends to $\Pi_{\pi'}(1,1)=(1,\pi')$.
+
+:::
+::::
+
+Written out, with $\alpha=\alpha(t)$ and $\beta=\beta(t)$:
+
+::: {style="font-size:90%; overflow-x:auto; margin: 1em 0;"}
+
+| Transformation | PR curve | PR operating point $(\mathrm{Rec}',\mathrm{Prec}')$ | End at $\mathrm{Rec}=1$ |
+|:---|:---|:---|:---|
+| Original | $\Pi_{\pi_1}(\mathcal{C})$ | $\bigl(\beta,\ \frac{\pi_1\beta}{\pi_1\beta+\pi_0\alpha}\bigr)$ | $(1,\pi_1)$ |
+| Test reversal | $\Pi_{\pi_1}(R(\mathcal{C}))$ | $\bigl(1-\beta,\ \frac{\pi_1(1-\beta)}{\pi_1(1-\beta)+\pi_0(1-\alpha)}\bigr)$ | $(1,\pi_1)$ |
+| Label swap | $\Pi_{\pi_0}(S(\mathcal{C}))$ | $\bigl(\alpha,\ \frac{\pi_0\alpha}{\pi_0\alpha+\pi_1\beta}\bigr)$ | $(1,\pi_0)$ |
+| Reversal + swap | $\Pi_{\pi_0}((R\circ S)(\mathcal{C}))$ | $\bigl(1-\alpha,\ \frac{\pi_0(1-\alpha)}{\pi_0(1-\alpha)+\pi_1(1-\beta)}\bigr)$ | $(1,\pi_0)$ |
+
+: Transformations of the PR operating point (for continuous $\alpha,\beta$). Reversal: $X<t\leftrightarrow X\ge t$; label swap: $Y=0\leftrightarrow Y=1$. {#tbl-pr-transformations .striped .hover}
+:::
+
+Each row has a direct reading:
+
+- **Label swap:** $\mathrm{Rec}'=\mathrm{FPR}$ and $\mathrm{Prec}'=1-\mathrm{Prec}$,
+the share of healthy people among the flagged ones,
+- **Reversal + swap:** the PR curve of the *negative* class,
+$\mathrm{Rec}'=\mathrm{TNR}$ (specificity)
+and $\mathrm{Prec}'=\mathbb{P}(Y=0\mid\hat Y_t=0)$
+(negative predictive value).
+
+Unlike in ROC space, the transformed curves
+generally have a different shape from the original one,
+and they all depend on $\pi_1$.
 You can verify this directly with the interactive below.
 
-**Interactive PR curve exploration.** The visualization below illustrates these properties for the same Gaussian model $X\mid Y=0\sim\mathcal N(0,1)$, $X\mid Y=1\sim\mathcal N(1,2^2)$ as before.
-Use the **Threshold ($t$)** slider to move along the PR curve and watch the operating point change, together with the corresponding points on the transformed curves. The **Prevalence ($\pi_1$)** slider shows that, unlike the ROC curve, the PR curve and its transformations are reshaped by the class balance, and the endpoints at $\mathrm{Recall}=1$ move with it. The plot also shows the threshold-reversed and class-swapped curves described above, as well as the extreme cases (perfect, random and always-wrong classifiers). Click an entry in the legend to show or hide the corresponding curve.
+**Interactive PR curve exploration.**
+The visualization below illustrates these properties
+for the same Gaussian model
+$X\mid Y=0\sim\mathcal N(0,1)$, $X\mid Y=1\sim\mathcal N(1,2^2)$ as before.
+Use the **Threshold ($t$)** slider to move along the PR curve
+and watch the operating point change,
+together with the corresponding points on the transformed curves.
+The **Prevalence ($\pi_1$)** slider shows that,
+unlike the ROC curve,
+the PR curve and its transformations are reshaped by the class balance,
+and the endpoints at $\mathrm{Rec}=1$ move with it.
+The plot also shows the threshold-reversed and class-swapped curves
+described above,
+as well as the extreme cases
+(perfect, random and always-wrong classifiers).
+Click an entry in the legend to show or hide the corresponding curve.
 
 ::: {#fig-gaussian-symmetric-pr}
 
@@ -2626,7 +2825,7 @@ Use the **Threshold ($t$)** slider to move along the PR curve and watch the oper
 <div id="gaussian-symmetric-pr-interactive"
      class="gaussian-symmetric-pr-interactive"
      style="display:flex; gap:10px; align-items:stretch; flex-wrap:wrap;
-            width:100%; max-width:700px; margin:0 auto; overflow-x:auto; overflow-x:auto;
+            width:100%; max-width:700px; margin:0 auto; overflow-x:auto;
             font-family:'Inter', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;">
 
   <div class="gaussian-symmetric-pr-controls"
@@ -2651,40 +2850,63 @@ Use the **Threshold ($t$)** slider to move along the PR curve and watch the oper
 
 :::
 
-
 ### PR curves for common distributions
 
-We now summarize the PR curves of the same location-scale families as in the ROC case (@tbl-distributions), with the same notation: $X_y=\sigma_yZ_y+\mu_y$ with $Z_0,Z_1$ i.i.d. with CDF $F$, $\Delta=(\mu_1-\mu_0)/\sigma_1$, $\rho=\sigma_0/\sigma_1$, $\Phi$, $[x]_0^1$ and $(x)_+$. We additionally assume that $F$ is continuous and strictly increasing on $\{z:0<F(z)<1\}$, which holds for every law in the table below. Unlike the ROC curve, the PR curve also depends on the prevalence $\pi_1$.
+We now summarize the PR curves of the same location-scale families
+as in the ROC case (@tbl-distributions),
+with the same notation:
+$X_y=\sigma_yZ_y+\mu_y$ with $Z_0,Z_1$ i.i.d. with CDF $F$,
+$\Delta=(\mu_1-\mu_0)/\sigma_1$, $\rho=\sigma_0/\sigma_1$,
+$\Phi$, $\Psi$, $[x]_0^1$ and $(x)_+$.
+The tests are $\mathbb{1}\{X\ge t\}$.
+We additionally assume that $F$ is continuous
+and strictly increasing on $\{z:0<F(z)<1\}$,
+which holds for every law in the table below.
+Unlike the ROC curve, the PR curve also depends on $\pi_1$.
 
-**Parametrization by recall.** Since $\mathrm{Recall}(t)=\mathrm{TPR}(t)=1-F\bigl(\tfrac{t-\mu_1}{\sigma_1}\bigr)$, the assumption on $F$ makes $\mathrm{Recall}$ a continuous, strictly decreasing bijection from $\{t:0<\mathrm{Recall}(t)<1\}$ onto $(0,1)$. Hence, for every recall level $r\in(0,1)$, there is a **unique** threshold $t_r$ with $\mathrm{Recall}(t_r)=r$, and the PR curve can be parametrized by $r$. We define
+**Parametrization by recall.**
+Here $\mathrm{Rec}(t)=\mathrm{TPR}(t)=1-F\bigl(\tfrac{t-\mu_1}{\sigma_1}\bigr)$.
+The assumption on $F$ makes $\mathrm{Rec}$ a continuous,
+strictly decreasing bijection
+from $\{t:0<\mathrm{Rec}(t)<1\}$ onto $(0,1)$.
+Hence, for every $r\in(0,1)$,
+there is a **unique** threshold $t_r$ with $\mathrm{Rec}(t_r)=r$,
+and we define
+$$
+G(r)\triangleq\mathrm{FPR}(t_r)=\alpha(t_r)=\mathbb{P}(X_0\ge t_r).
+$$
+$G$ is the ROC curve read with the TPR on the horizontal axis:
+the points $(G(r),r)$ are the points of the ROC curve
+with $0<\mathrm{TPR}<1$.
+Like the ROC curve, it depends only on the class-conditional laws,
+not on $\pi_1$.
+
+Mirroring $\mathrm{ROC}(s)$, which gives the TPR as a function of the FPR,
+let $\mathrm{PR}(r)\triangleq\mathrm{Prec}(t_r)$
+be the precision as a function of the recall.
+By @eq-precision-formula,
 $$
 \begin{align*}
-G(r)
-& \triangleq \mathrm{FPR}(t_r)\\
-& =\mathbb{P}(X_0\ge t_r).
+\mathrm{PR}(r)
+& =\frac{\pi_1\,r}{\pi_1\,r+\pi_0\,G(r)}\\
+& =\Bigl(1+\frac{\pi_0}{\pi_1}\frac{G(r)}{r}\Bigr)^{-1}.
 \end{align*}
-$$
-Thus $G$ expresses the ROC curve in terms of recall: it gives the false-positive rate required to attain a given true-positive rate. Like the ROC curve, $G$ depends only on the class-conditional distributions, not on the prevalence $\pi_1$.
+$$ {#eq-pr-of-recall}
+The PR curve is thus determined by $G$ and the prevalence $\pi_1$.
+This representation also expresses the average precision
+as an integral over recall (see below).
 
-The endpoints $r=0$ and $r=1$ are excluded on purpose, because uniqueness may fail there. For instance, for the Uniform and Exponential laws, $\mathrm{Recall}(t)=1$ for *all* thresholds $t$ below the support, so there is no single $t_1$ and the PR curve has a vertical segment at $\mathrm{Recall}=1$ (see the remark in [Appendix B](#sec-app-pr)).
-
-Since $\mathrm{Recall}=\mathrm{TPR}=r$ and $\mathrm{FPR}=G(r)$, the PR curve is given by
-
-$$
-\begin{align*}
-\mathrm{Precision}(r)
-& =
-\frac{\pi_1\,r}{\pi_1\,r+\pi_0\,G(r)}\\
-& =
-\Bigl(1+\frac{\pi_0}{\pi_1}\frac{G(r)}{r}\Bigr)^{-1}.
-\end{align*}
-$$
-
-Consequently, the PR curve is determined by $G$ together with the class prevalence $\pi_1$. This representation will also be useful for expressing average precision as an integral over recall.
-
+The endpoints $r=0$ and $r=1$ are excluded on purpose,
+because uniqueness may fail there.
+For instance, for the Uniform and Exponential laws,
+$\mathrm{Rec}(t)=1$ for *all* thresholds $t$ below the support,
+so there is no single $t_1$
+and the PR curve has a vertical segment at $\mathrm{Rec}=1$
+(see the remark in [Appendix B](#sec-app-pr)).
 
 ::: {style="font-size:90%; margin: 1em 0;"}
-| **Law of $Z$** | **$F(z)$** | **$G(r)$, $r=\mathrm{Recall}$** |
+
+| **Law of $Z$** | **$F(z)$** | **$G(r)$, $r=\mathrm{Rec}$** |
 |:---------------|:-----------|:--------------------------------|
 | **Gaussian**   | $\Phi(z)$ | $\Phi\!\left(\frac{\Phi^{-1}(r)-\Delta}{\rho}\right)$ |
 | **Cauchy**     | $\Psi(z)$ | $\Psi\!\left(\frac{\Psi^{-1}(r)-\Delta}{\rho}\right)$ |
@@ -2693,26 +2915,50 @@ Consequently, the PR curve is determined by $G$ together with the class prevalen
 | **Gumbel**     | $e^{-e^{-z}}$ | $1-e^{\left[-e^{-\frac{\Delta}{\rho}}(-\ln(1-r))^{\frac{1}{\rho}}\right]}$ |
 | **Exp.**       | $(1-e^{-z})_+$ | $\min\!\left(e^{-\Delta/\rho}r^{1/\rho},1\right)$ |
 
-: FPR as a function of recall, for common distributions. The precision is $\mathrm{Precision}(r)=\bigl(1+\tfrac{\pi_0}{\pi_1}\tfrac{G(r)}{r}\bigr)^{-1}$. {#tbl-distributions-pr .striped .hover}
+: FPR as a function of recall, for common distributions. The precision is $\mathrm{PR}(r)=\bigl(1+\tfrac{\pi_0}{\pi_1}\tfrac{G(r)}{r}\bigr)^{-1}$. {#tbl-distributions-pr .striped .hover}
 :::
 
-
-**Where the table comes from.** As for ROC, all the rows follow from a single identity (@thm-location-scale-pr): at the threshold with recall $r$,
+**Where the table comes from.**
+As for ROC, all the rows follow from a single identity
+(@thm-location-scale-pr):
+at the threshold with recall $r$,
 $$
 G(r)=1-F\Bigl(\frac{F^{-1}(1-r)+\Delta}{\rho}\Bigr),
 $$
-which simplifies to $G(r)=F\bigl((F^{-1}(r)-\Delta)/\rho\bigr)$ when $F$ is symmetric (@cor-symmetric-pr). The statements, the proofs, and the row-by-row computations are collected in [Appendix B](#sec-app-pr).
+which simplifies to $G(r)=F\bigl((F^{-1}(r)-\Delta)/\rho\bigr)$
+when $F$ is symmetric (@cor-symmetric-pr).
+The statements, the proofs, and the row-by-row computations
+are collected in [Appendix B](#sec-app-pr).
 
 **Visualization**
 
-The widget below lets you explore @thm-location-scale-pr interactively for the distribution described in @tbl-distributions-pr.
-Use the sliders on the left to set $\mu_0,\sigma_0$ (healthy class), $\mu_1,\sigma_1$ (sick class) and the **Prevalence** $\pi_1$, and drag the **Threshold** slider to move $t$.
+The widget below lets you explore @thm-location-scale-pr interactively
+for the distribution described in @tbl-distributions-pr.
+Use the sliders on the left to set
+$\mu_0,\sigma_0$ (healthy class), $\mu_1,\sigma_1$ (sick class)
+and the **Prevalence** $\pi_1$,
+and drag the **Threshold** slider to move $t$.
 
-- The **middle panel** shows the two population densities plotted vertically: $X_1$ (sick) on the left in blue, $X_0$ (healthy) on the right in red. The horizontal black line marks the current threshold $t$; the darker-shaded region of each density is $\{X<t\}$ (the portion of that class predicted *negative* under the rule $\hat{Y}_t=\mathbb{1}\{X\ge t\}$) while the lighter region above the line is predicted *positive*.
-- The **right panel** shows the theoretical PR curve for the current $(\mu_0,\sigma_0,\mu_1,\sigma_1,\pi_1)$, with the dashed horizontal line $\mathrm{Precision}=\pi_1$ as the random-guessing reference (@thm-random-pr) and a marker at the operating point $(\mathrm{Recall}(t),\mathrm{Precision}(t))$ corresponding to the threshold you've selected, so you can see exactly which point on the curve a given threshold produces, and watch the curve itself deform as you change the means, standard deviations, their ratio $\rho=\sigma_0/\sigma_1$, or the prevalence $\pi_1$. Whatever the parameters, the curve ends at $(1,\pi_1)$ on the right.
+- The **middle panel** shows the two population densities plotted vertically:
+$X_1$ (sick) on the left in blue, $X_0$ (healthy) on the right in red.
+The horizontal black line marks the current threshold $t$;
+the darker-shaded region of each density is $\{X<t\}$
+(the portion of that class predicted *negative*
+under the rule $\hat{Y}_t=\mathbb{1}\{X\ge t\}$),
+while the lighter region above the line is predicted *positive*.
+- The **right panel** shows the theoretical PR curve
+for the current $(\mu_0,\sigma_0,\mu_1,\sigma_1,\pi_1)$,
+with the dashed horizontal line $\mathrm{Prec}=\pi_1$
+as the random-guessing reference (@thm-random-pr)
+and a marker at the operating point $(\mathrm{Rec}(t),\mathrm{Prec}(t))$
+corresponding to the selected threshold.
+You can watch the curve deform as you change the means,
+the standard deviations, their ratio $\rho=\sigma_0/\sigma_1$,
+or the prevalence $\pi_1$.
+Whatever the parameters, the curve ends at $(1,\pi_1)$ on the right.
 
-The title above the plot reports the current $\Delta=(\mu_1-\mu_0)/\sigma_1$, $\rho = \sigma_0/\sigma_1$ and $\pi_1$.
-
+The title above the plot reports the current
+$\Delta=(\mu_1-\mu_0)/\sigma_1$, $\rho=\sigma_0/\sigma_1$ and $\pi_1$.
 
 ::: {#fig-gaussian-pr-interactive}
 
@@ -2745,20 +2991,46 @@ The title above the plot reports the current $\Delta=(\mu_1-\mu_0)/\sigma_1$, $\
 
 :::
 
-**Note**: Visually, the recall is the ratio of the light blue area over the full blue area on the left, while the precision is the share of the predicted-positive mass that is blue: $\pi_1$ times the light blue fraction, divided by that quantity plus $\pi_0$ times the light red fraction.
+**Note**: Visually, the recall is the ratio of the light blue area
+over the full blue area on the left.
+The precision is the share of blue in the predicted-positive mass:
+with $a$ the light blue fraction and $b$ the light red fraction,
+$\mathrm{Prec}=\pi_1a/(\pi_1a+\pi_0b)$.
 
 **Interpretation**
 
-$\Delta=(\mu_1-\mu_0)/\sigma_1$ and $\rho=\sigma_0/\sigma_1$ set the difficulty and shape of the underlying ROC curve, hence the function $G$; the prevalence $\pi_1$ then rescales the odds of precision.
+$\Delta=(\mu_1-\mu_0)/\sigma_1$ and $\rho=\sigma_0/\sigma_1$
+set the difficulty and shape of the underlying ROC curve,
+hence the function $G$.
+The prevalence $\pi_1$ then rescales the odds of the precision (@eq-prec-odds).
 
-* **Odds form:** $\dfrac{\mathrm{Precision}}{1-\mathrm{Precision}}=\dfrac{\pi_1}{\pi_0}\cdot\dfrac{\mathrm{TPR}}{\mathrm{FPR}}$. Lowering $\pi_1$ with the ROC curve fixed lowers the precision at every recall level, and the PR curve is pulled toward the horizontal axis. At fixed $(\Delta,\rho)$ the ROC curve is the same for every $\pi_1$, but the PR curve is not.
-* **$\Delta=0,\ \rho=1$ (symmetric $F$):** $G(r)=r$, so $\mathrm{Precision}\equiv\pi_1$: the PR curve is the random-guessing baseline of @thm-random-pr. As in the ROC case, $\Delta=0$ alone is *not* enough when $\rho\ne1$.
-* **Right end of the curve, $\mathrm{Recall}\to1$:** $\mathrm{Precision}\to\pi_1$ for every $(\Delta,\rho,F)$, which is the universal endpoint $(1,\pi_1)$.
-* **Left end of the curve, $\mathrm{Recall}\to0$:** the limit is governed by the tail ratio $G(r)/r$ as $r\to0$. In the Gaussian case it is $1$ if $\rho<1$, or $\rho=1$ and $\Delta>0$; it is $\pi_1$ if $\rho=1$ and $\Delta=0$; and it is $0$ if $\rho>1$, or $\rho=1$ and $\Delta<0$. A more dispersed healthy class ($\rho>1$) therefore puts mostly healthy samples in the extreme upper tail.
-* **$\Delta\to\infty$** (fixed $\rho$): $G(r)\to0$ for each $r\in(0,1)$, so $\mathrm{Precision}(r)\to1$ and the curve approaches the ideal curve through $(1,1)$.
+* **Prevalence:** with the ROC curve fixed,
+lowering $\pi_1$ lowers the precision at every recall level,
+and the PR curve is pulled towards the horizontal axis.
+At fixed $(\Delta,\rho)$ the ROC curve is the same for every $\pi_1$,
+but the PR curve is not.
+* **$\Delta=0,\ \rho=1$:** $G(r)=r$, so $\mathrm{PR}\equiv\pi_1$:
+the PR curve is the random-guessing baseline of @thm-random-pr.
+As in the ROC case, $\Delta=0$ alone is *not* enough when $\rho\ne1$.
+* **Right end, $\mathrm{Rec}\to1$:**
+$\mathrm{Prec}\to\pi_1$ for every $(\Delta,\rho,F)$
+(@lem-pr-endpoint).
+* **Left end, $\mathrm{Rec}\to0$:**
+the limit is governed by the tail ratio $G(r)/r$ as $r\to0$ (see the remark after @lem-pr-endpoint).
+In the Gaussian case,
+$\mathrm{Prec}\to1$ if $\rho<1$, or $\rho=1$ and $\Delta>0$;
+$\mathrm{Prec}\to\pi_1$ if $\rho=1$ and $\Delta=0$;
+and $\mathrm{Prec}\to0$ if $\rho>1$, or $\rho=1$ and $\Delta<0$.
+A more dispersed healthy class ($\rho>1$) therefore puts
+mostly healthy samples in the extreme upper tail.
+* **$\Delta\to\infty$** (fixed $\rho$):
+$G(r)\to0$ for each $r\in(0,1)$,
+so $\mathrm{PR}(r)\to1$ and the curve approaches the ideal curve
+through $(1,1)$.
 
-
-Now we illustrate the empirical counterpart, when one samples elements from the distributions but without access to the true densities.
+Now we illustrate the empirical counterpart,
+when one samples elements from the distributions
+but without access to the true densities.
 
 ::: {#fig-gaussian-pr-interactive-samples}
 
@@ -2791,157 +3063,218 @@ Now we illustrate the empirical counterpart, when one samples elements from the 
 
 :::
 
-**Note**: the jittering on the x-axis for the scatter plots is not meaningful but only here for visualization.
+**Note**: the jittering on the x-axis for the scatter plots is not meaningful
+but only here for visualization.
 
+### Average precision (AP)
 
-### Average Precision (AP)
-
-**Average Precision (AP)** summarizes the precision–recall (PR) curve by integrating precision over recall, just as the area under the ROC curve (AUC) summarizes the ROC curve. Unlike ROC AUC, AP depends on the positive-class prevalence $\pi_1$; under random guessing, its population value is $\pi_1$.
-
-With $t_r$ and $G(r)=\mathrm{FPR}(t_r)$ as defined in the previous section, the precision at recall level $r$ is $\mathrm{Precision}(t_r)=\dfrac{\pi_1 r}{\pi_1 r+\pi_0 G(r)}$.
-
+The **average precision (AP)** summarizes a whole family $(\phi_t)_t$
+by one number, the area under its PR curve,
+just as the AUC does for the ROC curve.
+Unlike the AUC, it depends on the prevalence $\pi_1$.
+Its value for random guessing is $\pi_1$ (@thm-ap-range).
 
 :::: {#thm-ap}
 
 # Average precision as the area under the PR curve
 
-Let $X_0\sim\mathcal{L}(X\mid Y=0)$ and $X_1\sim\mathcal{L}(X\mid Y=1)$ be independent. Assume that the CDF $F_1$ of $X_1$ is continuous and strictly increasing wherever $0<F_1(t)<1$.
+Let $(\phi_t)_{t\in\mathbb{R}}$ be a family of tests
+(@def-family) with scores $T_0,T_1$ as in @eq-score.
+Assume that $\beta$ is continuous and strictly decreasing
+on $\{t:0<\beta(t)<1\}$
+(i.e. the CDF of $T_1$ is continuous and strictly increasing
+wherever it lies in $(0,1)$).
+For $r\in(0,1)$, let $t_r$ be the unique threshold with $\beta(t_r)=r$
+and $G(r)\triangleq\alpha(t_r)$, as in the previous section.
 
-Define average precision by
+Define the average precision by
 $$
-\mathrm{AP}\triangleq    \mathbb{E}\bigl[\mathrm{Precision}(X_1)\bigr].
+\mathrm{AP}\triangleq\mathbb{E}\bigl[\mathrm{Prec}(T_1)\bigr].
 $$
-
-Then AP equals the area under the PR curve:
+Then AP is the area under the PR curve:
 $$
 \boxed{
-\mathrm{AP}
-=
-\int_0^1
-\frac{\pi_1 r}{\pi_1 r+\pi_0G(r)}
-\,dr.
+\mathrm{AP}=\int_0^1\mathrm{PR}(r)\,dr
+=\int_0^1\frac{\pi_1\,r}{\pi_1\,r+\pi_0\,G(r)}\,dr.
 }
-$$
+$$ {#eq-ap}
 
 ::::
 
-
 :::: {.proof-container}
+
 ::: {.proof-header onclick="toggleProof('thm-ap')"}
 [▶]{#proof-arrow-thm-ap .proof-arrow} [Proof]{.proof-title}
 :::
 
 ::: {#proof-content-thm-ap .proof-content}
 
-Let $X_1'$ be an independent copy of $X_1$, and define
+**Step 1: the recall of a random positive.**
+Let $F_1$ be the (continuous) CDF of $T_1$ and set
 $$
-R\triangleq    1-F_1(X_1).
+V\triangleq\beta(T_1)=\mathbb{P}(T_1'\ge T_1\mid T_1)=1-F_1(T_1),
 $$
-By the probability integral transform, $R\sim\mathrm{Uniform}(0,1)$. Moreover, since $X_1$ has a continuous distribution,
-$$
-\begin{aligned}
-R
-&=\mathbb{P}(X_1'\ge X_1\mid X_1)\\
-&=\mathrm{Recall}(X_1).
-\end{aligned}
-$$
+with $T_1'$ an independent copy of $T_1$.
+By the probability integral transform, $V\sim\mathrm{Uniform}(0,1)$.
+In particular $0<V<1$ almost surely.
 
-By the definition of $t_r$ and the strict monotonicity of $F_1$ on its nontrivial range, $X_1=t_R$ almost surely. Hence,
-$$
-\begin{aligned}
-\mathrm{Precision}(X_1)
-&=\frac{\pi_1R}
-{\pi_1R+\pi_0\mathbb{P}(X_0\ge X_1)}\\[4pt]
-&=\frac{\pi_1R}
-{\pi_1R+\pi_0G(R)}.
-\end{aligned}
-$$
+**Step 2: the threshold is $T_1$ itself.**
+By definition $\beta(t_V)=V=\beta(T_1)$,
+and $\beta$ is injective on $\{0<\beta<1\}$,
+so $T_1=t_V$ almost surely.
+Hence $\alpha(T_1)=\alpha(t_V)=G(V)$.
 
-Since $R>0$ almost surely and $\pi_1>0$, the denominator is positive almost surely. Taking expectations and using $R\sim\mathrm{Uniform}(0,1)$ yields
+**Step 3: the precision.**
+By @eq-precision-formula,
 $$
-\begin{aligned}
-\mathrm{AP}
-&=\mathbb{E}\bigl[\mathrm{Precision}(X_1)\bigr]\\[4pt]
-&=\int_0^1
-\frac{\pi_1r}{\pi_1r+\pi_0G(r)}
-\,dr\\[4pt]
-&=\int_0^1\mathrm{Precision}(t_r)\,dr.
-\end{aligned}
+\mathrm{Prec}(T_1)
+=\frac{\pi_1\,V}{\pi_1\,V+\pi_0\,G(V)}=\mathrm{PR}(V).
 $$
+The denominator is positive since $V>0$ almost surely and $\pi_1>0$.
 
-The last integral is the area under the PR curve, parametrized by recall. This establishes the result.
+**Step 4: expectation.**
+Since $V\sim\mathrm{Uniform}(0,1)$,
+$$
+\mathrm{AP}=\mathbb{E}[\mathrm{PR}(V)]=\int_0^1\mathrm{PR}(r)\,dr,
+$$
+which is the area under the PR curve parametrized by recall.
 
 :::
 ::::
 
-Two remarks connect the AP with the ROC curve and the AUC.
+**Interpretation and comparison with the AUC.**
 
-* **Dependence on the prevalence.** $G$ is the ROC curve read in the other direction, so it is fixed by the two conditional laws alone. The prevalence enters only through the weight $\pi_0/\pi_1$ in
+- $\mathrm{AP}$ is the average, over a random sick individual,
+of the precision of the test that flags everybody
+scoring at least as high as this individual.
+- **Dependence on prevalence.**
+$G$ is the ROC curve read in the other direction,
+so it is fixed by the two conditional laws alone.
+The prevalence enters only through the weight $\pi_0/\pi_1$ in
 $$
-\mathrm{Precision}(r)=\Bigl(1+\frac{\pi_0}{\pi_1}\,\frac{G(r)}{r}\Bigr)^{-1}.
+\mathrm{PR}(r)=\Bigl(1+\frac{\pi_0}{\pi_1}\,\frac{G(r)}{r}\Bigr)^{-1}.
 $$
-The AP is therefore a functional of the ROC curve *and* of $\pi_1$.
-* **Comparison with the AUC.** By @cor-continuous-auc, $\mathrm{AUC}=\mathbb{P}(X_1>X_0)$, hence $\mathrm{AUC}=\int_0^1\bigl(1-G(r)\bigr)\,dr$, which does not depend on $\pi_1$. Both metrics average over recall levels $r$ uniformly, but they penalize the false positive rate differently: the AUC penalizes $G(r)$ itself, equally at every recall level, whereas the AP penalizes the ratio $G(r)/r$. A given false positive rate therefore costs more precision at *low* recall, so the AP rewards good behavior there (see the end of the interpretation above).
+The AP is a functional of the ROC curve *and* of $\pi_1$.
+- **Comparison with the AUC.**
+By @cor-continuous-auc and Step 2,
+$$
+\mathrm{AUC}=\mathbb{P}(T_1>T_0)
+=\mathbb{E}\bigl[1-\alpha(T_1)\bigr]
+=\int_0^1\bigl(1-G(r)\bigr)\,dr,
+$$
+which does not depend on $\pi_1$.
+Both metrics average over recall levels $r$ uniformly,
+but they penalize the false positive rate differently.
+The AUC penalizes $G(r)$ itself, equally at every recall level,
+whereas the AP penalizes the ratio $G(r)/r$.
+A given false positive rate therefore costs more precision
+at *low* recall,
+so the AP rewards good behavior there.
 
+Like the AUC, the AP has a natural empirical counterpart
+that only depends on ranks.
 
-Like the AUC, the AP has a natural empirical counterpart that only depends on the ranks of the samples.
+#### Empirical AP
+
+Let $X_{0,1},\dots,X_{0,n_0}$ and $X_{1,1},\dots,X_{1,n_1}$
+be independent i.i.d. samples of $X_0$ and $X_1$.
+For a score family $\phi_t=\mathbb{1}\{g\ge t\}$,
+put $Z_{1,i}=g(X_{1,i})$ and $Z_{0,j}=g(X_{0,j})$,
+as in the Mann–Whitney theorem.
 
 :::: {#thm-empirical-ap}
 
 # Empirical average precision
 
-Let $X_{1,1},\dots,X_{1,n_1}$ and $X_{0,1},\dots,X_{0,n_0}$ be independent i.i.d. samples of the continuous variables $X_1$ and $X_0$, so that there are no ties almost surely. Let $X_{1,(1)}>\dots>X_{1,(n_1)}$ be the ordered $X_{1,i}$'s, and $\rho_k$ the rank of $X_{1,(k)}$ from the top of the pooled sample. Then the step-wise area under the empirical PR curve is
+Let $\phi_t=\mathbb{1}\{g\ge t\}$ and assume that
+$g(X_0)$ and $g(X_1)$ have no atom,
+so that the $n_0+n_1$ values $Z_{y,i}$ are almost surely distinct.
+Let $Z_{1,(1)}>\dots>Z_{1,(n_1)}$ be the ordered positive scores,
+and $m_k$ the position of $Z_{1,(k)}$
+when the pooled sample is sorted in decreasing order.
+Then the step-wise area under the empirical PR curve is
 $$
-\begin{align*}
+\boxed{
+\begin{aligned}
 \widehat{\mathrm{AP}}
-& =\frac1{n_1}\sum_{k=1}^{n_1}\frac{k}{\rho_k}\\
-& =\frac1{n_1}\sum_{i=1}^{n_1}\widehat{\mathrm{Precision}}(X_{1,i}),
-\end{align*}
-$$
-the plug-in estimator of $\mathbb{E}[\mathrm{Precision}(X_1)]$.
+& =\frac1{n_1}\sum_{k=1}^{n_1}\frac{k}{m_k}\\
+& =\frac1{n_1}\sum_{i=1}^{n_1}\widehat{\mathrm{Prec}}(Z_{1,i}),
+\end{aligned}
+}
+$$ {#eq-empirical-ap}
+the plug-in estimator of $\mathbb{E}[\mathrm{Prec}(T_1)]$.
 
 ::::
 
 :::: {.proof-container}
+
 ::: {.proof-header onclick="toggleProof('thm-empirical-ap')"}
 [▶]{#proof-arrow-thm-empirical-ap .proof-arrow} [Proof]{.proof-title}
 :::
 
 ::: {#proof-content-thm-empirical-ap .proof-content}
 
-**Step 1: precision at the $k$-th positive sample.** Fix $k$ and let $t=X_{1,(k)}$. Since there are no ties, the positive samples $\ge t$ are exactly $X_{1,(1)},\dots,X_{1,(k)}$, so $\mathrm{TP}(t)=k$. The pooled samples $\ge t$ are exactly the $\rho_k$ samples ranked first to $\rho_k$-th from the top, so $\hat{\mathrm{P}}_t=\rho_k$. Hence
+**Step 1: precision at the $k$-th positive score.**
+Fix $k$ and let $t=Z_{1,(k)}$.
+There are no ties, so the positive scores $\ge t$
+are exactly $Z_{1,(1)},\dots,Z_{1,(k)}$,
+and $\mathrm{TP}(t)=k$.
+The pooled scores $\ge t$ are exactly the $m_k$ first ones,
+so $\mathrm{TP}(t)+\mathrm{FP}(t)=m_k$. Hence
 $$
-\widehat{\mathrm{Precision}}(X_{1,(k)})=\frac{\mathrm{TP}(t)}{\hat{\mathrm{P}}_t}=\frac{k}{\rho_k}.
+\widehat{\mathrm{Prec}}(Z_{1,(k)})=\frac{k}{m_k}.
 $$
 
-**Step 2: the step-wise area.** The recall jumps by $1/n_1$ exactly when $t$ reaches a positive sample $X_{1,(k)}$, and the precision at that threshold is $k/\rho_k$. The step-wise area is the sum over the jumps of (jump size) $\times$ (precision at the jump), that is
+**Step 2: the step-wise area.**
+The recall jumps by $1/n_1$ exactly when $t$ reaches a positive score $Z_{1,(k)}$,
+and the precision there is $k/m_k$.
+The step-wise area is the sum over the jumps
+of (jump size)$\times$(precision at the jump):
 $$
-\widehat{\mathrm{AP}}=\sum_{k=1}^{n_1}\frac1{n_1}\cdot\frac{k}{\rho_k},
+\widehat{\mathrm{AP}}=\sum_{k=1}^{n_1}\frac1{n_1}\cdot\frac{k}{m_k}.
 $$
-which is the first form.
 
-**Step 3: the second form.** By Step 1, $\widehat{\mathrm{AP}}=\frac1{n_1}\sum_{k=1}^{n_1}\widehat{\mathrm{Precision}}(X_{1,(k)})$. The $X_{1,(k)}$ are the $X_{1,i}$ listed in decreasing order, so permuting the summands gives
-$$
-\widehat{\mathrm{AP}}=\frac1{n_1}\sum_{i=1}^{n_1}\widehat{\mathrm{Precision}}(X_{1,i}),
-$$
-which is the second form.
+**Step 3: the second form.**
+By Step 1, $\widehat{\mathrm{AP}}=\frac1{n_1}\sum_{k}\widehat{\mathrm{Prec}}(Z_{1,(k)})$.
+The $Z_{1,(k)}$ are the $Z_{1,i}$ in decreasing order,
+so permuting the summands gives the second form.
 
-**Step 4: plug-in.** Let $\hat{\pi}_y=n_y/(n_0+n_1)$. Then $\hat{\pi}_1\widehat{\mathrm{TPR}}(t)=\mathrm{TP}(t)/(n_0+n_1)$ and $\hat{\pi}_0\widehat{\mathrm{FPR}}(t)=\mathrm{FP}(t)/(n_0+n_1)$, so the formula of @thm-precision-formula, evaluated on these empirical quantities, gives
+**Step 4: plug-in.**
+Let $\hat\pi_y=n_y/(n_0+n_1)$, and let $\alpha_n,\beta_n$ be as in @eq-empirical-alpha-beta.
+Then $\hat\pi_1\beta_n(t)=\mathrm{TP}(t)/(n_0+n_1)$
+and $\hat\pi_0\alpha_n(t)=\mathrm{FP}(t)/(n_0+n_1)$, so
 $$
 \begin{align*}
-\frac{\hat{\pi}_1\,\widehat{\mathrm{TPR}}(t)}{\hat{\pi}_1\,\widehat{\mathrm{TPR}}(t)+\hat{\pi}_0\,\widehat{\mathrm{FPR}}(t)}
-& = \frac{\mathrm{TP}(t)}{\mathrm{TP}(t)+\mathrm{FP}(t)}\\
-& = \widehat{\mathrm{Precision}}(t).
+\frac{\hat\pi_1\,\beta_n(t)}{\hat\pi_1\,\beta_n(t)+\hat\pi_0\,\alpha_n(t)}
+& =\frac{\mathrm{TP}(t)}{\mathrm{TP}(t)+\mathrm{FP}(t)}\\
+& =\widehat{\mathrm{Prec}}(t),
+\end{align*}
 $$
-Since $\frac1{n_1}\sum_i\delta_{X_{1,i}}$ is the empirical law of $X_1$, the second form is $\mathbb{E}[\mathrm{Precision}(X_1)]$ with the law of $X_1$ replaced by its empirical law, and $\mathrm{Precision}$ by $\widehat{\mathrm{Precision}}$.
+which is @eq-precision-formula for the empirical laws.
+Since $\frac1{n_1}\sum_i\delta_{Z_{1,i}}$ is the empirical law of $T_1=g(X_1)$,
+the second form is $\mathbb{E}[\mathrm{Prec}(T_1)]$
+with the law of $T_1$ and $\mathrm{Prec}$
+replaced by their empirical versions.
 
 :::
 ::::
 
+In @fig-gaussian-pr-interactive-samples,
+the gray curve is the empirical PR curve,
+with consecutive points joined by straight segments *for display only*.
+The $\widehat{\mathrm{AP}}$ of @thm-empirical-ap
+is **not** the area under this drawn curve:
+it is the area of the staircase of height $k/m_k$ on the $k$-th recall step.
+This is what scikit-learn's `average_precision_score` computes.
+The trapezoidal rule gives a different value,
+because $\Pi_{\pi_1}$ is not affine:
+the precision is not linear in the recall between two points.
+The gap shrinks as $n_1$ grows.
 
-In @fig-gaussian-pr-interactive-samples, the gray curve is the empirical PR curve, with consecutive points joined by straight segments for display only. The $\widehat{\mathrm{AP}}$ of @thm-empirical-ap is **not** the area under this drawn curve: it is the area of the staircase with height $k/\rho_k$ on the $k$-th recall step. This is what scikit-learn's `average_precision_score` computes. The trapezoidal rule gives a different value, because precision is not linear in the recall between two points. The gap shrinks as $n_1$ grows.
+#### Range of the AP
 
-Finally, we place the AP between two extreme values, which gives it the same kind of scale as the AUC has between $0$ and $1$.
+The AUC lives between $0$ and $1$, with $\tfrac12$ for random guessing.
+The AP has the same kind of scale, with a different lower end.
 
 :::: {#thm-ap-range}
 
@@ -2951,35 +3284,73 @@ Under the assumptions of @thm-ap,
 $$
 \boxed{1+\frac{\pi_0}{\pi_1}\ln\pi_0\ \le\ \mathrm{AP}\ \le\ 1.}
 $$
-The upper bound is attained if and only if the classifier is perfect ($\mathrm{AUC}=1$), and the lower bound if and only if it is always wrong ($\mathrm{AUC}=0$).
-Moreover, for random guessing ($X_0\stackrel d=X_1$), $\mathrm{AP}=\pi_1$, and the lower bound is strictly smaller than $\pi_1$: an always-wrong classifier does worse than random guessing.
+The upper bound is attained if and only if $\mathrm{AUC}=1$
+(the perfect classifier of @thm-perfect-pr-separation),
+and the lower bound if and only if $\mathrm{AUC}=0$
+(the always-wrong classifier of @thm-always-wrong-pr).
+Moreover, for random guessing ($T_0\overset{d}{=}T_1$), $\mathrm{AP}=\pi_1$,
+and the lower bound is strictly smaller than $\pi_1$:
+an always-wrong classifier does worse than random guessing.
 
 ::::
 
 :::: {.proof-container}
+
 ::: {.proof-header onclick="toggleProof('thm-ap-range')"}
 [▶]{#proof-arrow-thm-ap-range .proof-arrow} [Proof]{.proof-title}
 :::
 
 ::: {#proof-content-thm-ap-range .proof-content}
 
-By @thm-ap, $\mathrm{AP}=\displaystyle\int_0^1\frac{\pi_1 r}{\pi_1 r+\pi_0G(r)}\,dr$, where $G(r)\in[0,1]$ is an FPR. The integrand is decreasing in $G(r)$, so both bounds follow from $0\le G\le 1$.
+By @eq-ap,
+$\mathrm{AP}=\int_0^1\frac{\pi_1 r}{\pi_1 r+\pi_0G(r)}\,dr$,
+where $G(r)\in[0,1]$.
+The integrand is decreasing in $G(r)$,
+so both bounds follow from $0\le G\le1$.
 
-*Upper bound (perfect classifier).* With $G(r)\ge0$, the integrand is at most $1$, so $\mathrm{AP}\le1$. Equality holds if and only if $G=0$ almost everywhere, that is, if and only if $\int_0^1 G(r)\,dr=0$. Since $\mathrm{AUC}=\int_0^1(1-G(r))\,dr$, this means $\mathrm{AUC}=1$: the **perfect classifier** of @thm-perfect-pr-separation.
+**Upper bound.**
+With $G\ge0$ the integrand is at most $1$, so $\mathrm{AP}\le1$.
+Equality holds if and only if $G=0$ almost everywhere,
+that is $\int_0^1G(r)\,dr=0$.
+Since $\mathrm{AUC}=\int_0^1(1-G(r))\,dr$ (comparison after @thm-ap),
+this means $\mathrm{AUC}=1$.
 
-*Lower bound (always-wrong classifier).* With $G(r)\le1$, the integrand is at least $\frac{\pi_1 r}{\pi_1 r+\pi_0}$, so
+**Lower bound.**
+With $G\le1$ the integrand is at least $\frac{\pi_1r}{\pi_1r+\pi_0}$, so
 $$
-\mathrm{AP}\ \ge\ \int_0^1\frac{\pi_1 r}{\pi_1 r+\pi_0}\,dr=1+\frac{\pi_0}{\pi_1}\ln\pi_0 .
+\mathrm{AP}\ \ge\ \int_0^1\frac{\pi_1r}{\pi_1r+\pi_0}\,dr
+=1+\frac{\pi_0}{\pi_1}\ln\pi_0.
 $$
-Equality holds if and only if $G=1$ almost everywhere, that is, if and only if $\mathrm{AUC}=0$: the **always-wrong classifier** of @thm-always-wrong-pr, whose PR curve is exactly the arc $\frac{\pi_1 r}{\pi_1 r+\pi_0}$.
+Equality holds if and only if $G=1$ almost everywhere,
+that is $\mathrm{AUC}=0$.
+The PR curve is then exactly the arc of @thm-always-wrong-pr.
 
-*Random guessing.* If $X_0\stackrel d=X_1$, then $\mathrm{Precision}(t)=\pi_1$ for every $t$ where it is defined (@thm-random-pr). Hence $\mathrm{AP}=\pi_1$.
+**Random guessing.**
+If $T_0\overset{d}{=}T_1$, then $\mathrm{Prec}\equiv\pi_1$ wherever it is defined
+(@thm-random-pr), so $\mathrm{AP}=\pi_1$.
 
-*Comparison.* Writing $a=\pi_1$, the inequality $1+\frac{\pi_0}{\pi_1}\ln\pi_0<\pi_1$ is equivalent to $\ln(1-a)<-a$, which holds for every $a\in(0,1)$.
+**Comparison.**
+With $a=\pi_1$,
+the inequality $1+\frac{\pi_0}{\pi_1}\ln\pi_0<\pi_1$
+is equivalent to $\ln(1-a)<-a$,
+which holds for every $a\in(0,1)$.
+
 :::
 ::::
 
-**Reading the AP.** The AP is read against its baseline $\pi_1$: an AP of $0.3$ is excellent when $\pi_1=0.01$ but poor when $\pi_1=0.4$. APs are therefore not comparable across data sets with different prevalence, unlike AUCs.
+**Reading the AP.**
+The AP is read against its baseline $\pi_1$,
+whereas the baseline of the AUC is always $\tfrac12$.
+An AP of $0.3$ is excellent when $\pi_1=0.01$
+but poor when $\pi_1=0.4$.
+APs are therefore not comparable across data sets
+with different prevalence, unlike AUCs.
+
+
+
+
+<!-- ------------------------------------------------------ -->
+
 
 
 
@@ -2987,15 +3358,70 @@ Equality holds if and only if $G=1$ almost everywhere, that is, if and only if $
 
 ### Data preprocessing
 
-The file `supplementary_dataset2.csv` contains the sample-level data of the benchmark study: antibody assay measurements, sample-collection categories, and timing information such as the days since symptom onset.
+The file `supplementary_dataset2.csv` holds the sample-level data of the benchmark study: antibody assay measurements, sample-collection categories, and timing information such as days since symptom onset.
 
-Our primary benchmark follows the study's cohort definition. Positives are laboratory-confirmed SARS-CoV-2 samples collected at least 20 days after symptom onset (only the latest qualifying sample is kept per participant), from the Oxford and NHSBT/Porton study populations. Negatives are the pre-pandemic samples of the Oxford Biobank. The preprocessing has three steps:
+Our primary benchmark follows the study's cohort definition. Positives are laboratory-confirmed SARS-CoV-2 samples collected at least 20 days after symptom onset (latest qualifying sample per participant), from the Oxford and NHSBT/Porton populations. Negatives are the pre-pandemic Oxford Biobank samples. Preprocessing has three steps:
 
-1. select the study populations of the primary analysis;
+1. select the study populations;
 2. apply the eligibility criteria and keep the latest qualifying sample per participant;
 3. convert the assay measurements to numbers and keep the samples with complete results on all five assays.
 
-The resulting complete-case cohort has $n=1512$ observations, with $n_1=536$ positive and $n_0=976$ negative samples. These counts describe the composition of the benchmark, not the prevalence of infection in a clinical population.
+The complete-case cohort has $n=1512$ observations: $n_1=536$ positives and $n_0=976$ negatives. These counts reflect the benchmark's sampling design, not the prevalence of infection in a clinical population. The empirical PR curve and average precision therefore need not describe predictive performance in a population with a different class composition.
+
+The Python codes for the curves are below.
+
+
+```{python}
+
+
+def roc(thresholds, y_true, score):
+    # Extracted from https://stackoverflow.com/questions/25009284/how-to-plot-roc-curve-in-python
+    fpr = []  # false positive rate
+    tpr = []  # true positive rate
+
+    # get number of positive and negative examples in the dataset
+    P = sum(y_true)
+    N = len(y_true) - P
+
+    # iterate through all thresholds and determine fraction of true positives
+    # and false positives found at this threshold
+    for thresh in thresholds:
+        FP = 0
+        TP = 0
+        for i in range(len(score)):
+            if score[i] >= thresh:
+                if y_true[i] == True:
+                    TP += 1
+                else:
+                    FP += 1
+        fpr.append(FP / float(N))
+        tpr.append(TP / float(P))
+    return tpr, fpr
+
+
+def precision_recall(thresholds, y_true, score):
+    precision = []
+    recall = []
+
+    P = sum(y_true)
+
+    for thresh in thresholds:
+        FP = 0
+        TP = 0
+        for i in range(len(score)):
+            if score[i] >= thresh:
+                if y_true[i] == True:
+                    TP += 1
+                else:
+                    FP += 1
+        recall.append(TP / float(P))
+        # Convention: precision is set to 1 when nothing is predicted positive
+        # (TP + FP = 0), as in scikit-learn at the recall = 0 endpoint.
+        precision.append(TP / float(TP + FP) if (TP + FP) > 0 else 1.0)
+    return precision, recall
+```
+
+
 
 ```{python}
 import numpy as np
@@ -3124,10 +3550,9 @@ dict_threshold = {
 }
 ```
 
-
 ### Exporting data for the interactive figure
 
-The interactive figure below runs client-side (Plotly.js), without a live Python kernel. We therefore export to JSON the sample values, the jitter offsets, the colors, and the ROC and PR curves of each assay, computed with the `roc` and `precision_recall` functions above.
+The interactive figure below runs client-side (Plotly.js), without a live Python kernel. We therefore export to JSON the sample values, jitter offsets, colors, and the ROC and PR curves of each assay, computed with the `roc` and `precision_recall` functions above.
 
 ```{python}
 #| output: false
@@ -3226,13 +3651,13 @@ for filename, data in [
 
 ### Interactive exploration: assay results, ROC curve and precision/recall curve
 
-The widget below compares several assays at once. Tick one or more of them in the left-hand box: the first one you tick is the *primary* assay, and the threshold slider (log scale) acts on it. The three panels show:
+The widget compares several assays at once. Tick one or more in the left-hand box: the first one ticked is the *primary* assay, and the threshold slider (log scale) acts on it. The three panels show:
 
-- **left:** the individual results of the primary assay, split by true status;
-- **top right:** the ROC curves of all the selected assays;
+- **left:** the individual results of the primary assay, by true status;
+- **top right:** the ROC curves of the selected assays;
 - **bottom right:** their precision/recall curves, with the AP (**Average Precision**) in the legend.
 
-When the manufacturer provides a recommended threshold, it appears as a dotted grey line (left panel) and a grey cross on the curves ("Reco. point").
+When the manufacturer gives a recommended threshold, it appears as a dotted grey line (left panel) and a grey cross on the curves ("Reco. point").
 
 ::: {#fig-assays-interactive}
 
@@ -3274,12 +3699,13 @@ When the manufacturer provides a recommended threshold, it appears as a dotted g
 
 <script type="module" src="roc_interactive.js"></script>
 ```
-
 **Assays on the full data** (536 positive and 976 negative samples).
 
 :::
 
-Now we rerun the same assays, with the same thresholds, but keep only 5% of the positive samples (the negatives are untouched). For any given assay, the **ROC curve barely moves**, while the **precision/recall curve** and the AP drop markedly. This is what the ray-slope argument above predicts: shrinking $\mathrm{P}$ raises the ratio $\mathrm{N}/\mathrm{P}$, which pushes the precision down at every recall level, while the ray slopes, hence the ROC curve, stay the same.
+**Note**: the jittering on the x-axis for the scatter plots is not meaningful but only here for visualization.
+
+We now rerun the same assays with the same thresholds, keeping only 5% of the positive samples (negatives untouched). For a given assay, the **ROC curve barely moves**, while the **precision/recall curve** and the AP drop markedly. This matches the ray-slope argument above: shrinking $\mathrm{P}$ raises $\mathrm{N}/\mathrm{P}$, which lowers the precision at every recall level, while the ray slopes, hence the ROC curve, are unchanged.
 
 ::: {#fig-assays-interactive-imbalanced}
 
@@ -3320,16 +3746,14 @@ Now we rerun the same assays, with the same thresholds, but keep only 5% of the 
 </div>
 ```
 
-**Same assays, with only 5% of the positive samples kept** (same panels and thresholds as in @fig-assays-interactive).
+**Same assays, keeping only 5% of the positive samples** (same panels and thresholds as in @fig-assays-interactive).
+:::
 
 
 ## Acknowledgement
 
-I am grateful to Stephan Clémençon for his feedback on a preliminary version, which led to improvements in the Neyman-Pearson and affine versions of empirical ROC curves.
+I am grateful to [Stephan Clémençon](https://perso.telecom-paristech.fr/clemenco/) for his feedback on a preliminary version, which led to improvements in the Neyman-Pearson and piecewise affine versions of empirical ROC curves.
 
-
-
-:::
 
 ## {{< fa link title="link" >}} References
 
@@ -3338,108 +3762,108 @@ I am grateful to Stephan Clémençon for his feedback on a preliminary version, 
 
 
 ## Credit, sources and data
-- Paper of interest: [@fawcett2006introduction]
-- Paper with different measure for AUCROC/AUPRC [@chen2024commonly]
+- ROC analysis tutorial [@fawcett2006introduction]
+- Paper with different measure: AUROC vs AUPRC. [@chen2024commonly]
 - Original study article (Lancet): <https://doi.org/10.1016/S1473-3099(20)30634-4>
-- Dataset: [Head-to-head benchmark evaluation of five SARS-CoV-2 serology immunoassays on 1,500 samples (Figshare)](https://figshare.com/articles/dataset/Dataset_Head-to-head_benchmark_evaluation_of_the_sensitivity_and_specificity_of_five_immunoassays_for_SARS-CoV-2_serology_on_1500_samples/12622172).
+- Dataset: [Head-to-head benchmark evaluation of five SARS-CoV-2 serology immunoassays on 1,500 samples (Figshare)](https://figshare.com/articles/dataset/Dataset_Head-to-head_benchmark_evaluation_of_the_sensitivity_and_specificity_of_five_immunoassays_for_SARS-CoV-2_serology_on_1500_samples/12622172), converted to CSV.
 - Direct download:  [supplementary_dataset2.xlsx in Figshare](https://ndownloader.figshare.com/files/23736068)
+
+
+
+
+<!-- ------------------------------------------------------ -->
+
 
 
 ## Appendix A: ROC curves for location-scale families {#sec-app-roc}
 
-This appendix gathers the computations behind @tbl-distributions, with the notation of the main text: $X_y=\sigma_yZ_y+\mu_y$, where $Z_0,Z_1$ are i.i.d. with CDF $F$, $\Delta=(\mu_1-\mu_0)/\sigma_1$, $\rho=\sigma_0/\sigma_1$, $\Phi$, $[x]_0^1$ and $(x)_+$.
+This appendix gathers the computations behind @tbl-distributions,
+with the notation of the main text:
+$X_y=\sigma_yZ_y+\mu_y$, where $Z_0,Z_1$ are i.i.d. with CDF $F$,
+$\Delta=(\mu_1-\mu_0)/\sigma_1$, $\rho=\sigma_0/\sigma_1$,
+$\Phi$, $\Psi$, $[x]_0^1$ and $(x)_+$.
+The tests are $\phi_t=\mathbb{1}\{x\ge t\}$, so that
+$\mathrm{FPR}(t)=\alpha(t)=\mathbb{P}(X_0\ge t)$
+and $\mathrm{TPR}(t)=\beta(t)=\mathbb{P}(X_1\ge t)$.
 
-### ROC curve for location-scale family
+### ROC curve for a location-scale family
 
 :::: {#thm-location-scale-roc}
 
 # Location-scale ROC curve
 
-Let $Z_0,Z_1$ be i.i.d. real-valued random variables with common CDF $F$, continuous and strictly increasing on $\{z\in\mathbb{R}:0<F(z)<1\}$, so that $F^{-1}:(0,1)\to\mathbb{R}$ is well defined. Fix $\mu_0,\mu_1\in\mathbb{R}$, $\sigma_0,\sigma_1>0$, and let
+Let $Z_0,Z_1$ be i.i.d. real random variables with common CDF $F$,
+continuous on $\mathbb{R}$ and strictly increasing on $\{z:0<F(z)<1\}$,
+so that $F^{-1}:(0,1)\to\mathbb{R}$ is well defined.
+Fix $\mu_0,\mu_1\in\mathbb{R}$, $\sigma_0,\sigma_1>0$, and let
 $$
-X_0\triangleq   \sigma_0Z_0+\mu_0, \quad X_1\triangleq   \sigma_1Z_1+\mu_1
+X_0\triangleq\sigma_0Z_0+\mu_0,
+\qquad
+X_1\triangleq\sigma_1Z_1+\mu_1
 $$
-be independent. Writing $\Delta\triangleq   (\mu_1-\mu_0)/\sigma_1$, $\rho\triangleq   \sigma_0/\sigma_1$, for every $\mathrm{FPR}\in (0,1)$,
+be independent.
+Set $\Delta\triangleq(\mu_1-\mu_0)/\sigma_1$ and $\rho\triangleq\sigma_0/\sigma_1$.
 
+Then $t\mapsto\mathrm{FPR}(t)$ is a continuous, strictly decreasing bijection
+from $\{t:0<\mathrm{FPR}(t)<1\}$ onto $(0,1)$,
+and for every $t$ in this set, with $u\triangleq\mathrm{FPR}(t)$,
 $$
-\mathrm{TPR}
-=
-1-F\Bigl(
-\rho\,F^{-1}\bigl(1-\mathrm{FPR}\bigr)-\Delta
-\Bigr).
-$$
+\boxed{
+\mathrm{TPR}(t)
+=1-F\bigl(\rho\,F^{-1}(1-u)-\Delta\bigr).
+}
+$$ {#eq-location-scale-roc}
 
 ::::
 
 :::: {.proof-container}
 
 ::: {.proof-header onclick="toggleProof('thm-location-scale-roc')"}
-
 [▶]{#proof-arrow-thm-location-scale-roc .proof-arrow} [Proof]{.proof-title}
-
 :::
 
 ::: {#proof-content-thm-location-scale-roc .proof-content}
 
-By definition,
-
+**Step 1: the two rates.**
+Since $F$ is continuous, $\mathbb{P}(Z\ge z)=1-F(z)$. Hence
 $$
 \begin{align*}
 \mathrm{FPR}(t)
-& =
-\mathbb{P}(X_0\ge t)\\
-& =
-\mathbb{P}\left(
-Z_0\ge\frac{t-\mu_0}{\sigma_0}
-\right)\\
-& =
-1-F\left(\frac{t-\mu_0}{\sigma_0}\right).
+& =\mathbb{P}\Bigl(Z_0\ge\frac{t-\mu_0}{\sigma_0}\Bigr)
+=1-F\Bigl(\frac{t-\mu_0}{\sigma_0}\Bigr),\\
+\mathrm{TPR}(t)
+& =\mathbb{P}\Bigl(Z_1\ge\frac{t-\mu_1}{\sigma_1}\Bigr)
+=1-F\Bigl(\frac{t-\mu_1}{\sigma_1}\Bigr).
 \end{align*}
 $$
+The set $I=\{z:0<F(z)<1\}$ is an open interval,
+and $F$ maps it bijectively, continuously and increasingly onto $(0,1)$.
+Since $t\mapsto(t-\mu_0)/\sigma_0$ is an increasing affine bijection,
+the first line gives the claim on $\mathrm{FPR}$.
 
-Whenever $\mathrm{FPR}(t)\in(0,1)$, i.e., $1-\mathrm{FPR}(t)\in(0,1)$, $F^{-1}$ is well defined there and
-
+**Step 2: eliminating $t$.**
+Let $u=\mathrm{FPR}(t)\in(0,1)$.
+Then $F\bigl(\tfrac{t-\mu_0}{\sigma_0}\bigr)=1-u\in(0,1)$, so
 $$
-\frac{t-\mu_0}{\sigma_0}
-=
-F^{-1}\bigl(1-\mathrm{FPR}(t)\bigr).
+\frac{t-\mu_0}{\sigma_0}=F^{-1}(1-u).
 $$
-
-Likewise,
-
-$$
-\mathrm{TPR}(t)
-=
-1-F\!\left(\frac{t-\mu_1}{\sigma_1}\right),
-$$
-
-and
-
+Moreover
 $$
 \begin{align*}
 \frac{t-\mu_1}{\sigma_1}
-& =
-\frac{t-\mu_0}{\sigma_1}
--
-\frac{\mu_1-\mu_0}{\sigma_1}\\
-& =
-\frac{\sigma_0}{\sigma_1}
-\cdot
-\frac{t-\mu_0}{\sigma_0}
--
-\Delta \\
-& =
-\rho\,F^{-1}\bigl(1-\mathrm{FPR}(t)\bigr)-\Delta.
+& =\frac{t-\mu_0}{\sigma_1}-\frac{\mu_1-\mu_0}{\sigma_1}\\
+& =\frac{\sigma_0}{\sigma_1}\cdot\frac{t-\mu_0}{\sigma_0}-\Delta\\
+& =\rho\,F^{-1}(1-u)-\Delta.
 \end{align*}
 $$
-
-Substituting this expression gives the result.
-
-The outer $F$ requires no monotonicity beyond its ordinary CDF definition, since it is applied to a real number rather than inverted.
+Substituting in the expression of $\mathrm{TPR}(t)$ gives @eq-location-scale-roc.
 
 :::
-
 ::::
+
+Since $\alpha$ and $\beta$ are continuous here, no randomization is needed:
+the right-hand side of @eq-location-scale-roc is the function $\mathrm{ROC}(u)$ of @eq-roc,
+and the ROC curve is its graph on $(0,1)$.
 
 ### Corollary: symmetric location-scale ROC
 
@@ -3447,19 +3871,16 @@ The outer $F$ requires no monotonicity beyond its ordinary CDF definition, since
 
 # Symmetric location-scale ROC curve
 
-Under the hypotheses of @thm-location-scale-roc, suppose in addition that $F$ is symmetric:
-
+Under the hypotheses of @thm-location-scale-roc,
+suppose in addition that $F$ is symmetric:
 $$
-F(-x)=1-F(x)
-\quad \forall x\in\mathbb{R}.
+F(-x)=1-F(x)\qquad\forall x\in\mathbb{R}.
 $$
-
-Then for every $\mathrm{FPR}\in(0,1)$,
-
+Then for every $u\in(0,1)$,
 $$
-\mathrm{TPR}
-=
-F\bigl(\Delta+\rho\,F^{-1}(\mathrm{FPR})\bigr).
+\boxed{
+\mathrm{ROC}(u)=F\bigl(\Delta+\rho\,F^{-1}(u)\bigr).
+}
 $$
 
 ::::
@@ -3467,197 +3888,182 @@ $$
 :::: {.proof-container}
 
 ::: {.proof-header onclick="toggleProof('cor-symmetric-roc')"}
-
 [▶]{#proof-arrow-cor-symmetric-roc .proof-arrow} [Proof]{.proof-title}
-
 :::
 
 ::: {#proof-content-cor-symmetric-roc .proof-content}
 
-Fix $\mathrm{FPR}\in(0,1)$ and let
+**Step 1: $F^{-1}(1-u)=-F^{-1}(u)$.**
+Let $x\triangleq F^{-1}(u)$, so that $F(x)=u$.
+By symmetry, $F(-x)=1-u\in(0,1)$.
+So $-x$ lies in $\{0<F<1\}$, where $F$ is strictly increasing,
+and it is the unique point there with $F=1-u$.
+That is, $F^{-1}(1-u)=-x$.
 
+**Step 2: substitution.**
+By @eq-location-scale-roc and Step 1,
 $$
-x\triangleq   F^{-1}(\mathrm{FPR}),
+\begin{align*}
+\mathrm{ROC}(u)
+&=1-F\bigl(-\rho\,F^{-1}(u)-\Delta\bigr)\\
+&=1-\Bigl(1-F\bigl(\rho\,F^{-1}(u)+\Delta\bigr)\Bigr)\\
+&=F\bigl(\Delta+\rho\,F^{-1}(u)\bigr),
+\end{align*}
 $$
-
-so that $F(x)=\mathrm{FPR}$. By symmetry,
-
-$$
-F(-x)=1-F(x)=1-\mathrm{FPR}.
-$$
-
-Since $1-\mathrm{FPR}\in(0,1)$ as well, uniqueness of $F^{-1}$ on $(0,1)$ gives
-
-$$
-F^{-1}(1-\mathrm{FPR})
-=
--x
-=
--F^{-1}(\mathrm{FPR}).
-$$
-
-Substituting into @thm-location-scale-roc,
-
-$$
-\begin{aligned}
-\mathrm{TPR}
-&=
-1-F\Bigl(
--\rho\,F^{-1}(\mathrm{FPR})-\Delta
-\Bigr)\\
-&=
-1-\Bigl(
-1-F\bigl(
-\rho\,F^{-1}(\mathrm{FPR})+\Delta
-\bigr)
-\Bigr)\\
-&=
-F\bigl(
-\Delta+\rho\,F^{-1}(\mathrm{FPR})
-\bigr),
-\end{aligned}
-$$
-
-where the middle step uses symmetry once more, at the point $-\rho F^{-1}(\mathrm{FPR})-\Delta$.
+where the middle step uses symmetry again,
+at the point $\rho\,F^{-1}(u)+\Delta$.
 
 :::
-
 ::::
 
 ### Applications: the symmetric rows
 
-Each of the following is an immediate instance of @cor-symmetric-roc: verify that $F$ is symmetric, write down $F^{-1}$, and substitute.
+Each of the following is an instance of @cor-symmetric-roc:
+check that $F$ is symmetric, write down $F^{-1}$, and substitute.
+We write $u=\mathrm{FPR}$.
 
 **Gaussian.** With $\Phi$ the standard normal CDF,
+$\Phi(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x}e^{-s^2/2}\,ds$,
+the symmetry $\Phi(-x)=1-\Phi(x)$ holds by construction.
+Hence
 $$
-\Phi(x)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{x}e^{-u^2/2}\,du,
-$$
-$F=\Phi$ satisfies $\Phi(-x)=1-\Phi(x)$ by construction. Substituting in @cor-symmetric-roc gives
-$$
-\mathrm{TPR}=\Phi\bigl(\Delta+\rho\,\Phi^{-1}(\mathrm{FPR})\bigr).
+\mathrm{ROC}(u)=\Phi\bigl(\Delta+\rho\,\Phi^{-1}(u)\bigr).
 $$
 
-**Cauchy.** The standard Cauchy CDF is $F(x)=\tfrac12+\tfrac1\pi\tan^{-1} x$. Since $\tan^{-1}$ is odd, $F(-x)=1-F(x)$.
-Solving
+**Cauchy.** The standard Cauchy CDF is
+$\Psi(x)=\tfrac12+\tfrac1\pi\tan^{-1}x$.
+It is symmetric since $\tan^{-1}$ is odd.
+Solving $\tfrac12+\tfrac1\pi\tan^{-1}(\Psi^{-1}(p))=p$ gives
+$\Psi^{-1}(p)=\tan\bigl(\pi(p-\tfrac12)\bigr)$. Hence
 $$
-\tfrac12+\tfrac1\pi\tan^{-1}(F^{-1}(p))=p
-$$ gives
+\mathrm{ROC}(u)=\Psi\bigl(\Delta+\rho\,\Psi^{-1}(u)\bigr),
 $$
-F^{-1}(p)=\tan\bigl(\pi(p-\tfrac12)\bigr).
-$$
-Substituting gives the Cauchy entry in the @tbl-distributions.
+which is the Cauchy entry of @tbl-distributions.
 
-**Logistic.** The logistic CDF is $F(x)=\dfrac{1}{1+e^{-x}}$. It is symmetric since $F(-x)=1-F(x)$, and $F^{-1}(p)=\ln\dfrac{p}{1-p}$. Therefore,
+**Logistic.** $F(x)=\dfrac{1}{1+e^{-x}}$ is symmetric,
+with $F^{-1}(p)=\ln\dfrac{p}{1-p}$. Therefore
 $$
 \begin{align*}
-\mathrm{TPR}
-& = F\Bigl(\Delta+\rho\ln\tfrac{\mathrm{FPR}}{1-\mathrm{FPR}}\Bigr)\\
-& = \frac{1}{1+e^{-\Delta}\left(\tfrac{1-\mathrm{FPR}}{\mathrm{FPR}}\right)^\rho}.
+\mathrm{ROC}(u)
+& =F\Bigl(\Delta+\rho\ln\tfrac{u}{1-u}\Bigr)\\
+& =\frac{1}{1+e^{-\Delta}\bigl(\tfrac{1-u}{u}\bigr)^\rho}.
 \end{align*}
 $$
-Multiplying numerator and denominator by $e^\Delta\mathrm{FPR}^\rho$ gives the entry in @tbl-distributions.
+Multiplying numerator and denominator by $e^\Delta u^\rho$
+gives the entry of @tbl-distributions.
 
-
-**Uniform $(-\tfrac12,\tfrac12)$.** The CDF is obtained by clipping the shifted variate,
-$$
-F(z)=\bigl[z+\tfrac12\bigr]_0^1,
-$$
-which is symmetric on $\mathbb{R}$, with $F^{-1}(p)=p-\tfrac12$ on $(0,1)$.
-
-By the theorem, $\mathrm{TPR}=F(z_1)$ where $z_1=\Delta+\rho z_0$ and $z_0=F^{-1}(\mathrm{FPR})=\mathrm{FPR}-\tfrac12$. Hence
+**Uniform $(-\tfrac12,\tfrac12)$.** The CDF is a clipped ramp,
+$F(z)=\bigl[z+\tfrac12\bigr]_0^1$.
+It is symmetric on $\mathbb{R}$,
+with $F^{-1}(p)=p-\tfrac12$ on $(0,1)$. Hence
 $$
 \begin{align*}
-\mathrm{TPR}
-& = F\bigl(\Delta+\rho\bigl(\mathrm{FPR}-\tfrac12\bigr)\bigr)\\
-& = \Bigl[\Delta+\tfrac{1-\rho}{2}+\rho\,\mathrm{FPR}\Bigr]_0^1 .
+\mathrm{ROC}(u)
+& =F\bigl(\Delta+\rho\bigl(u-\tfrac12\bigr)\bigr)\\
+& =\Bigl[\Delta+\tfrac{1-\rho}{2}+\rho\,u\Bigr]_0^1 .
 \end{align*}
 $$
 
 ### The remaining rows: Gumbel and Exponential (not symmetric)
 
-**Gumbel.** The Gumbel-max CDF is $F(x)=\exp(-e^{-x})$.
-Its inverse is $F^{-1}(p)=-\ln(-\ln p)$, so with the previous theorem, $1-\mathrm{TPR}=F\left(\rho \ln\left(\frac{1}{-\ln(1-\mathrm{FPR})}\right) - \Delta\right)$.
+Here we use @thm-location-scale-roc directly.
 
-Setting $w\triangleq  -\ln(1-\mathrm{FPR})>0$, the argument of $F$ is $-\rho\ln w-\Delta$, and
+**Gumbel.** $F(x)=\exp(-e^{-x})$ and $F^{-1}(p)=-\ln(-\ln p)$.
+Set $w\triangleq-\ln(1-u)>0$,
+so that $F^{-1}(1-u)=-\ln w$ and
+$\rho F^{-1}(1-u)-\Delta=-\rho\ln w-\Delta$. Then
 $$
 \begin{align*}
 F(-\rho\ln w-\Delta)
-& = \exp\bigl(-e^{\rho\ln w+\Delta}\bigr)\\
-& = \exp\bigl(-e^\Delta w^\rho\bigr),
+& =\exp\bigl(-e^{\rho\ln w+\Delta}\bigr)\\
+& =\exp\bigl(-e^{\Delta}w^{\rho}\bigr),
 \end{align*}
 $$
-hence
+and therefore
 $$
-\mathrm{TPR}(\mathrm{FPR})=1-e^{\Bigl(-e^\Delta\bigl(-\ln(1-\mathrm{FPR})\bigr)^\rho\Bigr)}.
+\mathrm{ROC}(u)=1-\exp\Bigl(-e^{\Delta}\bigl(-\ln(1-u)\bigr)^{\rho}\Bigr).
 $$
 
-**Exponential.** The exponential CDF is $F(z)=(1-e^{-z})_+$. Its inverse on $(0,1)$ is $F^{-1}(p)=-\ln(1-p)$, so, with @thm-location-scale-roc,
+**Exponential.** $F(z)=(1-e^{-z})_+$ and $F^{-1}(p)=-\ln(1-p)$ on $(0,1)$.
+So $F^{-1}(1-u)=-\ln u$, and
 $$
-\mathrm{TPR}(t)=1-F\bigl(\rho\,(-\ln\mathrm{FPR})-\Delta\bigr).
+\mathrm{ROC}(u)=1-F(a),\qquad a\triangleq-\rho\ln u-\Delta.
 $$
-When $\rho(-\ln\mathrm{FPR})-\Delta\ge0$ (i.e. $\mathrm{FPR}\le e^{-\Delta/\rho}$), $F(x)=1-e^{-x}$ gives $1-F(\cdot)=e^{-(\rho(-\ln\mathrm{FPR})-\Delta)}=e^\Delta\mathrm{FPR}^\rho$; otherwise the argument is negative, $F\equiv0$ there, and $\mathrm{TPR}=1$. Hence
+If $a\ge0$, that is $u\le e^{-\Delta/\rho}$,
+then $1-F(a)=e^{-a}=e^{\Delta}u^{\rho}$.
+Otherwise $a<0$, $F(a)=0$ and $\mathrm{ROC}(u)=1$.
+Since $e^\Delta u^\rho\le1$ exactly when $u\le e^{-\Delta/\rho}$,
 $$
-\boxed{\mathrm{TPR}(\mathrm{FPR})=\min\bigl(e^\Delta\mathrm{FPR}^\rho,\,1\bigr).}
+\boxed{\mathrm{ROC}(u)=\min\bigl(e^{\Delta}u^{\rho},\,1\bigr).}
 $$
 
 
 ## Appendix B: PR curves for location-scale families {#sec-app-pr}
 
-This appendix gathers the computations behind @tbl-distributions-pr, with the notation of Appendix A, the prevalence $\pi_1$, and $G(r)=\mathrm{FPR}(t_r)$ as defined in the main text.
+This appendix gathers the computations behind @tbl-distributions-pr,
+with the notation of Appendix A,
+the prevalence $\pi_1\in(0,1)$ and $\pi_0=1-\pi_1$.
+For the tests $\mathbb{1}\{x\ge t\}$, $\mathrm{Rec}(t)=\mathrm{TPR}(t)$
+and, by @eq-precision-formula,
+$\mathrm{Prec}(t)=\dfrac{\pi_1\,\mathrm{TPR}(t)}{\pi_1\,\mathrm{TPR}(t)+\pi_0\,\mathrm{FPR}(t)}$.
 
-### PR curve for location-scale family
+### PR curve for a location-scale family
 
 :::: {#thm-location-scale-pr}
 
 # Location-scale PR curve
 
-Under the hypotheses of @thm-location-scale-roc, let $\pi_1\in(0,1)$ and $\pi_0=1-\pi_1$. Then for every $r\in(0,1)$ there is a unique threshold $t_r$ with $\mathrm{Recall}(t_r)=r$, and
+Under the hypotheses of @thm-location-scale-roc,
+for every $r\in(0,1)$ there is a unique threshold $t_r$ with $\mathrm{Rec}(t_r)=r$, and
 $$
 \begin{align*}
-\mathrm{FPR}(t_r)
-& = 1-F\Bigl(\tfrac{F^{-1}(1-r)+\Delta}{\rho}\Bigr)\\
-\mathrm{Precision}(t_r)
-& = \frac{\pi_1\,r}{\pi_1\,r+\pi_0\,G(r)}
+G(r)&\triangleq\mathrm{FPR}(t_r)=1-F\Bigl(\frac{F^{-1}(1-r)+\Delta}{\rho}\Bigr),\\
+\mathrm{PR}(r)&\triangleq\mathrm{Prec}(t_r)=\frac{\pi_1\,r}{\pi_1\,r+\pi_0\,G(r)}.
 \end{align*}
-$$
+$$ {#eq-location-scale-pr}
 
 ::::
 
 :::: {.proof-container}
 
 ::: {.proof-header onclick="toggleProof('thm-location-scale-pr')"}
-
 [▶]{#proof-arrow-thm-location-scale-pr .proof-arrow} [Proof]{.proof-title}
-
 :::
 
 ::: {#proof-content-thm-location-scale-pr .proof-content}
 
-**Threshold.** Since $\mathrm{Recall}(t)=\mathrm{TPR}(t)=1-F\bigl(\tfrac{t-\mu_1}{\sigma_1}\bigr)$, the equation $\mathrm{Recall}(t)=r$ reads $F\bigl(\tfrac{t-\mu_1}{\sigma_1}\bigr)=1-r\in(0,1)$. As $F$ is strictly increasing on $\{0<F<1\}$, its unique solution is
+**Step 1: the threshold.**
+Since $\mathrm{Rec}(t)=\mathrm{TPR}(t)=1-F\bigl(\tfrac{t-\mu_1}{\sigma_1}\bigr)$,
+the equation $\mathrm{Rec}(t)=r$ reads
+$F\bigl(\tfrac{t-\mu_1}{\sigma_1}\bigr)=1-r\in(0,1)$.
+As $F$ is strictly increasing on $\{0<F<1\}$, its unique solution is
 $$
 t_r=\mu_1+\sigma_1F^{-1}(1-r).
 $$
 
-**FPR.** At $t_r$,
+**Step 2: the FPR.**
+At $t_r$,
 $$
 \begin{align*}
 \frac{t_r-\mu_0}{\sigma_0}
-& =
-\frac{\sigma_1F^{-1}(1-r)+\mu_1-\mu_0}{\sigma_0}\\
-& = \frac{F^{-1}(1-r)+\Delta}{\rho},
+& =\frac{\sigma_1F^{-1}(1-r)+\mu_1-\mu_0}{\sigma_0}\\
+& =\frac{F^{-1}(1-r)+\Delta}{\rho},
 \end{align*}
 $$
-so $\mathrm{FPR}(t_r)=1-F\bigl(\tfrac{t_r-\mu_0}{\sigma_0}\bigr)=G(r)$.
+so $\mathrm{FPR}(t_r)=1-F\bigl(\tfrac{t_r-\mu_0}{\sigma_0}\bigr)$ is the stated $G(r)$.
 
-**Precision.** By definition,
-$$
-\mathrm{Precision}(t)=\frac{\pi_1\,\mathrm{TPR}(t)}{\pi_1\,\mathrm{TPR}(t)+\pi_0\,\mathrm{FPR}(t)},
-$$
-whose denominator is at least $\pi_1 r>0$ at $t=t_r$. Substituting $\mathrm{TPR}(t_r)=r$ and $\mathrm{FPR}(t_r)=G(r)$ gives the second equality.
+**Step 3: the precision.**
+The denominator of @eq-precision-formula at $t=t_r$
+is at least $\pi_1\,r>0$.
+Substituting $\mathrm{TPR}(t_r)=r$ and $\mathrm{FPR}(t_r)=G(r)$ gives $\mathrm{PR}(r)$.
 
 :::
-
 ::::
+
+Applying @thm-location-scale-roc at $t_r$ gives $\mathrm{ROC}(G(r))=\mathrm{TPR}(t_r)=r$
+whenever $0<G(r)<1$:
+$G$ is the inverse of the ROC curve, which is why it
+only depends on the class-conditional laws.
 
 ### Corollary: symmetric location-scale PR
 
@@ -3665,7 +4071,9 @@ whose denominator is at least $\pi_1 r>0$ at $t=t_r$. Substituting $\mathrm{TPR}
 
 # Symmetric location-scale PR curve
 
-Under the hypotheses of @thm-location-scale-pr, suppose in addition that $F(-x)=1-F(x)$ for every $x\in\mathbb{R}$. Then for every $r\in(0,1)$,
+Under the hypotheses of @thm-location-scale-pr,
+suppose in addition that $F(-x)=1-F(x)$ for every $x\in\mathbb{R}$.
+Then for every $r\in(0,1)$,
 $$
 \boxed{
 G(r)=F\Bigl(\frac{F^{-1}(r)-\Delta}{\rho}\Bigr).
@@ -3677,18 +4085,21 @@ $$
 :::: {.proof-container}
 
 ::: {.proof-header onclick="toggleProof('cor-symmetric-pr')"}
-
 [▶]{#proof-arrow-cor-symmetric-pr .proof-arrow} [Proof]{.proof-title}
-
 :::
 
 ::: {#proof-content-cor-symmetric-pr .proof-content}
 
 Fix $r\in(0,1)$ and let $z\triangleq F^{-1}(r)$, so that $0<F(z)=r<1$.
 
-**Step 1: $F^{-1}(1-r)=-z$.** By symmetry, $F(-z)=1-F(z)=1-r\in(0,1)$. Hence $-z$ lies in $\{0<F<1\}$, where $F$ is strictly increasing, and $-z$ is the unique point of this set with $F=1-r$. That is, $F^{-1}(1-r)=-z$.
+**Step 1: $F^{-1}(1-r)=-z$.**
+By symmetry, $F(-z)=1-F(z)=1-r\in(0,1)$.
+Hence $-z$ lies in $\{0<F<1\}$, where $F$ is strictly increasing,
+and it is the unique point of this set with $F=1-r$.
 
-**Step 2: simplify $G$.** Put $x\triangleq\dfrac{z-\Delta}{\rho}$. By Step 1, the argument of $F$ in the definition of $G(r)$ is
+**Step 2: simplifying $G$.**
+Put $x\triangleq(z-\Delta)/\rho$.
+By Step 1, the argument of $F$ in the definition of $G(r)$ is
 $$
 \frac{F^{-1}(1-r)+\Delta}{\rho}=\frac{-z+\Delta}{\rho}=-x.
 $$
@@ -3696,45 +4107,52 @@ Applying symmetry at the point $x$,
 $$
 \begin{align*}
 G(r)
-& = 1-F(-x)\\
-& = 1-\bigl(1-F(x)\bigr)
-& = F(x)\\
-& = F\Bigl(\frac{F^{-1}(r)-\Delta}{\rho}\Bigr).
+& =1-F(-x)\\
+& =1-\bigl(1-F(x)\bigr)\\
+& =F(x)=F\Bigl(\frac{F^{-1}(r)-\Delta}{\rho}\Bigr).
 \end{align*}
 $$
 
 :::
-
 ::::
 
 ### Applications: the symmetric rows
 
-Each is an immediate instance of @cor-symmetric-pr: verify that $F$ is symmetric, write down $F^{-1}$, and substitute into $G$.
+Each is an instance of @cor-symmetric-pr:
+check that $F$ is symmetric, write down $F^{-1}$, and substitute in $G$.
 
-**Gaussian.** $F=\Phi$ satisfies $\Phi(-x)=1-\Phi(x)$, so
+**Gaussian.** $\Phi(-x)=1-\Phi(x)$, so
 $$
 G(r)=\Phi\Bigl(\frac{\Phi^{-1}(r)-\Delta}{\rho}\Bigr).
 $$
 
-**Cauchy.** $F(x)=\tfrac12+\tfrac1\pi\tan^{-1}x$ is symmetric since $\tan^{-1}$ is odd, with $F^{-1}(p)=\tan\bigl(\pi(p-\tfrac12)\bigr)$. Hence
-$G(r)=\tfrac12+\tfrac1\pi\tan^{-1}\!\Bigl(\frac{\tan(\pi(r-\frac12))-\Delta}{\rho}\Bigr).$
-
-**Logistic.** $F(x)=\dfrac{1}{1+e^{-x}}$ is symmetric, with $F^{-1}(p)=\ln\dfrac{p}{1-p}$. Therefore
+**Cauchy.** $\Psi(x)=\tfrac12+\tfrac1\pi\tan^{-1}x$ is symmetric,
+with $\Psi^{-1}(p)=\tan\bigl(\pi(p-\tfrac12)\bigr)$. Hence
 $$
-\begin{aligned}
+\begin{align*}
+G(r) & =\Psi\Bigl(\frac{\Psi^{-1}(r)-\Delta}{\rho}\Bigr)\\
+ & =\tfrac12+\tfrac1\pi\tan^{-1}\!\Bigl(\frac{\tan(\pi(r-\frac12))-\Delta}{\rho}\Bigr).
+\end{align*}
+$$
+
+**Logistic.** $F(x)=\dfrac{1}{1+e^{-x}}$ is symmetric,
+with $F^{-1}(p)=\ln\dfrac{p}{1-p}$. Therefore
+$$
+\begin{align*}
 G(r)
 &=\frac{1}{1+\exp\bigl(-\tfrac{1}{\rho}\bigl(\ln\tfrac{r}{1-r}-\Delta\bigr)\bigr)}\\
 &=\frac{1}{1+e^{\Delta/\rho}\bigl(\tfrac{1-r}{r}\bigr)^{1/\rho}}\\
 &=\frac{r^{1/\rho}}{r^{1/\rho}+e^{\Delta/\rho}(1-r)^{1/\rho}}.
-\end{aligned}
+\end{align*}
 $$
 
-**Uniform $(-\tfrac12,\tfrac12)$.** $F(z)=[z+\tfrac12]_0^1$ is symmetric, with $F^{-1}(p)=p-\tfrac12$ on $(0,1)$. Hence
+**Uniform $(-\tfrac12,\tfrac12)$.** $F(z)=[z+\tfrac12]_0^1$ is symmetric,
+with $F^{-1}(p)=p-\tfrac12$ on $(0,1)$. Hence
 $$
 \begin{align*}
 G(r)
-& = F\Bigl(\frac{r-\frac12-\Delta}{\rho}\Bigr)\\
-& = \Bigl[\frac{r-\Delta-\frac{1-\rho}{2}}{\rho}\Bigr]_0^1 .
+& =F\Bigl(\frac{r-\frac12-\Delta}{\rho}\Bigr)\\
+& =\Bigl[\frac{r-\Delta-\frac{1-\rho}{2}}{\rho}\Bigr]_0^1 .
 \end{align*}
 $$
 
@@ -3742,23 +4160,130 @@ $$
 
 Here we use @thm-location-scale-pr directly.
 
-**Gumbel.** $F(x)=\exp(-e^{-x})$ and $F^{-1}(p)=-\ln(-\ln p)$, so $F^{-1}(1-r)=-\ln(-\ln(1-r))$. The argument of $F$ in $G(r)$ is $a\triangleq\tfrac{\Delta-\ln(-\ln(1-r))}{\rho}$, and
+**Gumbel.** $F(x)=\exp(-e^{-x})$ and $F^{-1}(p)=-\ln(-\ln p)$.
+Set $w\triangleq-\ln(1-r)>0$, so that $F^{-1}(1-r)=-\ln w$.
+The argument of $F$ in $G(r)$ is $a\triangleq(\Delta-\ln w)/\rho$, and
 $$
-\begin{align*}
-F(a)
-& = \exp\bigl(-e^{-a}\bigr)\\
-& =
-e^{\Bigl(-\bigl(e^{-\Delta}(-\ln(1-r))\bigr)^{1/\rho}\Bigr)}.
-\end{align*}
+F(a)=\exp\bigl(-e^{-a}\bigr)=\exp\bigl(-e^{-\Delta/\rho}\,w^{1/\rho}\bigr).
 $$
-Hence,
+Hence
 $$
-G(r)=1-e^{\Bigl(-e^{-\Delta/\rho}\bigl(-\ln(1-r)\bigr)^{1/\rho}\Bigr)}.
+G(r)=1-\exp\Bigl(-e^{-\Delta/\rho}\bigl(-\ln(1-r)\bigr)^{1/\rho}\Bigr).
 $$
 
-**Exponential.** $F(z)=(1-e^{-z})_+$ and $F^{-1}(p)=-\ln(1-p)$, so $F^{-1}(1-r)=-\ln r$ and the argument of $F$ is $a\triangleq\tfrac{\Delta-\ln r}{\rho}$. If $a\ge0$, then $1-F(a)=e^{-a}=e^{-\Delta/\rho}r^{1/\rho}$. If $a<0$, then $F(a)=0$ and $G(r)=1$. Hence
+**Exponential.** $F(z)=(1-e^{-z})_+$ and $F^{-1}(p)=-\ln(1-p)$,
+so $F^{-1}(1-r)=-\ln r$ and the argument of $F$ is
+$a\triangleq(\Delta-\ln r)/\rho$.
+If $a\ge0$, then $1-F(a)=e^{-a}=e^{-\Delta/\rho}r^{1/\rho}$.
+If $a<0$, then $F(a)=0$ and $G(r)=1$.
+Since $e^{-\Delta/\rho}r^{1/\rho}\le1$ exactly when $a\ge0$,
 $$
 \boxed{G(r)=\min\bigl(e^{-\Delta/\rho}\,r^{1/\rho},\,1\bigr).}
 $$
 
-*Remark (bounded-below supports).* For the Uniform and Exponential laws, recall $1$ can be reached at a finite threshold, so the plotted curve $r\mapsto(r,\mathrm{Precision}(r))$ stops before $r=1$. The remaining part of the PR curve is the vertical segment at $\mathrm{Recall}=1$, from $\mathrm{Precision}(1^-)$ down to the universal endpoint $(1,\pi_1)$ (reached as $t\to-\infty$).
+*Remark (bounded-below supports).*
+For the Uniform and Exponential laws, $X_1$ has a finite lower endpoint $\ell_1$
+($\mu_1-\sigma_1/2$ and $\mu_1$ respectively),
+and $\mathrm{Rec}(t)=1$ for all $t\le\ell_1$.
+The curve $r\mapsto(r,\mathrm{PR}(r))$ therefore stops before $r=1$,
+at $\mathrm{PR}(1^-)=\pi_1/(\pi_1+\pi_0\,G(1^-))$ with $G(1^-)\triangleq\lim_{r\uparrow1}G(r)$.
+The rest of the PR curve is the vertical segment at $\mathrm{Rec}=1$,
+traced by $t\le\ell_1$ with $\mathrm{Prec}(t)=\pi_1/(\pi_1+\pi_0\,\alpha(t))$:
+it goes from $\bigl(1,\mathrm{PR}(1^-)\bigr)$ down to the universal endpoint $(1,\pi_1)$,
+reached as $t\to-\infty$ (@lem-pr-endpoint).
+
+### The end $\mathrm{Rec}\to0$: tail ratios
+
+By @eq-location-scale-pr,
+$$
+\mathrm{PR}(r)=\Bigl(1+\frac{\pi_0}{\pi_1}\,\frac{G(r)}{r}\Bigr)^{-1},
+\qquad
+\frac{G(r)}{r}=\frac{\alpha(t_r)}{\beta(t_r)},
+$$
+and $t_r\to+\infty$ as $r\downarrow0$.
+This is the tail ratio of the remark after @lem-pr-endpoint:
+if $G(r)/r\to c\in[0,\infty]$, then $\mathrm{PR}(r)\to(1+c\,\pi_0/\pi_1)^{-1}$
+(read as $0$ when $c=\infty$).
+The value of $c$ is not universal.
+
+:::: {#thm-pr-left-end}
+
+# Tail ratio for the Gaussian and Exponential rows
+
+Under the hypotheses of @thm-location-scale-pr, as $r\downarrow0$:
+
+1. **Gaussian.**
+$G(r)/r\to0$ if $\rho<1$, or $\rho=1$ and $\Delta>0$;
+$G(r)/r\to1$ if $\rho=1$ and $\Delta=0$;
+$G(r)/r\to\infty$ if $\rho>1$, or $\rho=1$ and $\Delta<0$.
+2. **Exponential.**
+$G(r)/r\to0$ if $\rho<1$;
+$G(r)/r\to e^{-\Delta}$ if $\rho=1$;
+$G(r)/r\to\infty$ if $\rho>1$.
+
+Hence $\mathrm{PR}(r)\to1$, $\pi_1$ or $0$ in the three Gaussian cases,
+and, in the Exponential case with $\rho=1$,
+$\mathrm{PR}(r)\to\bigl(1+\tfrac{\pi_0}{\pi_1}e^{-\Delta}\bigr)^{-1}$.
+
+::::
+
+:::: {.proof-container}
+
+::: {.proof-header onclick="toggleProof('thm-pr-left-end')"}
+[▶]{#proof-arrow-thm-pr-left-end .proof-arrow} [Proof]{.proof-title}
+:::
+
+::: {#proof-content-thm-pr-left-end .proof-content}
+
+**Gaussian.**
+Let $\varphi$ be the standard normal density.
+We use Mills' ratio: $\Phi(-x)\sim\varphi(x)/x$ as $x\to\infty$.
+Put $x\triangleq-\Phi^{-1}(r)$, so $x\to\infty$ as $r\downarrow0$ and $r=\Phi(-x)$.
+By the Gaussian row of @cor-symmetric-pr,
+$G(r)=\Phi\bigl(-y\bigr)$ with $y\triangleq(x+\Delta)/\rho\to\infty$.
+Applying Mills' ratio to both,
+$$
+\frac{G(r)}{r}\sim\frac{\varphi(y)/y}{\varphi(x)/x}
+=\frac{x}{y}\,e^{(x^2-y^2)/2}
+=\frac{\rho\,x}{x+\Delta}\,e^{(x^2-y^2)/2}.
+$$
+Expanding $y^2=(x+\Delta)^2/\rho^2$ and using $\rho x/(x+\Delta)\to\rho$,
+$$
+\frac{G(r)}{r}\sim\rho\,\exp\Bigl(\tfrac12\bigl(1-\rho^{-2}\bigr)x^2-\tfrac{\Delta}{\rho^2}x-\tfrac{\Delta^2}{2\rho^2}\Bigr).
+$$
+
+- If $\rho<1$, then $1-\rho^{-2}<0$: the quadratic term dominates
+and the right-hand side tends to $0$.
+- If $\rho>1$, then $1-\rho^{-2}>0$ and it tends to $\infty$.
+- If $\rho=1$, it equals $\exp(-\Delta x-\Delta^2/2)$, which tends to $0$ if $\Delta>0$,
+to $\infty$ if $\Delta<0$, and is $\equiv1$ if $\Delta=0$.
+
+**Exponential.**
+Since $r^{1/\rho}\to0$, we have $e^{-\Delta/\rho}r^{1/\rho}<1$ for $r$ small enough,
+so $G(r)=e^{-\Delta/\rho}r^{1/\rho}$ and
+$$
+\frac{G(r)}{r}=e^{-\Delta/\rho}\,r^{1/\rho-1}.
+$$
+The exponent $1/\rho-1$ is positive, zero or negative
+according to $\rho<1$, $\rho=1$ or $\rho>1$.
+
+The statement on $\mathrm{PR}$ follows from the formula above.
+
+:::
+::::
+
+*Remark (the other rows).*
+The same computations give, as $r\downarrow0$:
+
+- **Logistic and Gumbel:** $G(r)\sim e^{-\Delta/\rho}r^{1/\rho}$
+(for the Gumbel row, use $-\ln(1-r)\sim r$ and $1-e^{-s}\sim s$),
+so the Exponential case applies verbatim,
+- **Cauchy:** $\Psi^{-1}(r)\sim-1/(\pi r)$ and $\Psi(z)\sim1/(\pi|z|)$ as $z\to-\infty$,
+so $G(r)\sim\rho\,r$, hence $c=\rho$ for every $\Delta$,
+- **Uniform:** with $a\triangleq\Delta+\tfrac{1-\rho}{2}$,
+$G(r)=0$ for small $r$ if $a>0$ ($c=0$),
+$G(r)=r/\rho$ if $a=0$ ($c=1/\rho$),
+and $G(0^+)>0$ if $a<0$ ($c=\infty$).
+
+In particular, the limit of $\mathrm{PR}$ at $\mathrm{Rec}=0$
+can take any value in $[0,1]$.

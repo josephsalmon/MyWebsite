@@ -42,6 +42,11 @@ const LIGHT_COLORS = {
   perfect: '#9467bd',              // Extreme cases
   random: '#8c564b',
   wrong: '#e377c2',
+
+  right: '#1f77b4',   // one-sided X >= t   (blue)
+  left:  '#2ca02c',   // one-sided X <= t   (green)
+  two:   '#e6a100',   // two-sided |X| >= r (amber)
+
 };
 
 const DARK_COLORS = {
@@ -55,6 +60,11 @@ const DARK_COLORS = {
   perfect: '#b79cff',
   random: '#e0a58f',
   wrong: '#f48fb1',
+
+  // DARK_COLORS
+  right: '#6cb2eb',
+  left:  '#81c784',
+  two:   '#ffd54f',
 };
 
 const LIGHT_THEME = {
@@ -245,8 +255,8 @@ const AUC_LR = (() => {
 // Density / LLR panels
 // ---------------------------------------------------------------------------
 
-const Y_MIN = -6, Y_MAX = 7;          // shared vertical axis of the two left panels (assay value x)
-const L_MIN = -6, L_MAX = 6;      // horizontal range of the LLR panel
+const Y_MIN = -7, Y_MAX = 7;
+const L_MIN = -1.5, L_MAX = 12;   // LLR >= -0.86 always, so nothing is lost on the left
 
 const linspace = (u, v, n) => Array.from({ length: n + 1 }, (_, i) => u + (v - u) * i / n);
 
@@ -292,15 +302,14 @@ function styleValueLabel(el) {
 }
 
 // One curve + its operating-point marker, sharing a color/legend entry.
-function curveAndPoint(curve, pt, { color, width, dash, name, legend, legendrank, markerSize = 10 }) {
-  // Unique group per curve: clicking its legend entry toggles only this curve
-  // (line + operating-point marker), not the whole section.
+function curveAndPoint(curve, pt, { color, width, dash, name, legend, legendrank, markerSize = 10, symbol = 'circle' }) {
   const legendgroup = 'curve-' + name;
   return [
     { x: curve.x, y: curve.y, mode: 'lines', name, legend, legendgroup, legendrank,
       line: { color, width, dash }, showlegend: true },
     { x: [pt.fpr], y: [pt.tpr], mode: 'markers', legend, legendgroup, legendrank,
-      marker: { color: THEME.bg, size: markerSize, symbol: 'circle', line: { color, width: 2 } },
+      // filled marker with a thin outline in the page background, so it stays readable on the curves
+      marker: { color, size: markerSize, symbol, line: { color: THEME.bg, width: 1.5 } },
       showlegend: false },
   ];
 }
@@ -340,7 +349,11 @@ export async function initGaussianRocSimpleWidget(container) {
     alignSelf: 'center', boxSizing: 'border-box', justifyContent: 'flex-start',
   });
 
-  const lMin = -4, lMax = 4;
+    // λ range: below LLR_MIN the decision region is the whole line (FPR = TPR = 1),
+  // so the slider starts just under it; lMax is large enough to approach the (0,0) corner.
+  const LLR_MIN = C - B * B / (4 * A);            // ≈ -0.860
+  const lMin = Math.floor(LLR_MIN * 10) / 10;     // -0.9
+  const lMax = 12;
 
   // LLR threshold control: reuse the slider of the page block, else create one.
   let thresholdSlider = container.querySelector('#lr-threshold');
@@ -353,12 +366,16 @@ export async function initGaussianRocSimpleWidget(container) {
       });
     }
     thresholdSlider.style.width = '100%';
+    // The HTML block may carry its own min/max/step: override them so the JS range wins.
+    Object.assign(thresholdSlider, { min: lMin, max: lMax, step: 0.01 });
+    thresholdSlider.value = Math.min(Math.max(parseFloat(thresholdSlider.value) || 0, lMin), lMax);
   } else {
     thresholdTitle = addLabel(controlsDiv, 'Log-likelihood-ratio threshold');
     ({ slider: thresholdSlider, valueLabel: thresholdValueLabel } =
       addSlider(controlsDiv, { min: lMin, max: lMax, step: 0.01, value: 0 }));
   }
   styleValueLabel(thresholdValueLabel);
+
 
   function updateThresholdValueLabel() {
     const lambda = parseFloat(thresholdSlider.value);
@@ -379,15 +396,21 @@ export async function initGaussianRocSimpleWidget(container) {
   });
   controlsDiv.appendChild(legendRow);
 
-  function fillLegendRow() {
+    function fillLegendRow() {
+    const SHAPES = {
+      star:  '<polygon points="5,0.5 6.4,3.7 9.8,3.9 7.2,6.1 8.1,9.4 5,7.6 1.9,9.4 2.8,6.1 0.2,3.9 3.6,3.7"/>',
+      right: '<polygon points="1,0.5 9.5,5 1,9.5"/>',
+      left:  '<polygon points="9,0.5 0.5,5 9,9.5"/>',
+      square:'<rect x="1" y="1" width="8" height="8"/>',
+    };
     legendRow.innerHTML = [
-      [COLORS.roc, 'LR-optimal test'],
-      [COLORS.test, 'One-sided (right)'],
-      [COLORS.test, 'One-sided (left)'],
-      [COLORS.test, 'Two-sided'],
-    ].map(([color, label]) => `
+      [COLORS.roc,   'star',   'LR-optimal test'],
+      [COLORS.right, 'right',  'One-sided (right)'],
+      [COLORS.left,  'left',   'One-sided (left)'],
+      [COLORS.two,   'square', 'Two-sided'],
+    ].map(([color, shape, label]) => `
     <div style="display:flex; align-items:center; gap:4px;">
-      <span style="width:8px; height:8px; border-radius:50%; background:${THEME.bg}; border:2px solid ${color}; display:inline-block;"></span>
+      <svg width="11" height="11" viewBox="0 0 10 10" fill="${color}" style="flex:none">${SHAPES[shape]}</svg>
       ${label}
     </div>`).join('');
   }
@@ -564,20 +587,7 @@ export async function initGaussianRocSimpleWidget(container) {
       hoverinfo: 'skip',
     },
 
-    // LR-optimal ROC
-    ...curveAndPoint(
-      lrCurve,
-      lr,
-      {
-        color: COLORS.roc,
-        width: 2.5,
-        dash: 'solid',
-        name: 'LR: |X + 1/3| ≥ r',
-        legend: 'legend',
-        legendrank: 101,
-        markerSize: scaleMarker(16),
-      }
-    ),
+
 
 
     // ===============================================================
@@ -602,7 +612,7 @@ export async function initGaussianRocSimpleWidget(container) {
       oneSidedCurve,
       oneSidedPoint(t),
       {
-        color: COLORS.test,
+        color: COLORS.right, markerSize: scaleMarker(12), symbol: 'triangle-right',
         width: 2,
         dash: 'dot',
         name: 'One-sided: X ≥ t',
@@ -617,7 +627,9 @@ export async function initGaussianRocSimpleWidget(container) {
       leftSidedCurve,
       leftSidedPoint(sLeft),
       {
-        color: COLORS.test,
+        color: COLORS.left,
+        markerSize: scaleMarker(12),
+        symbol: 'triangle-left',
         width: 2,
         dash: 'dashdot',
         name: 'One-sided: X ≤ t',
@@ -632,7 +644,9 @@ export async function initGaussianRocSimpleWidget(container) {
       twoNullCurve,
       twoSidedPoint(MU0, rNull),
       {
-        color: COLORS.test,
+        color: COLORS.two,
+        markerSize: scaleMarker(10),
+        symbol: 'square',
         width: 2,
         dash: 'dash',
         name: 'Two-sided: |X| ≥ r',
@@ -642,6 +656,22 @@ export async function initGaussianRocSimpleWidget(container) {
       }
     ),
 
+    // LR-optimal ROC
+    ...curveAndPoint(
+      lrCurve,
+      lr,
+      {
+        color: COLORS.roc,
+        markerSize: scaleMarker(18),
+        symbol: 'star',
+        width: 2.5,
+        dash: 'solid',
+        name: 'LR: |X + 1/3| ≥ r',
+        legend: 'legend',
+        legendrank: 101,
+        markerSize: scaleMarker(16),
+      }
+    ),
 
     // ===============================================================
     // EXTREME CASES — heading
@@ -1002,7 +1032,7 @@ function computePlotSize() {
       // panel 2: log-likelihood ratio, drawn against the SAME vertical axis
       xaxis2: {
         ...axisBase, domain: g.domLlr.x, anchor: 'y2', range: [L_MIN, L_MAX],
-        tickvals: g.llrW >= 90 ? [-4, -2, 0, 2, 4] : [-4, 0, 4],
+        tickvals: g.llrW >= 90 ? [0, 4, 8, 12] : [0, 6, 12],
         ticks: 'outside', ticklen: 4, tickcolor: THEME.secondary,
         tickfont: { size: 10, color: THEME.secondary },
         title: axisTitle('ℓ(x)'),
